@@ -1,0 +1,114 @@
+SBP
+ GADRDat$ÿ"ADRESSEN"
+ GTelDat$ÿ"Telefon"
+ ÿ™"TEST"
+ ÿ£kun.test
+ ÿÉÿ`ÿ™"TEST"ÿ£kun.test
+ i%ÿ0
+ ÿØÿOÿB("Test")
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ" Adressen importiert"
+ÿÿ™"ADRESSEN"
+codeku.adressenÿÿI("ADRESSEN",1)
+codeku%ÿcodeku.adressen
+Anrede.adressenÿAnschrift1.test
+Nachname.adressenÿsuchname.test
+ÿ¡anrede.adressenÿ"Her*"ÿanrede.adressenÿ"Fr*"ÿp
+vorname.adressenÿvorname.test
+ÿ^
+geburtsname.adressenÿvorname.test
+ÿ’ÿ¡
+plz.adressenÿplzort.test
+Straáe.adressenÿstrasse.test
+ort.adressenÿort.test
+ÿ½ briefanrede.adressen = anrede.test
+
+ÿÉÿæÿ>(ÿ+(anrede.GAdrDat$,3))
+ÿæ"HER"
+briefanrede.GAdrDat$ÿ"Sehr geehrter Herr "ÿnachname.GAdrDat$ÿ","
+ÿæ"FRA","FR."
+briefanrede.GAdrDat$ÿ"Sehr geehrte Frau "ÿnachname.GAdrDat$ÿ","
+ÿæ"FR","FRL"
+briefanrede.GAdrDat$ÿ"Sehr geehrtes Fr„ulein "ÿnachname.GAdrDat$ÿ","
+ÿæ"FA.","FIR",""
+briefanrede.GAdrDat$ÿ"Sehr geehrte Damen und Herren,"
+ÿæ"FAM"
+briefanrede.GAdrDat$ÿ"Sehr geehrte Familie "ÿnachname.GAdrDat$ÿ","
+ÿæ"EHE"
+briefanrede.GAdrDat$ÿ"Sehr geehrte Eheleute "ÿnachname.GAdrDat$ÿ","
+ÿæÿ^
+briefanrede.GAdrDat$ÿ"Sehr geehrte Damen und Herren,"
+ÿ’ÿÉ
+
+ÿ¡kontonumme.testÿ""ÿp
+k1konto.adressenÿÿ+(kontonumme.test,10)
+ÿ’ÿ¡
+ÿ¡bankleitza.testÿ""ÿp
+k1blz.adressenÿbankleitza.test
+ÿ’ÿ¡
+ÿ¡maklervert.testÿ"F"ÿp
+AAMakler.adressenÿ"n"
+ÿ^
+AAMakler.adressenÿ"j"
+ÿ’ÿ¡
+ÿƒQuickStore("ADRESSEN")
+
+ÿ¡ÿH(telefon.test)ÿ""ÿp
+ÿÿ™GTelDat$
+codeku.GTelDat$ÿcodeku%
+art.GTelDat$ÿ"Telefon"
+nummer.GTelDat$ÿtelefon.test
+fonoderfax.GTelDat$ÿ"n"
+codetel.GTelDat$ÿÿI(GTelDat$,1)
+RecStatus.GTelDat$ÿ"c"
+Qart.GTelDat$ÿVSNRPack$(art.GTelDat$)
+Qnummer.GTelDat$ÿVSNRPack$(nummer.GTelDat$)
+ÿÌÿ™GTelDat$
+ÿïÿYÿ™GTelDat$
+ÿïÿ™GTelDat$
+ÿ’ÿ¡
+ÿ¡ÿH(telefax.test)ÿ""ÿp
+ÿÿ™GTelDat$
+codeku.GTelDat$ÿcodeku%
+art.GTelDat$ÿ"Telefax"
+nummer.GTelDat$ÿtelefax.test
+fonoderfax.GTelDat$ÿ"j"
+codetel.GTelDat$ÿÿI(GTelDat$,1)
+RecStatus.GTelDat$ÿ"c"
+Qart.GTelDat$ÿVSNRPack$(art.GTelDat$)
+Qnummer.GTelDat$ÿVSNRPack$(nummer.GTelDat$)
+ÿÌÿ™GTelDat$
+ÿïÿYÿ™GTelDat$
+ÿïÿ™GTelDat$
+ÿ’ÿ¡
+ÿ¡ÿH(email.test)ÿ""ÿp
+ÿÿ™GTelDat$
+codeku.GTelDat$ÿcodeku%
+art.GTelDat$ÿ"email"
+nummer.GTelDat$ÿemail.test
+fonoderfax.GTelDat$ÿ"n"
+codetel.GTelDat$ÿÿI(GTelDat$,1)
+RecStatus.GTelDat$ÿ"c"
+Qart.GTelDat$ÿVSNRPack$(art.GTelDat$)
+Qnummer.GTelDat$ÿVSNRPack$(nummer.GTelDat$)
+ÿÌÿ™GTelDat$
+ÿïÿYÿ™GTelDat$
+ÿïÿ™GTelDat$
+ÿ’ÿ¡
+ÿ¡ÿH(internet.test)ÿ""ÿp
+ÿÿ™GTelDat$
+codeku.GTelDat$ÿcodeku%
+art.GTelDat$ÿ"Internet"
+nummer.GTelDat$ÿinternet.test
+fonoderfax.GTelDat$ÿ"n"
+codetel.GTelDat$ÿÿI(GTelDat$,1)
+RecStatus.GTelDat$ÿ"c"
+Qart.GTelDat$ÿVSNRPack$(art.GTelDat$)
+Qnummer.GTelDat$ÿVSNRPack$(nummer.GTelDat$)
+ÿÌÿ™GTelDat$
+ÿïÿYÿ™GTelDat$
+ÿïÿ™GTelDat$
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"TEST"
+ ÿÙ
+

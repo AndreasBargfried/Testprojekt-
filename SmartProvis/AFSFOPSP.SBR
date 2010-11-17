@@ -1,0 +1,3610 @@
+SBP
+ ÿƒmain()
+ÿÿAFSKFoPSP()
+ÿ½ *******************************************************
+ÿ½ ***** Globale Variablen *******************************
+ÿ½ *******************************************************
+
+ 
+tempeltpath$ÿ_netpath$ÿ"AFSK\PSP"
+ 
+ÿ³ÿ_ÿwCrdir260520051
+ÿªÿtempeltpath$
+Crdir260520051:
+ÿ³ÿ_ÿwErrorHandler
+tempeltpath$ÿ_netpath$ÿ"AFSK\PSP\"
+ÿ½ *******************************************************
+ÿ½ ***** LOG -Datei erstellen ****************************
+ÿ½ *******************************************************
+ 
+ÿ½ CALL T1CreateALog()
+ 
+ 
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+ÿ½ ***** Routine fr Formular TEMPLIMP *********************
+ÿ½ *******************************************************
+ÿ½ ******************************************************* 
+ÿƒDFile(3,"AFSKSUT"ÿ_fpw$)
+ÿƒDFile(3,"AFSIPSP"ÿ_fpw$)
+ÿ½ CALL DFile(3,"AFSIPSP1" + _fpw$)
+ÿƒDFile(3,"AFSPSP"ÿ_fpw$)
+ÿƒDFile(3,"KVPSP"ÿ_fpw$)
+ÿƒDFile(3,"GEADR"ÿ_fpw$)
+ÿƒDFile(3,"KVERTRAG"ÿ_fpw$)
+ÿƒDFile(3,"KVFAEL"ÿ_fpw$)
+ÿƒDFile(3,"AFSHPSP"ÿ_fpw$)
+ÿ½ CALL DFile(3,"FONDHEAD" + _fpw$)
+ÿƒDFile(3,"FONDS"ÿ_fpw$)
+ÿƒDFile(3,"ZEINGAN1"ÿ_fpw$)
+ÿƒDFile(3,"KGEADR"ÿ_fpw$)
+ÿƒDFile(3,"GEADR"ÿ_fpw$)
+ÿƒDFile(3,"SPARTEN"ÿ_fpw$)
+ÿƒDFile(3,"VORGANG"ÿ_fpw$)
+ÿƒDFile(3,"MAADR"ÿ_fpw$)
+ÿƒDFile(3,"KUKTO"ÿ_fpw$)
+ÿƒDFile(3,"VPSPEZKO"ÿ_fpw$)
+ÿƒDFile(3,"KVSKOND"ÿ_fpw$)
+ 
+ÿƒDFile(3,"VPGEKOND"ÿ_fpw$)
+ÿ¡MAKLER$ÿ"TRUE"ÿp
+ÿƒDFile(3,"STAMM"ÿ_fpw$)
+ÿƒDFile(3,"INKSTAMM"ÿ_fpw$)
+ÿ’ÿ¡
+ÿƒDFile(2,"OFFICE\adressen"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\adrtemp"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\dokument"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\akquise"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\telefon"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\connect"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\banken"ÿ_fpw$)
+ÿ™"AFSHPSP"
+ÿ£codeimp.AFSHPSP
+ 
+tTestLog%ÿ1
+ÿ™"AFSIPSP"
+ÿ£codetmp
+ÿÉÿ`
+ÿÉÿœÿ`
+ _formend%ÿ0
+ ÿØ_formend%ÿ0
+
+ÿ¡ÿ>(ÿœ)ÿ"AFSPSPF"ÿp
+
+ÿÊÿŸtitle$ÿ" - AFSK -PSP- IMPORT"
+ÿ´ÿœGPrjForm$ÿ"AFSPSPF"
+TIMPSUB1%ÿ0
+ÿÊf ÿSuperbase.Form
+seite%ÿ1
+ÿ¡seiteab%ÿ2ÿpseite%ÿ2
+ÿÊÿË"AFSK -PSP- IMPORT"
+Superbase.DateFormatÿ"dd.mm.yyyy"
+ÿÉÿœÿ`ÿ™"AFSHPSP"ÿ£codeimp.AFSHPSP
+ÿœ
+ÿ½ f.CommandButton3.Enabled = 0
+GID$ÿ""
+gdvStand$ÿ""
+gdvAnzeige$ÿ""
+gdvBegrundung$ÿ""
+allprov$ÿGButtonBez$
+ÿ’ÿ¡
+
+ÿ¬ÿ³
+ÿßÿ³
+
+ÿƒClearKBDBuffer()
+ÿœseite%
+allprov$ÿGButtonBez$
+ÿÏÿ¥ÿÿ¬ÿÿß
+ÿ¡TIMPSUB1%ÿ1ÿp
+codeimp%ÿcodeimp.AFSHPSP
+notiz$ÿnotiz.AFSHPSP
+d$ÿÿ(DatumImport.AFSHPSP)
+b$ÿ"Sie mssen gegebenenfalls eine Korrekturbuchung durchfhren, um bereits verarbeitete Zahlungseing„nge aus der Buchungsdatei zu entfernen!"
+c$ÿ"Hiebei werden die entsprechenden Datens„tze aus der PSP-Datei und der Zahlungseingangsdatei gel”scht!"
+ÿƒFehler("Sie erhalten jetzt die M”glichkeit den Import "ÿÿ(13)ÿ"> "ÿnotiz$ÿ" <"ÿ" vom "ÿd$ÿÿ(13)ÿ"rckg„ngig zu machen!",c$ÿb$)
+ÿÂ"Wollen Sie wirklich den Import rckg„ngig machen?","",130,req%
+ÿ¡req%ÿ1ÿp
+ÿßÿe
+ÿÊÿË"L”sche Zeilen in Datei AFSPSP....Bitte warten"
+ÿ™"AFSPSP"
+ÿ£codeimp.AFSPSP
+ÿÉÿ`
+ÿ¡ÿJ(codeimp%,codeimp.AFSPSP)ÿp
+	ÿÉÿ¥codeimp%ÿáÿ™"AFSPSP"ÿ£codeimp.AFSPSP
+ÿ^
+	ÿÉÿb
+ÿ’ÿ¡
+i%ÿ0
+j%ÿ0
+ÿØÿOÿB("AFSPSP")ÿcodeimp.AFSPSPÿcodeimp%
+	i%ÿi%ÿ1
+	codevt%ÿCodeVT.AFSPSP
+	ÿÊÿË"L”sche Zeilen in Datei AFSPSP....Bitte warten"
+	ÿÊÿËÿ(i%,"999999")ÿ" Datens„tze in AFSPSP gel”scht"
+	ÿÉÿ¾
+	ÿ½ CALL RechKvertrag(CodeVT%)
+	ÿÉÿ`
+	ÿ¡ÿJ(codeimp%,codeimp.AFSPSP)ÿp
+ÿÉÿ¥codeimp%ÿáÿ™"AFSPSP"ÿ£codeimp.AFSPSP
+	ÿ’ÿ¡
+ÿÙ
+ÿÊÿË"L”sche Zeilen in Datei Zahlungseingang....Bitte warten"
+ÿ™"zeingan1"
+ÿ£codeimppsp.zeingan1
+ÿ¾ÿaÿ™"zeingan1"ÿĞcodeimppsp.zeingan1ÿcodeimp%
+ÿÊÿË"L”sche Zeilen in Datei AFSHPSP....Bitte warten"
+ÿ™"AFSHPSP"
+ÿ£codeimp.AFSHPSP
+ÿ¾ÿaÿ™"AFSHPSP"ÿĞcodeimp.AFSHPSPÿcodeimp%
+ÿÉÿœÿ`ÿ™"AFSHPSP"
+ÿœ
+ÿ¾ÿaÿ™"AFSIPSP"
+ÿƒFehler("Es wurde der Import erfolgreich rckg„ngig gemacht!","")
+ÿÊÿË""
+ÿßÿ³
+ÿ’ÿ¡
+seite%ÿ1
+ÿ’ÿ¡
+ÿ¡TIMPSUB1%ÿ2ÿp
+codetmp%ÿcodetmp.afsipsp
+ÿÉÿ`ÿ™"afsipsp"ÿ£codetmp.afsipsp
+ÿÉÿ¥codetmp%ÿáÿ™"afsipsp"ÿ£codetmp.afsipsp
+LEN1%ÿÿ/(vs_nr.AFSIPSP)
+vs_nr$ÿÿ+(vs_nr.AFSIPSP,len1%)
+ÿˆÿavs_nr$
+ÿ¡vs_nr.AFSIPSPÿ"2062917201"ÿp
+ÿ½ CALL Fehler("Weiá","")
+ÿ’ÿ¡
+ÿ½ codetmp% = 
+eingab$ÿvs_nr.AFSIPSP
+ÿ¡ÿH(Antragsnr.AFSIPSP)ÿ""ÿp
+eingab2$ÿAntragsnr.AFSIPSP
+ÿ^
+eingab2$ÿ""
+ÿ’ÿ¡
+vs_nr$ÿeingab$
+ÿ¡vs_nr.afsipspÿ"1468494102"ÿp
+ÿ½ CALL Fehler(vs_nr.afsipsp, STR$ (status_.afsipsp,"00"))
+ÿ’ÿ¡
+nvt%ÿGetVertrag%(0)
+pimp260520051: 
+ÿ¡nvt%ÿ0ÿp
+cuvt%ÿnvt%
+vorhanden.afsipspÿ"J"
+ÿ¡proviab.kvertragÿ0ÿcodevstatus.kvertragÿ1ÿp
+	prov.afsipspÿ"J"
+ÿ’ÿ¡
+QuickVP.afsIPSPÿvorhanden.afsipspÿprov.afsipsp
+ÿÌÿ™"afsipsp"
+ÿ½ FILE "KVERTRAG"
+ÿ½ INDEX lfdnr.kvertrag
+ÿÉÿ`ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ¥cuvt%ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+tt%ÿlfdnr.kvertrag
+knr%ÿCodeku.kvertrag
+ÿÉÿ¥knr%ÿ™"Adressen"ÿ£codeku.adressen
+lfdnr%ÿlfdnr.KVERTRAG
+ÿ¡Qnachname.adressenÿVSNRPack$(nachname.AFSIPSP)ÿQvorname.adressenÿVSNRPack$(vorname.AFSIPSP)ÿp
+	f1$ÿ"Der bei der Importdatei vermerkte Name lautet: "ÿvorname.AFSIPSPÿ" "ÿnachname.AFSIPSP
+	f2$ÿ"Der Name der beim Vertrag gespeichert ist, auf dem die Vertragsnummer oder die Antragsnummer verweisen, lautete jedoch: "ÿvorname.adressenÿ" "ÿnachname.adressen
+	f3$ÿ"Wahrscheinlich haben Sie bei Antragsnummer oder Vertragsnummer in der Vertragsdatei einen falschen Eintrag get„tigt!"
+	ÿƒFehler (f1$ÿ" "ÿf2$,f3$)
+ÿ’ÿ¡
+ÿ½ CALL KVERTRAG()
+inam$ÿnachname.AFSIPSPÿ" "ÿvorname.AFSIPSP
+ivsnr$ÿ"Policenr:"ÿVS_Nr.AFSIPSP
+iantrnr$ÿ"Antragsnr:"ÿAntragsnr.AFSIPSP
+ÿ‰ÿñ"STICHTAG",0,0,322,114,"Auswahl","MS Sans Serif",8
+ÿ|ÿñ"STICHTAG",4,0,0,322,91,0,""
+ÿ|ÿñ"STICHTAG",9,6,9,23,24,2
+ÿ|ÿñ"STICHTAG",5,31,15,183,10,0,"Bitte w„hlen Sie, ob Sie zur Adresse"
+ÿ|ÿñ"STICHTAG",5,31,25,183,10,0,"oder zum Vertrag springen wollen:"
+ÿ|ÿñ"STICHTAG",5,30,48,88,10,0,iantrnr$
+ÿ|ÿñ"STICHTAG",5,30,60,88,10,0,ivsnr$
+ÿ|ÿñ"STICHTAG",6,94,72,132,12,0,0,inam$,100
+ÿ|ÿñ"STICHTAG",5,30,74,58,10,0,"Importname:"
+ÿ|ÿñ"STICHTAG",1,150,94,104,14,1,"Adresse+Vertrag aufnehmen",3,0
+ÿ|ÿñ"STICHTAG",1,40,94,54,14,1,"Adresse",1,1
+ÿ|ÿñ"STICHTAG",1,95,94,54,14,1,"Vertrag",2,0
+ÿ|ÿñ"STICHTAG",1,260,94,54,14,0,"&Abbrechen",0,0
+ÿñ"STICHTAG",req%
+ÿ¾ÿñÿt
+ÿ¡req%ÿ1ÿp
+	codetmp%ÿcodetmp.AFSIPSP
+	GAdrDat$ÿ"ADRESSEN"
+	GConDat$ÿ"CONNECT"
+	GTelDat$ÿ"TELEFON"
+	GAkquiDat$ÿ"AKQUISE"
+	GDokDat$ÿ"DOKUMENT"
+	ÿƒADRESSEN()
+	ÿÉÿ`ÿ™"AFSIPSP"ÿ£codetmp.AFSIPSP
+	ÿÉÿ¥codetmp%ÿáÿ™"AFSIPSP"ÿ£codetmp.AFSIPSP
+	ÿwpimp260520051
+ÿ’ÿ¡
+ÿ¡req%ÿ2ÿp
+	codetmp%ÿcodetmp.AFSIPSP
+	cf$ÿÿ™
+	ÿ™"kvertrag"
+	in$ÿÿ£
+	ÿ£lfdnr.KVERTRAG
+	ÿÉÿ`ÿ™"KVERTRAG"ÿ£lfdnr.KVERTRAG
+	ÿÉÿ¥lfdnr%ÿ™"KVERTRAG"ÿ£lfdnr.KVERTRAG
+	codeku%ÿcodeku.kvertrag
+	ÿÉÿ`ÿ™"Adressen"ÿ£codeku.adressen
+	ÿÉÿ¥codeku%ÿ™"Adressen"ÿ£codeku.adressen
+	ÿƒKVERTRAGneu(lfdnr%)
+	ÿÉÿ¥nvt%ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+	ÿ£in$$
+	ÿ™cf$
+	ÿ¡proviab.kvertragÿ0ÿp
+ÿßÿe
+ÿÍprov.AFSIPSPÿ"J"ÿĞcodevt.AFSIPSPÿnvt%
+ÿ’ÿÍ
+ÿßÿ³
+	ÿ’ÿ¡
+	ÿÉÿ`ÿ™"AFSIPSP"ÿ£codetmp.AFSIPSP
+	ÿÉÿ¥codetmp%ÿáÿ™"AFSIPSP"ÿ£codetmp.AFSIPSP
+	ÿwpimp260520051
+ÿ’ÿ¡
+ÿ¡req%ÿ3ÿp
+	nvt%ÿ0
+	ÿwpimp260520051
+ÿ’ÿ¡
+ÿ^
+codetmp%ÿcodetmp.AFSIPSP
+ÿÂ"Vertrag nicht vorhanden!"
+GGSuna$ÿNachname.AFSIPSP
+adrtest%ÿADRSuche%(0)
+ÿ½ CALL Fehler("Vertrag nicht vorhanden!","")
+ÿ¡adrtest%ÿ0ÿp
+	knr%ÿadrtest%
+	ÿÉÿ`ÿ™"ADRESSEN"ÿ£codeku.adressen
+	ÿÉÿ¥adrtest%ÿ™"ADRESSEN"ÿ£codeku.adressen
+	ÿ½ CALL Fehler(nachname.adressen,vorname.adressen)
+	ÿ½ REQUEST "Vertrag aufnehmen?","",130,reqv1%
+	codetmp%ÿcodetmp.AFSIPSP
+	GAdrDat$ÿ"ADRESSEN"
+	GConDat$ÿ"CONNECT"
+	GTelDat$ÿ"TELEFON"
+	GAkquiDat$ÿ"AKQUISE"
+	GDokDat$ÿ"DOKUMENT"
+	ÿƒADRESSEN()
+	ÿÉÿ`ÿ™"AFSIPSP"ÿ£codetmp.AFSIPSP
+	ÿÉÿ¥codetmp%ÿáÿ™"AFSIPSP"ÿ£codetmp.AFSIPSP
+	reqv1%ÿ0
+	ÿ¡reqv1%ÿ1ÿp
+knr%ÿadrtest%
+lfdnr%ÿCreateVertrag%(knr%)
+ÿ¡lfdnr%ÿ0ÿp
+ÿÉÿ`ÿ™"KVERTRAG"ÿ£lfdnr.kvertrag
+ÿÉÿ¥lfdnr%ÿáÿ™"KVERTRAG"ÿ£lfdnr.kvertrag
+ÿ½ zw.kvertrag = 12
+VS_NR.KVERTRAGÿVS_NR.AFSIPSP
+Antragsnr.kvertragÿAntragsnr.AFSIPSP
+Beitrag.kvertragÿSparbetrag.AFSIPSP
+Bewertungssumme.KvertragÿSparbetrag.AFSIPSP
+VS_Beginn.kvertragÿVertDat.AFSIPSP
+Antragsdatum.kvertragÿVertDat.AFSIPSP
+DBeitrZahlung.kvertragÿLaufzeit.AFSIPSP
+VSumme.kvertragÿVertragssumme.afsipsp
+ÿƒQuickStore("KVERTRAG")
+ÿƒKVERTRAGneu(lfdnr%)
+nvt%ÿlfdnr%
+ÿÉÿ`ÿ™"AFSIPSP"ÿ£codetmp.AFSIPSP
+ÿÉÿ¥codetmp%ÿ™"AFSIPSP"ÿ£codetmp.AFSIPSP
+ÿ½ GOTO pimp260520051
+ÿ’ÿ¡
+	ÿ’ÿ¡
+ÿ^
+	codetmp%ÿcodetmp.AFSIPSP
+	ÿÂ"Adresse nicht gefunden!"
+	ÿÂ"Adresse aufnehmen?","",130,reqa1%
+	ÿ¡reqa1%ÿ1ÿp
+GAdrDat$ÿ"ADRESSEN"
+ÿÿ™"ADRESSEN"
+CodeKU%ÿÿI(GAdrDat$,1)
+CodeKU.GAdrDat$ÿcodeku%
+EXPInternet.GADRDat$ÿ"j"
+ÿÌÿ™GAdrDat$
+ÿïÿYÿ™GAdrDat$
+ÿïÿ™GAdrDat$
+ÿÉÿ¥codeku%ÿáÿ™GAdrDat$ÿ£codeku.GAdrDat$
+ADRStatus.GAdrDat$ÿ"<OHNE ZUORDNUNG>"
+ADRGruppe.GAdrDat$ÿ"<OHNE ZUORDNUNG>"
+ÿ¡GASP%ÿÿ1ÿp
+codema.GAdrDat$ÿGetCodeMA%(prompt%,Workstation%)
+miab$ÿ"Agenturnr.: "ÿAgenturnr.maadr
+agent$ÿÿH(Nachname.maadr)ÿ", "ÿÿH(vorname.maadr)
+Kunde_seit.GAdrDat$ÿÿQ
+ÿ’ÿ¡
+nachname.adressenÿnachname.AFSIPSP
+vorname.adressenÿvorname.AFSIPSP
+ort.adressenÿort.AFSIPSP
+plz.adressenÿplz.AFSIPSP
+straáe.adressenÿstrasse.AFSIPSP
+anrede.adressenÿanrede.AFSIPSP
+titel.adressenÿtitel.AFSIPSP
+Land.adressenÿstaat.AFSIPSP
+Geburtstag.adressenÿGeburtsdatum.AFSIPSP
+ÿƒQuickStore("ADRESSEN")
+ÿÿ™"Telefon"
+codetel.telefonÿÿI("TELEFON",1)
+codeku.telefonÿcodeku%
+Art.telefonÿ"Telefon"
+Nummer.telefonÿTelefon.AFSIPSP
+fonoderfax.telefonÿ"n"
+ÿƒQuickStore("Telefon")
+ 
+ÿÉÿ`ÿ™"ADRESSEN"ÿ£codeku.adressen
+ÿÉÿ¥CodeKU%ÿ™"ADRESSEN"ÿ£codeku.adressen
+ÿ½ CALL Fehler(nachname.adressen,vorname.adressen)
+ÿÂ"Vertrag aufnehmen?","",130,reqv1%
+ÿ¡reqv1%ÿp
+knr%ÿCodeKU%
+lfdnr%ÿCreateVertrag%(knr%)
+ÿ¡lfdnr%ÿ0ÿp
+ÿÉÿ`ÿ™"KVERTRAG"ÿ£lfdnr.kvertrag
+ÿÉÿ¥lfdnr%ÿáÿ™"KVERTRAG"ÿ£lfdnr.kvertrag
+ÿ½ zw.kvertrag = 12
+VS_NR.KVERTRAGÿVS_NR.AFSIPSP
+Antragsnr.kvertragÿAntragsnr.AFSIPSP
+Beitrag.kvertragÿSparbetrag.AFSIPSP
+Bewertungssumme.KvertragÿSparbetrag.AFSIPSP
+VS_Beginn.kvertragÿDatum1.AFSIPSP
+Antragsdatum.kvertragÿDatum1.AFSIPSP
+ÿƒQuickStore("KVERTRAG")
+ÿƒKVERTRAGneu(lfdnr%)
+nvt%ÿlfdnr%
+ÿ½ GOTO pimp260520051
+ÿ’ÿ¡
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	ÿÉÿ`ÿ™"AFSIPSP"ÿ£codetmp.AFSIPSP
+	ÿÉÿ¥codetmp%ÿ™"AFSIPSP"ÿ£codetmp.AFSIPSP
+	ÿ½ GOTO pimp260520051
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ™"AFSIPSP"
+seiteab%ÿ2
+ÿÉÿœÿ`ÿ™"AFSIPSP"
+ÿœ
+ÿ’ÿ¡
+ÿ¡TIMPSUB1%ÿ3ÿp
+cccf$ÿÿ™
+ÿ™"AFSIPSP"
+ÿ¡TIMPSUBopt%ÿ0ÿp
+ÿ¡GButtonBez$ÿ"alle Vertr„ge mit PROV = N"ÿp
+	ÿÉÿĞprov.AFSIPSPÿ"n"
+	allprov$ÿ"alle Datens„tze anzeigen"
+	GButtonBez$ÿ"alle Datens„tze anzeigen"
+ÿ^
+	ÿÉÿĞÿ™"AFSIPSP"
+	allprov$ÿ"alle Vertr„ge mit PROV = N"
+	GButtonBez$ÿ"alle Vertr„ge mit PROV = N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ 11082003
+ÿ¡TIMPSUBopt%ÿ1ÿp
+ÿ¡GButtonBez$ÿ"alle Vertr„ge mit PROV = N"ÿp
+	ÿÉÿĞstatus_.AFSIPSPÿ1
+	allprov$ÿ"alle Datens„tze anzeigen"
+	GButtonBez$ÿ"alle Datens„tze anzeigen"
+ÿ^
+	ÿÉÿĞÿ™"AFSIPSP"
+	allprov$ÿ"alle Vertr„ge mit PROV = N"
+	GButtonBez$ÿ"alle Vertr„ge mit PROV = N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡TIMPSUBopt%ÿ3ÿp
+ÿ¡GButtonBez$ÿ"alle Vertr„ge mit PROV = N"ÿp
+	ÿÉÿĞstatus_.AFSIPSPÿ3
+	allprov$ÿ"alle Datens„tze anzeigen"
+	GButtonBez$ÿ"alle Datens„tze anzeigen"
+ÿ^
+	ÿÉÿĞÿ™"AFSIPSP"
+	allprov$ÿ"alle Vertr„ge mit PROV = N"
+	GButtonBez$ÿ"alle Vertr„ge mit PROV = N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡TIMPSUBopt%ÿ4ÿp
+ÿ¡GButtonBez$ÿ"alle Vertr„ge mit PROV = N"ÿp
+	ÿÉÿĞstatus_.AFSIPSPÿ4
+	allprov$ÿ"alle Datens„tze anzeigen"
+	GButtonBez$ÿ"alle Datens„tze anzeigen"
+ÿ^
+	ÿÉÿĞÿ™"AFSIPSP"
+	allprov$ÿ"alle Vertr„ge mit PROV = N"
+	GButtonBez$ÿ"alle Vertr„ge mit PROV = N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡TIMPSUBopt%ÿ5ÿp
+ÿ¡GButtonBez$ÿ"alle Vertr„ge mit PROV = N"ÿp
+	ÿÉÿĞstatus_.AFSIPSPÿ5
+	allprov$ÿ"alle Datens„tze anzeigen"
+	GButtonBez$ÿ"alle Datens„tze anzeigen"
+ÿ^
+	ÿÉÿĞÿ™"AFSIPSP"
+	allprov$ÿ"alle Vertr„ge mit PROV = N"
+	GButtonBez$ÿ"alle Vertr„ge mit PROV = N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡TIMPSUBopt%ÿ6ÿp
+ÿ¡GButtonBez$ÿ"alle Vertr„ge mit PROV = N"ÿp
+	ÿÉÿĞstatus_.AFSIPSPÿ6
+	allprov$ÿ"alle Datens„tze anzeigen"
+	GButtonBez$ÿ"alle Datens„tze anzeigen"
+ÿ^
+	ÿÉÿĞÿ™"AFSIPSP"
+	allprov$ÿ"alle Vertr„ge mit PROV = N"
+	GButtonBez$ÿ"alle Vertr„ge mit PROV = N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡TIMPSUBopt%ÿ7ÿp
+ÿ¡GButtonBez$ÿ"alle Vertr„ge mit PROV = N"ÿp
+	ÿÉÿĞstatus_.AFSIPSPÿ7
+	allprov$ÿ"alle Datens„tze anzeigen"
+	GButtonBez$ÿ"alle Datens„tze anzeigen"
+ÿ^
+	ÿÉÿĞÿ™"AFSIPSP"
+	allprov$ÿ"alle Vertr„ge mit PROV = N"
+	GButtonBez$ÿ"alle Vertr„ge mit PROV = N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡TIMPSUBopt%ÿ8ÿp
+ÿ¡GButtonBez$ÿ"alle Vertr„ge mit PROV = N"ÿp
+	ÿÉÿĞstatus_.AFSIPSPÿ8
+	allprov$ÿ"alle Datens„tze anzeigen"
+	GButtonBez$ÿ"alle Datens„tze anzeigen"
+ÿ^
+	ÿÉÿĞÿ™"AFSIPSP"
+	allprov$ÿ"alle Vertr„ge mit PROV = N"
+	GButtonBez$ÿ"alle Vertr„ge mit PROV = N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡TIMPSUBopt%ÿ9ÿp
+ÿ¡GButtonBez$ÿ"alle Vertr„ge mit PROV = N"ÿp
+	ÿÉÿĞstatus_.AFSIPSPÿ9
+	allprov$ÿ"alle Datens„tze anzeigen"
+	GButtonBez$ÿ"alle Datens„tze anzeigen"
+ÿ^
+	ÿÉÿĞÿ™"AFSIPSP"
+	allprov$ÿ"alle Vertr„ge mit PROV = N"
+	GButtonBez$ÿ"alle Vertr„ge mit PROV = N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡TIMPSUBopt%ÿ10ÿp
+ÿ¡GButtonBez$ÿ"alle Vertr„ge mit PROV = N"ÿp
+	ÿÉÿĞstatus_.AFSIPSPÿ10
+	allprov$ÿ"alle Datens„tze anzeigen"
+	GButtonBez$ÿ"alle Datens„tze anzeigen"
+ÿ^
+	ÿÉÿĞÿ™"AFSIPSP"
+	allprov$ÿ"alle Vertr„ge mit PROV = N"
+	GButtonBez$ÿ"alle Vertr„ge mit PROV = N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡TIMPSUBopt%ÿ11ÿp
+ÿ¡GButtonBez$ÿ"alle Vertr„ge mit PROV = N"ÿp
+	ÿÉÿĞstatus_.AFSIPSPÿ11
+	allprov$ÿ"alle Datens„tze anzeigen"
+	GButtonBez$ÿ"alle Datens„tze anzeigen"
+ÿ^
+	ÿÉÿĞÿ™"AFSIPSP"
+	allprov$ÿ"alle Vertr„ge mit PROV = N"
+	GButtonBez$ÿ"alle Vertr„ge mit PROV = N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡TIMPSUBopt%ÿ31ÿp
+ÿ¡GButtonBez$ÿ"alle Vertr„ge mit PROV = N"ÿp
+	ÿÉÿĞstatus_.AFSIPSPÿ31
+	allprov$ÿ"alle Datens„tze anzeigen"
+	GButtonBez$ÿ"alle Datens„tze anzeigen"
+ÿ^
+	ÿÉÿĞÿ™"AFSIPSP"
+	allprov$ÿ"alle Vertr„ge mit PROV = N"
+	GButtonBez$ÿ"alle Vertr„ge mit PROV = N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡TIMPSUBopt%ÿ32ÿp
+ÿ¡GButtonBez$ÿ"alle Vertr„ge mit PROV = N"ÿp
+	ÿÉÿĞstatus_.AFSIPSPÿ32
+	allprov$ÿ"alle Datens„tze anzeigen"
+	GButtonBez$ÿ"alle Datens„tze anzeigen"
+ÿ^
+	ÿÉÿĞÿ™"AFSIPSP"
+	allprov$ÿ"alle Vertr„ge mit PROV = N"
+	GButtonBez$ÿ"alle Vertr„ge mit PROV = N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡TIMPSUBopt%ÿ33ÿp
+ÿ¡GButtonBez$ÿ"alle Vertr„ge mit PROV = N"ÿp
+	ÿÉÿĞstatus_.AFSIPSPÿ33
+	allprov$ÿ"alle Datens„tze anzeigen"
+	GButtonBez$ÿ"alle Datens„tze anzeigen"
+ÿ^
+	ÿÉÿĞÿ™"AFSIPSP"
+	allprov$ÿ"alle Vertr„ge mit PROV = N"
+	GButtonBez$ÿ"alle Vertr„ge mit PROV = N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡TIMPSUBopt%ÿ34ÿp
+ÿ¡GButtonBez$ÿ"alle Vertr„ge mit PROV = N"ÿp
+	ÿÉÿĞstatus_.AFSIPSPÿ34
+	allprov$ÿ"alle Datens„tze anzeigen"
+	GButtonBez$ÿ"alle Datens„tze anzeigen"
+ÿ^
+	ÿÉÿĞÿ™"AFSIPSP"
+	allprov$ÿ"alle Vertr„ge mit PROV = N"
+	GButtonBez$ÿ"alle Vertr„ge mit PROV = N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡TIMPSUBopt%ÿ35ÿp
+ÿ¡GButtonBez$ÿ"alle Vertr„ge mit PROV = N"ÿp
+	ÿÉÿĞstatus_.AFSIPSPÿ35
+	allprov$ÿ"alle Datens„tze anzeigen"
+	GButtonBez$ÿ"alle Datens„tze anzeigen"
+ÿ^
+	ÿÉÿĞÿ™"AFSIPSP"
+	allprov$ÿ"alle Vertr„ge mit PROV = N"
+	GButtonBez$ÿ"alle Vertr„ge mit PROV = N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡TIMPSUBopt%ÿ36ÿp
+ÿ¡GButtonBez$ÿ"alle Vertr„ge mit PROV = N"ÿp
+	ÿÉÿĞstatus_.AFSIPSPÿ36
+	allprov$ÿ"alle Datens„tze anzeigen"
+	GButtonBez$ÿ"alle Datens„tze anzeigen"
+ÿ^
+	ÿÉÿĞÿ™"AFSIPSP"
+	allprov$ÿ"alle Vertr„ge mit PROV = N"
+	GButtonBez$ÿ"alle Vertr„ge mit PROV = N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡TIMPSUBopt%ÿ37ÿp
+ÿ¡GButtonBez$ÿ"alle Vertr„ge mit PROV = N"ÿp
+	ÿÉÿĞstatus_.AFSIPSPÿ37
+	allprov$ÿ"alle Datens„tze anzeigen"
+	GButtonBez$ÿ"alle Datens„tze anzeigen"
+ÿ^
+	ÿÉÿĞÿ™"AFSIPSP"
+	allprov$ÿ"alle Vertr„ge mit PROV = N"
+	GButtonBez$ÿ"alle Vertr„ge mit PROV = N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿœÿ`ÿ™"AFSIPSP"
+ÿœ
+ÿ™cccf$
+ÿ’ÿ¡
+TIMPSUB1%ÿ0
+ ÿ¬ÿ³
+ ÿÙ
+ _formend%ÿ0
+ 
+ ÿ’ÿÿ
+
+
+
+
+
+
+ÿ½ *******************************************************
+ÿ½ ***** Datei ausw„hlen *********************************
+ÿ½ ******************************************************* 
+ 
+ÿÿT1DateiAuswahl()
+ 
+ 
+ ÿ½ ====== Button Dateiauswahl - Dialog ====== 
+ 
+tempStartDir$ÿÿ
+AFSKIMPDir$ÿ_netpath$ÿ"AFSK\PSP\"
+ÿ_netpath$ÿ"AFSK\PSP\"
+ 
+ÿ³ÿ_ÿwErrorHandler
+ÿÂ"AFSK-PSP Importdatei ”ffnen ...","",26,tButton%,tAuswDat$
+ÿtempStartDir$
+ 
+ ÿ¡tButton%ÿ0ÿp
+ÿÂ"AFSK-PSP-Import abgebrochen (Es wurden keine Daten ge„ndert).","Es wurde kein Dateiname ausgew„hlt",0
+ÿ¡tTestLog%ÿ1ÿpÿƒT1WriteLogOk("Es wurde keine Datei ausgew„hlt - AFSK abgebrochen")
+ÿ½ END 
+ÿwendab26052005
+ ÿ’ÿ¡
+ ÿƒT1CreateALog()
+ ÿ¡tTestLog%ÿ1ÿpÿƒT1WriteLogOk("***** Routine : T1DatAuswahl()")
+ ÿƒT1WriteLogOk("Dateiauswahl: "ÿtAuswDat$)
+ ÿ½ *******************************************************
+ÿ½ ***** Datei einlesen **********************************
+ÿ½ *******************************************************
+ÿßÿe
+ ÿ™"afsipsp"
+ ÿÉÿĞÿ™"afsipsp"
+ ÿ¾ÿaÿ™"afsipsp"
+ ÿÀÿ™"AFSIPSP"ÿq_ppath$ÿ"AFSIPSP.SBF"
+ ÿÏÿ›1
+ÿ¡ÿ>(ÿœ)ÿ"AFSPSPF"ÿp
+
+ÿÊÿŸtitle$ÿ" - AFSK -PSP- IMPORT"
+ÿ´ÿœGPrjForm$ÿ"AFSPSPF"
+TIMPSUB1%ÿ0
+ÿÊf ÿSuperbase.Form
+seite%ÿ1
+ÿ¡seiteab%ÿ2ÿpseite%ÿ2
+ÿÊÿË"AFSK -PSP- IMPORT"
+Superbase.DateFormatÿ"dd.mm.yyyy"
+ÿÉÿœÿ`ÿ™"AFSHPSP"ÿ£codeimp.AFSHPSP
+ÿœ
+ÿ½ f.CommandButton3.Enabled = 0
+GID$ÿ""
+gdvStand$ÿ""
+gdvAnzeige$ÿ""
+gdvBegrundung$ÿ""
+allprov$ÿGButtonBez$
+ÿ’ÿ¡
+
+ÿ¬ÿ³
+ÿßÿ³
+
+ÿƒClearKBDBuffer()
+ÿœseite%
+ ÿ½   ImportFile
+ ÿÂ"PSP-Import-Beginn","Nicht ungeduldig werden!!",2
+ ÿßÿe
+ ÿ³ÿ_ÿwerr260520051
+ Superbase.Converters.ASD.SourceFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.SourceFileÿtAuswDat$
+ Superbase.Converters.ASD.Descendingÿ0
+ Superbase.Converters.ASD.Mergeÿÿ1
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ""ÿÿ(9)ÿ""
+ Superbase.Converters.ASD.FieldDelimiterÿ""
+ Superbase.Converters.ASD.ANSIConvertÿÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"afsipsp.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.ASD)
+ ÿwerr260520052
+err260520051: 
+ ÿ³ÿ_ÿwErrorHandler 
+ ÿƒFehler("IMPORTFEHLER!!!","Beenden Sie das Programm und versuchen Sie dann den Import erneut! Wenn der Fehler weiterhin auftritt nehmen Sie Kontakt mit CODie software auf!")
+ ÿwerr260520053
+err260520052: 
+ ÿ³ÿ_ÿwErrorHandler 
+ ÿ½ REQUEST "L”schen der nicht zu verarebitenden Datens„tze!","",2
+ ÿßÿe
+ ÿ¾ÿaÿ™"afsipsp"ÿĞ(datum1.afsipspÿ
+1ÿÿH(Nachname.afsipsp)ÿ"")ÿ(VS_NR.afsipspÿ"ktonr"ÿanrede.afsipspÿ"Anrede")
+ 
+
+ ÿ™"afsipsp"
+ ÿ£vs_nr.afsipsp
+ ÿÉÿ`ÿá
+ 
+i%ÿ0
+ÿØÿOÿB("AFSIPSP")
+i%ÿi%ÿ1
+codetmp.afsipspÿi%
+ÿ¡status_.AFSIPSPÿ31ÿp
+ÿ½ Vertrag angenommen
+codesort.AFSIPSPÿVSNRPack$(VS_NR.AFSIPSP)ÿÿ(datum1.AFSIPSP,"yyyymm0d")ÿ"00"
+ÿ^
+ÿ¡status_.AFSIPSPÿ11ÿstatus_.AFSIPSPÿ3ÿstatus_.AFSIPSPÿ4ÿstatus_.AFSIPSPÿ5ÿp
+	sttmp%ÿstatus_.AFSIPSPÿ40
+	codesort.AFSIPSPÿVSNRPack$(VS_NR.AFSIPSP)ÿÿ(datum1.AFSIPSP,"yyyymm0d")ÿÿ(sttmp%,"00")
+ÿ^
+	codesort.AFSIPSPÿVSNRPack$(VS_NR.AFSIPSP)ÿÿ(datum1.AFSIPSP,"yyyymm0d")ÿÿ(status_.AFSIPSP,"00")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÌÿ™"AFSIPSP"
+ÿÉÿ±ÿáÿ™"AFSIPSP"
+ÿÙ
+ ÿ½ CALL Fehler("1","")
+ ÿ™"afsipsp"
+ ÿ£codesort.afsipsp
+ ÿ¾ÿaÿ™"afsipsp"ÿĞanrede.afsipspÿ"Anrede"
+ ÿ¡ÿA("afsipsp")ÿ0ÿp
+ÿÉÿ`ÿáÿ™"afsipsp"
+ ÿ^
+ÿÉÿbÿ™"afsipsp"
+ ÿ’ÿ¡
+ iab%ÿ0
+ iges%ÿ0
+ sprov%ÿ0
+ zprov%ÿ0
+ ÿ½ Betrag.afsipsp = Provision an AFSK
+ ÿ½ Tilgung.afsk = Einzahlungsbetrag Kunde
+ rec$ÿÿÿH(ÿ(ÿA("afsipsp"),"99999"))
+ ÿØÿOÿB("afsipsp")
+whileanf1260520051: 
+ÿßÿe
+ÿ¡(datum1.afsipspÿ
+1ÿÿH(Nachname.afsipsp)ÿ"")ÿ(VS_NR.afsipspÿ"ktonr"ÿanrede.afsipspÿ"Anrede")ÿp
+ÿÉÿ¾
+ÿÉÿ`ÿáÿ™"afsipsp"
+ÿwwhileanf1260520051
+ÿ’ÿ¡
+iges%ÿiges%ÿ1
+codetmp%ÿcodetmp.afsipsp
+ÿ¡status_.afsipspÿ1ÿstatus_.afsipspÿ32ÿstatus_.afsipspÿ11ÿp
+iab%ÿiab%ÿ1
+ÿ’ÿ¡
+tRest$ÿVS_Nr.afsipspÿ","ÿNachname.afsipspÿ","ÿVorname.afsipspÿ","ÿplz.afsipspÿ" "ÿort.afsipspÿ","ÿstrasse.afsipspÿ","ÿÿ(Betrag.afsipsp,",9999999.00")
+tInfo$ÿÿH(ÿ(iab%,"999999999"))ÿ" Zeilen mit Status 1 oder 32 aus Importdatei geles.von z.Z. "ÿÿH(ÿ(iges%,"999999999"))ÿ" "ÿ"an Prov.berg: "ÿÿH(ÿ(zprov%,"99999"))ÿ"  ImpGes: "ÿrec$
+ 
+ÿÊÿËtinfo$
+ÿ½ codetmp.afsipsp = iges%
+ÿ½ codetmp% = codetmp.afsipsp
+verarbeitet.afsipspÿ"N"
+vorhanden.afsipspÿ"N"
+verarbeitet.afsipspÿ"N"
+prov.afsipspÿ"N"
+vsnr$ÿVSNRPack$(VS_Nr.afsipsp)
+ÿÌÿ™"afsipsp"
+ÿ¡vsnr$ÿ"1468494102"ÿp
+ÿ½ CALL Fehler(vsnr$, STR$ (status_.afsipsp,"00"))
+ÿ’ÿ¡
+ÿ¡vsnr$ÿ""ÿÿJ(vsnr$,QuickVSNR.KVERTRAG)ÿp
+ÿÉÿ`ÿ™"Kvertrag"ÿ£QuickVSNR.KVERTRAG
+ÿÉÿ¥vsnr$ÿ™"Kvertrag"ÿ£QuickVSNR.KVERTRAG
+cuvt%ÿlfdnr.kvertrag
+vt%ÿlfdnr.kvertrag
+ÿÉÿ`ÿ™"ADRESSEN"ÿ£codeku.adressen
+ÿÉÿ¥codeku.kvertragÿ™"adressen"ÿ£codeku.adressen
+
+versuch%ÿ0
+ÿ¡proviab.kvertragÿ0ÿp
+ÿÉÿ`ÿ™"vpgekond"ÿ£codevp.vpgekond
+ÿÉÿ¥codevp.kvertragÿ™"vpgekond"ÿ£codevp.vpgekond
+f$ÿ""
+ÿ¡codevp.kvertragÿcodevp.vpgekondÿafspspjn.vpgekondÿ"j"ÿp
+	f$ÿ" / PSP Produktkond.nicht gefunden "ÿGesellschaft.kvertragÿ" / "ÿsparte.kvertrag
+ÿ’ÿ¡
+ÿƒT1WriteLogOk(Nachname.adressenÿ" "ÿVorname.adressenÿ" / VS_NR "ÿVS_NR.KVERTRAGÿ" - gefunden/Provabr JA"ÿf$)
+ÿ^
+ÿ½ CALL Fehler(VS_NR.KVERTRAG,"Vertrag")
+ÿ½ Vertrag automatisch an die Provisionsabrechnung bergeben
+statustmp%ÿstatus_.afsipsp
+ÿ¡status_.afsipspÿ1ÿstatus_.afsipspÿ32ÿp
+	zprov%ÿzprov%ÿ1
+	ÿÊÿËtinfo$
+	versuch%ÿÿ1
+	ÿƒT1WriteLogOk(Nachname.adressenÿ" "ÿVorname.adressenÿ" / VS_NR "ÿVS_NR.KVERTRAGÿ" - gefunden/Versuch an Abrechnung zu bergeben")
+	ÿƒAFSKPROV1(vt%,datum1.afsipsp)
+ÿ’ÿ¡
+ÿÉÿ`ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ¥vt%ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ÿ¡proviab.kvertragÿ0ÿp
+	ÿƒT1WriteLogOk(Nachname.adressenÿ" "ÿVorname.adressenÿ" / VS_NR "ÿVS_NR.KVERTRAGÿ" - gefunden/Provabr - AUFGENOMMEN")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ SELECT KEY iges% LOCK FILE "afsipsp" INDEX codetmp.afsipsp
+ÿÉÿ`ÿ™"afsipsp"ÿ£codetmp.afsipsp
+ÿÉÿ¥codetmp%ÿáÿ™"afsipsp"ÿ£codetmp.afsipsp
+vorhanden.afsipspÿ"J"
+codevt.afsipspÿlfdnr.kvertrag
+ÿ¡proviab.kvertragÿ0ÿp
+prov.afsipspÿ"J"
+ÿ^
+ÿ¡versuch%ÿÿ1ÿp
+	versuch%ÿ0
+	ÿƒT1WriteLogOk(Nachname.adressenÿ" "ÿVorname.adressenÿ" / VS_NR "ÿVS_NR.KVERTRAGÿ" - gefunden/Versuch an Abrechnung zu bergeben gescheitert")
+ÿ’ÿ¡
+ÿƒT1WriteLogOk(Nachname.adressenÿ" "ÿVorname.adressenÿ" / VS_NR "ÿVS_NR.KVERTRAGÿ" - gefunden/Provabr NEIN")
+ÿ’ÿ¡
+ÿ^
+ÿ½ CALL Fehler(vsnr$,"nicht gefunden")
+antr$ÿVSNRPack$(Antragsnr.afsipsp)
+ÿ¡ÿJ(antr$,QAntragsnr.KVERTRAG)ÿÿH(antr$)ÿ""ÿp
+ÿÉÿ`ÿ™"Kvertrag"ÿ£QAntragsnr.KVERTRAG
+ÿÉÿ¥antr$ÿáÿ™"Kvertrag"ÿ£QAntragsnr.KVERTRAG
+ÿ¡ÿH(VS_NR.afsipsp)ÿ""ÿp
+
+VS_NR.kvertragÿVS_NR.afsipsp
+
+ÿƒQuickStore("KVERTRAG")
+ÿ’ÿ¡
+
+vt%ÿlfdnr.kvertrag
+ÿÉÿ`ÿ™"ADRESSEN"ÿ£codeku.adressen
+ÿÉÿ¥codeku.kvertragÿáÿ™"adressen"ÿ£codeku.adressen
+ÿ½ IF Qnachname.adressen <> VSNRPack$(nachname.afsipsp) OR Qvorname.adressen <> VSNRPack$(vorname.afsipsp) THEN 
+ÿ½ ELSE 
+ÿ½  vorhanden.afsipsp = "J"
+ÿ½  codevt.afsipsp = lfdnr.kvertrag
+ÿ½   IF proviab.kvertrag > 0 THEN prov.afsipsp = "J"
+ÿ½ END IF 
+ÿ½ 23082002 ************************************************
+
+ÿ¡proviab.kvertragÿ0ÿp
+
+ÿƒT1WriteLogOk(Nachname.adressenÿ" "ÿVorname.adressenÿ" / AntragsNR "ÿAntragsNR.KVERTRAGÿ" - gefunden/Provabr - JA")
+ÿ^
+
+ÿ½ CALL Fehler(AntragsNR.KVERTRAG,"Antrag")
+
+ÿ½ Vertrag automatisch an die Provisionsabrechnung bergeben
+
+statustmp%ÿstatus_.afsipsp
+
+ÿ¡status_.afsipspÿ1ÿstatus_.afsipspÿ32ÿp
+zprov%ÿzprov%ÿ1
+ÿÊÿËtinfo$
+ÿƒAFSKPROV1(vt%,datum1.afsipsp)
+
+ÿ’ÿ¡
+
+ÿÉÿ`ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+
+ÿÉÿ¥vt%ÿáÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+
+ÿ¡proviab.kvertragÿ0ÿp
+abtes$ÿAntragsNR.KVERTRAG
+ÿÉÿ`ÿ™"ADRESSEN"ÿ£codeku.adressen
+ÿÉÿ¥codeku.kvertragÿ™"adressen"ÿ£codeku.adressen
+ÿƒT1WriteLogOk(Nachname.adressenÿ" "ÿVorname.adressenÿ" / AntragsNR "ÿAntragsNR.KVERTRAGÿ" - gefunden/Provabr - AUFGENOMMEN")
+
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ SELECT KEY iges% LOCK FILE "afsipsp" INDEX codetmp.afsipsp
+ÿÉÿ`ÿ™"afsipsp"ÿ£codetmp.afsipsp
+ÿÉÿ¥codetmp%ÿáÿ™"afsipsp"ÿ£codetmp.afsipsp
+vorhanden.afsipspÿ"J"
+codevt.afsipspÿlfdnr.kvertrag
+ÿ¡proviab.kvertragÿ0ÿp
+
+prov.afsipspÿ"J"
+ÿ^
+
+ÿƒT1WriteLogOk(Nachname.adressenÿ" "ÿVorname.adressenÿ" / AntragsNR "ÿAntragsNR.KVERTRAGÿ" - gefunden/Provabr - NEIN")
+ÿ’ÿ¡
+ÿ^
+ÿƒT1WriteLogOk("VS_NR "ÿVS_NR.KVERTRAGÿ" - NICHT gefunden"ÿf$)
+ÿ½ SELECT KEY iges% LOCK FILE "afsipsp" INDEX codetmp.afsipsp
+ÿÉÿ`ÿ™"afsipsp"ÿ£codetmp.afsipsp
+ÿÉÿ¥codetmp%ÿáÿ™"afsipsp"ÿ£codetmp.afsipsp
+codevt.afsipspÿ0
+vorhanden.afsipspÿ"N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+QuickVP.afsipspÿvorhanden.afsipspÿprov.afsipsp
+
+ÿ¡status_.afsipspÿ1ÿp
+statustxt.afsipspÿ"Erstzahlung"
+ÿ’ÿ¡
+ÿ¡status_.afsipspÿ3ÿp
+statustxt.afsipspÿ"Kndigung Kunde"
+Tilgung.afsipspÿ0
+ÿ’ÿ¡
+ÿ¡status_.afsipspÿ4ÿp
+statustxt.afsipspÿ"Kndigung Sutor"
+Tilgung.afsipspÿ0
+ÿ’ÿ¡
+ÿ¡status_.afsipspÿ5ÿp
+statustxt.afsipspÿ"Widerruf nach Erstzahlung"
+Tilgung.afsipspÿ0
+ÿ’ÿ¡
+ÿ¡status_.afsipspÿ6ÿp
+statustxt.afsipspÿ"offene Resttilgung"
+ÿ’ÿ¡
+ÿ¡status_.afsipspÿ7ÿp
+statustxt.afsipspÿ"Resttilgung Null nach Stornomeldung"
+Tilgung.afsipspÿ0
+ÿ’ÿ¡
+ÿ¡status_.afsipspÿ8ÿp
+statustxt.afsipspÿ"Resttilgung Null"
+Tilgung.afsipspÿ0
+ÿ’ÿ¡
+ÿ¡status_.afsipspÿ9ÿp
+statustxt.afsipspÿ"nderung Vermittlernummer"
+Tilgung.afsipspÿ0
+ÿ’ÿ¡
+ÿ¡status_.afsipspÿ10ÿp
+statustxt.afsipspÿ"nderung Ratenh”he"
+Tilgung.afsipspÿ0
+ÿ’ÿ¡
+ÿ¡status_.afsipspÿ11ÿp
+statustxt.afsipspÿ"Storno AGB-Zahlungen"
+Tilgung.afsipspÿ0
+ÿ’ÿ¡
+ÿ¡status_.afsipspÿ30ÿp
+statustxt.afsipspÿ"Widerruf Kunde"
+Tilgung.afsipspÿ0
+ÿ’ÿ¡
+ÿ¡status_.afsipspÿ31ÿp
+statustxt.afsipspÿ"Vertrag angenommen"
+Tilgung.afsipspÿ0
+ÿ’ÿ¡
+ÿ¡status_.afsipspÿ32ÿp
+statustxt.afsipspÿ"Folgezahlung"
+ÿ’ÿ¡
+ÿ¡status_.afsipspÿ33ÿp
+statustxt.afsipspÿ"Widerrunf Kunde"
+Tilgung.afsipspÿ0
+ÿ’ÿ¡
+ÿ¡status_.afsipspÿ34ÿp
+statustxt.afsipspÿ"Kndigung Kunde"
+Tilgung.afsipspÿ0
+ÿ’ÿ¡
+ÿ¡status_.afsipspÿ35ÿp
+statustxt.afsipspÿ"Kndigung Sutor"
+Tilgung.afsipspÿ0
+ÿ’ÿ¡
+ÿ¡status_.afsipspÿ36ÿp
+statustxt.afsipspÿ"keine Zahlung nach 6 Wochen"
+Tilgung.afsipspÿ0
+ÿ’ÿ¡
+ÿ¡status_.afsipspÿ37ÿp
+statustxt.afsipspÿ"keine Zahlung nach 12 Wochen"
+Tilgung.afsipspÿ0
+ÿ’ÿ¡
+ÿ¡status_.afsipspÿ38ÿp
+statustxt.afsipspÿ"Vertrag geschlossen"
+Tilgung.afsipspÿ0
+ÿ’ÿ¡
+ 
+ÿÌÿ™"afsipsp"
+ÿ½ CALL Fehler(vsnr$, STR$ (status_.afsipsp,"00") + "# " + QuickVP.afsipsp)
+ÿ¡status_.afsipspÿ1ÿstatus_.afsipspÿ32ÿstatus_.afsipspÿ11ÿp
+ÿ¡status_.afsipspÿ1ÿstatus_.afsipspÿ32ÿp
+sprov%ÿsprov%ÿBetrag.afsipsp
+ÿ^
+sprov%ÿsprov%ÿBetrag.afsipsp
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿœ
+ÿÊÿËÿ(iab%,"999999999")ÿ" Zeilen mit Status 1 oder 32 oder 11 aus Importdatei gelesen von insgesamt "ÿÿ(iges%,"999999999")
+
+ÿÉÿ±ÿáÿ™"afsipsp"ÿ£codesort.afsipsp
+ÿÙ
+tkopf$ÿ"Gesamtprovision: "ÿÿH(ÿ(sprov%,",9999999.00"))ÿ" fr "ÿÿH(ÿ(iab%,"999999999"))ÿ" Vertr„ge von insgesamt "ÿÿ(iges%,"999999999")
+ 
+ÿ™"AFSHPSP"
+ÿ£codeimp.AFSHPSP
+ÿÿ™"AFSHPSP"
+codeimp.AFSHPSPÿÿI("AFSHPSP",1)
+DatumImport.AFSHPSPÿÿQ
+notiz.AFSHPSPÿtkopf$
+Anzahl.AFSHPSPÿiab%
+zero.AFSHPSPÿ0
+ÿÌÿ™"AFSHPSP"
+ÿÉÿœÿ`ÿ™"AFSHPSP"ÿ£codeimp.AFSHPSP
+ÿœ
+ÿßÿ³
+seite%ÿ2
+ÿ½ CALL Fehler("","")
+ÿƒT1CloseALog()
+endab26052005: 
+ÿ™"afsipsp"
+ÿ£codetmp
+ÿÉÿ`
+ÿÉÿœÿ`
+err260520053: 
+ ÿ’ÿÿ
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ÿ½ *******************************************************  
+ÿ½ *******************************************************
+ÿ½ ***** Handling von LOG-Dateien ************************
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+
+ÿ½ =================================
+ÿ½ ====== LOG-Datei erstellen ======
+ÿ½ =================================
+ÿÿT1CreateALog()
+ÿ´_netpath$ÿ"AFSK\PSP\AFSKPSP.LOG"ÿ›ÿ¶
+ÿ{"Datei "ÿÿ>(tempeltpath$)ÿ"AFSKPSP.LOG erstellt am "ÿÿ(ÿQ,"0d.mm.yyyy")ÿ" / "ÿÿ7(ÿR,"hh:mm:ss")
+ÿ{"-------------------------------------------------------------------------"
+ÿ{
+ÿ†ÿ¶
+ ÿ’ÿÿ
+ 
+ÿ½ =================================
+ÿ½ ====== LOG-Datei schlieáen ======
+ÿ½ =================================
+ÿÿT1CloseALog()
+ÿ´_netpath$ÿ"AFSK\PSP\AFSKPSP.LOG"ÿ›ÿT
+ÿ{
+ÿ{"-------------------------------------------------------------------------"
+ÿ{"  "ÿÿ(gdvFehler%,"9999")ÿ" Fehler aufgetreten !"
+ÿ{"-------------------------------------------------------------------------"
+ÿ{"Eintragung beendet am "ÿÿ(ÿQ,"0d.mm.yyyy")ÿ"/"ÿÿ7(ÿR,"hh:mm:ss")
+ÿ†ÿ¶
+ÿ‰ÿñ"PROT",0,0,244,154,"AFSK-IMPORT","MS Sans Serif",8
+ÿ|ÿñ"PROT",4,0,0,244,130,0,""
+ÿ|ÿñ"PROT",9,6,9,22,22,2
+ÿ|ÿñ"PROT",5,35,13,194,10,0,"W„hrend der zuletzt durchgefhrten Aktion wurde eine"
+ÿ|ÿñ"PROT",5,35,23,194,10,0,"Protokolldatei erstellt, in der eventuelle Fehler und Zusatz-"
+ÿ|ÿñ"PROT",5,35,33,194,10,0,"information gespeichert wurden."
+ÿ|ÿñ"PROT",5,35,53,194,10,0,"W„hlen Sie "ÿÿ(34)ÿ"Ja"ÿÿ(34)ÿ", wenn Sie das Protokoll einsehen und"
+ÿ|ÿñ"PROT",5,35,63,194,10,0,"eventuell Drucken wollen."
+ÿ|ÿñ"PROT",5,35,83,194,10,0,"W„hlen Sie "ÿÿ(34)ÿ"Nein"ÿÿ(34)ÿ", wenn Sie das Protokoll nicht"
+ÿ|ÿñ"PROT",5,35,93,194,10,0,"einsehen m”chten."
+ÿ|ÿñ"PROT",5,35,113,194,10,0,"Wollen Sie das Protokoll einsehen?"
+ÿ|ÿñ"PROT",1,118,134,55,15,0,"&Nein",0,0
+ÿ|ÿñ"PROT",1,62,134,55,15,1,"&Ja",1,1
+ÿñ"PROT",gdvBut%
+ÿ¾ÿñ"PROT"
+ÿ¡gdvBut%ÿ1ÿpÿƒT1ShowALog()
+ ÿ’ÿÿ
+ 
+ÿ½ ===========================================
+ÿ½ ====== Fehler in LOG-Datei schreiben ======
+ÿ½ ===========================================
+ÿÿT1WriteLogFail(TLogText$)
+ÿ´_netpath$ÿ"AFSK\PSP\AFSKPSP.LOG"ÿ›ÿT
+ÿ{ÿåansi("**********  FEHLER **********")
+ÿ{ÿ7(ÿR,"hh:mm:ss")ÿ" "ÿÿåansi(TLogText$)
+ÿ{ÿåansi("*****************************")
+ÿ†ÿ¶
+ ÿ’ÿÿ
+
+ÿ½ =================================================
+ÿ½ ====== OKAY-Eintrag in LOG-Datei schreiben ======
+ÿ½ =================================================
+ÿÿT1WriteLogOk(TLogText$)
+ÿ´_netpath$ÿ"AFSK\PSP\AFSKPSP.LOG"ÿ›ÿT
+ÿ{ÿ7(ÿR,"hh:mm:ss")ÿ" "ÿÿåansi(TLogText$)
+ÿ†ÿ¶
+ ÿ’ÿÿ
+ 
+ÿ½ ===============================
+ÿ½ ====== LOG-Datei l”schen ======
+ÿ½ ===============================
+ÿÿT1DeleteALog()
+ÿ¡ÿJ(_netpath$ÿ"AFSK\PSP\AFSKPSP.LOG")ÿpÿ_netpath$ÿ"AFSK\PSP\AFSKPSP.LOG"
+ ÿ’ÿÿ
+ 
+ÿ½ ================================
+ÿ½ ====== LOG-Datei anzeigen ======
+ÿ½ ================================
+ÿÿT1ShowALog()
+ÿÊÿË"Anzeige des Fehlerprotokolls"
+ÿ¡ÿJ(_netpath$ÿ"AFSK\PSP\AFSKPSP.LOG")ÿp
+ÿ½ LOAD TEXT _netpath$ + "AFSK\PSP\AFSKPSP.LOG"
+ÿ½ EDIT TEXT 
+atex$ÿ_netpath$ÿ"AFSK\PSP\AFSKPSP.LOG"
+a%ÿÿƒ("ShellExecute",0,"open",atex$,"","",1)
+ÿ^
+ÿƒFehler("Es konnte kein Fehlerprotokoll gefunden werden!","")
+ÿ’ÿ¡
+ÿÊÿË"Bereit"
+ ÿ’ÿÿ
+ 
+ 
+
+
+
+ÿÿTempEx1()
+ ÿ³ÿ_ÿwErrorHandler
+ ÿßÿe
+ expath$ÿ_netpath$ÿ"AFSK\PSP\"
+ ÿexpath$
+ Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+ Superbase.Converters.SBF.SourceFileÿ"AFSIPSP"
+ Superbase.Converters.SBF.Descendingÿ0
+ Superbase.Converters.SBF.Mergeÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.XLS.DestFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.DestFileÿ"AFSIPSP.XLS"
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.UseLabelsÿÿ1
+ Superbase.Converters.XLS.Convert(Superbase.Converters.SBF)
+ AppName$ÿexpath$ÿ"AFSIPSP.xls"
+ a%ÿÿƒ("ShellExecute",0,"open",AppName$,"","",1)
+ ÿ_ppath$
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+ 
+ 
+ 
+ ' Vertrag in Verprovisionierung aufnehmen
+ ' ========================================================================
+ 
+ÿÿAFSKPROV1(codevt%,ccdat%)
+ cfile$ÿÿ™
+ cuvt%ÿcodevt%
+ ÿ×KVKond$(100)
+ ok%ÿ2
+ ÿ½ CALL Fehler("AFSK Provisionsbergabe", STR$ (cuvt%,"000000"))
+ Haftvertrag%ÿSRHaftung.kvertrag
+ ÿ½ IF MOD ("KVERTRAG") OR NEW ("KVERTRAG") THEN CALL FStore("KVERTRAG")
+ fehl%ÿ0
+ ÿ¡ProviAb.kvertragÿ0ÿFremdvertrag.KVERTRAGÿ"j"ÿAltvertrag.KVERTRAGÿ"j"ÿp
+ÿÉÿ¥cuvt%ÿáÿ™"KVERTRAG"ÿ£lfdnr.KVERTRAG
+ÿ¡CodeVStatus.kvertragÿ1ÿCodeVStatus.kvertragÿ2ÿpvstatus%ÿ0
+ÿ½ CALL VStat()
+ok%ÿ0
+ ÿ^
+ÿƒDFile(3,"gekond"ÿ_fpw$)
+ÿƒDFile(3,"vpgekond"ÿ_fpw$)
+ÿƒDFile(3,"vkond"ÿ_fpw$)
+ok%ÿ1
+ÿ½ 030697
+ÿ¡zw.kvertragÿ55ÿp
+ok%ÿ0
+ÿ½ CALL Fehler("Vertrag kann noch nicht verprovisioniert werden!","Bitte geben Sie erst die Zahlweise ein.")
+ÿ’ÿ¡
+ 
+ÿ’ÿ¡
+ÿ¡Beitrag.KVERTRAGÿ0ÿp
+ÿ½ CALL Fehler("Vertrag kann noch nicht verprovisioniert werden!","Bitte geben Sie den Beitrag ein.")
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡CodeGE.KVERTRAGÿ0ÿp
+ÿ½ CALL Fehler("Vertrag kann noch nicht verprovisioniert werden!","Bitte w„hlen Sie eine Gesellschaft aus.")
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡CodeMA.KVERTRAGÿ0ÿp
+ÿ½ CALL Fehler("Vertrag kann noch nicht verprovisioniert werden!","Bitte w„hlen Sie eine Agentur aus.")
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡CodeVA.KVERTRAGÿ0ÿp
+ÿ½ CALL Fehler("Vertrag kann noch nicht verprovisioniert werden!","Bitte w„hlen Sie eine Sparte aus.")
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡ÿ1(VS_Beginn.KVERTRAG)ÿ0ÿp
+ok%ÿ0
+ 
+ÿ½ CALL Fehler("Vertrag kann noch nicht verprovisioniert werden!","Bitte geben Sie den Vertragsbeginn an.")
+ÿ’ÿ¡
+ÿ¡ok%ÿ1ÿp
+ÿ½ REQUEST "Vertrag in monatliche Abrechnung bernehmen?","",130,erg%
+erg%ÿ1
+ÿ¡erg%ÿ1ÿp
+ProviAb$ÿÿ(ccdat%)
+ÿ½ 160996 ProviAb$ = DATE$ ( TODAY ,"dd.mm.yy")
+ÿ¡Gvueb$ÿ"TRUE"ÿp
+	ÿ½ 16102002 ProviAb$ = DATE$ (Antragsdatum.KVERTRAG,"0d.mm.yyyy")
+ÿ^
+	ÿ½ 16102002 ProviAb$ = DATE$ (VS_Beginn.KVERTRAG,"0d.mm.yyyy")
+ÿ’ÿ¡
+ZahlungJN$ÿ"n"
+afswied260520051: 
+ÿ¡PrvVerfahr$ÿ"ZAHLUNGSEINGANG"ÿpZahlungJN$ÿ"j"
+req%ÿ1
+ÿ¡req%ÿ1ÿp
+	bwbezug$ÿReadConfig$("PROVIS","Bewertungszeitraum")
+	tt$ÿÿ+(ProviAb$,2)
+	jj$ÿÿ-(ProviAb$,4)
+	mm$ÿÿ,(ProviAb$,4,2)
+	tt%ÿÿ0(tt$)
+	ÿ¡tt%ÿ28ÿp
+texttmp$ÿ"Dies wird bei Vertr„gen, die abrechnungstechnisch in dem Monat Februar vorkommen zu Problemen fhren, da der Februar teilweise nur 28 Tage hat. Bitte „ndern Sie das Datum!"
+ÿ½ CALL Fehler("Sie wollen den Vertrag an die Provisionsabrecnung bergeben, allerdings haben Sie im Datum bei der Tagesangabe einen Wert gr”áer 28 angegeben",texttmp$)
+ÿ½ GOTO afswied260520051
+ProviAb$ÿ"27."ÿmm$ÿ"."ÿjj$
+	ÿ’ÿ¡
+	ÿ½ IF bwbezug$ LIKE "leer" OR bwbezug$ LIKE "Provisionierungsbeginn" THEN 
+ÿ½ BWStart$ = ProviAb$
+ÿ½ BWStart$ = DATE$ (VS_Beginn.KVERTRAG,"0d.mm.yyyy")
+	ÿ½ ELSE 
+ÿ½ BWStart$ = DATE$ (VS_Beginn.KVERTRAG,"0d.mm.yyyy")
+	ÿ½ END IF 
+	ÿ½ 07102002
+	BWStart$ÿProviAb$
+	ÿ¡DateOK%(BWStart$)ÿp
+kond%ÿGetKond%(cuvt%,ÿ1(BWStart$),0)
+ÿ¡kond%ÿ0ÿp
+ÿ¡ÿJ(cuvt%,CodeVT.VKOND)ÿpÿ¾ÿaÿ™"VKOND"ÿĞCodeVT.VKONDÿcuvt%
+ÿ½ CALL Fehler(fehlnach$,"")
+ÿÉÿ¥cuvt%ÿáÿ™"KVERTRAG"ÿ£lfdnr.KVERTRAG
+ProviAb.kvertragÿ0
+CodeKO.KVERTRAGÿ0
+ÿ½ kondition.KVERTRAG = SelKond%
+ÿƒFStore("KVERTRAG")
+ 
+ÿ½ ### ToDo: Fehlerliste anzeigen
+ÿ^
+doprov%ÿEditKondAFS1%(kond%,0)
+ÿ¡doprov%ÿ1ÿp
+ÿÉÿ¥cuvt%ÿáÿ™"KVERTRAG"ÿ£lfdnr.KVERTRAG
+ProviAb.kvertragÿÿ1(ProviAb$)
+Check.KVERTRAGÿZahlungJN$
+CodeKO.KVERTRAGÿkond%
+ÿ½ kondition.KVERTRAG = SelKond%
+ÿ½ 201299
+CodeVStatus.kvertragÿ1
+VStatusTxT.kvertragÿ"lebend (verprovisioniert)"
+ÿ¡ProviAb.kvertragÿ0ÿProviAb.kvertragÿ	ÿQÿp
+ÿ¡Kndigung.kvertragÿ0ÿp
+ÿ¡Kndigung.kvertragÿÿQÿp
+VertragAktiv.kvertragÿ"j"
+ÿ^
+VertragAktiv.kvertragÿ"n"
+ÿ’ÿ¡
+ÿ^
+VertragAktiv.kvertragÿ"j"
+ÿ’ÿ¡
+ÿ^
+VertragAktiv.kvertragÿ"n"
+ÿ’ÿ¡
+ÿ¡TatsKuenDat.kvertragÿ0ÿp
+ÿ¡TatsKuenDat.kvertragÿÿQÿp
+VertragAktiv.kvertragÿ"j"
+ÿ^
+VertragAktiv.kvertragÿ"n"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ REQUEST "Vertrag wird ab sofort in die Provisionierung","mit einbezogen!",2
+ÿƒFStore("KVERTRAG")
+ÿ¡GAFSK$ÿ"TRUE"ÿÿJ(codevp.kvertrag,codevp.vpgekond)ÿp
+ÿ½ CALL Fehler("VPGEKONDs suchen","PSP")
+ÿÉÿ¥lfdnr.kvertragÿáÿ™"KVFAEL"ÿ£codevt.kvfael
+codevt1%ÿlfdnr.kvertrag
+ÿ½ f„lligam.kvfael = ProviAB.kvertrag
+ÿ¡erwProvAnz.kvfaelÿ0ÿp
+ÿ½ erwProvAnz.kvfael = 4
+ÿ’ÿ¡
+ÿ½ IF VMProv.kvfael = 0 THEN 
+ÿ¡ÿJ(codevp.kvertrag,codevp.vpgekond)ÿp
+ÿ½ ************ Auswahl der VPKonditionen fr AFSK *******************************************
+ 
+ÿ½ CALL Fehler("Sie erhalten jetzt die M”glichkeit eine AFSK-Produktkondition auszuw„hlen,","an Hand derer die AFSK-Sollstellung fr den Vertrag berechnet werden kann!")
+ÿ½ REQUEST "Wollen Sie den Vertrag an die AFSK-Sollstellung bergeben ? ","",130,req1ab%
+req1ab%ÿ1
+ÿ™"VPGEKOND"
+ÿ£codevp.VPGEKOND
+ÿÉÿ`
+ÿÉÿ¥codevp.kvertragÿ™"VPGEKOND"ÿ£codevp.VPGEKOND
+ÿ¡codew.kvertragÿ1ÿreq1ab%ÿ1ÿp
+ÿ¡codew.kvertragÿ1ÿp
+ÿ½ CALL Fehler("Der Vertrag kann nicht an die AFSK-Sollstellung bergeben werden, da er noch in der W„hrung DM gefhrt wird!","")
+ÿ’ÿ¡
+ÿwafsendpr26052005
+ÿ’ÿ¡
+a%ÿ0
+gefunden%ÿ0
+ma1%ÿcodema.kvertrag
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥ma1%ÿ™"maadr"ÿ£codema.maadr
+AFSSollStufe%ÿAFSSollStufe.maadr
+ÿØÿOÿB("VPGEKOND")ÿcodevp.VPGEKONDÿcodevp.kvertrag
+ok%ÿÿ1
+gefunden%ÿgefunden%ÿ1
+ÿ¡bwvon.VPGEKONDÿ0ÿp
+ÿ¡VS_Beginn.kvertragÿ
+bwvon.VPGEKONDÿp
+ok%ÿ0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡bwbis.VPGEKONDÿ0ÿp
+ÿ¡VS_Beginn.kvertragÿbwbis.VPGEKONDÿp
+ok%ÿ0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ok%ÿ0ÿp
+fehl%ÿfehl%ÿ1
+ÿwafsnextko26052005
+ÿ’ÿ¡
+ÿ¡ok%ÿp
+KVKond$(a%)ÿ"BWVon:"ÿÿ(bwvon.VPGEKOND,"0d.mm.yyyy")ÿ" "
+ÿ¡bwbis.VPGEKONDÿ0ÿp
+KVKond$(a%)ÿKVKond$(a%)ÿ"BWBis:"ÿÿ(bwbis.VPGEKOND,"0d.mm.yyyy")ÿ" "
+ÿ’ÿ¡
+ÿ¡AFSPSPJN.vpgekondÿ"j"ÿp
+ÿ¡courtagejn.VPGEKONDÿ"j"ÿCoAnzBeitr.VPGEKONDÿ0ÿp
+KVKond$(a%)ÿKVKond$(a%)ÿ"Cortage Anzahl Beitr„ge:"ÿÿH(ÿ(CoAnzBeitr.VPGEKOND,"9999.00"))ÿ" "
+ÿ’ÿ¡
+KVKond$(a%)ÿKVKond$(a%)ÿÿ'(100)ÿÿ(codekey.VPGEKOND,"000000")
+ÿ¡bwstart%ÿbwvon.vpgekondÿp
+ÿ¡bwbis.vpgekondÿ0ÿp
+ÿ¡bwstart%ÿ	bwbis.vpgekondÿpprompt$ÿKVKond$(a%)
+ÿ^
+prompt$ÿKVKond$(a%)
+ÿ’ÿ¡
+ÿ’ÿ¡
+a%ÿa%ÿ1
+ÿ^
+ÿ¡AFSSollStufe%ÿAFSSollStufe.vpgekondÿp
+ÿ½ psp Kondition
+KVKond$(a%)ÿKVKond$(a%)ÿ"AFSProvSoll:"ÿÿH(ÿ(AFSPSolBeitrSu.vpgekond,"999.0000"))ÿ"+"ÿÿH(ÿ(AFSPSollMB.vpgekond,"999.0000"))ÿ" MB/"
+KVKond$(a%)ÿKVKond$(a%)ÿ"AFSTilg 100%:"ÿÿH(ÿ(AFSTMB.vpgekond,"999.0000"))ÿ" MB/ 50%: "ÿÿH(ÿ(AFSTMBProz.vpgekond,"999.0000"))ÿ"%/ "
+KVKond$(a%)ÿKVKond$(a%)ÿ"VMProvSoll:"ÿÿH(ÿ(AFSVBSumProz.vpgekond,"999.0000"))ÿ" %/Vorab: "ÿÿH(ÿ(AFSVProzRate.vpgekond,"999.0000"))ÿ"%/danach: "ÿÿH(ÿ(AFSVProBei.vpgekond,"999.0000"))ÿ"%"
+KVKond$(a%)ÿKVKond$(a%)ÿÿ'(100)ÿÿ(codekey.VPGEKOND,"000000")
+ÿ¡bwstart%ÿbwvon.vpgekondÿp
+ÿ¡bwbis.vpgekondÿ0ÿp
+ÿ¡bwstart%ÿ	bwbis.vpgekondÿpprompt$ÿKVKond$(a%)
+ÿ^
+prompt$ÿKVKond$(a%)
+ÿ’ÿ¡
+ÿ’ÿ¡
+a%ÿa%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+ÿ’ÿ¡
+afsnextko26052005:
+ÿÉÿ±ÿ™"VPGEKOND"ÿ£codevp.VPGEKOND
+ÿÙ
+ÿ¡a%ÿ0ÿfehl%ÿ0ÿp
+req%ÿ0
+ÿ½ text1$ = "es wurden insgesamt " + LTRIM$ ( STR$ ("gefunden")) + "Konditionen gefunden,davon enth„lt keine Kondition in den Feldern BWVON und/oder BWBIS einen Eintrag der mit"
+ÿ½ CALL Fehler(text1$,"dem Provisionierungsbeginn des Vertrages harmonisiert")
+ÿ^
+KVKond$(a%)ÿ""
+prompt$ÿKVKond$(0)
+ÿ½ CREATE DIALOG "MASUCH",0,0,358,288,"Sollstellungskonditionen","MS Sans Serif",8
+ÿ½ ADD DIALOG "MASUCH",4,0,0,358,263,0,""
+ÿ½ ADD DIALOG "MASUCH",9,9,11,21,21,2
+ÿ½ ADD DIALOG "MASUCH",5,37,11,151,10,0,"Bitte w„hlen Sie aus der folgenden Liste aus:"
+ÿ½ ADD DIALOG "MASUCH",7,7,27,348,229,2,2,KVKond$,Auswahl$,prompt$
+ÿ½ ADD DIALOG "MASUCH",1,100,268,55,15,1,"&OK",1,1
+ÿ½ ADD DIALOG "MASUCH",1,160,268,55,15,0,"&Abbrechen",0,0
+ÿ½ MOUSE ON 
+ÿ½ DIALOG "MASUCH",req%
+ÿ½ REMOVE DIALOG "MASUCH"
+req%ÿ1
+ÿ’ÿ¡
+codekey%ÿ0
+ÿ¡req%ÿ1ÿp
+CodeKey%ÿÿ0(ÿ-(prompt$,6))
+ÿ’ÿ¡
+
+ÿ½ ******erwartete Beitr„ge*************************************************************************************
+ÿ½ CALL Fehler("erwartete Beitr„ge","hier was machen!")
+ÿÉÿ`ÿ™"vpgekond"ÿ£CodeKey.vpgekond
+ÿÉÿ¥CodeKey%ÿ™"vpgekond"ÿ£CodeKey.vpgekond
+ÿ¡CoAnzBvB.vpgekondÿ"j"ÿp
+ÿ¡afsk.vpgekondÿ"j"ÿp
+erwProvAnz.kvfaelÿCoAnzBeitr.vpgekond
+VMProv.kvfaelÿCoAnzBeitr.vpgekondÿBeitrag.kvertrag
+VMProvEu.kvfaelÿÿ0(ÿ(VMProv.kvfaelÿumrechnung.kvertrag,"999999999.00"))
+ÿ’ÿ¡
+ÿ^
+ÿ¡afsk.vpgekondÿ"j"ÿp
+CoAnzBeitr%ÿCoAnzBeitr.vpgekond
+erwProvAnz.kvfaelÿCoAnzBeitr.vpgekond
+VMProv.kvfaelÿCoAnzBeitr.vpgekondÿNettoBeitrag.kvertrag
+VMProvEu.kvfaelÿÿ0(ÿ(VMProv.kvfaelÿumrechnung.kvertrag,"999999999.00"))
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ END IF 
+ÿ¡afsk.vpgekondÿ"j"ÿpÿÌÿ™"KVFAEL"
+ÿïÿYÿ™"KVFAEL"
+ÿÉÿ¥codevt1%ÿáÿ™"KVERTRAG"ÿ£lfdnr.KVERTRAG
+ÿ½ CALL Fehler("AFSKPAUJN.vpgekond LIKE j","hier was machen!")
+ÿ¡AFSKPAUJN.vpgekondÿ"j"ÿp
+AFSKPAUJN.kvertragÿ"j"
+AFSKPAUEUR.kvertragÿAFSKPAUEUR.vpgekond
+ÿ½ QAFSKPAUDAT.kvertrag = "j" + DATE$ (AFSKPAUDAT.kvertrag,"yyyymm0d")
+ÿ¡AFSKPAUDAT.kvertragÿ
+1ÿp
+QAFSKPAUDAT.kvertragÿ"j"ÿ"00000000"
+ÿ^
+QAFSKPAUDAT.kvertragÿ"j"ÿÿ(AFSKPAUDAT.kvertrag,"yyyymm0d")
+ÿ’ÿ¡
+ÿÌÿ™"KVERTRAG"
+ÿïÿYÿ™"KVERTRAG"
+ÿ’ÿ¡
+
+ÿ^
+ÿÉÿ¥lfdnr.kvertragÿáÿ™"KVFAEL"ÿ£codevt.kvfael
+erledigt.kvfaelÿ"j"
+ÿÌÿ™"KVFAEL"
+ÿïÿYÿ™"KVFAEL"
+ÿ’ÿ¡
+ 
+afsendpr26052005: 
+ÿ½ ***********************Ende Produktkonditionen ******************************************** 
+ 
+ÿ^
+ÿÉÿ¥cuvt%ÿáÿ™"KVERTRAG"ÿ£lfdnr.KVERTRAG
+ProviAb.kvertragÿ0
+CodeKO.KVERTRAGÿ0
+ÿ¡ÿJ(cuvt%,CodeVT.VKOND)ÿpÿ¾ÿaÿ™"VKOND"ÿĞCodeVT.VKONDÿcuvt%
+ÿ½ kondition.KVERTRAG = SelKond%
+ÿƒFStore("KVERTRAG")
+ÿ½ CALL Fehler("Auswahl abgebrochen!","")
+ÿ’ÿ¡
+ÿ’ÿ¡
+	ÿ^
+ok%ÿ0:ÿ½ CALL Fehler("Datum im falschen Format!","Bitte geben Sie das Datum in der Form 'tt.mm.jjjj' ein.")
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡ok%ÿ0ÿp
+ÿ½ 270799
+ÿ¡vstatus%ÿ2ÿp
+ÿ½ d.h., die Routine wurde ber den Button Status aufgerufen, bei Abbruch mssen die alten
+ÿ½ Statuseintragungen wieder vorgenommen werden
+ÿÉÿ¥cuvt%ÿáÿ™"KVERTRAG"ÿ£lfdnr.KVERTRAG
+VStatusTxT.kvertragÿvstatustxt$
+CodeVStatus.kvertragÿvstatusnr%
+ÿƒQuickStore("Kvertrag")
+vstatus%ÿ0
+ÿ’ÿ¡
+ ÿ^
+ÿ¡ÿJ(cuvt%,codevt.kvskond)ÿp
+ÿÉÿ`ÿ™"kvskond"ÿ£codevt.kvskond
+ÿÉÿ¥cuvt%ÿáÿ™"kvskond"ÿ£codevt.kvskond
+ÿÉÿ¾ÿ™"kvskond"
+ÿ’ÿ¡
+ÿÿ™"kvskond"
+codekey.kvskondÿÿI("KVSKOND",1)
+codevt.kvskondÿcuvt%
+codeko.kvskondÿcodekey%
+ÿÌÿ™"kvskond"
+ ÿ’ÿ¡
+ ÿ™cfile$
+ ÿ½ CALL VERTRUpdate()
+ ÿßÿ³
+ ÿ’ÿÿ
+
+
+ÿÿEditKondAFS1%(kond%,onlyshow%)
+ _kond%ÿkond%
+ HaftVertrag%ÿSRHaftung.kvertrag
+ ÿƒDFile(3,"gekond"ÿ_fpw$)
+ ÿƒDFile(3,"vkond"ÿ_fpw$)
+ ÿ×Auswahl$(1)
+ ÿ×KondList$(100,1)
+ 
+ changing%ÿ1
+ 
+ ÿØchanging%ÿ1
+ok%ÿ1
+ÿÿKondList$(100,1)
+ÿÿKondList$(100)
+ÿ½ FOR a% = 0 TO 100
+ÿ½ Kondlist$(a%) = ""
+ÿ½ NEXT a%
+
+a%ÿ0
+ 
+ÿØok%ÿ1
+ÿÉÿ¥_kond%ÿ™"VKOND"ÿ£CodeVK.VKOND
+ÿÉÿ¥CodeKO.VKONDÿ™"GEKOND"ÿ£lfdnr.GEKOND
+ÿÉÿ¥CodeMA.GEKONDÿ™"MAADR"ÿ£CodeMA.MAADR
+ListItem$ÿ""
+notiz$ÿ""
+ÿ¡notiz.gekondÿ""ÿpnotiz$ÿ" - "ÿnotiz.gekond
+ÿ¡APjn.gekondÿ"j"ÿpListItem$ÿListItem$ÿ"; Abschluáprovision "ÿÿ(AP.GEKOND,",999.000")
+ÿ¡CourtageJN.gekondÿ"j"ÿpListItem$ÿListItem$ÿ"; Courtage "ÿÿ(Courtage.GEKOND,",999.000")
+ÿ¡PflegeJN.gekondÿ"j"ÿpListItem$ÿListItem$ÿ"; Pflege "ÿÿ(PflegeProvi.GEKOND,",999.000")
+ÿ¡VDjn.gekondÿ"j"ÿpListItem$ÿListItem$ÿ"; Abschluá (LZ)"
+ÿ¡TZjn.gekondÿ"j"ÿpListItem$ÿListItem$ÿ"; Teilzahlung"
+ÿ¡PauschaleJN.gekondÿ"j"ÿpListItem$ÿListItem$ÿ"; Pauschale "ÿÿ(Pauschale.GEKOND,",99999.000")
+ÿ½ 201299
+ÿ¡srjn.gekondÿ"j"ÿsr.gekondÿ0ÿp
+ListItem$ÿListItem$ÿ"; Storno "ÿÿ(sr.GEKOND,"999.000")
+ÿ¡HaftVertrag%ÿ0ÿp
+	ÿ¡HaftVertrag%ÿÿ1ÿp
+ListItem$ÿListItem$ÿ"; Haftung "ÿÿ(HaftVertrag%,"999.")ÿ" Monate"
+	ÿ^
+ListItem$ÿListItem$ÿ"; Haftung unbegrenzt"
+	ÿ’ÿ¡
+ÿ^
+	ÿ¡haftung.gekondÿÿ1ÿp
+ListItem$ÿListItem$ÿ"; Haftung "ÿÿ(haftung.GEKOND,"999.")ÿ" Monate"
+	ÿ^
+ListItem$ÿListItem$ÿ"; Haftung unbegrenzt"
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+listitem$ÿlistitem$ÿ"/BWVON:"ÿÿ(bwvon.gekond,"0d.mm.yyyy")
+ÿ¡bwbis.gekondÿ0ÿplistitem$ÿlistitem$ÿ"/BWBIS:"ÿÿ(bwbis.gekond,"0d.mm.yyyy")
+ÿ¡agenturnr.maadrÿ""ÿp
+KondList$(a%)ÿÿ(a%ÿ1,"999")ÿ". "ÿÿH(Nachname.MAADR)ÿ", "ÿÿH(Vorname.MAADR)ÿ", "ÿÿF(Agenturnr.maadr)ÿListItem$ÿnotiz$ÿÿ'(120)ÿÿ(CodeVK.VKOND,"000000")
+ÿ^
+KondList$(a%)ÿÿ(a%ÿ1,"999")ÿ". "ÿÿH(Nachname.MAADR)ÿ", "ÿÿH(Vorname.MAADR)ÿListItem$ÿnotiz$ÿÿ'(120)ÿÿ(CodeVK.VKOND,"000000")
+ÿ’ÿ¡
+ÿ¡n„chsteKond.VKONDÿ0ÿp
+_kond%ÿn„chsteKond.VKOND
+a%ÿa%ÿ1
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+ÿÙ
+ÿ½ FOR a% = 1 TO 10
+ÿ½   KondList$(a%) = STR$ (a%,"999") + ". " + KondList$(0)
+ÿ½ NEXT a%
+prompt$ÿKondList$(0)
+ÿ½ CREATE DIALOG "KONDLIST",0,0,450,320,"Konditionsbersicht","Arial",8
+ÿ½ ADD DIALOG "KONDLIST",4,0,0,449,337,0,""
+ÿ½ ADD DIALOG "KONDLIST",9,9,11,21,21,2
+ÿ½ ADD DIALOG "KONDLIST",5,44,15,150,10,0,"Konditionsbersicht fr den aktuellen Vertrag:"
+ÿ½ ADD DIALOG "KONDLIST",5,44,29,262,18,0,"Best„tigen Sie mit " + CHR$ (34) + "OK" + CHR$ (34) + " die Richtigkeit der gefundenen Konditonen oder w„hlen Sie die richtigen Konditionen aus."
+ÿ½ ADD DIALOG "KONDLIST",5,44,49,256,23,0,"Um eine der angezeigten Konditionen zu „ndern, w„hlen Sie mit der Maus eine Kondition aus und klicken anschlieáend auf die Schaltfl„che " + CHR$ (34) + "ndern" + CHR$ (34) + "."
+ÿ½ ADD DIALOG "KONDLIST",7,4,78,448,219,2,2,KondList$,Auswahl$,prompt$
+ÿ½ IF onlyshow% = 0 THEN 
+ÿ½   ADD DIALOG "KONDLIST",1,101,302,55,15,0,"&ndern",2,1
+ÿ½   ADD DIALOG "KONDLIST",1,159,302,55,15,1,"&OK",1,1
+ÿ½ END IF 
+ÿ½ ADD DIALOG "KONDLIST",1,237,302,55,15,0,"&Abbrechen",0,0
+ÿ½ DIALOG "KONDLIST",req%
+ÿ½ REMOVE DIALOG "KONDLIST"
+req%ÿ1
+ÿ¡req%ÿ1ÿp
+EditKondAFS1%ÿ1
+changing%ÿ0
+ÿ’ÿ¡
+ÿ¡req%ÿ0ÿp
+EditKondAFS1%ÿ0
+changing%ÿ0
+ÿ’ÿ¡
+ÿ¡req%ÿ2ÿpÿƒChangeKond(ÿ0(ÿ-(Auswahl$(0),6)))
+_kond%ÿkond%
+ ÿÙ
+ ÿ’ÿÿ
+ 
+
+
+
+ÿ½ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ÿ½ * * * * * * * * * * AFSKIMP verarbeiten * * * * * * * * * * * * * * * * * * * * * * * * 
+ÿ½ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ÿÿAFSIMPVerPSP()
+ ÿƒDFile(3,"buchung1"ÿ_fpw$)
+ ÿƒDFile(3,"zeingan1"ÿ_fpw$)
+ ÿƒDFile(3,"sparten"ÿ_fpw$)
+ ÿƒDFile(3,"geadr"ÿ_fpw$)
+ ÿƒDFile(3,"gekond"ÿ_fpw$)
+ ÿƒDFile(3,"maadr"ÿ_fpw$)
+ ÿƒDFile(3,"maadrgru"ÿ_fpw$)
+ ÿƒDFile(3,"kvertrag"ÿ_fpw$)
+ ÿƒDFile(3,"kvfael"ÿ_fpw$)
+ ÿƒDFile(3,"vkond"ÿ_fpw$)
+ ÿƒDFile(3,"vpgekond"ÿ_fpw$)
+ ÿƒDFile(3,"spezkond"ÿ_fpw$)
+ ÿƒDFile(3,"foerkond"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\"ÿGADRDat$ÿ_fpw$)
+ÿÂ"Haben alle anderen User das Programm verlassen?","",130,req%
+ÿ¡req%ÿ1ÿpÿ’ÿÿ
+ÿ™"AFSHPSP"
+ÿ£codeimp.AFSHPSP
+ÿÉÿb
+codeimp%ÿcodeimp.AFSHPSP
+ÿƒDFile(3,"ZEINGAN1"ÿ_fpw$)
+a$ÿ"Wurde ein Vertrag gefunden, so werden in der PSP-Datei die Daten durch die Importdatei erg„nzt!"
+ÿƒFehler("Es werden jetzt die Datens„tze der Importdatei verarbeitet! Dazu wird an Hand der Vertragsnummer versucht einen Vertrag in der Vertragsdatei mit entsprechnder Policenummer zu finden!",a$)
+ÿÂ"Wollen Sie jetzt die eingelesenen Daten verarbeiten lassen?","",130,req%
+ÿ¡req%ÿ1ÿpÿ’ÿÿ
+ÿ¡ÿJ(codeimp%,codeimp.AFSPSP)ÿp
+t$ÿ"Allerdings wird versucht die Daten in die Vertragsdatei und in die Zahlungseingangsdatei(RealCash) einzupflegen. Sie haben allerdings auch die M”glich keit den Import rckg„ngig zu machen und anschlieáend erneut durchzufhren!"
+ÿ½ CALL Fehler("Die Daten wurden bereits verarbeitet und sind somit in der Suter-Datei vorhanden! Sie haben nun die M”glichkeit die Daten erneut zu verarbeiten, wobei sie nicht erneut in die Suter-Datei aufgenommen werden.",t$)
+ÿ½ REQUEST "Verarbeitung fortsetzen?","",130,req%
+ÿ½ IF req% <> 1 THEN END SUB 
+ÿ’ÿ¡
+ 
+tdatum26052005001: 
+CalcDate$ÿÿ(ÿQ,"0d.mm.yyyy")
+ÿ‰ÿñ"STICHTAG",0,0,222,114,"Buchungsdatum","MS Sans Serif",8
+ÿ|ÿñ"STICHTAG",4,0,0,222,91,0,""
+ÿ|ÿñ"STICHTAG",9,6,9,23,24,2
+ÿ|ÿñ"STICHTAG",5,31,15,183,10,0,"Bitte geben Sie an, zu welchem Buchungsdatum"
+ÿ|ÿñ"STICHTAG",5,31,25,183,10,0,"der Import durchgefhrt werden soll:"
+ÿ|ÿñ"STICHTAG",5,32,40,182,10,0,"(ohne nderung des Datums "
+ÿ|ÿñ"STICHTAG",5,31,50,182,10,0,"wird das angezeigte Datum verwendet)"
+ÿ|ÿñ"STICHTAG",6,94,72,42,12,0,0,CalcDate$,10
+ÿ|ÿñ"STICHTAG",5,30,74,58,10,0,"Buchungsdatum:"
+ÿ|ÿñ"STICHTAG",1,52,94,54,14,1,"&OK",1,1
+ÿ|ÿñ"STICHTAG",1,109,94,54,14,0,"&Abbrechen",0,0
+ÿñ"STICHTAG",req%
+ÿ¡req%ÿ1ÿpÿ’ÿÿ
+ÿ¾ÿñ"STICHTAG"
+ÿ¡ÿODateOK%(CalcDate$)ÿpÿwtdatum26052005001
+ÿ™"AFSIPSP"
+ÿ£codesort.AFSIPSP
+ÿ¡ÿA("AFSIPSP")ÿ0ÿp
+ÿÉÿ`ÿá
+ÿ^
+ÿÉÿb
+ÿ’ÿ¡
+
+
+i%ÿ0
+j%ÿ0
+GZEj%ÿ0
+z%ÿ0
+rec$ÿÿH(ÿ(ÿA("AFSIPSP"),"999999"))
+ÿØÿOÿB("AFSIPSP")
+ÿßÿe
+i%ÿi%ÿ1
+ÿ¡VS_NR.AFSIPSPÿ"Ktonr"ÿNachname.AFSIPSPÿ"Nachname"ÿpÿwend2605200511
+eingab$ÿ""
+eingab2$ÿ""
+eingab$ÿVS_NR.AFSIPSP
+ÿ¡ÿH(AntragsNR.AFSIPSP)ÿ""ÿp
+eingab2$ÿAntragsNR.AFSIPSP
+ÿ^
+eingab2$ÿ""
+ÿ’ÿ¡
+ÿ¡vs_nr.AFSIPSPÿ"ab1"ÿp
+ÿ½ CALL Fehler("ab1","")
+ÿ’ÿ¡
+ÿ½ CALL Fehler(eingab$,eingab2$)
+vs_nr$ÿeingab$
+nvt%ÿ0
+GIgnoreMultiVT%ÿÿ1
+ÿ¡codevt.AFSIPSPÿ0ÿp
+ÿ½ Vertrag wurde gefunden und lfdnr.kvertrag wurde in codevt.AFSIPSP eingetragen
+nvt%ÿcodevt.AFSIPSP
+ÿ^
+ÿ½ CALL Fehler("Andi-Vertrag nicht gefunden","")
+nvt%ÿGetVertrag%(0)
+ÿ’ÿ¡
+GIgnoreMultiVT%ÿ0
+provi$ÿ"N"
+ver$ÿ"N"
+vorh$ÿ"N"
+codetmp%ÿcodetmp.AFSIPSP
+ÿ¡nvt%ÿ0ÿp
+ÿ½ IF nachname.AFSIPSP LIKE "Pflaum" THEN CALL Fehler("Pflaum","")
+ÿ½ CALL Fehler( STR$ (nvt%) + " " + eingab$,eingab2$)
+vorh$ÿ"J"
+cuvt%ÿnvt%
+eingab$ÿ""
+Status1%ÿstatus_.AFSIPSP
+ÿ½ 18062002
+z%ÿz%ÿ1
+ÿÉÿ`ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ¥cuvt%ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ`ÿ™"ADRESSEN"ÿ£codeku.adressen
+ÿÉÿ¥codeku.kvertragÿ™"adressen"ÿ£codeku.adressen
+
+ÿ½ IF proviab.kvertrag < 1 OR Qnachname.adressen <> VSNRPack$(nachname.AFSIPSP) OR Qvorname.adressen <> VSNRPack$(vorname.AFSIPSP) THEN 
+ÿ¡proviab.kvertragÿ
+1ÿp
+	ÿ½ ist nicht an provisionsabrechnung bergeben, aber die Daten mssen noch in den PSP- satz aufgenommen werden
+	vorhanden.AFSIPSPÿvorh$
+	verarbeitet.AFSIPSPÿver$
+	provi$ÿ"N"
+	prov.AFSIPSPÿ"N"
+	QuickVP.AFSIPSPÿver$ÿprovi$
+	vorhanden.AFSIPSPÿvorh$
+	ÿ¡vorhanden.AFSIPSPÿ"J"ÿp
+Sutexp.AFSIPSPÿ"j"
+	ÿ’ÿ¡
+	ÿÌÿ™"AFSIPSP"
+	ÿ½ Jetzt den Export nach Sutor aufrufen
+	ÿ¡Sutexp.AFSIPSPÿ"j"ÿp
+ÿ™"AFSPSP"
+ÿÿ™"AFSPSP"
+a%ÿCopyRecord%("AFSIPSP","AFSPSP")
+codesut%ÿÿI("AFSPSP",1)
+codesut.AFSPSPÿcodesut%
+codeimp.AFSPSPÿcodeimp%
+codevt.AFSPSPÿcuvt%
+QuickVSIMP.AFSPSPÿÿ(codeimp%,"000000")ÿÿ(codevt.AFSPSP,"000000")
+QuickVSNR.AFSPSPÿVSNRPack$(VS_Nr.KVERTRAG)
+QuickAntrNr.AFSPSPÿVSNRPack$(Antragsnr.kvertrag)
+ÿ½    Erstzahlung                 Folgezahlung              Storno
+ÿ¡status_.AFSPSPÿ1ÿstatus_.AFSPSPÿ32ÿstatus_.AFSPSPÿ11ÿstatus_.AFSPSPÿ3ÿstatus_.AFSPSPÿ4ÿstatus_.AFSPSPÿ5ÿp
+QStatCodeaz.AFSPSPÿ"1"ÿÿ(codeaz.AFSPSP,"000000")
+ÿ’ÿ¡
+ÿÌÿ™"AFSPSP"
+ÿïÿYÿ™"AFSPSP"
+	ÿ’ÿ¡
+	ÿwend2605200511
+ÿ^
+	provi$ÿ"J"
+	prov.AFSIPSPÿ"J"
+	QuickVP.AFSIPSPÿver$ÿprovi$
+ÿ’ÿ¡
+ÿ½ 18012006 CALL Fehler(VS_nr + " VerarbIPSP","vorhandent: " + vorhanden.AFSIPSP + "   Provision: " + prov.AFSIPSP)
+GFehl$ÿ""
+ÿßÿe
+dateia$ÿ"AFSIPSP"
+ÿƒVerarbIPSP(codeimp%,dateia$)
+ÿßÿe
+ÿ¡GFehl$ÿ""ÿp
+	vorhanden.AFSIPSPÿvorh$
+	verarbeitet.AFSIPSPÿ"N"
+	prov.AFSIPSPÿ"N"
+	QuickVP.AFSIPSPÿver$ÿprovi$
+	ÿÌÿ™"AFSIPSP"
+ÿ’ÿ¡
+ÿ^
+tmpvorh$ÿvorhanden.AFSIPSP
+vorhanden.AFSIPSPÿvorh$
+verarbeitet.AFSIPSPÿver$
+prov.AFSIPSPÿprovi$
+QuickVP.AFSIPSPÿver$ÿprovi$
+ÿÌÿ™"AFSIPSP"
+ÿ’ÿ¡
+end2605200511: 
+ÿ™"AFSIPSP"
+tKopf$ÿ"Verarbeite: "ÿeingab$ÿ" gesamt verarbeitet:"ÿÿH(ÿ(i%,",99999999"))ÿ" davon gefunden:"ÿÿH(ÿ(z%,",99999999"))ÿ"  davon in Zahlungseingang aufgenommen "ÿÿH(ÿ(GZEj%,",99999999"))ÿ" ImpGes: "ÿrec$
+ÿ¡ProvNOcalc$ÿ"j"ÿÿ>(PrvVerfahr$)ÿ"ZAHLUNGSEINGANG"ÿp
+tKopf$ÿ"Verarbeite: "ÿeingab$ÿ" gesamt verarbeitet:"ÿÿH(ÿ(i%,",99999999"))ÿ" davon gefunden:"ÿÿH(ÿ(z%,",99999999"))
+ÿ^
+ÿ¡ÿ>(PrvVerfahr$)ÿ"ZAHLUNGSEINGANG"ÿp
+	tKopf$ÿ"Verarbeite: "ÿeingab$ÿ" gesamt verarbeitet:"ÿÿH(ÿ(i%,",99999999"))
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ÿœ
+ÿ™"AFSIPSP"
+ÿÉÿ±ÿáÿ™"AFSIPSP"ÿ£codesort.AFSIPSP
+ÿßÿe
+ÿÙ
+ÿßÿe
+ÿ™"AFSHPSP"
+ÿ£codeimp.AFSHPSP
+ÿÉÿ`
+ÿÉÿ¥codeimp%ÿáÿ™"AFSHPSP"ÿ£codeimp.AFSHPSP
+AnzVerarb.AFSHPSPÿAnzVerarb.AFSHPSPÿj%
+ÿÌÿ™"AFSHPSP"
+ÿ™"AFSIPSP"
+ÿ£QuickVP.AFSIPSP
+ÿÉÿ`
+ÿ¾ÿaÿ™"AFSIPSP"ÿĞQuickVP.AFSIPSPÿ"JJ"
+ÿ™"AFSIPSP"
+ÿ£Sutexp.AFSIPSP
+ÿÉÿ`
+ÿ¾ÿaÿ™"AFSIPSP"ÿĞSutexp.AFSIPSPÿ"j"
+ÿ£codetmp.AFSIPSP
+ 
+ 
+ÿ½ CALL Fehler("Prfung auf berfhrte Sutor-Datens„tze an den Zahlungseingang","")
+ÿƒFehler("Fertig mit PSP-Import","")
+ÿßÿe
+ÿ½ CALL TestAFSZE()
+
+ÿÉÿœÿ`ÿ™"AFSHPSP"
+ÿÉÿœÿ`ÿ™"AFSIPSP"
+ÿßÿ³
+ÿœ
+ 
+ ÿ’ÿÿ
+ 
+ 
+
+ÿÿVerarbIPSP(codeimp%,dateia$)
+ ÿ¡CalcDate$ÿ""ÿpCalcDate$ÿÿ(ÿQ,"0d.mm.yyyy")
+ÿßÿe
+ ÿÉÿ`ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ ÿ½ Vertrag angenommen
+ ZahlanVMEinm%ÿ0
+statustmp%ÿstatus_.dateia$
+ÿ¡VS_NR.dateia$ÿ"2395704001"ÿp
+	ÿ½ CALL Fehler(VS_NR.dateia$, STR$ (statustmp%,"00"))
+ÿ’ÿ¡
+ÿ³ÿ_ÿwErrorHandler
+ÿ¡status_.dateia$ÿ31ÿp
+	ÿÉÿ`ÿ™"KVFAEL"ÿ£codevt.kvfael
+	ÿÉÿ¥cuvt%ÿ™"KVFAEL"ÿ£codevt.kvfael
+	f„l$ÿÿ(f„lligam.kvfael,"0d.mm.yyyy")
+	ÿ¡f„lligam.kvfaelÿ	ÿ1(CalcDate$)ÿp
+
+ÿÉÿ¥cuvt%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ`ÿ™"KVFAEL"ÿ£codevt.kvfael
+ÿÉÿ¥cuvt%ÿáÿ™"KVFAEL"ÿ£codevt.kvfael
+ÿ½ SELECT FIRST FILE "vpgekond" INDEX codevp.vpgekond
+ÿ½ SELECT KEY codevp.kvertrag FILE "vpgekond" INDEX codevp.vpgekond
+ÿ¡ÿJ(cuvt%,codevt.kvskond)ÿp
+ÿÉÿ`ÿ™"kvskond"ÿ£codevt.kvskond
+ÿÉÿ¥cuvt%ÿ™"kvskond"ÿ£codevt.kvskond
+ÿÉÿ`ÿ™"vpgekond"ÿ£codekey.vpgekond
+ÿÉÿ¥codeko.kvskondÿ™"vpgekond"ÿ£codekey.vpgekond
+VS_Dauer.kvertragÿLaufzeit.dateia$
+Beitrag.kvertragÿSparbetrag.dateia$
+ÿ¡DBeitrZahlung.kvertragÿ0ÿpDBeitrZahlung.kvertragÿLaufzeit.dateia$
+Bewertungssumme.KvertragÿSparbetrag.dateia$ÿ12ÿDBeitrZahlung.kvertrag
+
+ÿ¡VS_Beginn.kvertragÿ0ÿpVS_Beginn.kvertragÿVertDat.dateia$
+ÿ¡VS_NR.dateia$ÿ""ÿpVS_NR.kvertragÿVS_NR.dateia$
+beitrsumme%ÿSparbetrag.dateia$ÿ12ÿDBeitrZahlung.kvertrag
+afspsoll%ÿ(beitrsumme%ÿafspsolBeitrSu.kvskondÿ100)ÿ(AFSPSollMB.kvskondÿSparbetrag.dateia$)
+afstilgmb100%ÿafstmb.kvskond:ÿ½ 7MB zu 100%danach
+afstilgx%ÿafstmbproz.kvskond:ÿ½ 50%
+ 
+VMProvSoll%ÿ(beitrsumme%ÿafsVBsumProz.kvskondÿ100):ÿ½ von /MB
+VMVorabProv%ÿ(afstilgmb100%ÿAFSVprozRate.kvskondÿ100)
+VMdanachlfd%ÿafsVProBei.kvskondÿ100ÿafstmbproz.kvskond
+notiz.kvertragÿ"AFS-Provisionssoll: "ÿÿH(ÿ(afspsoll%,",9999999.00"))ÿ"(Beitragssumme="ÿÿH(ÿ(beitrsumme%,",9999999.00"))ÿ")"ÿÿ(13)ÿÿ(10)
+notiz.kvertragÿnotiz.kvertragÿ"AFS-Tilgung Monatzbeitr„ge zu 100%: "ÿÿH(ÿ(afstilgmb100%,",9999999.00"))ÿ"   danach: "ÿÿH(ÿ(afstilgx%,",9999999.00"))ÿ"% des Monatsbeitrages"ÿÿ(13)ÿÿ(10)
+notiz.kvertragÿnotiz.kvertragÿ"Vermittlerkonditionen: "ÿÿ(13)ÿÿ(10)
+ÿ½ 20051121
+v1%ÿVMVorabProv%ÿSparbetrag.dateia$
+ÿ¡v1%ÿVMProvSoll%ÿp
+v1%ÿVMProvSoll%
+VMVorabProv%ÿv1%ÿSparbetrag.dateia$
+ÿ’ÿ¡
+v1$ÿÿH(ÿ(v1%,",9999999.00"))
+v$ÿÿH(ÿ(VMProvSoll%,",9999999.00"))
+da$ÿÿH(ÿ(VMdanachlfd%,",9999999.00"))
+ap$ÿÿH(ÿ(afstilgx%,",9999999.00"))
+b$ÿÿH(ÿ(Sparbetrag.dateia$,",9999999.00"))
+notiz.kvertragÿnotiz.kvertragÿ"Prov.soll: "ÿv$ÿ" Zahlung sofort: "ÿÿH(ÿ(VMVorabProv%,",9999999.00"))ÿ"MB("ÿv1$ÿ") danach "ÿda$ÿ"% von "ÿap$ÿ"% des Beitrages("ÿb$ÿ")"ÿÿ(13)ÿÿ(10)
+ÿÌÿ™"Kvertrag"
+ÿ½ CALL Fehler(notiz.kvertrag,"")
+ÿ½ f„lligam.kvfael = CalcDate$
+ÿ½ VMProv.kvfael = erwProvAnz.kvfael * Sparbetrag.dateia$
+ÿ½ STORE FILE "kvfael"
+ÿ½ UNLOCK FILE "KVFAEL"
+ÿ’ÿ¡
+	ÿ’ÿ¡
+ÿ’ÿ¡
+
+
+ÿ½  STORNO *******************************************************
+ÿ½ SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+status11%ÿstatus_.dateia$
+ÿ¡status_.dateia$ÿ3ÿstatus_.dateia$ÿ4ÿstatus_.dateia$ÿ5ÿstatus_.dateia$ÿ11ÿp
+	ÿ½ CALL Fehler("Storno","")
+	ÿßÿe
+	ÿÉÿ`ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+	ÿÉÿ¥cuvt%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+	ÿÉÿ`ÿ™"kvskond"ÿ£codevt.kvskond
+	ÿÉÿ¥cuvt%ÿ™"kvskond"ÿ£codevt.kvskond
+	ÿÉÿ`ÿ™"vpgekond"ÿ£codekey.vpgekond
+	ÿÉÿ¥codeko.kvskondÿ™"vpgekond"ÿ£codekey.vpgekond
+	ÿ¡codevp.kvertragÿcodevp.vpgekondÿafspspjn.vpgekondÿ"j"ÿpÿwfehlvpko250520051
+	vsnr$ÿVS_NR.kvertrag
+	Beitrag.kvertragÿSparbetrag.dateia$
+	ÿ¡DBeitrZahlung.kvertragÿ0ÿpDBeitrZahlung.kvertragÿLaufzeit.dateia$
+	Bewertungssumme.KvertragÿSparbetrag.dateia$ÿ12ÿDBeitrZahlung.kvertrag
+	
+ 
+	ÿ¡ProviAB.Kvertragÿ0ÿpProviAB.KvertragÿCalcDate$
+	ÿ¡ÿH(VS_NR.Kvertrag)ÿ""ÿpVS_NR.KvertragÿVS_NR.dateia$
+	ÿ¡ÿH(Antragsnr.Kvertrag)ÿ""ÿpAntragsnr.KvertragÿAntragsnr.dateia$
+ 
+	beitrsumme%ÿSparbetrag.dateia$ÿ12ÿDBeitrZahlung.kvertrag
+	beitrmon%ÿSparbetrag.dateia$
+	afspsoll%ÿ(beitrsumme%ÿafspsolBeitrSu.vpgekondÿ100)ÿ(AFSPSollMB.vpgekondÿSparbetrag.dateia$)
+	afstilgmb100%ÿafstmb.vpgekond:ÿ½ 7 MB zu 100% danach
+	afstilgx%ÿafstmbproz.vpgekond:ÿ½ 50%
+	AFSbeitrmon50%ÿbeitrmon%ÿafstilgx%ÿ100
+	afsVProBei%ÿafsVProBei.vpgekond
+ 
+	VMProvSoll%ÿ(beitrsumme%ÿafsVBsumProz.vpgekondÿ100):ÿ½ von /MB
+
+	VMVorabProv%ÿ(afstilgmb100%ÿAFSVprozRate.vpgekondÿ100)
+	ÿ½ CALL Fehler("bei Storno","")
+
+v1%ÿVMVorabProv%ÿSparbetrag.dateia$
+ÿ¡v1%ÿVMProvSoll%ÿp
+v1%ÿVMProvSoll%
+VMVorabProv%ÿv1%ÿSparbetrag.dateia$
+ÿ’ÿ¡
+
+
+	VMdanachlfd%ÿafsVProBei.vpgekondÿ100ÿafstmbproz.vpgekond
+	notiz.kvertragÿ"AFS-Provisionssoll: "ÿÿH(ÿ(afspsoll%,",9999999.00"))ÿ"(Beitragssumme="ÿÿH(ÿ(beitrsumme%,",9999999.00"))ÿ")"ÿÿ(13)ÿÿ(10)
+	notiz.kvertragÿnotiz.kvertragÿ"AFS-Tilgung Monatzbeitr„ge zu 100%: "ÿÿH(ÿ(afstilgmb100%,",9999999.00"))ÿ"   danach: "ÿÿH(ÿ(afstilgx%,",9999999.00"))ÿ"% des Monatsbeitrages"ÿÿ(13)ÿÿ(10)
+	notiz.kvertragÿnotiz.kvertragÿ"Vermittlerkonditionen: "ÿÿ(13)ÿÿ(10)
+	v1$ÿÿH(ÿ(v1%,",9999999.00"))
+	v$ÿÿH(ÿ(VMProvSoll%,",9999999.00"))
+	da$ÿÿH(ÿ(VMdanachlfd%,",9999999.00"))
+	ap$ÿÿH(ÿ(afstilgx%,",9999999.00"))
+	b$ÿÿH(ÿ(Sparbetrag.dateia$,",9999999.00"))
+	notiz.kvertragÿnotiz.kvertragÿÿ(13)ÿÿ(10)ÿ"STORNO: "
+ 
+	VMbeitrmon80%ÿAFSbeitrmon50%ÿVMdanachlfd%ÿ100
+ 
+	ÿƒQuickStore("KVERTRAG")
+	ÿßÿe
+	TilgKto1%ÿbeitrmon%ÿafstilgmb100%
+	TilgKto2%ÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+	ZahlanVM%ÿVMVorabProv%ÿbeitrmon%
+	ZahlanVM1%ÿZahlanVM%
+	VMProvSollrest%ÿVMProvSoll%ÿZahlanVM%
+	derst%ÿdatum1.dateia$
+	BetraganAFS%ÿBetrag.dateia$
+	znum%ÿ0
+	ÿ½ CALL Fehler("STORNO: " + notiz.kvertrag,gesellschaft.kvertrag + "/" + sparte.kvertrag)
+ 
+	AFSTilg100soll%ÿ(afstilgmb100%ÿbeitrmon%)
+	AFSTilg100ist%ÿ0
+	ÿßÿe
+	ÿ¾ÿaÿ™"KVPSP"ÿĞcodevt.kvpspÿcuvt%ÿgebongt.kvpspÿ1ÿcodeaz.kvpspÿ
+1
+	qcodevtznum$ÿÿ(cuvt%,"000000")ÿ"000000"
+	ÿÉÿ`ÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+	ÿÉÿ¥qcodevtznum$ÿáÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+	ok%ÿÿ1
+	ZahlanVM2%ÿZahlanVM.kvpspÿÿ1
+	ÿ½ WHILE NOT EOF ("kvpsp") AND codevt.kvpsp = cuvt% AND ok% = - 1
+	qcodevtznumold$ÿ""
+	qcodevtznum$ÿ"-1"
+	estorover%ÿ0
+	ÿ½ CALL Fehler("estorover% ","")
+	ÿØÿOÿB("kvpsp")ÿcodevt.kvpspÿcuvt%ÿqcodevtznum$ÿqcodevtznumold$
+qcodevtznumold$ÿqcodevtznum$
+qcodevtznum$ÿqcodevtznum.kvpsp
+ÿ½ CALL Fehler(qcodevtznum$,"STORNO: " + STR$ (ZahlanVM2%,",999999.00"))
+znum%ÿznummer.kvpsp
+AFSTilg100ist%ÿAFSTilg100ist%ÿbetrag.kvpsp
+ÿ½ die erste Einmalzahlung muá schon erfolgt sein und darf deshalb nicht wiederholt werden
+ZahlanVM1%ÿ0
+TilgKto1%ÿTilgKto1.kvpspÿÿ1
+TilgKto2%ÿTilgKto2.kvpspÿÿ1
+TilgKto3%ÿTilgKto3.kvpspÿÿ1
+ÿ¡TilgKto1%ÿ	0ÿp
+AFSTilg100ist%ÿAFSTilg100soll%
+ÿ’ÿ¡
+ÿ¡TilgKto2%ÿ	0ÿp
+ÿ’ÿ¡
+ÿ¡TilgKto3%ÿ	0ÿp
+ÿ’ÿ¡
+ÿ¡ZahlanVMEinm.kvpspÿ
+0ÿp
+ÿ½ da ist schon mal so ein Erststorno durchgefhrt worden, deshalb darf es jetzt nicht noch mal sein
+estorover%ÿ1
+ÿ’ÿ¡
+ZahlanVMSoll%ÿZahlanVMSoll.kvpsp
+ÿÉÿ±ÿáÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+	ÿÙ
+ 
+	AFSTilg100soll%ÿ(afstilgmb100%ÿbeitrmon%)
+	aderst%ÿderst%
+	ÿ¡AFSTilg100soll%ÿAFSTilg100ist%ÿp
+ÿ½ CALL Fehler("estorover% ","1")
+ÿ¡estorover%ÿ0ÿp
+ÿ½ der 100% tige wurde nicht komplett gezahlt, d.h. Storno der Einmalzahlung an Vermittler
+ÿ½ irgendwie dafr sorgen, das ein entsprechender ZE generiert wird, aber dann darf nach diesem Storno nie wieder w„hrend der Tilgung
+ÿ½ ein Storno als ZE aktiviert werden
+ÿ½ BetraganAFS% = 0
+beitrakt%ÿBetraganAFS%
+ 
+znum%ÿznum%ÿ1
+ÿÿ™"kvpsp"
+codekey.kvpspÿÿI("KVPSP",1)
+codevt.kvpspÿcuvt%
+znummer.kvpspÿznum%
+vs_nr.kvpspÿvsnr$
+betrag.kvpspÿBetraganAFS%
+ZahlanAFS.kvpspÿbeitrakt%
+
+
+QCodeVTZnum.kvpspÿÿ(cuvt%,"000000")ÿÿ(znum%,"000000")
+Zahlkunde.kvpspÿbeitrakt%
+
+ 
+ÿ½ Summenwerte
+PSPBeitrsumme.kvpspÿbeitrsumme%
+AFSProvSoll.kvpspÿafspsoll%
+VMSoll.kvpspÿVMProvSoll%
+VMvorab.kvpspÿVMVorabProv%ÿbeitrmon%
+VMRest.kvpspÿVMProvSoll%ÿ(VMVorabProv%ÿbeitrmon%)
+AFSTilg100.kvpspÿafstilgmb100%ÿbeitrmon%
+AFSTilg50.kvpspÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+	
+ÿ½ TilgKto1% = ZahlanVM2% * - 1
+TilgKto1Soll.kvpspÿTilgKto1%ÿÿ1
+TilgKto2Soll.kvpspÿTilgKto2%ÿÿ1
+TilgKto3Soll.kvpspÿTilgKto3%ÿÿ1
+ZahlanVMSoll.kvpspÿZahlanVM2%
+TilgKto1.kvpspÿTilgKto1%ÿÿ1
+TilgKto2.kvpspÿTilgKto2%ÿÿ1
+TilgKto3.kvpspÿTilgKto3%ÿÿ1
+ZahlanVM.kvpspÿZahlanVM2%
+ZahlanVMEinm.kvpspÿZahlanVM2%
+gebongt.kvpspÿ1
+BetraganAFS%ÿ0
+ZahlanVM1%ÿ0
+tag$ÿÿ+(ÿ(aderst%,"0dmmyyyy"),2)
+mona%ÿÿ5(aderst%)
+jahr%ÿÿ6(aderst%)
+ÿ½ mona% = mona% + znum%
+mona%ÿmona%ÿ1
+ÿ¡mona%ÿ12ÿp
+mona%ÿ1
+jahr%ÿjahr%ÿ1
+ÿ’ÿ¡
+ÿ¡mona%ÿ2ÿÿ0(tag$)ÿ28ÿptag$ÿ"28"
+ÿ¡tag$ÿ"31"ÿptag$ÿ"30"
+datf$ÿtag$ÿ"."ÿÿ(mona%,"00")ÿ"."ÿÿ(jahr%,"0000")
+aderst%ÿÿ1(datf$)
+f„lligam.kvpspÿÿ1(datf$)
+ÿÌÿ™"kvpsp"
+ÿ’ÿ¡
+	ÿ^
+ÿ½ 14062006 da ist wohl das Storno reingekommen bei irgendeiner Pflege, die ab 8. Monat einsetzt 
+ÿ½ da muá man einen separaten Storno-ZE erzeugen
+ÿ½ ************************************************************************************************************************************************
+ÿ½ CALL Fehler("storover% ","2")
+ÿ™"zeingan1"
+ÿÿ™"zeingan1"
+ÿÊÿË"Datensatz neu angelegt..."
+CodeAZ%ÿÿI("zeingan1",1)
+CodeAZ.zeingan1ÿCodeAZ%
+ÿ½ 03052006
+gebuchtJN.zeingan1ÿ"N"
+gebuchtJNT.zeingan1ÿ"N"
+BuchungsDatum.zeingan1ÿCalcDate$
+F„lligkeit.zeingan1ÿCalcDate$
+codevt.zeingan1ÿcuvt%
+codema.zeingan1ÿcodema.kvertrag
+codege.zeingan1ÿcodege.kvertrag
+kondart.zeingan1ÿ2
+VS_nr.zeingan1ÿvs_nr.kvertrag
+ÿ¡Antragsnr.AFSPSPÿ""ÿp
+Antragsnr.zeingan1ÿAntragsnr.AFSPSP
+ÿ^
+Antragsnr.zeingan1ÿAntragsnr.kvertrag
+ÿ’ÿ¡
+bewertung.zeingan1ÿbetrag.dateia$ÿ80ÿ100
+bewertungEU.zeingan1ÿbewertung.zeingan1ÿumrechnung.kvertrag
+ÿ¡status_.AFSPSPÿ11ÿstatus_.AFSPSPÿ3ÿstatus_.AFSPSPÿ4ÿstatus_.AFSPSPÿ5ÿp
+ÿ½ KundEinzahlung.zeingan1 = 0
+KundEinzahlung.zeingan1ÿ0
+Buchungstext.zeingan1ÿ"STORNO"
+ÿ^
+ÿ½ KundEinzahlung.zeingan1 = Tilgung.AFSPSP
+KundEinzahlung.zeingan1ÿZahlkunde.kvpsp
+ÿ’ÿ¡
+
+Codew.zeingan1ÿcodew.kvertrag
+waehrung.zeingan1ÿwaehrung.kvertrag
+umrechnung.zeingan1ÿumrechnung.kvertrag
+codeimpPSP.zeingan1ÿcodeimp%
+AnlageDatum.zeingan1ÿdatum1.AFSPSP
+ÿƒQuickStore("zeingan1")
+codesut%ÿcodesut.dateia$
+ÿÉÿ¥codesut%ÿáÿ™"AFSPSP"ÿ£codesut.AFSPSP
+codeaz.AFSPSPÿcodeaz%
+prov.afspspÿ"J"
+verarbeitet.afspspÿ"J"
+ÿ¡status_.AFSPSPÿ1ÿstatus_.AFSPSPÿ32ÿstatus_.AFSPSPÿ11ÿstatus_.AFSPSPÿ3ÿstatus_.AFSPSPÿ4ÿstatus_.AFSPSPÿ5ÿp
+QStatCodeaz.AFSPSPÿ"1"ÿÿ(codeaz.AFSPSP,"000000")
+ÿ’ÿ¡
+ÿÌÿ™"AFSPSP"
+ÿ½ 18062006
+ÿwend280820051
+ÿ½ ************************************************************************************************************************************************
+	ÿ’ÿ¡
+
+
+ÿ’ÿ¡
+ÿ½ SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS#
+
+
+ÿ½ Folgezahlung
+status11%ÿstatus_.dateia$
+ÿ¡status_.dateia$ÿ32ÿp
+	ÿ½ CALL Fehler( DATE$ (datum1,"0d.mm.yyyy"),"Folgezahlung")
+	ÿßÿe
+	ÿÉÿ`ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+	ÿÉÿ¥cuvt%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+	ÿÉÿ`ÿ™"kvskond"ÿ£codevt.kvskond
+	ÿÉÿ¥cuvt%ÿ™"kvskond"ÿ£codevt.kvskond
+	ÿÉÿ`ÿ™"vpgekond"ÿ£codekey.vpgekond
+	ÿÉÿ¥codeko.kvskondÿ™"vpgekond"ÿ£codekey.vpgekond
+	ÿ¡codevp.kvertragÿcodevp.vpgekondÿafspspjn.vpgekondÿ"j"ÿpÿwfehlvpko250520051
+	vsnr$ÿVS_NR.kvertrag
+	Beitrag.kvertragÿSparbetrag.dateia$
+	ÿ¡DBeitrZahlung.kvertragÿ0ÿpDBeitrZahlung.kvertragÿLaufzeit.dateia$
+	Bewertungssumme.KvertragÿSparbetrag.dateia$ÿ12ÿDBeitrZahlung.kvertrag
+	
+ 
+	ÿ¡ProviAB.Kvertragÿ0ÿpProviAB.KvertragÿCalcDate$
+	ÿ¡ÿH(VS_NR.Kvertrag)ÿ""ÿpVS_NR.KvertragÿVS_NR.dateia$
+	ÿ¡ÿH(Antragsnr.Kvertrag)ÿ""ÿpAntragsnr.KvertragÿAntragsnr.dateia$
+ 
+	beitrsumme%ÿSparbetrag.dateia$ÿ12ÿDBeitrZahlung.kvertrag
+	beitrmon%ÿSparbetrag.dateia$
+	afspsoll%ÿ(beitrsumme%ÿafspsolBeitrSu.vpgekondÿ100)ÿ(AFSPSollMB.vpgekondÿSparbetrag.dateia$)
+	afstilgmb100%ÿafstmb.vpgekond:ÿ½ 7 MB zu 100% danach
+	afstilgx%ÿafstmbproz.vpgekond:ÿ½ 50%
+	AFSbeitrmon50%ÿbeitrmon%ÿafstilgx%ÿ100
+	afsVProBei%ÿafsVProBei.vpgekond
+ 
+	VMProvSoll%ÿ(beitrsumme%ÿafsVBsumProz.vpgekondÿ100):ÿ½ von /MB
+	VMVorabProv%ÿ(afstilgmb100%ÿAFSVprozRate.vpgekondÿ100)
+	VMdanachlfd%ÿafsVProBei.vpgekondÿ100ÿafstmbproz.vpgekond
+	notiz.kvertragÿ"AFS-Provisionssoll: "ÿÿH(ÿ(afspsoll%,",9999999.00"))ÿ"(Beitragssumme="ÿÿH(ÿ(beitrsumme%,",9999999.00"))ÿ")"ÿÿ(13)ÿÿ(10)
+	notiz.kvertragÿnotiz.kvertragÿ"AFS-Tilgung Monatzbeitr„ge zu 100%: "ÿÿH(ÿ(afstilgmb100%,",9999999.00"))ÿ"   danach: "ÿÿH(ÿ(afstilgx%,",9999999.00"))ÿ"% des Monatsbeitrages"ÿÿ(13)ÿÿ(10)
+	notiz.kvertragÿnotiz.kvertragÿ"Vermittlerkonditionen: "ÿÿ(13)ÿÿ(10)
+	ÿ½ 20051121
+v1%ÿVMVorabProv%ÿSparbetrag.dateia$
+ÿ¡v1%ÿVMProvSoll%ÿp
+v1%ÿVMProvSoll%
+VMVorabProv%ÿv1%ÿSparbetrag.dateia$
+ÿ’ÿ¡
+	v1$ÿÿH(ÿ(VMVorabProv%ÿSparbetrag.dateia$,",9999999.00"))
+	v$ÿÿH(ÿ(VMProvSoll%,",9999999.00"))
+	da$ÿÿH(ÿ(VMdanachlfd%,",9999999.00"))
+	ap$ÿÿH(ÿ(afstilgx%,",9999999.00"))
+	b$ÿÿH(ÿ(Sparbetrag.dateia$,",9999999.00"))
+	notiz.kvertragÿnotiz.kvertragÿ"Prov.soll: "ÿv$ÿ" Zahlung sofort: "ÿÿH(ÿ(VMVorabProv%,",9999999.00"))ÿ"MB("ÿv1$ÿ") danach "ÿda$ÿ"% von "ÿap$ÿ"% des Beitrages("ÿb$ÿ")"ÿÿ(13)ÿÿ(10)
+ 
+	VMbeitrmon80%ÿAFSbeitrmon50%ÿVMdanachlfd%ÿ100
+ 
+	ÿƒQuickStore("KVERTRAG")
+
+	TilgKto1%ÿbeitrmon%ÿafstilgmb100%
+	TilgKto2%ÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+	ZahlanVM%ÿVMVorabProv%ÿbeitrmon%
+	ZahlanVM1%ÿZahlanVM%
+	VMProvSollrest%ÿVMProvSoll%ÿZahlanVM%
+	derst%ÿdatum1.dateia$
+	BetraganAFS%ÿBetrag.dateia$
+	znum%ÿ0
+	ÿ½ CALL Fehler("Folgezahlung: " + notiz.kvertrag,gesellschaft.kvertrag + "/" + sparte.kvertrag)
+
+	AFSTilg100soll%ÿ(afstilgmb100%ÿbeitrmon%)
+	AFSTilg100ist%ÿ0
+	ÿßÿe
+	ÿ¾ÿaÿ™"KVPSP"ÿĞcodevt.kvpspÿcuvt%ÿgebongt.kvpspÿ1ÿcodeaz.kvpspÿ
+1
+	qcodevtznum$ÿÿ(cuvt%,"000000")ÿ"000000"
+	ÿÉÿ`ÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+	ÿÉÿ¥qcodevtznum$ÿáÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+	ok%ÿÿ1
+	ÿ½ WHILE NOT EOF ("kvpsp") AND codevt.kvpsp = cuvt% AND ok% = - 1
+	qcodevtznumold$ÿ""
+	qcodevtznum$ÿ"-1"
+	vmrestrealt%ÿÿ1
+	ÿØÿOÿB("kvpsp")ÿcodevt.kvpspÿcuvt%ÿqcodevtznum$ÿqcodevtznumold$
+
+ÿ¡gebongt.kvpspÿ1ÿp
+qcodevtznumold$ÿqcodevtznum$
+qcodevtznum$ÿqcodevtznum.kvpsp
+ÿ½ CALL Fehler(qcodevtznum$,"Folgezahlung")
+znum%ÿznummer.kvpsp
+AFSTilg100ist%ÿAFSTilg100ist%ÿbetrag.kvpsp
+ÿ½ die erste Einmalzahlung muá schon erfolgt sein und darf deshalb nicht wiederholt werden
+ZahlanVM1%ÿ0
+ÿ¡ZahlanVM.kvpspÿ0ÿp
+TilgKto1%ÿTilgKto1.kvpspÿÿ1
+ÿ’ÿ¡
+vmrest%ÿvmrest.kvpsp
+vmrest$ÿÿH(ÿ(vmrest%,"9999999999.00"))
+vmrest%ÿÿ0(vmrest$)
+ÿ¡vmrest%ÿ0ÿp
+vmrestrealt%ÿ1
+ÿ’ÿ¡
+TilgKto2%ÿTilgKto2.kvpspÿÿ1
+TilgKto3%ÿTilgKto3.kvpspÿÿ1
+ÿ¡TilgKto1%ÿ	0ÿp
+AFSTilg100ist%ÿAFSTilg100soll%
+ÿ’ÿ¡
+ÿ¡TilgKto2%ÿ	0ÿp
+ÿ’ÿ¡
+ÿ¡TilgKto3%ÿ	0ÿp
+ÿ’ÿ¡
+
+ÿ’ÿ¡
+
+ÿÉÿ±ÿáÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+	ÿÙ
+	ÿ¡AFSTilg100ist%ÿ0ÿvmrestrealt%ÿ1ÿp
+ÿƒFehler("Folgezahlung aber abgezahlt=0","")
+	ÿ’ÿ¡
+	
+	ÿ½**********************************************************************************************************************************************************************************
+aderst%ÿderst%
+AFSTilg100soll%ÿ(afstilgmb100%ÿbeitrmon%)
+ÿßÿe
+ÿ¡AFSTilg100soll%ÿAFSTilg100ist%ÿp
+AFSTilg100soll%ÿ(afstilgmb100%ÿbeitrmon%)
+beitrakt%ÿBetraganAFS%
+gebongtakt%ÿ1
+ÿ½ znum% = 0
+ÿØAFSTilg100ist%ÿ
+AFSTilg100soll%
+ÿ½ FOR znum% = 1 TO afstilgmb100%
+znum%ÿznum%ÿ1
+ÿÿ™"kvpsp"
+codekey.kvpspÿÿI("KVPSP",1)
+codekey%ÿcodekey.kvpsp
+codevt.kvpspÿcuvt%
+znummer.kvpspÿznum%
+vs_nr.kvpspÿvsnr$
+betrag.kvpspÿBeitrakt%
+ZahlanAFS.kvpspÿBetraganAFS%
+
+
+QCodeVTZnum.kvpspÿÿ(cuvt%,"000000")ÿÿ(znum%,"000000")
+Zahlkunde.kvpspÿbeitrmon%
+
+ 
+ÿ½ Summenwerte
+PSPBeitrsumme.kvpspÿbeitrsumme%
+AFSProvSoll.kvpspÿafspsoll%
+VMSoll.kvpspÿVMProvSoll%
+VMvorab.kvpspÿVMVorabProv%ÿbeitrmon%
+VMRest.kvpspÿVMProvSoll%ÿ(VMVorabProv%ÿbeitrmon%)
+AFSTilg100.kvpspÿafstilgmb100%ÿbeitrmon%
+AFSTilg50.kvpspÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+
+ÿ½ CALL Fehler("Folge-VMRest", STR$ (VMRest.kvpsp,",9999999.00"))
+
+TilgKto1%ÿTilgKto1%ÿbeitrakt%
+ÿ¡BetraganAFS%ÿ0ÿp
+ÿ¡TilgKto1%ÿ
+0ÿp
+difft%ÿTilgKto1%ÿÿ1
+TilgKto1%ÿ0
+ÿ’ÿ¡
+beitrold%ÿbeitrakt%
+beitrakt%ÿbeitrmon%
+ÿ¡difft%ÿ0ÿp
+beitrakt%ÿdifft%
+ÿ’ÿ¡
+ÿ^
+beitrold%ÿbeitrakt%
+beitrakt%ÿbeitrmon%
+ÿ’ÿ¡
+TilgKto1Soll.kvpspÿTilgKto1%ÿÿ1
+TilgKto2Soll.kvpspÿTilgKto2%ÿÿ1
+TilgKto3Soll.kvpspÿVMProvSollrest%ÿÿ1
+ÿ¡vmrestrealt%ÿ1ÿpZahlanVMSoll.kvpspÿZahlanVM1%
+ÿ¡znum%ÿ1ÿBetraganAFS%ÿ0ÿp
+TilgKto1.kvpspÿTilgKto1%ÿÿ1
+TilgKto2.kvpspÿTilgKto2%ÿÿ1
+TilgKto3.kvpspÿVMProvSollrest%ÿÿ1
+ÿ¡vmrestrealt%ÿ1ÿp
+ZahlanVM.kvpspÿZahlanVM1%
+ÿ’ÿ¡
+gebongt.kvpspÿ1
+ÿ’ÿ¡
+BetraganAFS%ÿ0
+ZahlanVM1%ÿ0
+tag$ÿÿ+(ÿ(aderst%,"0dmmyyyy"),2)
+mona%ÿÿ5(aderst%)
+jahr%ÿÿ6(aderst%)
+ÿ½ mona% = mona% + znum%
+mona%ÿmona%ÿ1
+ÿ¡mona%ÿ12ÿp
+mona%ÿmona%ÿ12
+jahr%ÿjahr%ÿ1
+ÿ’ÿ¡
+ÿ¡mona%ÿ2ÿÿ0(tag$)ÿ28ÿptag$ÿ"28"
+ÿ¡tag$ÿ"31"ÿptag$ÿ"30"
+datf$ÿtag$ÿ"."ÿÿ(mona%,"00")ÿ"."ÿÿ(jahr%,"0000")
+aderst%ÿÿ1(datf$)
+f„lligam.kvpspÿÿ1(datf$)
+ÿÌÿ™"kvpsp"
+ÿ½ NEXT znum% 
+diff%ÿ0
+difftest%ÿ0
+AFSTilg100ist%ÿAFSTilg100ist%ÿbeitrold%
+ÿ¡AFSTilg100ist%ÿAFSTilg100soll%ÿp
+diff%ÿAFSTilg100soll%ÿAFSTilg100ist%
+beitrakt%ÿbeitrmon%ÿdiff%
+difftest$ÿÿ(diff%,"999999999.00")
+difftest%ÿÿ0(difftest$)
+ÿ’ÿ¡
+ÿÙ
+derst%ÿÿ1(datf$)
+gebongt%ÿgebongt.kvpsp
+ÿ½ CALL Fehler("gerade KVPSP erzeugt1","1-Folgezahlung")
+ÿ¡beitrakt%ÿ0ÿdifftest%ÿ0ÿgebongt%ÿ1ÿp
+ÿ½ CALL Fehler("Folgezahlung:","beitrakt%>0 nach 1.Schleife")
+beitrakt%ÿdiff%ÿÿ1
+ÿ½ jetzt Zahlung 50% und 80% erzeugen fr beitrakt%
+ÿ½ ichglaube das ist TODO ja das ist TODO 21.05.2005
+ÿ½ was ist damit ist das TODO - 21.050.2005
+ÿ½ ################################################################################################################################################
+AFSTilg100soll%ÿ(afstilgmb100%ÿbeitrmon%):ÿ½ zu 100%
+ÿ½ BetragRest% = BetraganAFS% - AFSTilg100soll%:REM davon z„hlen jetzt aber nur die 50% und 80%
+BetragRest%ÿbeitrakt%
+ÿ½ jetzt die 50% rauskriegen
+AFSTilg50%ÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+ÿ½ VMRest% = VMProvSoll% - (VMVorabProv% * beitrmon%)
+VMProvSoll%ÿVMSoll.kvpsp
+VMVorab%ÿVMvorab.kvpsp
+VMRest%ÿTilgKto3%ÿÿ1
+ÿ½ znum% = znum% + 1
+ÿ½ BLANK FILE "kvpsp"
+ÿ½ codekey.kvpsp = SER ("KVPSP",1)
+ÿ½ codevt.kvpsp = cuvt%
+ÿ½ znummer.kvpsp = znum%
+ÿ½ vs_nr.kvpsp = vsnr$
+ÿÉÿ¥codekey%ÿáÿ™"kvpsp"ÿ£codekey.kvpsp
+betrag.kvpspÿBetragRest%
+ÿ½ ZahlanAFS% = (BetragRest% * afstilgx% / 100)
+ZahlanAFS.kvpspÿbeitrold%
+QCodeVTZnum.kvpspÿÿ(cuvt%,"000000")ÿÿ(znum%,"000000")
+Zahlkunde.kvpspÿbeitrmon%
+ 
+ÿ½ Summenwerte
+PSPBeitrsumme.kvpspÿbeitrsumme%
+AFSProvSoll.kvpspÿafspsoll%
+VMSoll.kvpspÿVMProvSoll%
+VMvorab.kvpspÿVMVorab%
+
+AFSTilg100.kvpspÿafstilgmb100%ÿbeitrmon%
+AFSTilg50.kvpspÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+
+gebongt.kvpspÿ1
+ 
+TilgKto1%ÿ0
+TilgKto1.kvpspÿTilgKto1%
+TilgKto1Soll.kvpspÿTilgKto1%
+ 
+ÿ½ AFSTilg50% > BetragRest% OR VMRest% > BetragRest% 
+betrag50rest%ÿ0
+ÿ½ betrag50% = (BetragRest% * afstilgx% / 100)
+betrag50%ÿBetragRest%
+ÿ¡betrag50%ÿAFSTilg50%ÿp
+betrag50%ÿAFSTilg50%
+ÿ^
+ÿ½ irgendwie rest ermitteln
+betrag50rest%ÿAFSTilg50%ÿbetrag50%
+ÿ’ÿ¡
+TilgKto2tmp%ÿTilgKto2%ÿbetrag50%
+TilgKto2.kvpspÿTilgKto2tmp%ÿÿ1
+TilgKto2Soll.kvpspÿTilgKto2tmp%ÿÿ1
+TilgKto2%ÿTilgKto2.kvpsp
+ 
+TilgKto3tmp%ÿTilgKto3%ÿÿ1
+betrag80%ÿ(BetragRest%ÿ2)ÿafsVProBei%ÿ100
+betrag80rest%ÿ0
+vmrest%ÿvmrest%ÿÿ1
+ÿ¡betrag80%ÿvmrest%ÿp
+betrag80%ÿvmrest%
+ÿ^
+betrag80rest%ÿvmrest%ÿbetrag80%
+ÿ’ÿ¡
+TilgKto3tmp%ÿTilgKto3tmp%ÿÿ1
+TilgKto3tmp%ÿTilgKto3tmp%ÿbetrag80%
+TilgKto3.kvpspÿTilgKto3tmp%ÿÿ1
+TilgKto3Soll.kvpspÿTilgKto3tmp%ÿÿ1
+TilgKto3%ÿTilgKto3.kvpsp
+ 
+ZahlanVMSoll.kvpspÿbetrag80%
+ZahlanVM.kvpspÿbetrag80%
+VMRest.kvpspÿVMRest%ÿbetrag80%
+f„lligam.kvpspÿÿ1(datf$)
+ÿÌÿ™"kvpsp"
+ÿ½ VMProvSoll% = (TilgKto3.kvpsp * - 1)
+
+ÿ½ ################################################################################################################################################
+ÿ’ÿ¡
+ÿ½ danach mssen die 50% Tilgungen erledigt werden
+ÿ½ AFSbeitrmon50%
+ÿ½ VMbeitrmon80%
+ÿ½ Tilgung2 reduzieren um AFSbeitrmon50%
+ÿ½ TilgKto3 reduzieren um VMbeitrmon80%
+aderst%ÿderst%
+ZahlanVM%ÿVMVorabProv%ÿbeitrmon%
+t1%ÿTilgKto2%ÿAFSbeitrmon50%
+t2%ÿ(VMProvSoll%ÿZahlanVM%)ÿVMbeitrmon80%
+ÿ¡t1%ÿt2%ÿp
+tbis%ÿt1%
+ÿ^
+tbis%ÿt2%
+ÿ’ÿ¡
+t2$ÿÿ(t2%,"999999999.00")
+t2%ÿÿ0(t2$)
+ÿ¡t2%ÿ0ÿp
+tbis%ÿ0
+ÿ’ÿ¡
+TilgKto2%ÿTilgKto2%
+TilgKto3%ÿVMProvSoll%ÿZahlanVM%
+beitrmon80%ÿVMbeitrmon80%
+znum%ÿznum%ÿ1
+ÿ¡tbis%ÿ0ÿp
+ÿ›jj%ÿ1ÿqtbis%ÿ1
+ÿÿ™"kvpsp"
+codekey.kvpspÿÿI("KVPSP",1)
+codevt.kvpspÿcuvt%
+znummer.kvpspÿznum%
+vs_nr.kvpspÿvsnr$
+QCodeVTZnum.kvpspÿÿ(cuvt%,"000000")ÿÿ(znum%,"000000")
+ 
+ 
+ÿ½ Summenwerte
+PSPBeitrsumme.kvpspÿbeitrsumme%
+AFSProvSoll.kvpspÿafspsoll%
+VMSoll.kvpspÿVMProvSoll%
+VMvorab.kvpspÿVMVorabProv%ÿbeitrmon%
+VMRest.kvpspÿVMProvSoll%ÿ(VMVorabProv%ÿbeitrmon%)
+AFSTilg100.kvpspÿafstilgmb100%ÿbeitrmon%
+AFSTilg50.kvpspÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+ 
+ 
+Zahlkunde.kvpspÿbeitrmon%
+ZahlanAFS.kvpspÿAFSbeitrmon50%
+TilgKto1Soll.kvpspÿ0
+TilgKto2%ÿTilgKto2%ÿAFSbeitrmon50%
+TilgKto2Soll.kvpspÿTilgKto2%ÿÿ1
+ 
+TilgKto3%ÿTilgKto3%ÿbeitrmon80%
+ÿ¡TilgKto3%ÿ	0ÿp
+TilgKto3Soll.kvpspÿ0
+ÿ¡vmrestrealt%ÿ1ÿpZahlanVMSoll.kvpspÿTilgKto3%ÿÿ1
+TilgKto3%ÿ0ÿÿ1
+beitrmon80%ÿ0
+ÿ^
+TilgKto3Soll.kvpspÿTilgKto3%ÿÿ1
+ZahlanVMSoll.kvpspÿVMbeitrmon80%
+ÿ’ÿ¡
+tag$ÿÿ+(ÿ(aderst%,"0dmmyyyy"),2)
+mona%ÿÿ5(aderst%)
+jahr%ÿÿ6(aderst%)
+mona%ÿmona%ÿ1
+ÿ¡mona%ÿ12ÿp
+mona%ÿ1
+jahr%ÿjahr%ÿ1
+ÿ’ÿ¡
+ÿ¡mona%ÿ2ÿÿ0(tag$)ÿ28ÿptag$ÿ"28"
+ÿ¡tag$ÿ"31"ÿptag$ÿ"30"
+datf$ÿtag$ÿ"."ÿÿ(mona%,"00")ÿ"."ÿÿ(jahr%,"0000")
+aderst%ÿÿ1(datf$)
+f„lligam.kvpspÿÿ1(datf$)
+derst%ÿÿ1(datf$)
+ÿÌÿ™"kvpsp"
+znum%ÿznum%ÿ1
+ÿÊÿËÿ(znum%,",999999")
+ÿ±jj%
+ÿ’ÿ¡
+ÿ½ CALL Fehler("gerade KVPSP erzeugt1","2")
+ÿ^
+ÿ½ der Erstzahlungsbetrag >=  7 MB
+ÿ½ CALL Fehler ("Folgezahlung die ersten 7MB sind schon bezahlt","Folgezahlung")
+ÿßÿe
+AFSTilg100soll%ÿ(afstilgmb100%ÿbeitrmon%):ÿ½ zu 100%
+ÿ½ BetragRest% = BetraganAFS% - AFSTilg100soll%:REM davon z„hlen jetzt aber nur die 50% und 80%
+BetragRest%ÿTilgKto2%ÿÿ1
+ÿ½ BetragRest% = TilgKto2%
+ÿ½ jetzt die 50% rauskriegen
+AFSTilg50%ÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+ÿ½ VMRest% = VMProvSoll% - (VMVorabProv% * beitrmon%)
+VMRest%ÿTilgKto3%ÿÿ1
+ÿ½ VMRest% = TilgKto3% 
+
+ ÿ½ **********************************************************************************************************************************
+aderst%ÿderst%
+ZahlanVM%ÿVMVorabProv%ÿbeitrmon%
+t1%ÿTilgKto2%ÿAFSbeitrmon50%
+t2%ÿ(VMProvSoll%ÿZahlanVM%)ÿVMbeitrmon80%
+ÿ¡t1%ÿt2%ÿp
+tbis%ÿt1%
+ÿ^
+tbis%ÿt2%
+ÿ’ÿ¡
+t2$ÿÿ(t2%,"999999999.00")
+t2%ÿÿ0(t2$)
+ÿ¡t2%ÿ0ÿp
+tbis%ÿ0
+ÿ’ÿ¡
+TilgKto2%ÿTilgKto2%
+TilgKto3%ÿVMProvSoll%ÿZahlanVM%
+beitrmon80%ÿVMbeitrmon80%
+znum%ÿznum%ÿ1
+ÿ¡tbis%ÿ0ÿp
+ÿ›jj%ÿ1ÿqtbis%ÿ1
+ÿÿ™"kvpsp"
+codekey.kvpspÿÿI("KVPSP",1)
+codevt.kvpspÿcuvt%
+znummer.kvpspÿznum%
+vs_nr.kvpspÿvsnr$
+QCodeVTZnum.kvpspÿÿ(cuvt%,"000000")ÿÿ(znum%,"000000")
+ 
+ 
+ÿ½ Summenwerte
+PSPBeitrsumme.kvpspÿbeitrsumme%
+AFSProvSoll.kvpspÿafspsoll%
+VMSoll.kvpspÿVMProvSoll%
+VMvorab.kvpspÿVMVorabProv%ÿbeitrmon%
+VMRest.kvpspÿVMProvSoll%ÿ(VMVorabProv%ÿbeitrmon%)
+AFSTilg100.kvpspÿafstilgmb100%ÿbeitrmon%
+AFSTilg50.kvpspÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+ 
+ 
+Zahlkunde.kvpspÿbeitrmon%
+ZahlanAFS.kvpspÿAFSbeitrmon50%
+TilgKto1Soll.kvpspÿ0
+TilgKto2%ÿTilgKto2%ÿAFSbeitrmon50%
+TilgKto2Soll.kvpspÿTilgKto2%ÿÿ1
+ 
+TilgKto3%ÿTilgKto3%ÿbeitrmon80%
+ÿ¡TilgKto3%ÿ	0ÿp
+TilgKto3Soll.kvpspÿ0
+ZahlanVMSoll.kvpspÿTilgKto3%ÿÿ1
+TilgKto3%ÿ0ÿÿ1
+beitrmon80%ÿ0
+ÿ^
+TilgKto3Soll.kvpspÿTilgKto3%ÿÿ1
+ZahlanVMSoll.kvpspÿVMbeitrmon80%
+ÿ’ÿ¡
+tag$ÿÿ+(ÿ(aderst%,"0dmmyyyy"),2)
+mona%ÿÿ5(aderst%)
+jahr%ÿÿ6(aderst%)
+mona%ÿmona%ÿ1
+ÿ¡mona%ÿ12ÿp
+mona%ÿ1
+jahr%ÿjahr%ÿ1
+ÿ’ÿ¡
+ÿ¡mona%ÿ2ÿÿ0(tag$)ÿ28ÿptag$ÿ"28"
+ÿ¡tag$ÿ"31"ÿptag$ÿ"30"
+datf$ÿtag$ÿ"."ÿÿ(mona%,"00")ÿ"."ÿÿ(jahr%,"0000")
+aderst%ÿÿ1(datf$)
+f„lligam.kvpspÿÿ1(datf$)
+derst%ÿÿ1(datf$)
+ÿÌÿ™"kvpsp"
+znum%ÿznum%ÿ1
+ÿ±jj%
+ÿ’ÿ¡
+ÿ½ CALL Fehler("Vorausberechnung beendet!","")
+ ÿ½ **********************************************************************************************************************************  
+
+
+ÿ¡AFSTilg50%ÿBetragRest%ÿVMRest%ÿBetragRest%ÿp
+ 
+ÿ½ BetragRest% = TilgKto2%
+ÿ½ VMRest% = TilgKto3%
+ÿ½ hier jetzt die 50% Zahlungen ralisieren
+ÿ¡BetragRest%ÿ0ÿp
+znum%ÿznum%ÿ1
+ÿÿ™"kvpsp"
+codekey.kvpspÿÿI("KVPSP",1)
+codevt.kvpspÿcuvt%
+znummer.kvpspÿznum%
+vs_nr.kvpspÿvsnr$
+betrag.kvpspÿBetragRest%
+ZahlanAFS.kvpspÿ(BetragRest%ÿafstilgx%ÿ100)
+QCodeVTZnum.kvpspÿÿ(cuvt%,"000000")ÿÿ(znum%,"000000")
+Zahlkunde.kvpspÿbeitrmon%
+ 
+ÿ½ Summenwerte
+PSPBeitrsumme.kvpspÿbeitrsumme%
+AFSProvSoll.kvpspÿafspsoll%
+VMSoll.kvpspÿVMProvSoll%
+VMvorab.kvpspÿVMVorabProv%ÿbeitrmon%
+VMRest.kvpspÿVMProvSoll%ÿ(VMVorabProv%ÿbeitrmon%)
+AFSTilg100.kvpspÿafstilgmb100%ÿbeitrmon%
+AFSTilg50.kvpspÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+
+gebongt.kvpspÿ1
+ 
+TilgKto1%ÿ0
+TilgKto1.kvpspÿTilgKto1%
+TilgKto1Soll.kvpspÿTilgKto1%
+ 
+ÿ½ AFSTilg50% > BetragRest% OR VMRest% > BetragRest% 
+betrag50rest%ÿ0
+betrag50%ÿ(BetragRest%ÿafstilgx%ÿ100)
+ÿ¡betrag50%ÿAFSTilg50%ÿp
+betrag50%ÿAFSTilg50%
+ÿ^
+ÿ½ irgendwie rest ermitteln
+betrag50rest%ÿAFSTilg50%ÿbetrag50%
+ÿ’ÿ¡
+TilgKto2tmp%ÿTilgKto2%ÿÿ1
+TilgKto2tmp%ÿTilgKto2tmp%ÿbetrag50%
+TilgKto2.kvpspÿTilgKto2tmp%ÿÿ1
+TilgKto2Soll.kvpspÿTilgKto2tmp%ÿÿ1
+TilgKto2%ÿTilgKto2.kvpsp
+ 
+TilgKto3tmp%ÿTilgKto3%ÿÿ1
+betrag80%ÿBetragRest%ÿafsVProBei%ÿ100
+betrag80rest%ÿ0
+ÿ¡betrag80%ÿvmrest%ÿp
+betrag80%ÿvmrest%
+ÿ^
+betrag80rest%ÿvmrest%ÿbetrag80%
+ÿ’ÿ¡
+TilgKto3tmp%ÿTilgKto3tmp%ÿbetrag80%
+TilgKto3.kvpspÿTilgKto3tmp%ÿÿ1
+TilgKto3Soll.kvpspÿTilgKto3tmp%ÿÿ1
+TilgKto3%ÿTilgKto3.kvpsp
+ 
+ZahlanVMSoll.kvpspÿbetrag80%
+ZahlanVM.kvpspÿbetrag80%
+ÿÌÿ™"kvpsp"
+ 
+ÿ½ hier jetzt vorausberechnung fr betrag80rest% und betrag50rest%
+znum%ÿznum%ÿ1
+ 
+ZahlanVM%ÿVMVorabProv%ÿbeitrmon%
+t1%ÿ(TilgKto2%ÿÿ1)ÿAFSbeitrmon50%
+t2%ÿ(TilgKto2%ÿÿ1)ÿVMbeitrmon80%
+ÿ¡t1%ÿt2%ÿp
+tbis%ÿt1%
+ÿ^
+tbis%ÿt2%
+ÿ’ÿ¡
+beitrmon80%ÿVMbeitrmon80%
+aderst%ÿderst%
+ÿ¡tbis%ÿ0ÿp
+ÿ›jj%ÿ1ÿqtbis%ÿ1
+ÿÿ™"kvpsp"
+codekey.kvpspÿÿI("KVPSP",1)
+codevt.kvpspÿcuvt%
+znummer.kvpspÿznum%
+vs_nr.kvpspÿvsnr$
+QCodeVTZnum.kvpspÿÿ(cuvt%,"000000")ÿÿ(znum%,"000000")
+ 
+ 
+ÿ½ Summenwerte
+PSPBeitrsumme.kvpspÿbeitrsumme%
+AFSProvSoll.kvpspÿafspsoll%
+VMSoll.kvpspÿVMProvSoll%
+VMvorab.kvpspÿVMVorabProv%ÿbeitrmon%
+VMRest.kvpspÿVMProvSoll%ÿ(VMVorabProv%ÿbeitrmon%)
+AFSTilg100.kvpspÿafstilgmb100%ÿbeitrmon%
+AFSTilg50.kvpspÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+ 
+ 
+Zahlkunde.kvpspÿbeitrmon%
+ZahlanAFS.kvpspÿAFSbeitrmon50%
+TilgKto1Soll.kvpspÿ0
+TilgKto2%ÿTilgKto2%ÿAFSbeitrmon50%
+TilgKto2Soll.kvpspÿTilgKto2%ÿÿ1
+	
+TilgKto3%ÿTilgKto3%ÿbeitrmon80%
+ÿ¡TilgKto3%ÿ	0ÿp
+TilgKto3Soll.kvpspÿ0
+ZahlanVMSoll.kvpspÿTilgKto3%ÿÿ1
+TilgKto3%ÿ0ÿÿ1
+beitrmon80%ÿ0
+ÿ^
+TilgKto3Soll.kvpspÿTilgKto3%ÿÿ1
+ZahlanVMSoll.kvpspÿVMbeitrmon80%
+ÿ’ÿ¡
+tag$ÿÿ+(ÿ(aderst%,"0dmmyyyy"),2)
+mona%ÿÿ5(aderst%)
+jahr%ÿÿ6(aderst%)
+mona%ÿmona%ÿ1
+ÿ¡mona%ÿ12ÿp
+mona%ÿ1
+jahr%ÿjahr%ÿ1
+ÿ’ÿ¡
+ÿ¡mona%ÿ2ÿÿ0(tag$)ÿ28ÿptag$ÿ"28"
+ÿ¡tag$ÿ"31"ÿptag$ÿ"30"
+datf$ÿtag$ÿ"."ÿÿ(mona%,"00")ÿ"."ÿÿ(jahr%,"0000")
+aderst%ÿÿ1(datf$)
+f„lligam.kvpspÿÿ1(datf$)
+derst%ÿÿ1(datf$)
+ÿÌÿ™"kvpsp"
+znum%ÿznum%ÿ1
+ÿ±jj%
+ÿ’ÿ¡
+ÿ^
+ÿ½ CALL Fehler("Kein direkter Rest","irgendwie ZE erzeugen und in kvpsp gebongt=1 und  ZahlanVM=ZahlanVMSoll eintragen " + qcodevtznum$)
+qcodevtznum$ÿÿ(cuvt%,"000000")ÿ"000000"
+ÿÉÿ`ÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+ÿÉÿ¥qcodevtznum$ÿáÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+ok%ÿÿ1
+qcodevtznumold$ÿ""
+qcodevtznum$ÿ"-1"
+ÿØÿOÿB("kvpsp")ÿcodevt.kvpspÿcuvt%ÿqcodevtznum$ÿqcodevtznumold$ÿgebongt.kvpspÿ1
+qcodevtznumold$ÿqcodevtznum$
+qcodevtznum$ÿqcodevtznum.kvpsp
+znum%ÿznummer.kvpsp
+ÿÉÿ±ÿáÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+ÿÙ
+ÿ¡ZahlanVMSoll.kvpspÿ0ÿgebongt.kvpspÿ
+1ÿp
+gebongt.kvpspÿ1
+ZahlanVM.kvpspÿZahlanVMSoll.kvpsp
+ÿÌÿ™"kvpsp"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ von IF BetragRest% > 0
+ÿ^
+ÿ½ es wurde alles auf einmal bezahlt
+aderst%ÿderst%
+znum%ÿznum%ÿ1
+ÿÿ™"kvpsp"
+codekey.kvpspÿÿI("KVPSP",1)
+codevt.kvpspÿcuvt%
+znummer.kvpspÿznum%
+vs_nr.kvpspÿvsnr$
+betrag.kvpspÿBetraganAFS%
+ZahlanAFS.kvpspÿBetraganAFS%
+BetraganAFS%ÿ0
+
+QCodeVTZnum.kvpspÿÿ(cuvt%,"000000")ÿÿ(znum%,"000000")
+Zahlkunde.kvpspÿbeitrmon%
+
+ 
+ÿ½ Summenwerte
+PSPBeitrsumme.kvpspÿbeitrsumme%
+AFSProvSoll.kvpspÿafspsoll%
+VMSoll.kvpspÿVMProvSoll%
+VMvorab.kvpspÿVMVorabProv%ÿbeitrmon%
+VMRest.kvpspÿVMProvSoll%ÿ(VMVorabProv%ÿbeitrmon%)
+AFSTilg100.kvpspÿafstilgmb100%ÿbeitrmon%
+AFSTilg50.kvpspÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+	
+TilgKto1%ÿTilgKto1%ÿbeitrakt%
+beitrakt%ÿbeitrmon%
+ZahlanVMSoll.kvpspÿTilgKto3%
+TilgKto1Soll.kvpspÿ0
+TilgKto2Soll.kvpspÿ0
+TilgKto3Soll.kvpspÿ0
+ÿ½ ZahlanVMSoll.kvpsp = VMProvSoll%
+TilgKto1.kvpspÿ0
+TilgKto2.kvpspÿ0
+TilgKto3.kvpspÿ0
+ZahlanVM.kvpspÿVMProvSoll%
+gebongt.kvpspÿ1
+ZahlanVM1%ÿ0
+tag$ÿÿ+(ÿ(aderst%,"0dmmyyyy"),2)
+mona%ÿÿ5(aderst%)
+jahr%ÿÿ6(aderst%)
+ÿ½ mona% = mona% + znum%
+mona%ÿmona%ÿ1
+ÿ¡mona%ÿ12ÿp
+mona%ÿ1
+jahr%ÿjahr%ÿ1
+ÿ’ÿ¡
+ÿ¡mona%ÿ2ÿÿ0(tag$)ÿ28ÿptag$ÿ"28"
+ÿ¡tag$ÿ"31"ÿptag$ÿ"30"
+datf$ÿtag$ÿ"."ÿÿ(mona%,"00")ÿ"."ÿÿ(jahr%,"0000")
+aderst%ÿÿ1(datf$)
+f„lligam.kvpspÿÿ1(datf$)
+ÿÌÿ™"kvpsp"
+ 
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+
+	ÿ½**********************************************************************************************************************************************************************************
+ÿ’ÿ¡
+ÿ½ von Folgezahlung 
+
+ÿ½ Erstzahlung
+ÿ½ hier soll jetzt die KVPSP gefllt werden mit den zu erwartenden Zahlungen und Aufteilungen
+ÿ½ was jetzt hier mit KVFAEL wird weiá ich noch nichts
+status11%ÿstatus_.dateia$
+ÿ½ IF cuvt% = 52786 THEN CALL Fehler("vor Erstzahlung",vs_nr.dateia$)
+
+ÿ¡status_.dateia$ÿ1ÿp
+	
+	ÿßÿe
+	ÿÉÿ`ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+	ÿÉÿ¥cuvt%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+	ÿÉÿ`ÿ™"kvskond"ÿ£codevt.kvskond
+	ÿÉÿ¥cuvt%ÿ™"kvskond"ÿ£codevt.kvskond
+	ÿÉÿ`ÿ™"vpgekond"ÿ£codekey.vpgekond
+	ÿÉÿ¥codeko.kvskondÿ™"vpgekond"ÿ£codekey.vpgekond
+	codevp1a%ÿcodevp.kvertrag
+	codevp2a%ÿcodevp.vpgekond
+	afspspjn1a$ÿafspspjn.vpgekond
+	ÿ¡codevp.kvertragÿcodevp.vpgekondÿafspspjn.vpgekondÿ"j"ÿpÿwfehlvpko250520051
+	vsnr$ÿVS_NR.kvertrag
+	Beitrag.kvertragÿSparbetrag.dateia$
+	ÿ¡DBeitrZahlung.kvertragÿ0ÿpDBeitrZahlung.kvertragÿLaufzeit.dateia$
+	Bewertungssumme.KvertragÿSparbetrag.dateia$ÿ12ÿDBeitrZahlung.kvertrag
+ 
+	ÿ¡ProviAB.Kvertragÿ0ÿpProviAB.KvertragÿCalcDate$
+	ÿ¡ÿH(VS_NR.Kvertrag)ÿ""ÿpVS_NR.KvertragÿVS_NR.dateia$
+	ÿ¡ÿH(Antragsnr.Kvertrag)ÿ""ÿpAntragsnr.KvertragÿAntragsnr.dateia$
+ 
+	beitrsumme%ÿSparbetrag.dateia$ÿ12ÿDBeitrZahlung.kvertrag
+	beitrmon%ÿSparbetrag.dateia$
+	afspsoll%ÿ(beitrsumme%ÿafspsolBeitrSu.vpgekondÿ100)ÿ(AFSPSollMB.vpgekondÿSparbetrag.dateia$)
+	afstilgmb100%ÿafstmb.vpgekond:ÿ½ 7 MB zu 100% danach
+	afstilgx%ÿafstmbproz.vpgekond:ÿ½ 50%
+	AFSbeitrmon50%ÿbeitrmon%ÿafstilgx%ÿ100
+	afsVProBei%ÿafsVProBei.vpgekond
+ 
+	VMProvSoll%ÿ(beitrsumme%ÿafsVBsumProz.vpgekondÿ100):ÿ½ von /MB
+	VMVorabProv%ÿ(afstilgmb100%ÿAFSVprozRate.vpgekondÿ100)
+	VMdanachlfd%ÿafsVProBei.vpgekondÿ100ÿafstmbproz.vpgekond
+	ÿ½ 20051121
+v1%ÿVMVorabProv%ÿSparbetrag.dateia$
+ÿ¡v1%ÿVMProvSoll%ÿp
+v1%ÿVMProvSoll%
+VMVorabProv%ÿv1%ÿSparbetrag.dateia$
+ÿ’ÿ¡
+
+	notiz.kvertragÿ"AFS-Provisionssoll: "ÿÿH(ÿ(afspsoll%,",9999999.00"))ÿ"(Beitragssumme="ÿÿH(ÿ(beitrsumme%,",9999999.00"))ÿ")"ÿÿ(13)ÿÿ(10)
+	notiz.kvertragÿnotiz.kvertragÿ"AFS-Tilgung Monatzbeitr„ge zu 100%: "ÿÿH(ÿ(afstilgmb100%,",9999999.00"))ÿ"   danach: "ÿÿH(ÿ(afstilgx%,",9999999.00"))ÿ"% des Monatsbeitrages"ÿÿ(13)ÿÿ(10)
+	notiz.kvertragÿnotiz.kvertragÿ"Vermittlerkonditionen: "ÿÿ(13)ÿÿ(10)
+	v1$ÿÿH(ÿ(v1%,",9999999.00"))
+	v$ÿÿH(ÿ(VMProvSoll%,",9999999.00"))
+	da$ÿÿH(ÿ(VMdanachlfd%,",9999999.00"))
+	ap$ÿÿH(ÿ(afstilgx%,",9999999.00"))
+	b$ÿÿH(ÿ(Sparbetrag.dateia$,",9999999.00"))
+	notiz.kvertragÿnotiz.kvertragÿ"Prov.soll: "ÿv$ÿ" Zahlung sofort: "ÿÿH(ÿ(VMVorabProv%,",9999999.00"))ÿ"MB("ÿv1$ÿ") danach "ÿda$ÿ"% von "ÿap$ÿ"% des Beitrages("ÿb$ÿ")"ÿÿ(13)ÿÿ(10)
+ 
+	VMbeitrmon80%ÿAFSbeitrmon50%ÿVMdanachlfd%ÿ100
+ 
+	ÿƒQuickStore("KVERTRAG")
+	ÿ½ CALL Fehler("Erstzahlung:    " + notiz.kvertrag,gesellschaft.kvertrag + "/" + sparte.kvertrag)
+	ÿ¾ÿaÿ™"KVPSP"ÿĞcodevt.kvpspÿcuvt%
+	ÿ½ Neuaufnahme
+	ÿ½ es mssen xy-Datens„tze aufgenommen werden, bis alle Tilgungen wegen Provisionen erledigt sind
+	ÿ½ dabei ist jetzt das Feld Betrag zu bercksichtigen, da dieses Feld den Wert enth„lt, der tats„chlich an AFS 
+	ÿ½ geangen ist, der Wert kann kleiner oder gr”áer als der monatlichen Beitrag sein
+	znum%ÿ0
+	ÿ½ Aufbau der Datens„tze mit der 100% Tilgung AFS
+	TilgKto1%ÿbeitrmon%ÿafstilgmb100%
+	TilgKto2%ÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+	ZahlanVM%ÿVMVorabProv%ÿbeitrmon%
+	ZahlanVM1%ÿZahlanVM%
+	VMProvSollrest%ÿVMProvSoll%ÿZahlanVM%
+	derst%ÿdatum1.dateia$
+	BetraganAFS%ÿBetrag.dateia$
+	ÿ½ CALL Fehler("Erstzahlung Eintrag in KVERTRAG bendet","")
+	AFSTilg100ist%ÿBetraganAFS%
+
+
+
+
+
+AFSTilg100soll%ÿ(afstilgmb100%ÿbeitrmon%)
+ 
+ÿ¡AFSTilg100soll%ÿAFSTilg100ist%ÿp
+AFSTilg100soll%ÿ(afstilgmb100%ÿbeitrmon%)
+beitrakt%ÿBetraganAFS%
+znum%ÿ0
+aderst%ÿderst%
+ÿØAFSTilg100ist%ÿ	AFSTilg100soll%
+ÿ½ FOR znum% = 1 TO afstilgmb100%
+znum%ÿznum%ÿ1
+ÿÿ™"kvpsp"
+codekey.kvpspÿÿI("KVPSP",1)
+codevt.kvpspÿcuvt%
+znummer.kvpspÿznum%
+vs_nr.kvpspÿvsnr$
+betrag.kvpspÿBetraganAFS%
+ZahlanAFS.kvpspÿbeitrakt%
+BetraganAFS%ÿ0
+
+QCodeVTZnum.kvpspÿÿ(cuvt%,"000000")ÿÿ(znum%,"000000")
+Zahlkunde.kvpspÿbeitrmon%
+
+ 
+ÿ½ Summenwerte
+PSPBeitrsumme.kvpspÿbeitrsumme%
+AFSProvSoll.kvpspÿafspsoll%
+VMSoll.kvpspÿVMProvSoll%
+ÿ½ 20051121
+v1%ÿVMVorabProv%ÿSparbetrag.dateia$
+ÿ¡v1%ÿVMProvSoll%ÿp
+v1%ÿVMProvSoll%
+VMVorabProv%ÿv1%ÿSparbetrag.dateia$
+ÿ’ÿ¡
+VMvorab.kvpspÿVMVorabProv%ÿbeitrmon%
+VMRest.kvpspÿVMProvSoll%ÿ(VMVorabProv%ÿbeitrmon%)
+AFSTilg100.kvpspÿafstilgmb100%ÿbeitrmon%
+AFSTilg50.kvpspÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+	
+TilgKto1%ÿTilgKto1%ÿbeitrakt%
+beitrakt%ÿbeitrmon%
+TilgKto1Soll.kvpspÿTilgKto1%ÿÿ1
+TilgKto2Soll.kvpspÿTilgKto2%ÿÿ1
+TilgKto3Soll.kvpspÿVMProvSollrest%ÿÿ1
+ZahlanVMSoll.kvpspÿZahlanVM1%
+ÿ¡znum%ÿ1ÿp
+TilgKto1.kvpspÿTilgKto1%ÿÿ1
+TilgKto2.kvpspÿTilgKto2%ÿÿ1
+TilgKto3.kvpspÿVMProvSollrest%ÿÿ1
+ZahlanVM.kvpspÿZahlanVM1%
+ZahlanVMEinm.kvpspÿZahlanVM1%
+gebongt.kvpspÿ1
+ÿ’ÿ¡
+ZahlanVM1%ÿ0
+tag$ÿÿ+(ÿ(aderst%,"0dmmyyyy"),2)
+mona%ÿÿ5(aderst%)
+jahr%ÿÿ6(aderst%)
+ÿ½ mona% = mona% + znum%
+mona%ÿmona%ÿ1
+ÿ¡mona%ÿ12ÿp
+mona%ÿmona%ÿ12
+jahr%ÿjahr%ÿ1
+ÿ’ÿ¡
+ÿ¡mona%ÿ2ÿÿ0(tag$)ÿ28ÿptag$ÿ"28"
+ÿ¡tag$ÿ"31"ÿptag$ÿ"30"
+datf$ÿtag$ÿ"."ÿÿ(mona%,"00")ÿ"."ÿÿ(jahr%,"0000")
+aderst%ÿÿ1(datf$)
+f„lligam.kvpspÿÿ1(datf$)
+ÿÌÿ™"kvpsp"
+ÿ½ CALL Fehler("F„lligkeit: " + datf$,"")
+ÿ½ NEXT znum%
+AFSTilg100ist%ÿAFSTilg100ist%ÿbeitrmon%
+ÿ¡AFSTilg100ist%ÿAFSTilg100soll%ÿp
+diff%ÿAFSTilg100soll%ÿAFSTilg100ist%
+beitrakt%ÿbeitrmon%ÿdiff%
+ÿ’ÿ¡
+ÿÙ
+derst%ÿÿ1(datf$)
+ÿ½ CALL Fehler("gerade KVPSP erzeugt1","1")
+ÿ¡beitrakt%ÿ0ÿp
+ÿ½ danach mssen die 50% Tilgungen erledigt werden
+ÿ½ AFSbeitrmon50%
+ÿ½ VMbeitrmon80%
+ÿ½ Tilgung2 reduzieren um AFSbeitrmon50%
+ÿ½ TilgKto3 reduzieren um VMbeitrmon80%
+ÿ½ ################################################################################################################################################
+ÿ½ ################################################################################################################################################ 
+ÿ’ÿ¡
+ZahlanVM%ÿVMVorabProv%ÿbeitrmon%
+t1%ÿTilgKto2%ÿAFSbeitrmon50%
+t2%ÿ(VMProvSoll%ÿZahlanVM%)ÿVMbeitrmon80%
+ÿ¡t1%ÿt2%ÿp
+tbis%ÿt1%
+ÿ^
+tbis%ÿt2%
+ÿ’ÿ¡
+t2$ÿÿ(t2%,"9999999.00")
+t2%ÿÿ0(t2$)
+ÿ¡t2%ÿ0ÿp
+tbis%ÿ0
+ÿ’ÿ¡
+TilgKto2%ÿTilgKto2%
+TilgKto3%ÿVMProvSoll%ÿZahlanVM%
+beitrmon80%ÿVMbeitrmon80%
+znum%ÿznum%ÿ1
+aderst%ÿderst%
+ÿ¡tbis%ÿ0ÿp
+ÿ›jj%ÿ1ÿqtbis%ÿ1
+ÿÿ™"kvpsp"
+codekey.kvpspÿÿI("KVPSP",1)
+codevt.kvpspÿcuvt%
+znummer.kvpspÿznum%
+vs_nr.kvpspÿvsnr$
+QCodeVTZnum.kvpspÿÿ(cuvt%,"000000")ÿÿ(znum%,"000000")
+ 
+ 
+ÿ½ Summenwerte
+PSPBeitrsumme.kvpspÿbeitrsumme%
+AFSProvSoll.kvpspÿafspsoll%
+VMSoll.kvpspÿVMProvSoll%
+VMvorab.kvpspÿVMVorabProv%ÿbeitrmon%
+VMRest.kvpspÿVMProvSoll%ÿ(VMVorabProv%ÿbeitrmon%)
+AFSTilg100.kvpspÿafstilgmb100%ÿbeitrmon%
+AFSTilg50.kvpspÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+ 
+ 
+Zahlkunde.kvpspÿbeitrmon%
+ZahlanAFS.kvpspÿAFSbeitrmon50%
+TilgKto1Soll.kvpspÿ0
+TilgKto2%ÿTilgKto2%ÿAFSbeitrmon50%
+TilgKto2Soll.kvpspÿTilgKto2%ÿÿ1
+ 
+TilgKto3%ÿTilgKto3%ÿbeitrmon80%
+ÿ¡TilgKto3%ÿ	0ÿp
+TilgKto3Soll.kvpspÿ0
+ZahlanVMSoll.kvpspÿTilgKto3%ÿÿ1
+TilgKto3%ÿ0ÿÿ1
+beitrmon80%ÿ0
+ÿ^
+TilgKto3Soll.kvpspÿTilgKto3%ÿÿ1
+ZahlanVMSoll.kvpspÿVMbeitrmon80%
+ÿ’ÿ¡
+tag$ÿÿ+(ÿ(aderst%,"0dmmyyyy"),2)
+mona%ÿÿ5(aderst%)
+jahr%ÿÿ6(aderst%)
+mona%ÿmona%ÿ1
+ÿ¡mona%ÿ12ÿp
+mona%ÿ1
+jahr%ÿjahr%ÿ1
+ÿ’ÿ¡
+ÿ¡mona%ÿ2ÿÿ0(tag$)ÿ28ÿptag$ÿ"28"
+ÿ¡tag$ÿ"31"ÿptag$ÿ"30"
+datf$ÿtag$ÿ"."ÿÿ(mona%,"00")ÿ"."ÿÿ(jahr%,"0000")
+aderst%ÿÿ1(datf$)
+f„lligam.kvpspÿÿ1(datf$)
+derst%ÿÿ1(datf$)
+ÿÌÿ™"kvpsp"
+znum%ÿznum%ÿ1
+ÿßÿe
+ÿ±jj%
+ÿ’ÿ¡
+ÿ½ CALL Fehler("gerade KVPSP erzeugt1","2")
+ÿ^
+ÿßÿe
+ÿ½ der Erstzahlungsbetrag >=  7 MB
+ÿ½ CALL Fehler ("Erstzahlung > 7MB","")
+AFSTilg100soll%ÿ(afstilgmb100%ÿbeitrmon%):ÿ½ zu 100%
+BetragRest%ÿBetraganAFS%ÿAFSTilg100soll%:ÿ½ davon z„hlen jetzt aber nur die 50% und 80%
+ÿ½ jetzt die 50% rauskriegen
+AFSTilg50%ÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+VMRest%ÿVMProvSoll%ÿ(VMVorabProv%ÿbeitrmon%)
+aderst%ÿderst%
+ÿ¡AFSTilg50%ÿBetragRest%ÿVMRest%ÿBetragRest%ÿp
+ÿ½ die Erstzahlung ist gr”áer die ersten 7 MB, fr den Rest reichts nicht ganz
+ÿ½ jetzt erstmal die 100% Zahlung realisieren
+znum%ÿ1
+ÿÿ™"kvpsp"
+codekey.kvpspÿÿI("KVPSP",1)
+codevt.kvpspÿcuvt%
+znummer.kvpspÿznum%
+vs_nr.kvpspÿvsnr$
+betrag.kvpspÿBetraganAFS%
+ZahlanAFS.kvpspÿBetraganAFS%
+QCodeVTZnum.kvpspÿÿ(cuvt%,"000000")ÿÿ(znum%,"000000")
+Zahlkunde.kvpspÿbeitrmon%
+ 
+ÿ½ Summenwerte
+PSPBeitrsumme.kvpspÿbeitrsumme%
+AFSProvSoll.kvpspÿafspsoll%
+VMSoll.kvpspÿVMProvSoll%
+VMvorab.kvpspÿVMVorabProv%ÿbeitrmon%
+VMRest.kvpspÿVMProvSoll%ÿ(VMVorabProv%ÿbeitrmon%)
+AFSTilg100.kvpspÿafstilgmb100%ÿbeitrmon%
+AFSTilg50.kvpspÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+	
+TilgKto1Soll.kvpspÿ0
+TilgKto2Soll.kvpspÿ(afspsoll%ÿ(afstilgmb100%ÿbeitrmon%))ÿÿ1
+TilgKto3Soll.kvpspÿ(VMProvSoll%ÿ(VMVorabProv%ÿbeitrmon%))ÿÿ1
+ZahlanVMSoll.kvpspÿVMVorabProv%ÿbeitrmon%
+ 
+ÿ¡znum%ÿ1ÿp
+TilgKto1.kvpspÿ0
+TilgKto2.kvpspÿTilgKto2Soll.kvpsp
+TilgKto3.kvpspÿTilgKto3Soll.kvpsp
+ZahlanVM.kvpspÿZahlanVMSoll.kvpsp
+ZahlanVMEinm.kvpspÿZahlanVMSoll.kvpsp
+gebongt.kvpspÿ1
+ÿ’ÿ¡
+TilgKto1%ÿTilgKto1.kvpsp
+TilgKto2%ÿTilgKto2.kvpsp
+TilgKto3%ÿTilgKto3.kvpsp
+ZahlanVM%ÿZahlanVM.kvpsp
+ 
+tag$ÿÿ+(ÿ(aderst%,"0dmmyyyy"),2)
+mona%ÿÿ5(aderst%)
+jahr%ÿÿ6(aderst%)
+ÿ½ mona% = mona% + znum%
+mona%ÿmona%ÿ1
+ÿ¡mona%ÿ12ÿp
+mona%ÿ1
+jahr%ÿjahr%ÿ1
+ÿ’ÿ¡
+ÿ¡mona%ÿ2ÿÿ0(tag$)ÿ28ÿptag$ÿ"28"
+ÿ¡tag$ÿ"31"ÿptag$ÿ"30"
+datf$ÿtag$ÿ"."ÿÿ(mona%,"00")ÿ"."ÿÿ(jahr%,"0000")
+aderst%ÿÿ1(datf$)
+f„lligam.kvpspÿÿ1(datf$)
+ÿÌÿ™"kvpsp"
+ 
+ 
+ÿ½ hier jetzt die 50% Zahlungen ralisieren , das kommt wohl bei TODO auch rein, wobei betrakt% das selbe wie BetragRest% ist - 21.05.2005
+ÿ¡BetragRest%ÿ0
+znum%ÿznum%ÿ1
+ÿÿ™"kvpsp"
+codekey.kvpspÿÿI("KVPSP",1)
+codevt.kvpspÿcuvt%
+znummer.kvpspÿznum%
+vs_nr.kvpspÿvsnr$
+betrag.kvpspÿBetragRest%
+ZahlanAFS.kvpspÿ(BetragRest%ÿafstilgx%ÿ100)
+QCodeVTZnum.kvpspÿÿ(cuvt%,"000000")ÿÿ(znum%,"000000")
+Zahlkunde.kvpspÿbeitrmon%
+ 
+ÿ½ Summenwerte
+PSPBeitrsumme.kvpspÿbeitrsumme%
+AFSProvSoll.kvpspÿafspsoll%
+VMSoll.kvpspÿVMProvSoll%
+VMvorab.kvpspÿVMVorabProv%ÿbeitrmon%
+VMRest.kvpspÿVMProvSoll%ÿ(VMVorabProv%ÿbeitrmon%)
+AFSTilg100.kvpspÿafstilgmb100%ÿbeitrmon%
+AFSTilg50.kvpspÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+
+gebongt.kvpspÿ1
+ 
+TilgKto1%ÿ0
+TilgKto1.kvpspÿTilgKto1%
+TilgKto1Soll.kvpspÿTilgKto1%
+ 
+ÿ½ AFSTilg50% > BetragRest% OR VMRest% > BetragRest% 
+betrag50rest%ÿ0
+betrag50%ÿ(BetragRest%ÿafstilgx%ÿ100)
+ÿ¡betrag50%ÿAFSTilg50%ÿp
+betrag50%ÿAFSTilg50%
+ÿ^
+ÿ½ irgendwie rest ermitteln
+betrag50rest%ÿAFSTilg50%ÿbetrag50%
+ÿ’ÿ¡
+TilgKto2tmp%ÿTilgKto2%ÿÿ1
+TilgKto2tmp%ÿTilgKto2tmp%ÿbetrag50%
+TilgKto2.kvpspÿTilgKto2tmp%ÿÿ1
+TilgKto2Soll.kvpspÿTilgKto2tmp%ÿÿ1
+TilgKto2%ÿTilgKto2.kvpsp
+ 
+TilgKto3tmp%ÿTilgKto3%ÿÿ1
+betrag80%ÿBetragRest%ÿafsVProBei%ÿ100
+betrag80rest%ÿ0
+ÿ¡betrag80%ÿvmrest%ÿp
+betrag80%ÿvmrest%
+ÿ^
+betrag80rest%ÿvmrest%ÿbetrag80%
+ÿ’ÿ¡
+TilgKto3tmp%ÿTilgKto3tmp%ÿbetrag80%
+TilgKto3.kvpspÿTilgKto3tmp%ÿÿ1
+TilgKto3Soll.kvpspÿTilgKto3tmp%ÿÿ1
+TilgKto3%ÿTilgKto3.kvpsp
+ 
+ZahlanVMSoll.kvpspÿbetrag80%
+ZahlanVM.kvpspÿbetrag80%
+ÿÌÿ™"kvpsp"
+ 
+ÿ½ hier jetzt vorausberechnung fr betrag80rest% und betrag50rest%
+znum%ÿznum%ÿ1
+ 
+ZahlanVM%ÿVMVorabProv%ÿbeitrmon%
+t1%ÿ(TilgKto2%ÿÿ1)ÿAFSbeitrmon50%
+t2%ÿ(TilgKto2%ÿÿ1)ÿVMbeitrmon80%
+ÿ¡t1%ÿt2%ÿp
+tbis%ÿt1%
+ÿ^
+tbis%ÿt2%
+ÿ’ÿ¡
+beitrmon80%ÿVMbeitrmon80%
+aderst%ÿderst%
+ÿ¡tbis%ÿ0ÿp
+ÿ›jj%ÿ1ÿqtbis%ÿ1
+ÿÿ™"kvpsp"
+codekey.kvpspÿÿI("KVPSP",1)
+codevt.kvpspÿcuvt%
+znummer.kvpspÿznum%
+vs_nr.kvpspÿvsnr$
+QCodeVTZnum.kvpspÿÿ(cuvt%,"000000")ÿÿ(znum%,"000000")
+ 
+ 
+ÿ½ Summenwerte
+PSPBeitrsumme.kvpspÿbeitrsumme%
+AFSProvSoll.kvpspÿafspsoll%
+VMSoll.kvpspÿVMProvSoll%
+VMvorab.kvpspÿVMVorabProv%ÿbeitrmon%
+VMRest.kvpspÿVMProvSoll%ÿ(VMVorabProv%ÿbeitrmon%)
+AFSTilg100.kvpspÿafstilgmb100%ÿbeitrmon%
+AFSTilg50.kvpspÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+ 
+ 
+Zahlkunde.kvpspÿbeitrmon%
+ZahlanAFS.kvpspÿAFSbeitrmon50%
+TilgKto1Soll.kvpspÿ0
+TilgKto2%ÿTilgKto2%ÿAFSbeitrmon50%
+TilgKto2Soll.kvpspÿTilgKto2%ÿÿ1
+	
+TilgKto3%ÿTilgKto3%ÿbeitrmon80%
+ÿ¡TilgKto3%ÿ	0ÿp
+TilgKto3Soll.kvpspÿ0
+ZahlanVMSoll.kvpspÿTilgKto3%ÿÿ1
+TilgKto3%ÿ0ÿÿ1
+beitrmon80%ÿ0
+ÿ^
+TilgKto3Soll.kvpspÿTilgKto3%ÿÿ1
+ZahlanVMSoll.kvpspÿVMbeitrmon80%
+ÿ’ÿ¡
+tag$ÿÿ+(ÿ(aderst%,"0dmmyyyy"),2)
+mona%ÿÿ5(aderst%)
+jahr%ÿÿ6(aderst%)
+mona%ÿmona%ÿ1
+ÿ¡mona%ÿ12ÿp
+mona%ÿ1
+jahr%ÿjahr%ÿ1
+ÿ’ÿ¡
+ÿ¡mona%ÿ2ÿÿ0(tag$)ÿ28ÿptag$ÿ"28"
+ÿ¡tag$ÿ"31"ÿptag$ÿ"30"
+datf$ÿtag$ÿ"."ÿÿ(mona%,"00")ÿ"."ÿÿ(jahr%,"0000")
+aderst%ÿÿ1(datf$)
+f„lligam.kvpspÿÿ1(datf$)
+derst%ÿÿ1(datf$)
+ÿÌÿ™"kvpsp"
+znum%ÿznum%ÿ1
+ÿ±jj%
+ÿ’ÿ¡
+ÿ’ÿ¡:ÿ½ von IF BetragRest% > 0
+ÿ^
+ÿ½ es wurde alles auf einmal bezahlt
+znum%ÿ1
+aderst%ÿderst%
+ÿÿ™"kvpsp"
+codekey.kvpspÿÿI("KVPSP",1)
+codevt.kvpspÿcuvt%
+znummer.kvpspÿznum%
+vs_nr.kvpspÿvsnr$
+betrag.kvpspÿBetraganAFS%
+ZahlanAFS.kvpspÿBetraganAFS%
+BetraganAFS%ÿ0
+
+QCodeVTZnum.kvpspÿÿ(cuvt%,"000000")ÿÿ(znum%,"000000")
+Zahlkunde.kvpspÿbeitrmon%
+
+ 
+ÿ½ Summenwerte
+PSPBeitrsumme.kvpspÿbeitrsumme%
+AFSProvSoll.kvpspÿafspsoll%
+VMSoll.kvpspÿVMProvSoll%
+VMvorab.kvpspÿVMVorabProv%ÿbeitrmon%
+VMRest.kvpspÿVMProvSoll%ÿ(VMVorabProv%ÿbeitrmon%)
+AFSTilg100.kvpspÿafstilgmb100%ÿbeitrmon%
+AFSTilg50.kvpspÿafspsoll%ÿ(afstilgmb100%ÿbeitrmon%)
+	
+TilgKto1%ÿTilgKto1%ÿbeitrakt%
+beitrakt%ÿbeitrmon%
+TilgKto1Soll.kvpspÿ0
+TilgKto2Soll.kvpspÿ0
+TilgKto3Soll.kvpspÿ0
+ZahlanVMSoll.kvpspÿVMProvSoll%
+ÿ¡znum%ÿ1ÿp
+TilgKto1.kvpspÿ0
+TilgKto2.kvpspÿ0
+TilgKto3.kvpspÿ0
+ZahlanVM.kvpspÿVMProvSoll%
+gebongt.kvpspÿ1
+ÿ’ÿ¡
+ZahlanVM1%ÿ0
+tag$ÿÿ+(ÿ(aderst%,"0dmmyyyy"),2)
+mona%ÿÿ5(aderst%)
+jahr%ÿÿ6(aderst%)
+ÿ½ mona% = mona% + znum%
+mona%ÿmona%ÿ1
+ÿ¡mona%ÿ12ÿp
+mona%ÿ1
+jahr%ÿjahr%ÿ1
+ÿ’ÿ¡
+ÿ¡mona%ÿ2ÿÿ0(tag$)ÿ28ÿptag$ÿ"28"
+ÿ¡tag$ÿ"31"ÿptag$ÿ"30"
+datf$ÿtag$ÿ"."ÿÿ(mona%,"00")ÿ"."ÿÿ(jahr%,"0000")
+aderst%ÿÿ1(datf$)
+f„lligam.kvpspÿÿ1(datf$)
+ÿÌÿ™"kvpsp"
+ 
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ 
+ 
+ÿwfehlvpko250520052
+fehlvpko250520051:
+GFehl$ÿ"Fehler"
+aaaax$ÿgesellschaft.kvertragÿ"/"ÿsparte.kvertrag
+ÿƒT1WriteLogOk("Keine Konditionen fr VS_NR "ÿVS_NR.dateia$ÿ" / "ÿaaaax$)
+ÿ½ CALL Fehler("keine Konditionen fr Produkt hinterlegt",gesellschaft.kvertrag + "/" + sparte.kvertrag + "/ VS-Nr: " + vs_nr.kvertrag)
+
+ÿÂ"Kondition fehlt",aaaax$,2
+ÿwend280820051
+fehlvpko250520052: 
+ÿ½ IF status11% <> 31 THEN CALL Fehler("gerade KVPSP erzeugt2","")
+ÿßÿe
+	ÿ½ END IF 
+	ÿ¡ÿJ(cuvt%,codevt.kvfael)ÿp
+ÿÉÿ`ÿ™"KVFAEL"ÿ£codevt.kvfael
+ÿÉÿ¥cuvt%ÿáÿ™"KVFAEL"ÿ£codevt.kvfael
+f„lligam.kvfaelÿDatum1.dateia$
+ÿ¡status_.dateia$ÿ1ÿp
+f„lligam.kvfaelÿCalcDate$
+ÿ’ÿ¡
+gezahltam.kvfaelÿCalcDate$
+VMProv.kvfaelÿerwProvAnz.kvfaelÿSparbetrag.dateia$
+ÿÌÿ™"kvfael"
+ÿïÿ™"KVFAEL"
+	ÿ^
+ÿÿ™"KVFAEL"
+codevt.kvfaelÿcuvt%
+f„lligam.kvfaelÿDatum1.dateia$
+ÿ¡status_.dateia$ÿ1ÿp
+f„lligam.kvfaelÿCalcDate$
+ÿ’ÿ¡
+gezahltam.kvfaelÿCalcDate$
+ÿÌÿ™"kvfael"
+ÿïÿ™"KVFAEL"
+	ÿ’ÿ¡
+ÿ^
+	ÿÉÿ¥cuvt%ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿ’ÿ¡
+ÿ¡proviab.kvertragÿ0ÿp
+	provi$ÿ"J"
+ÿ^
+	provi$ÿ"N"
+ÿ’ÿ¡
+ÿ½  provi$ = "J"
+test$ÿÿ(codeimp%,"000000")ÿÿ(lfdnr.kvertrag,"000000")
+ÿ¡dateia$ÿ"AFSIPSP"ÿp
+	codetmp%ÿcodetmp.afsipsp
+	ÿ¡expToAFSPSP.dateia$ÿ"J"ÿp
+ÿ½ den datensatz in afspsp neu aufnehmen, wenn dateia=dateia$,
+ÿ½ ansonsten existiert der Datensatz schon in afspsp, da nur afspsptm verarbeitet wird
+ÿ™"AFSPSP"
+ÿÿ™"AFSPSP"
+a%ÿCopyRecord%(dateia$,"AFSPSP")
+codesut%ÿÿI("AFSPSP",1)
+codesut.AFSPSPÿcodesut%
+expcodesut.afsipspÿcodesut%
+codeimp.AFSPSPÿcodeimp%
+codevt.AFSPSPÿcuvt%
+QuickVSIMP.AFSPSPÿÿ(codeimp%,"000000")ÿÿ(codevt.AFSPSP,"000000")
+QuickVSNR.AFSPSPÿVSNRPack$(VS_Nr.KVERTRAG)
+QuickAntrNr.AFSPSPÿVSNRPack$(Antragsnr.kvertrag)
+ÿ¡status_.AFSPSPÿ1ÿstatus_.AFSPSPÿ32ÿstatus_.dateia$ÿ11ÿp
+QStatCodeaz.AFSPSPÿ"1"ÿÿ(codeaz.AFSPSP,"000000")
+ÿ’ÿ¡
+ÿÌÿ™"AFSPSP"
+ÿ½ UNLOCK CURRENT FILE "AFSPSP"
+	ÿ^
+codesut%ÿexpcodesut.dateia$
+	ÿ’ÿ¡
+ÿ^
+	ÿ½ den wert aus der datei afspsptm nehmen, da er eine Kopie von afspsp ist
+	codesut%ÿcodesut.dateia$
+	
+ÿ’ÿ¡
+ÿ¡provi$ÿ"J"ÿp
+	verarbeitet.dateia$ÿ"J"
+	ver$ÿ"J"
+ÿ^
+	verarbeitet.dateia$ÿ"N"
+	ver$ÿ"N"
+ÿ’ÿ¡
+ 
+ÿ½ CALL RechKvertrag(codevt.fonds)
+ÿ™dateia$
+ÿ¡dateia$ÿ"AFSIPSP"ÿp
+	ÿÉÿ¥codetmp%ÿáÿ™dateia$ÿ£codetmp.dateia$
+	expToAFSPSP.dateia$ÿ"J"
+ÿ^
+	ÿÉÿ¥codesut%ÿáÿ™dateia$ÿ£codesut.dateia$
+ÿ’ÿ¡
+vorhanden.dateia$ÿvorh$
+prov.dateia$ÿprovi$
+QuickVP.dateia$ÿver$ÿprovi$
+ÿÌÿ™dateia$
+ÿïÿYÿ™dateia$
+
+
+
+ÿ½ **************** Erzeugung Zahlungseingang ****************************
+ÿÉÿ`ÿ™"AFSPSP"ÿ£codesut.AFSPSP
+ÿÉÿ¥codesut%ÿ™"AFSPSP"ÿ£codesut.AFSPSP
+
+ÿ½ IF ver$ = "J" AND (status_.AFSPSP = 1 OR status_.AFSPSP = 32) THEN 
+ÿßÿe
+ÿ¡(status_.AFSPSPÿ1ÿstatus_.AFSPSPÿ32ÿstatus_.AFSPSPÿ11ÿstatus_.AFSPSPÿ3ÿstatus_.AFSPSPÿ4ÿstatus_.AFSPSPÿ5)ÿp
+	ÿ½ das muá hier alles umorganisiert werden -> ZE an hand von kvpsp erzeugen , 
+	ÿ½ wenn ZahlanVM.kvpsp > 0und gebongt = 1und erledigt < 1 und codeaz = 0 und gezahltam < 1 
+	j%ÿj%ÿ1
+	ÿÉÿ`ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+	ÿÉÿ¥cuvt%ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+	ÿÉÿ`ÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+	qcodevtznum$ÿÿ(cuvt%,"000000")ÿ"000000"
+	ÿÉÿ`ÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+	ÿÉÿ¥qcodevtznum$ÿáÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+	qcodevtznumold$ÿ""
+	qcodevtznum$ÿ"-1"
+	okw%ÿÿ1
+	ÿØÿOÿB("kvpsp")ÿcodevt.kvpspÿcuvt%ÿokw%ÿÿ1
+qcodevtznum$ÿqcodevtznum.kvpsp
+ÿ¡qcodevtznum$ÿqcodevtznumold$ÿp
+qcodevtznumold$ÿqcodevtznum$
+ÿ½ CALL Fehler(qcodevtznum$,qcodevtznumold$)
+ÿ¡ZahlanVM.kvpspÿ0ÿgebongt.kvpspÿ1ÿerledigt.kvpspÿ
+1ÿcodeaz.kvpspÿ
+1ÿgezahltam.kvpspÿ
+1ÿp
+ÿ^
+ÿ½ Datensatz schon verarbeitet oder nur eine Vorausberechnung
+ÿwnextkvpsp250520051
+ÿ’ÿ¡
+GZEj%ÿGZEj%ÿ1
+ÿ™"zeingan1"
+ÿÿ™"zeingan1"
+ÿÊÿË"Datensatz neu angelegt..."
+CodeAZ%ÿÿI("zeingan1",1)
+CodeAZ.zeingan1ÿCodeAZ%
+ÿ½ 03052006
+gebuchtJN.zeingan1ÿ"N"
+gebuchtJNT.zeingan1ÿ"N"
+BuchungsDatum.zeingan1ÿCalcDate$
+F„lligkeit.zeingan1ÿCalcDate$
+codevt.zeingan1ÿcuvt%
+codema.zeingan1ÿcodema.kvertrag
+codege.zeingan1ÿcodege.kvertrag
+Buchungstext.zeingan1ÿ"Courtage:"
+kondart.zeingan1ÿ1
+ÿ¡status_.AFSPSPÿ32ÿp
+Buchungstext.zeingan1ÿ"Pflege:"
+kondart.zeingan1ÿ2
+ÿ’ÿ¡
+VS_nr.zeingan1ÿvs_nr.kvertrag
+ÿ¡Antragsnr.AFSPSPÿ""ÿp
+Antragsnr.zeingan1ÿAntragsnr.AFSPSP
+ÿ^
+Antragsnr.zeingan1ÿAntragsnr.kvertrag
+ÿ’ÿ¡
+bewertung.zeingan1ÿzahlanVM.kvpsp
+bwtest%ÿbewertung.zeingan1
+bewertungEU.zeingan1ÿbewertung.zeingan1ÿumrechnung.kvertrag
+ÿ¡status_.AFSPSPÿ11ÿstatus_.AFSPSPÿ3ÿstatus_.AFSPSPÿ4ÿstatus_.AFSPSPÿ5ÿp
+ÿ½ KundEinzahlung.zeingan1 = 0
+KundEinzahlung.zeingan1ÿ0
+Buchungstext.zeingan1ÿ"STORNO"
+ÿ^
+ÿ½ KundEinzahlung.zeingan1 = Tilgung.AFSPSP
+KundEinzahlung.zeingan1ÿZahlkunde.kvpsp
+ÿ’ÿ¡
+
+Codew.zeingan1ÿcodew.kvertrag
+waehrung.zeingan1ÿwaehrung.kvertrag
+umrechnung.zeingan1ÿumrechnung.kvertrag
+codeimpPSP.zeingan1ÿcodeimp%
+AnlageDatum.zeingan1ÿdatum1.AFSPSP
+ÿƒQuickStore("zeingan1")
+ 
+ÿ½ ZahlanVM.kvpsp <> 0 AND gebongt.kvpsp = 1 AND erledigt.kvpsp < 1 AND codeaz.kvpsp < 1 AND gezahltam.kvpsp
+ÿ™"kvpsp"
+ÿÉÿ`ÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+ÿÉÿ¥qcodevtznum$ÿáÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+gezahltam.kvpspÿÿQ
+erledigt.kvpspÿ1
+codeaz.kvpspÿcodeaz%
+ÿÌÿ™"kvpsp"
+
+ÿ½ CALL Fehler("++ZE wurde erzeugt**","")
+
+ÿÉÿ¥codesut%ÿáÿ™"AFSPSP"ÿ£codesut.AFSPSP
+codeaz.AFSPSPÿcodeaz%
+ÿ¡status_.AFSPSPÿ1ÿstatus_.AFSPSPÿ32ÿstatus_.AFSPSPÿ11ÿstatus_.AFSPSPÿ3ÿstatus_.AFSPSPÿ4ÿstatus_.AFSPSPÿ5ÿp
+QStatCodeaz.AFSPSPÿ"1"ÿÿ(codeaz.AFSPSP,"000000")
+ÿ’ÿ¡
+ÿÌÿ™"AFSPSP"
+ÿïÿYÿ™"AFSPSP"
+ 
+ÿ¡status_.AFSPSPÿ1ÿp
+ÿ½ Erstzahlung
+ÿÉÿ¥cuvt%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+vs_beginn.kvertragÿCalcDate$
+ÿƒQuickStore("KVERTRAG")
+ÿ’ÿ¡
+ÿ¡vs_Nr.kvertragÿ""ÿantragsnr.kvertragÿ""ÿp
+ÿÉÿ¥cuvt%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿ¡vs_Nr.kvertragÿ""ÿp
+vs_Nr.kvertragÿvs_Nr.AFSPSP
+ÿ’ÿ¡
+ÿ¡antragsnr.kvertragÿ""ÿp
+antragsnr.kvertragÿantragsnr.AFSPSP
+ÿ’ÿ¡
+ÿƒQuickStore("KVERTRAG")
+ÿ’ÿ¡
+ÿ^
+okw%ÿ0
+ÿ’ÿ¡
+nextkvpsp250520051: 
+ÿÉÿ±ÿáÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+	ÿÙ
+ÿ½ #########################################################################################
+ÿ½ hier Nachkontrolle, ob die wieder-eingezogene Einmalzahlung ausgezahlt werden muá
+ÿ½ Bedingung: Tilgung1=0 und Summe der bis Tilgung=0 gezahlten Provisionen=0
+ÿ½ aber nur fr Folgeprovision
+ÿ¡status_.dateia$ÿ32ÿp
+qcodevtznum$ÿÿ(cuvt%,"000000")ÿ"000000"
+ÿÉÿ`ÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+ÿÉÿ¥qcodevtznum$ÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+ok1%ÿ0
+ÿ½ WHILE NOT EOF ("kvpsp") AND codevt.kvpsp = cuvt% AND ok% = - 1
+qcodevtznumold$ÿ""
+qcodevtznum$ÿ"-1"
+ZahlanVMerf%ÿ0
+ZahlanVMmuss%ÿ0
+znumakt%ÿ0
+ÿØÿOÿB("kvpsp")ÿcodevt.kvpspÿcuvt%ÿqcodevtznum$ÿqcodevtznumold$ÿgebongt.kvpspÿ1
+qcodevtznumold$ÿqcodevtznum$
+qcodevtznum$ÿqcodevtznum.kvpsp
+ÿ½ CALL Fehler(qcodevtznum$,"Folgezahlung")
+znum%ÿznummer.kvpsp
+ÿ½ die erste Einmalzahlung muá schon erfolgt sein und darf deshalb nicht wiederholt werden
+ZahlanVMerf%ÿZahlanVMerf%ÿZahlanVMEinm.kvpsp
+ÿ¡ZahlanVMEinm.kvpspÿ0ÿp
+ZahlanVMmuss%ÿZahlanVMEinm.kvpsp
+ÿ’ÿ¡
+TilgTest%ÿTilgKto1.kvpsp
+ÿ¡TilgKto1.kvpspÿ0ÿp
+ok1%ÿÿ1
+znumalsNull%ÿznum%
+TilgbeiNull%ÿTilgKto1.kvpsp
+ÿ’ÿ¡
+ÿ½ IF gebongt.kvpsp = 1 THEN 
+znumakt%ÿznum%
+ÿÉÿ±ÿáÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+ÿÙ
+ÿ¡ok1%ÿÿ1ÿZahlanVMerf%ÿ0ÿZahlanVMmuss%ÿ0ÿp
+ÿ½ CALL Fehler("Nachkontrolle-positiv","")
+ÿ½ die Vorausschau l”schen und Datensatz in KVPSP erzeugen und ZE erzeugen
+ÿ¾ÿaÿ™"KVPSP"ÿĞcodevt.kvpspÿcuvt%ÿgebongt.kvpspÿ1ÿcodeaz.kvpspÿ
+1
+qcodevtznum$ÿÿ(cuvt%,"000000")ÿÿ(znumakt%,"000000")
+ÿÉÿ`ÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+ÿÉÿ¥qcodevtznum$ÿáÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+ÿÿ]ÿ™"kvPSP"
+codekey.kvpspÿÿI("KVPSP",1)
+zahlanvm.kvpspÿZahlanVMmuss%
+ZahlanVMEinm.kvpspÿZahlanVMmuss%
+gebongt.kvpspÿ1
+znummer.kvpspÿznumakt%ÿ1
+Qcodevtznum.kvpspÿÿ(cuvt%,"000000")ÿÿ(znummer.kvpsp,"000000")
+gezahltam.kvpspÿcalcdate$
+codeimpPSP.kvpspÿcodeimp%
+Betrag.kvpspÿ0
+ZahlanAFS.kvpspÿ0
+ÿÌÿ™"kvpsp"
+GZEj%ÿGZEj%ÿ1
+ÿ™"zeingan1"
+ÿÿ™"zeingan1"
+ÿÊÿË"Datensatz neu angelegt..."
+CodeAZ%ÿÿI("zeingan1",1)
+CodeAZ.zeingan1ÿCodeAZ%
+gebuchtJN.zeingan1ÿ"N"
+gebuchtJNT.zeingan1ÿ"N"
+BuchungsDatum.zeingan1ÿCalcDate$
+F„lligkeit.zeingan1ÿCalcDate$
+codevt.zeingan1ÿcuvt%
+codema.zeingan1ÿcodema.kvertrag
+codege.zeingan1ÿcodege.kvertrag
+	
+Buchungstext.zeingan1ÿ"Courtage:"
+VS_nr.zeingan1ÿvs_nr.kvertrag
+ÿ¡Antragsnr.AFSPSPÿ""ÿp
+Antragsnr.zeingan1ÿAntragsnr.AFSPSP
+ÿ^
+Antragsnr.zeingan1ÿAntragsnr.kvertrag
+ÿ’ÿ¡
+bewertung.zeingan1ÿzahlanVM.kvpsp
+bewertungEU.zeingan1ÿbewertung.zeingan1ÿumrechnung.kvertrag
+ÿ½ KundEinzahlung.zeingan1 = Zahlkunde.kvpsp
+kondart.zeingan1ÿ1
+Codew.zeingan1ÿcodew.kvertrag
+waehrung.zeingan1ÿwaehrung.kvertrag
+umrechnung.zeingan1ÿumrechnung.kvertrag
+codeimpPSP.zeingan1ÿcodeimp%
+AnlageDatum.zeingan1ÿdatum1.AFSPSP
+ 
+ÿƒQuickStore("zeingan1")
+ÿÉÿ`ÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+ÿÉÿ¥qcodevtznum$ÿáÿ™"kvpsp"ÿ£qcodevtznum.kvpsp
+gezahltam.kvpspÿÿQ
+erledigt.kvpspÿ1
+codeaz.kvpspÿcodeaz%
+ÿÌÿ™"kvpsp"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ #########################################################################################  
+ÿ’ÿ¡
+ÿ½ Vertrag angenommen
+ÿ¡status_.AFSPSPÿ31ÿp
+	ÿÉÿ¥cuvt%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+	Antragsdatum.kvertragÿDatum1.AFSPSP
+	ÿ¡ÿH(VS_NR.Kvertrag)ÿ""ÿpVS_NR.KvertragÿVS_NR.dateia$
+	ÿ¡ÿH(Antragsnr.Kvertrag)ÿ""ÿpAntragsnr.KvertragÿAntragsnr.dateia$
+	ÿƒQuickStore("KVERTRAG")
+ÿ’ÿ¡
+ÿ½ *********************************************************************** 
+end280820051: 
+ ÿ’ÿÿ
+
+
+
+
+

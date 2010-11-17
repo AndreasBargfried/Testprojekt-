@@ -1,0 +1,66 @@
+SBP
+ÿ¡ÿA("REINGANG")ÿ0ÿp
+ÿÉÿ`ÿá
+ÿ^
+ÿÉÿb
+ÿ’ÿ¡
+i%ÿ0
+dat$ÿ"reingang"
+ÿØÿOÿB("REINGANG")
+i%ÿi%ÿ1
+ok%ÿ0
+ÿÊÿËÿ(i%,"999999")ÿ" Eingangsrechnungen angepaát"
+ÿ¡umrechnung.REINGANGÿ
+0.0001ÿp
+umrechnung.REINGANGÿeuro1%
+codew.REINGANGÿcodew1%
+waehrung.REINGANGÿwaehrung1$
+WaehrungBezeich.REINGANGÿwbez1$
+ÿƒREDMEuro(dat$)
+ÿ’ÿ¡
+gesnetto.dat$ÿgesnettoeu.dat$ÿumrechnung.dat$
+gesbrutto.dat$ÿgesbruttoeu.dat$ÿumrechnung.dat$
+gesnettosk.dat$ÿgesnettoskeu.dat$ÿumrechnung.dat$
+gesbruttosk.dat$ÿgesbruttoskeu.dat$ÿumrechnung.dat$
+preisnetto.dat$ÿpreisnettoeu.dat$ÿumrechnung.dat$
+preisbrutto.dat$ÿpreisbruttoeu.dat$ÿumrechnung.dat$
+provis.dat$ÿproviseu.dat$ÿumrechnung.dat$
+rabatt.dat$ÿrabatteu.dat$ÿumrechnung.dat$
+mwstdm.dat$ÿMwSteu.dat$ÿumrechnung.dat$
+skonto.dat$ÿskontoeu.dat$ÿumrechnung.dat$
+GesGutschr.dat$ÿGesGutschreu.dat$ÿumrechnung.dat$
+GesNettoteil.dat$ÿgesnettoteileu.dat$ÿumrechnung.dat$
+GesBruttoteil.dat$ÿgesbruttoteileu.dat$ÿumrechnung.dat$
+ÿ¡dat$ÿ"REINGANG"ÿp
+ÿ¡erledigt.dat$ÿ"J"ÿÿOÿJ(codere.dat$,codere.teilrein)ÿp
+	GesMahnEu.dat$ÿMBetr1.dat$ÿMBetr2.dat$ÿMBetr3.dat$ÿMBetr4.dat$ÿMBetr5.dat$
+	SummeMahnEu.dat$ÿ0
+	ÿ¡Merl1.dat$ÿ"J"ÿpSummeMahnEu.dat$ÿMBetr1.dat$
+	ÿ¡Merl2.dat$ÿ"J"ÿpSummeMahnEu.dat$ÿSummeMahnEu.dat$ÿMBetr2.dat$
+	ÿ¡Merl3.dat$ÿ"J"ÿpSummeMahnEu.dat$ÿSummeMahnEu.dat$ÿMBetr3.dat$
+	ÿ¡Merl4.dat$ÿ"J"ÿpSummeMahnEu.dat$ÿSummeMahnEu.dat$ÿMBetr4.dat$
+	ÿ¡Merl5.dat$ÿ"J"ÿpSummeMahnEu.dat$ÿSummeMahnEu.dat$ÿMBetr5.dat$
+	SummeTeilEu.dat$ÿGesBruttoEu.dat$ÿSummeMahnEu.dat$
+	SummeMahnEu.dat$ÿGesMahnEu.dat$
+	restEu%ÿGesBruttoEu.dat$ÿgesMahnEu.dat$ÿSummeTeilEU.dat$
+ÿ^
+	ÿ¡ÿOÿJ(codere.dat$,codere.teilrein)ÿp
+GesMahnEu.dat$ÿMBetr1.dat$ÿMBetr2.dat$ÿMBetr3.dat$ÿMBetr4.dat$ÿMBetr5.dat$
+SummeMahnEu.dat$ÿ0
+ÿ¡Merl1.dat$ÿ"J"ÿpSummeMahnEu.dat$ÿMBetr1.dat$
+ÿ¡Merl2.dat$ÿ"J"ÿpSummeMahnEu.dat$ÿSummeMahnEu.dat$ÿMBetr2.dat$
+ÿ¡Merl3.dat$ÿ"J"ÿpSummeMahnEu.dat$ÿSummeMahnEu.dat$ÿMBetr3.dat$
+ÿ¡Merl4.dat$ÿ"J"ÿpSummeMahnEu.dat$ÿSummeMahnEu.dat$ÿMBetr4.dat$
+ÿ¡Merl5.dat$ÿ"J"ÿpSummeMahnEu.dat$ÿSummeMahnEu.dat$ÿMBetr5.dat$
+SummeTeilEu.dat$ÿGesBruttoEu.dat$ÿSummeMahnEu.dat$
+SummeMahnEu.dat$ÿGesMahnEu.dat$
+restEu%ÿGesBruttoEu.dat$ÿgesMahnEu.dat$ÿSummeTeilEU.dat$
+SummeTeilEU.dat$ÿSummeMahnEu.dat$
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÌÿ™"reingang"
+ÿ™"reingang"
+ÿÉÿ±ÿáÿ™"reingang"
+ÿÙ
+

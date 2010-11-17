@@ -1,0 +1,63 @@
+SBP
+ dat$ÿ"dokument"
+ ÿ™dat$
+ ÿ£codedok.dat$
+ ÿÉÿ`ÿá
+ i%ÿ0
+ j%ÿÿA(dat$)
+ 
+ ÿØÿOÿB(dat$)
+i%ÿi%ÿ1
+ÿÊÿËÿH(ÿ(i%,",999999999"))ÿ"/"ÿÿH(ÿ(j%,",999999999"))ÿ" in Datei "ÿdat$ÿ" bearbeitet"
+jamo$ÿÿ+(ÿ(erstellt_am.dat$,"yyyymm0d"),6)
+jamotest$ÿ"*\"ÿjamo$ÿ"\*"
+ÿ¡Dateiname.dat$ÿjamotest$ÿp
+ÿ^
+Dateiname$ÿdateiname.dat$
+dat$ÿÿ>(dat$)
+pos%ÿÿ1
+posold%ÿ1
+ÿ½ CALL Fehler("Position des letzten \ feststellen",codedok$)
+ÿØpos%ÿ0
+pos%ÿÿ?(posold%,Dateiname$,"\")
+ÿ¡pos%ÿ0ÿpposold%ÿpos%ÿ1
+ÿÙ
+lenge%ÿÿ/(Dateiname$)
+DatnamNew1$ÿÿ+(Dateiname$,posold%ÿ1)
+ri%ÿlenge%ÿposold%ÿ1
+DatnamNew2$ÿÿ-(Dateiname$,ri%)
+codedoktest%ÿÿ0(DatnamNew2$)
+ÿ½ CALL Fehler(Dateiname$,DatnamNew2$)
+ 
+ÿ¡Dateiname.dat$ÿ"*VERTR.DOK*"ÿp
+ÿ¡codedoktest%ÿ0ÿÿJ(codedoktest%,codedok.dokkv)ÿp
+	ÿÉÿ`ÿ™"dokkv"ÿ£codedok.dokkv
+	ÿÉÿ¥codedoktest%ÿ™"dokkv"ÿ£codedok.dokkv
+	dateiname.dat$ÿDateiname.dokkv
+	ÿÌÿ™dat$
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+ÿ¡Dateiname.dat$ÿ"*GEADR.DOK*"ÿp
+ÿ¡codedoktest%ÿ0ÿÿJ(codedoktest%,codedok.dokge)ÿp
+	ÿÉÿ`ÿ™"dokge"ÿ£codedok.dokge
+	ÿÉÿ¥codedoktest%ÿ™"dokge"ÿ£codedok.dokge
+	dateiname.dat$ÿDateiname.dokge
+	ÿÌÿ™dat$
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+ÿ¡Dateiname.dat$ÿ"*MAADR.DOK*"ÿp
+ÿ¡codedoktest%ÿ0ÿÿJ(codedoktest%,codedok.dokma)ÿp
+	ÿÉÿ`ÿ™"dokma"ÿ£codedok.dokma
+	ÿÉÿ¥codedoktest%ÿ™"dokma"ÿ£codedok.dokma
+	dateiname.dat$ÿDateiname.dokma
+	ÿÌÿ™dat$
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+
+ÿ’ÿ¡
+ÿÉÿ±ÿáÿ™dat$
+ ÿÙ
+

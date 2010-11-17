@@ -1,0 +1,2799 @@
+SBP
+ ÿƒmain()
+ 
+ 
+ ÿ½ GDV Masken
+ 
+ 
+ 
+ '      ********************************************************
+ '      ** Routinen fr Formular GDV-Leben le21011            ** 
+ '      ********************************************************
+ 
+ÿÿle21011()
+ lfdnrtotal%ÿlfdnrtotal.kvertrag
+ lfdnr%ÿlfdnr.kvertrag
+ codege%ÿcodege.kvertrag
+ codeva%ÿcodeva.kvertrag
+ ÿ²"9999999999.999"
+ ÿÉÿ¥codege%ÿ™"Geadr"ÿ£codege.geadr
+ ÿÉÿ¥codeva%ÿ™"Sparten"ÿ£codeva.sparten
+ ÿ½ IF disabled%("GEADR") THEN END SUB 
+ ÿƒDFile(3,"al020011"ÿ_fpw$)
+ ÿƒDFile(3,"le021011"ÿ_fpw$)
+ ÿƒDFile(3,"le022011"ÿ_fpw$)
+ ÿƒDFile(3,"le022021"ÿ_fpw$)
+ ÿƒDFile(3,"le022022"ÿ_fpw$)
+ ÿƒDFile(3,"le022026"ÿ_fpw$)
+ ÿƒDFile(3,"le022027"ÿ_fpw$)
+ ÿƒDFile(3,"le022031"ÿ_fpw$)
+ ÿƒDFile(3,"le022032"ÿ_fpw$)
+ ÿƒDFile(3,"le022036"ÿ_fpw$)
+ ÿƒDFile(3,"le022041"ÿ_fpw$)
+ ÿƒDFile(3,"le022042"ÿ_fpw$)
+ ÿƒDFile(3,"le022046"ÿ_fpw$)
+ ÿƒDFile(3,"le022051"ÿ_fpw$)
+ ÿƒDFile(3,"le022052"ÿ_fpw$)
+ ÿƒDFile(3,"le022056"ÿ_fpw$)
+ ÿƒDFile(3,"le022061"ÿ_fpw$)
+ ÿƒDFile(3,"le022062"ÿ_fpw$)
+ ÿƒDFile(3,"le022063"ÿ_fpw$)
+ ÿƒDFile(3,"le022066"ÿ_fpw$)
+ ÿƒDFile(3,"le022067"ÿ_fpw$)
+ ÿƒDFile(3,"le022071"ÿ_fpw$)
+ ÿƒDFile(3,"le022072"ÿ_fpw$)
+ ÿƒDFile(3,"le022076"ÿ_fpw$)
+
+ ÿƒDFile(3,"le021012"ÿ_fpw$)
+ ÿƒDFile(3,"anl06"ÿ_fpw$)
+ ÿƒDFile(3,"anl08"ÿ_fpw$)
+ ÿƒDFile(3,"anl14"ÿ_fpw$)
+ ÿƒDFile(3,"anl24"ÿ_fpw$)
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.al020011)ÿp
+ÿÂ"Zu diesem Vertrag existiert kein GDV-Datensatz!","Wollen Sie einen GDV - Datensatz anlegen?",130,req%
+ÿ¡req%ÿ1ÿp
+ÿƒal020011Neu(lfdnr%)
+ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.le021011)ÿpÿƒle021011Neu(lfdnr%)
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.al020011)ÿp
+ÿwle021011End 
+ ÿ’ÿ¡
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.le021011)ÿp
+ÿwle021011End 
+ ÿ’ÿ¡
+ 
+ ÿ™"le021012"
+ ÿ£lfdnrtotal.le021012
+ ÿ™"le021011"
+ ÿ£lfdnrtotal.le021011
+ ÿÉÿ`
+ _formend%ÿ0
+ ÿØ_formend%ÿ0
+ÿ¡ÿ>(ÿœ)ÿ"LE21011"ÿp
+ÿÊÿŸtitle$ÿ"- Vertrag von:"ÿnachname.adressenÿÿ¡(Vorname.ADRESSENÿ"",","ÿÿ+(Vorname.ADRESSEN,1)ÿ".","")
+ÿ´ÿœGPrjForm$ÿ"LE21011"
+ÿÊf ÿSuperbase.Form
+ÿ½ CALL GEADRIntro()
+ÿ½ CALL MNGEADR()
+ÿÊÿË"GDV-Daten"
+ÿ’ÿ¡
+ÿÉÿœÿ¥lfdnrtotal%ÿ™"le021011"ÿ£lfdnrtotal.le021011
+ÿ½ SELECT FORM KEY lfdnrtotal% FILE "le021012" INDEX lfdnrtotal.le021012
+ÿ¬ÿ³
+ÿßÿ³
+GEADRsub%ÿ0
+ÿƒClearKBDBuffer()
+ÿœ
+ÿ½ f.abbruch.visible = 0
+ÿ½ f.abbruch.enabled = 0
+ÿ™"le021011"
+ÿ¡GEADRsub%ÿ99ÿpÿÏÿ¥ÿÿ¬ÿÿß
+ÿ½ ** Tastaturabfrage
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒPSelectPrev()
+ÿæCrsRight%,PgDn%
+ÿƒPSelectNext()
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp_formend%ÿ1
+ÿÉÿæGEADRsub%
+ÿæ1
+ÿƒVertrUniRep(0,0,0,codege.geadr,0,0,0,0,1,ÿ1,tarif%)
+ÿ½ CALL LIST4()
+ÿæ99
+ÿ½ 110197
+ÿ¡disabled%("GEADRBEARB")ÿp
+ÿ^
+ÿßÿ³
+ÿ¬ÿe
+ÿ¡ÿA("geadr")ÿ0ÿpÿƒGEADRNeu()
+ÿ¡ÿíÿ1ÿp
+	ÿ½ 101296
+	_gesold$ÿGesellschaft.geadr
+	ÿƒButDesabled()
+	f.notiz.enabledÿ0
+	f.vertragsuebersicht.enabledÿ0
+	ÿ”gesellschaft.geadr,0
+	ÿƒButEnabled()
+	f.notiz.enabledÿÿ1
+	f.vertragsuebersicht.enabledÿÿ1
+ÿ^
+	ÿ”notiz.geadr,0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿÉ
+ÿ¡abbruch%ÿÿ1ÿp
+ÿÉÿœÿ¥lfdnrtotal%ÿ™"le021011"ÿ£lfdnrtotal.le021011
+ÿœ
+abbruch%ÿ0
+ÿ’ÿ¡
+ÿ¬ÿ³
+ ÿÙ
+le021011End: 
+ _formend%ÿ0
+ ÿ™"Kvertrag"
+ ÿÉÿ¥lfdnr%ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ ÿ’ÿÿ
+ 
+ 
+ 
+ÿÿal020011Neu(lfdnr%)
+ ÿÉÿ¥lfdnr%ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ codege%ÿcodege.kvertrag
+ codeva%ÿcodeva.kvertrag
+ ÿ¡ÿJ(codege%,codege.geadr)ÿp
+ÿÉÿ¥codege%ÿ™"Geadr"ÿ£codege.geadr
+ÿ¡vunr.geadrÿ
+1ÿp
+ÿƒFehler("Der Gesellschaft des Vertrages wurde keine GDV-VU-Nr zugewiesen!","Wechseln Sie bitte zur Gesellschaftsmaske und geben Sie dort die fehlende GDV-VU-Nr ein!")
+ÿwal020011End
+ÿ’ÿ¡
+ ÿ^
+ÿwal020011End
+ ÿ’ÿ¡
+ ÿ¡ÿJ(codeva%,codeva.sparten)ÿp
+ÿÉÿ¥codeva%ÿ™"Sparten"ÿ£codeva.sparten
+ÿ¡Hauptsparte.spartenÿ
+1ÿp
+ÿ¡Sparte.spartenÿ"Bndel*"ÿp
+ÿ^
+ÿƒFehler("Der Sparte wurde keine GDV-Hauptsparte zugewiesen!","Wechseln Sie in die Spartenmaske und erfassen Sie dort bei der Sparte die zugeh”rige GDV-Hauptsparten-Nr!")
+ÿwal020011End
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡vunr.geadrÿ0ÿp
+ÿÿ™"al020011"
+Code200%ÿÿI("al020011",1)
+Code200.al020011ÿCode200%
+sart.al020011ÿ0200
+vunr.al020011ÿÿ(vunr.geadr,"00000")
+bkz.al020011ÿ"0"
+sp.al020011ÿHauptsparte.sparten
+satznr.al020011ÿ"1"
+lfdnr.al020011ÿlfdnr%
+lfdnrtotal.al020011ÿlfdnr%ÿ10000
+vsnr.al020011ÿÿ+(ÿH(vs_nr.kvertrag),17)
+Workstation.al020011ÿWorkstation%
+QWoNo.al020011ÿÿ(Workstation%,"000000")ÿÿ(code200.al020011,"000000")
+RecStatus.al020011ÿ"c"
+ÿÌÿ™"al020011"
+ ÿ’ÿ¡
+al020011End: 
+ ÿ’ÿÿ
+ 
+ 
+ÿÿle021011Neu(lfdnr%)
+ ÿÉÿ¥lfdnr%ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ codege%ÿcodege.kvertrag
+ codeva%ÿcodeva.kvertrag
+ ÿÉÿ¥codege%ÿ™"Geadr"ÿ£codege.geadr
+ ÿ¡vunr.geadrÿ0ÿp
+ÿÿ™"le021011"
+CodeLE021011%ÿÿI("LE021011",1)
+CodeLE021011.LE021011ÿCodeLE021011%
+sart.le021011ÿ0210
+vunr.le021011ÿÿ(vunr.geadr,"00000")
+bkz.le021011ÿ"0"
+sp.le021011ÿ010
+satznr.le021011ÿ1
+lfdnr.le021011ÿlfdnr%
+lfdnrtotal.le021011ÿlfdnr%ÿ10000
+vsnr.le021011ÿÿ+(ÿH(vs_nr.kvertrag),17)
+Workstation.le021011ÿWorkstation%
+QWoNo.le021011ÿÿ(Workstation%,"000000")ÿÿ(CodeLE021011.le021011,"000000")
+RecStatus.le021011ÿ"c"
+ÿÌÿ™"le021011"
+ÿÿ™"le021012"
+CodeLE021012.LE021012ÿÿI("LE021012",1)
+CodeLE021011.LE021012ÿCodeLE021011%
+sart.le021012ÿ0210
+bkz.le021012ÿ"0"
+vsnr.le021012ÿvsnr.le021011
+vunr.le021012ÿÿ(vunr.geadr,"00000")
+sp.le021012ÿ010
+satznr.le021012ÿ2
+lfdnr.le021012ÿlfdnr%
+lfdnrtotal.le021012ÿlfdnr%ÿ10000
+Workstation.le021012ÿWorkstation%
+QWoNo.le021012ÿÿ(Workstation%,"000000")ÿÿ(CodeLE021012.le021012,"000000")
+RecStatus.le021012ÿ"c"
+ÿÌÿ™"le021012"
+ÿ½ CALL Fehler("TT","")
+ÿÿ™"le022011"
+CodeLE021011.LE022011ÿCodeLE021011%
+lfdnr.le022011ÿlfdnr%
+lfdnrtotal.le022011ÿlfdnr%ÿ10000
+codele022011.le022011ÿÿI("le022011",1)
+sart.le022011ÿ0220
+vsnr.le022011ÿvsnr.le021011
+bkz.le022011ÿ"0"
+vunr.le022011ÿvunr.le021011
+sp.le022011ÿ010
+namevp.le022011ÿ"unbekannt"
+vnamevp.le022011ÿ"unbekannt"
+berufkey.le022011ÿ0
+berufTxt.le022011ÿ"<ohne Zuordnung>"
+Workstation.le022011ÿWorkstation%
+QWoNo.le022011ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022011.le022011,"000000")
+RecStatus.le022011ÿ"c"
+ÿÌÿ™"le022011"
+ ÿ^
+ÿƒFehler("Es kann kein GDV-Datensatz angelegt werden, da entweder keine Gesellschaft fr den Vertrag ausgew„hlt wurde","oder die gew„hlte Gesellschaft keinen GDV-VU-Nummerneintrag enth„lt!")
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ 
+ÿÿS2_021011()
+ ÿ½ Angaben zum Vertrag
+ lfdnrtotal%ÿlfdnrtotal.le021011
+ lfdnr%ÿlfdnr.le021011
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le021012"
+ ÿ£CodeLE021011.le021012
+ ÿ¡ÿOÿJ(CodeLE021011%,CodeLE021011.le021012)ÿp
+ÿÿ™"le021012"
+CodeLE021012.LE021012ÿÿI("LE021012",1)
+CodeLE021011.LE021012ÿCodeLE021011%
+sart.le021012ÿ0210
+bkz.le021012ÿ"0"
+vsnr.le021012ÿvsnr.le021011
+vunr.le021012ÿvunr.le021011
+sp.le021012ÿ010
+satznr.le021012ÿ2
+lfdnr.le021012ÿlfdnr%
+lfdnrtotal.le021012ÿlfdnr%ÿ10000
+vsnr.le021012ÿvs_nr.kvertrag
+Workstation.le021012ÿWorkstation%
+QWoNo.le021012ÿÿ(Workstation%,"000000")ÿÿ(CodeLE021012.le021012,"000000")
+RecStatus.le021012ÿ"c"
+ÿÌÿ™"le021012"
+ ÿ’ÿ¡
+ ÿÉÿ`
+ ÿœ2
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le021012"ÿ£CodeLE021011.le021012
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS3_021011()
+ ÿ½ versicherte Personen
+ lfdnrtotal%ÿlfdnrtotal.le021011
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022011"
+ ÿ£CodeLE021011.le022011
+ ÿ¡ÿOÿJ(CodeLE021011%,CodeLE021011.le022011)ÿp
+ÿÿ™"le022011"
+lfdnr.le022011ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022011ÿlfdnrtotal%
+codele022011.le022011ÿÿI("le022011",1)
+CodeLE021011.LE022011ÿCodeLE021011%
+sart.le022011ÿ0220
+vsnr.le022011ÿvsnr.le021011
+bkz.le022011ÿ"0"
+vunr.le022011ÿvunr.le021011
+sp.le022011ÿ010
+CodeLE021011.LE022011ÿcodele021011%
+namevp.le022011ÿ"unbekannt"
+vnamevp.le022011ÿ"unbekannt"
+berufkey.le022011ÿ0
+berufTxt.le022011ÿ"<ohne Zuordnung>"
+Workstation.le022011ÿWorkstation%
+QWoNo.le022011ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022011.le022011,"000000")
+RecStatus.le022011ÿ"c"
+ÿÌÿ™"le022011"
+ ÿ’ÿ¡
+ ÿÉÿ`
+ ÿœ3
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022011"ÿ£CodeLE021011.le022011
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS4_021011()
+codele022011%ÿcodele022011.le022011
+ÿÉÿ¥codele022011%ÿáÿ™"le022011"ÿ£codele022011.le022011
+beruf$ÿberuftxt.le022011
+ÿœ4
+ ÿ’ÿÿ
+ 
+ÿÿS5_021011()
+ ÿ½ Kapital-/Risikovers
+ lfdnrtotal%ÿlfdnrtotal.le021011
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022021"
+ ÿ£CodeLE021011.le022021
+ ÿ¡ÿOÿJ(CodeLE021011%,CodeLE021011.le022021)ÿp
+ÿÿ™"le022021"
+Codele022021.le022021ÿÿI("le022021",1)
+CodeLE021011.LE022021ÿCodeLE021011%
+bkz.le022021ÿ"0"
+sart.le022021ÿ0220
+sp.le022021ÿ010
+vsnr.le022021ÿvsnr.le021011
+satznr.le022021ÿ1
+vunr.le022021ÿvunr.le021011
+lfdnr.le022021ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022021ÿlfdnrtotal%
+Workstation.le022021ÿWorkstation%
+QWoNo.le022021ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022021.le022021,"000000")
+RecStatus.le022021ÿ"c"
+ÿÌÿ™"le022021"
+ ÿ’ÿ¡
+ ÿÉÿ`
+ ÿœ5
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022021"ÿ£CodeLE021011.le022021
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS6_021011()
+ ÿ½ Kapital-/Risikovers
+ lfdnrtotal%ÿlfdnrtotal.le022021
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022022"
+ ÿ£CodeLE021011.le022022
+ ÿ¡ÿOÿJ(CodeLE021011%,CodeLE021011.le022022)ÿp
+ÿÿ™"le022022"
+Codele022022.le022022ÿÿI("le022022",1)
+CodeLE021011.LE022022ÿCodeLE021011%
+bkz.le022022ÿ"0"
+sart.le022022ÿ0220
+sp.le022022ÿ010
+vsnr.le022022ÿvsnr.le021011
+satznr.le022022ÿ2
+vunr.le022022ÿvunr.le021011
+lfdnr.le022022ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022022ÿlfdnrtotal%
+Workstation.le022022ÿWorkstation%
+QWoNo.le022022ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022022.le022022,"000000")
+RecStatus.le022022ÿ"c"
+ÿÌÿ™"le022022"
+ ÿ’ÿ¡
+ ÿÉÿ`
+ ÿœ6
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022022"ÿ£CodeLE021011.le022022
+ ÿ×Gesellschaften$(8)
+ Gesellschaften$(0)ÿ"00 <keine Zuordnung>"
+ Gesellschaften$(1)ÿ"01 Herzinfarkt"
+ Gesellschaften$(2)ÿ"02 Schlaganfall"
+ Gesellschaften$(3)ÿ"03 Multiple Sklerose"
+ Gesellschaften$(4)ÿ"04 Krebs"
+ Gesellschaften$(5)ÿ"05 Bypass-Operation"
+ Gesellschaften$(6)ÿ"06 Dauerdialyse"
+ Gesellschaften$(7)ÿ"07 Nierentransplantation"
+ versikra$ÿ""
+ ÿ›i%ÿ1ÿq15ÿk2
+j%ÿÿ0(ÿ,(versek.le022022,i%,2))
+versikra$ÿversikra$ÿGesellschaften$(j%)ÿÿ(10)ÿÿ(13)
+ ÿ±i%
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS7_021011()
+ ÿ½ Bezugsberechtigte KaptalRisiko
+ lfdnrtotal%ÿlfdnrtotal.le021011
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022026"
+ ÿ£CodeLE021011.le022026
+ ÿ¡ÿOÿJ(CodeLE021011%,CodeLE021011.le022026)ÿp
+ÿÿ™"le022026"
+lfdnr.le022026ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022026ÿlfdnrtotal%
+codele022026.le022026ÿÿI("le022026",1)
+CodeLE021011.LE022026ÿCodeLE021011%
+sart.le022026ÿ0220
+vsnr.le022026ÿvsnr.le021011
+bkz.le022026ÿbkz.le021011
+vunr.le022026ÿvunr.le021011
+SBBERLEB.le022026ÿ"<keine Angaben>"
+sp.le022026ÿ010
+satznr.le022026ÿ6
+Workstation.le022026ÿWorkstation%
+QWoNo.le022026ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022026.le022026,"000000")
+RecStatus.le022026ÿ"c"
+ÿÌÿ™"le022026"
+ ÿ’ÿ¡
+ ÿÉÿ`
+ ÿœ7
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022026"ÿ£CodeLE021011.le022026
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ÿÿS8_021011()
+ ÿ½ Bezugsberechtigte KaptalRisiko Einzelseite
+codele022026%ÿcodele022026.le022026
+ÿÉÿ¥codele022026%ÿáÿ™"le022026"ÿ£codele022026.le022026
+ÿ½ beruf$ = beruftxt.le022011
+ÿœ8
+ ÿ’ÿÿ
+ 
+ÿÿS9_021011()
+ ÿ½ Auszahlungen KaptalRisiko
+ lfdnrtotal%ÿlfdnrtotal.le021011
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022027"
+ ÿ£CodeLE021011.le022027
+ ÿ¡ÿOÿJ(CodeLE021011%,CodeLE021011.le022027)ÿp
+ÿÿ™"le022027"
+lfdnr.le022027ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022027ÿlfdnrtotal%
+codele022027.le022027ÿÿI("le022027",1)
+CodeLE021011.LE022027ÿCodeLE021011%
+sart.le022027ÿ0220
+vsnr.le022027ÿvsnr.le021011
+bkz.le022027ÿbkz.le021011
+vunr.le022027ÿvunr.le021011
+nasum.le022027ÿ0.00
+sp.le022027ÿ010
+satznr.le022027ÿ7
+Workstation.le022027ÿWorkstation%
+QWoNo.le022027ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022027.le022027,"000000")
+RecStatus.le022027ÿ"c"
+ÿÌÿ™"le022027"
+ ÿ’ÿ¡
+ ÿÉÿ`
+ ÿœ9
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022027"ÿ£CodeLE021011.le022027
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ÿÿS10_021011()
+ ÿ½ Auszahlungen KaptalRisiko Einzelseite
+codele022027%ÿcodele022027.le022027
+ÿÉÿ¥codele022027%ÿáÿ™"le022027"ÿ£codele022027.le022027
+ÿ½ beruf$ = beruftxt.le022011
+ÿœ10
+ ÿ’ÿÿ
+ 
+ 
+ÿÿS11_021011()
+ ÿ½ Berufsunf„higkeit
+ lfdnrtotal%ÿlfdnrtotal.le022021
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022031"
+ ÿ£CodeLE021011.le022031
+ ÿ¡ÿOÿJ(CodeLE021011%,CodeLE021011.le022031)ÿp
+ÿÿ™"le022031"
+Codele022031.le022031ÿÿI("le022031",1)
+CodeLE021011.LE022031ÿCodeLE021011%
+bkz.le022031ÿ"0"
+sart.le022031ÿ0220
+sp.le022031ÿ010
+vsnr.le022031ÿvsnr.le021011
+satznr.le022031ÿ1
+vunr.le022031ÿvunr.le021011
+lfdnr.le022031ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022031ÿlfdnrtotal%
+Workstation.le022031ÿWorkstation%
+QWoNo.le022031ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022031.le022031,"000000")
+RecStatus.le022031ÿ"c"
+ÿÌÿ™"le022031"
+ÿÿ™"le022032"
+Codele022032.le022032ÿÿI("le022032",1)
+CodeLE021011.LE022032ÿCodeLE021011%
+bkz.le022032ÿ"0"
+sart.le022032ÿ0220
+sp.le022032ÿ010
+vsnr.le022032ÿvsnr.le021011
+satznr.le022032ÿ2
+vunr.le022032ÿvunr.le021011
+lfdnr.le022032ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022032ÿlfdnrtotal%
+Workstation.le022032ÿWorkstation%
+QWoNo.le022032ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022032.le022032,"000000")
+RecStatus.le022032ÿ"c"
+ÿÌÿ™"le022032"
+ÿÿ™"le022036"
+lfdnr.le022036ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022036ÿlfdnrtotal%
+codele022036.le022036ÿÿI("le022036",1)
+CodeLE021011.LE022036ÿCodeLE021011%
+sart.le022036ÿ0220
+vsnr.le022036ÿvsnr.le021011
+bkz.le022036ÿbkz.le021011
+vunr.le022036ÿvunr.le021011
+SBBLTG.le022036ÿ"<keine Angaben>"
+sp.le022036ÿ010
+satznr.le022036ÿ6
+Workstation.le022036ÿWorkstation%
+QWoNo.le022036ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022036.le022036,"000000")
+RecStatus.le022036ÿ"c"
+ÿÌÿ™"le022036"
+ ÿ’ÿ¡
+ ÿÉÿ`
+ ÿœ11
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022031"ÿ£CodeLE021011.le022031
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS12_021011()
+ ÿ½ Berufsunf. Seite2
+ lfdnrtotal%ÿlfdnrtotal.le021011
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022032"
+ ÿ£CodeLE021011.le022032
+ ÿÉÿ`
+ ÿœ12
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022032"ÿ£CodeLE021011.le022032
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS13_021011()
+ ÿ½ Bezugsberechtigte Berufsunf.
+ lfdnrtotal%ÿlfdnrtotal.le021011
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022036"
+ ÿ£CodeLE021011.le022036
+ ÿÉÿ`
+ ÿœ13
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022036"ÿ£CodeLE021011.le022036
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS14_021011()
+ ÿ½ Bezugsberechtigte Berufsunf. Einzelseite
+codele022036%ÿcodele022036.le022036
+ÿÉÿ¥codele022036%ÿáÿ™"le022036"ÿ£codele022036.le022036
+ÿ½ beruf$ = beruftxt.le022011
+ÿœ14
+ ÿ’ÿÿ
+ 
+ 
+ 
+ÿÿS15_021011()
+ ÿ½ Unfall
+ lfdnrtotal%ÿlfdnrtotal.le022021
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022041"
+ ÿ£CodeLE021011.le022041
+ ÿ¡ÿOÿJ(CodeLE021011%,CodeLE021011.le022041)ÿp
+ÿÿ™"le022041"
+Codele022041.le022041ÿÿI("le022041",1)
+CodeLE021011.LE022041ÿCodeLE021011%
+bkz.le022041ÿ"0"
+sart.le022041ÿ0220
+sp.le022041ÿ010
+vsnr.le022041ÿvsnr.le021011
+satznr.le022041ÿ1
+vunr.le022041ÿvunr.le021011
+lfdnr.le022041ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022041ÿlfdnrtotal%
+Workstation.le022041ÿWorkstation%
+QWoNo.le022041ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022041.le022041,"000000")
+RecStatus.le022041ÿ"c"
+ÿÌÿ™"le022041"
+ÿÿ™"le022042"
+Codele022042.le022042ÿÿI("le022042",1)
+CodeLE021011.LE022042ÿCodeLE021011%
+bkz.le022042ÿ"0"
+sart.le022042ÿ0220
+sp.le022042ÿ010
+vsnr.le022042ÿvsnr.le021011
+satznr.le022042ÿ2
+vunr.le022042ÿvunr.le021011
+lfdnr.le022042ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022042ÿlfdnrtotal%
+Workstation.le022042ÿWorkstation%
+QWoNo.le022042ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022042.le022042,"000000")
+RecStatus.le022042ÿ"c"
+ÿÌÿ™"le022042"
+ÿÿ™"le022046"
+lfdnr.le022046ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022046ÿlfdnrtotal%
+codele022046.le022046ÿÿI("le022046",1)
+CodeLE021011.LE022046ÿCodeLE021011%
+sart.le022046ÿ0220
+vsnr.le022046ÿvsnr.le021011
+bkz.le022046ÿbkz.le021011
+vunr.le022046ÿvunr.le021011
+SBBLTG.le022046ÿ"<keine Angaben>"
+sp.le022046ÿ010
+satznr.le022046ÿ6
+Workstation.le022046ÿWorkstation%
+QWoNo.le022046ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022046.le022046,"000000")
+RecStatus.le022046ÿ"c"
+ÿÌÿ™"le022046"
+ ÿ’ÿ¡
+ ÿÉÿ`
+ ÿœ15
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022041"ÿ£CodeLE021011.le022041
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS16_021011()
+ ÿ½ Unfall Seite2
+ lfdnrtotal%ÿlfdnrtotal.le021011
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022042"
+ ÿ£CodeLE021011.le022042
+ ÿÉÿ`
+ ÿœ16
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022042"ÿ£CodeLE021011.le022042
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS17_021011()
+ ÿ½ Bezugsberechtigte Unfall
+ lfdnrtotal%ÿlfdnrtotal.le021011
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022046"
+ ÿ£CodeLE021011.le022046
+ ÿÉÿ`
+ ÿœ17
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022046"ÿ£CodeLE021011.le022046
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS18_021011()
+ ÿ½ Bezugsberechtigte Unfall Einzelseite
+codele022046%ÿcodele022046.le022046
+ÿÉÿ¥codele022046%ÿáÿ™"le022046"ÿ£codele022046.le022046
+ÿ½ beruf$ = beruftxt.le022011
+ÿœ18
+ ÿ’ÿÿ
+ 
+ÿÿS19_021011()
+ ÿ½ Risikozusatz
+ lfdnrtotal%ÿlfdnrtotal.le022021
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022051"
+ ÿ£CodeLE021011.le022051
+ ÿ¡ÿOÿJ(CodeLE021011%,CodeLE021011.le022051)ÿp
+ÿÿ™"le022051"
+Codele022051.le022051ÿÿI("le022051",1)
+CodeLE021011.LE022051ÿCodeLE021011%
+bkz.le022051ÿ"0"
+sart.le022051ÿ0220
+sp.le022051ÿ010
+vsnr.le022051ÿvsnr.le021011
+satznr.le022051ÿ1
+vunr.le022051ÿvunr.le021011
+lfdnr.le022051ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022051ÿlfdnrtotal%
+Workstation.le022051ÿWorkstation%
+QWoNo.le022051ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022051.le022051,"000000")
+RecStatus.le022051ÿ"c"
+ÿÌÿ™"le022051"
+ÿÿ™"le022052"
+Codele022052.le022052ÿÿI("le022052",1)
+CodeLE021011.LE022052ÿCodeLE021011%
+bkz.le022052ÿ"0"
+sart.le022052ÿ0220
+sp.le022052ÿ010
+vsnr.le022052ÿvsnr.le021011
+satznr.le022052ÿ2
+vunr.le022052ÿvunr.le021011
+lfdnr.le022052ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022052ÿlfdnrtotal%
+Workstation.le022052ÿWorkstation%
+QWoNo.le022052ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022052.le022052,"000000")
+RecStatus.le022052ÿ"c"
+ÿÌÿ™"le022052"
+ÿÿ™"le022056"
+lfdnr.le022056ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022056ÿlfdnrtotal%
+codele022056.le022056ÿÿI("le022056",1)
+CodeLE021011.LE022056ÿCodeLE021011%
+sart.le022056ÿ0220
+vsnr.le022056ÿvsnr.le021011
+bkz.le022056ÿbkz.le021011
+vunr.le022056ÿvunr.le021011
+SBBLTG.le022056ÿ"<keine Angaben>"
+sp.le022056ÿ010
+satznr.le022056ÿ6
+Workstation.le022056ÿWorkstation%
+QWoNo.le022056ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022056.le022056,"000000")
+RecStatus.le022056ÿ"c"
+ÿÌÿ™"le022056"
+ ÿ’ÿ¡
+ ÿÉÿ`
+ ÿœ19
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022051"ÿ£CodeLE021011.le022051
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS20_021011()
+ ÿ½ Risikozusatz Seite2
+ lfdnrtotal%ÿlfdnrtotal.le021011
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022052"
+ ÿ£CodeLE021011.le022052
+ ÿÉÿ`
+ ÿœ20
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022052"ÿ£CodeLE021011.le022052
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS21_021011()
+ ÿ½ Bezugsberechtigte Risikozusatz
+ lfdnrtotal%ÿlfdnrtotal.le021011
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022056"
+ ÿ£CodeLE021011.le022056
+ ÿÉÿ`
+ ÿœ21
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022056"ÿ£CodeLE021011.le022056
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS22_021011()
+ ÿ½ Bezugsberechtigte Risikozusatz Einzelseite
+codele022056%ÿcodele022056.le022056
+ÿÉÿ¥codele022056%ÿáÿ™"le022056"ÿ£codele022056.le022056
+ÿ½ beruf$ = beruftxt.le022011
+ÿœ22
+ ÿ’ÿÿ
+ 
+ 
+ 
+ 
+ 
+ÿÿS23_021011()
+ ÿ½ Rente
+ lfdnrtotal%ÿlfdnrtotal.le022021
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022061"
+ ÿ£CodeLE021011.le022061
+ ÿ¡ÿOÿJ(CodeLE021011%,CodeLE021011.le022061)ÿp
+ÿÿ™"le022061"
+Codele022061.le022061ÿÿI("le022061",1)
+CodeLE021011.LE022061ÿCodeLE021011%
+bkz.le022061ÿ"0"
+sart.le022061ÿ0220
+sp.le022061ÿ010
+vsnr.le022061ÿvsnr.le021011
+satznr.le022061ÿ1
+vunr.le022061ÿvunr.le021011
+lfdnr.le022061ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022061ÿlfdnrtotal%
+Workstation.le022061ÿWorkstation%
+QWoNo.le022061ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022061.le022061,"000000")
+RecStatus.le022061ÿ"c"
+ÿÌÿ™"le022061"
+ÿÿ™"le022062"
+Codele022062.le022062ÿÿI("le022062",1)
+CodeLE021011.LE022062ÿCodeLE021011%
+bkz.le022062ÿ"0"
+sart.le022062ÿ0220
+sp.le022062ÿ010
+vsnr.le022062ÿvsnr.le021011
+satznr.le022062ÿ2
+vunr.le022062ÿvunr.le021011
+lfdnr.le022062ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022062ÿlfdnrtotal%
+Workstation.le022062ÿWorkstation%
+QWoNo.le022062ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022062.le022062,"000000")
+RecStatus.le022062ÿ"c"
+ÿÌÿ™"le022062"
+ÿÿ™"le022063"
+Codele022063.le022063ÿÿI("le022063",1)
+CodeLE021011.LE022063ÿCodeLE021011%
+bkz.le022063ÿ"0"
+sart.le022063ÿ0220
+sp.le022063ÿ010
+vsnr.le022063ÿvsnr.le021011
+satznr.le022063ÿ3
+vunr.le022063ÿvunr.le021011
+lfdnr.le022063ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022063ÿlfdnrtotal%
+Workstation.le022063ÿWorkstation%
+QWoNo.le022063ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022063.le022063,"000000")
+RecStatus.le022063ÿ"c"
+ÿÌÿ™"le022063"
+ÿÿ™"le022066"
+lfdnr.le022066ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022066ÿlfdnrtotal%
+codele022066.le022066ÿÿI("le022066",1)
+CodeLE021011.LE022066ÿCodeLE021011%
+sart.le022066ÿ0220
+vsnr.le022066ÿvsnr.le021011
+bkz.le022066ÿbkz.le021011
+vunr.le022066ÿvunr.le021011
+SBBERLEB.le022066ÿ"<keine Angaben>"
+sp.le022066ÿ010
+satznr.le022066ÿ6
+Workstation.le022066ÿWorkstation%
+QWoNo.le022066ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022066.le022066,"000000")
+RecStatus.le022066ÿ"c"
+ÿÌÿ™"le022066"
+ÿÿ™"le022067"
+lfdnr.le022067ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022067ÿlfdnrtotal%
+codele022067.le022067ÿÿI("le022067",1)
+CodeLE021011.LE022067ÿCodeLE021011%
+sart.le022067ÿ0220
+vsnr.le022067ÿvsnr.le021011
+bkz.le022067ÿbkz.le021011
+vunr.le022067ÿvunr.le021011
+nasum.le022067ÿ0.00
+sp.le022067ÿ010
+satznr.le022067ÿ7
+Workstation.le022067ÿWorkstation%
+QWoNo.le022067ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022067.le022067,"000000")
+RecStatus.le022067ÿ"c"
+ÿÌÿ™"le022067"
+ ÿ’ÿ¡
+ ÿÉÿ`
+ ÿœ23
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022061"ÿ£CodeLE021011.le022061
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS24_021011()
+ ÿ½ Rente Seite2
+ lfdnrtotal%ÿlfdnrtotal.le021011
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022062"
+ ÿ£CodeLE021011.le022062
+ ÿÉÿ`
+ ÿœ24
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022062"ÿ£CodeLE021011.le022062
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS25_021011()
+ ÿ½ Rente Seite3
+ lfdnrtotal%ÿlfdnrtotal.le021011
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022063"
+ ÿ£CodeLE021011.le022063
+ ÿÉÿ`
+ ÿœ25
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022063"ÿ£CodeLE021011.le022063
+ ÿ×Gesellschaften$(8)
+ Gesellschaften$(0)ÿ"00 <keine Zuordnung>"
+ Gesellschaften$(1)ÿ"01 Herzinfarkt"
+ Gesellschaften$(2)ÿ"02 Schlaganfall"
+ Gesellschaften$(3)ÿ"03 Multiple Sklerose"
+ Gesellschaften$(4)ÿ"04 Krebs"
+ Gesellschaften$(5)ÿ"05 Bypass-Operation"
+ Gesellschaften$(6)ÿ"06 Dauerdialyse"
+ Gesellschaften$(7)ÿ"07 Nierentransplantation"
+ versikra1$ÿ""
+ ÿ›i%ÿ1ÿq15ÿk2
+j%ÿÿ0(ÿ,(versek.le022063,i%,2))
+versikra1$ÿversikra1$ÿGesellschaften$(j%)ÿÿ(10)ÿÿ(13)
+ ÿ±i%
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS26_021011()
+ ÿ½ Bezugsberechtigter šberblick
+ lfdnrtotal%ÿlfdnrtotal.le021011
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022066"
+ ÿ£CodeLE021011.le022066
+ ÿÉÿ`
+ ÿœ26
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022066"ÿ£CodeLE021011.le022066
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS27_021011()
+ ÿ½ Bezugsberechtigte Risikozusatz Einzelseite
+codele022066%ÿcodele022066.le022066
+ÿÉÿ¥codele022066%ÿáÿ™"le022066"ÿ£codele022066.le022066
+ÿ½ beruf$ = beruftxt.le022011
+ÿœ27
+ ÿ’ÿÿ
+ 
+ÿÿS28_021011()
+ ÿ½ Bezugsberechtigter šberblick
+ lfdnrtotal%ÿlfdnrtotal.le021011
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022067"
+ ÿ£CodeLE021011.le022067
+ ÿÉÿ`
+ ÿœ28
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022067"ÿ£CodeLE021011.le022067
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS29_021011()
+ ÿ½ Bezugsberechtigte Risikozusatz Einzelseite
+codele022067%ÿcodele022067.le022067
+ÿÉÿ¥codele022067%ÿáÿ™"le022067"ÿ£codele022067.le022067
+ÿ½ beruf$ = beruftxt.le022011
+ÿœ29
+ ÿ’ÿÿ
+
+ÿÿS30_021011()
+ ÿ½ Fond
+ lfdnrtotal%ÿlfdnrtotal.le022021
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022071"
+ ÿ£CodeLE021011.le022071
+ ÿ¡ÿOÿJ(CodeLE021011%,CodeLE021011.le022071)ÿp
+ÿÿ™"le022071"
+Codele022071.le022071ÿÿI("le022071",1)
+CodeLE021011.LE022071ÿCodeLE021011%
+bkz.le022071ÿ"0"
+sart.le022071ÿ0220
+sp.le022071ÿ010
+vsnr.le022071ÿvsnr.le021011
+satznr.le022071ÿ1
+vunr.le022071ÿvunr.le021011
+lfdnr.le022071ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022071ÿlfdnrtotal%
+Workstation.le022071ÿWorkstation%
+QWoNo.le022071ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022071.le022071,"000000")
+RecStatus.le022071ÿ"c"
+ÿÌÿ™"le022071"
+ÿÿ™"le022072"
+Codele022072.le022072ÿÿI("le022072",1)
+CodeLE021011.LE022072ÿCodeLE021011%
+bkz.le022072ÿ"0"
+sart.le022072ÿ0220
+sp.le022072ÿ010
+vsnr.le022072ÿvsnr.le021011
+satznr.le022072ÿ2
+vunr.le022072ÿvunr.le021011
+lfdnr.le022072ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022072ÿlfdnrtotal%
+Workstation.le022072ÿWorkstation%
+QWoNo.le022072ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022072.le022072,"000000")
+RecStatus.le022072ÿ"c"
+ÿÌÿ™"le022072"
+ÿÿ™"le022076"
+lfdnr.le022076ÿlfdnrtotal%ÿ10000
+lfdnrtotal.le022076ÿlfdnrtotal%
+codele022076.le022076ÿÿI("le022076",1)
+CodeLE021011.LE022076ÿCodeLE021011%
+sart.le022076ÿ0220
+vsnr.le022076ÿvsnr.le021011
+bkz.le022076ÿbkz.le021011
+vunr.le022076ÿvunr.le021011
+SBBERLEB.le022076ÿ"<keine Angaben>"
+sp.le022076ÿ010
+satznr.le022076ÿ6
+Workstation.le022076ÿWorkstation%
+QWoNo.le022076ÿÿ(Workstation%,"000000")ÿÿ(CodeLE022076.le022076,"000000")
+RecStatus.le022076ÿ"c"
+ÿÌÿ™"le022076"
+ ÿ’ÿ¡
+ ÿÉÿ`
+ ÿœ30
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022071"ÿ£CodeLE021011.le022071
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS31_021011()
+ ÿ½ Fond Seite2
+ lfdnrtotal%ÿlfdnrtotal.le021011
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022072"
+ ÿ£CodeLE021011.le022072
+ ÿÉÿ`
+ ÿœ31
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022072"ÿ£CodeLE021011.le022072
+ ÿ×Gesellschaften$(8)
+ Gesellschaften$(0)ÿ"00 <keine Zuordnung>"
+ Gesellschaften$(1)ÿ"01 Herzinfarkt"
+ Gesellschaften$(2)ÿ"02 Schlaganfall"
+ Gesellschaften$(3)ÿ"03 Multiple Sklerose"
+ Gesellschaften$(4)ÿ"04 Krebs"
+ Gesellschaften$(5)ÿ"05 Bypass-Operation"
+ Gesellschaften$(6)ÿ"06 Dauerdialyse"
+ Gesellschaften$(7)ÿ"07 Nierentransplantation"
+ versikra2$ÿ""
+ ÿ›i%ÿ1ÿq15ÿk2
+j%ÿÿ0(ÿ,(verserk.le022072,i%,2))
+versikra2$ÿversikra2$ÿGesellschaften$(j%)ÿÿ(10)ÿÿ(13)
+ ÿ±i%
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ÿÿS32_021011()
+ ÿ½ Bezugsberechtigter šberblick Fond
+ lfdnrtotal%ÿlfdnrtotal.le021011
+ CodeLE021011%ÿCodeLE021011.LE021011
+ ÿ™"le022076"
+ ÿ£CodeLE021011.le022076
+ ÿÉÿ`
+ ÿœ32
+ ÿÉÿœÿ¥CodeLE021011%ÿ™"le022076"ÿ£CodeLE021011.le022076
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿS33_021011()
+ ÿ½ Bezugsberechtigte Fond Einzelseite
+codele022076%ÿcodele022076.le022076
+ÿÉÿ¥codele022076%ÿáÿ™"le022076"ÿ£codele022076.le022076
+ÿ½ beruf$ = beruftxt.le022011
+ÿœ33
+ ÿ’ÿÿ
+ 
+
+ 
+ 
+ 
+ 
+ÿÿBerufLe22011()
+ codele022011%ÿcodele022011.le022011
+ ÿ¡ÿ("le022011")ÿÿ°("le022011")ÿpÿÌÿ™"le022011"
+
+ ÿÉÿ¥codele022011%ÿáÿ™"le022011"ÿ£codele022011.le022011
+ gesvp$ÿgesvp.le022011
+ ÿƒDFile(3,"anl08"ÿ_fpw$)
+ ÿ×Gesellschaften$(ÿA("anl08")ÿ1)
+ ÿ×Auswahl$(1)
+ cfile$ÿÿ™
+ ÿ™"anl08"
+ ÿ£id.anl08
+ ÿÉÿ`
+ Gesellschaften$(0)ÿ"000 <keine Zuordnung>"
+ a%ÿ1
+ prompt$ÿ""
+ ÿßÿe
+ ÿØÿOÿB("anl08")
+ÿ¡gesvp$ÿ""ÿgesvp$ÿ"1"ÿp
+Gesellschaften$(a%)ÿÿ(id.anl08,"000")ÿ" "ÿm„nnlich.anl08
+ÿ^
+Gesellschaften$(a%)ÿÿ(id.anl08,"000")ÿ" "ÿweiblich.anl08
+ÿ’ÿ¡
+ÿÉÿ±
+a%ÿa%ÿ1
+ ÿÙ
+ ÿ‰ÿñ"MASUCH",0,0,258,188,"Berufsbersicht","MS Sans Serif",8
+ ÿ|ÿñ"MASUCH",4,0,0,258,163,0,""
+ ÿ|ÿñ"MASUCH",9,9,11,21,21,2
+ ÿ|ÿñ"MASUCH",5,37,11,151,10,0,"Bitte w„hlen Sie aus der folgenden Liste aus:"
+ ÿ|ÿñ"MASUCH",7,37,27,214,129,2,2,Gesellschaften$,Auswahl$,prompt$
+ ÿ|ÿñ"MASUCH",1,96,168,55,15,1,"&OK",1,1
+ ÿ|ÿñ"MASUCH",1,153,168,55,15,0,"&Abbrechen",0,0
+ ÿßÿ³
+ ÿñ"MASUCH",req%
+ ÿ¾ÿñ"MASUCH"
+ ÿ¡req%ÿ1ÿp
+Berufkey.le022011ÿÿ0(ÿ+(Auswahl$(0),3))
+BerufTxT.le022011ÿÿ+(ÿH(ÿ,(Auswahl$(0),4)),30)
+beruf$ÿÿ+(ÿH(ÿ,(Auswahl$(0),4)),30)
+ ÿ^
+Berufkey.le022011ÿ0
+BerufTxT.le022011ÿ"<keine Zuordnung>"
+ ÿ’ÿ¡
+Workstation.le022011ÿWorkstation%
+QWoNo.le022011ÿÿ(Workstation%,"000000")ÿÿ(Codele022011.le022011,"000000")
+RecStatus.le022011ÿ"c"
+ ÿÌÿ™"le022011"
+ ÿÉÿ¥codele022011%ÿáÿ™"le022011"ÿ£codele022011.le022011
+ ÿ™cfile$
+ ÿ’ÿÿ
+ 
+ 
+ 
+ 
+ÿÿAuswVersKra(Codele022022%)
+ ÿ¡ÿ("le022022")ÿÿ°("le022022")ÿpÿÌÿ™"le022022"
+
+ ÿÉÿ¥codele022022%ÿáÿ™"le022022"ÿ£codele022022.le022022
+ ÿ½ versikra$
+ ÿ½ versek
+ 
+ ÿ×Auswahl$(1)
+ cfile$ÿÿ™
+ ÿÉÿ`
+ ÿ×Gesellschaften$(8)
+ Gesellschaften$(0)ÿ"00 <keine Zuordnung>"
+ Gesellschaften$(1)ÿ"01 Herzinfarkt"
+ Gesellschaften$(2)ÿ"02 Schlaganfall"
+ Gesellschaften$(3)ÿ"03 Multiple Sklerose"
+ Gesellschaften$(4)ÿ"04 Krebs"
+ Gesellschaften$(5)ÿ"05 Bypass-Operation"
+ Gesellschaften$(6)ÿ"06 Dauerdialyse"
+ Gesellschaften$(7)ÿ"07 Nierentransplantation"
+ prompt$ÿ""
+ ÿ‰ÿñ"MASUCH",0,0,258,188,"Krankheitsbersicht","MS Sans Serif",8
+ ÿ|ÿñ"MASUCH",4,0,0,258,163,0,""
+ ÿ|ÿñ"MASUCH",9,9,11,21,21,2
+ ÿ|ÿñ"MASUCH",5,37,11,151,10,0,"Bitte w„hlen Sie aus der folgenden Liste aus:"
+ ÿ|ÿñ"MASUCH",7,37,27,214,129,0,2,Gesellschaften$,Auswahl$,prompt$
+ ÿ|ÿñ"MASUCH",1,36,168,55,15,1,"&Alle Ersetzen",1,1
+ ÿ|ÿñ"MASUCH",1,96,168,55,15,1,"&Hinzufgen",2,2
+ ÿ|ÿñ"MASUCH",1,153,168,55,15,0,"&Abbrechen",0,0
+ ÿßÿ³
+ ÿñ"MASUCH",req%
+ ÿ¾ÿñ"MASUCH"
+ ÿ¡req%ÿ1ÿp
+versek.le022022ÿÿ+(Auswahl$(0),2)ÿ"0000000000000000000000000000"
+versikra$ÿÿ+(ÿH(ÿ,(Auswahl$(0),3)),30)
+ 
+ÿ½ Berufkey.le022011 = VAL ( LEFT$ (Auswahl$(0),2))
+ÿ½ BerufTxT.le022011 = LEFT$ ( LTRIM$ ( MID$ (Auswahl$(0),3)),30)
+ÿ½ beruf$ = LEFT$ ( LTRIM$ ( MID$ (Auswahl$(0),4)),30)
+ ÿ’ÿ¡
+ versek$ÿversek.le022022
+ txt$ÿÿ+(Auswahl$(0),2)
+ ÿ¡req%ÿ2ÿp
+ÿ›i%ÿ1ÿq15ÿk2
+ÿ¡ÿ,(versek$,i%,2)ÿ"00"ÿÿH(ÿ,(versek$,i%,2))ÿ""ÿp
+ÿ½ MID$ (versek$,i%,2) = LEFT$ (Auswahl$(0),2)
+z%ÿ(i%ÿ1)
+versek1$ÿÿ+(versek$,z%)ÿtxt$
+i%ÿ16
+ÿ’ÿ¡
+ÿ±i%
+versek.le022022ÿversek1$
+ ÿ’ÿ¡
+Workstation.le022022ÿWorkstation%
+QWoNo.le022022ÿÿ(Workstation%,"000000")ÿÿ(Codele022022.le022022,"000000")
+RecStatus.le022022ÿ"c"
+ ÿÌÿ™"le022022"
+ versikra$ÿ""
+ ÿ›i%ÿ1ÿq15ÿk2
+j%ÿÿ0(ÿ,(versek.le022022,i%,2))
+versikra$ÿversikra$ÿGesellschaften$(j%)ÿÿ(10)ÿÿ(13)
+ ÿ±i%
+ ÿÉÿ¥codele022022%ÿáÿ™"le022022"ÿ£codele022022.le022022
+ ÿ™cfile$
+ ÿ’ÿÿ
+ 
+ 
+ 
+ 
+ÿÿAuswVersKra1(Codele022063%)
+ ÿ¡ÿ("le022063")ÿÿ°("le022063")ÿpÿÌÿ™"le022063"
+
+ ÿÉÿ¥codele022063%ÿáÿ™"le022063"ÿ£codele022063.le022063
+ ÿ½ versikra$
+ ÿ½ versek
+ 
+ ÿ×Auswahl$(1)
+ cfile$ÿÿ™
+ ÿÉÿ`
+ ÿ×Gesellschaften$(8)
+ Gesellschaften$(0)ÿ"00 <keine Zuordnung>"
+ Gesellschaften$(1)ÿ"01 Herzinfarkt"
+ Gesellschaften$(2)ÿ"02 Schlaganfall"
+ Gesellschaften$(3)ÿ"03 Multiple Sklerose"
+ Gesellschaften$(4)ÿ"04 Krebs"
+ Gesellschaften$(5)ÿ"05 Bypass-Operation"
+ Gesellschaften$(6)ÿ"06 Dauerdialyse"
+ Gesellschaften$(7)ÿ"07 Nierentransplantation"
+ prompt$ÿ""
+ ÿ‰ÿñ"MASUCH",0,0,258,188,"Krankheitsbersicht","MS Sans Serif",8
+ ÿ|ÿñ"MASUCH",4,0,0,258,163,0,""
+ ÿ|ÿñ"MASUCH",9,9,11,21,21,2
+ ÿ|ÿñ"MASUCH",5,37,11,151,10,0,"Bitte w„hlen Sie aus der folgenden Liste aus:"
+ ÿ|ÿñ"MASUCH",7,37,27,214,129,0,2,Gesellschaften$,Auswahl$,prompt$
+ ÿ|ÿñ"MASUCH",1,36,168,55,15,1,"&Alle Ersetzen",1,1
+ ÿ|ÿñ"MASUCH",1,96,168,55,15,1,"&Hinzufgen",2,2
+ ÿ|ÿñ"MASUCH",1,153,168,55,15,0,"&Abbrechen",0,0
+ ÿßÿ³
+ ÿñ"MASUCH",req%
+ ÿ¾ÿñ"MASUCH"
+ ÿ¡req%ÿ1ÿp
+versek.le022063ÿÿ+(Auswahl$(0),2)ÿ"0000000000000000000000000000"
+versikra1$ÿÿ+(ÿH(ÿ,(Auswahl$(0),3)),30)
+ 
+ÿ½ Berufkey.le022011 = VAL ( LEFT$ (Auswahl$(0),2))
+ÿ½ BerufTxT.le022011 = LEFT$ ( LTRIM$ ( MID$ (Auswahl$(0),3)),30)
+ÿ½ beruf$ = LEFT$ ( LTRIM$ ( MID$ (Auswahl$(0),4)),30)
+ ÿ’ÿ¡
+ versek$ÿversek.le022063
+ txt$ÿÿ+(Auswahl$(0),2)
+ ÿ¡req%ÿ2ÿp
+ÿ›i%ÿ1ÿq15ÿk2
+ÿ¡ÿ,(versek$,i%,2)ÿ"00"ÿÿH(ÿ,(versek$,i%,2))ÿ""ÿp
+ÿ½ MID$ (versek$,i%,2) = LEFT$ (Auswahl$(0),2)
+z%ÿi%ÿ1
+versek1$ÿÿ+(versek$,z%)ÿtxt$
+i%ÿ16
+ÿ’ÿ¡
+ÿ±i%
+versek.le022063ÿversek1$
+ ÿ’ÿ¡
+Workstation.le022063ÿWorkstation%
+QWoNo.le022063ÿÿ(Workstation%,"000000")ÿÿ(Codele022063.le022063,"000000")
+RecStatus.le022063ÿ"c"
+ ÿÌÿ™"le022063"
+ versikra1$ÿ""
+ ÿ›i%ÿ1ÿq15ÿk2
+j%ÿÿ0(ÿ,(versek.le022063,i%,2))
+versikra1$ÿversikra1$ÿGesellschaften$(j%)ÿÿ(10)ÿÿ(13)
+ ÿ±i%
+ ÿÉÿ¥codele022063%ÿáÿ™"le022063"ÿ£codele022063.le022063
+ ÿ™cfile$
+ ÿ’ÿÿ
+ 
+ 
+ÿÿAuswVersKra2(Codele022072%)
+ ÿ¡ÿ("le022072")ÿÿ°("le022072")ÿpÿÌÿ™"le022072"
+
+ ÿÉÿ¥codele022072%ÿáÿ™"le022072"ÿ£codele022072.le022072
+ ÿ½ versikra$
+ ÿ½ versek
+ 
+ ÿ×Auswahl$(1)
+ cfile$ÿÿ™
+ ÿÉÿ`
+ ÿ×Gesellschaften$(8)
+ Gesellschaften$(0)ÿ"00 <keine Zuordnung>"
+ Gesellschaften$(1)ÿ"01 Herzinfarkt"
+ Gesellschaften$(2)ÿ"02 Schlaganfall"
+ Gesellschaften$(3)ÿ"03 Multiple Sklerose"
+ Gesellschaften$(4)ÿ"04 Krebs"
+ Gesellschaften$(5)ÿ"05 Bypass-Operation"
+ Gesellschaften$(6)ÿ"06 Dauerdialyse"
+ Gesellschaften$(7)ÿ"07 Nierentransplantation"
+ prompt$ÿ""
+ ÿ‰ÿñ"MASUCH",0,0,258,188,"Krankheitsbersicht","MS Sans Serif",8
+ ÿ|ÿñ"MASUCH",4,0,0,258,163,0,""
+ ÿ|ÿñ"MASUCH",9,9,11,21,21,2
+ ÿ|ÿñ"MASUCH",5,37,11,151,10,0,"Bitte w„hlen Sie aus der folgenden Liste aus:"
+ ÿ|ÿñ"MASUCH",7,37,27,214,129,0,2,Gesellschaften$,Auswahl$,prompt$
+ ÿ|ÿñ"MASUCH",1,36,168,55,15,1,"&Alle Ersetzen",1,1
+ ÿ|ÿñ"MASUCH",1,96,168,55,15,1,"&Hinzufgen",2,2
+ ÿ|ÿñ"MASUCH",1,153,168,55,15,0,"&Abbrechen",0,0
+ ÿßÿ³
+ ÿñ"MASUCH",req%
+ ÿ¾ÿñ"MASUCH"
+ ÿ¡req%ÿ1ÿp
+verserk.le022072ÿÿ+(Auswahl$(0),2)ÿ"0000000000000000000000000000"
+versikra1$ÿÿ+(ÿH(ÿ,(Auswahl$(0),3)),30)
+ 
+ÿ½ Berufkey.le022011 = VAL ( LEFT$ (Auswahl$(0),2))
+ÿ½ BerufTxT.le022011 = LEFT$ ( LTRIM$ ( MID$ (Auswahl$(0),3)),30)
+ÿ½ beruf$ = LEFT$ ( LTRIM$ ( MID$ (Auswahl$(0),4)),30)
+ ÿ’ÿ¡
+ versek$ÿverserk.le022072
+ txt$ÿÿ+(Auswahl$(0),2)
+ ÿ¡req%ÿ2ÿp
+ÿ›i%ÿ1ÿq15ÿk2
+ÿ¡ÿ,(versek$,i%,2)ÿ"00"ÿÿH(ÿ,(versek$,i%,2))ÿ""ÿp
+ÿ½ MID$ (versek$,i%,2) = LEFT$ (Auswahl$(0),2)
+z%ÿi%ÿ1
+versek1$ÿÿ+(versek$,z%)ÿtxt$
+i%ÿ16
+ÿ’ÿ¡
+ÿ±i%
+verserk.le022072ÿversek1$
+ ÿ’ÿ¡
+Workstation.le022072ÿWorkstation%
+QWoNo.le022072ÿÿ(Workstation%,"000000")ÿÿ(Codele022072.le022072,"000000")
+RecStatus.le022072ÿ"c"
+ ÿÌÿ™"le022072"
+ versikra2$ÿ""
+ ÿ›i%ÿ1ÿq15ÿk2
+j%ÿÿ0(ÿ,(verserk.le022072,i%,2))
+versikra2$ÿversikra2$ÿGesellschaften$(j%)ÿÿ(10)ÿÿ(13)
+ ÿ±i%
+ ÿÉÿ¥codele022072%ÿáÿ™"le022072"ÿ£codele022072.le022072
+ ÿ™cfile$
+ ÿ’ÿÿ
+ 
+ 
+ÿÿDel_GDV()
+ ÿƒDFile(3,"al020011"ÿ_fpw$)
+ ÿ¾ÿaÿ™"al020011"
+ ÿƒDFile(3,"le021011"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le021011"
+ ÿƒDFile(3,"le022011"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022011"
+ ÿƒDFile(3,"le022021"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022021"
+ ÿƒDFile(3,"le022022"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022022"
+ ÿƒDFile(3,"le022026"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022026"
+ ÿƒDFile(3,"le022027"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022027"
+ ÿƒDFile(3,"le022031"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022031"
+ ÿƒDFile(3,"le022032"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022032"
+ ÿƒDFile(3,"le022036"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022036"
+ ÿƒDFile(3,"le022041"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022041"
+ ÿƒDFile(3,"le022042"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022042"
+ ÿƒDFile(3,"le022046"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022046"
+ ÿƒDFile(3,"le022051"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022051"
+ ÿƒDFile(3,"le022052"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022052"
+ ÿƒDFile(3,"le022056"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022056"
+ ÿƒDFile(3,"le022061"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022061"
+ ÿƒDFile(3,"le022062"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022062"
+ ÿƒDFile(3,"le022063"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022063"
+ ÿƒDFile(3,"le022066"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022066"
+ ÿƒDFile(3,"le022067"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022067"
+ ÿƒDFile(3,"le022071"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022071"
+ ÿƒDFile(3,"le022072"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022072"
+ ÿƒDFile(3,"le022076"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le022076"
+ ÿƒDFile(3,"le021012"ÿ_fpw$)
+ ÿ¾ÿaÿ™"le021012"
+ ÿ’ÿÿ
+ 
+ 
+ 
+ 
+ 
+ '      ********************************************************
+ '      ** Routinen fr Formular GDV-Recht re21011            ** 
+ '      ********************************************************
+ 
+ 
+ÿÿre021011()
+ lfdnrtotal%ÿlfdnrtotal.kvertrag
+ lfdnr%ÿlfdnr.kvertrag
+ codege%ÿcodege.kvertrag
+ codeva%ÿcodeva.kvertrag
+ ÿ²"9999999999.999"
+ ÿÉÿ¥codege%ÿ™"Geadr"ÿ£codege.geadr
+ ÿÉÿ¥codeva%ÿ™"Sparten"ÿ£codeva.sparten
+ ÿ½ IF disabled%("GEADR") THEN END SUB 
+ ÿƒDFile(3,"al020011"ÿ_fpw$)
+ ÿƒDFile(3,"re021011"ÿ_fpw$)
+ ÿƒDFile(3,"re022011"ÿ_fpw$)
+ ÿƒDFile(3,"re022012"ÿ_fpw$)
+ ÿƒDFile(3,"anl06"ÿ_fpw$)
+ ÿƒDFile(3,"anl08"ÿ_fpw$)
+ ÿƒDFile(3,"anl14"ÿ_fpw$)
+ ÿƒDFile(3,"anl24"ÿ_fpw$)
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.al020011)ÿp
+ÿÂ"Zu diesem Vertrag existiert kein GDV-Datensatz!","Wollen Sie einen GDV - Datensatz anlegen?",130,req%
+ÿ¡req%ÿ1ÿp
+ÿƒal020011Neu(lfdnr%)
+ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.re021011)ÿpÿƒre021011Neu(lfdnr%)
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.al020011)ÿpÿwre021011End 
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.re021011)ÿpÿwre021011End 
+ 
+ ÿ½ FILE "re021012"
+ ÿ½ INDEX lfdnrtotal.re021012
+ ÿ™"re021011"
+ ÿ£lfdnrtotal.re021011
+ ÿÉÿ`
+ _formend%ÿ0
+ ÿØ_formend%ÿ0
+ÿ¡ÿ>(ÿœ)ÿ"RE"ÿp
+ÿÊÿŸtitle$ÿ"- Vertrag von:"ÿnachname.adressenÿÿ¡(Vorname.ADRESSENÿ"",","ÿÿ+(Vorname.ADRESSEN,1)ÿ".","")
+ÿ´ÿœGPrjForm$ÿ"RE"
+ÿÊf ÿSuperbase.Form
+ÿ½ CALL GEADRIntro()
+ÿ½ CALL MNGEADR()
+ÿÊÿË"GDV-Daten"
+ÿ’ÿ¡
+ÿÉÿœÿ¥lfdnrtotal%ÿ™"re021011"ÿ£lfdnrtotal.re021011
+ÿ½ SELECT FORM KEY lfdnrtotal% FILE "re021012" INDEX lfdnrtotal.re021012
+ÿ¬ÿ³
+ÿßÿ³
+GEADRsub%ÿ0
+ÿƒClearKBDBuffer()
+ÿœ
+ÿ½ f.abbruch.visible = 0
+ÿ½ f.abbruch.enabled = 0
+ÿ™"re021011"
+ÿ¡GEADRsub%ÿ99ÿpÿÏÿ¥ÿÿ¬ÿÿß
+ÿ½ ** Tastaturabfrage
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒPSelectPrev()
+ÿæCrsRight%,PgDn%
+ÿƒPSelectNext()
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp_formend%ÿ1
+ÿÉÿæGEADRsub%
+ÿæ1
+ÿƒVertrUniRep(0,0,0,codege.geadr,0,0,0,0,1,ÿ1,tarif%)
+ÿ½ CALL LIST4()
+ÿæ99
+ÿ½ 110197
+ÿ¡disabled%("GEADRBEARB")ÿp
+ÿ^
+ÿßÿ³
+ÿ¬ÿe
+ÿ¡ÿA("geadr")ÿ0ÿpÿƒGEADRNeu()
+ÿ¡ÿíÿ1ÿp
+	ÿ½ 101296
+	_gesold$ÿGesellschaft.geadr
+	ÿƒButDesabled()
+	f.notiz.enabledÿ0
+	f.vertragsuebersicht.enabledÿ0
+	ÿ”gesellschaft.geadr,0
+	ÿƒButEnabled()
+	f.notiz.enabledÿÿ1
+	f.vertragsuebersicht.enabledÿÿ1
+ÿ^
+	ÿ”notiz.geadr,0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿÉ
+ÿ¡abbruch%ÿÿ1ÿp
+ÿÉÿœÿ¥lfdnrtotal%ÿ™"re021011"ÿ£lfdnrtotal.re021011
+ÿœ
+abbruch%ÿ0
+ÿ’ÿ¡
+ÿ¬ÿ³
+ ÿÙ
+re021011End: 
+ _formend%ÿ0
+ ÿ™"Kvertrag"
+ ÿÉÿ¥lfdnr%ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ ÿ’ÿÿ
+ 
+ÿÿre021011Neu(lfdnr%)
+ ÿÉÿ¥lfdnr%ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ codege%ÿcodege.kvertrag
+ codeva%ÿcodeva.kvertrag
+ ÿÉÿ¥codege%ÿ™"Geadr"ÿ£codege.geadr
+ ÿ¡vunr.geadrÿ0ÿp
+ÿÿ™"re021011"
+CodeRE021011%ÿÿI("RE021011",1)
+CodeRE021011.RE021011ÿCodeRE021011%
+sart.re021011ÿ0210
+vunr.re021011ÿÿ(vunr.geadr,"00000")
+bkz.re021011ÿ"0"
+sp.re021011ÿ070
+ÿ½ satznr.re021011 = 1
+lfdnr.re021011ÿlfdnr%
+lfdnrtotal.re021011ÿlfdnr%ÿ10000
+vsnr.re021011ÿÿ+(ÿH(vs_nr.kvertrag),17)
+Workstation.re021011ÿWorkstation%
+QWoNo.re021011ÿÿ(Workstation%,"000000")ÿÿ(Codere021011.re021011,"000000")
+RecStatus.re021011ÿ"c"
+ÿÌÿ™"re021011"
+ÿ½ BLANK FILE "re021012"
+ÿ½ Codere021012.re021012 = SER ("re021012",1)
+ÿ½ Codere021011.re021012 = Codere021011%
+ÿ½ sart.re021012 = 0210
+ÿ½ bkz.re021012 = "0"
+ÿ½ vsnr.re021012 = vsnr.re021011
+ÿ½ vunr.re021012 = STR$ (vunr.geadr,"00000")
+ÿ½ sp.re021012 = 010
+ÿ½ satznr.re021012 = 2
+ÿ½ lfdnr.re021012 = lfdnr%
+ÿ½ lfdnrtotal.re021012 = lfdnr% * 10000
+ÿ½ STORE FILE "re021012"
+ÿ½ CALL Fehler("TT","")
+ÿÿ™"re022011"
+CodeRE021011.RE022011ÿCodeRE021011%
+lfdnr.re022011ÿlfdnr%
+lfdnrtotal.re022011ÿlfdnr%ÿ10000
+codere022011.re022011ÿÿI("re022011",1)
+sart.re022011ÿ0220
+vsnr.re022011ÿvsnr.re021011
+bkz.re022011ÿ"0"
+vunr.re022011ÿvunr.re021011
+sp.re022011ÿ070
+satznr.re022011ÿ1
+ÿ½ namevp.re022011 = "unbekannt"
+ÿ½ vnamevp.re022011 = "unbekannt"
+ÿ½ berufkey.re022011 = 0
+ÿ½ berufTxt.re022011 = "<ohne Zuordnung>"
+Workstation.re022011ÿWorkstation%
+QWoNo.re022011ÿÿ(Workstation%,"000000")ÿÿ(Codere022011.re022011,"000000")
+RecStatus.re022011ÿ"c"
+ÿÌÿ™"re022011"
+ÿÿ™"re022012"
+lfdnr.re022012ÿlfdnr%
+lfdnrtotal.re022012ÿlfdnr%ÿ10000
+codere022012.re022012ÿÿI("re022012",1)
+CodeRE021011.RE022012ÿCodeRE021011%
+sart.re022012ÿ0220
+vsnr.re022012ÿvsnr.re021011
+bkz.re022012ÿ"0"
+vunr.re022012ÿvunr.re021011
+sp.re022012ÿ070
+satznr.re022012ÿ2
+CodeRE021011.RE022012ÿCodeRE021011%
+ÿ½ namevp.re022011 = "unbekannt"
+ÿ½ vnamevp.re022011 = "unbekannt"
+ÿ½ berufkey.re022011 = 0
+ÿ½ berufTxt.re022011 = "<ohne Zuordnung>"
+Workstation.re022012ÿWorkstation%
+QWoNo.re022012ÿÿ(Workstation%,"000000")ÿÿ(Codere022012.re022012,"000000")
+RecStatus.re022012ÿ"c"
+ÿÌÿ™"re022012"
+ ÿ^
+ÿƒFehler("Es kann kein GDV-Datensatz angelegt werden, da entweder keine Gesellschaft fr den Vertrag ausgew„hlt wurde","oder die gew„hlte Gesellschaft keinen GDV-VU-Nummerneintrag enth„lt!")
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ÿÿRE2_021011()
+ CodeRE021011%ÿCodeRE021011.RE021011
+ ÿ™"re022011"
+ ÿÉÿ`
+ ÿœ2
+ ÿÉÿœÿ¥CodeRE021011%ÿ™"Re022011"ÿ£CodeRE021011.re022011
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿRE3_022011()
+ CodeRE021011%ÿCodeRE021011.RE021011
+ ÿ™"re022012"
+ ÿÉÿ`
+ ÿœ3
+ ÿÉÿœÿ¥CodeRE021011%ÿ™"Re022012"ÿ£CodeRE021011.re022012
+ ÿœ
+ ÿ’ÿÿ
+ 
+
+ 
+ 
+ '      ********************************************************
+ '      ** Routinen fr Formular GDV-Haft  ha21011            ** 
+ '      ********************************************************
+ 
+ 
+ÿÿha021011()
+ lfdnrtotal%ÿlfdnrtotal.kvertrag
+ lfdnr%ÿlfdnr.kvertrag
+ codege%ÿcodege.kvertrag
+ codeva%ÿcodeva.kvertrag
+ ÿ²"9999999999.999"
+ ÿÉÿ¥codege%ÿ™"Geadr"ÿ£codege.geadr
+ ÿÉÿ¥codeva%ÿ™"Sparten"ÿ£codeva.sparten
+ ÿ½ IF disabled%("GEADR") THEN END SUB 
+ ÿƒDFile(3,"al020011"ÿ_fpw$)
+ ÿƒDFile(3,"ha021011"ÿ_fpw$)
+ ÿƒDFile(3,"ha022011"ÿ_fpw$)
+ ÿƒDFile(3,"ha022012"ÿ_fpw$)
+ ÿƒDFile(3,"anl06"ÿ_fpw$)
+ ÿƒDFile(3,"anl08"ÿ_fpw$)
+ ÿƒDFile(3,"anl14"ÿ_fpw$)
+ ÿƒDFile(3,"anl24"ÿ_fpw$)
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.al020011)ÿp
+ÿÂ"Zu diesem Vertrag existiert kein GDV-Datensatz!","Wollen Sie einen GDV - Datensatz anlegen?",130,req%
+ÿ¡req%ÿ1ÿp
+ÿƒal020011Neu(lfdnr%)
+ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.ha021011)ÿpÿƒha021011Neu(lfdnr%)
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.al020011)ÿpÿwha021011End 
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.ha021011)ÿpÿwha021011End
+ ÿ½ FILE "ha021012"
+ ÿ½ INDEX lfdnrtotal.ha021012
+ ÿ™"ha021011"
+ ÿ£lfdnrtotal.ha021011
+ ÿÉÿ`
+ _formend%ÿ0
+ ÿØ_formend%ÿ0
+ÿ¡ÿ>(ÿœ)ÿ"HA"ÿp
+ÿÊÿŸtitle$ÿ"- Vertrag von:"ÿnachname.adressenÿÿ¡(Vorname.ADRESSENÿ"",","ÿÿ+(Vorname.ADRESSEN,1)ÿ".","")
+ÿ´ÿœGPrjForm$ÿ"HA"
+ÿÊf ÿSuperbase.Form
+ÿ½ CALL GEADRIntro()
+ÿ½ CALL MNGEADR()
+ÿÊÿË"GDV-Daten"
+ÿ’ÿ¡
+ÿÉÿœÿ¥lfdnrtotal%ÿ™"ha021011"ÿ£lfdnrtotal.ha021011
+ÿ½ SELECT FORM KEY lfdnrtotal% FILE "ha021012" INDEX lfdnrtotal.ha021012
+ÿ¬ÿ³
+ÿßÿ³
+GEADRsub%ÿ0
+ÿƒClearKBDBuffer()
+ÿœ
+ÿ½ f.abbruch.visible = 0
+ÿ½ f.abbruch.enabled = 0
+ÿ™"ha021011"
+ÿ¡GEADRsub%ÿ99ÿpÿÏÿ¥ÿÿ¬ÿÿß
+ÿ½ ** Tastaturabfrage
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒPSelectPrev()
+ÿæCrsRight%,PgDn%
+ÿƒPSelectNext()
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp_formend%ÿ1
+ÿÉÿæGEADRsub%
+ÿæ1
+ÿƒVertrUniRep(0,0,0,codege.geadr,0,0,0,0,1,ÿ1,tarif%)
+ÿ½ CALL LIST4()
+ÿæ99
+ÿ½ 110197
+ÿ¡disabled%("GEADRBEARB")ÿp
+ÿ^
+ÿßÿ³
+ÿ¬ÿe
+ÿ¡ÿA("geadr")ÿ0ÿpÿƒGEADRNeu()
+ÿ¡ÿíÿ1ÿp
+	ÿ½ 101296
+	_gesold$ÿGesellschaft.geadr
+	ÿƒButDesabled()
+	f.notiz.enabledÿ0
+	f.vertragsuebersicht.enabledÿ0
+	ÿ”gesellschaft.geadr,0
+	ÿƒButEnabled()
+	f.notiz.enabledÿÿ1
+	f.vertragsuebersicht.enabledÿÿ1
+ÿ^
+	ÿ”notiz.geadr,0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿÉ
+ÿ¡abbruch%ÿÿ1ÿp
+ÿÉÿœÿ¥lfdnrtotal%ÿ™"ha021011"ÿ£lfdnrtotal.ha021011
+ÿœ
+abbruch%ÿ0
+ÿ’ÿ¡
+ÿ¬ÿ³
+ ÿÙ
+ha021011End: 
+ _formend%ÿ0
+ ÿ™"Kvertrag"
+ ÿÉÿ¥lfdnr%ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ ÿ’ÿÿ
+ 
+ÿÿha021011Neu(lfdnr%)
+ ÿÉÿ¥lfdnr%ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ codege%ÿcodege.kvertrag
+ codeva%ÿcodeva.kvertrag
+ ÿÉÿ¥codege%ÿ™"Geadr"ÿ£codege.geadr
+ ÿ¡vunr.geadrÿ0ÿp
+ÿÿ™"ha021011"
+Codeha021011%ÿÿI("ha021011",1)
+Codeha021011.ha021011ÿCodeha021011%
+sart.ha021011ÿ0210
+vunr.ha021011ÿÿ(vunr.geadr,"00000")
+bkz.ha021011ÿ"0"
+sp.ha021011ÿ040
+ÿ½ satznr.ha021011 = 1
+lfdnr.ha021011ÿlfdnr%
+lfdnrtotal.ha021011ÿlfdnr%ÿ10000
+vsnr.ha021011ÿÿ+(ÿH(vs_nr.kvertrag),17)
+Workstation.ha021011ÿWorkstation%
+QWoNo.ha021011ÿÿ(Workstation%,"000000")ÿÿ(Codeha021011.ha021011,"000000")
+RecStatus.ha021011ÿ"c"
+ÿÌÿ™"ha021011"
+ÿ½ BLANK FILE "ha021012"
+ÿ½ Codeha021012.ha021012 = SER ("ha021012",1)
+ÿ½ Codeha021011.ha021012 = Codeha021011%
+ÿ½ sart.ha021012 = 0210
+ÿ½ bkz.ha021012 = "0"
+ÿ½ vsnr.ha021012 = vsnr.ha021011
+ÿ½ vunr.ha021012 = STR$ (vunr.geadr,"00000")
+ÿ½ sp.ha021012 = 010
+ÿ½ satznr.ha021012 = 2
+ÿ½ lfdnr.ha021012 = lfdnr%
+ÿ½ lfdnrtotal.ha021012 = lfdnr% * 10000
+ÿ½ STORE FILE "ha021012"
+ÿ½ CALL Fehler("TT","")
+ÿÿ™"ha022011"
+Codeha021011.ha022011ÿCodeha021011%
+lfdnr.ha022011ÿlfdnr%
+lfdnrtotal.ha022011ÿlfdnr%ÿ10000
+codeha022011.ha022011ÿÿI("ha022011",1)
+sart.ha022011ÿ0220
+vsnr.ha022011ÿvsnr.ha021011
+bkz.ha022011ÿ"0"
+vunr.ha022011ÿvunr.ha021011
+sp.ha022011ÿ040
+satznr.ha022011ÿ"1"
+ÿ½ namevp.ha022011 = "unbekannt"
+ÿ½ vnamevp.ha022011 = "unbekannt"
+ÿ½ berufkey.ha022011 = 0
+ÿ½ berufTxt.ha022011 = "<ohne Zuordnung>"
+Workstation.ha022011ÿWorkstation%
+QWoNo.ha022011ÿÿ(Workstation%,"000000")ÿÿ(Codeha022011.ha022011,"000000")
+RecStatus.ha022011ÿ"c"
+ÿÌÿ™"ha022011"
+ÿÿ™"ha022012"
+lfdnr.ha022012ÿlfdnr%
+lfdnrtotal.ha022012ÿlfdnr%ÿ10000
+codeha022012.ha022012ÿÿI("ha022012",1)
+Codeha021011.ha022012ÿCodeha021011%
+sart.ha022012ÿ0220
+vsnr.ha022012ÿvsnr.ha021011
+bkz.ha022012ÿ"0"
+vunr.ha022012ÿvunr.ha021011
+sp.ha022012ÿ040
+satznr.ha022012ÿ"2"
+Codeha021011.ha022012ÿCodeha021011%
+ÿ½ namevp.ha022011 = "unbekannt"
+ÿ½ vnamevp.ha022011 = "unbekannt"
+ÿ½ berufkey.ha022011 = 0
+ÿ½ berufTxt.ha022011 = "<ohne Zuordnung>"
+Workstation.ha022012ÿWorkstation%
+QWoNo.ha022012ÿÿ(Workstation%,"000000")ÿÿ(Codeha022012.ha022012,"000000")
+RecStatus.ha022012ÿ"c"
+ÿÌÿ™"ha022012"
+ ÿ^
+ÿƒFehler("Es kann kein GDV-Datensatz angelegt werden, da entweder keine Gesellschaft fr den Vertrag ausgew„hlt wurde","oder die gew„hlte Gesellschaft keinen GDV-VU-Nummerneintrag enth„lt!")
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ÿÿHA2_021011()
+ Codeha021011%ÿCodeha021011.ha021011
+ ÿ™"ha022011"
+ ÿÉÿ`
+ ÿœ2
+ ÿÉÿœÿ¥Codeha021011%ÿ™"ha022011"ÿ£Codeha021011.ha022011
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿHA3_022011()
+ Codeha021011%ÿCodeha021011.ha021011
+ ÿ™"ha022012"
+ ÿÉÿ`
+ ÿœ3
+ ÿÉÿœÿ¥Codeha021011%ÿ™"ha022012"ÿ£Codeha021011.ha022012
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ '      ********************************************************
+ '      ** Routinen fr Formular GDV-verkehr vs21011          ** 
+ '      ********************************************************
+ 
+ 
+ÿÿvs021011()
+ lfdnrtotal%ÿlfdnrtotal.kvertrag
+ lfdnr%ÿlfdnr.kvertrag
+ codege%ÿcodege.kvertrag
+ codeva%ÿcodeva.kvertrag
+ ÿ²"9999999999.999"
+ ÿÉÿ¥codege%ÿ™"Geadr"ÿ£codege.geadr
+ ÿÉÿ¥codeva%ÿ™"Sparten"ÿ£codeva.sparten
+ ÿ½ IF disabled%("GEADR") THEN END SUB 
+ ÿƒDFile(3,"al020011"ÿ_fpw$)
+ ÿƒDFile(3,"vs021011"ÿ_fpw$)
+ ÿƒDFile(3,"vs022011"ÿ_fpw$)
+ ÿƒDFile(3,"anl06"ÿ_fpw$)
+ ÿƒDFile(3,"anl08"ÿ_fpw$)
+ ÿƒDFile(3,"anl14"ÿ_fpw$)
+ ÿƒDFile(3,"anl24"ÿ_fpw$)
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.al020011)ÿp
+ÿÂ"Zu diesem Vertrag existiert kein GDV-Datensatz!","Wollen Sie einen GDV - Datensatz anlegen?",130,req%
+ÿ¡req%ÿ1ÿp
+ÿƒal020011Neu(lfdnr%)
+ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.vs021011)ÿpÿƒvs021011Neu(lfdnr%)
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.al020011)ÿpÿwvs021011End 
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.vs021011)ÿpÿwvs021011End 
+ 
+ ÿ½ FILE "vs021012"
+ ÿ½ INDEX lfdnrtotal.vs021012
+ ÿ™"vs021011"
+ ÿ£lfdnrtotal.vs021011
+ ÿÉÿ`
+ _formend%ÿ0
+ ÿØ_formend%ÿ0
+ÿ¡ÿ>(ÿœ)ÿ"VS"ÿp
+ÿÊÿŸtitle$ÿ"- Vertrag von:"ÿnachname.adressenÿÿ¡(Vorname.ADRESSENÿ"",","ÿÿ+(Vorname.ADRESSEN,1)ÿ".","")
+ÿ´ÿœGPrjForm$ÿ"VS"
+ÿÊf ÿSuperbase.Form
+ÿ½ CALL GEADRIntro()
+ÿ½ CALL MNGEADR()
+ÿÊÿË"GDV-Daten"
+ÿ’ÿ¡
+ÿÉÿœÿ¥lfdnrtotal%ÿ™"vs021011"ÿ£lfdnrtotal.vs021011
+ÿ½ SELECT FORM KEY lfdnrtotal% FILE "vs021012" INDEX lfdnrtotal.vs021012
+ÿ¬ÿ³
+ÿßÿ³
+GEADRsub%ÿ0
+ÿƒClearKBDBuffer()
+ÿœ
+ÿ½ f.abbruch.visible = 0
+ÿ½ f.abbruch.enabled = 0
+ÿ™"vs021011"
+ÿ¡GEADRsub%ÿ99ÿpÿÏÿ¥ÿÿ¬ÿÿß
+ÿ½ ** Tastaturabfrage
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒPSelectPrev()
+ÿæCrsRight%,PgDn%
+ÿƒPSelectNext()
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp_formend%ÿ1
+ÿÉÿæGEADRsub%
+ÿæ1
+ÿƒVertrUniRep(0,0,0,codege.geadr,0,0,0,0,1,ÿ1,tarif%)
+ÿ½ CALL LIST4()
+ÿæ99
+ÿ½ 110197
+ÿ¡disabled%("GEADRBEARB")ÿp
+ÿ^
+ÿßÿ³
+ÿ¬ÿe
+ÿ¡ÿA("geadr")ÿ0ÿpÿƒGEADRNeu()
+ÿ¡ÿíÿ1ÿp
+	ÿ½ 101296
+	_gesold$ÿGesellschaft.geadr
+	ÿƒButDesabled()
+	f.notiz.enabledÿ0
+	f.vertragsuebersicht.enabledÿ0
+	ÿ”gesellschaft.geadr,0
+	ÿƒButEnabled()
+	f.notiz.enabledÿÿ1
+	f.vertragsuebersicht.enabledÿÿ1
+ÿ^
+	ÿ”notiz.geadr,0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿÉ
+ÿ¡abbruch%ÿÿ1ÿp
+ÿÉÿœÿ¥lfdnrtotal%ÿ™"vs021011"ÿ£lfdnrtotal.vs021011
+ÿœ
+abbruch%ÿ0
+ÿ’ÿ¡
+ÿ¬ÿ³
+ ÿÙ
+vs021011End: 
+ _formend%ÿ0
+ ÿ™"Kvertrag"
+ ÿÉÿ¥lfdnr%ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ ÿ’ÿÿ
+ 
+ÿÿvs021011Neu(lfdnr%)
+ ÿÉÿ¥lfdnr%ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ codege%ÿcodege.kvertrag
+ codeva%ÿcodeva.kvertrag
+ ÿÉÿ¥codege%ÿ™"Geadr"ÿ£codege.geadr
+ ÿ¡vunr.geadrÿ0ÿp
+ÿÿ™"vs021011"
+Codevs021011%ÿÿI("vs021011",1)
+Codevs021011.vs021011ÿCodevs021011%
+sart.vs021011ÿ0210
+vunr.vs021011ÿÿ(vunr.geadr,"00000")
+bkz.vs021011ÿ"0"
+sp.vs021011ÿ510
+ÿ½ satznr.vs021011 = 1
+lfdnr.vs021011ÿlfdnr%
+lfdnrtotal.vs021011ÿlfdnr%ÿ10000
+vsnr.vs021011ÿÿ+(ÿH(vs_nr.kvertrag),17)
+Workstation.vs021011ÿWorkstation%
+QWoNo.vs021011ÿÿ(Workstation%,"000000")ÿÿ(Codevs021011.vs021011,"000000")
+RecStatus.vs021011ÿ"c"
+ÿÌÿ™"vs021011"
+ÿ½ BLANK FILE "vs021012"
+ÿ½ Codevs021012.vs021012 = SER ("vs021012",1)
+ÿ½ Codevs021011.vs021012 = Codevs021011%
+ÿ½ sart.vs021012 = 0210
+ÿ½ bkz.vs021012 = "0"
+ÿ½ vsnr.vs021012 = vsnr.vs021011
+ÿ½ vunr.vs021012 = STR$ (vunr.geadr,"00000")
+ÿ½ sp.vs021012 = 010
+ÿ½ satznr.vs021012 = 2
+ÿ½ lfdnr.vs021012 = lfdnr%
+ÿ½ lfdnrtotal.vs021012 = lfdnr% * 10000
+ÿ½ STORE FILE "vs021012"
+ÿ½ CALL Fehler("TT","")
+ÿÿ™"vs022011"
+Codevs021011.vs022011ÿCodevs021011%
+lfdnr.vs022011ÿlfdnr%
+lfdnrtotal.vs022011ÿlfdnr%ÿ10000
+codevs022011.vs022011ÿÿI("vs022011",1)
+sart.vs022011ÿ0220
+vsnr.vs022011ÿvsnr.vs021011
+bkz.vs022011ÿ"0"
+vunr.vs022011ÿvunr.vs021011
+sp.vs022011ÿ510
+anzfz.vs022011ÿ"1"
+lfdnrfz.vs022011ÿ"1"
+amtknz.vs022011ÿ"<neu>"
+ÿ½ berufkey.vs022011 = 0
+ÿ½ berufTxt.vs022011 = "<ohne Zuordnung>"
+Workstation.vs022011ÿWorkstation%
+QWoNo.vs022011ÿÿ(Workstation%,"000000")ÿÿ(Codevs022011.vs022011,"000000")
+RecStatus.vs022011ÿ"c"
+ÿÌÿ™"vs022011"
+ ÿ^
+ÿƒFehler("Es kann kein GDV-Datensatz angelegt werden, da entweder keine Gesellschaft fr den Vertrag ausgew„hlt wurde","oder die gew„hlte Gesellschaft keinen GDV-VU-Nummerneintrag enth„lt!")
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ÿÿVS2_022011()
+ Codevs022011%ÿCodevs022011.vs022011
+ ÿ½ FILE "vs022011"
+ ÿ½ SELECT FIRST 
+ ÿ½ FORM 2
+ ÿ½ SELECT FORM KEY Codevs021011% FILE "vs022011" INDEX Codevs021011.vs022011
+ ÿ½ FORM
+ ÿÉÿ¥codevs022011%ÿáÿ™"vs022011"ÿ£codevs022011.vs022011
+ ÿœ2
+ ÿ’ÿÿ
+ 
+ÿÿAdd_VS()
+ÿÉÿ¥lfdnr.vs021011ÿ™"vs022011"ÿ£lfdnr.vs022011
+vsanz%ÿÿ0(anzfz.vs022011)
+vsanz%ÿvsanz%ÿ1
+vsanz$ÿÿ(vsanz%,"9")
+ ÿÿ™"vs022011"
+Codevs021011.vs022011ÿCodevs021011.vs021011
+lfdnr.vs022011ÿlfdnr.vs021011
+lfdnrtotal.vs022011ÿlfdnrtotal.vs021011
+Codevs022011%ÿÿI("vs022011",1)
+codevs022011.vs022011ÿCodevs022011%
+sart.vs022011ÿ0220
+vsnr.vs022011ÿvsnr.vs021011
+bkz.vs022011ÿ"0"
+vunr.vs022011ÿvunr.vs021011
+sp.vs022011ÿ510
+anzfz.vs022011ÿvsanz$
+lfdnrfz.vs022011ÿvsanz$
+amtknz.vs022011ÿ"<neu>"
+ÿ½ berufkey.vs022011 = 0
+ÿ½ berufTxt.vs022011 = "<ohne Zuordnung>"
+Workstation.vs022011ÿWorkstation%
+QWoNo.vs022011ÿÿ(Workstation%,"000000")ÿÿ(Codevs022011.vs022011,"000000")
+RecStatus.vs022011ÿ"c"
+ÿÌÿ™"vs022011"
+
+ÿÍanzfz.vs022011ÿvsanz$
+ÿĞlfdnr.vs022011ÿlfdnr.vs021011
+ÿ’ÿÍ
+ 
+ÿœ
+ 
+ÿ’ÿÿ
+ 
+ '      ********************************************************
+ '      ** Routinen fr Formular GDV-hausrat ha21011          ** 
+ '      ********************************************************
+ 
+ 
+ÿÿvh021011()
+ lfdnrtotal%ÿlfdnrtotal.kvertrag
+ lfdnr%ÿlfdnr.kvertrag
+ codege%ÿcodege.kvertrag
+ codeva%ÿcodeva.kvertrag
+ ÿ²"9999999999.999"
+ ÿÉÿ¥codege%ÿ™"Geadr"ÿ£codege.geadr
+ ÿÉÿ¥codeva%ÿ™"Sparten"ÿ£codeva.sparten
+ ÿ½ IF disabled%("GEADR") THEN END SUB 
+ ÿƒDFile(3,"al020011"ÿ_fpw$)
+ ÿƒDFile(3,"vh021011"ÿ_fpw$)
+ ÿƒDFile(3,"vh022011"ÿ_fpw$)
+ ÿƒDFile(3,"anl06"ÿ_fpw$)
+ ÿƒDFile(3,"anl08"ÿ_fpw$)
+ ÿƒDFile(3,"anl14"ÿ_fpw$)
+ ÿƒDFile(3,"anl24"ÿ_fpw$)
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.al020011)ÿp
+ÿÂ"Zu diesem Vertrag existiert kein GDV-Datensatz!","Wollen Sie einen GDV - Datensatz anlegen?",130,req%
+ÿ¡req%ÿ1ÿp
+ÿƒal020011Neu(lfdnr%)
+ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.vh021011)ÿpÿƒvh021011Neu(lfdnr%)
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ 
+ 
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.al020011)ÿpÿwvh021011End 
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.vh021011)ÿpÿwvh021011End 
+ 
+ ÿ½ FILE "vh021012"
+ ÿ½ INDEX lfdnrtotal.vh021012
+ ÿ™"vh021011"
+ ÿ£lfdnrtotal.vh021011
+ ÿÉÿ`
+ _formend%ÿ0
+ ÿØ_formend%ÿ0
+ÿ¡ÿ>(ÿœ)ÿ"VH"ÿp
+ÿÊÿŸtitle$ÿ"- Vertrag von:"ÿnachname.adressenÿÿ¡(Vorname.ADRESSENÿ"",","ÿÿ+(Vorname.ADRESSEN,1)ÿ".","")
+ÿ´ÿœGPrjForm$ÿ"VH"
+ÿÊf ÿSuperbase.Form
+ÿ½ CALL GEADRIntro()
+ÿ½ CALL MNGEADR()
+ÿÊÿË"GDV-Daten"
+ÿ’ÿ¡
+ÿÉÿœÿ¥lfdnrtotal%ÿ™"vh021011"ÿ£lfdnrtotal.vh021011
+ÿ½ SELECT FORM KEY lfdnrtotal% FILE "vh021012" INDEX lfdnrtotal.vh021012
+ÿ¬ÿ³
+ÿßÿ³
+GEADRsub%ÿ0
+ÿƒClearKBDBuffer()
+ÿœ
+ÿ½ f.abbruch.visible = 0
+ÿ½ f.abbruch.enabled = 0
+ÿ™"vh021011"
+ÿ¡GEADRsub%ÿ99ÿpÿÏÿ¥ÿÿ¬ÿÿß
+ÿ½ ** Tastaturabfrage
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒPSelectPrev()
+ÿæCrsRight%,PgDn%
+ÿƒPSelectNext()
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp_formend%ÿ1
+ÿÉÿæGEADRsub%
+ÿæ1
+ÿƒVertrUniRep(0,0,0,codege.geadr,0,0,0,0,1,ÿ1,tarif%)
+ÿ½ CALL LIST4()
+ÿæ99
+ÿ½ 110197
+ÿ¡disabled%("GEADRBEARB")ÿp
+ÿ^
+ÿßÿ³
+ÿ¬ÿe
+ÿ¡ÿA("geadr")ÿ0ÿpÿƒGEADRNeu()
+ÿ¡ÿíÿ1ÿp
+	ÿ½ 101296
+	_gesold$ÿGesellschaft.geadr
+	ÿƒButDesabled()
+	f.notiz.enabledÿ0
+	f.vertragsuebersicht.enabledÿ0
+	ÿ”gesellschaft.geadr,0
+	ÿƒButEnabled()
+	f.notiz.enabledÿÿ1
+	f.vertragsuebersicht.enabledÿÿ1
+ÿ^
+	ÿ”notiz.geadr,0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿÉ
+ÿ¡abbruch%ÿÿ1ÿp
+ÿÉÿœÿ¥lfdnrtotal%ÿ™"vh021011"ÿ£lfdnrtotal.vh021011
+ÿœ
+abbruch%ÿ0
+ÿ’ÿ¡
+ÿ¬ÿ³
+ ÿÙ
+vh021011End: 
+ _formend%ÿ0
+ ÿ™"Kvertrag"
+ ÿÉÿ¥lfdnr%ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ ÿ’ÿÿ
+ 
+ÿÿvh021011Neu(lfdnr%)
+ ÿÉÿ¥lfdnr%ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ codege%ÿcodege.kvertrag
+ codeva%ÿcodeva.kvertrag
+ ÿÉÿ¥codege%ÿ™"Geadr"ÿ£codege.geadr
+ ÿ¡vunr.geadrÿ0ÿp
+ÿÿ™"vh021011"
+Codevh021011%ÿÿI("vh021011",1)
+Codevh021011.vh021011ÿCodevh021011%
+sart.vh021011ÿ0210
+vunr.vh021011ÿÿ(vunr.geadr,"00000")
+bkz.vh021011ÿ"0"
+sp.vh021011ÿ130
+ÿ½ satznr.vh021011 = 1
+lfdnr.vh021011ÿlfdnr%
+lfdnrtotal.vh021011ÿlfdnr%ÿ10000
+vsnr.vh021011ÿÿ+(ÿH(vs_nr.kvertrag),17)
+Workstation.vh021011ÿWorkstation%
+QWoNo.vh021011ÿÿ(Workstation%,"000000")ÿÿ(Codevh021011.vh021011,"000000")
+RecStatus.vh021011ÿ"c"
+ÿÌÿ™"vh021011"
+ÿ½ BLANK FILE "vh021012"
+ÿ½ Codevh021012.vh021012 = SER ("vh021012",1)
+ÿ½ Codevh021011.vh021012 = Codevh021011%
+ÿ½ sart.vh021012 = 0210
+ÿ½ bkz.vh021012 = "0"
+ÿ½ vsnr.vh021012 = vsnr.vh021011
+ÿ½ vunr.vh021012 = STR$ (vunr.geadr,"00000")
+ÿ½ sp.vh021012 = 010
+ÿ½ satznr.vh021012 = 2
+ÿ½ lfdnr.vh021012 = lfdnr%
+ÿ½ lfdnrtotal.vh021012 = lfdnr% * 10000
+ÿ½ STORE FILE "vh021012"
+ÿ½ CALL Fehler("TT","")
+ÿÿ™"vh022011"
+Codevh021011.vh022011ÿCodevh021011%
+lfdnr.vh022011ÿlfdnr%
+lfdnrtotal.vh022011ÿlfdnr%ÿ10000
+codevh022011.vh022011ÿÿI("vh022011",1)
+sart.vh022011ÿ0220
+vsnr.vh022011ÿvsnr.vh021011
+bkz.vh022011ÿ"0"
+vunr.vh022011ÿvunr.vh021011
+sp.vh022011ÿ130
+wkey.vh022011ÿ"999"
+ÿ½ berufkey.vh022011 = 0
+ÿ½ berufTxt.vh022011 = "<ohne Zuordnung>"
+Workstation.vh022011ÿWorkstation%
+QWoNo.vh022011ÿÿ(Workstation%,"000000")ÿÿ(Codevh022011.vh022011,"000000")
+RecStatus.vh022011ÿ"c"
+ÿÌÿ™"vh022011"
+ ÿ^
+ÿƒFehler("Es kann kein GDV-Datensatz angelegt werden, da entweder keine Gesellschaft fr den Vertrag ausgew„hlt wurde","oder die gew„hlte Gesellschaft keinen GDV-VU-Nummerneintrag enth„lt!")
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ÿÿVH2_022011()
+ Codevh022011%ÿCodevh022011.vh022011
+ ÿ½ FILE "vh022011"
+ ÿ½ SELECT FIRST 
+ ÿ½ FORM 2
+ ÿ½ SELECT FORM KEY Codevh021011% FILE "vh022011" INDEX Codevh021011.vh022011
+ ÿ½ FORM
+ ÿÉÿ¥codevh022011%ÿáÿ™"vh022011"ÿ£codevh022011.vh022011
+ ÿœ3
+ ÿ’ÿÿ
+ 
+ 
+ÿÿAdd_VH()
+ ÿÿ™"vh022011"
+Codevh021011.vh022011ÿCodevh021011.vh021011
+lfdnr.vh022011ÿlfdnr.vh021011
+lfdnrtotal.vh022011ÿlfdnrtotal.vh021011
+Codevh022011%ÿÿI("vh022011",1)
+codevh022011.vh022011ÿCodevh022011%
+sart.vh022011ÿ0220
+vsnr.vh022011ÿvsnr.vh021011
+bkz.vh022011ÿ"0"
+vunr.vh022011ÿvunr.vh021011
+sp.vh022011ÿ510
+wkey.vh022011ÿ"999"
+Workstation.vh022011ÿWorkstation%
+QWoNo.vh022011ÿÿ(Workstation%,"000000")ÿÿ(Codevh022011.vh022011,"000000")
+RecStatus.vh022011ÿ"c"
+ÿÌÿ™"vh022011"
+
+ÿœ
+ 
+ÿ’ÿÿ
+ 
+ 
+ '      ********************************************************
+ '      ** Routinen fr Formular GDV-feuer fu21011            ** 
+ '      ********************************************************
+ 
+ 
+ÿÿfu021011()
+ lfdnrtotal%ÿlfdnrtotal.kvertrag
+ lfdnr%ÿlfdnr.kvertrag
+ codege%ÿcodege.kvertrag
+ codeva%ÿcodeva.kvertrag
+ ÿ²"9999999999.999"
+ ÿÉÿ¥codege%ÿ™"Geadr"ÿ£codege.geadr
+ ÿÉÿ¥codeva%ÿ™"Sparten"ÿ£codeva.sparten
+ ÿ½ IF disabled%("GEADR") THEN END SUB 
+ ÿƒDFile(3,"al020011"ÿ_fpw$)
+ ÿƒDFile(3,"fu021011"ÿ_fpw$)
+ ÿƒDFile(3,"fu022011"ÿ_fpw$)
+ ÿƒDFile(3,"fu022012"ÿ_fpw$)
+ ÿƒDFile(3,"vh022011"ÿ_fpw$)
+ ÿƒDFile(3,"anl06"ÿ_fpw$)
+ ÿƒDFile(3,"anl08"ÿ_fpw$)
+ ÿƒDFile(3,"anl14"ÿ_fpw$)
+ ÿƒDFile(3,"anl24"ÿ_fpw$)
+ 
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.al020011)ÿp
+ÿÂ"Zu diesem Vertrag existiert kein GDV-Datensatz!","Wollen Sie einen GDV - Datensatz anlegen?",130,req%
+ÿ¡req%ÿ1ÿp
+ÿƒal020011Neu(lfdnr%)
+ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.fu021011)ÿpÿƒfu021011Neu(lfdnr%)
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.al020011)ÿpÿwfu021011End 
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.fu021011)ÿpÿwfu021011End 
+ 
+ ÿ½ FILE "fu021012"
+ ÿ½ INDEX lfdnrtotal.fu021012
+ ÿ™"fu021011"
+ ÿ£lfdnrtotal.fu021011
+ ÿÉÿ`
+ _formend%ÿ0
+ ÿØ_formend%ÿ0
+ÿ¡ÿ>(ÿœ)ÿ"FU"ÿp
+ÿÊÿŸtitle$ÿ"- Vertrag von:"ÿnachname.adressenÿÿ¡(Vorname.ADRESSENÿ"",","ÿÿ+(Vorname.ADRESSEN,1)ÿ".","")
+ÿ´ÿœGPrjForm$ÿ"FU"
+ÿÊf ÿSuperbase.Form
+ÿ½ CALL GEADRIntro()
+ÿ½ CALL MNGEADR()
+ÿÊÿË"GDV-Daten"
+ÿ’ÿ¡
+ÿÉÿœÿ¥lfdnrtotal%ÿ™"fu021011"ÿ£lfdnrtotal.fu021011
+ÿ½ SELECT FORM KEY lfdnrtotal% FILE "fu021012" INDEX lfdnrtotal.fu021012
+ÿ¬ÿ³
+ÿßÿ³
+GEADRsub%ÿ0
+ÿƒClearKBDBuffer()
+ÿœ
+ÿ½ f.abbruch.visible = 0
+ÿ½ f.abbruch.enabled = 0
+ÿ™"fu021011"
+ÿ¡GEADRsub%ÿ99ÿpÿÏÿ¥ÿÿ¬ÿÿß
+ÿ½ ** Tastaturabfrage
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒPSelectPrev()
+ÿæCrsRight%,PgDn%
+ÿƒPSelectNext()
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp_formend%ÿ1
+ÿÉÿæGEADRsub%
+ÿæ1
+ÿƒVertrUniRep(0,0,0,codege.geadr,0,0,0,0,1,ÿ1,tarif%)
+ÿ½ CALL LIST4()
+ÿæ99
+ÿ½ 110197
+ÿ¡disabled%("GEADRBEARB")ÿp
+ÿ^
+ÿßÿ³
+ÿ¬ÿe
+ÿ¡ÿA("geadr")ÿ0ÿpÿƒGEADRNeu()
+ÿ¡ÿíÿ1ÿp
+	ÿ½ 101296
+	_gesold$ÿGesellschaft.geadr
+	ÿƒButDesabled()
+	f.notiz.enabledÿ0
+	f.vertragsuebersicht.enabledÿ0
+	ÿ”gesellschaft.geadr,0
+	ÿƒButEnabled()
+	f.notiz.enabledÿÿ1
+	f.vertragsuebersicht.enabledÿÿ1
+ÿ^
+	ÿ”notiz.geadr,0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿÉ
+ÿ¡abbruch%ÿÿ1ÿp
+ÿÉÿœÿ¥lfdnrtotal%ÿ™"fu021011"ÿ£lfdnrtotal.fu021011
+ÿœ
+abbruch%ÿ0
+ÿ’ÿ¡
+ÿ¬ÿ³
+ ÿÙ
+fu021011End: 
+ _formend%ÿ0
+ ÿ™"Kvertrag"
+ ÿÉÿ¥lfdnr%ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ ÿ’ÿÿ
+ 
+ÿÿfu021011Neu(lfdnr%)
+ ÿÉÿ¥lfdnr%ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ codege%ÿcodege.kvertrag
+ codeva%ÿcodeva.kvertrag
+ ÿÉÿ¥codege%ÿ™"Geadr"ÿ£codege.geadr
+ ÿ¡vunr.geadrÿ0ÿp
+ÿÿ™"fu021011"
+Codefu021011%ÿÿI("fu021011",1)
+Codefu021011.fu021011ÿCodefu021011%
+sart.fu021011ÿ0210
+vunr.fu021011ÿÿ(vunr.geadr,"00000")
+bkz.fu021011ÿ"0"
+sp.fu021011ÿ130
+ÿ½ satznr.fu021011 = 1
+lfdnr.fu021011ÿlfdnr%
+lfdnrtotal.fu021011ÿlfdnr%ÿ10000
+vsnr.fu021011ÿÿ+(ÿH(vs_nr.kvertrag),17)
+Workstation.fu021011ÿWorkstation%
+QWoNo.fu021011ÿÿ(Workstation%,"000000")ÿÿ(Codefu021011.fu021011,"000000")
+RecStatus.fu021011ÿ"c"
+ÿÌÿ™"fu021011"
+ÿ½ BLANK FILE "vh021012"
+ÿ½ Codevh021012.vh021012 = SER ("vh021012",1)
+ÿ½ Codefu021011.vh021012 = Codefu021011%
+ÿ½ sart.vh021012 = 0210
+ÿ½ bkz.vh021012 = "0"
+ÿ½ vsnr.vh021012 = vsnr.fu021011
+ÿ½ vunr.vh021012 = STR$ (vunr.geadr,"00000")
+ÿ½ sp.vh021012 = 010
+ÿ½ satznr.vh021012 = 2
+ÿ½ lfdnr.vh021012 = lfdnr%
+ÿ½ lfdnrtotal.vh021012 = lfdnr% * 10000
+ÿ½ STORE FILE "vh021012"
+ÿ½ CALL Fehler("TT","")
+ÿÿ™"vh022011"
+Codefu021011.vh022011ÿCodefu021011%
+lfdnr.vh022011ÿlfdnr%
+lfdnrtotal.vh022011ÿlfdnr%ÿ10000
+codevh022011.vh022011ÿÿI("vh022011",1)
+sart.vh022011ÿ0220
+vsnr.vh022011ÿvsnr.fu021011
+bkz.vh022011ÿ"0"
+vunr.vh022011ÿvunr.fu021011
+sp.vh022011ÿ130
+wkey.vh022011ÿ"999"
+ÿ½ berufkey.vh022011 = 0
+ÿ½ berufTxt.vh022011 = "<ohne Zuordnung>"
+Workstation.vh022011ÿWorkstation%
+QWoNo.vh022011ÿÿ(Workstation%,"000000")ÿÿ(Codevh022011.vh022011,"000000")
+RecStatus.vh022011ÿ"c"
+ÿÌÿ™"vh022011"
+ ÿ^
+ÿƒFehler("Es kann kein GDV-Datensatz angelegt werden, da entweder keine Gesellschaft fr den Vertrag ausgew„hlt wurde","oder die gew„hlte Gesellschaft keinen GDV-VU-Nummerneintrag enth„lt!")
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ÿÿFU2_022011()
+ Codefu022011%ÿCodefu022011.fu022011
+ ÿ½ FILE "vh022011"
+ ÿ½ SELECT FIRST 
+ ÿ½ FORM 2
+ ÿ½ SELECT FORM KEY Codevh021011% FILE "vh022011" INDEX Codevh021011.vh022011
+ ÿ½ FORM
+ ÿÉÿ¥codefu022011%ÿáÿ™"fu022011"ÿ£codefu022011.fu022011
+ ÿœ3
+ ÿ’ÿÿ
+ 
+ÿÿFU3_022011()
+ CodeFU021011%ÿCodeFU021011.FU022011
+ ÿ™"fu022012"
+ ÿÉÿ`
+ ÿœ4
+ ÿÉÿœÿ¥Codefu021011%ÿ™"fu022012"ÿ£Codefu021011.fu022012
+ ÿœ
+ ÿ’ÿÿ
+
+
+
+ 
+ÿÿAdd_VH()
+ ÿÿ™"vh022011"
+Codefu021011.vh022011ÿCodefu021011.fu021011
+lfdnr.vh022011ÿlfdnr.fu021011
+lfdnrtotal.vh022011ÿlfdnrtotal.fu021011
+Codevh022011%ÿÿI("vh022011",1)
+codevh022011.vh022011ÿCodevh022011%
+sart.vh022011ÿ0220
+vsnr.vh022011ÿvsnr.fu021011
+bkz.vh022011ÿ"0"
+vunr.vh022011ÿvunr.fu021011
+sp.vh022011ÿ510
+wkey.vh022011ÿ"999"
+Workstation.vh022011ÿWorkstation%
+QWoNo.vh022011ÿÿ(Workstation%,"000000")ÿÿ(Codevh022011.vh022011,"000000")
+RecStatus.vh022011ÿ"c"
+ÿÌÿ™"vh022011"
+
+ÿœ
+ 
+ÿ’ÿÿ
+ 
+ '      ********************************************************
+ '      ** Routinen fr Formular GDV-GLAS gl21011             ** 
+ '      ********************************************************
+ 
+ 
+ÿÿgl021011()
+ lfdnrtotal%ÿlfdnrtotal.kvertrag
+ lfdnr%ÿlfdnr.kvertrag
+ codege%ÿcodege.kvertrag
+ codeva%ÿcodeva.kvertrag
+ ÿ²"9999999999.999"
+ ÿÉÿ¥codege%ÿ™"Geadr"ÿ£codege.geadr
+ ÿÉÿ¥codeva%ÿ™"Sparten"ÿ£codeva.sparten
+ ÿ½ IF disabled%("GEADR") THEN END SUB 
+ ÿƒDFile(3,"al020011"ÿ_fpw$)
+ ÿƒDFile(3,"gl021011"ÿ_fpw$)
+ ÿƒDFile(3,"gl022011"ÿ_fpw$)
+ ÿƒDFile(3,"anl19"ÿ_fpw$)
+ ÿƒDFile(3,"anl20"ÿ_fpw$)
+ ÿƒDFile(3,"anl24"ÿ_fpw$)
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.al020011)ÿp
+ÿÂ"Zu diesem Vertrag existiert kein GDV-Datensatz!","Wollen Sie einen GDV - Datensatz anlegen?",130,req%
+ÿ¡req%ÿ1ÿp
+ÿƒal020011Neu(lfdnr%)
+ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.fu021011)ÿpÿƒgl021011Neu(lfdnr%)
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.al020011)ÿpÿwgl021011End1
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.gl021011)ÿpÿwgl021011End1
+ 
+ ÿ½ FILE "gl021012"
+ ÿ½ INDEX lfdnrtotal.gl021012
+ ÿ™"gl021011"
+ ÿ£lfdnrtotal.gl021011
+ ÿÉÿ`
+ _formend%ÿ0
+ ÿØ_formend%ÿ0
+ÿ¡ÿ>(ÿœ)ÿ"GL"ÿp
+ÿÊÿŸtitle$ÿ"- Vertrag von:"ÿnachname.adressenÿÿ¡(Vorname.ADRESSENÿ"",","ÿÿ+(Vorname.ADRESSEN,1)ÿ".","")
+ÿ´ÿœGPrjForm$ÿ"GL"
+ÿÊf ÿSuperbase.Form
+ÿ½ CALL GEADRIntro()
+ÿ½ CALL MNGEADR()
+ÿÊÿË"GDV-Daten"
+ÿ’ÿ¡
+ÿÉÿœÿ¥lfdnrtotal%ÿ™"gl021011"ÿ£lfdnrtotal.gl021011
+ÿ½ SELECT FORM KEY lfdnrtotal% FILE "gl021012" INDEX lfdnrtotal.gl021012
+ÿ¬ÿ³
+ÿßÿ³
+GEADRsub%ÿ0
+ÿƒClearKBDBuffer()
+ÿœ
+ÿ½ f.abbruch.visible = 0
+ÿ½ f.abbruch.enabled = 0
+ÿ™"gl021011"
+ÿ¡GEADRsub%ÿ99ÿpÿÏÿ¥ÿÿ¬ÿÿß
+ÿ½ ** Tastaturabfrage
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒPSelectPrev()
+ÿæCrsRight%,PgDn%
+ÿƒPSelectNext()
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp_formend%ÿ1
+ÿÉÿæGEADRsub%
+ÿæ1
+ÿƒVertrUniRep(0,0,0,codege.geadr,0,0,0,0,1,ÿ1,tarif%)
+ÿ½ CALL LIST4()
+ÿæ99
+ÿ½ 110197
+ÿ¡disabled%("GEADRBEARB")ÿp
+ÿ^
+ÿßÿ³
+ÿ¬ÿe
+ÿ¡ÿA("geadr")ÿ0ÿpÿƒGEADRNeu()
+ÿ¡ÿíÿ1ÿp
+	ÿ½ 101296
+	_gesold$ÿGesellschaft.geadr
+	ÿƒButDesabled()
+	f.notiz.enabledÿ0
+	f.vertragsuebersicht.enabledÿ0
+	ÿ”gesellschaft.geadr,0
+	ÿƒButEnabled()
+	f.notiz.enabledÿÿ1
+	f.vertragsuebersicht.enabledÿÿ1
+ÿ^
+	ÿ”notiz.geadr,0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿÉ
+ÿ¡abbruch%ÿÿ1ÿp
+ÿÉÿœÿ¥lfdnrtotal%ÿ™"gl021011"ÿ£lfdnrtotal.gl021011
+ÿœ
+abbruch%ÿ0
+ÿ’ÿ¡
+ÿ¬ÿ³
+ ÿÙ
+gl021011End1: 
+ _formend%ÿ0
+ ÿ™"Kvertrag"
+ ÿÉÿ¥lfdnr%ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ ÿ’ÿÿ
+ 
+
+ÿÿGL2_022011()
+ Codegl022011%ÿCodegl022011.gl022011
+ ÿ½ FILE "vs022011"
+ ÿ½ SELECT FIRST 
+ ÿ½ FORM 2
+ ÿ½ SELECT FORM KEY Codevs021011% FILE "vs022011" INDEX Codevs021011.vs022011
+ ÿ½ FORM
+ ÿÉÿ¥codegl022011%ÿáÿ™"gl022011"ÿ£codegl022011.gl022011
+ ÿœ3
+ ÿ’ÿÿ
+
+
+
+
+ 
+ '      ********************************************************
+ '      ** Routinen fr Formular GDV-transport tr21011        ** 
+ '      ********************************************************
+ 
+ 
+ÿÿtr021011()
+ lfdnrtotal%ÿlfdnrtotal.kvertrag
+ lfdnr%ÿlfdnr.kvertrag
+ codege%ÿcodege.kvertrag
+ codeva%ÿcodeva.kvertrag
+ ÿ²"9999999999.999"
+ ÿÉÿ¥codege%ÿ™"Geadr"ÿ£codege.geadr
+ ÿÉÿ¥codeva%ÿ™"Sparten"ÿ£codeva.sparten
+ ÿ½ IF disabled%("GEADR") THEN END SUB 
+ ÿƒDFile(3,"al020011"ÿ_fpw$)
+ ÿƒDFile(3,"tr021011"ÿ_fpw$)
+ ÿƒDFile(3,"tr022011"ÿ_fpw$)
+ ÿƒDFile(3,"tr022012"ÿ_fpw$)
+ ÿƒDFile(3,"tr025011"ÿ_fpw$)
+ ÿƒDFile(3,"tr025012"ÿ_fpw$)
+ ÿƒDFile(3,"tr026011"ÿ_fpw$)
+ ÿƒDFile(3,"anl19"ÿ_fpw$)
+ ÿƒDFile(3,"anl20"ÿ_fpw$)
+ ÿƒDFile(3,"anl24"ÿ_fpw$)
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.al020011)ÿp
+req%ÿ0
+ÿÂ"Zu diesem Vertrag existiert kein GDV-Datensatz!","",2
+ÿ¡req%ÿ1ÿp
+ÿ½ CALL al020011Neu(lfdnr%)
+ÿ½ IF NOT EXISTS (lfdnrtotal%,lfdnrtotal.fu021011) THEN CALL tr021011Neu(lfdnr%)
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.al020011)ÿpÿwtr021011 ÿ’
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.tr021011)ÿpÿwtr021011 ÿ’
+ 
+ ÿ½ FILE "tr021012"
+ ÿ½ INDEX lfdnrtotal.tr021012
+ ÿ™"tr021011"
+ ÿ£lfdnrtotal.tr021011
+ ÿÉÿ`
+ _formend%ÿ0
+ ÿØ_formend%ÿ0
+ÿ¡ÿ>(ÿœ)ÿ"TR"ÿp
+ÿÊÿŸtitle$ÿ"- Vertrag von:"ÿnachname.adressenÿÿ¡(Vorname.ADRESSENÿ"",","ÿÿ+(Vorname.ADRESSEN,1)ÿ".","")
+ÿ´ÿœGPrjForm$ÿ"TR"
+ÿÊf ÿSuperbase.Form
+ÿ½ CALL GEADRIntro()
+ÿ½ CALL MNGEADR()
+ÿÊÿË"GDV-Daten"
+ÿ’ÿ¡
+ÿÉÿœÿ¥lfdnrtotal%ÿ™"tr021011"ÿ£lfdnrtotal.tr021011
+ÿ½ SELECT FORM KEY lfdnrtotal% FILE "tr021012" INDEX lfdnrtotal.tr021012
+ÿ¬ÿ³
+ÿßÿ³
+GEADRsub%ÿ0
+ÿƒClearKBDBuffer()
+ÿœ
+ÿ½ f.abbruch.visible = 0
+ÿ½ f.abbruch.enabled = 0
+ÿ™"tr021011"
+ÿ¡GEADRsub%ÿ99ÿpÿÏÿ¥ÿÿ¬ÿÿß
+ÿ½ ** Tastaturabfrage
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒPSelectPrev()
+ÿæCrsRight%,PgDn%
+ÿƒPSelectNext()
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp_formend%ÿ1
+ÿÉÿæGEADRsub%
+ÿæ1
+ÿƒVertrUniRep(0,0,0,codege.geadr,0,0,0,0,1,ÿ1,tarif%)
+ÿ½ CALL LIST4()
+ÿæ99
+ÿ½ 110197
+ÿ¡disabled%("GEADRBEARB")ÿp
+ÿ^
+ÿßÿ³
+ÿ¬ÿe
+ÿ¡ÿA("geadr")ÿ0ÿpÿƒGEADRNeu()
+ÿ¡ÿíÿ1ÿp
+	ÿ½ 101296
+	_gesold$ÿGesellschaft.geadr
+	ÿƒButDesabled()
+	f.notiz.enabledÿ0
+	f.vertragsuebersicht.enabledÿ0
+	ÿ”gesellschaft.geadr,0
+	ÿƒButEnabled()
+	f.notiz.enabledÿÿ1
+	f.vertragsuebersicht.enabledÿÿ1
+ÿ^
+	ÿ”notiz.geadr,0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿÉ
+ÿ¡abbruch%ÿÿ1ÿp
+ÿÉÿœÿ¥lfdnrtotal%ÿ™"tr021011"ÿ£lfdnrtotal.tr021011
+ÿœ
+abbruch%ÿ0
+ÿ’ÿ¡
+ÿ¬ÿ³
+ ÿÙ
+tr021011End: 
+ _formend%ÿ0
+ ÿ™"Kvertrag"
+ ÿÉÿ¥lfdnr%ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ ÿ’ÿÿ
+ 
+
+ÿÿTR2_021011()
+ Codetr021011%ÿCodetr021011.tr021011
+ ÿ™"tr022011"
+ ÿÉÿ`
+ ÿœ2
+ ÿÉÿœÿ¥Codetr021011%ÿ™"tr022011"ÿ£Codetr021011.tr022011
+ ÿœ
+ ÿ’ÿÿ
+
+ÿÿTR3_022011()
+ Codetr021011%ÿCodetr021011.tr021011
+ ÿ™"tr022012"
+ ÿÉÿ`
+ ÿœ3
+ ÿÉÿœÿ¥Codetr021011%ÿ™"tr022012"ÿ£Codetr021011.tr022012
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿTR4_021011()
+ Codetr021011%ÿCodetr021011.tr021011
+ ÿ™"tr025011"
+ ÿÉÿ`
+ ÿœ4
+ ÿÉÿœÿ¥Codetr021011%ÿ™"tr025011"ÿ£Codetr021011.tr025011
+ ÿœ
+ ÿ’ÿÿ
+
+ÿÿTR5_021011()
+ Codetr021011%ÿCodetr021011.tr021011
+ ÿ™"tr025012"
+ ÿÉÿ`
+ ÿœ5
+ ÿÉÿœÿ¥Codetr021011%ÿ™"tr025012"ÿ£Codetr021011.tr025012
+ ÿœ
+ ÿ’ÿÿ
+
+ÿÿTR6_021011()
+ Codetr021011%ÿCodetr021011.tr021011
+ ÿ™"tr026011"
+ ÿÉÿ`
+ ÿœ6
+ ÿÉÿœÿ¥Codetr021011%ÿ™"tr026011"ÿ£Codetr021011.tr026011
+ ÿœ
+ ÿ’ÿÿ
+ 
+
+ '      ********************************************************
+ '      ** Routinen fr Formular GDV-Unfall un21011           ** 
+ '      ******************************************************** 
+
+
+ÿÿun021011()
+ lfdnrtotal%ÿlfdnrtotal.kvertrag
+ lfdnr%ÿlfdnr.kvertrag
+ codege%ÿcodege.kvertrag
+ codeva%ÿcodeva.kvertrag
+ ÿ²"9999999999.999"
+ ÿÉÿ¥codege%ÿ™"Geadr"ÿ£codege.geadr
+ ÿÉÿ¥codeva%ÿ™"Sparten"ÿ£codeva.sparten
+ ÿ½ IF disabled%("GEADR") THEN END SUB 
+ ÿƒDFile(3,"al020011"ÿ_fpw$)
+ ÿƒDFile(3,"un021011"ÿ_fpw$)
+ ÿƒDFile(3,"un022011"ÿ_fpw$)
+ ÿƒDFile(3,"un022012"ÿ_fpw$)
+ ÿƒDFile(3,"un022013"ÿ_fpw$)
+ ÿƒDFile(3,"un022014"ÿ_fpw$)
+ ÿƒDFile(3,"un022019"ÿ_fpw$)
+ ÿƒDFile(3,"anl19"ÿ_fpw$)
+ ÿƒDFile(3,"anl20"ÿ_fpw$)
+ ÿƒDFile(3,"anl24"ÿ_fpw$)
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.al020011)ÿp
+req%ÿ0
+ÿÂ"Zu diesem Vertrag existiert kein GDV-Datensatz!","",2
+ÿ¡req%ÿ1ÿp
+ÿ½ CALL al020011Neu(lfdnr%)
+ÿ½ IF NOT EXISTS (lfdnrtotal%,lfdnrtotal.fu021011) THEN CALL tr021011Neu(lfdnr%)
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.al020011)ÿpÿwun021011end1 
+ ÿ¡ÿOÿJ(lfdnrtotal%,lfdnrtotal.un021011)ÿpÿwun021011end1 
+ 
+ ÿ½ FILE "tr021012"
+ ÿ½ INDEX lfdnrtotal.tr021012
+ ÿ™"un021011"
+ ÿ£lfdnrtotal.un021011
+ ÿÉÿ`
+ _formend%ÿ0
+ ÿØ_formend%ÿ0
+ÿ¡ÿ>(ÿœ)ÿ"UN"ÿp
+ÿÊÿŸtitle$ÿ"- Vertrag von:"ÿnachname.adressenÿÿ¡(Vorname.ADRESSENÿ"",","ÿÿ+(Vorname.ADRESSEN,1)ÿ".","")
+ÿ´ÿœGPrjForm$ÿ"UN"
+ÿÊf ÿSuperbase.Form
+ÿ½ CALL GEADRIntro()
+ÿ½ CALL MNGEADR()
+ÿÊÿË"GDV-Daten"
+ÿ’ÿ¡
+ÿÉÿœÿ¥lfdnrtotal%ÿ™"un021011"ÿ£lfdnrtotal.un021011
+ÿ½ SELECT FORM KEY lfdnrtotal% FILE "tr021012" INDEX lfdnrtotal.tr021012
+ÿ¬ÿ³
+ÿßÿ³
+GEADRsub%ÿ0
+ÿƒClearKBDBuffer()
+ÿœ
+ÿ½ f.abbruch.visible = 0
+ÿ½ f.abbruch.enabled = 0
+ÿ™"un021011"
+ÿ¡GEADRsub%ÿ99ÿpÿÏÿ¥ÿÿ¬ÿÿß
+ÿ½ ** Tastaturabfrage
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒPSelectPrev()
+ÿæCrsRight%,PgDn%
+ÿƒPSelectNext()
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp_formend%ÿ1
+ÿÉÿæGEADRsub%
+ÿæ1
+ÿƒVertrUniRep(0,0,0,codege.geadr,0,0,0,0,1,ÿ1,tarif%)
+ÿ½ CALL LIST4()
+ÿæ99
+ÿ½ 110197
+ÿ¡disabled%("GEADRBEARB")ÿp
+ÿ^
+ÿßÿ³
+ÿ¬ÿe
+ÿ¡ÿA("geadr")ÿ0ÿpÿƒGEADRNeu()
+ÿ¡ÿíÿ1ÿp
+	ÿ½ 101296
+	_gesold$ÿGesellschaft.geadr
+	ÿƒButDesabled()
+	f.notiz.enabledÿ0
+	f.vertragsuebersicht.enabledÿ0
+	ÿ”gesellschaft.geadr,0
+	ÿƒButEnabled()
+	f.notiz.enabledÿÿ1
+	f.vertragsuebersicht.enabledÿÿ1
+ÿ^
+	ÿ”notiz.geadr,0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿÉ
+ÿ¡abbruch%ÿÿ1ÿp
+ÿÉÿœÿ¥lfdnrtotal%ÿ™"tr021011"ÿ£lfdnrtotal.tr021011
+ÿœ
+abbruch%ÿ0
+ÿ’ÿ¡
+ÿ¬ÿ³
+ ÿÙ
+un021011end1: 
+ _formend%ÿ0
+ ÿ™"Kvertrag"
+ ÿÉÿ¥lfdnr%ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ ÿ’ÿÿ
+ 
+ 
+ÿÿUN2_021011()
+ Codeun021011%ÿCodeun021011.un021011
+ ÿ™"un022011"
+ ÿÉÿ`
+ ÿœ2
+ ÿÉÿœÿ¥Codeun021011%ÿ™"un022011"ÿ£Codeun021011.un022011
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿTR3_022011()
+ Codetr021011%ÿCodetr021011.tr021011
+ ÿ™"tr022012"
+ ÿÉÿ`
+ ÿœ3
+ ÿÉÿœÿ¥Codetr021011%ÿ™"tr022012"ÿ£Codetr021011.tr022012
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿTR4_021011()
+ Codetr021011%ÿCodetr021011.tr021011
+ ÿ™"tr025011"
+ ÿÉÿ`
+ ÿœ4
+ ÿÉÿœÿ¥Codetr021011%ÿ™"tr025011"ÿ£Codetr021011.tr025011
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿTR5_021011()
+ Codetr021011%ÿCodetr021011.tr021011
+ ÿ™"tr025012"
+ ÿÉÿ`
+ ÿœ5
+ ÿÉÿœÿ¥Codetr021011%ÿ™"tr025012"ÿ£Codetr021011.tr025012
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿTR6_021011()
+ Codetr021011%ÿCodetr021011.tr021011
+ ÿ™"tr026011"
+ ÿÉÿ`
+ ÿœ6
+ ÿÉÿœÿ¥Codetr021011%ÿ™"tr026011"ÿ£Codetr021011.tr026011
+ ÿœ
+ ÿ’ÿÿ
+ 
+

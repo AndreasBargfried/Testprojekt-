@@ -1,0 +1,6766 @@
+SBP
+ÿƒmain()
+ÿÿGDVImport()
+GGDVistAN%ÿÿ1
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+ÿ½ ***** Globale Variablen *******************************
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+ ÿ¡gdvVarDek%ÿ0ÿp
+ÿÿGID$,gdvStand$,gdvAnzeige$,gdvBegrundung$
+ÿÿgdvPath$,gdvdatpath$,gdvbkuppath$
+ÿÿgdvfail1$,gdvfail2$,gdvfehler%,gdvzeile%
+ÿÿgdvdatname$(50),gdvdatart$(50),gdvdatvsnr$(50)
+ÿÿgdvdatei$(50,3),gdvstartdat$,gdvImpDat$
+ÿÿgdvCodeKu%,gdvAnzDat%%,gdvoldvsnr$
+ÿÿgdvcodekua%,gdvcodekuv%,gdvlfdnrab%,gdvcodemaab%
+ÿÿgdvTestLog%,GDVIMPSUB1%
+ÿÿtempAnzeige$,gdvAdrSparte%
+ÿÿgdvNummer%,AdressFound%,gdvLNR%,VertFound%
+ÿÿcodeimpgdv%,gdvKNZVS$,gdvSparteName$,gdvSparteVST%,gdvDateiDir$,adganz%,adganz1%,gdvAuswDat$,Gold001%
+ÿÿgdv_v210$(50)
+
+ÿ½ GLOBAL gdvAdrSparte%
+ÿÿgdvAdrVSNR$,gdvAdrVSNR1$
+ÿÿgdvAdrBKNZ$
+ÿÿgdvAdrVu%
+ÿÿgdvAdrKU%
+ÿÿgdvN1$
+ÿÿgdvN2$
+ÿÿgdvN3$
+ÿÿgdvO$
+ÿÿgdvP$,nurVerarb%
+ÿÿAdrChange%,VertHistory%,ADRnurName%,gdvVMNr$
+ÿÿGStornoInsert%,GADRVorn$,GADRNachn$,GADRGeb$,GADRPlz$,GADROrt$,GADRStra$,GVSNRVergl%,GADRAnsi$,GAntDatOv$,GAblDatOv$
+ÿÿKVIndex$,KVIndexName$,Giab%,GMwSt%
+ÿÿGeurofin$,GBuendel$,GBewertberech$
+GgdvEnde%ÿ0
+gdvDateiDir$ÿ""
+nurVerarb%ÿ1
+gdvVarDek%ÿ1
+gdvTestLog%ÿ1
+ ÿ’ÿ¡
+ 
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+ÿ½ ***** LOG -Datei erstellen ****************************
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+ gdvdatpath$ÿ_netpath$ÿ"gdv\gdv_dat\"
+ ÿƒGDVCreateLog()
+ 
+ 
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+ÿ½ ***** Routine fr Formular GDVIMP *********************
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+ 
+ ÿƒDFile(3,"GEADR"ÿ_fpw$)
+ ÿƒDFile(3,"KVERTRAG"ÿ_fpw$)
+ ÿƒDFile(3,"GDVGES"ÿ_fpw$)
+ ÿƒDFile(3,"GDVTEMP"ÿ_fpw$)
+ ÿƒDFile(3,"spgruppe"ÿ_fpw$)
+ ÿƒDFile(3,"gekond"ÿ_fpw$)
+ ÿƒDFile(3,"maadr"ÿ_fpw$)
+ ÿƒDFile(3,"maadrag"ÿ_fpw$)
+ ÿƒDFile(3,"vprodukt"ÿ_fpw$)
+ ÿ¾ÿaÿ™"GDVTEMP"
+
+ ÿ™"GDVGES"
+ _formend%ÿ0
+ seite%ÿ1
+ ÿØ_formend%ÿ0
+
+ÿ¡ÿ>(ÿœ)ÿ"GDVIMP"ÿp
+GDVIMPSUB1%ÿ0
+ÿÊÿŸtitle$ÿ" - GDV - IMPORT"
+ÿ´ÿœGPrjForm$ÿ"GDVIMP"
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"GDV - IMPORT"
+GAppName$ÿ_netpath$ÿ"DOC\gdv.pdf"
+Superbase.DateFormatÿ"0d.mm.yyyy"
+f.gdvStarten.Enabledÿ0
+f.ListBox2.Populate()
+ÿ½ f.CommandButton3.Enabled = 0
+GID$ÿ""
+gdvStand$ÿ""
+gdvAnzeige$ÿ""
+gdvBegrundung$ÿ""
+ÿœseite%
+ÿ’ÿ¡
+
+ÿ¬ÿ³
+ÿßÿ³
+
+ÿƒClearKBDBuffer()
+ÿœ
+ÿ™"GDVTEMP"
+ÿ¡GDVIMPSUB1%ÿ99ÿpÿÏÿ¥ÿÿ¬ÿÿß
+ÿ¡GDVIMPSUB1%ÿ1ÿp
+
+cuge%ÿCodege.kvertrag
+ÿƒGEADR()
+cuge%ÿ0
+seite%ÿ2
+ÿ’ÿ¡
+ ÿ¬ÿ³
+ 
+ ÿÙ
+ _formend%ÿ0
+ GGDVistAN%ÿ0
+ ÿ’ÿÿ
+ 
+ÿ½ *******************************************************  
+ÿ½ *******************************************************
+ÿ½ ***** Datei ausw„hlen *********************************
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+ÿÿGDVDateiAuswahl()
+ ÿ¡gdvTestLog%ÿ1ÿpÿƒgdvWriteLogOk("***** Routine : GDVDatAuswahl()")
+ 
+ ÿ½ ====== Button Dateiauswahl - Dialog ====== 
+ ÿ¡gdvTestLog%ÿ1ÿpÿƒgdvWriteLogOk("Dateiauswahl starten")
+ÿ½ * Setzen der Pfade fr GDV *
+gdvStartDir$ÿÿ
+gdvImpDir$ÿ_netpath$ÿ"gdv\"
+
+ ÿ½ ====== Dateiauswahl-Dialog ”ffnen ======
+ÿ³ÿ_ÿwerr0706991tk
+ÿ¡gdvAuswDat$ÿ""ÿp
+ÿ_netpath$
+ÿ^
+ÿgdvDateiDir$
+ÿwweit0706991tk
+ÿ’ÿ¡
+ÿ½ DIRECTORY "c:\"
+ÿwweit0706991tk
+err0706991tk: 
+ÿ"c:\"
+ÿwweit0706991tk
+weit0706991tk:
+ÿ³ÿ_ÿwErrorHandler
+ÿÂ"Importdatei ”ffnen ...","",26,gdvButton%,gdvAuswDat$
+gdvDateiDir$ÿÿ
+ÿgdvStartDir$
+ 
+ ÿ½ ====== Wenn Abbrechen gew„hlt wurde ======
+ ÿ¡gdvButton%ÿ0ÿp
+ÿÂ"GDV-Import abgebrochen (Es wurden keine Daten ge„ndert).","Es wurde kein Dateiname ausgew„hlt",0
+ÿ¡gdvTestLog%ÿ1ÿpÿƒgdvWriteLogOk("Es wurde keine Datei ausgew„hlt - GDV abgebrochen")
+ÿ½ END 
+ÿwendab300899
+ ÿ’ÿ¡
+ 
+ÿ½ *******************************************************  
+ÿ½ *******************************************************
+ÿ½ ***** Datei prfen ************************************
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+TestGDVDatei:
+gdvVorsatz%ÿ0
+gdvNachsatz%ÿ0
+gdvLinkFail%ÿ0
+gdvSatzFail%ÿ0
+ÿ½ ab
+ÿ³ÿ_ÿwREMGDVTEMP1
+ÿ½ IF RECCOUNT ("GDVTEMP") > 0 THEN REMOVE FROM FILE "GDVTEMP"
+ÿ†ÿ™"GDVTEMP"
+ÿ†ÿ™"gdvta"
+REMGDVTEMP1: 
+ÿ³ÿ_ÿwREMGDVTEMP2
+ÿ†ÿ™"gdvta"
+REMGDVTEMP2: 
+ÿƒDFile(3,"GDVTEMP"ÿ_fpw$)
+ÿ³ÿ_ÿwErrorHandler
+ÿ‰ÿ™ÿ«"gdvta"ÿaÿ™"GDVTEMP"
+ÿ†ÿ™"GDVTEMP"
+ÿ‰ÿ™ÿ«"GDVTEMP"ÿaÿ™"GDVTa"
+ÿ†ÿ™"GDVta"
+ÿ_ppath$
+ÿ´ÿœGPrjForm$ÿ"GDVIMP"ÿí3
+ÿÊf ÿSuperbase.Form
+ÿ´gdvAuswDat$ÿ›ÿ¤
+ ÿ¡gdvTestLog%ÿ1ÿpÿƒgdvWriteLogOk("Datei "ÿgdvAuswDat$ÿ" wurde ge”ffnet")
+iab%ÿ1
+Gold001%ÿ0
+ÿØÿOÿB("*")
+ÿßÿe
+ÿ¤ÿcgdvZeileInhalt$
+gdvSatzArt$ÿÿ,(gdvZeileInhalt$,1,4)
+ÿÊÿËÿ(iab%,"999999999")ÿ" Zeilen aus Importdatei gelesen, um die zu importierenden Gesellschaften zu finden!"
+iab%ÿiab%ÿ1
+ÿÉÿægdvSatzArt$
+ÿæ"0001"
+ÿ½ CALL Fehler(gdvZeileInhalt$,gdvSatzArt$)
+GOld001%ÿGold001%ÿ1
+ÿ¡GOld001%ÿ1ÿp
+gdvVorsatz%ÿgdvVorsatz%ÿ1
+ÿÿ™"GDVTEMP"
+zero.gdvtempÿ0
+CODEGDV.gdvtempÿgdvVorsatz%
+VUNR.gdvtempÿÿ0(ÿ,(gdvZeileInhalt$,5,5))
+GESGDV.gdvtempÿÿ,(gdvZeileInhalt$,10,30)
+ÿ¡gdvTestLog%ÿ1ÿp
+	ÿƒgdvWriteLogOk(ÿ(Vorsatz%,"00")ÿ" "ÿÿ,(gdvZeileInhalt$,5,5)ÿ" "ÿÿ,(gdvZeileInhalt$,10,30)ÿ" erkannt")
+ÿ’ÿ¡
+ÿƒGDVDatum(ÿ,(gdvZeileInhalt$,70,8),"STANDG.gdvtemp")
+
+ÿÉÿ`ÿ™"GDVGES"
+ÿÉÿ¥VUNR.gdvtempÿ™"gdvges"ÿ£VUNR.gdvges
+ÿ¡ÿC("gdvges")ÿp
+	codevu%ÿcodevu.gdvges
+	ÿ¡Link.gdvgesÿ0ÿp
+ÿÉÿ`ÿ™"geadr"
+ÿÉÿ¥Link.gdvgesÿ™"geadr"ÿ£CodeGE.geadr
+GesProg.gdvtempÿGesellschaft.geadr
+
+
+ÿ½ 240320001
+gdvAdrVu%ÿcodevu%
+link.gdvtempÿLink.gdvges
+ 
+ÿ¡gdvdatd.geadrÿ0ÿpStandP.gdvtempÿGDVDATD.geadr
+	ÿ^
+gesProg.gdvtempÿ"< nicht verknpft >"
+gdvLinkFail%ÿgdvLinkFail%ÿ1
+	ÿ’ÿ¡
+	codevu.gdvtempÿcodevu%
+ÿ^
+	gesProg.gdvtempÿ"< nicht verknpft >"
+	ÿÿ™"gdvges"
+codevu%ÿÿI(codevu.gdvges,1)
+codevu.gdvgesÿcodevu%
+vunr.gdvgesÿvunr.gdvtemp
+vuname.gdvgesÿgesgdv.gdvtemp
+link.gdvgesÿ0
+zero.gdvgesÿ0
+	ÿÌÿ™"gdvges"
+	gdvLinkFail%ÿgdvLinkFail%ÿ1
+	codevu.gdvtempÿcodevu%
+ÿ’ÿ¡
+ÿ^
+GOld001%ÿ0
+ÿ’ÿ¡
+ÿæ"9999"
+GOld001%ÿ0
+ÿ¡gdvNachsatz%ÿgdvVorsatz%ÿ1ÿp
+gdvNachsatz%ÿgdvNachsatz%ÿ1
+ANZSATZ.gdvtempÿÿ0(ÿ,(gdvZeileInhalt$,5,10))
+ÿÌÿ™"gdvtemp"
+ÿ’ÿ¡
+ÿ’ÿæ
+ÿÙ
+ 
+ÿ†ÿ¤
+ÿßÿ³
+Giab%ÿiab%
+gdvImpDatDir$ÿ_netpath$ÿ"gdv\backup\"
+gdvDatName$ÿÿåname (gdvAuswDat$)
+GID$ÿgdvDatName$
+gdvImpDat$ÿgdvImpDatDir$ÿgdvDatName$
+ÿˆgdvAuswDat$ÿqgdvImpDat$
+f.ListBox2.Populate()
+ 
+ÿ½ *******************************************************  
+ÿ½ *******************************************************
+ÿ½ ***** Datei prfen - Fehlerauswertung *****************
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+ÿ¡gdvVorsatz%ÿgdvNachsatz%ÿgdvVorsatz%ÿ0ÿgdvNachsatz%ÿ0ÿp
+gdvSatzFail%ÿ0
+ÿ^ÿ¡gdvVorsatz%ÿ
+gdvNachsatz%ÿgdvVorsatz%ÿ0ÿgdvNachsatz%ÿ0ÿp
+gdvSatzFail%ÿ1
+ÿ^ÿ¡gdvVorsatz%ÿgdvNachsatz%ÿgdvVorsatz%ÿ0ÿgdvNachsatz%ÿ0ÿp
+gdvSatzFail%ÿ2
+ÿ’ÿ¡
+
+ÿ¡gdvVorsatz%ÿ0ÿgdvNachsatz%ÿ0ÿp
+gdvOK%ÿ0
+gdvBeg$ÿ"Dies ist keine GDV - Importdatei !"
+ÿ^ÿ¡gdvSatzFail%ÿ0ÿgdvLinkFail%ÿ0ÿp
+gdvOK%ÿÿ1
+gdvBeg$ÿ"Alle GDV-Richtlinien wurden eingehalten."
+ÿ^ÿ¡gdvSatzFail%ÿ1ÿgdvLinkFail%ÿ0ÿp
+gdvOK%ÿ0
+gdvBeg$ÿ"Es sind mehr Nachs„tze als Vors„tze in der Datei"
+ÿ^ÿ¡gdvSatzFail%ÿ2ÿgdvLinkFail%ÿ0ÿp
+gdvOK%ÿ0
+gdvBeg$ÿ"Es sind mehr Vors„tze als Nachs„tze in der Datei"
+ÿ^ÿ¡gdvSatzFail%ÿ0ÿgdvLinkFail%ÿ0ÿp
+gdvOK%ÿ0
+gdvBeg$ÿ"Es sind "ÿÿH(ÿ(gdvLinkFail%,"999"))ÿ" Gesellschaften nicht verknpft"
+ÿ^ÿ¡gdvSatzFail%ÿ1ÿgdvLinkFail%ÿ0ÿp
+gdvOK%ÿ0
+gdvBeg$ÿ"Es sind mehr Nachs„tze als Vors„tze in der Datei und es sind "ÿÿH(ÿ(gdvLinkFail%,"999"))ÿ" Gesellschaften nicht verknpft"
+ÿ^ÿ¡gdvSatzFail%ÿ2ÿgdvLinkFail%ÿ0ÿp
+gdvOK%ÿ0
+gdvBeg$ÿ"Es sind mehr Vors„tze als Nachs„tze in der Datei und es sind "ÿÿH(ÿ(gdvLinkFail%,"999"))ÿ" Gesellschaften nicht verknpft"
+ÿ’ÿ¡
+
+ÿ¡gdvOK%ÿÿ1ÿp'Wenn alles korrekt ist
+f.gdvAnzeige.ForeColorÿ35
+f.gdvBeg.ForeColorÿ35
+f.gdvStarten.Enabledÿÿ1
+gdvAnzeige$ÿ"GDV - Import kann durchgefhrt werden !"
+ÿ^ÿ¡gdvOK%ÿ0ÿp'Wenn ein Fehler aufgetreten ist
+f.gdvAnzeige.ForeColorÿ2
+f.gdvBeg.ForeColorÿ2
+f.gdvStarten.Enabledÿ0
+gdvAnzeige$ÿ"GDV - Import kann nicht durchgefhrt werden !"
+ÿ’ÿ¡
+gdvBegrundung$ÿgdvText$
+ÿ™"gdvtemp"
+ÿ£gesgdv.gdvtemp
+ÿÉÿ`
+endab300899: 
+ÿ’ÿÿ
+
+ÿ½ *******************************************************  
+ÿ½ *******************************************************
+ÿ½ ***** Konvertierung eines Strings in ein Datum ******** 
+ÿ½ ***** gdvdatumwert$ - Format : tt.mm.yyyy      ********
+ÿ½ ***** gdvfeldname$  - FORMAT : Feld.Datei      ********
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+ÿÿGDVDatum(gdvdatumwert$,gdvfeldname$)
+gdvJahrOK%ÿ1
+gdvTag$ÿÿ,(gdvdatumwert$,1,2)
+gdvMonat$ÿÿ,(gdvdatumwert$,3,2)
+gdvJahr$ÿÿ,(gdvdatumwert$,5,4)
+ÿ½ 161199
+gdvjab%ÿÿ0(gdvJahr$)
+ÿ¡gdvJahr$ÿ"0000"ÿgdvJahr$ÿ"    "ÿgdvjab%ÿ
+1ÿpgdvJahrOK%ÿ0
+ÿ¡gdvJahrOK%ÿ1ÿp
+gdvTagab%ÿÿ0(gdvTag$)
+ÿ¡gdvTag$ÿ"00"ÿgdvTag$ÿ"31"ÿgdvTag$ÿ"  "ÿgdvTagab%ÿ
+1ÿgdvTagab%ÿ31ÿpgdvTag$ÿ"01"
+gdvMonatab%ÿÿ0(gdvMonat$)
+ÿ¡gdvMonat$ÿ"00"ÿgdvMonat$ÿ"12"ÿgdvMonat$ÿ"  "ÿgdvMonatab%ÿ
+1ÿgdvMonatab%ÿ12ÿpgdvMonat$ÿ"01"
+gdvdatumwert$ÿgdvTag$ÿgdvMonat$ÿgdvJahr$
+ÿ¡DateOK%(gdvdatumwert$)ÿp
+gdvfeldname$$ÿÿ1(gdvdatumwert$)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+
+ÿ½ *******************************************************  
+ÿ½ *******************************************************
+ÿ½ ***** Handling von LOG-Dateien ************************
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+
+ÿ½ =================================
+ÿ½ ====== LOG-Datei erstellen ======
+ÿ½ =================================
+ÿÿGDVCreateLog()
+ÿ´_netpath$ÿ"gdv\GDV.LOG"ÿ›ÿ¶
+ÿ{"Datei "ÿÿ>(gdvDatPath$)ÿ"GDV.LOG erstellt am "ÿÿ(ÿQ,"0d.mm.yyyy")ÿ" / "ÿÿ7(ÿR,"hh:mm:ss")
+ÿ{"-------------------------------------------------------------------------"
+ÿ{
+ÿ†ÿ¶
+ ÿ’ÿÿ
+ 
+ÿ½ =================================
+ÿ½ ====== LOG-Datei schlieáen ======
+ÿ½ =================================
+ÿÿgdvCloseLog()
+ÿ´_netpath$ÿ"gdv\GDV.LOG"ÿ›ÿT
+ÿ{
+ÿ{"-------------------------------------------------------------------------"
+ÿ{"  "ÿÿ(gdvFehler%,"9999")ÿ" Fehler aufgetreten !"
+ÿ{"-------------------------------------------------------------------------"
+ÿ{"Eintragung beendet am "ÿÿ(ÿQ,"0d.mm.yyyy")ÿ"/"ÿÿ7(ÿR,"hh:mm:ss")
+ÿ†ÿ¶
+nn$ÿÿ+(gdvAuswDat$,ÿ/(gdvAuswDat$)ÿ3)ÿ"IMP"
+ÿ¡ÿJ(nn$)ÿp
+ÿ(nn$)
+ÿ’ÿ¡
+ÿˆ_netpath$ÿ"gdv\GDV.LOG"ÿqnn$
+ÿ‰ÿñ"PROT",0,0,244,154,"GDV-IMPORT","MS Sans Serif",8
+ÿ|ÿñ"PROT",4,0,0,244,130,0,""
+ÿ|ÿñ"PROT",9,6,9,22,22,2
+ÿ|ÿñ"PROT",5,35,13,194,10,0,"W„hrend der zuletzt durchgefhrten Aktion wurde eine"
+ÿ|ÿñ"PROT",5,35,23,194,10,0,"Protokolldatei erstellt, in der eventuelle Fehler und Zusatz-"
+ÿ|ÿñ"PROT",5,35,33,194,10,0,"information gespeichert wurden."
+ÿ|ÿñ"PROT",5,35,53,194,10,0,"W„hlen Sie "ÿÿ(34)ÿ"Ja"ÿÿ(34)ÿ", wenn Sie das Protokoll einsehen und"
+ÿ|ÿñ"PROT",5,35,63,194,10,0,"eventuell Drucken wollen."
+ÿ|ÿñ"PROT",5,35,83,194,10,0,"W„hlen Sie "ÿÿ(34)ÿ"Nein"ÿÿ(34)ÿ", wenn Sie das Protokoll nicht"
+ÿ|ÿñ"PROT",5,35,93,194,10,0,"einsehen m”chten."
+ÿ|ÿñ"PROT",5,35,113,194,10,0,"Wollen Sie das Protokoll einsehen?"
+ÿ|ÿñ"PROT",1,118,134,55,15,0,"&Nein",0,0
+ÿ|ÿñ"PROT",1,62,134,55,15,1,"&Ja",1,1
+ÿñ"PROT",gdvBut%
+ÿ¾ÿñ"PROT"
+ÿ¡gdvBut%ÿ1ÿpÿƒgdvShowLog()
+ ÿ’ÿÿ
+ 
+ÿ½ ===========================================
+ÿ½ ====== Fehler in LOG-Datei schreiben ======
+ÿ½ ===========================================
+ÿÿgdvWriteLogFail(gdvLogText$)
+ÿ´_netpath$ÿ"gdv\GDV.LOG"ÿ›ÿT
+ÿ{ÿåansi("**********  FEHLER **********")
+ÿ{ÿ7(ÿR,"hh:mm:ss")ÿ" "ÿÿåansi(gdvLogText$)
+ÿ{ÿåansi("*****************************")
+ÿ†ÿ¶
+ ÿ’ÿÿ
+
+ÿ½ =================================================
+ÿ½ ====== OKAY-Eintrag in LOG-Datei schreiben ======
+ÿ½ =================================================
+ÿÿgdvWriteLogOk(gdvLogText$)
+ÿ´_netpath$ÿ"gdv\GDV.LOG"ÿ›ÿT
+ÿ{ÿ7(ÿR,"hh:mm:ss")ÿ" "ÿÿåansi(gdvLogText$)
+ÿ†ÿ¶
+ ÿ’ÿÿ
+ 
+ÿ½ ===============================
+ÿ½ ====== LOG-Datei l”schen ======
+ÿ½ ===============================
+ÿÿgdvDeleteLog()
+ÿ¡ÿJ(_netpath$ÿ"gdv\GDV.LOG")ÿpÿ_netpath$ÿ"gdv\GDV.LOG"
+ ÿ’ÿÿ
+ 
+ÿ½ ================================
+ÿ½ ====== LOG-Datei anzeigen ======
+ÿ½ ================================
+ÿÿgdvShowLog()
+ÿÊÿË"Anzeige des Fehlerprotokolls"
+ÿ¡ÿJ(_netpath$ÿ"gdv\GDV.LOG")ÿp
+ÿ½ LOAD TEXT _netpath$ + "gdv\GDV.LOG"
+ÿ½ EDIT TEXT 
+atext$ÿ_netpath$ÿ"gdv\GDV.LOG"
+a%ÿÿƒ("ShellExecute",0,"open",atext$,"","",1)
+ÿ^
+ÿƒFehler("Es konnte kein Fehlerprotokoll gefunden werden!","")
+ÿ’ÿ¡
+ÿÊÿË"Bereit"
+ ÿ’ÿÿ
+
+ÿ½ ==================================
+ÿ½ ====== Textdatei bearbeiten ======
+ÿ½ ==================================
+ÿÿgdvEditASCIIFile(asciifile$)
+ÿ¡ÿJ(asciifile$)ÿp
+ÿ½ LOAD TEXT asciifile$
+ÿ½ EDIT TEXT
+a%ÿÿƒ("ShellExecute",0,"open",asciifile$,"","",1)
+ÿ^
+ÿƒFehler("Die Datei "ÿÿ>(asciifile$)ÿ" konnte nicht gefunden werden!","")
+ÿ’ÿ¡
+ ÿ’ÿÿ
+
+ ÿ½ ====================================
+ ÿ½ ====== Versicherung verbinden ======
+ÿÿGDVGesVerb()
+ ÿ¡gdvTestLog%ÿ1ÿpÿƒgdvWriteLogOk("***** Routine : GDVGesVerb()")
+gdvCodeGE%ÿCODEGE.geadr
+ÿÉÿ¥gdvCodeGE%ÿ™"GDVGES"ÿ£LINK.gdvges
+ÿ¡ÿC("GDVGES")ÿp
+ÿÂ"Es existiert schon eine Verknpfung.","Soll Sie aufgehoben werden",1,gdvBut%
+ÿ¡gdvBut%ÿ0ÿpÿwweit0806991tk
+ÿƒInfo(ÿ(link.gdvges,"000000"),"")
+ÿáÿtÿ™"gdvges"
+link.gdvgesÿ0
+ÿÌÿ™"gdvges"
+ÿïÿ™"gdvges"ÿt
+ÿƒInfo(ÿ(link.gdvges,"000000"),"")
+ÿ’ÿ¡
+ÿÂ"Bitte Gesellschaft ausw„hlen","",25,gdvButt%,gdvRck$,70,VUNR.gdvges,VUNAME.gdvgesÿ£link.gdvges
+ÿ¡gdvButt%ÿ0ÿpÿwweit0806991tk
+ÿ½ LOCK FILE "GDVGES"
+ÿÉÿ¥ÿ0(gdvRck$)ÿáÿ™"GDVGES"ÿ£VUNR.gdvges
+link.gdvgesÿgdvCODEGE%
+ÿÌÿ™"gdvges"
+ÿïÿYÿ™"gdvges"
+ 
+weit0806991tk:
+ ÿÉÿœÿ¥codege.geadrÿ™"gdvges"ÿ£link.gdvges
+ÿœ
+ 
+ ÿ’ÿÿ
+ 
+ ÿ½ ====================================
+ ÿ½ ====== Versicherung verbinden 2======
+ÿÿGDVGesVerb2()
+ ÿ¡gdvTestLog%ÿ1ÿpÿƒgdvWriteLogOk("***** Routine : GDVGesVerb2()")
+gdvCodeGE%ÿCODEGE.geadr
+ÿ™"gdvges"
+ÿÉÿĞLink.gdvgesÿgdvCodeGE%
+f.ListBox1.Populate()
+ 
+
+ ÿ’ÿÿ
+ 
+ÿÿGDVListAusw()
+ ÿ¡gdvTestLog%ÿ1ÿpÿƒgdvWriteLogOk("***** Routine : GDVListAusw()")
+ gdvTestIndex$ÿf.ListBox1.List(1)
+ ÿ½ gdvTestIndex1% = VAL (gdvTestIndex$)
+ ÿÂMe.List(1)
+ ÿ½ SELECT KEY gdvTestIndex1% FILE "geadr" INDEX CodeGe.geadr
+ ÿ’ÿÿ
+ 
+ÿÿGDVGesZu()
+ ÿ½ ab
+ ÿ¡gdvTestLog%ÿ1ÿpÿƒgdvWriteLogOk("***** Routine : GDVGesZu()")
+ ÿ½ SELECT FORM KEY codege.geadr FILE "gdvges" INDEX link.gdvges
+ÿ½ FORM 2
+ÿ½ gdvTemp2$ = STR$ (CodeGE.GEADR,"000000")
+ÿ½ gdvFilt$ = "Link.gdvges = " + gdvTemp2$
+ÿ½ f.ListBox1.Filter = gdvFilt$
+ÿ½ f.ListBox1.Populate()
+ÿÉÿœÿ`ÿ™"GDVTEMP"ÿ£GESGDV.GDVTEMP
+ÿœ
+ÿœ2
+ÿ’ÿÿ
+ 
+ÿÿGDVVor()
+ ÿ¡gdvTestLog%ÿ1ÿpÿƒgdvWriteLogOk("***** Routine : GDVVor()")
+ÿÉÿ±ÿ™"geadr"
+gdvTemp2$ÿÿ(CodeGE.GEADR,"000000")
+gdvFilt$ÿ"Link.gdvges = "ÿgdvTemp2$
+f.ListBox1.FilterÿgdvFilt$
+f.ListBox1.Populate()
+ ÿ’ÿÿ
+ 
+ÿÿGDVBack()
+ ÿ¡gdvTestLog%ÿ1ÿpÿƒgdvWriteLogOk("***** Routine : GDVBack()")
+ÿÉÿgÿ™"geadr"
+gdvTemp2$ÿÿ(CodeGE.GEADR,"000000")
+gdvFilt$ÿ"Link.gdvges = "ÿgdvTemp2$
+f.ListBox1.FilterÿgdvFilt$
+f.ListBox1.Populate()
+ ÿ’ÿÿ
+ ÿ½ ====== Ende ======
+ ÿ½ ================== 
+ 
+ÿÿGesZuordAB()
+ codegdv%ÿcodegdv.gdvtemp
+ codevu%ÿcodevu.gdvtemp
+ ge%ÿGetCodeGE%(ge%)
+ ÿ¡ge%ÿ0ÿp
+ÿÉÿ¥codegdv%ÿáÿ™"gdvtemp"ÿ£codegdv.gdvtemp
+ÿÉÿ¥ge%ÿ™"geadr"ÿ£codege.geadr
+link.gdvtempÿge%
+gesprog.gdvtempÿgesellschaft.geadr
+ÿÌÿ™"gdvtemp"
+ÿÉÿ¥codevu%ÿáÿ™"gdvges"ÿ£codevu.gdvges
+link.gdvgesÿge%
+gesprog.gdvgesÿgesellschaft.geadr
+ÿÌÿ™"gdvges"
+ÿ½ SELECT FORM FIRST FILE "gdvtemp" INDEX gesgdv.gdvtemp
+ÿœ
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ ÿ½ *******************************************************
+ ÿ½ *******************************************************
+ ÿ½ ***** Erkennung der verschiedenen Datens„tze ********** 
+ ÿ½ *******************************************************  
+ ÿ½ *******************************************************
+ÿÿGDVErkennung()
+ÿ×dlg ÿUDialog
+ÿ×control ÿUDialogControl 
+ ÿ¡gdvTestLog%ÿ1ÿpÿƒgdvWriteLogOk("***** Routine : GDVErkennung()")
+ 
+ ÿßÿ³
+ 
+ ÿ½ Abfrage ob Datenstrukturen geleert werden sollen
+ ÿÂ"Datenstrukturen","Sollen die Strukturen geleert werden?",130,gdvAnt%
+ ÿ½ gdvAnt% = 1
+GStornoInsert%ÿÿ0(ReadConfig$("GDVIMPORT","StornoInsert"))
+ADRChange%ÿÿ0(ReadConfig$("GDVIMPORT","ADRChange"))
+VertHistory%ÿÿ0(ReadConfig$("GDVIMPORT","VertHistory"))
+GADRVorn$ÿReadConfig$("GDVIMPORT","ADRVorn")
+GADRNachn$ÿReadConfig$("GDVIMPORT","ADRNachn")
+GADRGeb$ÿReadConfig$("GDVIMPORT","ADRGeb")
+GADRPlz$ÿReadConfig$("GDVIMPORT","ADRPLZ")
+GADROrt$ÿReadConfig$("GDVIMPORT","ADROrt")
+GADRStra$ÿReadConfig$("GDVIMPORT","ADRStra")
+GADRAnsi$ÿReadConfig$("GDVIMPORT","GDVADRANSI")
+GAntDatOv$ÿReadConfig$("GDVIMPORT","GAntDatOv")
+GAblDatOv$ÿReadConfig$("GDVIMPORT","GAblDatOv")
+ÿ½ CALL WriteConfig("GDVIMPORT","letzt5AGStell", STR$ (GEurofin%,"0"))
+GEurofin$ÿReadConfig$("GDVIMPORT","letzt5AGStell")
+ÿ¡GADRAnsi$ÿ"ON"ÿpGADRAnsi$ÿ"OFF"
+ 
+GVSNRVergl%ÿÿ0(ReadConfig$("GDVIMPORT","VSNRVergl"))
+GVSNRVergl%ÿ1
+ÿ¡GADRVorn$ÿ"n"ÿGADRNachn$ÿ"n"ÿGADRGeb$ÿ"n"ÿGADRPlz$ÿ"n"ÿGADROrt$ÿ"n"ÿGADRStra$ÿ"n"ÿGADRGeb$ÿ"n"ÿp
+GADRVorn$ÿ"j"
+GADRNachn$ÿ"j"
+GADRGeb$ÿ"j"
+ÿ’ÿ¡
+Superbase.Dialogs.Add("Dialogname")
+ÿÊdlg ÿSuperbase.Dialogs.Dialogname
+dlg.Move(0,0,396,292)
+dlg.Captionÿ"Generelle GDV - Import - Optionen"
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame1","DialogFrame")
+control.Move(1,3,395,54)
+control.Captionÿ"Optionen zum GDV - Import"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox1","DialogCheckBox")
+control.Move(5,16,304,9)
+control.Captionÿ"Import noch nicht vorhandener als storniert gekennzeichnete Vertr„ge"
+control.Bind("GStornoInsert%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox2","DialogCheckBox")
+control.Move(5,28,384,10)
+control.Captionÿ"vorhandene Adressen durch die Adressangaben der Gesellschaft „ndern (Telefonnummern werden nicht ge„ndert)"
+control.Bind("ADRChange%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿ½ SET control = dlg.Add("DialogCheckBox3","DialogCheckBox")
+ÿ½ control.Move(5,41,304,10)
+ÿ½ control.Caption = "vorhandene Vertr„ge in einer History - Datenbank speichern (Import dauert l„nger!)"
+ÿ½ control.Bind("VertHistory%")
+ÿ½ control.ValueOn = 1
+ÿ½ control.ValueOff = 0
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame2","DialogFrame")
+control.Move(1,64,395,65)
+control.Captionÿ"Festlegen, welche Angaben fr den Adressvergleich herangezogen werden sollen "
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox4","DialogCheckBox")
+control.Move(5,78,48,10)
+control.Captionÿ"Vorname"
+control.Bind("GADRVorn$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox7","DialogCheckBox")
+control.Move(56,78,48,10)
+control.Captionÿ"Nachname"
+control.Bind("GADRNachn$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox8","DialogCheckBox")
+control.Move(132,78,161,10)
+control.Captionÿ"Ansi ON/OFF fr GDV-Import"
+control.Bind("GADRAnsi$")
+control.ValueOnÿ"ON"
+control.ValueOffÿ"OFF"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel4","DialogLabel")
+control.Move(132,88,256,25)
+control.Captionÿ"falls Sie nach dem Import feststellen, daá bei den Adressen die Umlaute nicht korrekt bernommen wurden, diese Checkbox ankreuzen oder, wenn das Kreuz gesetzt war, das Kreuz entfernen, den Import wiederholen"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox5","DialogCheckBox")
+control.Move(5,91,53,9)
+control.Captionÿ"Geburtstag"
+control.Bind("GADRGeb$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox6","DialogCheckBox")
+control.Move(5,104,33,9)
+control.Captionÿ"PLZ"
+control.Bind("GADRPlz$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox9","DialogCheckBox")
+control.Move(56,104,33,9)
+control.Captionÿ"Ort"
+control.Bind("GADROrt$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel5","DialogLabel")
+control.Move(132,113,254,13)
+control.Captionÿ"dazu dann die Checkbox <vorhandene Adresse durch...> ankreuzen"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox10","DialogCheckBox")
+control.Move(5,116,47,10)
+control.Captionÿ"Strasse"
+control.Bind("GADRStra$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame3","DialogFrame")
+control.Move(1,134,395,51)
+control.Captionÿ"Informationen zur Art des Policenummernvergleiches"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel2","DialogLabel")
+control.Move(5,150,384,11)
+control.Captionÿ"INFORMATION: es werden zum Vergleich die fhrenden Buchstaben und Vornullen abgeschnitten "
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel3","DialogLabel")
+control.Move(5,161,384,11)
+control.Captionÿ"und nur die danach folgenden Buchstaben und Ziffern verglichen "
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel1","DialogLabel")
+control.Move(5,171,375,13)
+control.Captionÿ"(Sonderzeichen wie z.B. /-\ . + * und Leerzeichen werden generell nicht bercksichtigt)"
+ 
+ 
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox11","DialogCheckBox")
+control.Move(5,193,253,10)
+control.Captionÿ"Vertrags-Antragsdatum nicht durch GDV-Antragsdatum berschreiben"
+control.Bind("GAntDatOv$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox12","DialogCheckBox")
+control.Move(5,203,253,10)
+control.Captionÿ"Vertrags-Ablaufdatum nicht durch GDV-Ablaufdatum berschreiben"
+control.Bind("GAblDatOv$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+
+
+
+ÿÊcontrol ÿdlg.Add("DialogCheckBox13","DialogCheckBox")
+control.Move(5,213,253,10)
+control.Captionÿ"nur die letzten 5 Stellen der Agenturnummer zur Suche benutzen"
+control.Bind("Geurofin$")
+control.ValueOnÿ"TRUE"
+control.ValueOffÿ"FALSE"
+
+
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox14","DialogCheckBox")
+control.Move(5,226,253,10)
+control.Captionÿ"Bndelungsvertrag nur als 1 Vertrag importieren"
+control.Bind("GBuendel$")
+control.ValueOnÿ"TRUE"
+control.ValueOffÿ"FALSE"
+
+
+ÿÊcontrol ÿdlg.Add("DialogCheckBox15","DialogCheckBox")
+control.Move(5,239,253,10)
+control.Captionÿ"Bewertungssummen neu berechnen"
+control.Bind("GBewertberech$")
+control.ValueOnÿ"TRUE"
+control.ValueOffÿ"FALSE"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel9","DialogLabel")
+control.Move(5,253,356,25)
+control.Captionÿ"(in Sparten muá bei Bndelungsvertrag GDV-Sparte=0 sein und Checkbox ~Sparte ist Standard~ angekreuzt sein)"
+
+
+
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(137,273,51,15)
+control.Defaultÿ1
+control.Captionÿ"OK"
+control.ReturnValueÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton2","DialogCommandButton")
+control.Move(190,273,51,15)
+control.Captionÿ"Abbruch"
+control.ReturnValueÿ0
+ 
+ÿñ"Dialogname",req%
+ÿ¾ÿñÿt
+ÿ¡req%ÿ
+1ÿpÿ’ÿÿ
+ÿƒWriteConfig("GDVIMPORT","letzt5AGStell",GEurofin$)
+ÿƒWriteConfig("GDVIMPORT","StornoInsert",ÿ(GStornoInsert%,"0"))
+ÿƒWriteConfig("GDVIMPORT","ADRChange",ÿ(ADRChange%,"0"))
+ÿƒWriteConfig("GDVIMPORT","VertHistory",ÿ(VertHistory%,"0"))
+ÿƒWriteConfig("GDVIMPORT","ADRVorn",GADRVorn$)
+ÿƒWriteConfig("GDVIMPORT","ADRNachn",GADRNachn$)
+ÿƒWriteConfig("GDVIMPORT","ADRGeb",GADRGeb$)
+ÿƒWriteConfig("GDVIMPORT","ADRPLZ",GADRPLZ$)
+ÿƒWriteConfig("GDVIMPORT","ADROrt",GADROrt$)
+ÿƒWriteConfig("GDVIMPORT","ADRStra",GADRStra$)
+ÿ½ GADRAnsi$ = ReadConfig$("GDVIMPORT","GDVADRANSI")
+ÿƒWriteConfig("GDVIMPORT","GDVADRANSI",GADRAnsi$)
+ÿƒWriteConfig("GDVIMPORT","GAntDatOv",GAntDatOv$)
+ÿƒWriteConfig("GDVIMPORT","GAblDatOv",GAblDatOv$)
+ÿƒWriteConfig("GDVIMPORT","VSNRVergl",ÿ(GVSNRVergl%,"0"))
+ 
+ 
+ 
+ 
+ ÿ½ REQUEST "Sollen durch den Import noch nicht vorhandene,","als storniert gekennzeichnete Vertr„ge importiert werden?",135,StornoInsert%
+ ÿ½ REQUEST "Sollen vorhandene Adressen durch die","Adressangaben der Gesellschaft ge„ndert werden?",135,ADRChange%
+ ÿ½ REQUEST "Sollen zum Adressvergleich nur Vorname und Nachname,","verglichen werden?",130,ADRnurName%
+ ÿ½ REQUEST "Fr sp„ter: Sollen vorhandene Vertr„ge in einer","History - Datenbank gespeichert werden? Import dauert l„nger!",135,VertHistory%
+ÿ¡gdvAnt%ÿ1ÿpgdvleeren%ÿ1
+ÿ¡gdvAnt%ÿ0ÿpgdvleeren%ÿ0
+ ÿÂ"Soll der GDV-Import begonnen werden?","Haben alle anderen Nutzer die Anwendung beendet?",130,req%
+ ÿ¡req%ÿ1ÿpÿ’ÿÿ
+ ÿÂ"Wollen Sie wirklich den Import starten?","(Letzte M”glichkeit den GDV Import abzubrechen!)",130,req%
+ ÿ¡req%ÿ1ÿpÿ’ÿÿ
+ ÿßÿe
+ GgdvEnde%ÿÿ1
+ ccfile$ÿÿ™
+ ÿ™"GDVTEMP"
+ ÿÉÿ`
+ datumgdv$ÿ""
+ Notiz$ÿ""
+ Anzahl%ÿ0
+ DatumGDV%ÿstandg.gdvtemp
+ ÿØÿOÿB("GDVTEMP")
+ÿ½ Notiz$ = Notiz$ + gesgdv.gdvtemp + "->" + gesprog.gdvtemp + "=Anzahl:" + LTRIM$ ( STR$ (Anzsatz.gdvtemp,"999999999")) + CHR$ (13) + CHR$ (10)
+Anzahl%ÿAnzahl%ÿAnzsatz.gdvtemp
+ÿÉÿ±
+ ÿÙ
+ Notiz$ÿgesgdv.gdvtempÿ"->"ÿgesprog.gdvtempÿ"=Anzahl:"ÿÿH(ÿ(Anzsatz.gdvtemp,"999999999"))ÿÿ(13)ÿÿ(10)
+ ÿ™"GDVHEAD"
+ ÿ
+ codeimpgdv%ÿÿI("gdvhead",1)
+ codeimpgdv.gdvheadÿcodeimpgdv%
+ DatumGDV.gdvheadÿDatumGDV%
+ Notiz.gdvheadÿNotiz$
+ AnzahlDS.gdvheadÿAnzahl%
+ DatumImport.gdvheadÿÿQ
+ ÿÌÿ™"GDVHEAD"
+ ÿ™ccfile$
+ ÿ½ Aufruf der Prozedur um Dateien zu ”ffnen und zu leeren
+ ÿƒGDVLeer(gdvleeren%)
+ ÿ½ CALL Fehler("","")
+ ÿ¡gdvleeren%ÿ0ÿpÿwabGDVSpFrei310899
+ 
+ ÿ½ **********************************
+ ÿ½ mal berspringen des einlesen der zeilen
+ ÿ½ **********************************
+ 
+ ÿ½ GOTO abGDVSpFrei310899
+ 
+ 
+ 
+ 
+ ÿ½ ™ffnen der lokalen Import-Datei
+ gdvpath$ÿ_netpath$ÿ"GDV\gdv_dat\"
+ ÿgdvpath$
+ ÿ´gdvImpDat$ÿ›ÿ¤
+ 
+
+ 
+ ÿ½ Lesen der einzelnen Zeilen bis zum Ende der Datei
+ GOld001%ÿ0
+ gdvzeile%ÿ0
+ xyz%ÿ0
+ a1%ÿ0:a2%ÿ0:a3%ÿ0:a4%ÿ0:a6%ÿ0:a7%ÿ0
+ gdvcodekuold%ÿ0
+ ÿØÿOÿB("*")
+ÿßÿe
+ÿ¤ÿcgdvinhalt$
+ÿ¡gdvinhalt$ÿ"*9580274405007*"ÿp
+ÿ½ CALL Fehler("9580274405007 gefunden","")
+ÿ’ÿ¡
+ÿ¡xyz%ÿ0ÿp
+aa$ÿgdvinhalt$
+a1%ÿÿ?(aa$,ÿ(228)):ÿ½  á chr$(238)
+a2%ÿÿ?(aa$,ÿ(223))
+a3%ÿÿ?(aa$,ÿ(252))
+a4%ÿÿ?(aa$,ÿ(246))
+ÿ½ a5% = INSTR (gdvinhalt$,"-")
+a6%ÿÿ?(aa$,ÿ(220))
+a7%ÿÿ?(aa$,ÿ(214))
+ÿ¡a1%ÿ0ÿa2%ÿ0ÿa3%ÿ0ÿa4%ÿ0ÿa6%ÿ0ÿa7%ÿ0ÿp
+xyz%ÿ1
+ÿ½ CALL Fehler( STR$ (xyz%),"")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+abtest$ÿ""
+ÿ¡xyz%ÿ0ÿp
+abtest$ÿÿåibm(gdvinhalt$)
+gdvinhalt$ÿabtest$
+ÿ^
+ÿ¡ÿ>(GADRAnsi$)ÿ"ON"ÿp
+abtest$ÿÿåansi(gdvinhalt$)
+ÿ^
+abtest$ÿgdvinhalt$
+ÿ’ÿ¡
+gdvinhalt$ÿabtest$
+ÿ’ÿ¡
+ 
+gdvzeile%ÿgdvzeile%ÿ1
+ÿÊÿËÿ(gdvzeile%,",99999999")ÿ" Zeilen eingelesen von "ÿÿ(Giab%,",99999999")
+ 
+ ÿ½ Satzart - ermittelt die Satzart aus der Zeile
+gdvsatzart$ÿÿ,(gdvinhalt$,1,4)
+adrkennz$ÿÿ,(gdvinhalt$,237,2)
+adrkennz%ÿÿ0(adrkennz$)
+ÿ¡gdvinhalt$ÿ"*30404951076*"ÿp
+ÿ½ CALL Fehler("30404951076 gefunden***",adrkennz$ + "***" + LEFT$ (gdvinhalt$,100))
+ÿ’ÿ¡
+ÿ¡adrkennz%ÿ2ÿp
+ÿ½ weder VN noch Beitragszahler, da muá noch ein anderer 100er Datensatz kommen
+ÿ½ GOTO wend020920061
+ÿ’ÿ¡
+
+ ÿ½ Satznummern - ermittelt die Satznummer aus der Zeile
+ ÿ½ Position 43 
+gdvsatznr43$ÿÿ,(gdvinhalt$,43,1)
+ ÿ½ Position 47
+gdvsatznr47$ÿÿ,(gdvinhalt$,47,1)
+ ÿ½ Position 48
+gdvsatznr48$ÿÿ,(gdvinhalt$,48,1)
+ ÿ½ Position 49 
+gdvsatznr49$ÿÿ,(gdvinhalt$,49,1)
+ ÿ½ Position 50 
+gdvsatznr50$ÿÿ,(gdvinhalt$,50,1)
+ ÿ½ Position 51
+gdvsatznr51$ÿÿ,(gdvinhalt$,51,1)
+ ÿ½ Position 53 
+gdvsatznr53$ÿÿ,(gdvinhalt$,53,1)
+ ÿ½ Position 60
+gdvsatznr60$ÿÿ,(gdvinhalt$,60,1)
+ ÿ½ Position 256
+gdvsatznr256$ÿÿ,(gdvinhalt$,256,1)
+ 
+ ÿ½ Sparte - ermittelt die Sparte aus der Zeile
+gdvsparte$ÿÿ,(gdvinhalt$,11,3)
+ÿ¡ÿ0(gdvsparte$)ÿ30ÿÿ0(gdvsparte$)ÿ	39ÿpgdvsparte$ÿ"030"
+ÿ¡ÿ0(gdvsparte$)ÿ40ÿÿ0(gdvsparte$)ÿ	49ÿp
+gdvsparte$ÿ"040"
+ÿ’ÿ¡
+ iiibbb$ÿ"gdvsatzart$: "ÿgdvsatzart$
+ ÿ½ IF gdvinhalt$ LIKE "*RE-V 4520*" THEN CALL Fehler("Sparte " + gdvsparte$ + "  " + iiibbb$ + " L„nge:" + STR$ (a%,"999"),iiiaaa$ + "   " + gdvinhalt$)
+ 
+ ÿ½ Wagnisart - ermittelt die Wagnisart aus der Zeile
+gdvwagnis$ÿÿ,(gdvinhalt$,60,1)
+ 
+ 
+ ÿ½ *******************************************************************************************************
+ ÿ½ Versicherungsscheinnummer - ermittelt die VSNR aus der Zeile
+ 
+gdvvsnr$ÿÿ,(gdvinhalt$,14,17)
+ 
+ ÿ½ ******************************************************************************************************* 
+ iiiaaa$ÿ"gdvsatznr256$: "ÿgdvsatznr256$
+ ÿ¡gdvsatznr256$ÿ" "ÿpiiiaaa$ÿ"gdvsatznr256$: leer"
+ iiibbb$ÿ"gdvsatzart$: "ÿgdvsatzart$
+ ÿ½ CALL Fehler(iiibbb$ + " L„nge:" + STR$ (a%,"999"),iiiaaa$ + "   " + gdvinhalt$)
+ ÿ½ CALL Fehler(gdvsatzart$,"")
+ ÿ½ 04.10.2005
+ ÿÉÿægdvsatzart$
+
+ÿæ"0001"
+ÿ¡gdvsatznr256$ÿ" "ÿp
+	iiiaaa$ÿ"gdvsatznr256$: 1*leer"
+ÿ^
+	ÿ¡gdvsatznr256$ÿ""ÿp
+iiiaaa$ÿ"gdvsatznr256$: 0*leer"
+	ÿ^
+iiiaaa$ÿgdvsatznr256$
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ CALL Fehler(iiiaaa$,"")
+ÿ½ ***** Allgemeine Daten - Vorsatz*****
+ÿÉÿægdvsatznr256$
+	ÿæ"1"," ",""
+ÿƒGDVKonvert(gdvinhalt$,"vog00111")
+gdvtext$ÿ"Vorsatz 1/2 : "ÿÿ,(gdvinhalt$,5,5)ÿ" - "ÿÿ,(gdvinhalt$,10,30)
+	ÿæ"2"
+ÿƒGDVKonvert(gdvinhalt$,"vog00112")
+ÿ’ÿÉ
+ 
+ÿæ"0100"
+ÿ½ ***** Allgemeine Daten - Adressteil ***** 
+gdvsatznr256%ÿÿ0(gdvsatznr256$)
+ÿÉÿægdvsatznr256%
+ÿæ0,1
+	ÿ½ ankey% = VAL (adrknz.adg10011)
+	ÿ½ IF ankey% <= 1 THEN 
+	gdvCodeKu%ÿÿI("adg10011",1)
+	ÿƒGDVKonvert(gdvinhalt$,"adg10011")
+	gdvtext$ÿ"Adresse : "ÿÿ,(gdvinhalt$,44,30)ÿ" , "ÿÿ,(gdvinhalt$,104,30)
+	ankey%ÿÿ0(adrknz.adg10011)
+	ÿ¡ankey%ÿ	1ÿpgdvcodekuold%ÿgdvCodeKu%
+ÿæ2
+	ÿƒGDVKonvert(gdvinhalt$,"adg10012")
+ÿ’ÿÉ
+ 
+ÿæ"0200"
+ÿ½ ***** Allgemeine Daten - Allgemeiner Vertragsteil *****
+ÿ½ 08022003 nachtr„glich organisieren, daá die Sparte in adg10011 eingetragen wird, wenn sie bei Satzart 100 =0 war
+ÿ¡gdvcodekuold%ÿ0ÿpgdvCodeKu%ÿgdvcodekuold%
+gdvcodekuold%ÿ0
+ÿÉÿ`ÿ™"adg10011"ÿ£gdvku.adg10011
+ÿÉÿ¥gdvCodeKU%ÿáÿ™"adg10011"ÿ£gdvku.adg10011
+ÿƒGDVKonvert(gdvinhalt$,"alg20011")
+ÿ½ IF sp.adg10011 < 1 THEN 
+ÿ½ sp.adg10011 = sp.alg20011
+ÿ½ STORE FILE "adg10011"
+ÿ½ END IF 
+gdvtext$ÿ"Allgemeine Daten"
+ 
+ÿæ"0210"
+ÿ½ ***** Vertragsspezifischer Teil *****
+ÿ½ 08022003 nachtr„glich organisieren, daá die Sparte in adg10011 eingetragen wird, wenn sie bei Satzart 100 =0 war
+ÿÉÿ`ÿ™"adg10011"ÿ£gdvku.adg10011
+ÿÉÿ¥gdvCodeKU%ÿáÿ™"adg10011"ÿ£gdvku.adg10011
+ÿ½ IF sp.adg10011 < 1 THEN 
+ÿ½ sp.adg10011 = VAL (gdvsparte$)
+ÿ½ STORE FILE "adg10011"
+ÿ½ END IF 
+ÿÉÿægdvsparte$
+ÿæ"050"
+	ÿ½ CALL Fehler("KFZ1","12102005")
+	gdvsatznr256%ÿÿ0(gdvsatznr256$)
+	ÿ½ 06102005* Kraftfahrzeug *
+	ÿ¡gdvsatznr256%ÿ1ÿgdvsatznr256%ÿ0ÿp
+ÿ½ CALL Fehler("KFZ",gdvinhalt$)
+ÿƒGDVKonvert(gdvinhalt$,"krg21011")
+gdvtext$ÿ"Kraftfahrzeug : "ÿÿ,(gdvinhalt$,114,12)ÿ" - "ÿÿ,(gdvinhalt$,97,17)
+	ÿ’ÿ¡
+	ÿ¡gdvsatznr256%ÿ2ÿp
+ÿ½ CALL Fehler("KFZ2",gdvinhalt$)
+ÿƒGDVKonvert(gdvinhalt$,"krg21012")
+gdvtext$ÿ"Kraftfahrzeug : "ÿÿ,(gdvinhalt$,114,12)ÿ" - "ÿÿ,(gdvinhalt$,97,17)
+	ÿ’ÿ¡
+ÿæ"040","041","042","043","044","045","046","047","048","049"
+ÿ½ * Haftpflicht *
+	ÿƒGDVKonvert(gdvinhalt$,"hag21011")
+	gdvtext$ÿ"Haftpflicht"
+ÿæ"030","031","032","033","034","035","036","037","038","039"
+ÿ½ * Unfall *
+	ÿƒGDVKonvert(gdvinhalt$,"ung21011")
+	gdvtext$ÿ"Unfall"
+ÿæ"010"
+ÿ½ * Leben *
+	gdvsatznr256%ÿÿ0(gdvsatznr256$)
+	ÿÉÿægdvsatznr256%
+ÿæ0,1
+ÿƒGDVKonvert(gdvinhalt$,"leg21011")
+gdvtext$ÿ"Leben"
+ÿæ2
+ÿƒGDVKonvert(gdvinhalt$,"leg21012")
+ÿ’ÿÉ
+ÿæ"130"
+ÿ½ * Verbundene Hausrat *
+ÿƒGDVKonvert(gdvinhalt$,"vhg21011")
+gdvtext$ÿ"Verbundene Hausrat"
+ÿæ"110"
+ÿ½ * Glas *
+ÿƒGDVKonvert(gdvinhalt$,"glg21011")
+gdvtext$ÿ"Glas"
+ÿæ"140"
+ÿ½ * Verbundene Geb„ude *
+ÿƒGDVKonvert(gdvinhalt$,"vgg21011")
+gdvtext$ÿ"Verbundene Geb„ude"
+ÿæ"020"
+ÿ½ * Kranken *
+ÿƒGDVKonvert(gdvinhalt$,"kkg21011")
+gdvtext$ÿ"Kranken"
+ÿæ"070"
+ÿ½ * Rechtsschutz *
+ÿƒGDVKonvert(gdvinhalt$,"reg21011")
+gdvtext$ÿ"Rechtsschutz"
+ÿæ"080","081","082","083","231","089","090","099","100","109","120","150","180","181","210"
+ÿ½ * Feuer-Industrie / Gewerbl. Sach *  
+ÿƒGDVKonvert(gdvinhalt$,"fug21011")
+gdvtext$ÿ"Feuer-Industrie / Gewerbl. Sach"
+ÿæ"510"
+ÿ½ * Verkehrsservice *
+ÿƒGDVKonvert(gdvinhalt$,"vsg21011")
+gdvtext$ÿ"Verkehrsservice"
+ÿæ"171","172","174","175","176","179","232","290"
+ÿ½ * Technische *
+ÿƒGDVKonvert(gdvinhalt$,"teg21011")
+gdvtext$ÿ"Technische"
+ÿæ"190"
+ÿ½ * Transport *
+ÿƒGDVKonvert(gdvinhalt$,"trg21011")
+gdvtext$ÿ"Transport"
+ÿæ"060","160","290","233","293","294","299"
+ÿ½ * Nicht definierte Sparten *
+ÿÉÿægdvsatznr43$
+ÿæ"1"," "
+ÿƒGDVKonvert(gdvinhalt$,"udg21011")
+gdvtext$ÿ"Nicht einzeln definierte Sparten"
+ÿæ"2"
+ÿƒGDVKonvert(gdvinhalt$,"udg21012")
+ÿ’ÿÉ
+ÿ’ÿÉ
+ÿæ"0211"
+ÿÉÿægdvsparte$
+ÿæ"050"
+	gdvtext$ÿ"KFZ-Fahrzeugdaten"
+ÿ’ÿÉ
+ÿæ"0220"
+ÿÉÿægdvsparte$
+ÿæ"051"
+	ÿƒGDVKonvert(gdvinhalt$,"krg22011")
+	gdvtext$ÿ"KFZ-Haftpflicht"
+ÿæ"052"
+	ÿƒGDVKonvert(gdvinhalt$,"krg22021")
+	gdvtext$ÿ"KFZ-Vollkasko"
+ÿæ"053"
+	ÿƒGDVKonvert(gdvinhalt$,"krg22031")
+	gdvtext$ÿ"KFZ-Teilkasko"
+ÿæ"054"
+	ÿƒGDVKonvert(gdvinhalt$,"krg22041")
+	gdvtext$ÿ"KFZ-Unfall"
+ÿæ"059"
+	ÿƒGDVKonvert(gdvinhalt$,"krg22051")
+	gdvtext$ÿ"KFZ-Gep„ck"
+ÿæ"055"
+	gdvsatznr256%ÿÿ0(gdvsatznr256$)
+	ÿÉÿægdvsatznr256%
+ÿæ0,1
+ÿƒGDVKonvert(gdvinhalt$,"krg22061")
+gdvtext$ÿ"KFZ-Baustein
+ÿæ2
+ÿƒGDVKonvert(gdvinhalt$,"krg22062")
+ÿ’ÿÉ
+ÿæ"040","042"
+	gdvsatznr51%ÿÿ0(gdvsatznr51$)
+	ÿÉÿægdvsatznr51%
+ÿæ0,1
+ÿƒGDVKonvert(gdvinhalt$,"hag22011")
+gdvtext$ÿ"Wagnisdaten"
+ÿæ2
+ÿƒGDVKonvert(gdvinhalt$,"hag22012")
+ÿ’ÿÉ
+ÿæ"030","031","032","033","034","035","036","037","038","039"
+	ÿ¡gdvsatznr60$ÿ"9"ÿp
+ÿƒGDVKonvert(gdvinhalt$,"ung22019")
+gdvtext$ÿ"Bezugsrecht 
+	ÿ^
+ÿ¡gdvsatznr43$ÿ"3"ÿp
+ÿƒGDVKonvert(gdvinhalt$,"ung22013")
+ÿ^ÿ¡gdvsatznr43$ÿ"4"ÿp
+ÿƒGDVKonvert(gdvinhalt$,"ung22014")
+ÿ^
+ÿ¡gdvsatznr49$ÿ"1"ÿgdvsatznr49$ÿ" "ÿp
+ÿ½ CALL Fehler("Wagnisdaten","")
+ÿƒGDVKonvert(gdvinhalt$,"ung22011")
+gdvtext$ÿ"Wagnisdaten"
+ÿ^ÿ¡gdvsatznr49$ÿ"2"ÿp
+ÿƒGDVKonvert(gdvinhalt$,"ung22012")
+gdvtext$ÿ"Wagniszusatz"
+ÿ’ÿ¡
+ÿ’ÿ¡
+	ÿ’ÿ¡
+
+ÿæ"010"
+	ÿ½ CALL Fehler("0220-010",gdvinhalt$)
+	ÿÉÿægdvwagnis$
+ÿæ"0"
+ÿƒGDVKonvert(gdvinhalt$,"leg22011")
+gdvtext$ÿ"Angaben zur versicherten Person"
+ÿæ"1","3"
+gdvsatznr256%ÿÿ0(gdvsatznr256$)
+ÿÉÿægdvsatznr256%
+ÿæ0
+ÿƒGDVKonvert(gdvinhalt$,"leg22021")
+gdvtext$ÿ"Kapitallebens-/Risikoversicherung"
+ÿæ1
+ÿƒGDVKonvert(gdvinhalt$,"leg22021")
+gdvtext$ÿ"Kapitallebens-/Risikoversicherung"
+ÿæ2
+ÿƒGDVKonvert(gdvinhalt$,"leg22022")
+ÿæ6
+ÿƒGDVKonvert(gdvinhalt$,"leg22026")
+ÿæ7
+ÿƒGDVKonvert(gdvinhalt$,"leg22027")
+ÿæ8
+ÿƒGDVKonvert(gdvinhalt$,"leg22028")
+ÿæ9
+ÿƒGDVKonvert(gdvinhalt$,"leg22029")
+ÿ’ÿÉ
+ÿæ"4","8"
+gdvsatznr256%ÿÿ0(gdvsatznr256$)
+ÿÉÿægdvsatznr256%
+ÿæ0,1
+ÿƒGDVKonvert(gdvinhalt$,"leg22031")
+gdvtext$ÿ"Berufsunf„higkeit"
+ÿæ2
+ÿƒGDVKonvert(gdvinhalt$,"leg22032")
+ÿæ6
+ÿƒGDVKonvert(gdvinhalt$,"leg22036")
+ÿæ8
+ÿƒGDVKonvert(gdvinhalt$,"leg22038")
+ÿæ9
+ÿƒGDVKonvert(gdvinhalt$,"leg22039")
+ÿ’ÿÉ
+ÿæ"6"
+gdvsatznr256%ÿÿ0(gdvsatznr256$)
+ÿÉÿægdvsatznr256%
+ÿæ0,1
+ÿƒGDVKonvert(gdvinhalt$,"leg22041")
+gdvtext$ÿ"Unfall"
+ÿæ2
+ÿƒGDVKonvert(gdvinhalt$,"leg22042")
+ÿæ6
+ÿƒGDVKonvert(gdvinhalt$,"leg22046")
+ÿæ8
+ÿƒGDVKonvert(gdvinhalt$,"leg22048")
+ÿæ9
+ÿƒGDVKonvert(gdvinhalt$,"leg22049")
+ÿ’ÿÉ
+ÿæ"5"
+gdvsatznr256%ÿÿ0(gdvsatznr256$)
+ÿÉÿægdvsatznr256%
+ÿæ0,1
+ÿƒGDVKonvert(gdvinhalt$,"leg22051")
+gdvtext$ÿ"Risikozusatz"
+ÿæ2
+ÿƒGDVKonvert(gdvinhalt$,"leg22052")
+ÿæ6
+ÿƒGDVKonvert(gdvinhalt$,"leg22056")
+ÿæ8
+ÿƒGDVKonvert(gdvinhalt$,"leg22058")
+ÿæ9
+ÿƒGDVKonvert(gdvinhalt$,"leg22059")
+ÿ’ÿÉ
+ÿæ"2"
+gdvsatznr256%ÿÿ0(gdvsatznr256$)
+ÿÉÿægdvsatznr256%
+ÿæ0,1
+ÿƒGDVKonvert(gdvinhalt$,"leg22061")
+gdvtext$ÿ"Rentenversicherung"
+ÿæ2
+ÿƒGDVKonvert(gdvinhalt$,"leg22062")
+ÿæ3
+ÿƒGDVKonvert(gdvinhalt$,"leg22063")
+ÿæ6
+ÿƒGDVKonvert(gdvinhalt$,"leg22066")
+ÿæ7
+ÿƒGDVKonvert(gdvinhalt$,"leg22067")
+ÿæ8
+ÿƒGDVKonvert(gdvinhalt$,"leg22068")
+ÿæ9
+ÿƒGDVKonvert(gdvinhalt$,"leg22069")
+ÿ’ÿÉ
+ÿæ"7"
+gdvsatznr256%ÿÿ0(gdvsatznr256$)
+ÿÉÿægdvsatznr256%
+ÿæ0,1
+ÿƒGDVKonvert(gdvinhalt$,"leg22071")
+gdvtext$ÿ"Kapital-/Fondsgebundene LV"
+ÿæ2
+ÿƒGDVKonvert(gdvinhalt$,"leg22072")
+ÿæ6
+ÿƒGDVKonvert(gdvinhalt$,"leg22076")
+ÿæ8
+ÿƒGDVKonvert(gdvinhalt$,"leg22078")
+ÿæ9
+ÿƒGDVKonvert(gdvinhalt$,"leg22079")
+ÿ’ÿÉ
+
+ÿ’ÿÉ
+ÿæ"130"
+	ÿƒGDVKonvert(gdvinhalt$,"vhg22011")
+	gdvtext$ÿ"Vertragsdaten"
+ÿæ"110"
+	ÿƒGDVKonvert(gdvinhalt$,"glg22011")
+	gdvtext$ÿ"Vertragsdaten"
+ÿæ"140"
+	gdvsatznr51%ÿÿ0(gdvsatznr51$)
+	ÿÉÿægdvsatznr51%
+ÿæ0,1
+ÿƒGDVKonvert(gdvinhalt$,"vgg22011")
+gdvtext$ÿ"Vertragsdaten"
+ÿæ2
+ÿƒGDVKonvert(gdvinhalt$,"vgg22012")
+ÿ’ÿÉ
+ÿæ"020"
+	gdvsatznr48%ÿÿ0(gdvsatznr48$)
+	ÿÉÿægdvsatznr48%
+ÿæ0,1
+ÿƒGDVKonvert(gdvinhalt$,"kkg22011")
+gdvtext$ÿ"Personendaten"
+ÿæ2
+ÿƒGDVKonvert(gdvinhalt$,"kkg22021")
+gdvtext$ÿ"Allgemeine Tarifdaten"
+ÿæ3
+ÿƒGDVKonvert(gdvinhalt$,"kkg22031")
+gdvtext$ÿ"Spezielle Tarifdaten"
+	ÿ’ÿÉ
+ÿæ"070"
+	gdvsatznr53%ÿÿ0(gdvsatznr53$)
+	ÿÉÿægdvsatznr53%
+ÿæ0,1
+ÿƒGDVKonvert(gdvinhalt$,"reg22011")
+gdvtext$ÿ"Vertragsdaten"
+ÿæ2
+ÿƒGDVKonvert(gdvinhalt$,"reg22012")
+ÿ’ÿÉ
+ÿæ"080","081","082","083","231","089","090","099","100","109","120","150","180","181","210"
+	gdvsatznr49%ÿÿ0(gdvsatznr49$)
+	ÿÉÿægdvsatznr49%
+ÿæ0,1
+ÿƒGDVKonvert(gdvinhalt$,"fug22011")
+gdvtext$ÿ"Vertragsdaten"
+ÿæ2
+ÿƒGDVKonvert(gdvinhalt$,"fug22012")
+ÿ’ÿÉ
+ÿæ"510"
+	ÿƒGDVKonvert(gdvinhalt$,"vsg22011")
+	gdvtext$ÿ"Vertragsdaten"
+ÿæ"171","172","174","175","176","179","232","290"
+	gdvsatznr50%ÿÿ0(gdvsatznr50$)
+	ÿÉÿægdvsatznr50%
+ÿæ0,1
+ÿƒGDVKonvert(gdvinhalt$,"teg22011")
+gdvtext$ÿ"Vertragsdaten"
+ÿæ2
+ÿƒGDVKonvert(gdvinhalt$,"teg22012")
+ÿæ3
+ÿƒGDVKonvert(gdvinhalt$,"teg22013")
+	ÿ’ÿÉ
+ÿæ"190"
+	gdvsatznr49%ÿÿ0(gdvsatznr49$)
+	ÿÉÿægdvsatznr49%
+ÿæ0,1
+ÿƒGDVKonvert(gdvinhalt$,"trg22011")
+gdvtext$ÿ"Vertragsdaten"
+ÿæ2
+ÿƒGDVKonvert(gdvinhalt$,"trg22012")
+gdvtext$ÿ"Vertragsdaten"
+	ÿ’ÿÉ
+ÿæ"060","160","290","233","293","294","299"
+	gdvsatznr47%ÿÿ0(gdvsatznr47$)
+	ÿÉÿægdvsatznr47%
+ÿæ0,1
+ÿƒGDVKonvert(gdvinhalt$,"udg22011")
+gdvtext$ÿ"Vertragsdaten"
+ÿæ2
+ÿƒGDVKonvert(gdvinhalt$,"udg22012")
+	ÿ’ÿÉ
+ÿ’ÿÉ
+
+ÿæ"0250"
+gdvsatznr51%ÿÿ0(gdvsatznr51$)
+ÿÉÿægdvsatznr51%
+ÿæ0,1
+	ÿƒGDVKonvert(gdvinhalt$,"trg25011")
+	gdvtext$ÿ"Einzelanmeldung Teil 1"
+ÿæ2
+	ÿƒGDVKonvert(gdvinhalt$,"trg25012")
+	gdvtext$ÿ"Einzelanmeldung Teil 2"
+ÿ’ÿÉ
+ 
+ÿæ"0260"
+ÿƒGDVKonvert(gdvinhalt$,"trg26011")
+gdvtext$ÿ"Umsatzanmeldung"
+ 
+ÿæ"0300"
+gdvsatznr256%ÿÿ0(gdvsatznr256$)
+ÿÉÿægdvsatznr256%
+ÿæ0,1
+	ÿƒGDVKonvert(gdvinhalt$,"big30011")
+	gdvtext$ÿ"Beteiligungsinformationssatz 1/2"
+ÿæ2
+	ÿƒGDVKonvert(gdvinhalt$,"big30012")
+	gdvtext$ÿ"Beteiligungsinformationssatz 2/2"
+ÿ’ÿÉ
+
+ÿæ"0350"
+ÿ½ CALL Fehler("350-Klauseldatensatz",gdvinhalt$)
+ÿƒGDVKonvert(gdvinhalt$,"kdg35011")
+gdvtext$ÿ"Klausel-Datensatz"
+ 
+ÿæ"0400"
+gdvsatznr256%ÿÿ0(gdvsatznr256$)
+ÿÉÿægdvsatznr256%
+ÿæ0,1
+	ÿƒGDVKonvert(gdvinhalt$,"idg40011")
+	gdvtext$ÿ"Inkasso Gesamt 1/2"
+ÿæ2
+	ÿƒGDVKonvert(gdvinhalt$,"idg40012")
+	gdvtext$ÿ"Inkasso Gesamt 2/2"
+ÿ’ÿÉ
+ 
+ÿæ"0410"
+ÿƒGDVKonvert(gdvinhalt$,"idg41011")
+gdvtext$ÿ"Inkasso Teilsparte"
+ 
+ÿæ"0430"
+ÿƒGDVKonvert(gdvinhalt$,"kdg43011")
+gdvtext$ÿ"Inkasso Text"
+ 
+ÿæ"9999"
+ÿƒGDVKonvert(gdvinhalt$,"nsg99911")
+gdvtext$ÿ"Nachsatz"
+ ÿ’ÿÉ
+ 
+gdvImmer$ÿÿ(gdvZeile%,"000000")ÿ" - "ÿgdvsatzart$ÿ" - "ÿgdvsparte$ÿ" - "ÿgdvvsnr$ÿ" - "
+ÿ¡gdvsatzart$ÿ"0001"ÿgdvsatzart$ÿ"9999"ÿp
+ÿƒgdvWriteLogOk(gdvtext$)
+ÿ^
+ÿƒgdvWriteLogOk(gdvImmer$ÿgdvtext$)
+ÿ’ÿ¡
+wend020920061: 
+ ÿÙ
+ 
+ ÿ½ CALL Info("","")
+ 
+ ÿ†ÿ¤
+ 
+ ÿ½ CALL Info("Daten eingelesen","")
+ 
+abGDVSpFrei310899: 
+ ÿ½ CALL Info("Daten eingelesen","")
+ ÿƒGDVSpartenFrei()
+ 
+ ÿ½ CALL Info("Freigabe der Sparten erstellt","")
+ ÿ½ CALL Fehler( FILE , INDEX )
+ ÿ½ **********************************************************************
+ ÿ½ 20022003   Auslesen der Agenturnummern
+ fil$ÿÿ™
+ i1ind$ÿÿ£
+ ÿ×GSVMVect$(ÿA("ADG10011"))
+ ÿ×GSVMVect1$(ÿA("ADG10011"))
+ ÿ™"ADG10011"
+ 
+ ÿ³ÿ_ÿwGVM200220031
+ ÿ‰ÿ£ÿ³GSVM
+GVM200220031: 
+ ÿ³ÿ_ÿwErrorHandler
+ ÿ£GSVM.ADG10011
+ ÿÉÿ`ÿ™"ADG10011"ÿ£GSVM.ADG10011
+ 
+ gsvmges%ÿÿA("ADG10011")
+ gsvmoldnr$ÿ""
+ gsvmnewnr$ÿGSVM.ADG10011
+ gsvmzaehl%ÿ0
+ gsvma%ÿ0
+ ÿØÿOÿB("ADG10011")
+gsvmzaehl%ÿgsvmzaehl%ÿ1
+ÿÊÿË"Suche nach Agenturnummern: "ÿÿH(ÿ(gsvmzaehl%,",999999999"))ÿ" von "ÿÿH(ÿ(gsvmges%,",999999999"))ÿ" durchsucht"
+ÿ¡Geurofin$ÿ"TRUE"ÿp
+gsvmnewnr$ÿÿ-(GSVM.ADG10011,5)
+ÿ^
+gsvmnewnr$ÿGSVM.ADG10011
+ÿ’ÿ¡
+ÿ¡gsvmoldnr$ÿgsvmnewnr$ÿp
+gsvmoldnr$ÿgsvmnewnr$
+ÿ¡ÿJ(gsvmnewnr$,AGNummer.maadrag)ÿÿH(gsvmnewnr$)ÿ""ÿp
+ÿÉÿ`ÿ™"maadrag"ÿ£AGNummer.maadrag
+ÿÉÿ¥gsvmnewnr$ÿáÿ™"maadrag"ÿ£AGNummer.maadrag
+codema%ÿcodema.maadrag
+ÿÉÿ`ÿ™"MAADR"ÿ£codema.maadr
+ÿÉÿ¥codema%ÿ™"MAADR"ÿ£codema.maadr
+ÿ¡ÿJ(codema%,codema.maadr)ÿp
+	GSVMVect$(gsvma%)ÿgsvmnewnr$ÿ" "ÿNachname.maadrÿ"/"ÿVorname.maadrÿ" - zugeordnet"ÿÿ'(100)ÿÿ(codema%,"000000")
+	GSVMVect1$(gsvma%)ÿgsvmnewnr$
+ÿ^
+	ÿÉÿ¾ÿ™"maadrag"
+ÿ’ÿ¡
+ÿ^
+GSVMVect$(gsvma%)ÿgsvmnewnr$ÿÿ'(100)ÿ"000000"
+ 
+GSVMVect1$(gsvma%)ÿgsvmnewnr$
+ÿ’ÿ¡
+gsvma%ÿgsvma%ÿ1
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"ADG10011"ÿ£GSVM.ADG10011
+ ÿÙ
+ GSVMVect$(gsvma%)ÿ""
+GVM200220032:
+ÿ‰ÿñ"maadrag",0,0,243,179,"GDV Vermittlernr.liste","MS Sans Serif",8
+ÿ|ÿñ"maadrag",5,5,2,120,20,0,"Liste der in der GDV Datei gefundenen Vermittlernr."
+ÿ½ ADD DIALOG "maadrag",5,62,6,174,9,128,Kunde$
+ÿ|ÿñ"maadrag",5,5,22,65,10,0,"VM-Nummer/Name:"
+ÿ|ÿñ"maadrag",7,5,32,168,137,2,2,GSVMVect$,Auswahl$,prompt$
+ÿ|ÿñ"maadrag",1,180,32,55,15,1,"Start Import",1,1
+ÿ|ÿñ"maadrag",1,180,50,55,15,0,"Zuordnen",3,1
+ÿ|ÿñ"maadrag",1,180,68,55,15,0,"Abbruch",0,0
+ÿßÿ³
+ÿñ"maadrag",req%
+ÿ¾ÿñ"maadrag"
+ÿ¡Geurofin$ÿ";TRUE"ÿp
+ÿ´"e:\eurofin\GDVAG.TXT"ÿ›ÿ¶
+ÿ›i%ÿ0ÿqgsvma%ÿ1
+ÿ{GSVMVect1$(i%)
+ÿ±i%
+ÿ†ÿ¶
+ÿ’ÿ¡
+ÿ¡req%ÿ0ÿp
+ÿƒFehler("Das Programm muá neu gestartet werden!","")
+ÿƒEXIT()
+ÿ’ÿ¡
+ÿ¡req%ÿ3ÿp
+agneuzuord$ÿAuswahl$(0)
+pos%ÿ0
+pos%ÿÿ?(agneuzuord$," ")
+agneunr$ÿÿ,(agneuzuord$,1,pos%ÿ1)
+codema%ÿÿ0(ÿ-(Auswahl$(0),6))
+ÿ¡codema%ÿ0ÿp
+wks1%ÿWorkstation%
+ma%ÿGetCodeMA%(ma%,Wks1%)
+Agenturnummer$ÿagneunr$
+ÿ’ÿ¡
+
+ÿ¡codema%ÿ0ÿp
+ÿƒMAGdvAgent(ma%,1,Agenturnummer$)
+ÿwGVM200220031
+ÿ^
+ÿƒFehler("Vermittlernummer war bereits zugeordnet!","")
+ÿwGVM200220032
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ½ CALL Fehler( FILE , INDEX )
+ ÿ½ FILE fil$
+ ÿ½ INDEX i1ind$
+ ÿ½ CALL Fehler( FILE , INDEX )
+ ÿ½ SELECT FIRST fil$ INDEX i1ind$$
+ ÿÂ"GDV-Import jetzt durchfhren?","",130,req%
+ ÿ¡req%ÿ1ÿp
+ÿƒFehler("Das Programm muá neu gestartet werden!","")
+ÿƒEXIT()
+ ÿ’ÿ¡
+ ÿ½ **********************************************************************
+ ÿƒVertTest()
+ 
+ ÿƒgdvCloseLog()
+ 
+ ÿ’ÿÿ
+ 
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+ÿ½ ***** Konvertieren und Zuordnen der GDV-Daten zu ******
+ÿ½ ***** den verschiedenen Strukturen               ******
+ÿ½ *******************************************************
+ÿ½ ******************************************************* 
+ÿÿGDVKonvert(gdvinhalt$,gdvtempdat$)
+gdv_a%ÿ0
+
+ÿ¡gdvtempdat$ÿ"vog00111"ÿp
+gdvNummer$ÿÿ,(gdvinhalt$,5,5)
+ÿÉÿ¥ÿ0(gdvNummer$)ÿ™"gdvges"ÿ£vunr.gdvges
+gdvNummer%ÿlink.gdvges
+ÿ½ REQUEST gdvNummer$, STR$ (gdvNummer%,"000000"),1,gdvAnt%
+ÿ’ÿ¡
+ÿ¡gdvtempdat$ÿ"kdg43011"ÿp
+ÿwendgdvconvert
+ÿ’ÿ¡
+ÿ¡ÿOÿ´(gdvtempdat$)ÿp
+ÿƒDFile(8,gdvtempdat$ÿ_fpw$)
+ÿ’ÿ¡
+ÿ™gdvtempdat$
+ÿÿ™gdvtempdat$
+Dyn1$ÿÿ>(ÿ,(gdvtempdat$,1,2))
+DynCode$ÿDyn1$ÿ"0"ÿÿ,(gdvtempdat$,4,ÿ/(gdvtempdat$)ÿ3)
+ÿ¡Dyn1$ÿ"ID"ÿp
+DynCode1$ÿDyn1$ÿ"040011"
+ÿ^
+DynCode1$ÿDyn1$ÿ"021011"
+ÿ’ÿ¡
+ 
+ÿ¡gdvtempdat$ÿ"vog00111"ÿgdvtempdat$ÿ"vog00112"ÿgdvtempdat$ÿ"nsg99111"ÿp
+gdvanzfeld%ÿÿõ(gdvtempdat$,1)
+ÿ^
+gdvanzfeld%ÿÿõ(gdvtempdat$,1)
+ÿ’ÿ¡
+ÿ×gdvnamefeld$(gdvanzfeld%)
+ÿÿgdvnamefeld$,1
+ÿ›gdv_a%ÿ0ÿqgdvanzfeld%ÿ1
+gdvfeldm$ÿgdvnamefeld$(gdv_a%)ÿ"."ÿgdvtempdat$
+ÿ½ CALL Fehler(gdvfeldm$,gdvtempdat$)
+gdvfeldtyp$ÿÿö(gdvnamefeld$(gdv_a%),0)
+gdvformtyp$ÿÿö(gdvnamefeld$(gdv_a%),4)
+ÿ½ CALL Info(gdvfeldtyp$,gdvformtyp$)
+ÿ½ CALL Fehler(gdvfeldtyp$,gdvformtyp$)
+ÿ½ CALL Fehler(gdvfeldm$,gdvinhalt$)
+ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"GDVKU"ÿp
+gdvfeldm$$ÿgdvCodeKu%
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"GDVMA"ÿp
+gdvfeldm$$ÿvcodema%
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"GDVVA"ÿp
+gdvfeldm$$ÿgdvCodeVa%
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"GDVGE"ÿp
+gdvfeldm$$ÿgdvNummer%
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"CODEKU"ÿp
+gdvfeldm$$ÿ0
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"CODEGE"ÿp
+gdvfeldm$$ÿgdvNummer%
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"CODEVA"ÿp
+gdvfeldm$$ÿ0
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"CODEMA"ÿp
+gdvfeldm$$ÿvcodema%
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"LFDNR"ÿp
+gdvfeldm$$ÿ0
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"LFDNRTOTAL"ÿp
+gdvfeldm$$ÿ0
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"CODE200"ÿp
+gdvfeldm$$ÿ0
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿÿ>("CODE"ÿDynCode1$)ÿp
+gdvfeldm$$ÿ0
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿÿ>("CODE"ÿDynCode$)ÿp
+gdvfeldm$$ÿ0
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"TIMESTAMP"ÿp
+gdvfeldm$$ÿ0
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"SPERRE"ÿp
+gdvfeldm$$ÿ0
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"GDVFAIL"ÿp
+gdvfeldm$$ÿ0
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"GDVREAD"ÿp
+ÿ½ Nichts „ndern
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"MANAME"ÿp
+ÿ½ Nichts „ndern
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"MACODEMA"ÿp
+ÿ½ Nichts „ndern
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"WORKSTATION"ÿp
+ÿ½
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"QWONO"ÿp
+ÿ½
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"RECSTATUS"ÿp
+ÿ½ 
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"AGSPERRE1"ÿp
+ÿ½ 
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"AGSPERRE2"ÿp
+ÿ½  
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"AGSPERREAB"ÿp
+ÿ½  
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"MANAME"ÿp
+ÿ½   
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"MACODEMA"ÿp
+ÿ½   
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"MATIMESTAMP"ÿp
+ÿ½   
+ÿ^ÿ¡ÿ>(gdvnamefeld$(gdv_a%))ÿ"MATIMESTAMP1"ÿp
+ÿ½   
+ÿ^
+gdviniwert$ÿ""
+gdvitem$ÿÿH(ÿ(gdv_a%ÿ1,"99"))
+gdvrw%ÿÿƒ("GetPrivateProfileString",gdvtempdat$,gdvitem$,"",gdviniwert$,250,gdvpath$ÿ"gdvneu.ini")
+gdvposkomma%ÿÿ?(gdviniwert$,",")
+gdvpostxt%ÿÿ0(ÿ,(gdviniwert$,1,gdvposkomma%ÿ1))
+gdvlaengtxt%ÿÿ0(ÿ,(gdviniwert$,gdvposkomma%ÿ1,ÿ/(gdviniwert$)))
+ÿÉÿægdvfeldtyp$
+ÿæ"TXT"
+ÿ½ 08022003
+gdvfeldm$$ÿÿ,(gdvinhalt$,gdvpostxt%,gdvlaengtxt%)
+ÿ½ CALL Fehler( MID$ (gdvinhalt$,gdvpostxt%,gdvlaengtxt%),"")
+ÿæ"NUM"
+gdvnum%ÿÿ0(ÿ,(gdvinhalt$,gdvpostxt%,gdvlaengtxt%))
+ÿ¡ÿ-(gdvformtyp$,1)ÿ"."ÿpgdvnum%ÿgdvnum%
+ÿ¡ÿ-(gdvformtyp$,2)ÿ".0"ÿpgdvnum%ÿgdvnum%ÿ10
+ÿ¡ÿ-(gdvformtyp$,3)ÿ".00"ÿpgdvnum%ÿgdvnum%ÿ100
+ÿ¡ÿ-(gdvformtyp$,4)ÿ".000"ÿpgdvnum%ÿgdvnum%ÿ1000
+ÿ¡ÿ-(gdvformtyp$,5)ÿ".0000"ÿpgdvnum%ÿgdvnum%ÿ10000
+ÿ¡ÿ-(gdvformtyp$,6)ÿ".00000"ÿpgdvnum%ÿgdvnum%ÿ100000
+ÿ¡ÿ-(gdvformtyp$,7)ÿ".000000"ÿpgdvnum%ÿgdvnum%ÿ1000000
+gdvfeldm$$ÿgdvnum%
+ÿæ"DAT"
+gdvdatumwert$ÿÿ,(gdvinhalt$,gdvpostxt%,gdvlaengtxt%)
+ÿƒGDVDatum(gdvdatumwert$,gdvfeldm$)
+ÿ’ÿÉ
+ÿ’ÿ¡
+ÿ±gdv_a%
+ÿ¡gdvtempdat$ÿ"vog00*"ÿgdvtempdat$ÿ"nsg*"ÿp
+ÿ^
+ÿ¡sp.gdvtempdat$ÿ30ÿsp.gdvtempdat$ÿ	39ÿpsp.gdvtempdat$ÿ30
+ÿ¡sp.gdvtempdat$ÿ40ÿsp.gdvtempdat$ÿ	49ÿpsp.gdvtempdat$ÿ40
+ÿ’ÿ¡
+ÿÌÿ™gdvtempdat$
+gdvoldvsnr$ÿÿ,(gdvinhalt$,14,17)
+endgdvconvert: 
+ÿ½ CLOSE FILE gdvtempdat$
+ÿ’ÿÿ
+ 
+ ÿ½ *******************************************************
+ ÿ½ *******************************************************
+ ÿ½ ***** GDV-Strukturen leeren ***************************
+ ÿ½ *******************************************************
+ ÿ½ *******************************************************
+ÿÿGDVLeer(gdvSollLeer%)
+ÿ¡ÿOÿ÷("PROVUPD")ÿpÿ¨_netpath$ÿ"PROVUPD.SBR",ÿ°
+ÿ½ gdvLeermachen% = 1
+ ÿ¡gdvTestLog%ÿ1ÿpÿƒgdvWriteLogOk("***** Routine : GDVLeer()")
+ÿ_netpath$ÿ"gdv\gdv_dat\"
+ÿßÿe
+ÿ³ÿ_ÿwerr2605991tk 
+gdv_inipath$ÿ_netpath$ÿ"gdv\gdv_dat\gdvneu.ini"
+gdv_dat$ÿ"Dateien"
+
+gdv_item$ÿ"Alle"
+gdv_iniwert$ÿ""
+RW%ÿÿƒ("GetPrivateProfileString",gdv_dat$,gdv_item$,"",gdv_iniwert$,250,gdv_inipath$)
+gdv_alle%ÿÿ0(gdv_iniwert$)
+ÿwweit2605991tk
+ 
+err2605991tk: 
+gdvfehler%ÿgdvfehler%ÿ1
+fail$ÿ"Die Datei gdvneu.ini wurde nicht im Pfad "ÿ_netpath$ÿ"gdv\gdv_dat gefunden werden !"
+ÿƒgdvWriteLogFail(fail$)
+ÿwweit0202995tk
+ 
+weit2605991tk: 
+ÿ³ÿ_ÿwErrorHandler
+ÿƒgdvWriteLogOk("Die Datei GDVNEU.INI wurde erfolgreich geoeffnet")
+v210z%ÿ0
+ÿÿgdv_v210$(1,1)
+ÿÿgdv_v210$(50)
+ÿ›i%ÿ1ÿqgdv_alle%
+gdv_iniwert$ÿ""
+gdv_item$ÿÿH(ÿ(i%,"999"))
+RW%ÿÿƒ("GetPrivateProfileString",gdv_dat$,gdv_item$,"",gdv_iniwert$,250,gdv_inipath$)
+ 
+ÿ³ÿ_ÿwerr2605992tk
+ÿ½ open file memory
+ÿ½ CALL Info(gdv_iniwert$,gdv_item$)
+ÿƒDFile(8,gdv_iniwert$ÿ_fpw$)
+ÿ¡gdv_iniwert$ÿ"*210*"ÿp
+gdv_v210$(v210z%)ÿgdv_iniwert$
+v210z%ÿv210z%ÿ1
+ÿ’ÿ¡
+ÿ½ CREATE FILE MEMORY "adrt" FROM FILE gdv_iniwert$
+ÿ½ CLOSE FILE gdv_iniwert$
+ÿ½ CREATE FILE MEMORY gdv_iniwert$ FROM FILE "ADRT"
+ÿ½ CLOSE FILE "adrt"
+ 
+ 
+ÿ™gdv_iniwert$
+ÿ³ÿ_ÿwweit010600ab
+ÿ¡gdvSollLeer%ÿ1ÿpÿ¾ÿaÿ™gdv_iniwert$
+weit010600ab:
+ÿ³ÿ_ÿwerr2605992tk
+ÿwweit2605992tk
+ 
+err2605992tk: 
+gdvfehler%ÿgdvfehler%ÿ1
+fail$ÿ"Die Datei "ÿgdv_iniwert$ÿ".SBF wurde nicht im Pfad "ÿÿ_netpath$ÿ"gdv\gdv_dat gefunden werden !"
+ÿƒgdvWriteLogFail(fail$)
+ÿwweit2605993tk
+ 
+weit2605992tk: 
+ÿƒgdvWriteLogOk("Die Datei "ÿgdv_iniwert$ÿ".SBF erfolgreich geleert !")
+ÿ±i%
+ÿßÿ³
+ 
+weit2605993tk:
+ÿ³ÿ_ÿwErrorHandler
+ 
+ÿ³ÿ_ÿwerr2605993tk
+ÿ‰ÿ£ÿ³gdvku.adg10011
+ÿ‰ÿ£ÿ³vunr.adg10011
+ÿ‰ÿ£ÿ³gdvku.adg10012
+ÿ‰ÿ£ÿ³gdvku.alg20011
+ÿ½ CREATE INDEX ON codeku.kr021011
+ÿ½ CREATE INDEX ON codeku.kr022011
+ÿ½ CREATE INDEX ON codeku.kr022021
+ÿ½ CREATE INDEX ON codeku.kr022031
+ÿ½ CREATE INDEX ON codeku.kr022041
+ÿwweit2605994tk
+ 
+err2605993tk: 
+ÿ½ CALL Fehler("Fehler1","")
+ 
+weit2605994tk: 
+ÿ³ÿ_ÿwErrorHandler
+ÿƒgdvWriteLogOk("Alle Datenstrukturen wurden ordnungsgem„á geleert")
+ 
+ÿ’ÿÿ
+ 
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+ÿ½ ***** Sparten freischalten ****************************
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+ÿÿGDVSpartenFrei()
+ÿ×gdvFreieSparte$(50,2)
+
+gdvKFZFrei$ÿ"True"
+gdvLebenFrei$ÿ"True"
+gdvGruppeFrei$ÿ"True"
+ÿƒgdvWriteLogOk("KFZ-Sparten einlesen       : "ÿgdvKFZFrei$)
+ÿƒgdvWriteLogOk("Leben-Sparten einlesen     : "ÿgdvLebenFrei$)
+ÿƒgdvWriteLogOk("Restliche Sparten einlesen : "ÿgdvGruppeFrei$)
+ 
+gdvFreieSparte$(0,0)ÿ"050"
+gdvFreieSparte$(0,1)ÿ"Kraftfahrzeug"
+gdvFreieSparte$(0,2)ÿ"0"
+gdvFreieSparte$(1,0)ÿ"010"
+gdvFreieSparte$(1,1)ÿ"Leben"
+gdvFreieSparte$(1,2)ÿ"0"
+gdvFreieSparte$(2,0)ÿ"040"
+gdvFreieSparte$(2,1)ÿ"Haftpflicht"
+gdvFreieSparte$(2,2)ÿ"0"
+gdvFreieSparte$(3,0)ÿ"030"
+gdvFreieSparte$(3,1)ÿ"Unfall"
+gdvFreieSparte$(3,2)ÿ"0"
+gdvFreieSparte$(4,0)ÿ"130"
+gdvFreieSparte$(4,1)ÿ"Verbundene Hausrat"
+gdvFreieSparte$(4,2)ÿ"0"
+gdvFreieSparte$(5,0)ÿ"110"
+gdvFreieSparte$(5,1)ÿ"Glas"
+gdvFreieSparte$(5,2)ÿ"0"
+gdvFreieSparte$(6,0)ÿ"140"
+gdvFreieSparte$(6,1)ÿ"Verbundene Geb„ude"
+gdvFreieSparte$(6,2)ÿ"0"
+gdvFreieSparte$(7,0)ÿ"020"
+gdvFreieSparte$(7,1)ÿ"Kranken"
+gdvFreieSparte$(7,2)ÿ"0"
+gdvFreieSparte$(8,0)ÿ"070"
+gdvFreieSparte$(8,1)ÿ"Rechtsschutz"
+gdvFreieSparte$(8,2)ÿ"0"
+gdvFreieSparte$(9,0)ÿ"080"
+gdvFreieSparte$(9,1)ÿ"Feuerversicherung"
+gdvFreieSparte$(9,2)ÿ"0"
+gdvFreieSparte$(10,0)ÿ"081"
+gdvFreieSparte$(10,1)ÿ"Feuer-Industrie-Versicherung"
+gdvFreieSparte$(10,2)ÿ"0"
+gdvFreieSparte$(11,0)ÿ"082"
+gdvFreieSparte$(11,1)ÿ"landwirtschaftliche Feuer-Versicherung"
+gdvFreieSparte$(11,2)ÿ"0"
+gdvFreieSparte$(12,0)ÿ"083"
+gdvFreieSparte$(12,1)ÿ"sonstige Feuerversicherung"
+gdvFreieSparte$(12,2)ÿ"0"
+gdvFreieSparte$(13,0)ÿ"231"
+gdvFreieSparte$(13,1)ÿ"Feuer-(Groá)Betriebsunterbrechungs-Versicherung"
+gdvFreieSparte$(13,2)ÿ"0"
+gdvFreieSparte$(14,0)ÿ"089"
+gdvFreieSparte$(14,1)ÿ"brige und nicht aufgegliederte Feuer-Versicherung"
+gdvFreieSparte$(14,2)ÿ"0"
+gdvFreieSparte$(15,0)ÿ"090"
+gdvFreieSparte$(15,1)ÿ"Einbruch-Diebstahl- und Raub(ED)-Versicherung"
+gdvFreieSparte$(15,2)ÿ"0"
+gdvFreieSparte$(16,0)ÿ"099"
+gdvFreieSparte$(16,1)ÿ"brige und nicht aufgegliederte ED-Versicherung"
+gdvFreieSparte$(16,2)ÿ"0"
+gdvFreieSparte$(17,0)ÿ"100"
+gdvFreieSparte$(17,1)ÿ"Leitungswasser(LW)-Versicherung"
+gdvFreieSparte$(17,2)ÿ"0"
+gdvFreieSparte$(18,0)ÿ"109"
+gdvFreieSparte$(18,1)ÿ"brige und nicht aufgegliederte LW-Versicherung"
+gdvFreieSparte$(18,2)ÿ"0"
+gdvFreieSparte$(19,0)ÿ"120"
+gdvFreieSparte$(19,1)ÿ"Sturm-Versicherung"
+gdvFreieSparte$(19,2)ÿ"0"
+gdvFreieSparte$(20,0)ÿ"150"
+gdvFreieSparte$(20,1)ÿ"Hagel-Versicherung"
+gdvFreieSparte$(20,2)ÿ"0"
+gdvFreieSparte$(21,0)ÿ"180"
+gdvFreieSparte$(21,1)ÿ"Einheits-Versicherung"
+gdvFreieSparte$(21,2)ÿ"0"
+gdvFreieSparte$(22,0)ÿ"181"
+gdvFreieSparte$(22,1)ÿ"Allgemeine Einheitsversicherung"
+gdvFreieSparte$(22,2)ÿ"0"
+gdvFreieSparte$(23,0)ÿ"210"
+gdvFreieSparte$(23,1)ÿ"Extend Coverage(EC)-Versicherung"
+gdvFreieSparte$(23,2)ÿ"0"
+gdvFreieSparte$(24,0)ÿ"510"
+gdvFreieSparte$(24,1)ÿ"Verkehrsservice"
+gdvFreieSparte$(24,2)ÿ"0"
+gdvFreieSparte$(25,0)ÿ"171"
+gdvFreieSparte$(25,1)ÿ"Maschinen-Versicherung"
+gdvFreieSparte$(25,2)ÿ"0"
+gdvFreieSparte$(26,0)ÿ"172"
+gdvFreieSparte$(26,1)ÿ"Elektronik-Versicherung"
+gdvFreieSparte$(26,2)ÿ"0"
+gdvFreieSparte$(27,0)ÿ"174"
+gdvFreieSparte$(27,1)ÿ"Montage-Versicherung"
+gdvFreieSparte$(27,2)ÿ"0"
+gdvFreieSparte$(28,0)ÿ"175"
+gdvFreieSparte$(28,1)ÿ"Haushaltsger„teversicherung"
+gdvFreieSparte$(28,2)ÿ"0"
+gdvFreieSparte$(29,0)ÿ"176"
+gdvFreieSparte$(29,1)ÿ"Bauleistungs-Versicherung"
+gdvFreieSparte$(29,2)ÿ"0"
+gdvFreieSparte$(30,0)ÿ"179"
+gdvFreieSparte$(30,1)ÿ"brige Technische Versicherungen"
+gdvFreieSparte$(30,2)ÿ"0"
+gdvFreieSparte$(31,0)ÿ"232"
+gdvFreieSparte$(31,1)ÿ"Technische-Betriebsunterbrechungs-Versicherung"
+gdvFreieSparte$(31,2)ÿ"0"
+gdvFreieSparte$(32,0)ÿ"290"
+gdvFreieSparte$(32,1)ÿ"Maschinen-Garantie-Versicherung"
+gdvFreieSparte$(32,2)ÿ"0"
+gdvFreieSparte$(33,0)ÿ"190"
+gdvFreieSparte$(33,1)ÿ"Transport"
+gdvFreieSparte$(33,2)ÿ"0"
+gdvFreieSparte$(34,0)ÿ"060"
+gdvFreieSparte$(34,1)ÿ"Luftfahrtversicherung"
+gdvFreieSparte$(34,2)ÿ"0"
+gdvFreieSparte$(35,0)ÿ"160"
+gdvFreieSparte$(35,1)ÿ"Tierversicherung"
+gdvFreieSparte$(35,2)ÿ"0"
+gdvFreieSparte$(36,0)ÿ"290"
+gdvFreieSparte$(36,1)ÿ"sonstige Sach-/Schadenversicherung"
+gdvFreieSparte$(36,2)ÿ"0"
+gdvFreieSparte$(37,0)ÿ"233"
+gdvFreieSparte$(37,1)ÿ"sonstige Betriebsunterbrechungsversicherungen"
+gdvFreieSparte$(37,2)ÿ"0"
+gdvFreieSparte$(38,0)ÿ"293"
+gdvFreieSparte$(38,1)ÿ"sonstige Verm”gensschadenversicherungen"
+gdvFreieSparte$(38,2)ÿ"0"
+gdvFreieSparte$(39,0)ÿ"294"
+gdvFreieSparte$(39,1)ÿ"sonstige gemischte Versicherungen"
+gdvFreieSparte$(39,2)ÿ"0"
+gdvFreieSparte$(40,0)ÿ"290"
+gdvFreieSparte$(40,1)ÿ"brige und nich aufgegliederte sonstige Schadenversicherung"
+gdvFreieSparte$(40,2)ÿ"0"
+
+ÿ½ Freischalten
+ÿ›i%ÿ0ÿq40
+ÿ¡i%ÿ0ÿgdvKFZFrei$ÿ"True"ÿp
+gdvFreieSparte$(i%,2)ÿ"1"
+ÿ^ÿ¡i%ÿ1ÿgdvLebenFrei$ÿ"True"ÿp
+gdvFreieSparte$(i%,2)ÿ"1"
+ÿ^ÿ¡i%ÿ1ÿgdvGruppeFrei$ÿ"True"ÿp
+gdvFreieSparte$(i%,2)ÿ"1"
+ÿ^
+gdvFreieSparte$(i%,2)ÿ"0"
+ÿ’ÿ¡
+ÿƒgdvWriteLogOk(gdvFreieSparte$(i%,0)ÿ" - "ÿgdvFreieSparte$(i%,2)ÿ" - "ÿgdvFreieSparte$(i%,1))
+ÿ±i%
+ 
+ ÿ½ CALL Info("Sparten frei","")
+ ÿ’ÿÿ
+
+ÿÿVertTest()
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+ÿ½ ***** Vertr„ge prfen *********************************
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+ÿ½ Daten importieren
+
+gdvAdrSpOld%ÿ0
+gdvAdrVUOld%ÿ0
+ 
+ÿ½ Alle n”tigen Dateien ”ffnen
+ÿƒDFile(2,"OFFICE\telefon"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\adressen"ÿ_fpw$)
+ÿƒDFile(3,"sparten"ÿ_fpw$)
+ÿƒDFile(3,"kvertrag"ÿ_fpw$)
+ÿƒDFile(3,"history"ÿ_fpw$)
+ÿ½ REMOVE FROM FILE "kvertrag"
+ÿƒDFile(3,"al020011"ÿ_fpw$)
+ÿ½ REMOVE FROM FILE "al020011"
+ 
+ 
+ÿ½ Jeden Datensatz aus der Datei adg10011 vergleichen
+ÿ™"adg10011"
+ÿ£GDVKU
+ÿÉÿ`ÿ™"adg10011"ÿ£gdvku.adg10011
+adganz%ÿÿA("adg10011")
+adganz1%ÿ1
+gdvkuold%ÿ0
+viold%ÿ0
+anz210%ÿ0
+vi%ÿ0
+ÿ½ CALL Fehler("   Anz in 210:" + STR$ (anz210%,"999999"),"Sparte")
+ÿØÿOÿB("adg10011")
+ÿ™"adg10011"
+ÿ½ adganz1% = adganz1% + 1 
+ankey%ÿÿ0(adrknz.adg10011)
+ÿ¡vsnr.adg10011ÿ"*30404951076"ÿp
+ÿ½ CALL Fehler("das ist n test","1")
+ÿ’ÿ¡
+ÿ¡ankey%ÿ1ÿp
+ÿ½ die Adresse ist weder Versicherungsnehmer noch Beitragszahler, da muá noch eine andere kommen
+n„chster%ÿÿ1
+ÿwnDS120420001
+ÿ¡vsnr.adg10011ÿ"*30404951076"ÿp
+ÿ½ CALL Fehler("das ist n test","2")
+ÿ’ÿ¡
+ÿ’ÿ¡
+gdvVorname%ÿ0
+gdvNachname%ÿ0
+AdressFound%ÿ0
+VertFound%ÿ0
+gdvcodekua%ÿ0
+ÿ½ CALL Fehler("Vertrag","Sparte")
+ÿÊÿË"Vertrag finden"ÿ"   Anz in AGD10011:"ÿÿ(adganz1%,"999999")ÿ"/"ÿÿ(adganz%,"999999")ÿ"/:"ÿÿ(anz210%,"999999")
+ÿ½ IF name1.adg10011 LIKE "DRECHSLER-*" THEN 
+ÿ½ CALL Fehler("DRECHSLER","Sparte")
+ÿ½ END IF 
+ÿ½ Alle Daten fr Vertrags-Vergleichen aus der Datei adg10011 holen
+gdvAdrSparte%ÿsp.adg10011
+ÿ½ 18082003 Sparte 31 bis 39 behandeln
+ÿ¡gdvAdrSparte%ÿ30ÿgdvAdrSparte%ÿ	39ÿp
+ÿ¡ÿJ(gdvAdrSparte%,hauptsparte.sparten)ÿp
+ÿ^
+gdvAdrSparte%ÿ030
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡gdvAdrSparte%ÿ40ÿgdvAdrSparte%ÿ	49ÿp
+ÿ¡ÿJ(gdvAdrSparte%,hauptsparte.sparten)ÿp
+ÿ^
+gdvAdrSparte%ÿ040
+ÿ’ÿ¡
+ÿ’ÿ¡
+n„chster%ÿ0
+testsparte%ÿsp.adg10011
+ÿ¡sp.adg10011ÿ0ÿp
+gefunden%ÿ0
+ÿ½ CALL Fehler("Bndelungsvertrag","")
+ÿ¡GBuendel$ÿ"TRUE"ÿp
+ÿ½ Bndelungsvertrag aufsplitten in seine Bestandteile und die Einzelvertr„ge bernehmen
+ÿ›vi%ÿviold%ÿq50
+
+testfile$ÿgdv_v210$(vi%)
+
+ÿ¡ÿH(testfile$)ÿ""ÿp
+ÿ¡ÿJ(gdvku.adg10011,gdvku.testfile$)ÿtestfileold$ÿtestfile$ÿp
+viold%ÿvi%ÿ1
+ÿ¡testfileold$ÿ""ÿp
+ÿ½ adganz% = adganz% + 1
+ÿ’ÿ¡
+testfileold$ÿtestfile$
+ÿÉÿ`ÿ™testfile$ÿ£gdvku.testfile$
+ÿÉÿ¥gdvku.adg10011ÿ™testfile$ÿ£gdvku.testfile$
+gdvAdrSparte%ÿsp.testfile$
+vi%ÿ51
+gefunden%ÿÿ1
+
+ÿ½ CALL Fehler(testfile$, STR$ (gdvAdrSparte%,"000"))
+ÿ’ÿ¡
+
+ÿ’ÿ¡
+ÿ±vi%
+ÿ¡gefunden%ÿ0ÿp
+
+n„chster%ÿÿ1
+
+testfileold$ÿ""
+
+viold%ÿ0
+
+ÿwnDS120420001
+ÿ’ÿ¡
+ÿ^
+ÿ½ Bndelungsvertrag soll als einzelner Vertrag bernommen werden
+ÿ½ CALL Fehler("Bndelungsvertrag als einzelner","")
+gdvAdrSparte%ÿ0
+n„chster%ÿÿ1
+ÿ’ÿ¡
+ÿ^
+n„chster%ÿÿ1
+ÿ’ÿ¡
+ÿ½ **************************************************************************************
+ÿ½ hier berlegen welchen Teil der Vertragsnr man vergleichen sollte
+ÿ½ CALL Fehler("GDVAnf","")
+ÿ¡GVSNRVergl%ÿ1ÿp
+
+gdvAdrVSNR$ÿÿH(VSNRPackNum$(vsnr.adg10011))
+ÿ^
+
+gdvAdrVSNR$ÿÿH(VSNRPack$(vsnr.adg10011))
+ÿ’ÿ¡
+gdvAdrVSNR1$ÿÿH(vsnr.adg10011)
+ÿ½ CALL Fehler(vsnr.adg10011,gdvAdrVSNR$)
+ÿ½ IF gdvAdrVSNR$ LIKE "PRSV78027392579" THEN CALL Fehler(gdvAdrVSNR$,"")
+ÿ½ ************************************************************************************** 
+ 
+gdvAdrBKNZ$ÿbkz.adg10011
+ÿ½ 240320002
+ÿÉÿ`ÿ™"gdvtemp"
+vunrab%ÿÿ0(vunr.adg10011)
+ÿÉÿ¥vunrab%ÿ™"gdvtemp"ÿ£vunr.gdvtemp
+gdvAdrVu%ÿlink.gdvtemp
+ÿ½ gdvAdrVu% = gdvge.adg10011
+gdvAdrKU%ÿgdvku.adg10011
+ 
+ÿ½ Alle Daten zum Adress-Vergleichen aus der Datei adg10011 holen
+gdvN1$ÿVSNRPack$(NAME1.adg10011)
+gdvN2$ÿVSNRPack$(Name2.adg10011)
+gdvN3$ÿVSNRPack$(Name3.adg10011)
+gdvStr$ÿVSNRPack$(Str.adg10011)
+gdvO$ÿVSNRPack$(Ort.adg10011)
+gdvP$ÿVSNRPack$(plz.adg10011)
+ÿ¡Gebdat.adg10011ÿ0ÿp
+gdvGeb%ÿGebdat.adg10011
+ÿ^
+gdvGeb%ÿ0
+ÿ’ÿ¡
+gdvVMNr$ÿ""
+ÿ¡ÿH(gsvm.adg10011)ÿ""ÿp
+gdvVMNr$ÿgsvm.adg10011
+ÿ’ÿ¡
+ÿ½ IF gdvn1$ LIKE "coban" THEN CALL Fehler(gdvn1$,"")
+
+ 
+ÿ½ Prfen ob diese Sparte berhaupt importiert werden darf
+GDVImport$ÿ""
+GDVImport$ÿSparteTest$(gdvAdrSparte%)
+ÿ½ CALL Fehler("Prfen ob die Sparte importiert werden darf " + STR$ (gdvAdrSparte%,"99999"),GDVImport$)
+ÿ¡GDVImport$ÿ"j"ÿp
+ÿƒgdvWriteLogOk("Vertrag wird nicht aufgenommen, da diese Sparte nicht importiert werden soll: "ÿÿ(gdvAdrSparte%,"99999")ÿ" "ÿÿ(gdvAdrKu%,"000000")ÿ","ÿgdvAdrVSNR$ÿ","ÿgdvN1$ÿ","ÿgdvN2$ÿ","ÿgdvN3$)
+ÿwnDS120420001
+ÿ’ÿ¡
+ÿ½ Prfen ob die Sparte verknpft ist
+ 
+VertFound1%ÿ0
+ 
+ÿ™"sparten"
+ÿ£hauptsparte.sparten
+ÿÉÿ`
+
+codeva1%ÿ0
+sname1$ÿ""
+vst1%ÿ0
+ÿ¡ÿJ(gdvAdrSparte%,hauptsparte.sparten)ÿp
+ÿÉÿ¥gdvAdrSparte%ÿ™"sparten"ÿ£hauptsparte.sparten
+gdvAdrCodeVa%ÿcodeva.sparten
+gdvSparteName$ÿSparte.sparten
+gdvSparteVST%ÿvst.sparten
+ÿ¡GDVStandardSpar.spartenÿ1ÿp
+codeva1%ÿcodeva.sparten
+sname1$ÿsparte.sparten
+vst1%ÿvst.sparten
+ÿ’ÿ¡
+ÿ^
+ÿ½ 18082003 hier Sparte 31 bis 39 einarbeiten
+ 
+ÿ’ÿ¡
+ 
+ÿ½ Name der Gesellschaft auslesen
+ÿ™"geadr"
+ÿ£codege.geadr
+ÿÉÿ`
+ÿ¡ÿJ(gdvAdrVu%,codege.geadr)ÿp
+ÿÉÿ¥gdvAdrVu%ÿ™"geadr"ÿ£codege.geadr
+gdvGesellName$ÿGesellschaft.geadr
+ÿ’ÿ¡
+ 
+ ÿ½ CALL Info("Vertrag suchen","")
+ 
+SparteFoundAnf: 
+ÿ½ Vertrag suchen
+ÿƒgdvWriteLogOk("Vertrag suchen : "ÿÿ(gdvAdrKu%,"000000")ÿ","ÿgdvAdrVSNR$ÿ","ÿgdvN1$ÿ","ÿgdvN2$ÿ","ÿgdvN3$)
+ÿ™"kvertrag"
+ÿ¡GVSNRVergl%ÿ1ÿp
+ÿ£QNumVSNR.kvertrag
+KVIndexName$ÿ"QNumVSNR.kvertrag"
+ÿ^
+ÿ£QuickVSNR.kvertrag
+KVIndexName$ÿ"QuickVSNR.kvertrag"
+ÿ’ÿ¡
+KVIndex$ÿÿ£ÿ".kvertrag"
+
+ÿÉÿ`ÿ™"kvertrag"ÿ£KVIndex$$
+ 
+ÿ½ Neue Vertragssuche nach Andi
+ÿ½ CALL Fehler("Neue Vertragssuche nach Andi" + KVIndexName$,gdvAdrVSNR$)
+ÿ½ IF gdvAdrVSNR$ LIKE "291890150999" THEN CALL Fehler(gdvAdrVSNR$,"")
+ÿ¡ÿJ(gdvAdrVSNR$,KVIndexName$$)ÿp
+ÿÉÿ`ÿ™"kvertrag"ÿ£KVIndex$$
+ÿÉÿ¥gdvAdrVSNR$ÿ™"kvertrag"ÿ£KVIndex$$
+ÿØÿOÿB("kvertrag")ÿKVIndexName$$ÿgdvAdrVSNR$ÿVertFound%ÿ0
+ÿ½ w„re es hier nicht besser den Vergleich auf die Gesellschaft und Sparte rauszulassen und einfach nur 
+ÿ½ prfen, ob es hier die gleiche Adresse ist?
+ÿ¡codege.kvertragÿgdvAdrVu%ÿcodeva.kvertragÿgdvAdrCodeVA%ÿp
+
+VertFound%ÿ1
+
+gdvcodekua%ÿcodeku.kvertrag
+
+gdvLNR%ÿlfdnr.kvertrag
+
+ÿ½ IF lfdnr.kvertrag = 282 THEN CALL Fehler("Breuer Simone","")
+
+ÿƒgdvWriteLogOk("Vertrag gefunden : "ÿÿ(gdvcodekua%,"000000")ÿ","ÿÿ(gdvLNR%,"000000")ÿ"-"ÿÿ(gdvAdrKu%,"000000")ÿ","ÿgdvAdrVSNR$ÿ","ÿgdvN1$ÿ","ÿgdvN2$ÿ","ÿgdvN3$)
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"kvertrag"ÿ£KVIndex$$
+ÿÙ
+ÿÊÿËÿF(ÿ+(gdvAdrVSNR$ÿ","ÿgdvN1$ÿ","ÿgdvN2$ÿ","ÿgdvN3$,50))ÿ"   Anz in AGD10011:"ÿÿ(adganz1%,"999999")ÿ"/"ÿÿ(adganz%,"999999")
+ÿ^
+ÿ½ CALL Fehler("Vertrag nicht gefunden","")
+VertFound%ÿ0
+ÿ’ÿ¡
+ 
+ÿ½ Wenn kein Vertrag gefunden,dann prfen ob weitere Sparte mit entsprechender Hauptspartennummer existiert
+ÿ¡VertFound%ÿ0ÿp
+ÿ™"Sparten"
+ÿÉÿ±ÿ™"Sparten"ÿ£hauptsparte.sparten
+ÿ¡ÿOÿB("Sparten")ÿgdvAdrSparte%ÿhauptsparte.spartenÿp
+
+gdvAdrCodeVa%ÿcodeva.sparten
+gdvSparteName$ÿSparte.sparten
+gdvSparteVST%ÿvst.sparten
+ÿ¡GDVStandardSpar.spartenÿ1ÿp
+
+codeva1%ÿcodeva.sparten
+
+sname1$ÿsparte.sparten
+
+vst1%ÿvst.sparten
+ÿ’ÿ¡
+ÿwSparteFoundAnf
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ÿ½ Auswertung der Vertragssuche
+ÿ¡VertFound%ÿ1ÿp
+ÿƒgdvWriteLogOk(ÿ(gdvAdrKU%,"000000")ÿ" Vertrag vorhanden : "ÿÿ(gdvAdrSparte%,"000")ÿ" - "ÿgdvAdrVSNR$ÿ" - "ÿÿ(gdvAdrVu%,"000000"))
+ÿ½ Adresse šber CODEKU ermitteln
+ÿ™"Adressen"
+ÿÉÿ¥gdvcodekua%ÿ™"adressen"ÿ£codeku.adressen
+ÿƒgdvWriteLogOk(ÿ(gdvAdrKU%,"000000")ÿ" Adresse dazu : "ÿÿ(codeku.adressen,"000000")ÿ" - "ÿnachname.adressenÿ" - "ÿvorname.adressen)
+AdressFound%ÿ1
+ÿ¡ÿJ(gdvAdrKu%,gdvku.alg20011)ÿp
+
+ÿ¡ADRChange%ÿ1ÿpÿƒGDVAdresse(gdvAdrKu%)
+
+ÿ¡VertHistory%ÿ1ÿpÿƒCopyHistory()
+
+ÿƒAddVert(gdvAdrKu%,gdvAdrCodeVA%,gdvAdrVU%,gdvGesellName$)
+ÿ^
+
+ÿƒgdvWriteLogOk(ÿ(gdvAdrKU%,"000000")ÿ" 200er Satz nicht da, deshalb Vertrag nicht aufgenommen : "ÿÿ(codeku.adressen,"000000")ÿ" - "ÿnachname.adressenÿ" - "ÿvorname.adressen)
+ÿ’ÿ¡
+
+ÿ^
+ÿ¡codeva1%ÿ0ÿp
+
+gdvAdrCodeVa%ÿcodeva1%
+
+gdvSparteName$ÿSname1$
+
+gdvSparteVST%ÿvst1%
+ÿ’ÿ¡
+ÿƒgdvWriteLogOk(ÿ(gdvAdrKU%,"000000")ÿ" Vertrag fehlt     : "ÿÿ(gdvAdrSparte%,"000")ÿ" - "ÿgdvAdrVSNR$ÿ" - "ÿÿ(gdvAdrVu%,"000000"))
+ÿ½ Adresse suchen                                 OKAY
+ÿ½  Wenn vorhanden       -> Adresse „ndern        OKAY
+ÿ½  Wenn nicht vorhanden -> Adresse hinzufgen    OKAY
+ÿ½ Vertrag hinzufgen
+ÿÊÿË"Adresse finden"ÿ"   Anz in AGD10011:"ÿÿ(adganz1%,"999999")ÿ"/"ÿÿ(adganz%,"999999")
+ 
+ÿ½ ****************************************************************************************************************       
+ÿ½ *              ADRESSSEN SUCHEN
+ÿ½ ****************************************************************************************************************
+ÿ½ 01112002 Adresssuche, 
+ÿ™"adressen"
+ind1$ÿÿ£
+ÿ£QNachname.adressen
+tspru$ÿVSNRPack$(gdvn1$)
+ÿÉÿ`ÿ™"adressen"ÿ£QNachname.adressen
+ÿÉÿ¥tspru$ÿ™"adressen"ÿ£QNachname.adressen
+gStr%ÿ0
+gdvNachname%ÿ0
+gdvVorname%ÿ0
+gort%ÿ0
+ÿ½ IF gdvn1$ LIKE "DBETHCHUGO" THEN 
+
+ÿ½ CALL Fehler ("ADRSuche","DBETHCHUGO")
+ÿ½ END IF 
+ÿØÿOÿB("adressen")ÿ(ÿH(gdvn1$)ÿ""ÿÿH(gdvn2$)ÿ""ÿÿH(gdvn3$)ÿ""ÿÿH(gdvo$)ÿ""ÿÿH(gdvp$)ÿ"")
+
+OKz%ÿÿ1
+
+AdressFound%ÿ0
+
+ÿ½ GADRVorn$,GADRNachn$,GADRGeb$,GADRPlz$,GADROrt$,GADRStra$,GADRGeb$,GVSNRVergl%
+
+ÿ¡GADRVorn$ÿ"n"ÿGADRNachn$ÿ"n"ÿGADRGeb$ÿ"n"ÿGADRPlz$ÿ"n"ÿGADROrt$ÿ"n"ÿGADRStra$ÿ"n"ÿGADRGeb$ÿ"n"ÿpokz%ÿ0
+
+ÿ¡GADRNachn$ÿ"j"ÿp
+gdvNTemp1$ÿgdvN1$
+gdvNTemp2$ÿQNachname.adressen
+p%ÿ0
+ÿ¡gdvN1$ÿQNachname.adressenÿwvn140420051
+p%ÿÿ?(gdvNTemp2$,gdvNTemp1$)
+ÿ¡p%ÿ0ÿp
+ÿ›gdv_n%ÿ1ÿqÿ/(gdvNTemp2$)ÿÿ/(gdvNTemp1$)ÿ1
+gdvtemp$ÿÿ,(gdvNTemp2$,gdv_n%,ÿ/(gdvNTemp1$))
+ÿ¡gdvNTemp1$ÿgdvtemp$ÿpgdvNachname%ÿ1
+ÿ±gdv_n%
+ÿ’ÿ¡
+ÿ¡gdvNachname%ÿ1ÿpÿwetest081020041
+vn140420051: 
+gdvNachname%ÿ1
+
+ÿ’ÿ¡
+
+
+ÿ¡GADRVorn$ÿ"j"ÿp
+gdvNTemp1$ÿgdvN3$
+gdvNTemp2$ÿQVorname.adressen
+p%ÿ0
+ÿ¡gdvN3$ÿQVorname.adressenÿwvn140420052
+p%ÿÿ?(gdvNTemp2$,gdvNTemp1$)
+ÿ¡p%ÿ0ÿp
+ÿ›gdv_n%ÿ1ÿqÿ/(gdvNTemp2$)ÿÿ/(gdvNTemp1$)ÿ1
+ÿ¡gdvNTemp1$ÿÿ,(gdvNTemp2$,gdv_n%,ÿ/(gdvNTemp1$))ÿpgdvVorname%ÿ1
+ÿ±gdv_n%
+ÿ^
+ÿwetest081020041
+ÿ’ÿ¡
+ÿ¡gdvVorname%ÿ0ÿp
+gdvNTemp1$ÿgdvN3$
+gdvNTemp2$ÿQNachname.adressen
+p%ÿ0
+p%ÿÿ?(gdvNTemp2$,gdvNTemp1$)
+ÿ¡p%ÿ0ÿp
+ÿ›gdv_n%ÿ1ÿqÿ/(gdvNTemp2$)ÿÿ/(gdvNTemp1$)ÿ1
+ÿ¡gdvNTemp1$ÿÿ,(gdvNTemp2$,gdv_n%,ÿ/(gdvNTemp1$))ÿpgdvVorname%ÿ1
+ÿ±gdv_n%
+ÿ^
+ÿwetest081020041
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡gdvVorname%ÿ1ÿpÿwetest081020041
+vn140420052: 
+gdvVorname%ÿ1
+
+ÿ’ÿ¡
+ 
+
+ÿ¡GADRPLZ$ÿ"j"ÿp
+ÿ¡gdvP$ÿ""ÿQplz.adressenÿ""ÿp
+gdvp%ÿÿ0(ÿånumeric(gdvP$))
+QPLZ%ÿÿ0(ÿånumeric(Qplz.adressen))
+ÿ¡QPLZ%ÿgdvp%ÿpÿwetest081020041
+ÿ’ÿ¡
+
+ÿ’ÿ¡
+
+ÿ¡GADROrt$ÿ"j"ÿp
+ÿ¡gdvO$ÿ""ÿQort.adressenÿ""ÿp
+gdvNTemp1$ÿgdvO$
+gdvNTemp2$ÿQOrt.adressen
+p%ÿ0
+ÿ¡gdvO$ÿQOrt.adressenÿpÿwvn140420053
+p%ÿÿ?(gdvNTemp2$,gdvNTemp1$)
+ÿ¡p%ÿ0ÿp
+ÿ›gdv_n%ÿ1ÿqÿ/(gdvNTemp2$)ÿÿ/(gdvNTemp1$)ÿ1
+ÿ¡gdvNTemp1$ÿÿ,(gdvNTemp2$,gdv_n%,ÿ/(gdvNTemp1$))ÿpgOrt%ÿ1
+ÿ±gdv_n%
+ÿ^
+ÿwetest081020041
+ÿ’ÿ¡
+ÿ¡gOrt%ÿ1ÿp
+ÿwetest081020041
+ÿ’ÿ¡
+ÿ’ÿ¡
+vn140420053: 
+gdvOrt%ÿ1
+
+ÿ’ÿ¡
+
+ÿ¡GADRStra$ÿ"j"ÿp
+ÿ¡gdvStr$ÿ""ÿQStraáe.adressenÿ""ÿp
+gdvNTemp1$ÿgdvStr$
+gdvNTemp2$ÿQStraáe.adressen
+p%ÿ0
+ÿ¡gdvStr$ÿQStraáe.adressenÿpÿwvn140420054
+p%ÿÿ?(gdvNTemp2$,gdvNTemp1$)
+ÿ¡p%ÿ0ÿp
+ÿ›gdv_n%ÿ1ÿqÿ/(gdvNTemp2$)ÿÿ/(gdvNTemp1$)ÿ1
+ÿ¡gdvNTemp1$ÿÿ,(gdvNTemp2$,gdv_n%,ÿ/(gdvNTemp1$))ÿpgStr%ÿ1
+ÿ±gdv_n%
+ÿ^
+ÿwetest081020041
+ÿ’ÿ¡
+ÿ¡gStr%ÿ1ÿp
+ÿwetest081020041
+ÿ’ÿ¡
+ÿ’ÿ¡
+vn140420054: 
+gdvStr%ÿ1
+
+ÿ’ÿ¡
+
+ÿ¡GADRGeb$ÿ"j"ÿp
+ÿ¡gdvGeb%ÿ0ÿGeburtstag.adressenÿ0ÿp
+ÿ¡gdvGeb%ÿGeburtstag.adressenÿpÿwetest081020041
+ÿ’ÿ¡
+
+ÿ’ÿ¡
+
+ÿ¡okz%ÿÿ1ÿp
+AdressFound%ÿ1
+gdvcodekua%ÿcodeku.adressen
+ÿÉÿbÿ™"adressen"
+
+ÿ’ÿ¡
+etest081020041: 
+
+gStr%ÿ0
+
+gdvNachname%ÿ0
+
+gdvVorname%ÿ0
+
+gort%ÿ0
+ 
+
+ÿÉÿ±ÿ™"adressen"
+ÿÙ
+ÿ£ind1$$
+ÿ½ CALL Fehler (gdvN1$ + "/" + gdvN2$ + "/" + gdvN3$, STR$ (AdressFound%,"0") + "/GDVKU: " + STR$ (gdvku.adg10011,"000000"))
+ÿ½ CALL Fehler(gdvNTemp1$,"2")
+ÿ½ Adressuche auswerten 
+ÿ¡AdressFound%ÿ1ÿp
+	ÿƒgdvWriteLogOk(ÿ(gdvAdrKU%,"000000")ÿ" Adresse vorhanden : "ÿÿ(gdvAdrSparte%,"000")ÿ" - "ÿgdvAdrVSNR$ÿ" - "ÿÿ(gdvAdrVu%,"000000")ÿ" - "ÿÿ(gdvcodekua%,"000000"))
+	ÿ½ Adresse „ndern
+	ÿ¡ADRChange%ÿ1ÿpÿƒGDVAdresse(gdvAdrKu%)
+ÿ^
+	ÿƒgdvWriteLogOk(ÿ(gdvAdrKU%,"000000")ÿ" Adresse fehlt     : "ÿÿ(gdvAdrSparte%,"000")ÿ" - "ÿgdvAdrVSNR$ÿ" - "ÿÿ(gdvAdrVu%,"000000")ÿ" - "ÿÿ(gdvcodekua%,"000000"))
+	ÿ½ Adresse hinzufgen
+	ÿ¡(ÿH(gdvn1$)ÿ""ÿÿH(gdvn2$)ÿ""ÿÿH(gdvn3$)ÿ""ÿÿH(gdvo$)ÿ""ÿÿH(gdvp$)ÿ"")ÿp
+ÿ¡ÿJ(gdvAdrKu%,gdvku.alg20011)ÿp
+ÿƒGDVAdresse(gdvAdrKu%)
+ÿ^
+ÿƒgdvWriteLogOk(ÿ(gdvAdrKU%,"000000")ÿ" 200er Satz nicht da, deshalb Adresse+Vertrag nicht aufgenommen : "ÿÿ(codeku.adressen,"000000")ÿ" - "ÿnachname.adressenÿ" - "ÿvorname.adressen)
+ÿ½ CALL Fehler (gdvN1$ + "/" + gdvN2$ + "/" + gdvN3$, STR$ (AdressFound%,"0") + "/GDVKU: " + STR$ (gdvku.adg10011,"000000"))
+ÿ’ÿ¡
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ CALL Fehler("Test","")
+ÿ½ Vertrag hinzufgen 
+ÿ¡ÿH(gdvn1$)ÿ""ÿÿH(gdvn2$)ÿ""ÿÿH(gdvn3$)ÿ""ÿÿH(gdvo$)ÿ""ÿÿH(gdvp$)ÿ""ÿp
+
+ÿ¡ÿJ(gdvAdrKu%,gdvku.alg20011)ÿp
+ÿƒAddVert(gdvAdrKu%,gdvAdrCodeVA%,gdvAdrVU%,gdvGesellName$)
+
+ÿ^
+ÿƒgdvWriteLogOk(ÿ(gdvAdrKU%,"000000")ÿ" 200er Satz nicht da, deshalb Vertrag nicht aufgenommen : "ÿÿ(codeku.adressen,"000000")ÿ" - "ÿnachname.adressenÿ" - "ÿvorname.adressen)
+
+ÿ’ÿ¡
+ÿ’ÿ¡
+	
+ÿ’ÿ¡
+nDS120420001: 
+ÿ™"adg10011"
+ÿ¡n„chster%ÿÿ1ÿp
+ÿÉÿ±ÿ™"adg10011"
+adganz1%ÿadganz1%ÿ1
+ÿ’ÿ¡
+ÿÙ
+ ÿ’ÿÿ
+ 
+ÿÿAddVert(gdvserial%,gdvspart%,gdvGE%,gdvGNam$)
+ÿƒDFile(3,"al020011"ÿ_fpw$)
+ÿ™"alg20011"
+ÿ£gdvKu.alg20011
+ÿÉÿ`ÿ™"alg20011"ÿ£gdvKu.alg20011
+ÿÉÿ¥gdvserial%ÿ™"alg20011"ÿ£gdvku.alg20011
+satznr%ÿÿ0(satznr.alg20011)
+ÿ¡satznr%ÿ0ÿsatznr%ÿ1ÿp
+ÿ^
+ÿÉÿ±ÿ™"alg20011"ÿ£gdvKu.alg20011
+ÿ’ÿ¡
+
+ÿ½ IF gdvAdrVSNR$ LIKE "22956385001*" THEN CALL Fehler(gdvAdrVSNR$,"")
+ÿ¡VertFound%ÿ0ÿp
+ 
+ÿ¡verstat.alg20011ÿ"4"ÿp
+ÿ¡GStornoInsert%ÿ1ÿp
+ÿÊÿË"Vertrag hinzufgen"ÿ"   Anz in AGD10011:"ÿÿ(adganz1%,"999999")ÿ"/"ÿÿ(adganz%,"999999")
+ÿ™"kvertrag"
+ÿÿ™"kvertrag"
+gdvPruef%ÿÿI(lfdnr.kvertrag,1)
+lfdnr.kvertragÿgdvPruef%
+lfdnrtotal%ÿlfdnr.kvertragÿ10000
+gdvneu.kvertragÿÿQ
+lfdnrtotal.kvertragÿlfdnrtotal%
+ErfasDatum.kvertragÿÿQ
+ÿ½ CALL Info("CODEKU", STR$ (gdvcodekua%,"999999"))
+codeku.kvertragÿgdvcodekua%
+gdvC200%ÿÿI("al020011",1)
+ÿÌÿ™"kvertrag"
+ÿƒgdvWriteLogOk("Vertrag hinzufgen : "ÿÿ(gdvcodekua%,"000000")ÿ","ÿÿ(gdvPruef%,"000000")ÿ"-"ÿÿ(gdvAdrKu%,"000000")ÿ","ÿgdvAdrVSNR$ÿ","ÿgdvN1$ÿ","ÿgdvN2$ÿ","ÿgdvN3$)
+ÿÉÿ`ÿ™"GDVHEAD"
+ÿÉÿ¥codeimpgdv%ÿáÿ™"GDVHEAD"ÿ£codeimpgdv.gdvhead
+AnzVertragHinz.gdvheadÿAnzVertragHinz.gdvheadÿ1
+ÿÌÿ™"GDVHEAD"
+ÿ^
+ÿƒgdvWriteLogOk("Vertrag nicht hinzugefgt, da storniert : "ÿÿ(gdvcodekua%,"000000")ÿ","ÿÿ(gdvPruef%,"000000")ÿ"-"ÿÿ(gdvAdrKu%,"000000")ÿ","ÿgdvAdrVSNR$ÿ","ÿgdvN1$ÿ","ÿgdvN2$ÿ","ÿgdvN3$)
+ÿweAddVert13042001
+ÿ’ÿ¡
+ÿ^
+ÿÊÿË"Vertrag hinzufgen"ÿ"   Anz in AGD10011:"ÿÿ(adganz1%,"999999")ÿ"/"ÿÿ(adganz%,"999999")
+ÿ™"kvertrag"
+ÿÿ™"kvertrag"
+gdvPruef%ÿÿI(lfdnr.kvertrag,1)
+lfdnr.kvertragÿgdvPruef%
+lfdnrtotal%ÿlfdnr.kvertragÿ10000
+gdvneu.kvertragÿÿQ
+lfdnrtotal.kvertragÿlfdnrtotal%
+ErfasDatum.kvertragÿÿQ
+ÿ½ CALL Info("CODEKU", STR$ (gdvcodekua%,"999999"))
+codeku.kvertragÿgdvcodekua%
+gdvC200%ÿÿI("al020011",1)
+ÿÌÿ™"kvertrag"
+ÿƒgdvWriteLogOk("Vertrag hinzufgen : "ÿÿ(gdvcodekua%,"000000")ÿ","ÿÿ(gdvPruef%,"000000")ÿ"-"ÿÿ(gdvAdrKu%,"000000")ÿ","ÿgdvAdrVSNR$ÿ","ÿgdvN1$ÿ","ÿgdvN2$ÿ","ÿgdvN3$)
+ÿÉÿ¥codeimpgdv%ÿáÿ™"GDVHEAD"ÿ£codeimpgdv.gdvhead
+AnzVertragFound.gdvheadÿAnzVertragFound.gdvheadÿ1
+ÿÌÿ™"GDVHEAD"
+ÿ’ÿ¡
+ 
+ÿ^ÿ¡VertFound%ÿ1ÿp
+ÿƒgdvWriteLogOk("Vertrag „ndern : "ÿÿ(gdvcodekua%,"000000")ÿ","ÿÿ(gdvLNR%,"000000")ÿ"-"ÿÿ(gdvAdrKu%,"000000")ÿ","ÿgdvAdrVSNR$ÿ","ÿgdvN1$ÿ","ÿgdvN2$ÿ","ÿgdvN3$)
+ÿÊÿË"Vertrag „ndern"ÿ"   Anz in AGD10011:"ÿÿ(adganz1%,"999999")ÿ"/"ÿÿ(adganz%,"999999")
+ 
+gdvPruef%ÿgdvLNR%
+lfdnrtotal%ÿgdvPruef%ÿ10000
+ÿ’ÿ¡
+ 
+ÿ™"al020011"
+ 
+ÿ¡ÿJ(gdvKlfd%,lfdnr.al020011)ÿp
+ÿÉÿ`ÿ™"al020011"ÿ£lfdnr.al020011
+ÿÉÿ¥gdvKlfd%ÿáÿ™"al020011"ÿ£lfdnr.al020011
+ÿ½ IF FOUND ("al020011") THEN
+gdvC200%ÿcode200.al020011
+ÿÉÿ¾ÿ™"al020011"
+ÿ½ END IF 
+ÿ’ÿ¡
+ 
+ÿÿ™"al020011"
+code200.al020011ÿgdvC200%
+ÿÌÿ™"al020011"
+ÿÉÿ¥gdvC200%ÿáÿ™"al020011"ÿ£code200.al020011
+
+gdvanzfeld%ÿÿõ("alg20011",1)
+ÿ×gdvLeFelder$(gdvanzfeld%)
+ÿÿgdvLeFelder$,1
+ÿ›i%ÿ0ÿqgdvanzfeld%ÿ1
+FTemp1$ÿgdvLeFelder$(i%)ÿ".al020011"
+FTemp2$ÿgdvLeFelder$(i%)ÿ".alg20011"
+FTemp1$$ÿFTemp2$$
+ÿ±i%
+ 
+lfdnr.al020011ÿgdvPruef%
+lfdnrtotal.al020011ÿlfdnrtotal%
+code200.al020011ÿgdvC200%
+
+ÿ™"al020011"
+ÿƒQuickStore("al020011")
+ÿßÿe
+ÿïÿYÿ™"al020011"
+ÿÉÿ`ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ¥gdvPruef%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿ½ CALL gdvWriteLogOk( STR$ (gdvAdrKU%,"000000") + " Vertrag hinzufgen : " + STR$ (gdvPruef%,"0000000"))
+
+ÿ½ Diese Angaben in die VHISTORY.SBF eintragen
+ 
+ÿ½ edit
+gdvedit.kvertragÿÿQ
+ÿ½ VSNR     
+avt$ÿÿH(vsnr.alg20011)
+gdvAdrVSNR$ÿÿH(gdvAdrVSNR$)
+ÿ¡avt$ÿ"3180037476*"ÿp
+ÿ½ CALL Fehler(gdvAdrVSNR$,vsnr.alg20011)
+ÿ’ÿ¡
+ÿ½ vs_nr.kvertrag = LTRIM$ (vsnr.alg20011)
+vs_nr.kvertragÿÿH(gdvAdrVSNR1$)
+VS_Nr$ÿÿH(vs_nr.kvertrag)
+ÿ¡VS_nr.kvertragÿ"3180037476"ÿp
+ÿ½ CALL Fehler("002727493900","")
+ÿ’ÿ¡
+ÿ½ Sparte
+ÿ½ CALL Info( STR$ (gdvspart%),"")
+codeva.kvertragÿgdvspart%
+ÿ½ Gesellschaft
+ÿ½ CALL Info( STR$ (gdvGE%),"")
+codege.kvertragÿgdvGE%
+gesellschaft.kvertragÿgdvGNam$
+ÿ½ Inkassoart
+gdvInkArt$ÿinkart.alg20011
+inkart.kvertragÿÿ0(gdvInkArt$)
+ÿ½ W„hrung
+ÿ½ CALL Fehler(wkey.alg20011,"")
+ÿ¡wkey.alg20011ÿ"DEM"ÿwkey.alg20011ÿ"*001*"ÿp
+codew.kvertragÿ1
+waehrung.kvertragÿ"DM"
+waehrungbezeich.kvertragÿ"DM"
+umrechnung.kvertragÿ1.95583
+ÿ^
+ÿ¡wkey.alg20011ÿ"EUR"ÿp
+umrechnung.kvertragÿ1
+waehrung.kvertragÿ"EUR"
+waehrungbezeich.kvertragÿ"EUR"
+codew.kvertragÿ3
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ Vertragsbeginn
+gdvVBegin$ÿÿ(verbeg.alg20011,"DDMMYYYY")
+ÿ½ CALL Info("Beginn",gdvVBegin$)
+ÿ¡ÿH(gdvVBegin$)ÿ""ÿpVS_Beginn.kvertragÿÿ1(gdvVBegin$)
+ÿ½ Vertragsablauf
+gdvVAblauf$ÿÿ(verabl.alg20011,"DDMMYYYY")
+ÿ½ CALL Info("Ablauf",gdvVAblauf$)
+ÿ¡ÿH(gdvVAblauf$)ÿ""ÿp
+ÿ¡ÿH(gdvVBegin$)ÿ""ÿp
+ÿ½ teab% = DAYS (gdvVAblauf$) - VS_Beginn.kvertrag
+ÿ½ IF teab% > 0 AND teab% < 380 THEN 
+ÿ¡GAblDatOv$ÿ"j"ÿKndigung.kvertragÿ
+1ÿp
+
+Kndigung.kvertragÿÿ1(gdvVAblauf$)
+ÿ’ÿ¡
+ÿ½ IF teab% > 0 THEN 
+
+ÿ½ IF verstat.alg20011 <> "4" THEN 
+ÿ½ Kndigung.kvertrag = 0
+
+ÿ½ ELSE 
+ÿ½ Kndigung.kvertrag = DAYS (gdvVAblauf$)
+
+ÿ½ END IF 
+ÿ½ ELSE 
+
+ÿ½ IF GAblDatOv$ <> "j" THEN Kndigung.kvertrag = DAYS (gdvVAblauf$)
+ÿ½ END IF 
+ÿ^
+ÿ¡GAblDatOv$ÿ"j"ÿKndigung.kvertragÿ
+1ÿpKndigung.kvertragÿÿ1(gdvVAblauf$)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ÿ½ Feststellen, ob Versicherungssteuer anliegt 0=JA 1=NEIN
+gdvKNZVS$ÿKNZVS.alg20011
+mwst%ÿ0
+ÿ¡vs_nr.kvertragÿ"3180037476*"ÿp
+ÿ½ CALL Fehler("3180037476",KNZVS.alg20011)
+ÿ’ÿ¡
+ÿ½ IF KNZVS.alg20011 LIKE "0" THEN 
+QuickGEVA$ÿÿ(codege.kvertrag,"000000")ÿÿ(codeva.kvertrag,"000000")
+ÿ¡ÿJ(QuickGEVA$,QCodeGEVA.vprodukt)ÿp
+ÿÉÿ`ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+ÿÉÿ¥QuickGEVA$ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+mwst%ÿmwst.vprodukt
+ÿ^
+ÿÿ™"VProdukt"
+codevp%ÿÿI("VPRODUKT",1)
+codevp.vproduktÿcodevp%
+codege.vproduktÿcodege.kvertrag
+codeva.vproduktÿcodeva.kvertrag
+gesellschaft.vproduktÿgdvGNam$
+mwst.vproduktÿgdvSparteVST%
+mwst%ÿgdvSparteVST%
+sparte.vproduktÿgdvSparteName$
+QCodeGEVA.vproduktÿÿ(CodeGE.vprodukt,"000000")ÿÿ(Codeva.vprodukt,"000000")
+QCodeGEVA$ÿQCodeGEVA.vprodukt
+GesSpa.VproduktÿGesellschaft.vproduktÿSparte.vprodukt
+ÿÌÿ™"VPRODUKT"
+ÿïÿYÿ™"vprodukt"
+codevp.kvertragÿcodevp%
+ÿ’ÿ¡
+ÿ½ END IF 
+ÿ½ Beitrag
+GMwSt%ÿmwst%
+ÿ¡mwst%ÿ0ÿp
+ÿ½ beitr1ab1$ = STR$ (Beitwe.alg20011,",999999.00")
+Beitrag.kvertragÿBeitwe.alg20011
+NettoBeitrag.kvertragÿBeitwe.alg20011
+ÿ^
+beitr1%ÿBeitwe.alg20011
+beitr1$ÿÿ(beitr1%,"999999.00")
+bmwst%ÿ(Beitwe.alg20011ÿmwst%ÿ100)
+bmwst$ÿÿ(bmwst%,"999999.00")
+bmwst2%ÿÿ0(bmwst$)
+Beitrag.kvertragÿBeitwe.alg20011ÿbmwst2%
+beitr1$ÿÿ(Beitrag.kvertrag,"999999.00")
+NettoBeitrag.kvertragÿBeitwe.alg20011
+ÿ’ÿ¡
+ÿ½ / 100
+ ÿ½ Zahlweise
+ÿ²"z99"
+gdvtemp$ÿzahlart.alg20011
+ÿÉÿægdvtemp$
+ÿæ"1"
+gdvZahlart%ÿ1
+ÿæ"2"
+gdvZahlart%ÿ2
+ÿæ"4"
+gdvZahlart%ÿ4
+ÿæ"6"
+ÿ½ einmalig
+gdvZahlart%ÿ0
+ÿæ"8"
+gdvZahlart%ÿ12
+ÿ’ÿÉ
+ZW.kvertragÿgdvZahlart%
+ÿ½ Vertragsstatus
+CodeVStatusOld.kvertragÿCodeVStatus.kvertrag
+VStatusTxTOld.kvertragÿVStatusTxT.kvertrag
+CodeVStatus.kvertragÿÿ0(verstat.alg20011)
+GDVStatus.kvertragÿCodeVStatus.kvertrag
+ÿÉÿæverstat.alg20011
+ÿæ"1"
+VStatusTxT.kvertragÿ"lebend"
+ÿæ"2"
+VStatusTxT.kvertragÿ"leben / kurzfristig / unterj„hrig"
+ÿæ"3"
+VStatusTxT.kvertragÿ"ruhend / Anwartschaft"
+ÿæ"4"
+VStatusTxT.kvertragÿ"storniert"
+ÿæ"5"
+VStatusTxT.kvertragÿ"ruhend / beitragsfrei"
+ÿæ"6"
+VStatusTxT.kvertragÿ"beitragsfrei"
+ÿæ"7"
+VStatusTxT.kvertragÿ"beitragsfrei durch Leistung"
+ÿæ"8"
+VStatusTxT.kvertragÿ"Beitragsstundung"
+ÿæ"9"
+VStatusTxT.kvertragÿ"Sonstiges"
+ÿ’ÿÉ
+GDVStatusTXT.kvertragÿVStatusTxT.kvertrag
+ÿ¡VertFound%ÿ0ÿp
+CodeVStatusOld.kvertragÿÿ0(verstat.alg20011)
+VStatusTxTOld.kvertragÿVStatusTxT.kvertrag
+ÿ’ÿ¡
+ÿ½ Hauptf„lligkeit
+ÿ½ hauptf.alg20011
+gdvVHauptf$ÿÿ(hauptf.alg20011,"DDMMYYYY")
+ÿ½ CALL Info("Hauptf„llig",gdvVHauptf$)
+ÿ¡ÿH(gdvVHauptf$)ÿ""ÿphauptf„lligkeit.kvertragÿÿ5(gdvVHauptf$)
+ÿ½ nderungsdatum
+gdvAeDat$ÿÿ(aedat.alg20011,"DDMMYYYY")
+ÿ½ CALL Info("AeDat",gdvAeDat$)
+ÿ¡ÿH(gdvAeDat$)ÿ""ÿp
+ÿ½ GAntDatOv$
+ÿ½ CALL Fehler( DATE$ (Antragsdatum.kvertrag,"0d.mm.yyyy"),gdvAeDat$)
+ÿ¡Antragsdatum.kvertragÿ0ÿp
+ÿ¡GAntDatOv$ÿ"j"ÿp
+
+Antragsdatum.kvertragÿÿ1(gdvAeDat$)
+ÿ’ÿ¡
+ÿ^
+Antragsdatum.kvertragÿÿ1(gdvAeDat$)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ Restlaufzeit 
+gdvRestLf%ÿrestver.alg20011
+VS_Dauer.kvertragÿgdvRestLf%
+ÿ½ CODE200
+ÿ½ 2710991
+ÿ½ gdvC200% = SER (kvertrag,1)
+code200.kvertragÿgdvC200%
+ ÿ½ ***************************************************************************************************
+ ÿ½            SONDERVEREINBARUNGEN
+ÿ½ alles aus kdg35011
+ÿƒDFile (8,"kdg35011"ÿ_fpw$)
+ÿ™"kdg35011"
+ÿ£gdvKU.kdg35011
+ÿÉÿ`ÿ™"kdg35011"
+ÿÉÿ¥gdvserial%ÿ™"kdg35011"ÿ£gdvKu.kdg35011
+notizkfz$ÿ""
+ÿØÿOÿB("kdg35011")ÿgdvKu.kdg35011ÿgdvserial%
+vs1$ÿÿH(vsnr.kdg35011)
+ÿ¡ÿH(vsnr.kdg35011)ÿÿH(VS_Nr$)ÿp
+	notizkfz$ÿnotizkfz$ÿklNR.kdg35011ÿ" "ÿkltxt.kdg35011ÿ" "ÿzuang.kdg35011ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"kdg35011"
+ÿÙ
+ÿ¡notizkfz$ÿ""ÿp
+notizkfz$ÿ"Sondervereinbarungen durch GDV-Import: "ÿnotizkfz$
+ÿ¡notiz.kvertragÿnotizkfz$ÿp
+	alen%ÿÿ/(notiz.kvertrag)
+	blen%ÿ4000ÿalen%
+	notiz.kvertragÿnotiz.kvertragÿÿ+(notizkfz$,blen%)
+	ÿ½ notiz.kvertrag = LEFT$ ((notiz.kvertrag + notizkfz$),4000)
+ÿ^
+	notiz.kvertragÿÿ+(notizkfz$,4000)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ½ ******************************************************************************************************
+ 
+ÿ™"kvertrag"
+ÿ½ CALL Fehler("Quickst-kv","")
+ÿ¡Geurofin$ÿ"TRUE"ÿp
+gdvVMnro$ÿgdvVMNr$
+gdvVMNr1$ÿÿ-(gdvVMNr$,5)
+gdvVMNr$ÿgdvVMNr1$
+ÿ’ÿ¡
+ÿ½ CALL Fehler(gdvVMNro$,gdvVMNr$)
+GDVAgentNR.kvertragÿgdvVMNr$
+gdsvagnrtmp%ÿÿ0(gdvVMNr$)
+ÿ½ CALL Fehler(gdvVMNr$,"")
+ÿ½ 30082002 Mitarbeiter an Hand der Agenturnummer zuweisen
+ÿ¡ÿJ(gdvVMNr$,AGNummer.maadrag)ÿÿH(gdvVMNr$)ÿ""ÿp
+ÿÉÿ`ÿ™"maadrag"ÿ£AGNummer.maadrag
+ÿÉÿ¥gdvVMNr$ÿ™"maadrag"ÿ£AGNummer.maadrag
+
+ÿ¡codema.maadragÿ0ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema.maadragÿ™"maadr"ÿ£codema.maadr
+ÿ¡codema.kvertragÿ
+1ÿp
+codema.kvertragÿcodema.maadrag
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡GBewertberech$ÿ"TRUE"ÿp
+bewertold%ÿbewertungssumme.kvertrag
+bewertungssumme.kvertragÿ0
+proviabold%ÿproviab.kvertrag
+ÿƒFeldBerKV()
+ÿ¡Bewertungssumme.kvertragÿ0ÿpbewertungssumme.kvertragÿbewertold%
+proviab.kvertragÿproviabold%
+ÿ’ÿ¡
+ÿƒQuickStore("kvertrag")
+codevttmp%ÿlfdnr.kvertrag
+ÿßÿe
+ÿïÿYÿ™"kvertrag"
+ÿ½ CALL Fehler( STR$ (gdvAdrSparte%,"999"),"")
+
+ÿÉÿægdvAdrSparte%
+ÿæ50
+ÿ½ * KFZ *
+	ÿƒgdvKFZ(gdvserial%,gdvspart%,gdvGE%,gdvGName$,gdvPruef%)
+ÿæ40
+ÿ½ * Haftpflicht *
+	ÿƒgdvHaft(gdvserial%,gdvC200%,gdvPruef%,lfdnrtotal%,gdvPruef%)
+ÿæ30
+ÿ½ * Unfall *
+	ÿƒgdvUnfall(gdvserial%,gdvC200%,gdvPruef%,lfdnrtotal%,gdvPruef%)
+ÿæ10
+ÿ½ * Leben *
+	ÿƒgdvLeben(gdvserial%,gdvC200%,gdvPruef%,lfdnrtotal%,gdvPruef%)
+ÿæ130
+ÿ½ * Verbundene Hausrat *
+ÿƒgdvHausrat(gdvserial%,gdvC200%,gdvPruef%,lfdnrtotal%,gdvPruef%)
+ÿæ110
+ÿ½ * Glas *
+ÿƒgdvGlas(gdvserial%,gdvC200%,gdvPruef%,lfdnrtotal%,gdvPruef%)
+ÿæ140
+ÿ½ * Verbundene Geb„ude *
+ÿƒgdvGebaude(gdvserial%,gdvC200%,gdvPruef%,lfdnrtotal%,gdvPruef%)
+ÿæ20
+ÿ½ * Kranken *
+ÿƒgdvKranken(gdvserial%,gdvC200%,gdvPruef%,lfdnrtotal%,gdvPruef%)
+ÿæ70
+ÿ½ * Rechtsschutz *
+ÿƒgdvRecht(gdvserial%,gdvC200%,gdvPruef%,lfdnrtotal%,gdvPruef%)
+ÿæ80,81,82,83,231,89,90,99,100,109,120,150,180,181,210
+ÿ½ * Feuer-Industrie / Gewerbl. Sach *  
+ÿƒgdvFeuer(gdvserial%,gdvC200%,gdvPruef%,lfdnrtotal%,gdvPruef%)
+ÿæ510
+ÿ½ * Verkehrsservice *
+ÿƒgdvVerkehr(gdvserial%,gdvC200%,gdvPruef%,lfdnrtotal%,gdvPruef%)
+ÿæ171,172,174,175,176,179,232,290
+ÿ½ * Technische *
+ÿƒgdvTech(gdvserial%,gdvC200%,gdvPruef%,lfdnrtotal%,gdvPruef%)
+ÿæ190
+ÿ½ * Transport *
+ÿƒgdvTrans(gdvserial%,gdvC200%,gdvPruef%,lfdnrtotal%,gdvPruef%)
+ÿæ60,160,290,233,293,294,299
+ÿ½ * Nicht definierte Sparten *
+ÿƒgdvUndef(gdvserial%,gdvC200%,gdvPruef%,lfdnrtotal%,gdvPruef%)
+ÿ’ÿÉ
+eAddVert13042001: 
+ ÿ’ÿÿ
+ 
+
+ 
+ÿÿgdvKFZ(gdvserial%,gdvspart%,gdvGE%,gdvGName$,gdvlf%)
+ÿÉÿ`ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ÿ½ SELECT KEY gdvlf% FILE "kvertrag" INDEX lfdnr.kvertrag
+ÿÉÿ¥gdvlf%ÿáÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ÿ¡vs_nr.kvertragÿ"683700503632"ÿp
+ÿ½ CALL Fehler("KFZ","683700503632")
+ÿ’ÿ¡
+CodeGE.kvertragÿCodeGE.geadr
+ÿ½ Alles aus Datei alg20011
+ÿ™"alg20011"
+ÿÉÿ`ÿ™"alg20011"
+ÿ£gdvKu.alg20011
+ÿÉÿ¥gdvserial%ÿ™"alg20011"ÿ£gdvKu.alg20011
+satznr%ÿÿ0(satznr.alg20011)
+ÿ¡satznr%ÿ0ÿsatznr%ÿ1ÿp
+ÿ^
+ÿÉÿ±ÿ™"alg20011"ÿ£gdvKu.alg20011
+ÿ’ÿ¡
+gdvseral2%ÿgdvKu.alg20011
+satznr%ÿÿ0(satznr.alg20011)
+ÿ½ Inkassoart
+gdvInkArt$ÿinkart.alg20011
+ÿ½ CALL Info(gdvInkArt$,"")
+inkart.kvertragÿÿ0(gdvInkArt$)
+ÿ½ Vertragsbeginn
+gdvVBegin$ÿÿ(verbeg.alg20011,"DDMMYYYY")
+ÿ¡ÿH(gdvVBeginn$)ÿ""ÿpVS_Beginn.kvertagÿÿ1(gdvVBegin$)
+ÿ½ Vertragsablauf
+gdvVAblauf$ÿÿ(verabl.alg20011,"DDMMYYYY")
+ÿ¡ÿH(gdvVAblauf$)ÿ""ÿp
+ÿ¡GAblDatOv$ÿ"j"ÿKndigung.kvertragÿ
+1ÿpKndigung.kvertragÿÿ1(gdvVAblauf$)
+ÿ¡verstat.alg20011ÿ"4"ÿp
+
+Kndigung.kvertragÿÿ1(gdvVAblauf$)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ Zahlweise
+ÿ½ NUMBASE "z99"
+gdvtemp$ÿzahlart.alg20011
+ÿÉÿægdvtemp$
+ÿæ"1"
+gdvZahlart%ÿ1
+ÿæ"2"
+gdvZahlart%ÿ2
+ÿæ"4"
+gdvZahlart%ÿ4
+ÿæ"6"
+ÿ½ einmalig
+gdvZahlart%ÿ0
+ÿæ"8"
+gdvZahlart%ÿ12
+ÿ’ÿÉ
+ZW.kvertragÿgdvZahlart%
+ÿ½ nderungsdatum 
+ÿ²"999999999.00"
+gdvAeDat$ÿÿ(aedat.alg20011,"DDMMYYYY")
+ÿ½ CALL Fehler( DATE$ (Antragsdatum.kvertrag,"0d.mm.yyyy"),gdvAeDat$)
+ÿ¡ÿH(gdvAeDat$)ÿ""ÿp
+ÿ¡Antragsdatum.kvertragÿ0ÿp
+
+ÿ¡GAntDatOv$ÿ"j"ÿp
+Antragsdatum.kvertragÿÿ1(gdvAeDat$)
+
+ÿ’ÿ¡
+ÿ^
+
+Antragsdatum.kvertragÿÿ1(gdvAeDat$)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ Restlaufzeit 
+gdvRestLf%ÿrestver.alg20011
+VS_Dauer.kvertragÿgdvRestLf%
+
+ÿ½ Alles aus krg21011
+ÿƒDFile (8,"krg21011"ÿ_fpw$)
+ÿ™"krg21011"
+ÿÉÿ`ÿ™"krg21011"
+ÿ£gdvKu.krg21011
+ÿÉÿ¥gdvserial%ÿ™"krg21011"ÿ£gdvKu.krg21011
+ÿ½ IF VSNR.krg21011 LIKE "291890150999" THEN CALL Fehler(gdvAdrVSNR$,VSNR.krg21011)
+VS_Nr.kvertragÿÿH(VSNR.krg21011)
+vs_nr$ÿVS_Nr.kvertrag
+ÿ½ IF vs_nr$ LIKE "1038859" THEN CALL Fehler(vs_nr$,"")
+ÿ½ Hersteller-Name
+gdvhstname$ÿÿH(hstname.krg21011)
+Fabrikat.kvertragÿgdvhstname$
+ÿ½ HST-Nr/Typ-Nr
+gdvTypNr$ÿÿH(hstnr.krg21011)ÿ"/"ÿÿH(typnr.krg21011)
+typ_Nr.kvertragÿgdvTypNr$
+ÿ½ FahrzeigIdNummer
+gdvKfzId$ÿÿH(kfzidnr.krg21011)
+Fahrgestell_Nr.kvertragÿgdvKfzId$
+ÿ½ St„rke 
+gdvStarke%ÿst.krg21011
+Fahrzeugst„rke.kvertragÿgdvStarke%ÿ10
+ÿ½ Kennzeichen
+gdvKennz$ÿÿH(amtknz.krg21011)
+Kennzeichen.kvertragÿgdvKennz$
+ÿ½ Erstzulassung
+gdvErst$ÿÿ(ez.krg21011,"DDMMYYYY")
+ÿ¡ÿH(gdvErst$)ÿ""ÿpErstzlassung.kvertragÿÿ1(gdvErst$)
+ÿ½ Fahrzeugwert 
+gdvWert%ÿnwert%
+Fahrzeugwert.kvertragÿgdvWert%
+
+
+ÿ½ Alles aus krg21012  06102005
+ÿƒDFile (8,"krg21012"ÿ_fpw$)
+ÿ™"krg21012"
+ÿÉÿ`ÿ™"krg21012"
+ÿ£gdvKu.krg21012
+ÿÉÿ¥gdvserial%ÿ™"krg21012"ÿ£gdvKu.krg21012
+NotizKFZ1$ÿ""
+NotizKFZ1$ÿ"Fahrzeugart: "ÿFahrzeugart.krg21012ÿÿ(13)ÿÿ(10)
+ÿ¡artKennzeichen.krg21012ÿ""ÿp
+ÿ½ 01 = Normal
+ÿ½ 02 = Grn
+ÿ½ 03 = Kurzzeit (šberfhrungskennzeichen)
+ÿ½ 04 = Saison
+ÿ½ 05 = Beh”rden
+ÿ½ 06 = Ausfuhrkennzeichen (ehemals Zoll)
+ÿ½ 07 = Historische Fahrzeuge
+ÿ½ 08 = ohne amtl. Kennzeichen
+ÿ½ 99 = Sonstige 
+ÿÉÿæArtKennzeichen.krg21012
+	ÿæ"01"
+NotizKFZ1$ÿNotizKFZ1$ÿ"Art Kennzeichen: Normal"ÿÿ(13)ÿÿ(10)
+	ÿæ"02"
+NotizKFZ1$ÿNotizKFZ1$ÿ"Art Kennzeichen: Grn"ÿÿ(13)ÿÿ(10)
+	ÿæ"03"
+NotizKFZ1$ÿNotizKFZ1$ÿ"Art Kennzeichen: Kurzzeit (šberfhrungskennzeichen)"ÿÿ(13)ÿÿ(10)
+	ÿæ"04"
+NotizKFZ1$ÿNotizKFZ1$ÿ"Art Kennzeichen: Saison"ÿÿ(13)ÿÿ(10)
+	ÿæ"05"
+NotizKFZ1$ÿNotizKFZ1$ÿ"Art Kennzeichen: Beh”rden"ÿÿ(13)ÿÿ(10)
+	ÿæ"06"
+NotizKFZ1$ÿNotizKFZ1$ÿ"Art Kennzeichen: Ausfuhrkennzeichen (ehemals Zoll)"ÿÿ(13)ÿÿ(10)
+	ÿæ"07"
+NotizKFZ1$ÿNotizKFZ1$ÿ"Art Kennzeichen: Historische Fahrzeuge"ÿÿ(13)ÿÿ(10)
+	ÿæ"08"
+NotizKFZ1$ÿNotizKFZ1$ÿ"Art Kennzeichen: ohne amtl. Kennzeichen"ÿÿ(13)ÿÿ(10)
+	ÿæ"99"
+NotizKFZ1$ÿNotizKFZ1$ÿ"Art Kennzeichen: Sonstige"ÿÿ(13)ÿÿ(10)
+ÿ’ÿÉ
+ÿ’ÿ¡
+ÿ¡LandKennzeich.krg21012ÿ""ÿp
+NotizKFZ1$ÿNotizKFZ1$ÿ"Land des amtl. Kennzeichens: "ÿLandKennzeich.krg21012ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+
+ÿ¡Baujahr.krg21012ÿ""ÿp
+NotizKFZ1$ÿNotizKFZ1$ÿ"Baujahr: "ÿBaujahr.krg21012ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+
+ÿ¡Erstzulvn.krg21012ÿ""ÿp
+NotizKFZ1$ÿNotizKFZ1$ÿ"Erstzulassung auf VN: "ÿErstzulvn.krg21012ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡ArtZulassung.krg21012ÿ""ÿp
+ÿ¡ArtZulassung.krg21012ÿ"01"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Art der Zulassung: Tageszulassung"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡ArtZulassung.krg21012ÿ"02"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Art der Zulassung: Werkszulassung"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡ArtZulassung.krg21012ÿ"03"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Art der Zulassung: Sonstige"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡anzVorbesitzer.krg21012ÿ0ÿp
+NotizKFZ1$ÿNotizKFZ1$ÿ"Anzahl Vorbesitzer: "ÿÿ(anzVorbesitzer.krg21012,"99")ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡jFahrlstg.krg21012ÿ0ÿp
+NotizKFZ1$ÿNotizKFZ1$ÿ"j„hrliche Fahrleistung: "ÿÿ(jFahrlstg.krg21012,",999999")ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡Garage.krg21012ÿ""ÿp
+ÿ¡Garage.krg21012ÿ"00"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Garage: unbekannt"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡Garage.krg21012ÿ"02"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Garage: nicht vorhanden"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡Garage.krg21012ÿ"03"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Garage: abschlieábare Einzel- und Doppelgarage"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡Garage.krg21012ÿ"04"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Garage: Mehrfach / Tiefgarage (nicht abschlieábar)"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡Garage.krg21012ÿ"05"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Garage: gesichertes Grundstck / Carport"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡Nutzungsart.krg21012ÿ""ÿp
+ÿ¡Nutzungsart.krg21012ÿ"01"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Nutzungsart: šberwiegend gesch„ftlich "ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡Nutzungsart.krg21012ÿ"02"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Nutzungsart: Privat"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡Nutzungsart.krg21012ÿ"03"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Nutzungsart: Taxi"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡Nutzungsart.krg21012ÿ"04"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Nutzungsart: Vermietung"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡Nutzungsart.krg21012ÿ"05"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Nutzungsart: Sonstige"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡Eigentumsverh.krg21012ÿ""ÿp
+ÿ¡Eigentumsverh.krg21012ÿ"1"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Eigentumsverh„ltnis (Fahrzeug): Eigentum VN"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡Eigentumsverh.krg21012ÿ"2"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Eigentumsverh„ltnis (Fahrzeug): Eigentum / Finanzierung"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡Eigentumsverh.krg21012ÿ"3"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Eigentumsverh„ltnis (Fahrzeug): Leasing"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡Wohneigentum.krg21012ÿ""ÿp
+ÿ¡Wohneigentum.krg21012ÿ"1"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Wohneigentum: Selbstgenutztes Ein/ Zweifamilienhaus"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡Wohneigentum.krg21012ÿ"2"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Wohneigentum: Mehrfamilienhaus"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡Wohneigentum.krg21012ÿ"3"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Wohneigentum: Eigentumswohnung"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡Wohneigentum.krg21012ÿ"4"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Wohneigentum: Sonstiges"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡Wohneigentum.krg21012ÿ"5"ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿ"Wohneigentum: Nein"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+ÿ½ alles aus kdg35011
+ÿƒDFile (8,"kdg35011"ÿ_fpw$)
+ÿ™"kdg35011"
+ÿÉÿ`ÿ™"kdg35011"
+ÿ£gdvKu.kdg35011
+ÿÉÿ`ÿ™"kdg35011"ÿ£gdvKu.kdg35011
+ÿÉÿ¥gdvserial%ÿ™"kdg35011"ÿ£gdvKu.kdg35011
+ÿØÿOÿB("kdg35011")ÿgdvKu.kdg35011ÿgdvserial%
+le1%ÿÿ/(NotizKFZ1$)ÿÿ/(kltxt.kdg35011)ÿ3
+ÿ¡le1%ÿ	4000ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿkltxt.kdg35011ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"kdg35011"ÿ£gdvKu.kdg35011
+ÿÙ
+Notiz.Kvertragÿÿ+(NotizKFZ1$,4000)
+
+
+
+ÿ½ alles aus krg22061
+ÿƒDFile (8,"krg22061"ÿ_fpw$)
+ÿ™"krg22061"
+ÿÉÿ`ÿ™"krg22061"
+ÿ£gdvKu.krg22061
+ÿÉÿ`ÿ™"krg22061"ÿ£gdvKu.krg22061
+ÿÉÿ¥gdvserial%ÿ™"krg22061"ÿ£gdvKu.krg22061
+NotizKFZ1$ÿ""
+ÿØÿOÿB("krg22061")ÿgdvKu.krg22061ÿgdvserial%
+le1%ÿÿ/(NotizKFZ1$)ÿÿ/(bausbez.krg22061)ÿ3
+ÿ¡le1%ÿ	4000ÿp
+	NotizKFZ1$ÿNotizKFZ1$ÿbausbez.krg22061ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"krg22061"ÿ£gdvKu.krg22061
+ÿÙ
+Notiz.Kvertragÿÿ+(Notiz.KvertragÿNotizKFZ1$,4000)
+
+
+
+ÿ½ Alles aus krg22011
+ÿƒDFile (8,"krg22011"ÿ_fpw$)
+ÿ™"krg22011"
+ÿ£gdvKu.krg22011
+ÿÉÿ`ÿ™"krg22011"
+ÿÉÿ¥gdvserial%ÿ™"krg22011"ÿ£gdvKu.krg22011
+satznr%ÿÿ0(ÿ-(leerst.krg22011,1))
+ÿ¡satznr%ÿ0ÿsatznr%ÿ1ÿp
+ÿ^
+ÿÉÿ±ÿ™"krg22011"ÿ£gdvKu.krg22011
+ÿ’ÿ¡
+
+ÿ½ Haftpflicht Deckungsart
+gdvtemp%ÿkhdart.krg22011
+ÿÉÿægdvtemp%
+ÿæ11
+gdvHDArt$ÿ"unbeg"
+ÿ½ 50 mio
+ÿæ18
+gdvHDArt$ÿ"5 Mio"
+ÿ½ 2,5 Mio
+ÿ’ÿÉ
+HaftpflT.kvertragÿgdvHDArt$
+ÿ½ kvertrag - typklassehp
+ÿ¡ÿH(khtypk.krg22011)ÿ""ÿp
+gdvHaTK$ÿÿH(khtypk.krg22011)
+typklassehp.kvertragÿgdvHaTK$
+ÿ’ÿ¡
+ÿ½ kvertrag - reg_haftpflicht
+gdvHaRK$ÿÿH(khtg.krg22011)
+Reg_Haftpflicht.kvertragÿgdvHaRK$
+ÿ½ kvertag - hv_sfr
+gdvHaBs%ÿkhbtgs.krg22011
+hv_sfr.kvertragÿgdvHaBs%
+ÿ½ Haftpflicht-DeckDat
+gdvHDekDat$ÿÿ(khbeg.krg22011,"DDMMYYYY")
+ÿ¡ÿH(gdvHDekDat$)ÿ""ÿpHaftpflichtDat.kvertragÿÿ1(gdvHDekDat$)
+ÿ½ Haftpflicht-Beitrag
+ÿ²"99999999.0000"
+gdvHaBei%ÿkhbtg.krg22011
+ÿ½ IF gdvZahlart% = 2 THEN gdvHaBei% = gdvHaBei% / 10
+ÿ½ IF gdvZahlart% = 4 OR gdvZahlart% = 12 THEN gdvHaBei% = gdvHaBei% / 10
+ÿ¡vs_nr.kvertragÿ"K 501 919927 0001"ÿp
+ÿ½ CALL Fehler("K 501 919927 0001","")
+ÿ’ÿ¡
+gdvHaBei$ÿÿ((gdvHaBei%ÿ10),"999999.00")
+gdvHaBei%ÿÿ0(gdvHaBei$)
+amwst%ÿ(gdvHaBei%ÿGMwSt%ÿ100)
+amwst$ÿÿ(amwst%ÿ0.005,"999999.00")
+amwst2%ÿÿ0(amwst$)
+gdvHaBei%ÿgdvHaBei%ÿamwst2%
+ 
+ÿ½ gdvHaBei% = gdvHaBei% + (gdvHaBei% * 15)
+KFZ_VSBH.kvertragÿgdvHaBei%
+ÿ½ SFR-Vorjahr
+kfzsufe1vj.kvertragÿÿ+(kfzsufe1.kvertrag,4)
+hv_sfrvj.kvertragÿhv_sfr.kvertrag
+ÿ½ SFR-Aktuell
+kfzsufe1.kvertragÿÿH(khsfs.krg22011)
+hv_sfr.kvertragÿgdvHaBs%
+ 
+ÿ½ Alles aus krg22031
+ÿƒDFile (8,"krg22031"ÿ_fpw$)
+ÿ™"krg22031"
+ÿÉÿ`ÿ™"krg22031"
+ÿ£gdvKu.krg22031
+satzart31$ÿÿ-(leerst.krg22031,1)
+satzart31%ÿÿ0(satzart31$)
+ÿ½ CALL Fehler("satzart31$",satzart31$)
+ÿ¡satzart31%ÿ0ÿsatzart31%ÿ1ÿp
+ÿ^
+ÿÉÿ±ÿ™"krg22031"ÿ£gdvKu.krg22031
+ÿ’ÿ¡
+satzart31$ÿÿ-(leerst.krg22031,1)
+gdvserialabc$ÿÿ(gdvserial%,"000000")
+sbtk$ÿÿ(sbtk.krg22031,"000000")
+ÿ¡ÿJ(gdvserial%,gdvKu.krg22031)ÿp
+kfz_tk.kvertragÿ"j"
+ÿÉÿ¥gdvserial%ÿ™"krg22031"ÿ£gdvKu.krg22031
+ÿ½ Tk Deckungsart
+gdvtemp%ÿkftdart.krg22031
+ÿÉÿægdvtemp%
+	ÿæ71
+
+gdvTDArt%ÿ0
+	ÿæ72
+
+gdvTDArt%ÿ150
+	ÿæ73
+
+gdvTDArt%ÿ300
+	ÿæ74
+
+gdvTDArt%ÿ1000
+	ÿæ76
+
+gdvTDArt%ÿ2000
+	ÿæ77
+gdvTDArt%ÿ5000
+ÿ’ÿÉ
+ÿ½ TK_Betrag.kvertrag = gdvTDArt%
+TK_Betrag.kvertragÿsbtk.krg22031
+ÿ½ kvertrag - typklasse
+ÿ¡ÿH(kfttk.krg22031)ÿ""ÿp
+	gdvTkTK$ÿÿH(kfttk.krg22031)
+	typklasse.kvertragÿgdvTkTK$
+ÿ’ÿ¡
+ÿ½ kvertrag - reg_teilkasko 
+gdvTkRK$ÿÿH(kfttg.krg22031)
+Reg_Teilkasko.kvertragÿgdvTkRK$
+ÿ½ Tk-DeckDat
+ÿ½ gdvTDekDat$ = DATE$ (kftbeg.krg22031,"DDMMYYYY")
+ÿ½ Tk-Beitrag
+gdvTkBei%ÿkftbtg.krg22031
+ÿ½ IF gdvZahlart% = 2 THEN gdvTkBei% = gdvTkBei% / 10
+ÿ½ IF gdvZahlart% = 4 OR gdvZahlart% = 12 THEN gdvTkBei% = gdvTkBei%:REM / 10
+gdvTkBei$ÿÿ((gdvTkBei%ÿ10),"999999.00")
+gdvTkBei%ÿÿ0(gdvTkBei$)
+amwst%ÿ(gdvTkBei%ÿGMwSt%ÿ100)
+amwst$ÿÿ(amwst%ÿ0.005,"999999.00")
+amwst2%ÿÿ0(amwst$)
+ 
+gdvTkBei%ÿgdvTkBei%ÿamwst2%
+ÿ½ gdvTkBei% = gdvTkBei% + (gdvTkBei% * 15)
+kfz_vsbk.kvertragÿgdvTkBei%
+ÿ^
+kfz_tk.kvertragÿ"n"
+ÿ’ÿ¡
+
+ÿ½ Alles aus Datei krg22021
+ÿƒDFile (8,"krg22021"ÿ_fpw$)
+ÿ™"krg22021"
+ÿÉÿ`ÿ™"krg22021"
+ÿ£gdvKu.krg22021
+ÿ¡ÿJ(gdvserial%,gdvKu.krg22021)ÿÿ1ÿp
+kfz_vk.kvertragÿ"j"
+kfz_tk.kvertragÿ"j"
+ÿÉÿ¥gdvserial%ÿ™"krg22021"ÿ£gdvKu.krg22021
+satzart21$ÿÿ-(leerst.krg22021,1)
+satzart21%ÿÿ0(satzart21$)
+ÿ½ CALL Fehler("satzart21$",satzart21$)
+ÿ¡satzart21%ÿ0ÿsatzart21%ÿ1ÿp
+ÿ^
+	ÿÉÿ±ÿ™"krg22021"ÿ£gdvKu.krg22021
+ÿ’ÿ¡
+ÿ½ kvertrag - vk Dackungsart
+gdvtemp%ÿkfvdart.krg22021
+ÿÉÿægdvtemp%
+	ÿæ21
+gdvVDArt%ÿ0
+	ÿæ22,32
+gdvVDArt%ÿ300
+	ÿæ23,33
+gdvVDArt%ÿ650
+	ÿæ24,34
+gdvVDArt%ÿ1000
+	ÿæ25,35
+gdvVDArt%ÿ2000
+	ÿæ26,36
+gdvVDArt%ÿ5000
+ÿ’ÿÉ
+ÿ½ VK_Betrag.kvertrag = gdvVDArt%
+VK_Betrag.kvertragÿsbvk.krg22021
+TK_Betrag.kvertragÿsbtkvk.krg22021
+ÿ½ kvertrag - vk-Typklasse
+ÿ¡ÿH(kfvtk.krg22021)ÿ""ÿp
+	gdvVkTK$ÿÿH(kfvtk.krg22021)
+	TypklasseVK.kvertragÿgdvVkTK$
+ÿ’ÿ¡
+ÿ½ kvertrag - vk-Regionalklasse
+gdvVkRK$ÿÿH(kfvtg.krg22021)
+Reg_Vollkasko.kvertragÿgdvVkRK$
+ÿ½ kvertrag - vk-Beitragssatz
+gdvVkBs%ÿkfvbtgs.krg22021
+VK_SFR.kvertragÿgdvVkBs%
+ÿ½ kvertrag - vk-DeckDat
+gdvVDekDat$ÿÿ(kfvbeg.krg22021,"DDMMYYYY")
+ÿ½ IF LTRIM$ (gdvVDekDat$) > "" THEN DAYS (gdvVDekDat$)
+ÿ½ kvertrag - kfz_vsbk
+gdvVkBei%ÿkfvbtg.krg22021
+ÿ½ IF gdvZahlart% = 2 THEN gdvVkBei% = gdvVkBei% / 10
+ÿ½ IF gdvZahlart% = 4 OR gdvZahlart% = 12 THEN gdvVkBei% = gdvVkBei% / 10
+gdvVkBei$ÿÿ((gdvVkBei%ÿ10),"999999.00")
+gdvVkBei%ÿÿ0(gdvVkBei$)
+amwst%ÿ(gdvVkBei%ÿGMwSt%ÿ100)
+amwst$ÿÿ(amwst%ÿ0.005,"999999.00")
+amwst2%ÿÿ0(amwst$)
+ 
+gdvVkBei%ÿgdvVkBei%ÿamwst2%
+kfz_vsbk.kvertragÿgdvVkBei%
+ÿ½ SFR-Vorjahr
+kfzsufe2vj.kvertragÿkfzsufe2.kvertrag
+vk_sfrvj.kvertragÿvk_sfr.kvertrag
+ÿ½ SFR-Aktuell
+kfzsufe2.kvertragÿÿH(kfvsfs.krg22021)
+vk_sfr.kvertragÿgdvVkBs%
+ÿ^
+kfz_vk.kvertragÿ"n"
+ÿ’ÿ¡
+ 
+ÿ½ Alles aus Datei krg22041
+ÿƒDFile (8,"krg22041"ÿ_fpw$)
+ÿ™"krg22041"
+ÿÉÿ`ÿ™"krg22041"
+ÿ£gdvKu.krg22041
+ÿ¡ÿJ(gdvserial%,gdvKu.krg22041)ÿÿ1ÿp
+kfz_unfall.kvertragÿ"j"
+ÿÉÿ¥gdvserial%ÿ™"krg22041"ÿ£gdvKu.krg22041
+ÿ½ kvertrag - kfz_undeck
+ÿ½ gdvUDekDat$ = DATE$ (kubeg.krg22041,"DDMMYYYY")
+ÿ½ IF LTRIM$ (gdvUDekDat$) > "" THEN kfz_deck.kvertrag = DAYS (gdvUDekDat$)
+ÿ½ kvertrag -  kfz_vsbu
+gdvUBei%ÿkubtg.krg22041
+ÿ½ IF gdvZahlart% = 2 THEN gdvUBei% = gdvUBei% / 10
+ÿ½ IF gdvZahlart% = 4 OR gdvZahlart% = 12 THEN gdvUBei% = gdvUBei% / 10
+gdvUBei$ÿÿ((gdvUBei%ÿ10)ÿ0.005,"999999.00")
+gdvUBei%ÿÿ0(gdvUBei$)
+amwst%ÿ(gdvUBei%ÿGMwSt%ÿ100)
+amwst$ÿÿ(amwst%ÿ0.005,"999999.00")
+amwst2%ÿÿ0(amwst$)
+ 
+gdvUBei%ÿgdvUBei%ÿamwst2%
+ÿ½ gdvUBei% = gdvUBei% + (gdvUBei% * 15)
+kfz_vsbu.kvertragÿgdvUBei%
+ÿ½ kvertrag - kfz_deckunfdat
+gdvUGekDat$ÿÿ(kubeg.krg22041,"DDMMYYYY")
+ÿ¡ÿH(gdvUGekDat$)ÿ""ÿpkfz_deckunfdat.kvertragÿÿ1(gdvUGekDat$)
+ÿ½ kvertrag - kfz_utod
+gdvUTod%ÿtod1.krg22041ÿ1000
+kfz_utod.kvertragÿgdvUTod%
+ÿ½ kvertrag - kfz_utage
+gdvUTage%ÿtage1.krg22041
+kfz_utage.kvertragÿgdvUTage%
+ÿ½ kvertrag - kfz_uinv
+gdvUInv%ÿinv1.krg22041ÿ1000
+kfz_uinv.kvertragÿgdvUInv%
+ÿ½ kvertrag - kfz_uheilk
+gdvUHeil%ÿheil1.krg22041ÿ100
+kfz_uheilk.kvertragÿgdvUHeil%
+ÿ½ kvertrag - kfz_uktagege
+gdvUKTage%ÿkrkh1.krg22041
+kfz_ktagege.kvertragÿgdvUKTage%
+ÿ½ kvertrag - kfz_genes
+gdvTemp$ÿknzkrk1.krg22041
+ÿÉÿægdvtemp$
+ÿæ"1"
+gdvGenes$ÿ"mit"
+ÿæ"0"
+gdvGenes$ÿ"ohne"
+ÿ’ÿÉ
+ÿ½ kvertrag - risiko1
+gdvtemp$ÿkudris1.krg22041
+ÿÉÿægdvtemp$
+ÿæ"1"
+gdvRisk1$ÿ"Insassenversicherung nach dem Pauschalsystem"
+ÿæ"2"
+gdvRisk1$ÿ"Insassenversicherung nach dem Platzsystem"
+ÿæ"3"
+gdvRisk1$ÿ"Insassenversicherung nach dem Pauschalsystem"
+ÿæ"4"
+gdvRisk1$ÿ"Berufs- und Beifahrerversicherung unter Ausschluá der Kraftradbenutzung"
+ÿæ"5"
+gdvRisk1$ÿ"Berufs- und Beifahrerversicherung mit Einschluá der Kraftradbenutzung"
+ÿæ"9"
+gdvRisk1$ÿ"Namentliche Unfallversicherung"
+ÿ’ÿÉ
+risiko1.kvertragÿgdvRisk1$
+ÿ^
+kfz_unfall.kvertragÿ"n"
+ÿ’ÿ¡
+ÿ½ CALL Fehler("Quickst-kv","")
+ÿƒKFZBeitr()
+ÿ½ CALL Fehler("Quickst-kv","")
+ÿ¡zw.kvertragÿ0ÿKndigung.kvertragÿ	ÿQÿp
+CodeVStatus.kvertragÿ4
+VStatusTxT.kvertragÿ"storniert"
+ÿ’ÿ¡
+ÿƒQuickStore("kvertrag")
+lfdnr111%ÿlfdnr.kvertrag
+ÿÉÿ¥gdvlfdnrab%ÿáÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ÿßÿe
+ ÿ’ÿÿ
+ 
+ 
+ÿÿGDVAdresse(gdvserial%)
+ ÿ¡AdressFound%ÿ0ÿp
+ÿÊÿË"Adresse hinzufgen"ÿ"   Anz in AGD10011:"ÿÿ(adganz1%,"999999")ÿ"/"ÿÿ(adganz%,"999999")
+ÿ™"adressen"
+ÿÿ™"adressen"
+gdvPruef%ÿÿI(CodeKU.adressen,1)
+gdvcodekua%ÿgdvPruef%
+CodeKU.adressenÿgdvPruef%
+gdvNeu.adressenÿÿQ
+gdvKNr%ÿÿ0(ReadConfig$("NUMMERN","LASTKundennummer"))ÿ1
+ÿƒWriteConfig("NUMMERN","LASTKundennummer",ÿH(ÿ(gdvKNr%,"999999")))
+Kundennummer.ADRESSENÿ"K"ÿÿH(ÿ(gdvKNr%,"999999"))
+Debitorkto.adressenÿÿH(ÿ(gdvKNr%,"999999"))
+AAKunde.adressenÿ"j"
+AAMakler.adressenÿ"n"
+AAMitarbeiter.adressenÿ"n"
+AAInteressent.adressenÿ"n"
+AALieferant.adressenÿ"n"
+FIPrivat.adressenÿ"n"
+FIATEC.adressenÿ"j"
+FIIMMAK.adressenÿ"n"
+ÿÌÿ™"adressen"
+ÿÉÿ¥gdvPruef%ÿáÿ™"Adressen"ÿ£codeku.adressen
+ÿƒgdvWriteLogOk("Adresse hinzufgen : "ÿÿ(gdvcodekua%,"000000")ÿ","ÿÿ(gdvLNR%,"000000")ÿ"-"ÿÿ(gdvAdrKu%,"000000")ÿ","ÿgdvAdrVSNR$ÿ","ÿgdvN1$ÿ","ÿgdvN2$ÿ","ÿgdvN3$)
+ÿÉÿ¥codeimpgdv%ÿáÿ™"GDVHEAD"ÿ£codeimpgdv.gdvhead
+AnzADrHinz.gdvheadÿAnzadrHinz.gdvheadÿ1
+ÿÌÿ™"GDVHEAD"
+ ÿ^ÿ¡AdressFound%ÿ1ÿp
+ÿÊÿË"Adresse „ndern"ÿ"   Anz in AGD10011:"ÿÿ(adganz1%,"999999")ÿ"/"ÿÿ(adganz%,"999999")
+ÿÉÿ`ÿ™"adressen"
+ÿÉÿ¥gdvcodekua%ÿáÿ™"adressen"ÿ£codeku.adressen
+ÿƒgdvWriteLogOk("Adresse „ndern : "ÿÿ(gdvcodekua%,"000000")ÿ","ÿÿ(gdvLNR%,"000000")ÿ"-"ÿÿ(gdvAdrKu%,"000000")ÿ","ÿgdvAdrVSNR$ÿ","ÿgdvN1$ÿ","ÿgdvN2$ÿ","ÿgdvN3$)
+ÿÉÿ¥codeimpgdv%ÿáÿ™"GDVHEAD"ÿ£codeimpgdv.gdvhead
+AnzahlADRFound.gdvheadÿAnzahlADRFound.gdvheadÿ1
+ÿÌÿ™"GDVHEAD"
+ ÿ’ÿ¡
+ 
+ ÿ½  Alles aus der Datei ad010011
+ÿ™"adg10011"
+ÿÉÿ`ÿ™"adg10011"
+ÿ£gdvKu.adg10011
+ÿÉÿ¥gdvserial%ÿ™"adg10011"ÿ£gdvku.adg10011
+ 
+ ÿ½ Edit
+gdvedit.adressenÿÿQ
+ 
+ ÿ½ Anrede 
+gdvtemp$ÿAnkey.adg10011
+ÿÉÿægdvtemp$
+ÿæ"0"
+	gdvAnrede$ÿ""
+ÿæ"1"
+	gdvAnrede$ÿ"Herr"
+ÿæ"2"
+	gdvAnrede$ÿ"Frau"
+ÿæ"3"
+	gdvAnrede$ÿ"Firma"
+ÿæ"4"
+	gdvAnrede$ÿ"Herr und Frau"
+ÿæ"5"
+	gdvAnrede$ÿ"Fr„ulein"
+ÿ’ÿÉ
+Anrede.adressenÿgdvAnrede$
+ ÿ½ Name1
+gdvNachname$ÿÿH(name1.adg10011)
+Nachname.adressenÿgdvNachname$
+QNachname.adressenÿVSNRPack$(gdvNachname$)
+ ÿ½ Name2
+gdvGebName$ÿÿH(name2.adg10011)
+Geburtsname.adressenÿgdvGebName$
+ ÿ½ Name3
+gdvVorname$ÿÿH(name3.adg10011)
+Vorname.adressenÿgdvVorname$
+QVorname.adressenÿVSNRPack$(gdvVorname$)
+ ÿ½ Titel
+gdvTitel$ÿÿH(titel.adg10011)
+Titel.adressenÿgdvTitel$
+ ÿ½ Postleitzahl
+gdvPlz$ÿÿH(plz.adg10011)
+PLZ.adressenÿgdvPlz$
+QPLZ.adressenÿVSNRPack$(gdvPlz$)
+ ÿ½ Ort
+gdvOrt$ÿÿH(ort.adg10011)
+Ort.adressenÿgdvOrt$
+QOrt.adressenÿVSNRPack$(gdvOrt$)
+ ÿ½ Straáe
+gdvStraáe$ÿÿH(str.adg10011)
+Straáe.adressenÿgdvStraáe$
+QStraáe.adressenÿVSNRPack$(gdvStraáe$)
+ ÿ½ Postfach
+gdvPostfach$ÿÿH(postf.adg10011)
+ÿ½ Postfach.adressen = gdvPostfach$
+ ÿ½ Geburtstag
+gdvGebDat$ÿÿ(gebdat.adg10011,"DDMMYYYY")
+ÿ¡ÿH(gdvGebDat$)ÿ""ÿpGeburtstag.adressenÿÿ1(gdvGebDat$)
+ ÿ½ L„nderkennzeichen
+gdvLand$ÿÿH(landknz.adg10011)
+Land.adressenÿgdvLand$
+ ÿ½ Staatsangeh”rigkeit
+gdvStaat$ÿÿH(staat.adg10011)
+Staatsangeh”rig.adressenÿgdvStaat$
+ ÿ½ Zielgruppenschlssel 
+gdvtemp$ÿzgkey.adg10011
+ÿÉÿægdvtemp$
+ÿæ"01"
+	gdvBeruf$ÿ"Beamter"
+ÿæ"02"
+	gdvBeruf$ÿ"Landwirt"
+ÿæ"03"
+	gdvBeruf$ÿ"Arzt"
+ÿæ"99"
+	gdvBeruf$ÿ""
+ÿ’ÿÉ
+Beruf.adressenÿgdvBeruf$
+
+ ÿ½  Alles aus Datei adg10012
+ÿ™"adg10012"
+ÿÉÿ`ÿ™"adg10012"
+ÿ£gdvKu.adg10012
+ÿ¡ÿJ(gdvserial%,gdvku.adg10012)ÿp
+ÿÉÿ¥gdvserial%ÿ™"adg10012"ÿ£gdvku.adg10012
+
+ÿ½ Kontonummer
+gdvKonto$ÿÿH(ktonr.adg10012)
+K1Konto.adressenÿÿ+(gdvKonto$,12)
+ÿ½ Bankleitzahl
+gdvBlz$ÿÿH(blz.adg10012)
+K1BLZ.adressenÿÿ+(gdvBlz$,8)
+ÿ½ Familienstand
+gdvtemp$ÿfamst.adg10012
+ÿÉÿægdvtemp$
+
+ÿæ"1"
+gdvFamilie$ÿ"ledig"
+
+ÿæ"2"
+gdvFamilie$ÿ"verheiratet"
+
+ÿæ"3"
+gdvFamilie$ÿ"geschieden"
+
+ÿæ"4"
+gdvFamilie$ÿ"verwitwet"
+
+ÿæ"5"
+gdvFamilie$ÿ"getrennt lebend"
+
+ÿæ"9"
+gdvFamilie$ÿ""
+	ÿ’ÿÉ
+	Familienstand.adressenÿgdvFamilie$
+ÿ’ÿ¡
+ ÿ½ ********         Postanschriftsfeld    ***************
+ÿ¡Postanschrift.adressenÿ""ÿstraáe.adressenÿ""ÿort.adressenÿ""ÿp
+Pof%ÿ1
+p$ÿ""
+ÿ¡anrede.adressenÿ"Herr*"ÿanrede.adressenÿ"Fr*"ÿanrede.adressenÿ"Fam*"ÿp
+	ÿ¡anrede.adressenÿ""ÿp
+p$ÿAnrede.adressenÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	ÿ¡ÿH(Titel.adressen)ÿ""ÿp
+p$ÿp$ÿÿH(Titel.adressen)ÿ" "
+	ÿ’ÿ¡
+	ÿ¡vorname.adressenÿ""ÿp
+p$ÿp$ÿÿH(Vorname.adressen)ÿ" "ÿÿH(Nachname.adressen)ÿÿ(13)ÿÿ(10)
+	ÿ^
+p$ÿp$ÿÿH(Nachname.adressen)ÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	p$ÿp$ÿStraáe.adressenÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿplz.adressenÿ" "ÿOrt.adressenÿÿ(13)ÿÿ(10)
+	p$ÿp$ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿbriefanrede.adressen
+ÿ^
+	p$ÿÿH(Anrede.adressen)ÿ" "ÿÿH(titel.adressen)ÿÿ(13)ÿÿ(10)
+	ÿ¡geburtsname.adressenÿ""ÿp
+p$ÿp$ÿÿH(nachname.adressen)ÿÿ(10)ÿÿ(13)ÿÿH(geburtsname.adressen)ÿÿ(13)ÿÿ(10)ÿÿH(Vorname.adressen)ÿÿ(13)ÿÿ(10)
+	ÿ^
+p$ÿp$ÿÿH(Nachname.adressen)ÿÿ(13)ÿÿ(10)ÿÿH(Vorname.adressen)ÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	
+	p$ÿp$ÿStraáe.adressenÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿplz.adressenÿ" "ÿOrt.adressenÿÿ(13)ÿÿ(10)
+	ÿ¡land.adressenÿ""ÿpp$ÿp$ÿÿ(13)ÿÿ(10)ÿLand.adressen
+	p$ÿp$ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿbriefanrede.adressen
+ÿ’ÿ¡
+Postanschrift.adressenÿp$
+ÿ’ÿ¡
+GAnredADR$ÿanrede.adressen
+GTitelADR$ÿTitel.adressen
+GNachnameADR$ÿNachname.adressen
+GVornameADR$ÿVorname.adressen
+GPLZADR$ÿplz.adressen
+GStrasseADR$ÿStraáe.adressen
+GOrtADR$ÿOrt.adressen
+ ÿ½ ******************************************************
+ 
+ 
+ 
+ 
+ 
+ÿƒQuickStore("adressen")
+ÿ¡ÿJ(gdvserial%,gdvku.adg10012)ÿp
+ÿ½ KomNR1
+gdvTelNr1$ÿVSNRPack$(komnr1.adg10012)
+gdvtemp$ÿkomtyp1.adg10012
+ÿÉÿægdvtemp$
+ÿæ"10"
+	gdvTelTyp1$ÿ"Telefonnr. Privat"
+	gdvFax1$ÿ"n"
+ÿæ"20"
+	gdvTelTyp1$ÿ"Telefonnr. gesch„ftl."
+	gdvFax1$ÿ"n"
+ÿæ"30"
+	gdvTelTyp1$ÿ"Telefonnr. Mobil"
+	gdvFax1$ÿ"n"
+ÿæ"40"
+	gdvTelTyp1$ÿ"Telefax"
+	gdvFax1$ÿ"j"
+ÿ’ÿÉ
+gdvTeleV%ÿ0
+ÿ™"telefon"
+ 
+ÿßÿe
+ÿÊÿË"Telefon bearbeiten"
+ÿ¡ÿJ(gdvcodekua%,codeku.telefon)ÿp
+	ÿÉÿ`ÿ™"telefon"
+	ÿÉÿ¥gdvcodekua%ÿ™"telefon"ÿ£codeku.telefon
+	ÿØÿOÿB("telefon")ÿcodeku.telefonÿgdvcodekua%
+
+ÿ¡codeku.telefonÿgdvcodekua%ÿp
+ÿ¡VSNRPack$(Nummer.telefon)ÿgdvTelNr1$ÿp
+Nummer.telefonÿkomnr1.adg10012
+art.telefonÿgdvTelTyp1$
+fonoderfax.telefonÿgdvFax1$
+gdvTeleV%ÿ1
+ÿÉÿbÿ™"telefon"
+ÿ’ÿ¡
+
+ÿ’ÿ¡
+	ÿÉÿ±ÿ™"telefon"
+	ÿÙ
+ÿ’ÿ¡
+ÿ¡gdvTeleV%ÿ0ÿÿH(komnr1.adg10012)ÿ""ÿp
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku ÿgdvcodekua%
+Nummer.telefonÿkomnr1.adg10012
+art.telefonÿgdvTelTyp1$
+fonoderfax.telefonÿgdvFax1$
+ÿ’ÿ¡
+ÿƒQuickStore ("telefon")
+ 
+ÿ½ gdvTelNr1$ = LTRIM$ (komnr1.adg10012)
+ÿ½ gdvtemp$ = komtyp1.adg10012
+ÿ½ SELECT CASE gdvtemp$
+ÿ½  CASE "10"
+ÿ½  gdvTelTyp1$ = "Telefonnr. Privat"
+ÿ½  gdvFax1$ = "n"
+ÿ½   CASE "20"
+ÿ½  gdvTelTyp1$ = "Telefonnr. gesch„ftl."
+ÿ½  gdvFax1$ = "n"
+ÿ½   CASE "30"
+ÿ½  gdvTelTyp1$ = "Telefonnr. Mobil"
+ÿ½  gdvFax1$ = "n"
+ÿ½   CASE "40"
+ÿ½  gdvTelTyp1$ = "Telefax"
+ÿ½  gdvFax1$ = "j"
+ÿ½ END SELECT 
+ ÿ½ KomNr2
+gdvTelNr2$ÿVSNRPack$(komnr2.adg10012)
+gdvtemp$ÿkomtyp2.adg10012
+ÿÉÿægdvtemp$
+ÿæ"10"
+	gdvTelTyp1$ÿ"Telefonnr. Privat"
+	gdvFax1$ÿ"n"
+ÿæ"20"
+	gdvTelTyp2$ÿ"Telefonnr. gesch„ftl."
+	gdvFax2$ÿ"n"
+ÿæ"30"
+	gdvTelTyp2$ÿ"Telefonnr. Mobil"
+	gdvFax2$ÿ"n"
+ÿæ"40"
+	gdvTelTyp1$ÿ"Telefax"
+	gdvFax2$ÿ"j"
+ÿ’ÿÉ
+gdvTeleV%ÿ0
+ÿ™"telefon"
+ÿßÿe
+ÿÊÿË"Telefon bearbeiten"
+ÿ¡ÿJ(gdvcodekua%,codeku.telefon)ÿp
+	ÿÉÿ`ÿ™"telefon"
+	ÿÉÿ¥gdvcodekua%ÿ™"telefon"ÿ£codeku.telefon
+	ÿØÿOÿB("telefon")ÿcodeku.telefonÿgdvcodekua%
+ÿ¡codeku.telefonÿgdvcodekua%ÿp
+ÿ¡VSNRPack$(Nummer.telefon)ÿgdvTelNr2$ÿp
+Nummer.telefonÿkomnr2.adg10012
+art.telefonÿgdvTelTyp2$
+fonoderfax.telefonÿgdvFax2$
+gdvTeleV%ÿ1
+ÿÉÿbÿ™"telefon"
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	ÿÉÿ±ÿ™"telefon"
+	ÿÙ
+ÿ’ÿ¡
+ÿ¡gdvTeleV%ÿ0ÿp
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku ÿgdvcodekua%
+Nummer.telefonÿkomnr2.adg10012
+art.telefonÿgdvTelTyp2$
+fonoderfax.telefonÿgdvFax2$
+ÿ’ÿ¡
+ÿƒQuickStore ("telefon")
+ ÿ½ KomNr3
+gdvTelNr3$ÿVSNRPack$(komnr3.adg10012)
+gdvtemp$ÿkomtyp3.adg10012
+ÿÉÿægdvtemp$
+ÿæ"10"
+	gdvTelTyp3$ÿ"Telefonnr. Privat"
+	gdvFax3$ÿ"n"
+ÿæ"20"
+	gdvTelTyp3$ÿ"Telefonnr. gesch„ftl."
+	gdvFax3$ÿ"n"
+ÿæ"30"
+	gdvTelTyp3$ÿ"Telefonnr. Mobil"
+	gdvFax3$ÿ"n"
+ÿæ"40"
+	gdvTelTyp3$ÿ"Telefax"
+	gdvFax3$ÿ"j"
+ÿ’ÿÉ
+gdvTeleV%ÿ0
+ÿ™"telefon"
+ÿßÿe
+ÿÊÿË"Telefon bearbeiten"
+ÿ¡ÿJ(gdvcodekua%,codeku.telefon)ÿp
+	ÿÉÿ`ÿ™"telefon"
+	ÿÉÿ¥gdvcodekua%ÿ™"telefon"ÿ£codeku.telefon
+	ÿØÿOÿB("telefon")ÿcodeku.telefonÿgdvcodekua%
+
+ÿ¡codeku.telefonÿgdvcodekua%ÿp
+ÿ¡VSNRPack$(Nummer.telefon)ÿgdvTelNr3$ÿp
+Nummer.telefonÿkomnr3.adg10012
+art.telefonÿgdvTelTyp3$
+fonoderfax.telefonÿgdvFax3$
+gdvTeleV%ÿ1
+ÿÉÿbÿ™"telefon"
+ÿ’ÿ¡
+
+ÿ’ÿ¡
+	ÿÉÿ±ÿ™"telefon"
+	ÿÙ
+ÿ’ÿ¡
+ÿ¡gdvTeleV%ÿ0ÿp
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku ÿgdvcodekua%
+Nummer.telefonÿkomnr3.adg10012
+art.telefonÿgdvTelTyp3$
+fonoderfax.telefonÿgdvFax3$
+ÿ’ÿ¡
+ÿƒQuickStore ("telefon")
+ ÿ½ KomNr4
+gdvTelNr4$ÿVSNRPack$(komnr4.adg10012)
+gdvtemp$ÿkomtyp4.adg10012
+ÿÉÿægdvtemp$
+ÿæ"10"
+	gdvTelTyp4$ÿ"Telefonnr. Privat"
+	gdvFax4$ÿ"n"
+ÿæ"20"
+	gdvTelTyp4$ÿ"Telefonnr. gesch„ftl."
+	gdvFax4$ÿ"n"
+ÿæ"30"
+	gdvTelTyp4$ÿ"Telefonnr. Mobil"
+	gdvFax4$ÿ"n"
+ÿæ"40"
+	gdvTelTyp4$ÿ"Telefax"
+	gdvFax4$ÿ"j"
+ÿ’ÿÉ
+gdvTeleV%ÿ0
+ÿ™"telefon"
+ 
+ÿßÿe
+ÿÊÿË"Telefon bearbeiten"ÿ"   Anz in AGD10011:"ÿÿ(adganz1%,"999999")ÿ"/"ÿÿ(adganz%,"999999")
+ÿ¡ÿJ(gdvcodekua%,codeku.telefon)ÿp
+	ÿÉÿ`ÿ™"telefon"
+	ÿÉÿ¥gdvcodekua%ÿ™"telefon"ÿ£codeku.telefon
+	ÿØÿOÿB("telefon")ÿcodeku.telefonÿgdvcodekua%
+
+ÿ¡codeku.telefonÿgdvcodekua%ÿp
+ÿ¡VSNRPack$(Nummer.telefon)ÿgdvTelNr4$ÿp
+Nummer.telefonÿkomnr4.adg10012
+art.telefonÿgdvTelTyp4$
+fonoderfax.telefonÿgdvFax4$
+gdvTeleV%ÿ1
+ÿÉÿbÿ™"telefon"
+ÿ’ÿ¡
+
+ÿ’ÿ¡
+	ÿÉÿ±ÿ™"telefon"
+	ÿÙ
+ÿ’ÿ¡
+ÿ¡gdvTeleV%ÿ0ÿp
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku ÿgdvcodekua%
+Nummer.telefonÿkomnr4.adg10012
+art.telefonÿgdvTelTyp4$
+fonoderfax.telefonÿgdvFax4$
+ÿ’ÿ¡
+ÿƒQuickStore ("telefon")
+ÿ½ Familienstand
+ÿ½ gdvtemp$ = famst.adg10012
+ÿ½ SELECT CASE gdvtemp$
+ÿ½ CASE "1"
+	ÿ½ gdvFamilie$ = "ledig"
+ÿ½ CASE "2"
+	ÿ½ gdvFamilie$ = "verheiratet"
+ÿ½ CASE "3"
+	ÿ½ gdvFamilie$ = "geschieden"
+ÿ½ CASE "4"
+	ÿ½ gdvFamilie$ = "verwitwet"
+ÿ½ CASE "5"
+	ÿ½ gdvFamilie$ = "getrennt lebend"
+ÿ½ CASE "9"
+	ÿ½ gdvFamilie$ = ""
+ÿ½ END SELECT 
+ÿ½ Familienstand.adressen = gdvFamilie$
+ ÿ’ÿ¡
+ ÿ™"adressen"
+ ÿ½ CALL QuickStore("adressen")
+ ÿßÿe
+ ÿïÿYÿ™"adressen"
+ ÿ’ÿÿ
+ 
+ ÿ½ ********
+ ÿ½ * GLAS *
+ ÿ½ ********
+ÿÿgdvGlas(gdvserial%,gdvC200%,gdvKlfd%,lfdnrtotal%,gdvlf%)
+ ÿ×gdvGLFelder$(1)
+ ÿ×gdvFGlas$(1,1)
+gdvFGlas$(0,0)ÿ"gl021011"
+gdvFGlas$(0,1)ÿ"glg21011"
+gdvFGlas$(1,0)ÿ"gl022011"
+gdvFGlas$(1,1)ÿ"glg22011"
+
+
+ ÿ›j%ÿ0ÿq1
+
+ÿ½ Felder fr G-Dateien
+gdvFTemp2$ÿ"gdvku."ÿgdvFGlas$(j%,1)
+ÿ½ Felder fr 0-Dateien
+gdvFTemp3$ÿ"lfdnr."ÿgdvFGlas$(j%,0)
+gdvFTemp4$ÿ"code"ÿgdvFGlas$(j%,0)ÿ"."ÿgdvFGlas$(j%,0)
+gdvFTemp5$ÿ"lfdnrtotal."ÿgdvFGlas$(j%,0)
+ 
+ÿ½ ™ffnen der 0-Datei
+ÿƒDFile(3,gdvFGlas$(j%,0)ÿ_fpw$)
+ÿ™gdvFGlas$(j%,0)
+ÿ£gdvFTemp3$$
+ÿ½ wenn in der Datei die lfdnr vorkommt -> durchgehen und alle l”schen
+ÿ¡ÿJ(gdvKlfd%,gdvFTemp3$$)ÿp
+ÿÉÿ`ÿ™gdvFGlas$(j%,0)ÿ£gdvFTemp3$$
+ÿÉÿ¥gdvKlfd%ÿ™gdvFGlas$(j%,0)ÿ£gdvFTemp3$$
+ÿØÿOÿB(gdvFGlas$(j%,0))ÿgdvFTemp3$$ÿgdvKlfd%
+ÿ¡gdvFTemp3$$ÿgdvKlfd%ÿp
+	ÿÉÿYÿáÿ™gdvFGlas$(j%,0)
+	ÿÉÿ¾ÿ™gdvFGlas$(j%,0)
+	ÿïÿYÿ™gdvFGlas$(j%,0)
+	ÿ½ SELECT PREVIOUS FILE gdvFGlas$(j%,0)
+	ÿÉÿ`ÿ™gdvFGlas$(j%,0)ÿ£gdvFTemp3$$
+	ÿÉÿ¥gdvKlfd%ÿ™gdvFGlas$(j%,0)ÿ£gdvFTemp3$$
+ÿ^
+	ÿÉÿ±ÿ™gdvFGlas$(j%,0)ÿ£gdvFTemp3$$
+ÿ’ÿ¡
+ÿÙ
+ÿ’ÿ¡
+ 
+ÿ½ Auf G-Datei setzen
+ÿ™gdvFGlas$(j%,1)
+ÿ£gdvFTemp2$$
+ÿ½ Prfen ob die GDVKU vorkommt -> Wenn ja durchgehen und alle Datens„tze nach 0-Datei
+ÿ½                                 Wenn nein zur n„chsten G-Datei
+ÿ¡ÿJ(gdvserial%,gdvFTemp2$$)ÿp
+ÿÉÿ`ÿ™gdvFGlas$(j%,1)ÿ£gdvFTemp2$$
+ÿÉÿ¥gdvserial%ÿ™gdvFGlas$(j%,1)ÿ£gdvFTemp2$$
+ÿ½ GDVKU in G-Datei vorhanden
+ÿØÿOÿB(gdvFGlas$(j%,1))ÿgdvFTemp2$$ÿgdvserial%
+
+ÿ½ wenn ein Datensatz mit gleicher GDVKU gefunden wird
+ÿ¡gdvFTemp2$$ÿgdvserial%ÿp
+	
+	ÿ½ Auf 0-Datei setzen
+	ÿ™gdvFGlas$(j%,0)
+ 
+	ÿÿ™gdvFGlas$(j%,0)
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+	gdvGL%ÿÿI(gdvFTemp4$$)
+	ÿ¡ÿ>(gdvFGlas$(j%,0))ÿ"GL021011"ÿpgdvC210%ÿgdvGL%
+	ÿÌÿ™gdvFGlas$(j%,0)
+	ÿÉÿ¥gdvKlfd%ÿáÿ™gdvFGlas$(j%,0)ÿ£gdvFTemp3$$
+
+	gdvanzfeld%ÿÿõ(gdvFGlas$(j%,0),1)
+	ÿÿgdvGLFelder$(gdvanzfeld%)
+	ÿÿgdvGLFelder$,1
+	ÿ›i%ÿ0ÿqgdvanzfeld%ÿ1
+FTemp1$ÿgdvGLFelder$(i%)ÿ"."ÿgdvFGlas$(j%,0)
+FTemp2$ÿgdvGLFelder$(i%)ÿ"."ÿgdvFGlas$(j%,1)
+ÿ½  CALL Info("","")
+ÿ½ IF FTemp2$$ > "" OR FTemp2$$ > 0 THEN 
+FTemp1$$ÿFTemp2$$
+ÿ¡ÿ>(gdvGLFelder$(i%))ÿ"CODE200"ÿpFTemp1$$ÿgdvC200%
+ÿ¡ÿ>(gdvGLFelder$(i%))ÿ"CODEGL021011"ÿpFTemp1$$ÿgdvC210%
+	ÿ±i%
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+ 
+	gdvFTemp5$$ÿgdvKlfd%ÿ10000
+	gdvFTemp4$$ÿgdvGL%
+
+	ÿ™gdvFGlas$(j%,0)
+	ÿƒQuickStore(gdvFGlas$(j%,0))
+	ÿßÿe
+	ÿïÿYÿ™gdvFGlas$(j%,0)
+ÿ’ÿ¡
+ÿ™gdvFGlas$(j%,1)
+ÿÉÿ±ÿ™gdvFGlas$(j%,1)ÿ£gdvFTemp2$$
+ÿÙ
+ÿ’ÿ¡
+ ÿ±j%
+ 
+
+ÿ¡ÿJ(gdvKlfd%,lfdnr.GL021011)ÿp
+ÿÉÿ¥gdvKlfd%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ`ÿ™"GL021011"ÿ£lfdnr.GL021011
+ÿÉÿ¥gdvKlfd%ÿ™"GL021011"ÿ£lfdnr.GL021011
+ÿ½ CALL Fehler(tarifbez.le022021,"")
+ 
+ÿ¡BKZ.GL021011ÿ"1"ÿp
+mwst%ÿ0
+QuickGEVA$ÿÿ(codege.kvertrag,"000000")ÿÿ(codeva.kvertrag,"000000")
+ÿÉÿ`ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+ÿÉÿ¥QuickGEVA$ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+mwst%ÿmwst.vprodukt
+ÿ¡GESBETR.GL021011ÿ0ÿp
+ÿ¡mwst%ÿ0ÿp
+
+ÿ½ beitr1ab1$ = STR$ (Beitwe.alg20011,",999999.00")
+
+Beitrag.kvertragÿGESBETR.GL021011
+
+NettoBeitrag.kvertragÿGESBETR.GL021011
+ÿ^
+
+bmwst%ÿ(GESBETR.GL021011ÿmwst%ÿ100)
+
+bmwst$ÿÿ(bmwst%ÿ0.005,"999999.00")
+
+bmwst2%ÿÿ0(bmwst$)
+
+Beitrag.kvertragÿGESBETR.GL021011ÿbmwst2%
+
+NettoBeitrag.kvertragÿGESBETR.GL021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡begdat.GL021011ÿ0ÿpVS_Beginn.kvertragÿbegdat.GL021011
+ÿ¡ausdat.GL021011ÿ0ÿp
+Kndigung.kvertragÿausdat.GL021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÌÿ™"kvertrag"
+ÿ’ÿ¡
+
+
+
+
+ ÿ’ÿÿ
+ 
+ ÿ½ *********
+ ÿ½ * LEBEN *
+ ÿ½ *********
+ÿÿgdvLeben(gdvserial%,gdvC200%,gdvKlfd%,lfdnrtotal%,gdvlf%)
+ ÿ×gdvLEFelder$(1)
+ ÿ×gdvFLeben$(35,1)
+gdvFLeben$(0,0)ÿ"le021011"
+gdvFLeben$(0,1)ÿ"leg21011"
+gdvFLeben$(1,0)ÿ"le021012"
+gdvFLeben$(1,1)ÿ"leg21012"
+gdvFLeben$(2,0)ÿ"le022011"
+gdvFLeben$(2,1)ÿ"leg22011"
+gdvFLeben$(3,0)ÿ"le022021"
+gdvFLeben$(3,1)ÿ"leg22021"
+gdvFLeben$(4,0)ÿ"le022022"
+gdvFLeben$(4,1)ÿ"leg22022"
+gdvFLeben$(5,0)ÿ"le022026"
+gdvFLeben$(5,1)ÿ"leg22026"
+gdvFLeben$(6,0)ÿ"le022027"
+gdvFLeben$(6,1)ÿ"leg22027"
+gdvFLeben$(7,0)ÿ"le022028"
+gdvFLeben$(7,1)ÿ"leg22028"
+gdvFLeben$(8,0)ÿ"le022029"
+gdvFLeben$(8,1)ÿ"leg22029"
+gdvFLeben$(9,0)ÿ"le022031"
+gdvFLeben$(9,1)ÿ"leg22031"
+gdvFLeben$(10,0)ÿ"le022032"
+gdvFLeben$(10,1)ÿ"leg22032"
+gdvFLeben$(11,0)ÿ"le022036"
+gdvFLeben$(11,1)ÿ"leg22036"
+gdvFLeben$(12,0)ÿ"le022038"
+gdvFLeben$(12,1)ÿ"leg22038"
+gdvFLeben$(13,0)ÿ"le022039"
+gdvFLeben$(13,1)ÿ"leg22039"
+gdvFLeben$(14,0)ÿ"le022041"
+gdvFLeben$(14,1)ÿ"leg22041"
+gdvFLeben$(15,0)ÿ"le022042"
+gdvFLeben$(15,1)ÿ"leg22042"
+gdvFLeben$(16,0)ÿ"le022046"
+gdvFLeben$(16,1)ÿ"leg22046"
+gdvFLeben$(17,0)ÿ"le022048"
+gdvFLeben$(17,1)ÿ"leg22048"
+gdvFLeben$(18,0)ÿ"le022049"
+gdvFLeben$(18,1)ÿ"leg22049"
+gdvFLeben$(19,0)ÿ"le022051"
+gdvFLeben$(19,1)ÿ"leg22051"
+gdvFLeben$(20,0)ÿ"le022052"
+gdvFLeben$(20,1)ÿ"leg22052"
+gdvFLeben$(21,0)ÿ"le022056"
+gdvFLeben$(21,1)ÿ"leg22056"
+gdvFLeben$(22,0)ÿ"le022058"
+gdvFLeben$(22,1)ÿ"leg22058"
+gdvFLeben$(23,0)ÿ"le022059"
+gdvFLeben$(23,1)ÿ"leg22059"
+gdvFLeben$(24,0)ÿ"le022061"
+gdvFLeben$(24,1)ÿ"leg22061"
+gdvFLeben$(25,0)ÿ"le022062"
+gdvFLeben$(25,1)ÿ"leg22062"
+gdvFLeben$(26,0)ÿ"le022063"
+gdvFLeben$(26,1)ÿ"leg22063"
+gdvFLeben$(27,0)ÿ"le022066"
+gdvFLeben$(27,1)ÿ"leg22066"
+gdvFLeben$(28,0)ÿ"le022067"
+gdvFLeben$(28,1)ÿ"leg22067"
+gdvFLeben$(29,0)ÿ"le022068"
+gdvFLeben$(29,1)ÿ"leg22068"
+gdvFLeben$(30,0)ÿ"le022069"
+gdvFLeben$(30,1)ÿ"leg22069"
+gdvFLeben$(31,0)ÿ"le022071"
+gdvFLeben$(31,1)ÿ"leg22071"
+gdvFLeben$(32,0)ÿ"le022072"
+gdvFLeben$(32,1)ÿ"leg22072"
+gdvFLeben$(33,0)ÿ"le022076"
+gdvFLeben$(33,1)ÿ"leg22076"
+gdvFLeben$(34,0)ÿ"le022078"
+gdvFLeben$(34,1)ÿ"leg22078"
+gdvFLeben$(35,0)ÿ"le022079"
+gdvFLeben$(35,1)ÿ"leg22079"
+
+
+ ÿ›j%ÿ0ÿq35
+
+ÿ½ Felder fr G-Dateien
+gdvFTemp2$ÿ"gdvku."ÿgdvFLeben$(j%,1)
+ÿ½ Felder fr 0-Dateien
+gdvFTemp3$ÿ"lfdnr."ÿgdvFLeben$(j%,0)
+gdvFTemp4$ÿ"code"ÿgdvFLeben$(j%,0)ÿ"."ÿgdvFLeben$(j%,0)
+gdvFTemp5$ÿ"lfdnrtotal."ÿgdvFLeben$(j%,0)
+ 
+ÿ½ ™ffnen der 0-Datei
+ÿƒDFile(3,gdvFLeben$(j%,0)ÿ_fpw$)
+ÿ™gdvFLeben$(j%,0)
+ÿ£gdvFTemp3$$
+ÿ½ wenn in der Datei die lfdnr vorkommt -> durchgehen und alle l”schen
+ÿ¡ÿJ(gdvKlfd%,gdvFTemp3$$)ÿp
+ÿÉÿ`ÿ™gdvFLeben$(j%,0)ÿ£gdvFTemp3$$
+ÿÉÿ¥gdvKlfd%ÿ™gdvFLeben$(j%,0)ÿ£gdvFTemp3$$
+ÿØÿOÿB(gdvFLeben$(j%,0))ÿgdvFTemp3$$ÿgdvKlfd%
+ÿ¡gdvFTemp3$$ÿgdvKlfd%ÿp
+	ÿÉÿYÿáÿ™gdvFLeben$(j%,0)
+	ÿÉÿ¾ÿ™gdvFLeben$(j%,0)
+	ÿïÿYÿ™gdvFLeben$(j%,0)
+	ÿ½ SELECT PREVIOUS FILE gdvFLeben$(j%,0)
+	ÿÉÿ`ÿ™gdvFLeben$(j%,0)ÿ£gdvFTemp3$$
+	ÿÉÿ¥gdvKlfd%ÿ™gdvFLeben$(j%,0)ÿ£gdvFTemp3$$
+ÿ^
+	ÿÉÿ±ÿ™gdvFLeben$(j%,0)ÿ£gdvFTemp3$$
+ÿ’ÿ¡
+ÿÙ
+ÿ’ÿ¡
+ 
+ÿ½ Auf G-Datei setzen
+ÿ™gdvFLeben$(j%,1)
+ÿ£gdvFTemp2$$
+ÿ½ Prfen ob die GDVKU vorkommt -> Wenn ja durchgehen und alle Datens„tze nach 0-Datei
+ÿ½                                 Wenn nein zur n„chsten G-Datei
+ÿ¡ÿJ(gdvserial%,gdvFTemp2$$)ÿp
+ÿÉÿ`ÿ™gdvFLeben$(j%,1)ÿ£gdvFTemp2$$
+ÿÉÿ¥gdvserial%ÿ™gdvFLeben$(j%,1)ÿ£gdvFTemp2$$
+ÿ½ GDVKU in G-Datei vorhanden
+ÿØÿOÿB(gdvFLeben$(j%,1))ÿgdvFTemp2$$ÿgdvserial%
+
+ÿ½ wenn ein Datensatz mit gleicher GDVKU gefunden wird
+ÿ¡gdvFTemp2$$ÿgdvserial%ÿp
+	
+	ÿ½ Auf 0-Datei setzen
+	ÿ™gdvFLeben$(j%,0)
+ 
+	ÿÿ™gdvFLeben$(j%,0)
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+	gdvLe%ÿÿI(gdvFTemp4$$)
+	ÿ¡ÿ>(gdvFLeben$(j%,0))ÿ"LE021011"ÿpgdvC210%ÿgdvLe%
+	ÿÌÿ™gdvFLeben$(j%,0)
+	ÿÉÿ¥gdvKlfd%ÿáÿ™gdvFLeben$(j%,0)ÿ£gdvFTemp3$$
+
+	gdvanzfeld%ÿÿõ(gdvFLeben$(j%,0),1)
+	ÿÿgdvLeFelder$(gdvanzfeld%)
+	ÿÿgdvLeFelder$,1
+	ÿ›i%ÿ0ÿqgdvanzfeld%ÿ1
+FTemp1$ÿgdvLeFelder$(i%)ÿ"."ÿgdvFLeben$(j%,0)
+FTemp2$ÿgdvLeFelder$(i%)ÿ"."ÿgdvFLeben$(j%,1)
+ÿ½  CALL Info("","")
+ÿ½ IF FTemp2$$ > "" OR FTemp2$$ > 0 THEN 
+FTemp1$$ÿFTemp2$$
+ÿ¡ÿ>(gdvLeFelder$(i%))ÿ"CODE200"ÿpFTemp1$$ÿgdvC200%
+ÿ¡ÿ>(gdvLeFelder$(i%))ÿ"CODELE021011"ÿpFTemp1$$ÿgdvC210%
+	ÿ±i%
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+ 
+	gdvFTemp5$$ÿgdvKlfd%ÿ10000
+	gdvFTemp4$$ÿgdvLe%
+
+	ÿ™gdvFLeben$(j%,0)
+	ÿƒQuickStore(gdvFLeben$(j%,0))
+	ÿßÿe
+	ÿïÿYÿ™gdvFLeben$(j%,0)
+ÿ’ÿ¡
+ÿ™gdvFLeben$(j%,1)
+ÿÉÿ±ÿ™gdvFLeben$(j%,1)ÿ£gdvFTemp2$$
+ÿÙ
+ÿ’ÿ¡
+ ÿ±j%
+
+ÿ¡ÿJ(gdvKlfd%,lfdnr.LE022021)ÿp
+ÿÉÿ¥gdvKlfd%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ`ÿ™"LE022021"ÿ£lfdnr.LE022021
+ÿÉÿ¥gdvKlfd%ÿ™"LE022021"ÿ£lfdnr.LE022021
+ÿ½ CALL Fehler(tarifbez.le022021,"")
+Tarif.kvertragÿtarifbez.le022021
+QTarif.kvertragÿÿ+(VSNRPack$(Tarif.kvertrag),50)
+ÿÌÿ™"kvertrag"
+ÿ’ÿ¡
+ÿ½ CALL Fehler("","")
+ ÿ’ÿÿ
+ 
+ ÿ½ **********
+ ÿ½ * UNFALL *
+ ÿ½ **********
+ÿÿgdvUnfall(gdvserial%,gdvC200%,gdvKlfd%,lfdnrtotal%,gdvlf%)
+ ÿ×gdvUNFelder$(1)
+ ÿ×gdvFUnfall$(5,1)
+gdvFUnfall$(0,0)ÿ"un021011"
+gdvFUnfall$(0,1)ÿ"ung21011"
+gdvFUnfall$(1,0)ÿ"un022011"
+gdvFUnfall$(1,1)ÿ"ung22011"
+gdvFUnfall$(2,0)ÿ"un022012"
+gdvFUnfall$(2,1)ÿ"ung22012"
+gdvFUnfall$(3,0)ÿ"un022013"
+gdvFUnfall$(3,1)ÿ"ung22013"
+gdvFUnfall$(4,0)ÿ"un022014"
+gdvFUnfall$(4,1)ÿ"ung22014"
+gdvFUnfall$(5,0)ÿ"un022019"
+gdvFUnfall$(5,1)ÿ"ung22019"
+ 
+
+ ÿ›j%ÿ0ÿq5
+
+ÿ½ Felder fr G-Dateien
+gdvFTemp2$ÿ"gdvku."ÿgdvFUnfall$(j%,1)
+ÿ½ Felder fr 0-Dateien
+gdvFTemp3$ÿ"lfdnr."ÿgdvFUnfall$(j%,0)
+gdvFTemp4$ÿ"code"ÿgdvFUnfall$(j%,0)ÿ"."ÿgdvFUnfall$(j%,0)
+gdvFTemp5$ÿ"lfdnrtotal."ÿgdvFUnfall$(j%,0)
+ 
+ÿ½ ™ffnen der 0-Datei
+ÿƒDFile(3,gdvFUnfall$(j%,0)ÿ_fpw$)
+ÿ™gdvFUnfall$(j%,0)
+ÿ£gdvFTemp3$$
+ÿ½ CALL Fehler(gdvFUnfall$(j%,0),"")
+ÿ½ wenn in der Datei die lfdnr vorkommt -> durchgehen und alle l”schen
+ÿ¡ÿJ(gdvKlfd%,gdvFTemp3$$)ÿp
+ÿÉÿ`ÿ™gdvFUnfall$(j%,0)ÿ£gdvFTemp3$$
+ÿÉÿ¥gdvKlfd%ÿ™gdvFUnfall$(j%,0)ÿ£gdvFTemp3$$
+ÿØÿOÿB(gdvFUnfall$(j%,0))ÿgdvFTemp3$$ÿgdvKlfd%
+ÿÉÿYÿ™gdvFUnfall$(j%,0)
+ÿ¡gdvFTemp3$$ÿgdvKlfd%ÿp
+
+ÿÉÿYÿáÿ™gdvFUnfall$(j%,0)
+
+ÿÉÿ¾ÿ™gdvFUnfall$(j%,0)
+
+ÿïÿYÿ™gdvFUnfall$(j%,0)
+
+ÿ½ SELECT PREVIOUS FILE gdvFUnfall$(j%,0)
+
+ÿÉÿ`ÿ™gdvFUnfall$(j%,0)ÿ£gdvFTemp3$$
+
+ÿÉÿ¥gdvKlfd%ÿ™gdvFUnfall$(j%,0)ÿ£gdvFTemp3$$
+ÿ^
+
+ÿÉÿ±ÿ™gdvFUnfall$(j%,0)ÿ£gdvFTemp3$$
+ÿ’ÿ¡
+
+ÿÙ
+ÿ’ÿ¡
+ 
+ÿ½ Auf G-Datei setzen
+ÿ™gdvFUnfall$(j%,1)
+ÿ£gdvFTemp2$$
+ÿ½ Prfen ob die GDVKU vorkommt -> Wenn ja durchgehen und alle Datens„tze nach 0-Datei
+ÿ½                                 Wenn nein zur n„chsten G-Datei
+ÿ¡ÿJ(gdvserial%,gdvFTemp2$$)ÿp
+ÿÉÿ`ÿ™gdvFUnfall$(j%,1)ÿ£gdvFTemp2$$
+ÿÉÿ¥gdvserial%ÿ™gdvFUnfall$(j%,1)ÿ£gdvFTemp2$$
+ÿ½ GDVKU in G-Datei vorhanden
+ÿØÿOÿB(gdvFUnfall$(j%,1))ÿgdvFTemp2$$ÿgdvserial%
+
+ÿ½ wenn ein Datensatz mit gleicher GDVKU gefunden wird
+ÿ¡gdvFTemp2$$ÿgdvserial%ÿp
+	
+	ÿ½ Auf 0-Datei setzen
+	ÿ™gdvFUnfall$(j%,0)
+ 
+	ÿÿ™gdvFUnfall$(j%,0)
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+	gdvUN%ÿÿI(gdvFTemp4$$)
+	ÿ¡ÿ>(gdvFUnfall$(j%,0))ÿ"UN021011"ÿpgdvC210%ÿgdvUN%
+	ÿÌÿ™gdvFUnfall$(j%,0)
+	ÿÉÿ¥gdvKlfd%ÿáÿ™gdvFUnfall$(j%,0)ÿ£gdvFTemp3$$
+
+	gdvanzfeld%ÿÿõ(gdvFUnfall$(j%,0),1)
+	ÿÿgdvUNFelder$(gdvanzfeld%)
+	ÿÿgdvUNFelder$,1
+	ÿ›i%ÿ0ÿqgdvanzfeld%ÿ1
+FTemp1$ÿgdvUNFelder$(i%)ÿ"."ÿgdvFUnfall$(j%,0)
+FTemp2$ÿgdvUNFelder$(i%)ÿ"."ÿgdvFUnfall$(j%,1)
+ÿ½  CALL Info("","")
+ÿ½ IF FTemp2$$ > "" OR FTemp2$$ > 0 THEN 
+FTemp1$$ÿFTemp2$$
+ÿ¡ÿ>(gdvUNFelder$(i%))ÿ"CODE200"ÿpFTemp1$$ÿgdvC200%
+ÿ¡ÿ>(gdvUNFelder$(i%))ÿ"CODEUN021011"ÿpFTemp1$$ÿgdvC210%
+	ÿ±i%
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+ 
+	gdvFTemp5$$ÿgdvKlfd%ÿ10000
+	gdvFTemp4$$ÿgdvUN%
+
+	ÿ™gdvFUnfall$(j%,0)
+	ÿƒQuickStore(gdvFUnfall$(j%,0))
+	ÿßÿe
+	ÿïÿYÿ™gdvFUnfall$(j%,0)
+ÿ’ÿ¡
+ÿ™gdvFUnfall$(j%,1)
+ÿÉÿ±ÿ™gdvFUnfall$(j%,1)ÿ£gdvFTemp2$$
+ÿÙ
+ÿ’ÿ¡
+ ÿ±j%
+ÿ¡ÿJ(gdvKlfd%,lfdnr.UN021011)ÿp
+ÿÉÿ¥gdvKlfd%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ`ÿ™"UN021011"ÿ£lfdnr.UN021011
+ÿÉÿ¥gdvKlfd%ÿ™"UN021011"ÿ£lfdnr.UN021011
+ÿ½ CALL Fehler(tarifbez.le022021,"")
+Tarif.kvertragÿtarifbez.UN021011
+QTarif.kvertragÿÿ+(VSNRPack$(Tarif.kvertrag),50)
+
+
+ÿ¡BKZ.UN021011ÿ"1"ÿp
+mwst%ÿ0
+QuickGEVA$ÿÿ(codege.kvertrag,"000000")ÿÿ(codeva.kvertrag,"000000")
+ÿÉÿ`ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+ÿÉÿ¥QuickGEVA$ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+mwst%ÿmwst.vprodukt
+ÿ¡GESBETR.UN021011ÿ0ÿp
+ÿ¡mwst%ÿ0ÿp
+
+ÿ½ beitr1ab1$ = STR$ (Beitwe.alg20011,",999999.00")
+
+Beitrag.kvertragÿGESBETR.UN021011
+
+NettoBeitrag.kvertragÿGESBETR.UN021011
+ÿ^
+
+bmwst%ÿ(GESBETR.UN021011ÿmwst%ÿ100)
+
+bmwst$ÿÿ(bmwst%ÿ0.005,"999999.00")
+
+bmwst2%ÿÿ0(bmwst$)
+
+Beitrag.kvertragÿGESBETR.UN021011ÿbmwst2%
+
+NettoBeitrag.kvertragÿGESBETR.UN021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡begdat.UN021011ÿ0ÿpvs_beginn.kvertragÿbegdat.UN021011
+ÿ¡ausdat.UN021011ÿ0ÿp
+Kndigung.kvertragÿausdat.UN021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÌÿ™"kvertrag"
+ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ ÿ½ ***************
+ ÿ½ * HAFTPFLICHT *
+ ÿ½ ***************
+ÿÿgdvHaft(gdvserial%,gdvC200%,gdvKlfd%,lfdnrtotal%,gdvlf%)
+ ÿ×gdvHAFelder$(1)
+ ÿ×gdvFHaft$(2,1)
+gdvFHaft$(0,0)ÿ"HA021011"
+gdvFHaft$(0,1)ÿ"HAg21011"
+gdvFHaft$(1,0)ÿ"HA022011"
+gdvFHaft$(1,1)ÿ"HAg22011"
+gdvFHaft$(2,0)ÿ"HA022012"
+gdvFHaft$(2,1)ÿ"HAg22012"
+
+
+ ÿ›j%ÿ0ÿq2
+
+ÿ½ Felder fr G-Dateien
+gdvFTemp2$ÿ"gdvku."ÿgdvFHaft$(j%,1)
+ÿ½ Felder fr 0-Dateien
+gdvFTemp3$ÿ"lfdnr."ÿgdvFHaft$(j%,0)
+gdvFTemp4$ÿ"code"ÿgdvFHaft$(j%,0)ÿ"."ÿgdvFHaft$(j%,0)
+gdvFTemp5$ÿ"lfdnrtotal."ÿgdvFHaft$(j%,0)
+ 
+ÿ½ ™ffnen der 0-Datei
+ÿƒDFile(3,gdvFHaft$(j%,0)ÿ_fpw$)
+ÿ™gdvFHaft$(j%,0)
+ÿ£gdvFTemp3$$
+ÿ½ wenn in der Datei die lfdnr vorkommt -> durchgehen HAd alle l”schen
+ÿ¡ÿJ(gdvKlfd%,gdvFTemp3$$)ÿp
+ÿÉÿ`ÿ™gdvFHaft$(j%,0)ÿ£gdvFTemp3$$
+ÿ½ 02052004
+ÿÉÿ¥gdvKlfd%ÿ™gdvFHaft$(j%,0)ÿ£gdvFTemp3$$
+ÿØÿOÿB(gdvFHaft$(j%,0))ÿgdvFTemp3$$ÿgdvKlfd%
+ÿ¡gdvFTemp3$$ÿgdvKlfd%ÿp
+	ÿÉÿYÿáÿ™gdvFHaft$(j%,0)
+	ÿÉÿ¾ÿ™gdvFHaft$(j%,0)
+	ÿïÿYÿ™gdvFHaft$(j%,0)
+	ÿÉÿgÿ™gdvFHaft$(j%,0)
+	ÿÉÿ`ÿ™gdvFHaft$(j%,0)ÿ£gdvFTemp3$$
+	ÿÉÿ¥gdvKlfd%ÿ™gdvFHaft$(j%,0)ÿ£gdvFTemp3$$
+ÿ^
+	ÿÉÿ±ÿ™gdvFHaft$(j%,0)
+ÿ’ÿ¡
+ÿÙ
+ÿ’ÿ¡
+ 
+ÿ½ Auf G-Datei setzen
+ÿ™gdvFHaft$(j%,1)
+ÿ£gdvFTemp2$$
+ÿ½ Prfen ob die GDVKU vorkommt -> Wenn ja durchgehen und alle Datens„tze nach 0-Datei
+ÿ½                                 Wenn nein zur n„chsten G-Datei
+ÿ¡ÿJ(gdvserial%,gdvFTemp2$$)ÿp
+ÿÉÿ`ÿ™gdvFHaft$(j%,1)ÿ£gdvFTemp2$$
+ÿÉÿ¥gdvserial%ÿ™gdvFHaft$(j%,1)ÿ£gdvFTemp2$$
+ÿ½ GDVKU in G-Datei vorhanden
+ÿØÿOÿB(gdvFHaft$(j%,1))ÿgdvFTemp2$$ÿgdvserial%
+
+ÿ½ wenn ein Datensatz mit gleicher GDVKU gefunden wird
+ÿ¡gdvFTemp2$$ÿgdvserial%ÿp
+	
+	ÿ½ Auf 0-Datei setzen
+	ÿ™gdvFHaft$(j%,0)
+ 
+	ÿÿ™gdvFHaft$(j%,0)
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+	gdvHA%ÿÿI(gdvFTemp4$$)
+	ÿ¡ÿ>(gdvFHaft$(j%,0))ÿ"HA021011"ÿpgdvC210%ÿgdvHA%
+	ÿÌÿ™gdvFHaft$(j%,0)
+	ÿÉÿ¥gdvKlfd%ÿáÿ™gdvFHaft$(j%,0)ÿ£gdvFTemp3$$
+
+	gdvanzfeld%ÿÿõ(gdvFHaft$(j%,0),1)
+	ÿÿgdvHAFelder$(gdvanzfeld%)
+	ÿÿgdvHAFelder$,1
+	ÿ›i%ÿ0ÿqgdvanzfeld%ÿ1
+FTemp1$ÿgdvHAFelder$(i%)ÿ"."ÿgdvFHaft$(j%,0)
+FTemp2$ÿgdvHAFelder$(i%)ÿ"."ÿgdvFHaft$(j%,1)
+ÿ½  CALL Info("","")
+ÿ½ IF FTemp2$$ > "" OR FTemp2$$ > 0 THEN 
+FTemp1$$ÿFTemp2$$
+ÿ¡ÿ>(gdvHAFelder$(i%))ÿ"CODE200"ÿpFTemp1$$ÿgdvC200%
+ÿ¡ÿ>(gdvHAFelder$(i%))ÿ"CODEHA021011"ÿpFTemp1$$ÿgdvC210%
+	ÿ±i%
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+ 
+	gdvFTemp5$$ÿgdvKlfd%ÿ10000
+	gdvFTemp4$$ÿgdvHA%
+
+	ÿ™gdvFHaft$(j%,0)
+	ÿƒQuickStore(gdvFHaft$(j%,0))
+	ÿßÿe
+	ÿïÿYÿ™gdvFHaft$(j%,0)
+ÿ’ÿ¡
+ÿ™gdvFHaft$(j%,1)
+ÿÉÿ±ÿ™gdvFHaft$(j%,1)
+ÿÙ
+ÿ’ÿ¡
+ ÿ±j%
+ÿ½ **************************************************************************************************************
+ÿ½ *                            Spartenspezifische Eintragungen in KVERTRAG                                     *
+ÿ½ **************************************************************************************************************  
+ÿ¡ÿJ(gdvKlfd%,lfdnr.HA021011)ÿÿJ(gdvKlfd%,lfdnr.HA022011)ÿp
+ÿÉÿ¥gdvKlfd%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ¥gdvKlfd%ÿ™"HA021011"ÿ£lfdnr.HA021011
+ÿÉÿ¥gdvKlfd%ÿ™"HA022011"ÿ£lfdnr.HA022011
+ÿÉÿ¥gdvKlfd%ÿ™"HA022012"ÿ£lfdnr.HA022012
+textab$ÿ""
+zvp1Name.kvertragÿÿ+(plzrisk.HA022012ÿ" "ÿriskort.HA022012,40)
+zvp1vName.kvertragÿÿ+(riskstr.HA022012,40)
+
+ÿ¡bkz.HA021011ÿ"1"ÿp
+mwst%ÿ0
+QuickGEVA$ÿÿ(codege.kvertrag,"000000")ÿÿ(codeva.kvertrag,"000000")
+ÿÉÿ`ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+ÿÉÿ¥QuickGEVA$ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+mwst%ÿmwst.vprodukt
+ÿ½ CALL Fehler("test","")
+beitr1ab1$ÿÿ(Beitwe.alg20011,",999999.00")
+beitr1ab2$ÿÿ(GESBEI.HA021011,",999999.00")
+
+ÿ¡GESBEI.HA021011ÿ0ÿp
+ÿ¡mwst%ÿ0ÿp
+
+Beitrag.kvertragÿGESBEI.HA021011
+
+NettoBeitrag.kvertragÿGESBEI.HA021011
+ÿ^
+
+bmwst%ÿ(GESBEI.HA021011ÿmwst%ÿ100)
+
+bmwst$ÿÿ(bmwst%ÿ0.005,"999999.00")
+
+bmwst2%ÿÿ0(bmwst$)
+
+Beitrag.kvertragÿGESBEI.HA021011ÿbmwst2%
+
+NettoBeitrag.kvertragÿGESBEI.HA021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡begdat.HA021011ÿ0ÿpvs_Beginn.kvertragÿbegdat.HA021011
+ÿ¡auss.HA021011ÿ0ÿp
+Kndigung.kvertragÿauss.HA021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+
+ÿ¡ÿJ(gdvKlfd%,lfdnr.HA022012)ÿp
+ÿØÿOÿB("HA022012")ÿlfdnr.HA022012ÿgdvKlfd%
+textab$ÿtextab$ÿWTXT.HA022012ÿÿ(13)ÿÿ(10)
+ÿÉÿ±ÿ™"HA022012"
+ÿÙ
+ÿ’ÿ¡
+rt$ÿ""
+ÿ¡ÿH(sumart1.ha021011)ÿ""ÿp
+ÿÉÿæÿ>(sumart1.ha021011)
+ÿæ"1"
+rt$ÿ"Personensch„den"
+ÿæ"2"
+rt$ÿ"Sachsch„den"
+ÿæ"3"
+rt$ÿ"Personen- und Sachsch„den"
+ÿæ"4"
+rt$ÿ"Verm”genssch„den"
+ÿæ"5"
+rt$ÿ"Personen- und Verm”genssch„den"
+ÿæ"6"
+rt$ÿ"Sach- und Verm”genssch„den"
+ÿæ"7"
+rt$ÿ"Personen-,Verm”gens- und Sachsch„den"
+ÿæ"8"
+rt$ÿ"Mietsachsch„den"
+ÿæ"9"
+rt$ÿ"EP(Einheitspauschale)"
+ÿæ"A"
+rt$ÿ"Personen- und Sachsch„den (pauschal)"
+ÿæ"B"
+rt$ÿ"sonstige Sach- und Verm”genssch„den (pauschal)"
+ÿæ"C"
+rt$ÿ"Personensch„den und sonstige Sch„den (pauschal)"
+ÿæ"D"
+rt$ÿ"unbegrenzt (nur fr Gabelstapler nach AKB)"
+ÿæ"Z"
+rt$ÿ"Sonstiges"
+ÿ’ÿÉ
+rt1$ÿ""
+rt1$ÿrt$ÿ" Deckung: "ÿÿ(decksum1.ha021011,",999999999.00")
+ÿ’ÿ¡
+ÿ¡ÿH(sumart2.ha021011)ÿ""ÿp
+ÿÉÿæÿ>(sumart2.ha021011)
+ÿæ"1"
+
+rt$ÿ"Personensch„den"
+ÿæ"2"
+
+rt$ÿ"Sachsch„den"
+ÿæ"3"
+
+rt$ÿ"Personen- und Sachsch„den"
+ÿæ"4"
+
+rt$ÿ"Verm”genssch„den"
+ÿæ"5"
+
+rt$ÿ"Personen- und Verm”genssch„den"
+ÿæ"6"
+
+rt$ÿ"Sach- und Verm”genssch„den"
+ÿæ"7"
+
+rt$ÿ"Personen-,Verm”gens- und Sachsch„den"
+ÿæ"8"
+
+rt$ÿ"Mietsachsch„den"
+ÿæ"9"
+
+rt$ÿ"EP(Einheitspauschale)"
+ÿæ"A"
+
+rt$ÿ"Personen- und Sachsch„den (pauschal)"
+ÿæ"B"
+
+rt$ÿ"sonstige Sach- und Verm”genssch„den (pauschal)"
+ÿæ"C"
+
+rt$ÿ"Personensch„den und sonstige Sch„den (pauschal)"
+ÿæ"D"
+
+rt$ÿ"unbegrenzt (nur fr Gabelstapler nach AKB)"
+ÿæ"Z"
+
+rt$ÿ"Sonstiges"
+ÿ’ÿÉ
+rt2$ÿ""
+rt2$ÿrt$ÿ" Deckung: "ÿÿ(decksum2.ha021011,",999999999.00")
+ÿ’ÿ¡
+ÿ¡ÿH(sumart3.ha021011)ÿ""ÿp
+ÿÉÿæÿ>(sumart3.ha021011)
+ÿæ"1"
+
+rt$ÿ"Personensch„den"
+ÿæ"2"
+
+rt$ÿ"Sachsch„den"
+ÿæ"3"
+
+rt$ÿ"Personen- und Sachsch„den"
+ÿæ"4"
+
+rt$ÿ"Verm”genssch„den"
+ÿæ"5"
+
+rt$ÿ"Personen- und Verm”genssch„den"
+ÿæ"6"
+
+rt$ÿ"Sach- und Verm”genssch„den"
+ÿæ"7"
+
+rt$ÿ"Personen-,Verm”gens- und Sachsch„den"
+ÿæ"8"
+
+rt$ÿ"Mietsachsch„den"
+ÿæ"9"
+
+rt$ÿ"EP(Einheitspauschale)"
+ÿæ"A"
+
+rt$ÿ"Personen- und Sachsch„den (pauschal)"
+ÿæ"B"
+
+rt$ÿ"sonstige Sach- und Verm”genssch„den (pauschal)"
+ÿæ"C"
+
+rt$ÿ"Personensch„den und sonstige Sch„den (pauschal)"
+ÿæ"D"
+
+rt$ÿ"unbegrenzt (nur fr Gabelstapler nach AKB)"
+ÿæ"Z"
+
+rt$ÿ"Sonstiges"
+ÿ’ÿÉ
+rt3$ÿ""
+rt3$ÿrt$ÿ" Deckung: "ÿÿ(decksum3.ha021011,",999999999.00")
+ÿ’ÿ¡
+ÿ¡ÿH(sumart4.ha021011)ÿ""ÿp
+ÿÉÿæÿ>(sumart4.ha021011)
+ÿæ"1"
+
+rt$ÿ"Personensch„den"
+ÿæ"2"
+
+rt$ÿ"Sachsch„den"
+ÿæ"3"
+
+rt$ÿ"Personen- und Sachsch„den"
+ÿæ"4"
+
+rt$ÿ"Verm”genssch„den"
+ÿæ"5"
+
+rt$ÿ"Personen- und Verm”genssch„den"
+ÿæ"6"
+
+rt$ÿ"Sach- und Verm”genssch„den"
+ÿæ"7"
+
+rt$ÿ"Personen-,Verm”gens- und Sachsch„den"
+ÿæ"8"
+
+rt$ÿ"Mietsachsch„den"
+ÿæ"9"
+
+rt$ÿ"EP(Einheitspauschale)"
+ÿæ"A"
+
+rt$ÿ"Personen- und Sachsch„den (pauschal)"
+ÿæ"B"
+
+rt$ÿ"sonstige Sach- und Verm”genssch„den (pauschal)"
+ÿæ"C"
+
+rt$ÿ"Personensch„den und sonstige Sch„den (pauschal)"
+ÿæ"D"
+
+rt$ÿ"unbegrenzt (nur fr Gabelstapler nach AKB)"
+ÿæ"Z"
+
+rt$ÿ"Sonstiges"
+ÿ’ÿÉ
+rt4$ÿ""
+rt4$ÿrt$ÿ" Deckung: "ÿÿ(decksum4.ha021011,",999999999.00")
+ÿ’ÿ¡
+rtges$ÿ""
+ÿ¡rt1$ÿ""ÿprtges$ÿrt1$
+ÿ¡rt2$ÿ""ÿprtges$ÿrtges$ÿÿ(13)ÿrt2$
+ÿ¡rt3$ÿ""ÿprtges$ÿrtges$ÿÿ(13)ÿrt3$
+ÿ¡rt4$ÿ""ÿprtges$ÿrtges$ÿÿ(13)ÿrt4$
+rt1$ÿ"":rt2$ÿ"":rt3$ÿ"":rt4$ÿ""
+ÿ¡ÿH(sumart1.ha022011)ÿ""ÿp
+ÿÉÿæÿ>(sumart1.ha022011)
+ÿæ"1"
+
+rt$ÿ"PS"
+ÿæ"2"
+
+rt$ÿ"SS"
+ÿæ"3"
+
+rt$ÿ"PS+SS"
+ÿæ"4"
+
+rt$ÿ"VS"
+ÿæ"5"
+
+rt$ÿ"PS+VS"
+ÿæ"6"
+
+rt$ÿ"SS+VS"
+ÿæ"7"
+
+rt$ÿ"PS, VS, SS"
+ÿæ"8"
+
+rt$ÿ"frei"
+ÿæ"9"
+
+rt$ÿ"EP (Einheitspauschale)"
+ÿæ"A"
+
+rt$ÿ"= Personen- und Sachsch„den (pauschal)"
+ÿæ"B"
+
+rt$ÿ"sonstige Sach- und Verm”genssch„den (pauschal)"
+ÿæ"C"
+
+rt$ÿ"Personensch„den und sonstige Sch„den (pauschal)"
+ÿæ"D"
+
+rt$ÿ"unbegrenzt (nur fr Gabelstapler nach AKB)"
+ÿæ"Z"
+
+rt$ÿ"sonstiges"
+ÿ’ÿÉ
+rt1$ÿrt$ÿ" Deckung: "ÿÿ(decksum1.ha022011,",999999999.00")
+ÿ’ÿ¡
+ 
+ÿ¡ÿH(sumart2.ha022011)ÿ""ÿp
+ÿÉÿæÿ>(sumart2.ha022011)
+ÿæ"1"
+
+rt$ÿ"PS"
+ÿæ"2"
+
+rt$ÿ"SS"
+ÿæ"3"
+
+rt$ÿ"PS+SS"
+ÿæ"4"
+
+rt$ÿ"VS"
+ÿæ"5"
+
+rt$ÿ"PS+VS"
+ÿæ"6"
+
+rt$ÿ"SS+VS"
+ÿæ"7"
+
+rt$ÿ"PS, VS, SS"
+ÿæ"8"
+
+rt$ÿ"frei"
+ÿæ"9"
+
+rt$ÿ"EP (Einheitspauschale)"
+ÿæ"A"
+
+rt$ÿ"= Personen- und Sachsch„den (pauschal)"
+ÿæ"B"
+
+rt$ÿ"sonstige Sach- und Verm”genssch„den (pauschal)"
+ÿæ"C"
+
+rt$ÿ"Personensch„den und sonstige Sch„den (pauschal)"
+ÿæ"D"
+
+rt$ÿ"unbegrenzt (nur fr Gabelstapler nach AKB)"
+ÿæ"Z"
+
+rt$ÿ"sonstiges"
+ÿ’ÿÉ
+rt2$ÿrt$ÿ" Deckung: "ÿÿ(decksum2.ha022011,",999999999.00")
+ÿ’ÿ¡
+ 
+ÿ¡ÿH(sumart3.ha022011)ÿ""ÿp
+ÿÉÿæÿ>(sumart3.ha022011)
+ÿæ"1"
+
+rt$ÿ"PS"
+ÿæ"2"
+
+rt$ÿ"SS"
+ÿæ"3"
+
+rt$ÿ"PS+SS"
+ÿæ"4"
+
+rt$ÿ"VS"
+ÿæ"5"
+
+rt$ÿ"PS+VS"
+ÿæ"6"
+
+rt$ÿ"SS+VS"
+ÿæ"7"
+
+rt$ÿ"PS, VS, SS"
+ÿæ"8"
+
+rt$ÿ"frei"
+ÿæ"9"
+
+rt$ÿ"EP (Einheitspauschale)"
+ÿæ"A"
+
+rt$ÿ"= Personen- und Sachsch„den (pauschal)"
+ÿæ"B"
+
+rt$ÿ"sonstige Sach- und Verm”genssch„den (pauschal)"
+ÿæ"C"
+
+rt$ÿ"Personensch„den und sonstige Sch„den (pauschal)"
+ÿæ"D"
+
+rt$ÿ"unbegrenzt (nur fr Gabelstapler nach AKB)"
+ÿæ"Z"
+
+rt$ÿ"sonstiges"
+ÿ’ÿÉ
+rt3$ÿrt$ÿ" Deckung: "ÿÿ(decksum3.ha022011,",999999999.00")
+ÿ’ÿ¡
+ 
+ 
+ÿ¡ÿH(sumart4.ha022011)ÿ""ÿp
+ÿÉÿæÿ>(sumart4.ha022011)
+ÿæ"1"
+
+rt$ÿ"PS"
+ÿæ"2"
+
+rt$ÿ"SS"
+ÿæ"3"
+
+rt$ÿ"PS+SS"
+ÿæ"4"
+
+rt$ÿ"VS"
+ÿæ"5"
+
+rt$ÿ"PS+VS"
+ÿæ"6"
+
+rt$ÿ"SS+VS"
+ÿæ"7"
+
+rt$ÿ"PS, VS, SS"
+ÿæ"8"
+
+rt$ÿ"frei"
+ÿæ"9"
+
+rt$ÿ"EP (Einheitspauschale)"
+ÿæ"A"
+
+rt$ÿ"= Personen- und Sachsch„den (pauschal)"
+ÿæ"B"
+
+rt$ÿ"sonstige Sach- und Verm”genssch„den (pauschal)"
+ÿæ"C"
+
+rt$ÿ"Personensch„den und sonstige Sch„den (pauschal)"
+ÿæ"D"
+
+rt$ÿ"unbegrenzt (nur fr Gabelstapler nach AKB)"
+ÿæ"Z"
+
+rt$ÿ"sonstiges"
+ÿ’ÿÉ
+rt4$ÿrt$ÿ" Deckung: "ÿÿ(decksum4.ha022011,",999999999.00")
+ÿ’ÿ¡
+ÿ¡rt1$ÿ""ÿprtges$ÿrtges$ÿÿ(13)ÿrt1$
+ÿ¡rt2$ÿ""ÿprtges$ÿrtges$ÿÿ(13)ÿrt2$
+ÿ¡rt3$ÿ""ÿprtges$ÿrtges$ÿÿ(13)ÿrt3$
+ÿ¡rt4$ÿ""ÿprtges$ÿrtges$ÿÿ(13)ÿrt4$
+rt1$ÿ"":rt2$ÿ"":rt3$ÿ"":rt4$ÿ""
+ 
+risiko.kvertragÿrtges$
+ÿ¡textab$ÿ""ÿpBesVereinbarung.kvertragÿÿ+("Wagnis:"ÿÿ(13)ÿÿ(10)ÿtextab$,4000)
+ÿƒQuickStore("KVERTRAG")
+ÿ’ÿ¡
+ÿ½ **************************************************************************************************************
+ÿ½ *                    ENDE  der  Spartenspezifische Eintragungen in KVERTRAG                                  *
+ÿ½ **************************************************************************************************************        
+ ÿ’ÿÿ
+ 
+ 
+ ÿ½ ****************
+ ÿ½ * UNDEFINIERTE *
+ ÿ½ ****************
+ÿÿgdvUndef(gdvserial%,gdvC200%,gdvKlfd%,lfdnrtotal%,gdvlf%)
+ ÿ×gdvUDFelder$(1)
+ ÿ×gdvFUndef$(3,1)
+gdvFUndef$(0,0)ÿ"UD021011"
+gdvFUndef$(0,1)ÿ"UDg21011"
+gdvFUndef$(1,0)ÿ"UD021012"
+gdvFUndef$(1,1)ÿ"UDg21012"
+gdvFUndef$(2,0)ÿ"UD022011"
+gdvFUndef$(2,1)ÿ"UDg22011"
+gdvFUndef$(3,0)ÿ"UD022012"
+gdvFUndef$(3,1)ÿ"UDg22012"
+
+
+ ÿ›j%ÿ0ÿq3
+
+ÿ½ Felder fr G-Dateien
+gdvFTemp2$ÿ"gdvku."ÿgdvFUndef$(j%,1)
+ÿ½ Felder fr 0-Dateien
+gdvFTemp3$ÿ"lfdnr."ÿgdvFUndef$(j%,0)
+gdvFTemp4$ÿ"code"ÿgdvFUndef$(j%,0)ÿ"."ÿgdvFUndef$(j%,0)
+gdvFTemp5$ÿ"lfdnrtotal."ÿgdvFUndef$(j%,0)
+ 
+ÿ½ ™ffnen der 0-Datei
+ÿƒDFile(3,gdvFUndef$(j%,0)ÿ_fpw$)
+ÿ™gdvFUndef$(j%,0)
+ÿ£gdvFTemp3$$
+ÿ½ wenn in der Datei die lfdnr vorkommt -> durchgehen und alle l”schen
+ÿ¡ÿJ(gdvKlfd%,gdvFTemp3$$)ÿp
+ÿÉÿ`ÿ™gdvFUndef$(j%,0)ÿ£gdvFTemp3$$
+ÿÉÿ¥gdvKlfd%ÿ™gdvFUndef$(j%,0)ÿ£gdvFTemp3$$
+ÿØÿOÿB(gdvFUndef$(j%,0))ÿgdvFTemp3$$ÿgdvKlfd%
+ÿ¡gdvFTemp3$$ÿgdvKlfd%ÿp
+	ÿÉÿYÿáÿ™gdvFUndef$(j%,0)
+	ÿÉÿ¾ÿ™gdvFUndef$(j%,0)
+	ÿïÿYÿ™gdvFUndef$(j%,0)
+	ÿ½ SELECT PREVIOUS FILE gdvFUndef$(j%,0)
+	ÿÉÿ`ÿ™gdvFUndef$(j%,0)ÿ£gdvFTemp3$$
+	ÿÉÿ¥gdvKlfd%ÿ™gdvFUndef$(j%,0)ÿ£gdvFTemp3$$
+ÿ^
+	ÿÉÿ±ÿ™gdvFUndef$(j%,0)ÿ£gdvFTemp3$$
+ÿ’ÿ¡
+ÿÙ
+ÿ’ÿ¡
+ 
+ÿ½ Auf G-Datei setzen
+ÿ™gdvFUndef$(j%,1)
+ÿ£gdvFTemp2$$
+ÿ½ Prfen ob die GDVKU vorkommt -> Wenn ja durchgehen HAd alle Datens„tze nach 0-Datei
+ÿ½                                 Wenn nein zur n„chsten G-Datei
+ÿ¡ÿJ(gdvserial%,gdvFTemp2$$)ÿp
+ÿÉÿ`ÿ™gdvFUndef$(j%,1)ÿ£gdvFTemp2$$
+ÿÉÿ¥gdvserial%ÿ™gdvFUndef$(j%,1)ÿ£gdvFTemp2$$
+ÿ½ GDVKU in G-Datei vorhanden
+ÿØÿOÿB(gdvFUndef$(j%,1))ÿgdvFTemp2$$ÿgdvserial%
+
+ÿ½ wenn ein Datensatz mit gleicher GDVKU gefHAden wird
+ÿ¡gdvFTemp2$$ÿgdvserial%ÿp
+	
+	ÿ½ Auf 0-Datei setzen
+	ÿ™gdvFUndef$(j%,0)
+ 
+	ÿÿ™gdvFUndef$(j%,0)
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+	gdvUD%ÿÿI(gdvFTemp4$$)
+	ÿ¡ÿ>(gdvFUndef$(j%,0))ÿ"UD021011"ÿpgdvC210%ÿgdvUD%
+	ÿÌÿ™gdvFUndef$(j%,0)
+	ÿÉÿ¥gdvKlfd%ÿáÿ™gdvFUndef$(j%,0)ÿ£gdvFTemp3$$
+
+	gdvanzfeld%ÿÿõ(gdvFUndef$(j%,0),1)
+	ÿÿgdvUDFelder$(gdvanzfeld%)
+	ÿÿgdvUDFelder$,1
+	ÿ›i%ÿ0ÿqgdvanzfeld%ÿ1
+FTemp1$ÿgdvUDFelder$(i%)ÿ"."ÿgdvFUndef$(j%,0)
+FTemp2$ÿgdvUDFelder$(i%)ÿ"."ÿgdvFUndef$(j%,1)
+ÿ½  CALL Info("","")
+ÿ½ IF FTemp2$$ > "" OR FTemp2$$ > 0 THEN 
+FTemp1$$ÿFTemp2$$
+ÿ¡ÿ>(gdvUDFelder$(i%))ÿ"CODE200"ÿpFTemp1$$ÿgdvC200%
+ÿ¡ÿ>(gdvUDFelder$(i%))ÿ"CODEUD021011"ÿpFTemp1$$ÿgdvC210%
+	ÿ±i%
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+ 
+	gdvFTemp5$$ÿgdvKlfd%ÿ10000
+	gdvFTemp4$$ÿgdvUD%
+
+	ÿ™gdvFUndef$(j%,0)
+	ÿƒQuickStore(gdvFUndef$(j%,0))
+	ÿßÿe
+	ÿïÿYÿ™gdvFUndef$(j%,0)
+ÿ’ÿ¡
+ÿ™gdvFUndef$(j%,1)
+ÿÉÿ±ÿ™gdvFUndef$(j%,1)ÿ£gdvFTemp2$$
+ÿÙ
+ÿ’ÿ¡
+ ÿ±j%
+ 
+ ÿ’ÿÿ
+ 
+ 
+ÿ½ ****************
+ ÿ½ * Transport    *
+ ÿ½ ****************
+ÿÿgdvTrans(gdvserial%,gdvC200%,gdvKlfd%,lfdnrtotal%,gdvlf%)
+ ÿ×gdvTRFelder$(1)
+ ÿ×gdvFTrans$(4,1)
+gdvFTrans$(0,0)ÿ"TR021011"
+gdvFTrans$(0,1)ÿ"TRg21011"
+gdvFTrans$(1,0)ÿ"TR022011"
+gdvFTrans$(1,1)ÿ"TRg22011"
+gdvFTrans$(2,0)ÿ"TR022012"
+gdvFTrans$(2,1)ÿ"TRg22012"
+gdvFTrans$(3,0)ÿ"TR025011"
+gdvFTrans$(3,1)ÿ"TRg25011"
+gdvFTrans$(4,0)ÿ"TR026011"
+gdvFTrans$(4,1)ÿ"TRg26011"
+ 
+
+ ÿ›j%ÿ0ÿq4
+
+ÿ½ Felder fr G-Dateien
+gdvFTemp2$ÿ"gdvku."ÿgdvFTrans$(j%,1)
+ÿ½ Felder fr 0-Dateien
+gdvFTemp3$ÿ"lfdnr."ÿgdvFTrans$(j%,0)
+gdvFTemp4$ÿ"code"ÿgdvFTrans$(j%,0)ÿ"."ÿgdvFTrans$(j%,0)
+gdvFTemp5$ÿ"lfdnrtotal."ÿgdvFTrans$(j%,0)
+ 
+ÿ½ ™ffnen der 0-Datei
+ÿƒDFile(3,gdvFTrans$(j%,0)ÿ_fpw$)
+ÿ™gdvFTrans$(j%,0)
+ÿ£gdvFTemp3$$
+ÿ½ wenn in der Datei die lfdnr vorkommt -> durchgehen und alle l”schen
+ÿ¡ÿJ(gdvKlfd%,gdvFTemp3$$)ÿp
+ÿÉÿ`ÿ™gdvFTrans$(j%,0)ÿ£gdvFTemp3$$
+ÿÉÿ¥gdvKlfd%ÿ™gdvFTrans$(j%,0)ÿ£gdvFTemp3$$
+ÿØÿOÿB(gdvFTrans$(j%,0))ÿgdvFTemp3$$ÿgdvKlfd%
+ÿ¡gdvFTemp3$$ÿgdvKlfd%ÿp
+	ÿÉÿYÿáÿ™gdvFTrans$(j%,0)
+	ÿÉÿ¾ÿ™gdvFTrans$(j%,0)
+	ÿïÿYÿ™gdvFTrans$(j%,0)
+	ÿ½ SELECT PREVIOUS FILE gdvFTrans$(j%,0)
+	ÿÉÿ`ÿ™gdvFTrans$(j%,0)ÿ£gdvFTemp3$$
+	ÿÉÿ¥gdvKlfd%ÿ™gdvFTrans$(j%,0)ÿ£gdvFTemp3$$
+ÿ^
+	ÿÉÿ±ÿ™gdvFTrans$(j%,0)ÿ£gdvFTemp3$$
+ÿ’ÿ¡
+ 
+
+ÿÙ
+ÿ’ÿ¡
+ 
+ÿ½ Auf G-Datei setzen
+ÿ™gdvFTrans$(j%,1)
+ÿ£gdvFTemp2$$
+ÿ½ Prfen ob die GDVKU vorkommt -> Wenn ja durchgehen HAd alle Datens„tze nach 0-Datei
+ÿ½                                 Wenn nein zur n„chsten G-Datei
+ÿ¡ÿJ(gdvserial%,gdvFTemp2$$)ÿp
+ÿÉÿ`ÿ™gdvFTrans$(j%,1)ÿ£gdvFTemp2$$
+ÿÉÿ¥gdvserial%ÿ™gdvFTrans$(j%,1)ÿ£gdvFTemp2$$
+ÿ½ GDVKU in G-Datei vorhanden
+ÿØÿOÿB(gdvFTrans$(j%,1))ÿgdvFTemp2$$ÿgdvserial%
+
+ÿ½ wenn ein Datensatz mit gleicher GDVKU gefHAden wird
+ÿ¡gdvFTemp2$$ÿgdvserial%ÿp
+	
+	ÿ½ Auf 0-Datei setzen
+	ÿ™gdvFTrans$(j%,0)
+ 
+	ÿÿ™gdvFTrans$(j%,0)
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+	gdvTR%ÿÿI(gdvFTemp4$$)
+	ÿ¡ÿ>(gdvFTrans$(j%,0))ÿ"TR021011"ÿpgdvC210%ÿgdvTR%
+	ÿÌÿ™gdvFTrans$(j%,0)
+	ÿÉÿ¥gdvKlfd%ÿáÿ™gdvFTrans$(j%,0)ÿ£gdvFTemp3$$
+
+	gdvanzfeld%ÿÿõ(gdvFTrans$(j%,0),1)
+	ÿÿgdvTRFelder$(gdvanzfeld%)
+	ÿÿgdvTRFelder$,1
+	ÿ›i%ÿ0ÿqgdvanzfeld%ÿ1
+FTemp1$ÿgdvTRFelder$(i%)ÿ"."ÿgdvFTrans$(j%,0)
+FTemp2$ÿgdvTRFelder$(i%)ÿ"."ÿgdvFTrans$(j%,1)
+ÿ½  CALL Info("","")
+ÿ½ IF FTemp2$$ > "" OR FTemp2$$ > 0 THEN 
+FTemp1$$ÿFTemp2$$
+ÿ¡ÿ>(gdvTRFelder$(i%))ÿ"CODE200"ÿpFTemp1$$ÿgdvC200%
+ÿ¡ÿ>(gdvTRFelder$(i%))ÿ"CODETR021011"ÿpFTemp1$$ÿgdvC210%
+	ÿ±i%
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+ 
+	gdvFTemp5$$ÿgdvKlfd%ÿ10000
+	gdvFTemp4$$ÿgdvTR%
+
+	ÿ™gdvFTrans$(j%,0)
+	ÿƒQuickStore(gdvFTrans$(j%,0))
+	ÿßÿe
+	ÿïÿYÿ™gdvFTrans$(j%,0)
+ÿ’ÿ¡
+ÿ™gdvFTrans$(j%,1)
+ÿÉÿ±ÿ™gdvFTrans$(j%,1)ÿ£gdvFTemp2$$
+ÿÙ
+ÿ’ÿ¡
+ ÿ±j%
+ 
+ÿ¡ÿJ(gdvKlfd%,lfdnr.TR021011)ÿp
+ÿÉÿ¥gdvKlfd%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ`ÿ™"TR021011"ÿ£lfdnr.TR021011
+ÿÉÿ¥gdvKlfd%ÿ™"TR021011"ÿ£lfdnr.TR021011
+ÿ½ CALL Fehler(tarifbez.le022021,"")
+VSumme.KvertragÿGESVSUM.TR021011
+ 
+ÿ¡BKZ.TR021011ÿ"1"ÿp
+mwst%ÿ0
+QuickGEVA$ÿÿ(codege.kvertrag,"000000")ÿÿ(codeva.kvertrag,"000000")
+ÿÉÿ`ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+ÿÉÿ¥QuickGEVA$ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+mwst%ÿmwst.vprodukt
+ÿ¡GESPR.TR021011ÿ0ÿp
+ÿ¡mwst%ÿ0ÿp
+
+ÿ½ beitr1ab1$ = STR$ (Beitwe.alg20011,",999999.00")
+
+Beitrag.kvertragÿGESPR.TR021011
+
+NettoBeitrag.kvertragÿGESPR.TR021011
+ÿ^
+
+bmwst%ÿ(GESPR.TR021011ÿmwst%ÿ100)
+
+bmwst$ÿÿ(bmwst%ÿ0.005,"999999.00")
+
+bmwst2%ÿÿ0(bmwst$)
+
+Beitrag.kvertragÿGESPR.TR021011ÿbmwst2%
+
+NettoBeitrag.kvertragÿGESPR.TR021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡begdat.TR021011ÿ0ÿpvs_Beginn.kvertragÿbegdat.TR021011
+ÿ¡ausdat.TR021011ÿ0ÿp
+Kndigung.kvertragÿausdat.TR021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÌÿ™"kvertrag"
+ÿ’ÿ¡
+
+ ÿ’ÿÿ
+ 
+ 
+ ÿ½ *******************
+ ÿ½ * Rechtsschutz    *
+ ÿ½ *******************
+ÿÿgdvRecht(gdvserial%,gdvC200%,gdvKlfd%,lfdnrtotal%,gdvlf%)
+ ÿ×gdvREFelder$(1)
+ ÿ×gdvFRecht$(2,1)
+gdvFRecht$(0,0)ÿ"RE021011"
+gdvFRecht$(0,1)ÿ"REg21011"
+gdvFRecht$(1,0)ÿ"RE022011"
+gdvFRecht$(1,1)ÿ"REg22011"
+gdvFRecht$(2,0)ÿ"RE022012"
+gdvFRecht$(2,1)ÿ"REg22012"
+ 
+
+ ÿ›j%ÿ0ÿq2
+ 
+ 
+ÿ½ Felder fr G-Dateien
+gdvFTemp2$ÿ"gdvku."ÿgdvFRecht$(j%,1)
+ÿ½ Felder fr 0-Dateien
+gdvFTemp3$ÿ"lfdnr."ÿgdvFRecht$(j%,0)
+gdvFTemp4$ÿ"code"ÿgdvFRecht$(j%,0)ÿ"."ÿgdvFRecht$(j%,0)
+gdvFTemp5$ÿ"lfdnrtotal."ÿgdvFRecht$(j%,0)
+ 
+ÿ½ ™ffnen der 0-Datei
+ÿƒDFile(3,gdvFRecht$(j%,0)ÿ_fpw$)
+ÿ™gdvFRecht$(j%,0)
+ÿ£gdvFTemp3$$
+ÿ½ wenn in der Datei die lfdnr vorkommt -> durchgehen und alle l”schen
+ÿ¡ÿJ(gdvKlfd%,gdvFTemp3$$)ÿp
+ÿÉÿ`ÿ™gdvFRecht$(j%,0)ÿ£gdvFTemp3$$
+ÿÉÿ¥gdvKlfd%ÿ™gdvFRecht$(j%,0)ÿ£gdvFTemp3$$
+ÿØÿOÿB(gdvFRecht$(j%,0))ÿgdvFTemp3$$ÿgdvKlfd%
+ÿ¡gdvFTemp3$$ÿgdvKlfd%ÿp
+	ÿÉÿYÿáÿ™gdvFRecht$(j%,0)
+	ÿÉÿ¾ÿ™gdvFRecht$(j%,0)
+	ÿïÿYÿ™gdvFRecht$(j%,0)
+	ÿ½ SELECT PREVIOUS FILE gdvFRecht$(j%,0)
+	ÿÉÿ`ÿ™gdvFRecht$(j%,0)ÿ£gdvFTemp3$$
+	ÿÉÿ¥gdvKlfd%ÿ™gdvFRecht$(j%,0)ÿ£gdvFTemp3$$
+ÿ^
+	ÿÉÿ±ÿ™gdvFRecht$(j%,0)ÿ£gdvFTemp3$$
+ÿ’ÿ¡
+ 
+
+ÿÙ
+ÿ’ÿ¡
+ 
+ÿ½ Auf G-Datei setzen
+ÿ™gdvFRecht$(j%,1)
+ÿ£gdvFTemp2$$
+ÿ½ Prfen ob die GDVKU vorkommt -> Wenn ja durchgehen HAd alle Datens„tze nach 0-Datei
+ÿ½                                 Wenn nein zur n„chsten G-Datei
+ÿ¡ÿJ(gdvserial%,gdvFTemp2$$)ÿp
+ÿÉÿ`ÿ™gdvFRecht$(j%,1)ÿ£gdvFTemp2$$
+ÿÉÿ¥gdvserial%ÿ™gdvFRecht$(j%,1)ÿ£gdvFTemp2$$
+ÿ½ GDVKU in G-Datei vorhanden
+ÿØÿOÿB(gdvFRecht$(j%,1))ÿgdvFTemp2$$ÿgdvserial%
+
+ÿ½ wenn ein Datensatz mit gleicher GDVKU gefHAden wird
+ÿ¡gdvFTemp2$$ÿgdvserial%ÿp
+	
+	ÿ½ Auf 0-Datei setzen
+	ÿ™gdvFRecht$(j%,0)
+ 
+	ÿÿ™gdvFRecht$(j%,0)
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+	gdvRE%ÿÿI(gdvFTemp4$$)
+	ÿ¡ÿ>(gdvFRecht$(j%,0))ÿ"RE021011"ÿpgdvC210%ÿgdvRE%
+	ÿÌÿ™gdvFRecht$(j%,0)
+	ÿÉÿ¥gdvKlfd%ÿáÿ™gdvFRecht$(j%,0)ÿ£gdvFTemp3$$
+
+	gdvanzfeld%ÿÿõ(gdvFRecht$(j%,0),1)
+	ÿÿgdvREFelder$(gdvanzfeld%)
+	ÿÿgdvREFelder$,1
+	ÿ›i%ÿ0ÿqgdvanzfeld%ÿ1
+FTemp1$ÿgdvREFelder$(i%)ÿ"."ÿgdvFRecht$(j%,0)
+FTemp2$ÿgdvREFelder$(i%)ÿ"."ÿgdvFRecht$(j%,1)
+ÿ½  CALL Info("","")
+ÿ½ IF FTemp2$$ > "" OR FTemp2$$ > 0 THEN 
+FTemp1$$ÿFTemp2$$
+ÿ¡ÿ>(gdvREFelder$(i%))ÿ"CODE200"ÿpFTemp1$$ÿgdvC200%
+ÿ¡ÿ>(gdvREFelder$(i%))ÿ"CODERE021011"ÿpFTemp1$$ÿgdvC210%
+	ÿ±i%
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+ 
+	gdvFTemp5$$ÿgdvKlfd%ÿ10000
+	gdvFTemp4$$ÿgdvRE%
+
+	ÿ™gdvFRecht$(j%,0)
+	ÿƒQuickStore(gdvFRecht$(j%,0))
+	ÿßÿe
+	ÿïÿYÿ™gdvFRecht$(j%,0)
+ÿ’ÿ¡
+ÿ™gdvFRecht$(j%,1)
+ÿÉÿ±ÿ™gdvFRecht$(j%,1)ÿ£gdvFTemp2$$
+ÿÙ
+ÿ’ÿ¡
+ ÿ±j%
+ÿ¡ÿJ(gdvKlfd%,lfdnr.RE021011)ÿp
+ÿÉÿ¥gdvKlfd%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ`ÿ™"RE021011"ÿ£lfdnr.RE021011
+ÿÉÿ¥gdvKlfd%ÿ™"RE021011"ÿ£lfdnr.RE021011
+ÿ½ CALL Fehler(tarifbez.le022021,"")
+ 
+ 
+ÿ¡BKZ.RE021011ÿ"1"ÿp
+mwst%ÿ0
+QuickGEVA$ÿÿ(codege.kvertrag,"000000")ÿÿ(codeva.kvertrag,"000000")
+ÿÉÿ`ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+ÿÉÿ¥QuickGEVA$ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+mwst%ÿmwst.vprodukt
+ÿ¡BEITR.RE021011ÿ0ÿp
+ÿ¡mwst%ÿ0ÿp
+
+ÿ½ beitr1ab1$ = STR$ (Beitwe.alg20011,",999999.00")
+
+Beitrag.kvertragÿBEITR.RE021011
+
+NettoBeitrag.kvertragÿBEITR.RE021011
+ÿ^
+
+bmwst%ÿ(BEITR.RE021011ÿmwst%ÿ100)
+
+bmwst$ÿÿ(bmwst%ÿ0.005,"999999.00")
+
+bmwst2%ÿÿ0(bmwst$)
+
+Beitrag.kvertragÿBEITR.RE021011ÿbmwst2%
+
+NettoBeitrag.kvertragÿBEITR.RE021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡begdat.RE021011ÿ0ÿpvs_Beginn.kvertragÿbegdat.RE021011
+ÿ¡ausdat.RE021011ÿ0ÿp
+Kndigung.kvertragÿausdat.RE021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÌÿ™"kvertrag"
+ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ÿ½ *******************
+ ÿ½ * Technische      *
+ ÿ½ *******************
+ÿÿgdvTech(gdvserial%,gdvC200%,gdvKlfd%,lfdnrtotal%,gdvlf%)
+ ÿ×gdvTEFelder$(1)
+ ÿ×gdvFTech$(3,1)
+gdvFTech$(0,0)ÿ"TE021011"
+gdvFTech$(0,1)ÿ"TEg21011"
+gdvFTech$(1,0)ÿ"TE022011"
+gdvFTech$(1,1)ÿ"TEg22011"
+gdvFTech$(2,0)ÿ"TE022012"
+gdvFTech$(2,1)ÿ"TEg22012"
+gdvFTech$(3,0)ÿ"TE022013"
+gdvFTech$(3,1)ÿ"TEg22013"
+ 
+
+ ÿ›j%ÿ0ÿq3
+
+ÿ½ Felder fr G-Dateien
+gdvFTemp2$ÿ"gdvku."ÿgdvFTech$(j%,1)
+ÿ½ Felder fr 0-Dateien
+gdvFTemp3$ÿ"lfdnr."ÿgdvFTech$(j%,0)
+gdvFTemp4$ÿ"code"ÿgdvFTech$(j%,0)ÿ"."ÿgdvFTech$(j%,0)
+gdvFTemp5$ÿ"lfdnrtotal."ÿgdvFTech$(j%,0)
+ 
+ÿ½ ™ffnen der 0-Datei
+ÿƒDFile(3,gdvFTech$(j%,0)ÿ_fpw$)
+ÿ™gdvFTech$(j%,0)
+ÿ£gdvFTemp3$$
+ÿ½ wenn in der Datei die lfdnr vorkommt -> durchgehen und alle l”schen
+ÿ¡ÿJ(gdvKlfd%,gdvFTemp3$$)ÿp
+ÿÉÿ`ÿ™gdvFTech$(j%,0)ÿ£gdvFTemp3$$
+ÿÉÿ¥gdvKlfd%ÿ™gdvFTech$(j%,0)ÿ£gdvFTemp3$$
+ÿØÿOÿB(gdvFTech$(j%,0))ÿgdvFTemp3$$ÿgdvKlfd%
+ÿ¡gdvFTemp3$$ÿgdvKlfd%ÿp
+	ÿÉÿYÿáÿ™gdvFTech$(j%,0)
+	ÿÉÿ¾ÿ™gdvFTech$(j%,0)
+	ÿïÿYÿ™gdvFTech$(j%,0)
+	ÿ½ SELECT PREVIOUS FILE gdvFTech$(j%,0)
+	ÿÉÿ`ÿ™gdvFTech$(j%,0)ÿ£gdvFTemp3$$
+	ÿÉÿ¥gdvKlfd%ÿ™gdvFTech$(j%,0)ÿ£gdvFTemp3$$
+ÿ^
+	ÿÉÿ±ÿ™gdvFTech$(j%,0)ÿ£gdvFTemp3$$
+ÿ’ÿ¡
+ 
+
+ÿÙ
+ÿ’ÿ¡
+ 
+ÿ½ Auf G-Datei setzen
+ÿ™gdvFTech$(j%,1)
+ÿ£gdvFTemp2$$
+ÿ½ Prfen ob die GDVKU vorkommt -> Wenn ja durchgehen HAd alle Datens„tze nach 0-Datei
+ÿ½                                 Wenn nein zur n„chsten G-Datei
+ÿ¡ÿJ(gdvserial%,gdvFTemp2$$)ÿp
+ÿÉÿ`ÿ™gdvFTech$(j%,1)ÿ£gdvFTemp2$$
+ÿÉÿ¥gdvserial%ÿ™gdvFTech$(j%,1)ÿ£gdvFTemp2$$
+ÿ½ GDVKU in G-Datei vorhanden
+ÿØÿOÿB(gdvFTech$(j%,1))ÿgdvFTemp2$$ÿgdvserial%
+
+ÿ½ wenn ein Datensatz mit gleicher GDVKU gefHAden wird
+ÿ¡gdvFTemp2$$ÿgdvserial%ÿp
+	
+	ÿ½ Auf 0-Datei setzen
+	ÿ™gdvFTech$(j%,0)
+ 
+	ÿÿ™gdvFTech$(j%,0)
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+	gdvTE%ÿÿI(gdvFTemp4$$)
+	ÿ¡ÿ>(gdvFTech$(j%,0))ÿ"TE021011"ÿpgdvC210%ÿgdvTE%
+	ÿÌÿ™gdvFTech$(j%,0)
+	ÿÉÿ¥gdvKlfd%ÿáÿ™gdvFTech$(j%,0)ÿ£gdvFTemp3$$
+
+	gdvanzfeld%ÿÿõ(gdvFTech$(j%,0),1)
+	ÿÿgdvTEFelder$(gdvanzfeld%)
+	ÿÿgdvTEFelder$,1
+	ÿ›i%ÿ0ÿqgdvanzfeld%ÿ1
+FTemp1$ÿgdvTEFelder$(i%)ÿ"."ÿgdvFTech$(j%,0)
+FTemp2$ÿgdvTEFelder$(i%)ÿ"."ÿgdvFTech$(j%,1)
+ÿ½  CALL Info("","")
+ÿ½ IF FTemp2$$ > "" OR FTemp2$$ > 0 THEN 
+FTemp1$$ÿFTemp2$$
+ÿ¡ÿ>(gdvTEFelder$(i%))ÿ"CODE200"ÿpFTemp1$$ÿgdvC200%
+ÿ¡ÿ>(gdvTEFelder$(i%))ÿ"CODETE021011"ÿpFTemp1$$ÿgdvC210%
+	ÿ±i%
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+ 
+	gdvFTemp5$$ÿgdvKlfd%ÿ10000
+	gdvFTemp4$$ÿgdvTE%
+
+	ÿ™gdvFTech$(j%,0)
+	ÿƒQuickStore(gdvFTech$(j%,0))
+	ÿßÿe
+	ÿïÿYÿ™gdvFTech$(j%,0)
+ÿ’ÿ¡
+ÿ™gdvFTech$(j%,1)
+ÿÉÿ±ÿ™gdvFTech$(j%,1)ÿ£gdvFTemp2$$
+ÿÙ
+ÿ’ÿ¡
+ ÿ±j%
+
+ÿ¡ÿJ(gdvKlfd%,lfdnr.TE021011)ÿp
+ÿÉÿ¥gdvKlfd%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ`ÿ™"TE021011"ÿ£lfdnr.TE021011
+ÿÉÿ¥gdvKlfd%ÿ™"TE021011"ÿ£lfdnr.TE021011
+ÿ½ CALL Fehler(tarifbez.le022021,"")
+ 
+ 
+ÿ¡BKZ.TE021011ÿ"1"ÿp
+mwst%ÿ0
+QuickGEVA$ÿÿ(codege.kvertrag,"000000")ÿÿ(codeva.kvertrag,"000000")
+ÿÉÿ`ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+ÿÉÿ¥QuickGEVA$ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+mwst%ÿmwst.vprodukt
+ÿ¡GESBETR.TE021011ÿ0ÿp
+ÿ¡mwst%ÿ0ÿp
+
+ÿ½ beitr1ab1$ = STR$ (Beitwe.alg20011,",999999.00")
+
+Beitrag.kvertragÿGESBETR.TE021011
+
+NettoBeitrag.kvertragÿGESBETR.TE021011
+ÿ^
+
+bmwst%ÿ(GESBETR.TE021011ÿmwst%ÿ100)
+
+bmwst$ÿÿ(bmwst%ÿ0.005,"999999.00")
+
+bmwst2%ÿÿ0(bmwst$)
+
+Beitrag.kvertragÿGESBETR.TE021011ÿbmwst2%
+
+NettoBeitrag.kvertragÿGESBETR.TE021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡begdat.TE021011ÿ0ÿpvs_Beginn.kvertragÿbegdat.TE021011
+ÿ¡ausdat.TE021011ÿ0ÿp
+Kndigung.kvertragÿausdat.TE021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÌÿ™"kvertrag"
+ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ÿ½ *******************
+ ÿ½ * Verkehr         *
+ ÿ½ *******************
+ÿÿgdvVerkehr(gdvserial%,gdvC200%,gdvKlfd%,lfdnrtotal%,gdvlf%)
+ ÿ×gdvVSFelder$(1)
+ ÿ×gdvFVerkehr$(1,1)
+gdvFVerkehr$(0,0)ÿ"VS021011"
+gdvFVerkehr$(0,1)ÿ"VSg21011"
+gdvFVerkehr$(1,0)ÿ"VS022011"
+gdvFVerkehr$(1,1)ÿ"VSg22011"
+ 
+ÿ›j%ÿ0ÿq1
+
+ÿ½ Felder fr G-Dateien
+gdvFTemp2$ÿ"gdvku."ÿgdvFVerkehr$(j%,1)
+ÿ½ Felder fr 0-Dateien
+gdvFTemp3$ÿ"lfdnr."ÿgdvFVerkehr$(j%,0)
+gdvFTemp4$ÿ"code"ÿgdvFVerkehr$(j%,0)ÿ"."ÿgdvFVerkehr$(j%,0)
+gdvFTemp5$ÿ"lfdnrtotal."ÿgdvFVerkehr$(j%,0)
+ 
+ÿ½ ™ffnen der 0-Datei
+ÿƒDFile(3,gdvFVerkehr$(j%,0)ÿ_fpw$)
+ÿ™gdvFVerkehr$(j%,0)
+ÿ£gdvFTemp3$$
+ 
+ÿ½ wenn in der Datei die lfdnr vorkommt -> durchgehen und alle l”schen
+ÿ¡ÿJ(gdvKlfd%,gdvFTemp3$$)ÿp
+ÿÉÿ`ÿ™gdvFVerkehr$(j%,0)ÿ£gdvFTemp3$$
+ÿÉÿ¥gdvKlfd%ÿ™gdvFVerkehr$(j%,0)ÿ£gdvFTemp3$$
+ÿØÿOÿB(gdvFVerkehr$(j%,0))ÿgdvFTemp3$$ÿgdvKlfd%
+ÿ¡gdvFTemp3$$ÿgdvKlfd%ÿp
+	ÿÉÿYÿáÿ™gdvFVerkehr$(j%,0)
+	ÿÉÿ¾ÿ™gdvFVerkehr$(j%,0)
+	ÿïÿYÿ™gdvFVerkehr$(j%,0)
+	ÿ½ SELECT PREVIOUS FILE gdvFVerkehr$(j%,0)
+	ÿÉÿ`ÿ™gdvFVerkehr$(j%,0)ÿ£gdvFTemp3$$
+	ÿÉÿ¥gdvKlfd%ÿ™gdvFVerkehr$(j%,0)ÿ£gdvFTemp3$$
+ÿ^
+	ÿÉÿ±ÿ™gdvFVerkehr$(j%,0)ÿ£gdvFTemp3$$
+ÿ’ÿ¡
+ 
+ÿÙ
+ÿ’ÿ¡
+ 
+ÿ½ Auf G-Datei setzen
+ÿ™gdvFVerkehr$(j%,1)
+ÿ£gdvFTemp2$$
+ÿ½ Prfen ob die GDVKU vorkommt -> Wenn ja durchgehen HAd alle Datens„tze nach 0-Datei
+ÿ½                                 Wenn nein zur n„chsten G-Datei
+ÿ¡ÿJ(gdvserial%,gdvFTemp2$$)ÿp
+ÿÉÿ`ÿ™gdvFVerkehr$(j%,1)ÿ£gdvFTemp2$$
+ÿÉÿ¥gdvserial%ÿ™gdvFVerkehr$(j%,1)ÿ£gdvFTemp2$$
+ÿ½ GDVKU in G-Datei vorhanden
+ÿØÿOÿB(gdvFVerkehr$(j%,1))ÿgdvFTemp2$$ÿgdvserial%
+
+ÿ½ wenn ein Datensatz mit gleicher GDVKU gefHAden wird
+ÿ¡gdvFTemp2$$ÿgdvserial%ÿp
+	
+	ÿ½ Auf 0-Datei setzen
+	ÿ™gdvFVerkehr$(j%,0)
+ 
+	ÿÿ™gdvFVerkehr$(j%,0)
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+	gdvVS%ÿÿI(gdvFTemp4$$)
+	ÿ¡ÿ>(gdvFVerkehr$(j%,0))ÿ"VS021011"ÿpgdvC210%ÿgdvVS%
+	ÿÌÿ™gdvFVerkehr$(j%,0)
+	ÿÉÿ¥gdvKlfd%ÿáÿ™gdvFVerkehr$(j%,0)ÿ£gdvFTemp3$$
+
+	gdvanzfeld%ÿÿõ(gdvFVerkehr$(j%,0),1)
+	ÿÿgdvVSFelder$(gdvanzfeld%)
+	ÿÿgdvVSFelder$,1
+	ÿ›i%ÿ0ÿqgdvanzfeld%ÿ1
+FTemp1$ÿgdvVSFelder$(i%)ÿ"."ÿgdvFVerkehr$(j%,0)
+FTemp2$ÿgdvVSFelder$(i%)ÿ"."ÿgdvFVerkehr$(j%,1)
+ÿ½  CALL Info("","")
+ÿ½ IF FTemp2$$ > "" OR FTemp2$$ > 0 THEN 
+FTemp1$$ÿFTemp2$$
+ÿ¡ÿ>(gdvVSFelder$(i%))ÿ"CODE200"ÿpFTemp1$$ÿgdvC200%
+ÿ¡ÿ>(gdvVSFelder$(i%))ÿ"CODEVS021011"ÿpFTemp1$$ÿgdvC210%
+	ÿ±i%
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+ 
+	gdvFTemp5$$ÿgdvKlfd%ÿ10000
+	gdvFTemp4$$ÿgdvVS%
+
+	ÿ™gdvFVerkehr$(j%,0)
+	ÿƒQuickStore(gdvFVerkehr$(j%,0))
+	ÿßÿe
+	ÿïÿYÿ™gdvFVerkehr$(j%,0)
+ÿ’ÿ¡
+ÿ™gdvFVerkehr$(j%,1)
+ÿÉÿ±ÿ™gdvFVerkehr$(j%,1)ÿ£gdvFTemp2$$
+ÿÙ
+ÿ’ÿ¡
+ ÿ±j%
+ÿ¡ÿJ(gdvKlfd%,lfdnr.VS021011)ÿp
+ÿÉÿ¥gdvKlfd%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ`ÿ™"VS021011"ÿ£lfdnr.VS021011
+ÿÉÿ¥gdvKlfd%ÿ™"VS021011"ÿ£lfdnr.VS021011
+ÿ½ CALL Fehler(tarifbez.le022021,"")
+ 
+ 
+ÿ¡BKZ.VS021011ÿ"1"ÿp
+mwst%ÿ0
+QuickGEVA$ÿÿ(codege.kvertrag,"000000")ÿÿ(codeva.kvertrag,"000000")
+ÿÉÿ`ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+ÿÉÿ¥QuickGEVA$ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+mwst%ÿmwst.vprodukt
+ÿ¡BEITR.VS021011ÿ0ÿp
+ÿ¡mwst%ÿ0ÿp
+
+ÿ½ beitr1ab1$ = STR$ (Beitwe.alg20011,",999999.00")
+
+Beitrag.kvertragÿBEITR.VS021011
+
+NettoBeitrag.kvertragÿBEITR.VS021011
+ÿ^
+
+bmwst%ÿ(BEITR.VS021011ÿmwst%ÿ100)
+
+bmwst$ÿÿ(bmwst%ÿ0.005,"999999.00")
+
+bmwst2%ÿÿ0(bmwst$)
+
+Beitrag.kvertragÿBEITR.VS021011ÿbmwst2%
+
+NettoBeitrag.kvertragÿBEITR.VS021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡begdat.VS021011ÿ0ÿpvs_Beginn.kvertragÿbegdat.VS021011
+ÿ¡ausdat.VS021011ÿ0ÿp
+Kndigung.kvertragÿausdat.VS021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÌÿ™"kvertrag"
+ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ ÿ½ *******************
+ ÿ½ * Feuer           *
+ ÿ½ *******************
+ÿÿgdvFeuer(gdvserial%,gdvC200%,gdvKlfd%,lfdnrtotal%,gdvlf%)
+ ÿ×gdvFUFelder$(1)
+ ÿ×gdvFFeuer$(2,1)
+gdvFFeuer$(0,0)ÿ"FU021011"
+gdvFFeuer$(0,1)ÿ"FUg21011"
+gdvFFeuer$(1,0)ÿ"FU022011"
+gdvFFeuer$(1,1)ÿ"FUg22011"
+gdvFFeuer$(2,0)ÿ"FU022012"
+gdvFFeuer$(2,1)ÿ"FUg22012"
+
+
+ ÿ›j%ÿ0ÿq2
+
+ÿ½ Felder fr G-Dateien
+gdvFTemp2$ÿ"gdvku."ÿgdvFFeuer$(j%,1)
+ÿ½ Felder fr 0-Dateien
+gdvFTemp3$ÿ"lfdnr."ÿgdvFFeuer$(j%,0)
+gdvFTemp4$ÿ"code"ÿgdvFFeuer$(j%,0)ÿ"."ÿgdvFFeuer$(j%,0)
+gdvFTemp5$ÿ"lfdnrtotal."ÿgdvFFeuer$(j%,0)
+ 
+ÿ½ ™ffnen der 0-Datei
+ÿƒDFile(3,gdvFFeuer$(j%,0)ÿ_fpw$)
+ÿ™gdvFFeuer$(j%,0)
+ÿ£gdvFTemp3$$
+ÿ½ wenn in der Datei die lfdnr vorkommt -> durchgehen und alle l”schen
+ÿ¡ÿJ(gdvKlfd%,gdvFTemp3$$)ÿp
+ÿÉÿ`ÿ™gdvFFeuer$(j%,0)ÿ£gdvFTemp3$$
+ÿÉÿ¥gdvKlfd%ÿ™gdvFFeuer$(j%,0)ÿ£gdvFTemp3$$
+ÿØÿOÿB(gdvFFeuer$(j%,0))ÿgdvFTemp3$$ÿgdvKlfd%
+ÿ¡gdvFTemp3$$ÿgdvKlfd%ÿp
+	ÿÉÿYÿáÿ™gdvFFeuer$(j%,0)
+	ÿÉÿ¾ÿ™gdvFFeuer$(j%,0)
+	ÿïÿYÿ™gdvFFeuer$(j%,0)
+	ÿ½ SELECT PREVIOUS FILE gdvFFeuer$(j%,0)
+	ÿÉÿ`ÿ™gdvFFeuer$(j%,0)ÿ£gdvFTemp3$$
+	ÿÉÿ¥gdvKlfd%ÿ™gdvFFeuer$(j%,0)ÿ£gdvFTemp3$$
+ÿ^
+	ÿÉÿ±ÿ™gdvFFeuer$(j%,0)ÿ£gdvFTemp3$$
+ÿ’ÿ¡
+ 
+ÿÙ
+ÿ’ÿ¡
+ 
+ÿ½ Auf G-Datei setzen
+ÿ™gdvFFeuer$(j%,1)
+ÿ£gdvFTemp2$$
+ÿ½ Prfen ob die GDVKU vorkommt -> Wenn ja durchgehen HAd alle Datens„tze nach 0-Datei
+ÿ½                                 Wenn nein zur n„chsten G-Datei
+ÿ¡ÿJ(gdvserial%,gdvFTemp2$$)ÿp
+ÿÉÿ`ÿ™gdvFFeuer$(j%,1)ÿ£gdvFTemp2$$
+ÿÉÿ¥gdvserial%ÿ™gdvFFeuer$(j%,1)ÿ£gdvFTemp2$$
+ÿ½ GDVKU in G-Datei vorhanden
+ÿØÿOÿB(gdvFFeuer$(j%,1))ÿgdvFTemp2$$ÿgdvserial%
+
+ÿ½ wenn ein Datensatz mit gleicher GDVKU gefHAden wird
+ÿ¡gdvFTemp2$$ÿgdvserial%ÿp
+	
+	ÿ½ Auf 0-Datei setzen
+	ÿ™gdvFFeuer$(j%,0)
+ 
+	ÿÿ™gdvFFeuer$(j%,0)
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+	gdvFU%ÿÿI(gdvFTemp4$$)
+	ÿ¡ÿ>(gdvFFeuer$(j%,0))ÿ"FU021011"ÿpgdvC210%ÿgdvFU%
+	ÿÌÿ™gdvFFeuer$(j%,0)
+	ÿÉÿ¥gdvKlfd%ÿáÿ™gdvFFeuer$(j%,0)ÿ£gdvFTemp3$$
+
+	gdvanzfeld%ÿÿõ(gdvFFeuer$(j%,0),1)
+	ÿÿgdvFUFelder$(gdvanzfeld%)
+	ÿÿgdvFUFelder$,1
+	ÿ›i%ÿ0ÿqgdvanzfeld%ÿ1
+FTemp1$ÿgdvFUFelder$(i%)ÿ"."ÿgdvFFeuer$(j%,0)
+FTemp2$ÿgdvFUFelder$(i%)ÿ"."ÿgdvFFeuer$(j%,1)
+ÿ½  CALL Info("","")
+ÿ½ IF FTemp2$$ > "" OR FTemp2$$ > 0 THEN 
+FTemp1$$ÿFTemp2$$
+ÿ¡ÿ>(gdvFUFelder$(i%))ÿ"CODE200"ÿpFTemp1$$ÿgdvC200%
+ÿ¡ÿ>(gdvFUFelder$(i%))ÿ"CODEFU021011"ÿpFTemp1$$ÿgdvC210%
+	ÿ±i%
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+ 
+	gdvFTemp5$$ÿgdvKlfd%ÿ10000
+	gdvFTemp4$$ÿgdvFU%
+
+	ÿ™gdvFFeuer$(j%,0)
+	ÿƒQuickStore(gdvFFeuer$(j%,0))
+	ÿßÿe
+	ÿïÿYÿ™gdvFFeuer$(j%,0)
+ÿ’ÿ¡
+ÿ™gdvFFeuer$(j%,1)
+ÿÉÿ±ÿ™gdvFFeuer$(j%,1)ÿ£gdvFTemp2$$
+ÿÙ
+ÿ’ÿ¡
+ ÿ±j%
+ÿ¡ÿJ(gdvKlfd%,lfdnr.FU021011)ÿp
+ÿÉÿ¥gdvKlfd%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ`ÿ™"FU021011"ÿ£lfdnr.FU021011
+ÿÉÿ¥gdvKlfd%ÿ™"FU021011"ÿ£lfdnr.FU021011
+ 
+ 
+ÿ¡BKZ.FU021011ÿ"1"ÿp
+mwst%ÿ0
+QuickGEVA$ÿÿ(codege.kvertrag,"000000")ÿÿ(codeva.kvertrag,"000000")
+ÿÉÿ`ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+ÿÉÿ¥QuickGEVA$ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+mwst%ÿmwst.vprodukt
+ÿ¡GESBETR.FU021011ÿ0ÿp
+ÿ¡mwst%ÿ0ÿp
+
+ÿ½ beitr1ab1$ = STR$ (Beitwe.alg20011,",999999.00")
+
+Beitrag.kvertragÿGESBETR.FU021011
+
+NettoBeitrag.kvertragÿGESBETR.FU021011
+ÿ^
+
+bmwst%ÿ(GESBETR.FU021011ÿmwst%ÿ100)
+
+bmwst$ÿÿ(bmwst%ÿ0.005,"999999.00")
+
+bmwst2%ÿÿ0(bmwst$)
+
+Beitrag.kvertragÿGESBETR.FU021011ÿbmwst2%
+
+NettoBeitrag.kvertragÿGESBETR.FU021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡begdat.FU021011ÿ0ÿpvs_Beginn.kvertragÿbegdat.FU021011
+ÿ¡ausdat.FU021011ÿ0ÿp
+Kndigung.kvertragÿausdat.FU021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÌÿ™"kvertrag"
+ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ 
+ ÿ½ *******************
+ ÿ½ * Geb„ude         *
+ ÿ½ *******************
+ÿÿgdvGebaude(gdvserial%,gdvC200%,gdvKlfd%,lfdnrtotal%,gdvlf%)
+ ÿ×gdvVGFelder$(1)
+ ÿ×gdvFGebaude$(2,1)
+gdvFGebaude$(0,0)ÿ"VG021011"
+gdvFGebaude$(0,1)ÿ"VGg21011"
+gdvFGebaude$(1,0)ÿ"VG022011"
+gdvFGebaude$(1,1)ÿ"VGg22011"
+gdvFGebaude$(2,0)ÿ"VG022012"
+gdvFGebaude$(2,1)ÿ"VGg22012"
+ 
+
+ ÿ›j%ÿ0ÿq2
+
+ÿ½ Felder fr G-Dateien
+gdvFTemp2$ÿ"gdvku."ÿgdvFGebaude$(j%,1)
+ÿ½ Felder fr 0-Dateien
+gdvFTemp3$ÿ"lfdnr."ÿgdvFGebaude$(j%,0)
+gdvFTemp4$ÿ"code"ÿgdvFGebaude$(j%,0)ÿ"."ÿgdvFGebaude$(j%,0)
+gdvFTemp5$ÿ"lfdnrtotal."ÿgdvFGebaude$(j%,0)
+ 
+ÿ½ ™ffnen der 0-Datei
+ÿƒDFile(3,gdvFGebaude$(j%,0)ÿ_fpw$)
+ÿ™gdvFGebaude$(j%,0)
+ÿ£gdvFTemp3$$
+ÿ½ wenn in der Datei die lfdnr vorkommt -> durchgehen und alle l”schen
+ÿ¡ÿJ(gdvKlfd%,gdvFTemp3$$)ÿp
+ÿÉÿ`ÿ™gdvFGebaude$(j%,0)ÿ£gdvFTemp3$$
+ÿÉÿ¥gdvKlfd%ÿ™gdvFGebaude$(j%,0)ÿ£gdvFTemp3$$
+ÿØÿOÿB(gdvFGebaude$(j%,0))ÿgdvFTemp3$$ÿgdvKlfd%
+ÿ¡gdvFTemp3$$ÿgdvKlfd%ÿp
+	ÿÉÿYÿáÿ™gdvFGebaude$(j%,0)
+	ÿÉÿ¾ÿ™gdvFGebaude$(j%,0)
+	ÿïÿYÿ™gdvFGebaude$(j%,0)
+	ÿ½ SELECT PREVIOUS FILE gdvFGebaude$(j%,0)
+	ÿÉÿ`ÿ™gdvFGebaude$(j%,0)ÿ£gdvFTemp3$$
+	ÿÉÿ¥gdvKlfd%ÿ™gdvFGebaude$(j%,0)ÿ£gdvFTemp3$$
+ÿ^
+	ÿÉÿ±ÿ™gdvFGebaude$(j%,0)ÿ£gdvFTemp3$$
+ÿ’ÿ¡
+ÿÙ
+ÿ’ÿ¡
+ 
+ÿ½ Auf G-Datei setzen
+ÿ™gdvFGebaude$(j%,1)
+ÿ£gdvFTemp2$$
+ÿ½ Prfen ob die GDVKU vorkommt -> Wenn ja durchgehen HAd alle Datens„tze nach 0-Datei
+ÿ½                                 Wenn nein zur n„chsten G-Datei
+
+
+
+ÿ¡ÿJ(gdvserial%,gdvFTemp2$$)ÿp
+ÿÉÿ`ÿ™gdvFGebaude$(j%,1)ÿ£gdvFTemp2$$
+ÿÉÿ¥gdvserial%ÿ™gdvFGebaude$(j%,1)ÿ£gdvFTemp2$$
+ÿ½ GDVKU in G-Datei vorhanden
+ÿØÿOÿB(gdvFGebaude$(j%,1))ÿgdvFTemp2$$ÿgdvserial%
+
+ÿ½ wenn ein Datensatz mit gleicher GDVKU gefHAden wird
+ÿ¡gdvFTemp2$$ÿgdvserial%ÿp
+	
+	ÿ½ Auf 0-Datei setzen
+	ÿ™gdvFGebaude$(j%,0)
+ 
+	ÿÿ™gdvFGebaude$(j%,0)
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+	gdvVG%ÿÿI(gdvFTemp4$$)
+	ÿ¡ÿ>(gdvFGebaude$(j%,0))ÿ"VG021011"ÿpgdvC210%ÿgdvVG%
+	ÿÌÿ™gdvFGebaude$(j%,0)
+	ÿÉÿ¥gdvKlfd%ÿáÿ™gdvFGebaude$(j%,0)ÿ£gdvFTemp3$$
+
+	gdvanzfeld%ÿÿõ(gdvFGebaude$(j%,0),1)
+	ÿÿgdvVGFelder$(gdvanzfeld%)
+	ÿÿgdvVGFelder$,1
+	ÿ›i%ÿ0ÿqgdvanzfeld%ÿ1
+FTemp1$ÿgdvVGFelder$(i%)ÿ"."ÿgdvFGebaude$(j%,0)
+FTemp2$ÿgdvVGFelder$(i%)ÿ"."ÿgdvFGebaude$(j%,1)
+ÿ½  CALL Info("","")
+ÿ½ IF FTemp2$$ > "" OR FTemp2$$ > 0 THEN 
+FTemp1$$ÿFTemp2$$
+ÿ¡ÿ>(gdvVGFelder$(i%))ÿ"CODE200"ÿpFTemp1$$ÿgdvC200%
+ÿ¡ÿ>(gdvVGFelder$(i%))ÿ"CODEVG021011"ÿpFTemp1$$ÿgdvC210%
+	ÿ±i%
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+ 
+	gdvFTemp5$$ÿgdvKlfd%ÿ10000
+	gdvFTemp4$$ÿgdvVG%
+
+	ÿ™gdvFGebaude$(j%,0)
+	ÿƒQuickStore(gdvFGebaude$(j%,0))
+	ÿßÿe
+	ÿïÿYÿ™gdvFGebaude$(j%,0)
+ÿ’ÿ¡
+ÿ™gdvFGebaude$(j%,1)
+ÿÉÿ±ÿ™gdvFGebaude$(j%,1)ÿ£gdvFTemp2$$
+ÿÙ
+ÿ’ÿ¡
+ ÿ±j%
+ ÿ½ CALL Fehler("Geb„udevers","12102005")
+ÿ½ **************************************************************************************************************
+ÿ½ *                            Spartenspezifische Eintragungen in KVERTRAG                                     *
+ÿ½ **************************************************************************************************************  
+ÿ¡ÿJ(gdvKlfd%,lfdnr.VG021011)ÿÿJ(gdvKlfd%,lfdnr.VG022011)ÿp
+ÿÉÿ¥gdvKlfd%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ¥gdvKlfd%ÿ™"VG021011"ÿ£lfdnr.VG021011
+ÿÉÿ¥gdvKlfd%ÿ™"VG022011"ÿ£lfdnr.VG022011
+ÿÉÿ¥gdvKlfd%ÿ™"VG022012"ÿ£lfdnr.VG022012
+zvp1Name.kvertragÿÿ+(riskplz.VG022011ÿ" "ÿriskort.VG022011,40)
+zvp2vName.kvertragÿÿ+(riskstr.VG022011,40)
+VSumme.kvertragÿgesvsum.VG021011
+versg$ÿÿH(gefkey.VG022012)
+GBaujahr.kvertragÿbaujahr.VG022011
+GAlleGefWert.kvertragÿbasvsum.vg022012
+GAlleGeSatz.kvertragÿbeitsatz.vg022012
+GAlleGeBeitr.kvertragÿgesbetr.vg021011
+ 
+ÿ¡BKZ.VG021011ÿ"1"ÿp
+mwst%ÿ0
+QuickGEVA$ÿÿ(codege.kvertrag,"000000")ÿÿ(codeva.kvertrag,"000000")
+ÿÉÿ`ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+ÿÉÿ¥QuickGEVA$ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+mwst%ÿmwst.vprodukt
+ÿ¡GESBETR.VG021011ÿ0ÿp
+ÿ¡mwst%ÿ0ÿp
+
+ÿ½ beitr1ab1$ = STR$ (Beitwe.alg20011,",999999.00")
+
+Beitrag.kvertragÿGESBETR.VG021011
+
+NettoBeitrag.kvertragÿGESBETR.VG021011
+ÿ^
+
+bmwst%ÿ(GESBETR.VG021011ÿmwst%ÿ100)
+
+bmwst$ÿÿ(bmwst%ÿ0.005,"999999.00")
+
+bmwst2%ÿÿ0(bmwst$)
+
+Beitrag.kvertragÿGESBETR.VG021011ÿbmwst2%
+
+NettoBeitrag.kvertragÿGESBETR.VG021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡begdat.VG021011ÿ0ÿpvs_Beginn.kvertragÿbegdat.VG021011
+ÿ¡ausdat.VG021011ÿ0ÿp
+Kndigung.kvertragÿausdat.VG021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡notiz.kvertragÿversg$ÿnotiz.kvertragÿ"*"ÿversg$ÿnotiz.kvertragÿversg$ÿ"*"ÿp
+ÿ^
+ÿ¡versg$ÿ""ÿp
+ÿ¡notiz.kvertragÿ""ÿp
+
+notiz.kvertragÿ"Versicherte Gefahren(GDV): "ÿversg$
+ÿ^
+
+notiz.kvertragÿ"Versicherte Gefahren(GDV): "ÿversg$ÿÿ(13)ÿnotiz.kvertrag
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+besond$ÿÿH(besond.vg022012)
+ÿ¡besond$ÿ""ÿp
+ÿ¡BesVereinbarung.kvertragÿbesond$ÿBesVereinbarung.kvertragÿ"*"ÿbesond$ÿBesVereinbarung.kvertragÿbesond$ÿ"*"ÿp
+ÿ^
+ÿ¡BesVereinbarung.kvertragÿ""ÿp
+
+BesVereinbarung.kvertragÿ"Besond.Vereinb.(GDV): "ÿbesond$
+ÿ^
+
+BesVereinbarung.kvertragÿ"Besond.Vereinb.(GDV): "ÿbesond$ÿÿ(13)ÿBesVereinbarung.kvertrag
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+ÿƒQuickStore("KVERTRAG")
+ÿ’ÿ¡
+ÿ½ **************************************************************************************************************
+ÿ½ *                    ENDE  der  Spartenspezifische Eintragungen in KVERTRAG                                  *
+ÿ½ **************************************************************************************************************      
+ ÿ’ÿÿ
+ 
+ 
+ ÿ½ *******************
+ ÿ½ * Hausrat         *
+ ÿ½ *******************
+ÿÿgdvHausrat(gdvserial%,gdvC200%,gdvKlfd%,lfdnrtotal%,gdvlf%)
+ ÿ×gdvVHFelder$(1)
+ ÿ×gdvFHausrat$(1,1)
+gdvFHausrat$(0,0)ÿ"VH021011"
+gdvFHausrat$(0,1)ÿ"VHg21011"
+gdvFHausrat$(1,0)ÿ"VH022011"
+gdvFHausrat$(1,1)ÿ"VHg22011"
+ 
+ ÿ›j%ÿ0ÿq1
+
+ÿ½ Felder fr G-Dateien
+gdvFTemp2$ÿ"gdvku."ÿgdvFHausrat$(j%,1)
+ÿ½ Felder fr 0-Dateien
+gdvFTemp3$ÿ"lfdnr."ÿgdvFHausrat$(j%,0)
+gdvFTemp4$ÿ"code"ÿgdvFHausrat$(j%,0)ÿ"."ÿgdvFHausrat$(j%,0)
+gdvFTemp5$ÿ"lfdnrtotal."ÿgdvFHausrat$(j%,0)
+ 
+ÿ½ ™ffnen der 0-Datei
+ÿƒDFile(3,gdvFHausrat$(j%,0)ÿ_fpw$)
+ÿ™gdvFHausrat$(j%,0)
+ÿ£gdvFTemp3$$
+ÿ½ wenn in der Datei die lfdnr vorkommt -> durchgehen und alle l”schen
+ÿ¡ÿJ(gdvKlfd%,gdvFTemp3$$)ÿp
+ÿÉÿ`ÿ™gdvFHausrat$(j%,0)ÿ£gdvFTemp3$$
+ÿÉÿ¥gdvKlfd%ÿ™gdvFHausrat$(j%,0)ÿ£gdvFTemp3$$
+ÿØÿOÿB(gdvFHausrat$(j%,0))ÿgdvFTemp3$$ÿgdvKlfd%
+ÿ¡gdvFTemp3$$ÿgdvKlfd%ÿp
+	ÿÉÿYÿáÿ™gdvFHausrat$(j%,0)
+	ÿÉÿ¾ÿ™gdvFHausrat$(j%,0)
+	ÿïÿYÿ™gdvFHausrat$(j%,0)
+	ÿ½ SELECT PREVIOUS FILE gdvFHausrat$(j%,0)
+	ÿÉÿ`ÿ™gdvFHausrat$(j%,0)ÿ£gdvFTemp3$$
+	ÿÉÿ¥gdvKlfd%ÿ™gdvFHausrat$(j%,0)ÿ£gdvFTemp3$$
+ÿ^
+	ÿÉÿ±ÿ™gdvFHausrat$(j%,0)ÿ£gdvFTemp3$$
+ÿ’ÿ¡
+ÿÙ
+ÿ’ÿ¡
+ 
+ÿ½ Auf G-Datei setzen
+ÿ™gdvFHausrat$(j%,1)
+ÿ£gdvFTemp2$$
+ÿ½ Prfen ob die GDVKU vorkommt -> Wenn ja durchgehen HAd alle Datens„tze nach 0-Datei
+ÿ½                                 Wenn nein zur n„chsten G-Datei
+ÿ¡ÿJ(gdvserial%,gdvFTemp2$$)ÿp
+ÿÉÿ`ÿ™gdvFHausrat$(j%,1)ÿ£gdvFTemp2$$
+ÿÉÿ¥gdvserial%ÿ™gdvFHausrat$(j%,1)ÿ£gdvFTemp2$$
+ÿ½ GDVKU in G-Datei vorhanden
+ÿØÿOÿB(gdvFHausrat$(j%,1))ÿgdvFTemp2$$ÿgdvserial%
+
+ÿ½ wenn ein Datensatz mit gleicher GDVKU gefHAden wird
+ÿ¡gdvFTemp2$$ÿgdvserial%ÿp
+	
+	ÿ½ Auf 0-Datei setzen
+	ÿ™gdvFHausrat$(j%,0)
+ 
+	ÿÿ™gdvFHausrat$(j%,0)
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+	gdvVH%ÿÿI(gdvFTemp4$$)
+	ÿ¡ÿ>(gdvFHausrat$(j%,0))ÿ"VH021011"ÿpgdvC210%ÿgdvVH%
+	ÿÌÿ™gdvFHausrat$(j%,0)
+	ÿÉÿ¥gdvKlfd%ÿáÿ™gdvFHausrat$(j%,0)ÿ£gdvFTemp3$$
+
+	gdvanzfeld%ÿÿõ(gdvFHausrat$(j%,0),1)
+	ÿÿgdvVHFelder$(gdvanzfeld%)
+	ÿÿgdvVHFelder$,1
+	ÿ›i%ÿ0ÿqgdvanzfeld%ÿ1
+FTemp1$ÿgdvVHFelder$(i%)ÿ"."ÿgdvFHausrat$(j%,0)
+FTemp2$ÿgdvVHFelder$(i%)ÿ"."ÿgdvFHausrat$(j%,1)
+ÿ½  CALL Info("","")
+ÿ½ IF FTemp2$$ > "" OR FTemp2$$ > 0 THEN 
+FTemp1$$ÿFTemp2$$
+ÿ¡ÿ>(gdvVHFelder$(i%))ÿ"CODE200"ÿpFTemp1$$ÿgdvC200%
+ÿ¡ÿ>(gdvVHFelder$(i%))ÿ"CODEVH021011"ÿpFTemp1$$ÿgdvC210%
+	ÿ±i%
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+ 
+	gdvFTemp5$$ÿgdvKlfd%ÿ10000
+	gdvFTemp4$$ÿgdvVH%
+
+	ÿ™gdvFHausrat$(j%,0)
+	ÿƒQuickStore(gdvFHausrat$(j%,0))
+	ÿßÿe
+	ÿïÿYÿ™gdvFHausrat$(j%,0)
+ÿ’ÿ¡
+ÿ™gdvFHausrat$(j%,1)
+ÿÉÿ±ÿ™gdvFHausrat$(j%,1)ÿ£gdvFTemp2$$
+ÿÙ
+ÿ’ÿ¡
+ ÿ±j%
+ 
+ÿ½ **************************************************************************************************************
+ÿ½ *                            Spartenspezifische Eintragungen in KVERTRAG                                     *
+ÿ½ **************************************************************************************************************  
+ÿ¡ÿJ(gdvKlfd%,lfdnr.VH021011)ÿp
+ÿÉÿ¥gdvKlfd%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ 
+ÿÉÿ¥gdvKlfd%ÿ™"VH021011"ÿ£lfdnr.VH021011
+zvp1Name.kvertragÿÿ+(riskplz.VH021011ÿ" "ÿriskort.VH021011,40)
+zvp2vName.kvertragÿÿ+(riskstr.VH021011,40)
+VSumme.kvertragÿgessum.VH021011
+vhb.kvertragÿbeding.VH021011
+HRWohnfl„che.kvertragÿWOHNQM.VH021011
+HRTarifzone.kvertragÿTarzone.VH021011
+ 
+ÿ½ Beitrag
+ÿ½ IF GImp210$ = "j" THEN 
+ÿ¡BKZ.VH021011ÿ"1"ÿp
+mwst%ÿ0
+QuickGEVA$ÿÿ(codege.kvertrag,"000000")ÿÿ(codeva.kvertrag,"000000")
+ÿÉÿ`ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+ÿÉÿ¥QuickGEVA$ÿ™"VPRODUKT"ÿ£QCodeGEVA.vprodukt
+mwst%ÿmwst.vprodukt
+ÿ¡GESBEIT.VH021011ÿ0ÿp
+ÿ¡mwst%ÿ0ÿp
+
+ÿ½ beitr1ab1$ = STR$ (Beitwe.alg20011,",999999.00")
+
+Beitrag.kvertragÿGESBEIT.VH021011
+
+NettoBeitrag.kvertragÿGESBEIT.VH021011
+ÿ^
+
+bmwst%ÿ(GESBEIT.VH021011ÿmwst%ÿ100)
+
+bmwst$ÿÿ(bmwst%ÿ0.005,"999999.00")
+
+bmwst2%ÿÿ0(bmwst$)
+
+Beitrag.kvertragÿGESBEIT.VH021011ÿbmwst2%
+
+NettoBeitrag.kvertragÿGESBEIT.VH021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡begdat.vh021011ÿ0ÿpvs_Beginn.kvertragÿbegdat.vh021011
+ÿ¡ausdat.vh021011ÿ0ÿp
+Kndigung.kvertragÿausdat.vh021011
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ 
+versg$ÿÿH(versgef.VH021011)
+ÿ¡notiz.kvertragÿversg$ÿnotiz.kvertragÿ"*"ÿversg$ÿnotiz.kvertragÿversg$ÿ"*"ÿp
+ÿ^
+ÿ¡versg$ÿ""ÿp
+ÿ¡notiz.kvertragÿ""ÿp
+
+notiz.kvertragÿ"Versicherte Gefahren(GDV): "ÿversg$
+ÿ^
+
+notiz.kvertragÿ"Versicherte Gefahren(GDV): "ÿversg$ÿÿ(13)ÿÿ(10)ÿnotiz.kvertrag
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ 12102005
+ÿ¡untverz.VH021011ÿ"1"ÿpHRUnterversVerz.kvertragÿ"j"
+vtext$ÿ""
+ÿ¡vandal.VH021011ÿ"1"ÿpvtext$ÿ"Vandalismus(GDV): eingeschlossen"ÿÿ(13)ÿÿ(10)
+ÿ½ CALL Fehler("Test","Hausrat")
+ÿ¡ÿJ(gdvC210%,codevh021011.vh022011)ÿp
+ÿ™"vh022011"
+ÿ£codevh021011.vh022011
+ÿÉÿ`
+ÿÉÿ¥gdvC210%ÿ™"vh022011"ÿ£codevh021011.vh022011
+ÿØÿOÿB("vh022011")ÿcodevh021011.vh022011ÿgdvC210%
+ÿ¡ÿH(leerst.vh022011)ÿ""ÿpvtext$ÿvtext$ÿleerst.vh022011ÿÿ(13)ÿÿ(10)
+ÿÉÿ±ÿ™"vh022011"ÿ£codevh021011.vh022011
+ÿÙ
+ÿ’ÿ¡
+HRVertragsinhal.kvertragÿÿ+(vtext$,4000)
+
+ÿƒQuickStore("KVERTRAG")
+ÿ’ÿ¡
+ÿ½ **************************************************************************************************************
+ÿ½ *                    ENDE  der  Spartenspezifische Eintragungen in KVERTRAG                                  *
+ÿ½ **************************************************************************************************************    
+ 
+ 
+ 
+ ÿ’ÿÿ
+ 
+ ÿ½ *******************
+ ÿ½ * Kranken         *
+ ÿ½ *******************
+ÿÿgdvKranken(gdvserial%,gdvC200%,gdvKlfd%,lfdnrtotal%,gdvlf%)
+ ÿ×gdvKKFelder$(1)
+ ÿ×gdvFKranken$(3,1)
+gdvFKranken$(0,0)ÿ"KK021011"
+gdvFKranken$(0,1)ÿ"KKg21011"
+gdvFKranken$(1,0)ÿ"KK022011"
+gdvFKranken$(1,1)ÿ"KKg22011"
+gdvFKranken$(2,0)ÿ"KK022021"
+gdvFKranken$(2,1)ÿ"KKg22021"
+gdvFKranken$(3,0)ÿ"KK022031"
+gdvFKranken$(3,1)ÿ"KKg22031"
+ 
+
+ ÿ›j%ÿ0ÿq3
+
+ÿ½ Felder fr G-Dateien
+gdvFTemp2$ÿ"gdvku."ÿgdvFKranken$(j%,1)
+ÿ½ Felder fr 0-Dateien
+gdvFTemp3$ÿ"lfdnr."ÿgdvFKranken$(j%,0)
+gdvFTemp4$ÿ"code"ÿgdvFKranken$(j%,0)ÿ"."ÿgdvFKranken$(j%,0)
+gdvFTemp5$ÿ"lfdnrtotal."ÿgdvFKranken$(j%,0)
+ 
+ÿ½ ™ffnen der 0-Datei
+ÿƒDFile(3,gdvFKranken$(j%,0)ÿ_fpw$)
+ÿ™gdvFKranken$(j%,0)
+ÿ£gdvFTemp3$$
+ 
+ÿ½ wenn in der Datei die lfdnr vorkommt -> durchgehen und alle l”schen
+ÿ¡ÿJ(gdvKlfd%,gdvFTemp3$$)ÿp
+ÿÉÿ`ÿ™gdvFKranken$(j%,0)ÿ£gdvFTemp3$$
+ÿÉÿ¥gdvKlfd%ÿ™gdvFKranken$(j%,0)ÿ£gdvFTemp3$$
+ÿØÿOÿB(gdvFKranken$(j%,0))ÿgdvFTemp3$$ÿgdvKlfd%
+ÿ¡gdvFTemp3$$ÿgdvKlfd%ÿp
+	ÿÉÿYÿáÿ™gdvFKranken$(j%,0)
+	ÿÉÿ¾ÿ™gdvFKranken$(j%,0)
+	ÿïÿYÿ™gdvFKranken$(j%,0)
+	ÿ½ SELECT PREVIOUS FILE gdvFKranken$(j%,0)
+	ÿÉÿ`ÿ™gdvFKranken$(j%,0)ÿ£gdvFTemp3$$
+	ÿÉÿ¥gdvKlfd%ÿ™gdvFKranken$(j%,0)ÿ£gdvFTemp3$$
+ÿ^
+	ÿÉÿ±ÿ™gdvFKranken$(j%,0)ÿ£gdvFTemp3$$
+ÿ’ÿ¡
+ÿÙ
+ÿ’ÿ¡
+ 
+ÿ½ Auf G-Datei setzen
+ÿ™gdvFKranken$(j%,1)
+ÿ£gdvFTemp2$$
+ÿ½ Prfen ob die GDVKU vorkommt -> Wenn ja durchgehen HAd alle Datens„tze nach 0-Datei
+ÿ½                                 Wenn nein zur n„chsten G-Datei
+ÿ¡ÿJ(gdvserial%,gdvFTemp2$$)ÿp
+ÿ½ CALL Fehler(gdvFTemp2$,gdvFKranken$(j%,1))
+ÿ½ 02092002 mit dem index und der Positionierung ist neu
+ÿÉÿ`ÿ™gdvFKranken$(j%,1)ÿ£gdvFTemp2$$
+ÿÉÿ¥gdvserial%ÿ™gdvFKranken$(j%,1)ÿ£gdvFTemp2$$
+ÿ½ GDVKU in G-Datei vorhanden
+ÿØÿOÿB(gdvFKranken$(j%,1))ÿgdvserial%ÿgdvFTemp2$$
+
+ÿ½ wenn ein Datensatz mit gleicher GDVKU gefHAden wird
+ÿ¡gdvFTemp2$$ÿgdvserial%ÿp
+	
+	ÿ½ Auf 0-Datei setzen
+	ÿ™gdvFKranken$(j%,0)
+ 
+	ÿÿ™gdvFKranken$(j%,0)
+	a%ÿCopyRecord%(gdvFKranken$(j%,1),gdvFKranken$(j%,0))
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+	gdvKK%ÿÿI(gdvFTemp4$$)
+	ÿ¡ÿ>(gdvFKranken$(j%,0))ÿ"KK021011"ÿp
+gdvC210%ÿgdvKK%
+	ÿ’ÿ¡
+	FTemp2$ÿ"CODEKK021011."ÿgdvFKranken$(j%,0)
+	FTemp2$$ÿgdvC210%
+	FTemp1$ÿ"Code200."ÿgdvFKranken$(j%,0)
+	ÿ³ÿ_ÿwgdvkr020920021
+	FTemp1$$ÿgdvC200%
+gdvkr020920021: 
+	ÿ³ÿ_ÿwErrorHandler
+	ÿ½ STORE FILE gdvFKranken$(j%,0)
+	ÿ½ SELECT KEY gdvKlfd% LOCK FILE gdvFKranken$(j%,0) INDEX gdvFTemp3$$
+
+	ÿ½ gdvanzfeld% = FILEINFO (gdvFKranken$(j%,0),1)
+	ÿ½ REDIM gdvKKFelder$(gdvanzfeld%)
+	ÿ½ FILLARRAY gdvKKFelder$,1
+	ÿ½ FOR i% = 0 TO gdvanzfeld% - 1
+	ÿ½ FTemp1$ = gdvKKFelder$(i%) + "." + gdvFKranken$(j%,0)
+	ÿ½ FTemp2$ = gdvKKFelder$(i%) + "." + gdvFKranken$(j%,1)
+ÿ½ FTemp1$$ = FTemp2$$
+ÿ½ IF UCASE$ (gdvKKFelder$(i%)) = "CODE200" THEN FTemp1$$ = gdvC200%
+ÿ½ IF UCASE$ (gdvKKFelder$(i%)) = "CODEKK021011" THEN FTemp1$$ = gdvC210%
+	ÿ½ NEXT i%
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+ 
+	gdvFTemp5$$ÿgdvKlfd%ÿ10000
+	gdvFTemp4$$ÿgdvKK%
+
+	ÿ™gdvFKranken$(j%,0)
+	ÿƒQuickStore(gdvFKranken$(j%,0))
+	ÿßÿe
+	ÿïÿYÿ™gdvFKranken$(j%,0)
+ÿ’ÿ¡
+ÿ™gdvFKranken$(j%,1)
+ÿÉÿ±ÿ™gdvFKranken$(j%,1)ÿ£gdvFTemp2$$
+ÿÙ
+ÿ’ÿ¡
+ ÿ±j%
+ ÿ½ CALL Fehler("","")
+ cfile1$ÿÿ™
+ ÿ™"kk021011"
+ oldind$ÿÿ£
+ ÿ£gdvKu.kk021011
+ 
+ÿÉÿ`ÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ÿ½ SELECT KEY gdvlf% FILE "kvertrag" INDEX lfdnr.kvertrag
+ÿÉÿ¥gdvlf%ÿáÿ™"Kvertrag"ÿ£lfdnr.kvertrag
+ 
+ ÿ½ SELECT FIRST FILE "kk021011" INDEX gdvKu.kk021011
+ ÿ½ SELECT KEY gdvserial% FILE "kk021011" INDEX gdvKu.kk021011
+ codeKK021011%ÿcodeKK021011.kk021011
+ ÿÉÿ`ÿ™"kk022011"ÿ£codeKK021011.kk022011
+ ÿÉÿ¥codeKK021011%ÿ™"kk022011"ÿ£codeKK021011.kk022011
+ k%ÿ1
+ ÿØÿOÿB("kk022011")ÿcodeKK021011.kk022011ÿcodeKK021011%
+ak%ÿlfdpnr.kk022011
+
+ÿ¡k%ÿ
+7ÿp
+
+f1$ÿ"zvp"ÿÿH(ÿ(k%,"99"))ÿ"Name.kvertrag"
+f2$ÿ"zvp"ÿÿH(ÿ(k%,"99"))ÿ"vName.kvertrag"
+f3$ÿ"KVNotiz"ÿÿH(ÿ(k%,"99"))ÿ".kvertrag"
+f4$ÿ"zvp"ÿÿH(ÿ(k%,"99"))ÿ"Beitrag.kvertrag"
+f5$ÿ"zvp"ÿÿH(ÿ(k%,"99"))ÿ"Geb.kvertrag"
+f1$$ÿNamevp.kk022011
+f2$$ÿVNameVP.kk022011
+f5$$ÿGebVP.kk022011
+f3$$ÿbertxt.kk022011ÿÿ(13)ÿÿ(10)
+f4$$ÿGesbeitr.kk022011
+ÿÉÿ`ÿ™"kk022021"ÿ£codeKK021011.kk022021
+ÿÉÿ¥codeKK021011%ÿ™"kk022021"ÿ£codeKK021011.kk022021
+ÿØÿOÿB("kk022021")ÿcodeKK021011.kk022021ÿcodeKK021011%
+ÿ¡lfdpnr.kk022021ÿak%ÿk%ÿ
+7ÿp
+ÿ½ IF k% < 7 THEN 
+	f3$$ÿf3$$ÿTarif.kk022021ÿ" "ÿtariflst.kk022021ÿÿ(13)ÿÿ(10)
+	f3$$ÿf3$$ÿÿ(VersbegT.kk022021,"0d.mm.yyyy")ÿ" "ÿtariflst.kk022021ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+aaa$ÿf3$$
+ÿ½ CALL Fehler("Import der Vertragsspezifischen Sachen",aaa$ + "   " + f1$$ + "/" + f2$$ + "  " + STR$ (k%,"99"))
+ÿÉÿ±ÿ™"kk022021"ÿ£codeKK021011.kk022021
+ÿÙ
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"kk022011"ÿ£codeKK021011.kk022011
+k%ÿk%ÿ1
+ ÿÙ
+ ÿ½ SELECT FIRST FILE "kk022021" INDEX codeKK021011.kk022021
+ ÿ½ SELECT KEY codeKK021011% FILE "kk022021" INDEX codeKK021011.kk022021
+ ÿ½ SELECT FIRST FILE "kk022031" INDEX codeKK021011.kk022031
+ ÿ½ SELECT KEY codeKK021011% FILE "kk022031" INDEX codeKK021011.kk022031
+ ÿ½ tarif.kvertrag = LEFT$ (Tarif.kk022021 + " " + Tariflst.kk022021,50)
+ ÿ½ QTarif.kvertrag = LEFT$ (VSNRPack$(Tarif.kvertrag),50)
+ ÿ½ Notiz.kvertrag = Notiz.kvertrag + Tarif.kk022021 + " " + Tariflst.kk022021 + CHR$ (13) + CHR$ (10)
+ SummeBeitrag.KvertragÿBeitrag.kvertrag
+ ÿÌÿ™"KVERTRAG"
+ 
+ ÿ£oldind$$
+ ÿ™cfile1$
+ ÿ’ÿÿ
+ 
+ 
+ÿ½ *******************
+ ÿ½ * Schaden         *
+ ÿ½ *******************
+ÿÿgdvSchaden(gdvserial%,gdvC200%,gdvKlfd%,lfdnrtotal%,gdvlf%)
+ ÿ×gdvSDFelder$(1)
+ ÿ×gdvFSchaden$(1,1)
+gdvFSchaden$(0,0)ÿ"SD050011"
+gdvFSchaden$(0,1)ÿ"SDg50011"
+gdvFSchaden$(1,0)ÿ"SD055011"
+gdvFSchaden$(1,1)ÿ"SDg55011"
+ 
+ÿ›j%ÿ0ÿq1
+
+ÿ½ Felder fr G-Dateien
+gdvFTemp2$ÿ"gdvku."ÿgdvFSchaden$(j%,1)
+ÿ½ Felder fr 0-Dateien
+gdvFTemp3$ÿ"lfdnr."ÿgdvFSchaden$(j%,0)
+gdvFTemp4$ÿ"code"ÿgdvFSchaden$(j%,0)ÿ"."ÿgdvFSchaden$(j%,0)
+gdvFTemp5$ÿ"lfdnrtotal."ÿgdvFSchaden$(j%,0)
+ 
+ÿ½ ™ffnen der 0-Datei
+ÿƒDFile(3,gdvFSchaden$(j%,0)ÿ_fpw$)
+ÿ™gdvFSchaden$(j%,0)
+ÿ£gdvFTemp3$$
+ÿ½ wenn in der Datei die lfdnr vorkommt -> durchgehen und alle l”schen
+ÿ¡ÿJ(gdvKlfd%,gdvFTemp3$$)ÿp
+ÿÉÿ`ÿ™gdvFSchaden$(j%,0)ÿ£gdvFTemp3$$
+ÿÉÿ¥gdvKlfd%ÿ™gdvFSchaden$(j%,0)ÿ£gdvFTemp3$$
+ÿØÿOÿB(gdvFSchaden$(j%,0))ÿgdvFTemp3$$ÿgdvKlfd%
+ÿ¡gdvFTemp3$$ÿgdvKlfd%ÿp
+	ÿÉÿYÿáÿ™gdvFSchaden$(j%,0)
+	ÿÉÿ¾ÿ™gdvFSchaden$(j%,0)
+	ÿïÿYÿ™gdvFSchaden$(j%,0)
+	ÿ½ SELECT PREVIOUS FILE gdvFSchaden$(j%,0)
+	ÿÉÿ`ÿ™gdvFSchaden$(j%,0)ÿ£gdvFTemp3$$
+	ÿÉÿ¥gdvKlfd%ÿ™gdvFSchaden$(j%,0)ÿ£gdvFTemp3$$
+ÿ^
+	ÿÉÿ±ÿ™gdvFSchaden$(j%,0)ÿ£gdvFTemp3$$
+ÿ’ÿ¡
+ÿÙ
+ÿ’ÿ¡
+ 
+ÿ½ Auf G-Datei setzen
+ÿ™gdvFSchaden$(j%,1)
+ÿ£gdvFTemp2$$
+ÿ½ Prfen ob die GDVKU vorkommt -> Wenn ja durchgehen HAd alle Datens„tze nach 0-Datei
+ÿ½                                 Wenn nein zur n„chsten G-Datei
+ÿ¡ÿJ(gdvserial%,gdvFTemp2$$)ÿp
+ÿÉÿ`ÿ™gdvFSchaden$(j%,1)ÿ£gdvFTemp2$$
+ÿÉÿ¥gdvserial%ÿ™gdvFSchaden$(j%,1)ÿ£gdvFTemp2$$
+ÿ½ GDVKU in G-Datei vorhanden
+ÿØÿOÿB(gdvFSchaden$(j%,1))ÿgdvFTemp2$$ÿgdvserial%
+
+ÿ½ wenn ein Datensatz mit gleicher GDVKU gefHAden wird
+ÿ¡gdvFTemp2$$ÿgdvserial%ÿp
+	
+	ÿ½ Auf 0-Datei setzen
+	ÿ™gdvFSchaden$(j%,0)
+ 
+	ÿÿ™gdvFSchaden$(j%,0)
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+	gdvSD%ÿÿI(gdvFTemp4$$)
+	ÿ¡ÿ>(gdvFSchaden$(j%,0))ÿ"SD050011"ÿpgdvC210%ÿgdvSD%
+	ÿÌÿ™gdvFSchaden$(j%,0)
+	ÿÉÿ¥gdvKlfd%ÿáÿ™gdvFSchaden$(j%,0)ÿ£gdvFTemp3$$
+
+	gdvanzfeld%ÿÿõ(gdvFSchaden$(j%,0),1)
+	ÿÿgdvSDFelder$(gdvanzfeld%)
+	ÿÿgdvSDFelder$,1
+	ÿ›i%ÿ0ÿqgdvanzfeld%ÿ1
+FTemp1$ÿgdvSDFelder$(i%)ÿ"."ÿgdvFSchaden$(j%,0)
+FTemp2$ÿgdvSDFelder$(i%)ÿ"."ÿgdvFSchaden$(j%,1)
+ÿ½  CALL Info("","")
+ÿ½ IF FTemp2$$ > "" OR FTemp2$$ > 0 THEN 
+FTemp1$$ÿFTemp2$$
+ÿ¡ÿ>(gdvSDFelder$(i%))ÿ"CODE200"ÿpFTemp1$$ÿgdvC200%
+ÿ¡ÿ>(gdvSDFelder$(i%))ÿ"CODESD050011"ÿpFTemp1$$ÿgdvC210%
+	ÿ±i%
+ 
+	gdvFTemp3$$ÿgdvKlfd%
+ 
+	gdvFTemp5$$ÿgdvKlfd%ÿ10000
+	gdvFTemp4$$ÿgdvSD%
+
+	ÿ™gdvFSchaden$(j%,0)
+	ÿƒQuickStore(gdvFSchaden$(j%,0))
+	ÿßÿe
+	ÿïÿYÿ™gdvFSchaden$(j%,0)
+ÿ’ÿ¡
+ÿ™gdvFSchaden$(j%,1)
+ÿÉÿ±ÿ™gdvFSchaden$(j%,1)ÿ£gdvFTemp2$$
+ÿÙ
+ÿ’ÿ¡
+ ÿ±j%
+ 
+ ÿ’ÿÿ
+ 
+ÿÿKFZBeitr1()
+ ÿ¡zw.kvertragÿ55ÿp
+ÿƒFehler("Bet„tigen Sie bitte den Button Sichern und anschlieáend den Button zahlweise, um diese zu definieren!","")
+ÿ½ GOTO KFZN1301991
+ ÿ^
+ RateHalb%ÿ3
+ RateMon%ÿ5
+ ÿ²"9999999.00"
+ zw%ÿzw.kvertrag
+ÿ¡zw.kvertragÿ2ÿp
+KFZ_VSBH%ÿ(KFZ_VSBH.kvertragÿ100)ÿ(RateHalb%ÿ100)
+KFZ_VSBK%ÿ(KFZ_VSBK.kvertragÿ100)ÿ(RateHalb%ÿ100)
+KFZ_VSBU%ÿ(KFZ_VSBU.kvertragÿ100)ÿ(RateHalb%ÿ100)
+ÿ’ÿ¡
+ÿ¡zw.kvertragÿ2ÿp
+KFZ_VSBH%ÿ(KFZ_VSBH.kvertragÿ100)ÿ(RateMon%ÿ100)
+KFZ_VSBK%ÿ(KFZ_VSBK.kvertragÿ100)ÿ(RateMon%ÿ100)
+KFZ_VSBU%ÿ(KFZ_VSBU.kvertragÿ100)ÿ(RateMon%ÿ100)
+ÿ’ÿ¡
+ÿ¡zw.kvertragÿ1ÿzw.kvertragÿ0ÿp
+ÿ¡zw.kvertragÿ0ÿpzw%ÿ1
+KFZ_VSBH%ÿKFZ_VSBH.kvertrag
+KFZ_VSBK%ÿKFZ_VSBK.kvertrag
+KFZ_VSBU%ÿKFZ_VSBU.kvertrag
+ÿ’ÿ¡
+ KFZ_VSBH1%ÿ(KFZ_VSBH%ÿ100ÿzw%ÿHV_SFR.kvertrag)
+ KFZ_VSBK1%ÿ(KFZ_VSBK%ÿzw%ÿ100ÿVK_SFR.kvertrag)
+ KFZ_VSBU1%ÿ(KFZ_VSBU%ÿzw%ÿ100ÿUnf_SFR.kvertrag)
+ 
+ KFZ_VSBH1$ÿÿ(KFZ_VSBH1%ÿ0.005,"9999999.0")
+ KFZ_VSBK1$ÿÿ(KFZ_VSBK1%ÿ0.005,"9999999.0")
+ KFZ_VSBU1$ÿÿ(KFZ_VSBU1%ÿ0.005,"9999999.0")
+ 
+ KFZ_VSBH1%ÿÿ0(KFZ_VSBH1$)
+ KFZ_VSBK1%ÿÿ0(KFZ_VSBK1$)
+ KFZ_VSBU1%ÿÿ0(KFZ_VSBU1$)
+ 
+ 
+ ÿ½ KFZ_VSBH2% = KFZ_VSBH1% + ((KFZ_VSBH1% / 100) * (100 - HV_SFR.kvertrag))
+ ÿ½ KFZ_VSBK2% = KFZ_VSBK1% + ((KFZ_VSBK1% / 100) * (100 - VK_SFR.kvertrag))
+ ÿ½ KFZ_VSBU2% = KFZ_VSBU1% + ((KFZ_VSBU1% / 100) * (100 - Unf_SFR.kvertrag))
+ 
+ KFZ_BTGES.kvertragÿKFZ_VSBH.kvertragÿKFZ_VSBK.kvertragÿKFZ_VSBU.kvertrag
+
+ KFZHaftBeitrag.kvertragÿKFZ_VSBH1%
+ KFZVollkBeitrag.kvertragÿKFZ_VSBK1%
+ KFZ_UnfJBeitr.kvertragÿKFZ_VSBU1%
+ KFZGesBeitrag.kvertragÿKFZ_VSBH1%ÿKFZ_VSBK1%ÿKFZ_VSBU1%
+ 
+ Bewertungssumme.kvertragÿKFZ_VSBH.kvertragÿKFZ_VSBK.kvertragÿKFZ_VSBU.kvertrag
+ ÿ½ Beitrag.kvertrag = KFZ_VSBH.kvertrag + KFZ_VSBK.kvertrag + KFZ_VSBU.kvertrag
+ VSumme.kvertragÿKFZGesBeitrag.kvertrag
+ ÿÌÿ™"kvertrag"
+ ÿ½ KFZN1301991:
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ ÿ½ *******************************************************
+ ÿ½ *******************************************************
+ ÿ½ ***** GDV-Strukturen ”ffnen ***************************
+ ÿ½ *******************************************************
+ ÿ½ *******************************************************
+ÿÿGDVUpdate()
+ ÿ½ CALL DFile(3,"AD010011" + _fpw$)
+ ÿ½ UPDATE lfdnrtotal.AD010011 = lfdnr.AD010011 * 10000
+ ÿ½ CALL DFile(3,"AD010012" + _fpw$)
+ ÿ½ UPDATE lfdnrtotal.AD010012 = lfdnr.AD010012 * 10000
+ ÿƒDFile(3,"AL020011"ÿ_fpw$)
+ ÿÍlfdnrtotal.AL020011ÿlfdnr.AL020011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"BI030011"ÿ_fpw$)
+ ÿÍlfdnrtotal.BI030011ÿlfdnr.BI030011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"BI030012"ÿ_fpw$)
+ ÿÍlfdnrtotal.BI030012ÿlfdnr.BI030012ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"FU021011"ÿ_fpw$)
+ ÿÍlfdnrtotal.FU021011ÿlfdnr.FU021011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"FU022011"ÿ_fpw$)
+ ÿÍlfdnrtotal.FU022011ÿlfdnr.FU022011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"FU022012"ÿ_fpw$)
+ ÿÍlfdnrtotal.FU022012ÿlfdnr.FU022012ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"GL021011"ÿ_fpw$)
+ ÿÍlfdnrtotal.GL021011ÿlfdnr.GL021011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"GL022011"ÿ_fpw$)
+ ÿÍlfdnrtotal.GL022011ÿlfdnr.GL022011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"HA021011"ÿ_fpw$)
+ ÿÍlfdnrtotal.HA021011ÿlfdnr.HA021011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"HA022011"ÿ_fpw$)
+ ÿÍlfdnrtotal.HA022011ÿlfdnr.HA022011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"HA022012"ÿ_fpw$)
+ ÿÍlfdnrtotal.HA022012ÿlfdnr.HA022012ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"ID040011"ÿ_fpw$)
+ ÿÍlfdnrtotal.ID040011ÿlfdnr.ID040011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"ID040012"ÿ_fpw$)
+ ÿÍlfdnrtotal.ID040012ÿlfdnr.ID040012ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"ID041011"ÿ_fpw$)
+ ÿÍlfdnrtotal.ID041011ÿlfdnr.ID041011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"ID042011"ÿ_fpw$)
+ ÿÍlfdnrtotal.ID042011ÿlfdnr.ID042011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"ID043011"ÿ_fpw$)
+ ÿÍlfdnrtotal.ID043011ÿlfdnr.ID043011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"ID045011"ÿ_fpw$)
+ ÿÍlfdnrtotal.ID045011ÿlfdnr.ID045011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"KD035011"ÿ_fpw$)
+ ÿÍlfdnrtotal.KD035011ÿlfdnr.KD035011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"KK021011"ÿ_fpw$)
+ ÿÍlfdnrtotal.KK021011ÿlfdnr.KK021011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"KK022011"ÿ_fpw$)
+ ÿÍlfdnrtotal.KK022011ÿlfdnr.KK022011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"KK022021"ÿ_fpw$)
+ ÿÍlfdnrtotal.KK022021ÿlfdnr.KK022021ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"KK022031"ÿ_fpw$)
+ ÿÍlfdnrtotal.KK022031ÿlfdnr.KK022031ÿ10000
+ ÿ’ÿÍ
+ ÿ½ CALL DFile(3,"KR021011" + _fpw$)
+ ÿ½ UPDATE lfdnrtotal.KR021011 = lfdnr.KR021011 * 10000
+ ÿ½ END UPDATE 
+ ÿ½ CALL DFile(3,"KR022011" + _fpw$)
+ ÿ½ UPDATE lfdnrtotal.KR022011 = lfdnr.KR022011 * 10000
+ ÿ½ END UPDATE 
+ ÿ½ CALL DFile(3,"KR022021" + _fpw$)
+ ÿ½ UPDATE lfdnrtotal.KR022021 = lfdnr.KR022021 * 10000
+ ÿ½ END UPDATE 
+ ÿ½ CALL DFile(3,"KR022031" + _fpw$)
+ ÿ½ UPDATE lfdnrtotal.KR022031 = lfdnr.KR022031 * 10000
+ ÿ½ END UPDATE 
+ ÿ½ CALL DFile(3,"KR022041" + _fpw$)
+ ÿ½ UPDATE lfdnrtotal.KR022041 = lfdnr.KR022041 * 10000
+ ÿ½ END UPDATE 
+ ÿ½ CALL DFile(3,"KR022051" + _fpw$)
+ ÿ½ UPDATE lfdnrtotal.KR022051 = lfdnr.KR022051 * 10000
+ ÿ½ END UPDATE 
+ ÿ½ CALL DFile(3,"KR022061" + _fpw$)
+ ÿ½ UPDATE lfdnrtotal.KR022061 = lfdnr.KR022061 * 10000
+ ÿ½ END UPDATE 
+ ÿ½ CALL DFile(3,"KR022062" + _fpw$)
+ ÿ½ UPDATE lfdnrtotal.KR022062 = lfdnr.KR022062 * 10000
+ ÿ½ END UPDATE 
+ ÿƒDFile(3,"LE021011"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE021011ÿlfdnr.LE021011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE021012"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE021012ÿlfdnr.LE021012ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022011"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022011ÿlfdnr.LE022011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022021"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022021ÿlfdnr.LE022021ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022022"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022022ÿlfdnr.LE022022ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022026"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022026ÿlfdnr.LE022026ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022027"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022027ÿlfdnr.LE022027ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022028"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022028ÿlfdnr.LE022028ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022029"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022029ÿlfdnr.LE022029ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022031"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022031ÿlfdnr.LE022031ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022032"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022032ÿlfdnr.LE022032ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022036"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022036ÿlfdnr.LE022036ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022038"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022038ÿlfdnr.LE022038ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022039"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022039ÿlfdnr.LE022039ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022041"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022041ÿlfdnr.LE022041ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022042"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022042ÿlfdnr.LE022042ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022046"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022046ÿlfdnr.LE022046ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022048"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022048ÿlfdnr.LE022048ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022049"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022049ÿlfdnr.LE022049ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022051"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022051ÿlfdnr.LE022051ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022052"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022052ÿlfdnr.LE022052ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022056"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022056ÿlfdnr.LE022056ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022058"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022058ÿlfdnr.LE022058ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022059"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022059ÿlfdnr.LE022059ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022061"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022061ÿlfdnr.LE022061ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022062"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022062ÿlfdnr.LE022062ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022063"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022063ÿlfdnr.LE022063ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022066"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022066ÿlfdnr.LE022066ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022067"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022067ÿlfdnr.LE022067ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022068"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022068ÿlfdnr.LE022068ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022069"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022069ÿlfdnr.LE022069ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022071"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022071ÿlfdnr.LE022071ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022072"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022072ÿlfdnr.LE022072ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022076"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022076ÿlfdnr.LE022076ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022078"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022078ÿlfdnr.LE022078ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"LE022079"ÿ_fpw$)
+ ÿÍlfdnrtotal.LE022079ÿlfdnr.LE022079ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"RE021011"ÿ_fpw$)
+ ÿÍlfdnrtotal.RE021011ÿlfdnr.RE021011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"RE022011"ÿ_fpw$)
+ ÿÍlfdnrtotal.RE022011ÿlfdnr.RE022011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"RE022012"ÿ_fpw$)
+ ÿÍlfdnrtotal.RE022012ÿlfdnr.RE022012ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"SD050011"ÿ_fpw$)
+ ÿÍlfdnrtotal.SD050011ÿlfdnr.SD050011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"SD055011"ÿ_fpw$)
+ ÿÍlfdnrtotal.SD055011ÿlfdnr.SD055011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"TE021011"ÿ_fpw$)
+ ÿÍlfdnrtotal.TE021011ÿlfdnr.TE021011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"TE022011"ÿ_fpw$)
+ ÿÍlfdnrtotal.TE022011ÿlfdnr.TE022011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"TE022012"ÿ_fpw$)
+ ÿÍlfdnrtotal.TE022012ÿlfdnr.TE022012ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"TE022013"ÿ_fpw$)
+ ÿÍlfdnrtotal.TE022013ÿlfdnr.TE022013ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"TR021011"ÿ_fpw$)
+ ÿÍlfdnrtotal.TR021011ÿlfdnr.TR021011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"TR022011"ÿ_fpw$)
+ ÿÍlfdnrtotal.TR022011ÿlfdnr.TR022011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"TR022012"ÿ_fpw$)
+ ÿÍlfdnrtotal.TR022012ÿlfdnr.TR022012ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"TR025011"ÿ_fpw$)
+ ÿÍlfdnrtotal.TR025011ÿlfdnr.TR025011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"TR025012"ÿ_fpw$)
+ ÿÍlfdnrtotal.TR025012ÿlfdnr.TR025012ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"TR026011"ÿ_fpw$)
+ ÿÍlfdnrtotal.TR026011ÿlfdnr.TR026011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"UD021011"ÿ_fpw$)
+ ÿÍlfdnrtotal.UD021011ÿlfdnr.UD021011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"UD021012"ÿ_fpw$)
+ ÿÍlfdnrtotal.UD021012ÿlfdnr.UD021012ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"UD022011"ÿ_fpw$)
+ ÿÍlfdnrtotal.UD022011ÿlfdnr.UD022011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"UD022012"ÿ_fpw$)
+ ÿÍlfdnrtotal.UD022012ÿlfdnr.UD022012ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"UN021011"ÿ_fpw$)
+ ÿÍlfdnrtotal.UN021011ÿlfdnr.UN021011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"UN022011"ÿ_fpw$)
+ ÿÍlfdnrtotal.UN022011ÿlfdnr.UN022011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"UN022012"ÿ_fpw$)
+ ÿÍlfdnrtotal.UN022012ÿlfdnr.UN022012ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"UN022013"ÿ_fpw$)
+ ÿÍlfdnrtotal.UN022013ÿlfdnr.UN022013ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"UN022014"ÿ_fpw$)
+ ÿÍlfdnrtotal.UN022014ÿlfdnr.UN022014ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"UN022019"ÿ_fpw$)
+ ÿÍlfdnrtotal.UN022019ÿlfdnr.UN022019ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"VG021011"ÿ_fpw$)
+ ÿÍlfdnrtotal.VG021011ÿlfdnr.VG021011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"VG022011"ÿ_fpw$)
+ ÿÍlfdnrtotal.VG022011ÿlfdnr.VG022011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"VG022012"ÿ_fpw$)
+ ÿÍlfdnrtotal.VG022012ÿlfdnr.VG022012ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"VH021011"ÿ_fpw$)
+ ÿÍlfdnrtotal.VH021011ÿlfdnr.VH021011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"VH022011"ÿ_fpw$)
+ ÿÍlfdnrtotal.VH022011ÿlfdnr.VH022011ÿ10000
+ ÿ’ÿÍ
+ ÿƒInfo("","")
+ ÿƒDFile(3,"VS021011"ÿ_fpw$)
+ ÿÍlfdnrtotal.VS021011ÿlfdnr.VS021011ÿ10000
+ ÿ’ÿÍ
+ ÿƒDFile(3,"VS022011"ÿ_fpw$)
+ ÿÍlfdnrtotal.VS022011ÿlfdnr.VS022011ÿ10000
+ ÿ’ÿÍ
+ 
+ ÿ’ÿÿ
+ 
+ÿÿCopyHistory()
+cfile$ÿÿ™
+ÿ™"History"
+ÿÿ™"History"
+CodeHist%ÿÿI("History",1)
+CodeHist.HistoryÿCodeHist%
+ÿÌÿ™"History"
+ÿ£codehist.history
+ÿÉÿ`
+ÿÉÿ¥codehist%ÿáÿ™"History"ÿ£codeHist.History
+
+KVanzfeld%ÿÿõ("KVERTRAG",1)
+ÿ×KVFelder$(KVanzfeld%)
+ÿÿKVFelder$,1
+ÿ›i%ÿ0ÿqKVanzfeld%ÿ1
+FTemp1$ÿKVFelder$(i%)ÿ".History"
+FTemp2$ÿKVFelder$(i%)ÿ".KVERTRAG"
+FTemp1$$ÿFTemp2$$
+ÿ±i%
+ÿ™"HISTORY"
+CodeHist.HistoryÿCodeHist%
+QHistCodeVT.Historyÿÿ(Codehist%,"000000")ÿÿ(lfdnr.history,"000000")
+ÿƒQuickStore("HISTORY")
+ÿßÿe
+ÿïÿYÿ™"HISTORY"
+ÿ™cfile$
+ ÿ’ÿÿ
+ 
+ 
+ 
+ 
+ÿÿSparteTest$(gdvAdrSparte%)
+ÿ™"sparten"
+ÿ£hauptsparte.sparten
+ÿÉÿ`
+SparteTest$ÿ"n"
+ 
+ÿ¡ÿJ(gdvAdrSparte%,hauptsparte.sparten)ÿp
+ÿÉÿ¥gdvAdrSparte%ÿ™"sparten"ÿ£hauptsparte.sparten
+SparteTest$ÿ"j"
+ÿØÿOÿB("Sparten")ÿhauptsparte.spartenÿgdvAdrSparte%
+ÿ¡GDVImport.spartenÿ"j"ÿp
+
+SparteTest$ÿ"n"
+
+ÿÉÿb
+ÿ^
+
+ÿÉÿ±ÿ™"sparten"ÿ£hauptsparte.sparten
+ÿ’ÿ¡
+ÿÙ
+ÿ^
+ÿ¡gdvAdrSparte%ÿ30ÿgdvAdrSparte%ÿ	39ÿp
+ÿ¡ÿJ(030,hauptsparte.sparten)ÿpSparteTest$ÿ"j"
+ÿ’ÿ¡
+ÿ¡gdvAdrSparte%ÿ40ÿgdvAdrSparte%ÿ	49ÿp
+ÿ¡ÿJ(040,hauptsparte.sparten)ÿpSparteTest$ÿ"j"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ 
+ 
+ 
+ 
+

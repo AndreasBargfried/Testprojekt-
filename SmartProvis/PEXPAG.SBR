@@ -1,0 +1,3224 @@
+SBP
+ ÿƒmain()
+
+
+ 'Schlieáen aller Dateien
+ÿÿCloseDatei1()
+ ' NEU CLOSEFILE
+ 
+ ÿ×dateien1$(1000)
+ ÿ×ixkukto$(1)
+ ÿ_netpath$
+ ÿÿdateien1$,5,"*.sbf"
+ anzdat%ÿ0
+ ÿØdateien1$(anzdat%)ÿ""
+name1$ÿdateien1$(anzdat%)
+name2$ÿÿ+(name1$,ÿ/(name1$)ÿ4)
+ÿ¡ÿ´(name2$)ÿpÿ†ÿ™name2$
+anzdat%ÿanzdat%ÿ1
+ ÿÙ
+ ÿ_netpath$ÿ"\office"
+ ÿÿdateien1$,5,"*.sbf"
+ anzdat%ÿ0
+ ÿØdateien1$(anzdat%)ÿ""
+name1$ÿdateien1$(anzdat%)
+name2$ÿÿ+(name1$,ÿ/(name1$)ÿ4)
+ÿ¡ÿ´(name2$)ÿpÿ†ÿ™name2$
+anzdat%ÿanzdat%ÿ1
+ ÿÙ
+ ÿ_netpath$ÿ"\PROVIS"
+ ÿÿdateien1$,5,"*.sbf"
+ anzdat%ÿ0
+ ÿØdateien1$(anzdat%)ÿ""
+name1$ÿdateien1$(anzdat%)
+name2$ÿÿ+(name1$,ÿ/(name1$)ÿ4)
+ÿ¡ÿ´(name2$)ÿpÿ†ÿ™name2$
+anzdat%ÿanzdat%ÿ1
+ ÿÙ
+ 
+ 
+ ÿ³ÿ_ÿwcl0711974 
+ ÿ_netpath$ÿ"Provis\*.sb!"
+cl0711974:
+ ÿ³ÿ_ÿwcl0711975 
+ ÿ_netpath$ÿ"office\*.sb!"
+cl0711975:
+ ÿ³ÿ_ÿwcl0711976 
+ ÿ_netpath$ÿ"*.sb!"
+cl0711976: 
+ ÿ³ÿ_ÿwcl0711977 
+ ÿ_netpath$ÿ"export\*.sb!"
+cl0711977: 
+ ÿ³ÿ_ÿwcl0711978 
+ ÿ_netpath$ÿ"export\office\*.sb!"
+cl0711978: 
+ÿ³ÿ_ÿwcl0711979 
+ ÿ_netpath$ÿ"export\provis\*.sb!"
+cl0711979: 
+ ÿ’ÿÿ
+ 
+ 
+ 
+ ' Export aller Daten zu einer Agentur
+ÿÿExportAG()
+ ÿ¡MNdisabled%("SUPERVISOR")ÿp
+ÿƒFehler("Keine Zugangsberechtigung!","Nur durch Supervisor m”glich!")
+ÿ’ÿÿ
+ ÿ’ÿ¡
+ ÿƒDFile(3,"maadr"ÿ_fpw$)
+ _cuma%ÿCodeMA.MAADR
+ rep%ÿGetCodeMA%(_cuma%,Workstation%)
+ ÿ¡rep%ÿ0ÿp
+_cuma%ÿrep%
+cu%ÿ_cuma%
+reqaktag%ÿ0
+ÿÂ"Soll der Vermittler ohne seine Struktur kopiert werden?","",130,reqaktag%
+ ÿ^
+ÿƒFehler ("Es wurde kein Mitarbeiter ausgew„hlt! Export wird abgebrochen!","")
+ÿwend310320042
+ ÿ’ÿ¡
+ t1$ÿ"Es werden nachfolgend die Daten des zu exportierenden Vermittlers und aller ihm untergeordneten Vermittler aus den vorhandenen Daten selektiert und in Form von separaten Dateien gespeichert."
+ t1a$ÿ" Ein Backup der Dateien k”nnen Sie ber START/Programme/CODie-Anwendungen/SmartPROVIS-Mitarbeiter-Export erzeugen lassen (die erzeugte Datei provis.arj finden Sie unter ...\codie\export\support) und diesem Vermittler zur Verfgung stellen. "
+ t1b$ÿ"Der Vermittler kann dann diese Backup - Datei ber START/Programme/CODie-Anwendungen/SmartPROVIS Restore auf seinen Rechner einspielen."
+ t2$ÿ"Zu beachten ist, daá der Vermittler ebenfalls in Ihrer Mitarbeiterdatei (SmartPROVIS Hauptmaske/Stammdaten/Einstellungen/Mitarbeiterverwaltung) erfaát sein muá "
+ t2a0$ÿ"(und zwar so, daá der Vorname und Nachname des Vermitllers genauso geschrieben wird, wie in der Vermittlerdatei, um die anderslautenden Mitarbeiter fr diesen Export zu l”schen), da die Mitarbeiterdatei ebenfalls an den zu"
+ t2a$ÿ" exportierenden Vermittler bergeben wird. Auf diese Art k”nnen Sie dem Vermittler z.B bestimmte Programmfunktionen sperren und weiterhin bestimmen, wie lange er mit den ihm bergebenen Daten arbeiten darf."
+ t3a$ÿ" Ist der Vermittler nicht in Ihrer Mitarbeiterdatei definiert, so wird ein Mitarbeiter mit dem Namen Supervisor angelegt, der im Rahmen der Agenturverwaltung alle Zugriffsrechte besitzt."
+ ÿƒFehler(t1$ÿt1a$ÿt1b$,t2$ÿt2a0$ÿt2a$ÿt3a$)
+ ÿ¡gasp%ÿp
+ÿƒFehler("Achtung bei der ASP Version muá nach dem generieren der Daten fr den zu exportierenden Vermittler, das Programm beendet werden und per Hand das Programm ...\codie\export\support\ProvBak.exe aufgerufen werden.","")
+ ÿ’ÿ¡
+ 
+ ÿ½ REQUEST "Haben Sie den Vermitller in Ihrer Mitarbeiterdatei eingerichtet und","darauf geachtet ihm bestimmte Bereich zu sperren?",130,req%
+ 
+ ÿÉÿ¥cu%ÿ™"maadr"ÿ£codema.maadr
+ mavor$ÿVorname.maadr
+ manach$ÿnachname.maadr
+ ÿÂ"Haben alle anderen Nutzer die Anwendung geschlossen?","",130,req%
+ ÿ¡req%ÿ1ÿp
+ÿƒFehler("Der Export kann nur durchgefhrt werden,","wenn alle Nutzer die Anwendung verlassen haben.")
+ÿ’ÿÿ
+ ÿ’ÿ¡
+ ÿ½ REQUEST "Soll die Buchungsdatei mit bergeben werden?","",130,reqExpBuch%
+ reqExpBuch%ÿ0
+ reqsp%ÿ1
+ reqma%ÿ1
+ reqge%ÿ1
+ reqfle%ÿ1
+ reqnV%ÿ1
+ anp$ÿÿ(ÿQÿ60,"0d.mm.yyyy")
+ 
+ÿ×dlg ÿUDialog
+ÿ×control ÿUDialogControl
+exkorrdate01:
+Superbase.Dialogs.Add("ANPASSUNG")
+ÿÊdlg ÿSuperbase.Dialogs.ANPASSUNG
+dlg.Move(0,0,361,200)
+dlg.Captionÿ"Export Daten fr Vermittler"
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame1","DialogFrame")
+control.Move(0,0,361,163)
+control.Captionÿ"Parameter fr den Export"
+
+
+
+ÿÊcontrol ÿdlg.Add("DialogCheckBox1","DialogCheckBox")
+control.Move(4,10,337,10)
+control.Captionÿ"Dokumente und Termine mit bergeben (Achtung nicht bei Export fr SmartPROVIS Agentur, da sonst die"
+control.Bind("b”se%")
+control.ValueOnÿÿ1
+control.ValueOffÿ0
+
+
+ÿÊcontrol ÿdlg.Add("DialogLabel2","DialogLabel")
+control.Move(4,20,335,10)
+control.Captionÿ"Dokumente und Termine, die die Agentur erstellt hat, berschrieben werden!)"
+
+
+ÿÊcontrol ÿdlg.Add("DialogCheckBox5","DialogCheckBox")
+control.Move(4,34,137,14)
+control.Captionÿ"Buchungsdaten mit bergeben "
+control.Bind("reqExpBuch%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox2","DialogCheckBox")
+control.Move(4,48,154,13)
+control.Captionÿ"Notizen in Sparten nicht bergeben"
+control.Bind("reqsp%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox3","DialogCheckBox")
+control.Move(4,64,154,13)
+control.Captionÿ"Notizen in Gesellschaften nicht bergeben"
+control.Bind("reqge%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox4","DialogCheckBox")
+control.Move(4,80,144,13)
+control.Captionÿ"Notizen in Mitarbeiter nicht bergeben"
+control.Bind("reqma%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel1","DialogLabel")
+control.Move(4,100,335,14)
+control.Captionÿ"Bis wann kann die externe Agentur mit diesen Daten arbeiten?"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox1","DialogTextBox")
+control.Move(214,100,44,12)
+control.MaxLengthÿ10
+control.TextBindingÿ"anp$"
+
+ÿÊcontrol ÿdlg.Add("DialogCheckBox15","DialogCheckBox")
+control.Move(4,118,300,13)
+control.Captionÿ"falls beim letzten Export ein Fehler auftrat, hier ein Kreuz setzen"
+control.Bind("reqfle%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox16","DialogCheckBox")
+control.Move(4,131,300,13)
+control.Captionÿ"auch Adressen des Vermittler bergeben, zu denen kein Vertrag existiert"
+control.Bind("reqnV%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+
+ ÿ½ alleVMKV%
+
+ÿÊcontrol ÿdlg.Add("DialogCheckBox17","DialogCheckBox")
+control.Move(4,144,300,13)
+control.Captionÿ"auch Vertr„ge zur Adresse exportieren, wenn diese von anderen Vermittlern sind"
+control.Bind("alleVMKV%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+
+
+ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(120,180,44,13)
+control.Defaultÿ1
+control.Captionÿ"OK"
+control.ReturnValueÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton2","DialogCommandButton")
+control.Move(171,180,44,13)
+control.Captionÿ"Abbruch"
+control.ReturnValueÿ0
+ÿñ"ANPASSUNG",req%
+ÿ¾ÿñ"ANPASSUNG"
+
+ÿ¡req%ÿ0ÿpÿ’ÿÿ
+ ÿ¡DateOK%(anp$)ÿp
+anp%ÿÿ1(anp$)
+ÿ¡anp%ÿ
+ÿQÿp
+anp%ÿÿQ
+ÿÂ"Das angegebene Datum ist kleiner als der heutige Tag!","Wollen Sie es korrigieren?",130,req1%
+ÿ¡req1%ÿ1ÿp
+ÿwexkorrdate01
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ^
+ÿÂ"Das angegebene Datum ist leer oder ungltig!","Wollen Sie es korrigieren?",130,req1%
+ÿ¡req1%ÿ1ÿp
+ÿwexkorrdate01
+ÿ^
+anp%ÿ0
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡b”se%ÿÿ1ÿp
+ÿÂ"Sollen wirklich alle Dokumente und Termine bergeben werden?","",130,req%
+ÿ¡req%ÿ1ÿpÿwexkorrdate01
+ ÿ’ÿ¡
+ ÿßÿe
+ ÿÂ"Es werden alle offenen Dateien geschlossen !","",2
+ ÿƒCloseDatei1()
+ ÿÂ"Kopieren aller Dateien in das Verzeichnis \CODIE\EXPORT","",2
+ ÿ³ÿ_ÿwex0711971
+ tt$ÿ_netpath$ÿ"LOCAL\DelExpF.EXE"
+ a%ÿÿƒ("ShellExecute",0,"open",tt$,"","",1)
+ ÿÏÿ›3
+ ÿ_netpath$ÿ"export\*.*"
+ex0711971: 
+ ÿ³ÿ_ÿwex0711971b
+ ÿ_netpath$ÿ"export\office\*.*"
+ 
+ ÿ½ 310898 Kopieren der Supportdateien in den OFFICE - Pfad
+ ÿ¡ÿJ(_netpath$ÿ"export\support\provis.arj")ÿp
+ÿ_netpath$ÿ"export\support\provis.arj"
+ ÿ’ÿ¡
+ ÿˆ_netpath$ÿ"export\support\*.*"ÿq_netpath$ÿ"export\office\"
+ex0711971b: 
+ ÿ³ÿ_ÿwex0711971c
+ ÿ_netpath$ÿ"export\provis\*.*"
+ex0711971c: 
+ ÿÊÿË"Kopieren aller Dateien in das Verzeichnis \CODIE\EXPORT"
+ ÿ¡ÿJ(_netpath$ÿ"export\support\provis.arj")ÿp
+ÿ_netpath$ÿ"export\support\provis.arj"
+ ÿ’ÿ¡
+ ÿ³ÿ_ÿwErrorHandler
+ ÿ½  Kopieren aller Dateien in die Verzeichnisse Export, /Export/Office und Export/Provis
+ ÿÊÿË"Kopieren ac*.*"
+ ÿˆ_netpath$ÿ"ac*.*"ÿq_netpath$ÿ"export\ac*.*"
+ ÿˆ_netpath$ÿ"op*.*"ÿq_netpath$ÿ"export\op*.*"
+ ÿÊÿË"Kopieren supervis*.*"
+ ÿˆ_netpath$ÿ"superv*.*"ÿq_netpath$ÿ"export\superv*.*"
+ ÿÊÿË"Kopieren office\Adre*.*"
+ ÿˆ_netpath$ÿ"office\adre*.*"ÿq_netpath$ÿ"export\office\adre*.*"
+ w%ÿ0
+ ÿØw%ÿ0
+ÿÊÿË"warte darauf das Adressen.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\office\adressen.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ ÿÙ
+ ÿ¡reqfle%ÿ1ÿpÿƒFehler("Adressen wurden kopiert","")
+ ÿÊÿË"Kopieren office\Adrs*.*"
+ ÿˆ_netpath$ÿ"office\adrs*.*"ÿq_netpath$ÿ"export\office\adrs*.*"
+ ÿÊÿË"Kopieren office\Conn*.*"
+ ÿˆ_netpath$ÿ"office\Conn*.*"ÿq_netpath$ÿ"export\office\Conn*.*"
+ w%ÿ0
+ ÿØw%ÿ0
+ÿÊÿË"warte darauf das connect.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\office\connect.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ ÿÙ
+ ÿ¡reqfle%ÿ1ÿpÿƒFehler("Adressenverbindungen wurden kopiert","")
+ ÿÊÿË"Kopieren office\be*.*"
+ ÿˆ_netpath$ÿ"office\be*.*"ÿq_netpath$ÿ"export\office\be*.*"
+
+ ÿ¡b”se%ÿÿ1ÿp
+ÿˆ_netpath$ÿ"office\d*.*"ÿq_netpath$ÿ"export\office\d*.*"
+w%ÿ0
+ÿØw%ÿ0
+ÿÊÿË"warte darauf das dokument.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\office\dokument.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ÿÙ
+ÿ¡reqfle%ÿ1ÿpÿƒFehler("Adress-Dokumente wurden kopiert","")
+w%ÿ0
+ÿØw%ÿ0
+ÿÊÿË"warte darauf das dokma.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\office\dokma.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ÿÙ
+ÿ¡reqfle%ÿ1ÿpÿƒFehler("Vermittler-Dokumente wurden kopiert","")
+w%ÿ0
+ÿØw%ÿ0
+ÿÊÿË"warte darauf das dokge.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\office\dokge.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ÿÙ
+ÿ¡reqfle%ÿ1ÿpÿƒFehler("Gesellschafts-Dokumente wurden kopiert","")
+w%ÿ0
+ÿØw%ÿ0
+ÿÊÿË"warte darauf das dokkv.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\office\dokkv.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ÿÙ
+ÿ¡reqfle%ÿ1ÿpÿƒFehler("Vertrags-Dokumente wurden kopiert","")
+ÿˆ_netpath$ÿ"office\ak*.*"ÿq_netpath$ÿ"export\office\ak*.*"
+w%ÿ0
+ÿØw%ÿ0
+ÿÊÿË"warte darauf das akquise.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\office\akquise.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ÿÙ
+ÿ¡reqfle%ÿ1ÿpÿƒFehler("Adressen-Termine wurden kopiert","")
+ ÿ’ÿ¡
+ ÿÊÿË"Kopieren office\f*.*"
+ ÿˆ_netpath$ÿ"office\f*.*"ÿq_netpath$ÿ"export\office\f*.*"
+ ÿÊÿË"Kopieren office\h*.*"
+ ÿˆ_netpath$ÿ"office\h*.*"ÿq_netpath$ÿ"export\office\h*.*"
+ ÿÊÿË"Kopieren office\k*.*"
+ ÿˆ_netpath$ÿ"office\k*.*"ÿq_netpath$ÿ"export\office\k*.*"
+ ÿ½ SET STATUS "Kopieren office\l*.*"
+ ÿ½ COPY _netpath$ + "office\l*.*" TO _netpath$ + "export\office\l*.*"
+ ÿ½ SET STATUS "Kopieren office\m*.*"
+ ÿ½ COPY _netpath$ + "office\m*.*" TO _netpath$ + "export\office\m*.*"
+ ÿÊÿË"Kopieren office\n*.*"
+ ÿˆ_netpath$ÿ"office\n*.*"ÿq_netpath$ÿ"export\office\n*.*"
+ ÿÊÿË"Kopieren office\p*.*"
+ ÿˆ_netpath$ÿ"office\o*.*"ÿq_netpath$ÿ"export\office\o*.*"
+ ÿÊÿË"Kopieren office\staat*.*"
+ ÿˆ_netpath$ÿ"office\staat*.*"ÿq_netpath$ÿ"export\office\staat*.*"
+ ÿ¡reqfle%ÿ1ÿpÿƒFehler("Adressen-Nebendateien wurden kopiert","")
+ ÿÊÿË"Kopieren office\tel*.*"
+ ÿˆ_netpath$ÿ"office\tel*.*"ÿq_netpath$ÿ"export\office\tel*.*"
+w%ÿ0
+ÿØw%ÿ0
+ÿÊÿË"warte darauf das telefon.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\office\telefon.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ÿÙ
+ÿ¡reqfle%ÿ1ÿpÿƒFehler("Adressen-Telefon wurden kopiert","")
+ ÿÊÿË"Kopieren office\tit*.*"
+ ÿˆ_netpath$ÿ"office\tit*.*"ÿq_netpath$ÿ"export\office\tit*.*"
+w%ÿ0
+ÿØw%ÿ0
+ÿÊÿË"warte darauf das titel.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\office\titel.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ÿÙ
+ÿ¡reqfle%ÿ1ÿpÿƒFehler("Adressen-Titel wurden kopiert","")
+ ÿÊÿË"L”schen der Masken, Icons und doc files"
+ ÿ³ÿ_ÿwex0711972 
+ ÿ_netpath$ÿ"export\office\*.sbv"
+ex0711972: 
+ ÿ³ÿ_ÿwex0711973 
+ ÿ_netpath$ÿ"export\office\*.hlp"
+ex0711973: 
+ ÿ³ÿ_ÿwex0711973a 
+ ÿ_netpath$ÿ"export\office\*.ico"
+ex0711973a: 
+ ÿ³ÿ_ÿwex0711974 
+ ÿ_netpath$ÿ"export\office\*.sb!"
+ex0711974: 
+ ÿ³ÿ_ÿwex0711974a 
+ ÿ½ DELETE _netpath$ + "export\office\*.exe"
+ex0711974a:
+ ÿ³ÿ_ÿwex0711974b 
+ ÿ_netpath$ÿ"export\office\*.doc"
+ex0711974b:
+ ÿ³ÿ_ÿwex0711974c 
+ ÿ_netpath$ÿ"export\office\superbase.net"
+ex0711974c:
+ ÿ³ÿ_ÿwex0711975d1
+ ÿ_netpath$ÿ"export\office\*.xls"
+ex0711975d1:
+ ÿ³ÿ_ÿwex0711975c1
+ ÿ_netpath$ÿ"export\office\*.sbq"
+ex0711975c1:
+ ÿ³ÿ_ÿwex0711975b1
+ ÿ_netpath$ÿ"export\office\*.sbp"
+ex0711975b1:
+ ÿ³ÿ_ÿwex0711975a1
+ ÿ_netpath$ÿ"export\office\loepro*.*"
+ex0711975a1:
+ ÿ³ÿ_ÿwex200620061
+ ÿ_netpath$ÿ"export\office\kvhis.*"
+ex200620061:
+ ÿ³ÿ_ÿwex200620062
+ ÿ_netpath$ÿ"export\office\adrstat.*"
+ex200620062:
+ ÿ³ÿ_ÿwex200620063
+ ÿ_netpath$ÿ"export\office\key*.*"
+ex200620063:
+ ÿ³ÿ_ÿwex200620064
+ ÿ_netpath$ÿ"export\office\onlb.*"
+ex200620064:
+ ÿ³ÿ_ÿwex200620065
+ ÿ_netpath$ÿ"export\office\kont*.*"
+ex200620065:
+ ÿ³ÿ_ÿwex200620066
+ ÿ_netpath$ÿ"export\office\kpro*.*"
+ex200620066:
+ ÿ³ÿ_ÿwex200620067
+ ÿ_netpath$ÿ"export\office\beru*.*"
+ex200620067:
+ ÿ³ÿ_ÿwex200620068
+ ÿ_netpath$ÿ"export\office\fsta*.*"
+ex200620068:
+ ÿ³ÿ_ÿwex200620069
+ ÿ_netpath$ÿ"export\office\hobb*.*"
+ex200620069:
+ ÿ³ÿ_ÿwex2006200610
+ ÿ_netpath$ÿ"export\office\o*.*"
+ex2006200610:
+ ÿ³ÿ_ÿwex2006200611
+ ÿ_netpath$ÿ"export\office\tite*.*"
+ex2006200611:
+ÿ¡(reqExpBuch%ÿ1)ÿp
+ÿÊÿË"Kopieren provis\buch*.*"
+ÿˆ_netpath$ÿ"provis\buch*.*"ÿq_netpath$ÿ"export\provis\buch*.*"
+w%ÿ0
+ÿØw%ÿ0
+ÿÊÿË"warte darauf das buchung.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\provis\buchung.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ÿÙ
+ÿ¡reqfle%ÿ1ÿpÿƒFehler("Buchung wurden kopiert","")
+w%ÿ0
+ÿØw%ÿ0
+ÿÊÿË"warte darauf das buchung1.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\provis\buchung1.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ÿÙ
+ÿ¡reqfle%ÿ1ÿpÿƒFehler("Buchung1 wurden kopiert","")
+ÿˆ_netpath$ÿ"provis\zein*.*"ÿq_netpath$ÿ"export\provis\zein*.*"
+w%ÿ0
+ÿØw%ÿ0
+ÿÊÿË"warte darauf das zeingan1.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\provis\zeingan1.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ÿÙ
+ÿ¡reqfle%ÿ1ÿpÿƒFehler("Zeingan1 wurden kopiert","")
+w%ÿ0
+ÿØw%ÿ0
+ÿÊÿË"warte darauf das zeingang.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\provis\zeingang.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ÿÙ
+ÿ¡reqfle%ÿ1ÿpÿƒFehler("zeingang wurden kopiert","")
+ ÿ’ÿ¡
+ ÿ³ÿ_ÿwErrorHandler
+ ÿÊÿË"Kopieren provis\fo*.*"
+ ÿˆ_netpath$ÿ"provis\fo*.*"ÿq_netpath$ÿ"export\provis\fo*.*"
+w%ÿ0
+ÿØw%ÿ0
+ÿÊÿË"warte darauf das formular.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\provis\formular.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ÿÙ
+ÿ¡reqfle%ÿ1ÿpÿƒFehler("Formular wurden kopiert","")
+ ÿÊÿË"Kopieren provis\ge*.*"
+ ÿˆ_netpath$ÿ"provis\ge*.*"ÿq_netpath$ÿ"export\provis\ge*.*"
+ ÿÊÿË"Kopieren provis\kver*.*"
+ ÿˆ_netpath$ÿ"provis\k*.*"ÿq_netpath$ÿ"export\provis\k*.*"
+w%ÿ0
+ÿØw%ÿ0
+ÿÊÿË"warte darauf das kvtmp.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\provis\kvtmp.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ÿÙ
+ÿ¡ÿJ(_netpath$ÿ"export\provis\kukto.sbf")ÿp
+ÿ_netpath$ÿ"export\provis\kukto.*"
+ÿÏÿ›3
+ÿ’ÿ¡
+ÿ¡reqfle%ÿ1ÿpÿƒFehler("KVTMP wurden kopiert","")
+ ÿÊÿË"Kopieren provis\kuk*.*"
+ ÿ½ COPY _netpath$ + "provis\kuk*.*" TO _netpath$ + "export\provis\kuk*.*"
+ ÿÊÿË"Kopieren provis\m*.*"
+ ÿˆ_netpath$ÿ"provis\m*.*"ÿq_netpath$ÿ"export\provis\m*.*"
+ ÿ¡reqfle%ÿ1ÿpÿƒFehler("Mitarbeiter wurden kopiert","")
+ ÿÊÿË"Kopieren provis\sp*.*"
+ ÿˆ_netpath$ÿ"provis\sp*.*"ÿq_netpath$ÿ"export\provis\sp*.*"
+w%ÿ0
+ÿØw%ÿ0
+ÿÊÿË"warte darauf das sparten.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\provis\sparten.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ÿÙ
+ÿ¡reqfle%ÿ1ÿpÿƒFehler("Sparten wurden kopiert","")
+ ÿÊÿË"Kopieren provis\stam*.*"
+ ÿ½ COPY _netpath$ + "provis\stam*.*" TO _netpath$ + "export\provis\stam*.*"
+ ÿ½ IF reqfle% = 1 THEN CALL Fehler("STAMM wurden kopiert","")
+ ÿÊÿË"Kopieren provis\verm*.*"
+ ÿˆ_netpath$ÿ"provis\verm*.*"ÿq_netpath$ÿ"export\provis\verm*.*"
+ ÿÊÿË"Kopieren provis\vor*.*"
+ ÿˆ_netpath$ÿ"provis\vor*.*"ÿq_netpath$ÿ"export\provis\vor*.*"
+ ÿÊÿË"Kopieren provis\vko*.*"
+ ÿˆ_netpath$ÿ"provis\vko*.*"ÿq_netpath$ÿ"export\provis\vko*.*"
+ ÿÊÿË"Kopieren provis\waehr*.*"
+ ÿˆ_netpath$ÿ"provis\waehr*.*"ÿq_netpath$ÿ"export\provis\waehr*.*"
+w%ÿ0
+ÿØw%ÿ0
+ÿÊÿË"warte darauf das waehrung.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\provis\waehrung.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ÿÙ
+ÿ¡reqfle%ÿ1ÿpÿƒFehler("WAEHRUNG wurden kopiert","")
+ ÿÊÿË"Kopieren provis\tarif*.*"
+ ÿˆ_netpath$ÿ"provis\tarif*.*"ÿq_netpath$ÿ"export\provis\tarif*.*"
+w%ÿ0
+ÿØw%ÿ0
+ÿÊÿË"warte darauf das tarif.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\provis\tarif.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ÿÙ
+ÿ¡reqfle%ÿ1ÿpÿƒFehler("TARIF wurden kopiert","")
+ ÿÊÿË"Kopieren provis\agdir*.*"
+ ÿˆ_netpath$ÿ"provis\agdir*.*"ÿq_netpath$ÿ"export\provis\agdir*.*"
+ ÿÊÿË"Kopieren provis\vprod*.*"
+ ÿˆ_netpath$ÿ"provis\vp*.*"ÿq_netpath$ÿ"export\provis\vp*.*"
+w%ÿ0
+ÿØw%ÿ0
+ÿÊÿË"warte darauf das vprodukt.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\provis\vprodukt.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ÿÙ
+ÿ¡reqfle%ÿ1ÿpÿƒFehler("VPRODUKT wurden kopiert","")
+ ÿÊÿË"Kopieren provis\aums*.*"
+ ÿˆ_netpath$ÿ"provis\aums*.*"ÿq_netpath$ÿ"export\provis\aums*.*"
+ ÿÊÿË"Kopieren provis\kgeadr*.*"
+ ÿˆ_netpath$ÿ"provis\kgeadr*.*"ÿq_netpath$ÿ"export\provis\kgeadr*.*"
+ ÿÊÿË"Kopieren provis\kurs*.*"
+ ÿˆ_netpath$ÿ"provis\kurs*.*"ÿq_netpath$ÿ"export\provis\kurs*.*"
+w%ÿ0
+ÿØw%ÿ0
+ÿÊÿË"warte darauf das kurshist.sbf zu Ende kopiert wurde"
+ÿ¡ÿJ(_netpath$ÿ"export\provis\kurshist.sbf")ÿp
+w%ÿ1
+ÿ^
+ÿÏÿ›3
+ÿ’ÿ¡
+ÿÙ
+ÿ¡reqfle%ÿ1ÿpÿƒFehler("KURSHIST wurden kopiert","")
+ ÿ½ COPY _netpath$ + "provis\z*.*" TO _netpath$ + "export\provis\z*.*"
+ ÿÊÿË"L”schen der Masken, Icons und doc files"
+ ÿ³ÿ_ÿwex0711975d
+ ÿ_netpath$ÿ"export\provis\*.xls"
+ex0711975d:
+ ÿ³ÿ_ÿwex0711975c
+ ÿ_netpath$ÿ"export\provis\*.sbq"
+ex0711975c: 
+ ÿ³ÿ_ÿwex0711975b
+ ÿ_netpath$ÿ"export\provis\*.sbp"
+ex0711975b:
+ ÿ³ÿ_ÿwex0711975a
+ ÿ_netpath$ÿ"export\provis\loepro*.*"
+ex0711975a: 
+ ÿ³ÿ_ÿwex0711975
+ ÿ_netpath$ÿ"export\provis\*.sbv"
+ex0711975: 
+ ÿ³ÿ_ÿwex0711976 
+ ÿ_netpath$ÿ"export\provis\*.hlp"
+ex0711976: 
+ ÿ³ÿ_ÿwex0711976a 
+ ÿ_netpath$ÿ"export\provis\*.ico"
+ex0711976a: 
+ ÿ³ÿ_ÿwex0711977 
+ ÿ_netpath$ÿ"export\provis\*.sb!"
+ex0711977:
+ ÿ³ÿ_ÿwex0711978 
+ ÿ_netpath$ÿ"export\provis\*.exe"
+ex0711978:
+ ÿ³ÿ_ÿwex0711979a 
+ ÿ_netpath$ÿ"export\provis\*.doc"
+ex0711979a:
+ ÿ³ÿ_ÿwex0711979 
+ ÿ_netpath$ÿ"export\provis\superbase.net"
+ex0711979:
+ ÿ³ÿ_ÿwexp200620061 
+ ÿ_netpath$ÿ"export\provis\agdir*.*"
+exp200620061:
+ ÿ³ÿ_ÿwexp200620062 
+ ÿ_netpath$ÿ"export\provis\foerk*.*"
+exp200620062:
+ ÿ³ÿ_ÿwexp200620063 
+ ÿ_netpath$ÿ"export\provis\geadru*.*"
+exp200620063:
+ ÿ³ÿ_ÿwexp200620064
+ ÿ_netpath$ÿ"export\provis\geko*.*"
+exp200620064:
+ ÿ³ÿ_ÿwexp200620065
+ ÿ_netpath$ÿ"export\provis\K?0*.*"
+exp200620065:
+ ÿ³ÿ_ÿwexp200620066 
+ ÿ_netpath$ÿ"export\provis\krg*.*"
+exp200620066:
+ ÿ³ÿ_ÿwexp200620067 
+ ÿ_netpath$ÿ"export\provis\kvf*.*"
+exp200620067:
+ ÿ³ÿ_ÿwexp200620068
+ ÿ_netpath$ÿ"export\provis\kvp*.*"
+exp200620068:
+ ÿ³ÿ_ÿwexp200620069
+ ÿ_netpath$ÿ"export\provis\kvs*.*"
+exp200620069:
+ ÿ³ÿ_ÿwexp2006200610
+ ÿ_netpath$ÿ"export\provis\kvt*.*"
+exp2006200610:
+ ÿ³ÿ_ÿwexp2006200611
+ ÿ_netpath$ÿ"export\provis\spezko*.*"
+exp2006200611:
+ ÿ³ÿ_ÿwexp2006200612
+ ÿ_netpath$ÿ"export\provis\vko*.*"
+exp2006200612:
+ ÿ³ÿ_ÿwexp2006200613
+ ÿ_netpath$ÿ"export\provis\vpgeko*.*"
+exp2006200613:
+ ÿ³ÿ_ÿwexp2006200614
+ ÿ_netpath$ÿ"export\provis\vpspez*.*"
+exp2006200614:
+ ÿ³ÿ_ÿwexp2006200615
+ ÿ_netpath$ÿ"export\provis\maaus*.*"
+exp2006200615:
+ ÿ³ÿ_ÿwexp2006200616
+ ÿ_netpath$ÿ"export\provis\makre*.*"
+exp2006200616:	
+ ÿ³ÿ_ÿwexp2006200617
+ ÿ_netpath$ÿ"export\provis\aum*.*"
+exp2006200617:
+ ÿ³ÿ_ÿwexp2006200618
+ ÿ_netpath$ÿ"export\provis\maaus*.*"
+exp2006200618:
+
+
+
+
+
+ 
+
+
+ ÿˆ_netpath$ÿ"export\support\*.*"ÿq_netpath$ÿ"export\office\"
+ ÿÏÿ›10
+ ÿÂ"ENDE des Kopierens","",2
+ ÿ¡reqfle%ÿ1ÿpÿƒFehler("ENDE des Kopierens","")
+ ÿÊÿË""
+ ÿƒDFile(5,"supervis"ÿ_fpw$)
+ ÿ£codema.supervis
+ ÿÉÿ`ÿá
+ ÿØÿOÿB("supervis")
+ÿÊÿË"bearbeite Mitarbeiter: "ÿname.supervis
+ÿ¡nachname.supervisÿmanach$ÿvorname.supervisÿmavor$ÿp
+ÿÉÿ±
+ÿ^
+ÿÉÿ¾
+ÿ’ÿ¡
+ ÿÙ
+ ÿÊÿË"Vorbereitung der weiteren Verarbeitung"
+ ÿÏÿ›10
+ ÿ¡ÿA("supervis")ÿ
+1ÿp
+ÿÿ™"supervis"
+codema.supervisÿ1
+Nachname.supervisÿ"Supervisor"
+name.supervisÿ"Supervisor"
+ÿÌÿ™"supervis"
+ ÿ’ÿ¡
+ ÿ†ÿ™"supervis"
+ ÿ¡PrvVerfahr$ÿ"Zahlungseingang"ÿp
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿƒDFile(7,"buchung1"ÿ_fpw$)
+ÿÊÿË"Vorbereitung Buchungsdatei"
+ÿ½ UPDATE ExpAg.buchung1 = "0"
+ÿ½ END UPDATE 
+i%ÿ0
+ÿ™"Buchung1"
+ÿ£ExpAG.Buchung1
+ÿÉÿ¥"1"ÿáÿ™"buchung1"ÿ£ExpAG.buchung1
+
+ÿØÿOÿB("buchung1")ÿexpag.buchung1ÿ"1"
+ÿ¡expag.buchung1ÿ"1"ÿp
+	i%ÿi%ÿ1
+	expag.buchung1ÿ"0"
+	ÿÌÿ™"Buchung1"
+	ÿÉÿ`
+	ÿÉÿ¥"1"ÿáÿ™"buchung1"ÿ£ExpAG.buchung1
+	ÿÊÿË"Vorbereitung Buchungsdatei  "ÿÿ(i%,"99999999")
+ÿ^
+	ÿÉÿ±ÿá
+ÿ’ÿ¡
+ÿÙ
+ÿ’ÿ¡
+ ÿ^
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿƒDFile(7,"buchung"ÿ_fpw$)
+ÿÊÿË"Vorbereitung Buchungsdatei"
+ÿ½ UPDATE ExpAg.buchung = "0"
+ÿ½ END UPDATE 
+i%ÿ0
+ÿ™"Buchung"
+ÿ£ExpAG.Buchung
+ÿÉÿ¥"1"ÿáÿ™"buchung"ÿ£ExpAG.buchung
+
+ÿØÿOÿB("buchung")ÿexpag.buchungÿ"1"
+ÿ¡expag.buchungÿ"1"ÿp
+	i%ÿi%ÿ1
+	expag.buchungÿ"0"
+	ÿÌÿ™"Buchung"
+	ÿÉÿ`
+	ÿÉÿ¥"1"ÿáÿ™"buchung"ÿ£ExpAG.buchung
+	ÿÊÿË"Vorbereitung Buchungsdatei  "ÿÿ(i%,"99999999")
+ÿ^
+	ÿÉÿ±ÿá
+ÿ’ÿ¡
+ÿÙ
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡reqExpBuch%ÿ1ÿp
+ÿƒDFile(7,"buchtemp"ÿ_fpw$)
+ÿ™"buchtemp"
+ÿ¾ÿaÿ™"buchtemp"
+ ÿ’ÿ¡
+ ÿƒDFile(7,"sparten"ÿ_fpw$)
+ ÿ½ REQUEST "Sollen die Notizen in der Spartendatei ","fr die zu exportierende Agentur gel”scht werden?",130,req%
+ ÿ¡reqsp%ÿ1ÿp
+ÿÍNotiz.spartenÿ""
+ÿ’ÿÍ
+ ÿ’ÿ¡
+ ÿƒDFile(7,"geadr"ÿ_fpw$)
+ ÿ½ REQUEST "Sollen die Notizen in der Gesellschaftsdatei ","fr die zu exportierende Agentur gel”scht werden?",130,req%
+ ÿ¡reqge%ÿ1ÿp
+ÿÍNotiz.geadrÿ""
+ÿ’ÿÍ
+ ÿ’ÿ¡
+ ÿƒDFile(7,"maadr"ÿ_fpw$)
+ÿÊÿË"Vorbereitung Mitarbeiterdatei"
+i%ÿ0
+ÿ™"maadr"
+ÿ£ExpAG.maadr
+ÿÉÿ¥"1"ÿáÿ™"maadr"ÿ£ExpAG.maadr
+ÿØÿOÿB("maadr")ÿexpag.maadrÿ"1"
+ÿ¡expag.maadrÿ"1"ÿp
+i%ÿi%ÿ1
+expag.maadrÿ"0"
+ÿÌÿ™"maadr"
+ÿÉÿ`
+ÿÉÿ¥"1"ÿáÿ™"maadr"ÿ£ExpAG.maadr
+ÿÊÿË"Vorbereitung Mitarbeiterdatei  "ÿÿ(i%,"99999999")
+ÿ^
+ÿÉÿ±ÿá
+ÿ’ÿ¡
+ÿÙ
+ÿ½ REQUEST "Sollen die Notizen in der Vermittlerdatei ","fr die zu exportierende Agentur gel”scht werden?",130,req%
+ÿ¡reqma%ÿ1ÿp
+ÿÍNotiz.maadrÿ""
+ÿ’ÿÍ
+ÿ’ÿ¡
+ ÿ½ UPDATE ExpAg.maadr = "0"
+ ÿ½ END UPDATE 
+ ÿƒDFile(7,"kvertrag"ÿ_fpw$)
+ ÿÊÿË"Vorbereitung Vertragsdatei"
+ ÿ½ UPDATE ExpAg.kvertrag = "0"
+ ÿ½ END UPDATE 
+ÿÊÿË"Vorbereitung Vertragsdatei"
+i%ÿ0
+ÿ™"Kvertrag"
+ÿ£ExpAG.Kvertrag
+ÿÉÿ¥"1"ÿáÿ™"Kvertrag"ÿ£ExpAG.Kvertrag
+ÿØÿOÿB("Kvertrag")ÿexpag.Kvertragÿ"1"
+ÿ¡expag.Kvertragÿ"1"ÿp
+i%ÿi%ÿ1
+expag.Kvertragÿ"0"
+ÿÌÿ™"Kvertrag"
+ÿÉÿ`
+ÿÉÿ¥"1"ÿáÿ™"Kvertrag"ÿ£ExpAG.Kvertrag
+ÿÊÿË"Vorbereitung Vertragsdatei  "ÿÿ(i%,"99999999")
+ÿ^
+ÿÉÿ±ÿá
+ÿ’ÿ¡
+ÿÙ
+ 
+ ÿ¡reqExpBuch%ÿ1ÿp
+ÿ¡PrvVerfahr$ÿ"Zahlungseingang"ÿp
+ÿƒDFile(7,"zeingan1"ÿ_fpw$)
+ÿÊÿË"Vorbereitung Zahlungseingangddatei"
+ÿ™"zeingan1"
+ÿ³ÿ_ÿwf1701200410
+ÿƒFldAdd1("EXPAG","TXT;1",1)
+ÿÅÿ™"zeingan1"
+f1701200410: 
+ÿ³ÿ_ÿwErrorHandler 
+ÿ£ExpAG.zeingan1
+ÿÉÿ¥"1"ÿáÿ™"zeingan1"ÿ£ExpAG.zeingan1
+ÿØÿOÿB("zeingan1")ÿexpag.zeingan1ÿ"1"
+ÿ¡expag.zeingan1ÿ"1"ÿp
+	i%ÿi%ÿ1
+	expag.zeingan1ÿ"0"
+	ÿÌÿ™"zeingan1"
+	ÿÉÿ`
+	ÿÉÿ¥"1"ÿáÿ™"zeingan1"ÿ£ExpAG.zeingan1
+	ÿÊÿË"Vorbereitung Zahlungseingangsdatei  "ÿÿ(i%,",99999999")
+ÿ^
+	ÿÉÿ±ÿá
+ÿ’ÿ¡
+ÿÙ
+ÿ^
+ÿƒDFile(7,"zeingang"ÿ_fpw$)
+ÿÊÿË"Vorbereitung Zahlungseingangddatei"
+ÿ™"zeingang"
+ÿ³ÿ_ÿwf1701200420
+ÿƒFldAdd1("EXPAG","TXT;1",1)
+ÿÅÿ™"zeingang"
+f1701200420: 
+ÿ³ÿ_ÿwErrorHandler 
+ÿ£ExpAG.zeingang
+ÿÉÿ¥"1"ÿáÿ™"zeingang"ÿ£ExpAG.zeingang
+ÿØÿOÿB("zeingang")ÿexpag.zeingangÿ"1"
+ÿ¡expag.zeingangÿ"1"ÿp
+	i%ÿi%ÿ1
+	expag.zeingangÿ"0"
+	ÿÌÿ™"zeingang"
+	ÿÉÿ`
+	ÿÉÿ¥"1"ÿáÿ™"zeingang"ÿ£ExpAG.zeingang
+	ÿÊÿË"Vorbereitung Zahlungseingangsdatei  "ÿÿ(i%,",99999999")
+ÿ^
+	ÿÉÿ±ÿá
+ÿ’ÿ¡
+ÿÙ
+ÿ’ÿ¡
+ 
+ ÿ’ÿ¡
+ ÿƒDFile(6,"adressen"ÿ_fpw$)
+ ÿÊÿË"Vorbereitung Adressdatei"
+ ÿ½ UPDATE ExpAg.GAdrDat$ = "0"
+ ÿ½ END UPDATE 
+i%ÿ0
+ÿ™"Adressen"
+ÿ£ExpAG.GAdrDat$
+ÿÉÿ¥"1"ÿáÿ™"Adressen"ÿ£ExpAG.GAdrDat$
+ÿØÿOÿB("Adressen")ÿexpag.GAdrDat$ÿ"1"
+ÿ¡expag.GAdrDat$ÿ"1"ÿp
+i%ÿi%ÿ1
+expag.GAdrDat$ÿ"0"
+ÿÌÿ™"Adressen"
+ÿÉÿ`
+ÿÉÿ¥"1"ÿáÿ™"Adressen"ÿ£ExpAG.GAdrDat$
+ÿÊÿË"Vorbereitung Adressdatei  "ÿÿ(i%,"99999999")
+ÿ^
+ÿÉÿ±ÿá
+ÿ’ÿ¡
+ÿÙ
+
+ ÿƒDFile(6,"telefon"ÿ_fpw$)
+ ÿÊÿË"Vorbereitung Telefondatei"
+ ÿ½ UPDATE ExpAg.GAdrDat$ = "0"
+ ÿ½ END UPDATE 
+i%ÿ0
+ÿ™"Telefon"
+ÿ£ExpAG.Telefon
+ÿÉÿ¥"1"ÿáÿ™"Telefon"ÿ£ExpAG.Telefon
+ÿØÿOÿB("Telefon")ÿexpag.Telefonÿ"1"
+ÿ¡expag.Telefonÿ"1"ÿp
+i%ÿi%ÿ1
+expag.Telefonÿ"0"
+ÿÌÿ™"Telefon"
+ÿÉÿ`
+ÿÉÿ¥"1"ÿáÿ™"Telefon"ÿ£ExpAG.Telefon
+ÿÊÿË"Vorbereitung Telefondatei  "ÿÿ(i%,"99999999")
+ÿ^
+ÿÉÿ±ÿá
+ÿ’ÿ¡
+ÿÙ
+
+ ÿ¡b”se%ÿÿ1ÿp
+ÿƒDFile(6,"akquise"ÿ_fpw$)
+ÿÊÿË"Vorbereitung Akquise"
+i%ÿ0
+ÿ™"Akquise"
+ÿ³ÿ_ÿwf170120041
+ÿƒFldAdd1("EXPAG","TXT;1",1)
+ÿÅÿ™"AKQUISE"
+f170120041: 
+ÿ³ÿ_ÿwErrorHandler
+ÿ£ExpAG.Akquise
+ÿÉÿ¥"1"ÿáÿ™"Akquise"ÿ£ExpAG.Akquise
+ÿØÿOÿB("Akquise")ÿexpag.Akquiseÿ"1"
+ÿ¡expag.Akquiseÿ"1"ÿp
+i%ÿi%ÿ1
+expag.Akquiseÿ"0"
+ÿÌÿ™"Akquise"
+ÿÉÿ`
+ÿÉÿ¥"1"ÿáÿ™"Akquise"ÿ£ExpAG.Akquise
+ÿÊÿË"Vorbereitung Akquisedatei  "ÿÿ(i%,",99999999")
+ÿ^
+ÿÉÿ±ÿá
+ÿ’ÿ¡
+ÿÙ
+
+
+ÿƒDFile(6,"dokument"ÿ_fpw$)
+ÿÊÿË"Vorbereitung Dokument"
+i%ÿ0
+ÿ™"dokument"
+ÿ³ÿ_ÿwf170120042
+ÿƒFldAdd1("EXPAG","TXT;1",1)
+ÿÅÿ™"dokument"
+f170120042: 
+ÿ³ÿ_ÿwErrorHandler 
+ÿ£ExpAG.dokument
+ÿÉÿ¥"1"ÿáÿ™"dokument"ÿ£ExpAG.dokument
+ÿØÿOÿB("dokument")ÿexpag.dokumentÿ"1"
+ÿ¡expag.dokumentÿ"1"ÿp
+i%ÿi%ÿ1
+expag.dokumentÿ"0"
+ÿÌÿ™"dokument"
+ÿÉÿ`
+ÿÉÿ¥"1"ÿáÿ™"dokument"ÿ£ExpAG.dokument
+ÿÊÿË"Vorbereitung Dokumentdatei  "ÿÿ(i%,",99999999")
+ÿ^
+ÿÉÿ±ÿá
+ÿ’ÿ¡
+ÿÙ
+
+ÿƒDFile(6,"dokkv"ÿ_fpw$)
+ÿÊÿË"Vorbereitung Dokkv"
+i%ÿ0
+ÿ™"dokkv"
+ÿ³ÿ_ÿwf170120043
+ÿƒFldAdd1("EXPAG","TXT;1",1)
+ÿÅÿ™"DOKKV"
+f170120043: 
+ÿ³ÿ_ÿwErrorHandler 
+ÿ£ExpAG.dokkv
+ÿÉÿ¥"1"ÿáÿ™"dokkv"ÿ£ExpAG.dokkv
+ÿØÿOÿB("dokkv")ÿexpag.dokkvÿ"1"
+ÿ¡expag.dokkvÿ"1"ÿp
+i%ÿi%ÿ1
+expag.dokkvÿ"0"
+ÿÌÿ™"dokkv"
+ÿÉÿ`
+ÿÉÿ¥"1"ÿáÿ™"dokkv"ÿ£ExpAG.dokkv
+ÿÊÿË"Vorbereitung Dokkv  "ÿÿ(i%,",99999999")
+ÿ^
+ÿÉÿ±ÿá
+ÿ’ÿ¡
+ÿÙ
+
+ÿƒDFile(6,"dokge"ÿ_fpw$)
+ÿÊÿË"Vorbereitung Dokge"
+i%ÿ0
+ÿ™"dokge"
+ÿ³ÿ_ÿwf170120044
+ÿƒFldAdd1("EXPAG","TXT;1",1)
+ÿÅÿ™"DOKGE"
+f170120044: 
+ÿ³ÿ_ÿwErrorHandler 
+ÿ£ExpAG.dokge
+ÿÉÿ¥"1"ÿáÿ™"dokge"ÿ£ExpAG.dokge
+ÿØÿOÿB("dokge")ÿexpag.dokgeÿ"1"
+ÿ¡expag.dokgeÿ"1"ÿp
+i%ÿi%ÿ1
+expag.dokgeÿ"0"
+ÿÌÿ™"dokge"
+ÿÉÿ`
+ÿÉÿ¥"1"ÿáÿ™"dokge"ÿ£ExpAG.dokge
+ÿÊÿË"Vorbereitung Dokge  "ÿÿ(i%,",99999999")
+ÿ^
+ÿÉÿ±ÿá
+ÿ’ÿ¡
+ÿÙ
+
+ÿƒDFile(6,"dokma"ÿ_fpw$)
+ÿÊÿË"Vorbereitung DokMa"
+i%ÿ0
+ÿ™"dokma"
+ÿ³ÿ_ÿwf170120045
+ÿƒFldAdd1("EXPAG","TXT;1",1)
+ÿÅÿ™"DOKMA"
+f170120045: 
+ÿ³ÿ_ÿwErrorHandler 
+ÿ£ExpAG.dokma
+ÿÉÿ¥"1"ÿáÿ™"dokma"ÿ£ExpAG.dokma
+ÿØÿOÿB("dokma")ÿexpag.dokmaÿ"1"
+ÿ¡expag.dokmaÿ"1"ÿp
+i%ÿi%ÿ1
+expag.dokmaÿ"0"
+ÿÌÿ™"dokma"
+ÿÉÿ`
+ÿÉÿ¥"1"ÿáÿ™"dokma"ÿ£ExpAG.dokma
+ÿÊÿË"Vorbereitung DokMa  "ÿÿ(i%,",99999999")
+ÿ^
+ÿÉÿ±ÿá
+ÿ’ÿ¡
+ÿÙ
+ ÿ’ÿ¡
+
+
+ ÿ½ CALL DFile(6,GAkquiDat$ + _fpw$)
+ ÿ½ SET STATUS "Vorbereitung Termindatei"
+ ÿ½ UPDATE ExpAg.GAkquiDat$ = "0"
+ ÿ½ END UPDATE 
+ ÿßÿe
+ ÿ½ Mitarbeiter festlegen
+ ÿ™"maadr"
+ ÿÉÿ¥_cuma%ÿáÿ™"MAADR"ÿ£CodeMA.MAADR
+ ÿ¡vorg„nger.maadrÿ_cuma%ÿp
+_cuma%ÿ0
+ÿƒFehler("Export wird nicht durchgefhrt, da Agentur sich selbst als Vorg„nger hat!","")
+ ÿ’ÿ¡
+ ExpAG.maadrÿ"1"
+ ÿÌÿ™"maadr"
+ ÿÊÿ£codema.MAADR
+ ÿ£codema.MAADR
+ ÿÉÿ`
+ rec%ÿÿA("maadr")
+ ÿ×maa12%(rec%ÿ5000)
+ ÿ×maa12st%(rec%ÿ5000)
+ ÿ½ Aufbau eines Arrays mit den Nummern der Mitarbeiter, die der Struktur unterstellt sind
+ ÿ¡_cuma%ÿ0ÿpÿwexpend071197
+ ok%ÿ0
+ anz%ÿ1
+ anzold%ÿ0
+ maa12%(0)ÿ_cuma%
+ ÿ½ CALL Fehler ("DEBUG-Beginn","***********************************************************************************************************************************************************************************************************")
+ ÿƒFehler("Export-Feststellung der Vermittler","")
+ ÿ¡reqaktag%ÿ1ÿpÿwreagexp290420041
+ ÿßÿe
+ ku%ÿ0
+ cuold%ÿ0
+ stold%ÿ1
+startAGSel1611: 
+ ÿ™"maadr"
+ ÿÉÿĞ
+ ÿÉÿĞVorg„nger.maadrÿcu%
+ ÿÉÿ`ÿá
+ ÿ½ startanz% = stold%
+ ÿØÿOÿB("maadr")
+ok%ÿ0
+ÿ›i%ÿ0ÿqanz%
+ÿ¡maa12%(i%)ÿcodema.maadrÿp
+ok%ÿ1
+i%ÿanz%
+ÿ’ÿ¡
+ÿ±i%
+ÿ¡ok%ÿ0ÿp
+ÿ¡codema.maadrÿ0ÿp
+maa12%(anz%)ÿcodema.maadr
+maa12st%(anz%)ÿ0
+ExpAG.maadrÿ"1"
+ÿÌÿ™"maadr"
+anz%ÿanz%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿÉÿ±ÿá
+ ÿÙ
+ 
+ ÿ›startanz%ÿstold%ÿqanz%
+ÿ¡maa12st%(startanz%)ÿ0ÿp
+cu%ÿmaa12%(startanz%)
+maa12st%(startanz%)ÿ1
+stold%ÿstartanz%
+ÿwstartAGSel1611:
+ÿ’ÿ¡
+ ÿ±startanz%
+ 
+ 
+ ÿ½ CALL Fehler("DEBUG","")
+ ÿƒFehler("Export-Feststellung der Vermittler","Ende")
+reagexp290420041: 
+ ÿ¾ÿaÿ™"maadr"ÿĞExpAG.maadrÿ"1"
+ ÿ½ Setzen ExpAG in den verschiedenen Dateien
+ ÿ›i%ÿ0ÿqanz%
+ÿ™"Kvertrag"
+ÿ£CodeMA.kvertrag
+ÿÉÿ`
+codemaKV%ÿmaa12%(i%)
+ÿ¡codemaKV%ÿ
+1ÿpÿwxtend250701001
+ÿÉÿ¥codemaKV%ÿáÿ™"KVERTRAG"ÿ£codema.kvertrag
+ÿØÿOÿB("KVERTRAG")ÿcodema.kvertragÿcodemaKV%
+ÿÊÿË"Kennzeichen in Vertragsdatei setzen ! "ÿVS_Nr.kvertrag
+ExpAG.kvertragÿ"1"
+ÿÌÿ™"KVERTRAG"
+ÿÉÿ±ÿá
+ÿÙ
+ÿ½ CALL Fehler("Routine einbauen,um dafr zu sorgen","")
+ÿ¡reqnV%ÿ1ÿp
+ÿ½ dafr sorgen das alle Adressen, Telefonnr, evt Dokumente, evt Termine markiert werden
+ÿ¡ÿJ(codemaKV%,codema.adressen)ÿp
+ÿ™"Adressen"
+ÿ£codema.adressen
+ÿÉÿ`ÿ™"adressen"ÿ£codema.adressen
+ÿÉÿ¥codemaKV%ÿáÿ™"Adressen"ÿ£codema.adressen
+iab%ÿ0
+ÿØÿOÿB("Adressen")ÿcodema.adressenÿcodemaKV%
+	iab%ÿiab%ÿ1
+	ÿÊÿË"Markiere Adressen zur Agentur :"ÿÿ(iab%,",99999999")
+	codeku%ÿcodeku.adressen
+	ÿ¡codema.adressenÿcodemaKV%ÿp
+ExpAG.adressenÿ"1"
+ÿÌÿ™"adressen"
+ÿ¡ÿJ(codeku.adressen,codeku.telefon)ÿp
+ÿÉÿ`ÿ™"telefon"ÿ£codeku.telefon
+ÿÉÿ¥codeku.adressenÿáÿ™"telefon"ÿ£codeku.telefon
+ÿØÿOÿB("Telefon")ÿcodeku.telefonÿcodeku.adressen
+ÿ¡codeku.telefonÿcodeku.adressenÿp
+ExpAG.telefonÿ"1"
+ÿÌÿ™"telefon"
+ÿ’ÿ¡
+ÿÉÿ±ÿáÿ™"telefon"ÿ£codeku.telefon
+ÿÙ
+ÿ’ÿ¡
+ÿ¡alleVMKV%ÿ1ÿp
+ÿ¡ÿJ(codeku.adressen,codeku.kvertrag)ÿp
+ÿ™"kvertrag"
+ÿ£codeku.kvertrag
+ÿÉÿ`ÿ™"kvertrag"ÿ£codeku.kvertrag
+ÿÉÿ¥codeku.adressenÿáÿ™"kvertrag"ÿ£codeku.kvertrag
+ÿØÿOÿB("kvertrag")ÿcodeku.kvertragÿcodeku%
+ÿ¡codeku.kvertragÿcodeku%ÿp
+ExpAG.kvertragÿ"1"
+ÿÌÿ™"kvertrag"
+ÿ’ÿ¡
+ÿÉÿ±ÿáÿ™"kvertrag"ÿ£codeku.kvertrag
+ÿÙ
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡b”se%ÿÿ1ÿp
+ÿ¡ÿJ(codeku.adressen,codeku.akquise)ÿp
+ÿÉÿ`ÿ™"akquise"ÿ£codeku.akquise
+ÿÉÿ¥codeku.adressenÿáÿ™"akquise"ÿ£codeku.akquise
+ÿØÿOÿB("akquise")ÿcodeku.akquiseÿcodeku.adressen
+ÿ¡codeku.akquiseÿcodeku.adressenÿp
+ExpAG.akquiseÿ"1"
+ÿÌÿ™"akquise"
+ÿ’ÿ¡
+ÿÉÿ±ÿáÿ™"akquise"ÿ£codeku.akquise
+ÿÙ
+ÿ’ÿ¡
+ÿ¡ÿJ(codeku.adressen,codeku.dokument)ÿp
+ÿÉÿ`ÿ™"dokument"ÿ£codeku.dokument
+ÿÉÿ¥codeku.adressenÿáÿ™"dokument"ÿ£codeku.dokument
+ÿØÿOÿB("dokument")ÿcodeku.dokumentÿcodeku.adressen
+ÿ¡codeku.dokumentÿcodeku.adressenÿp
+ExpAG.dokumentÿ"1"
+ÿÌÿ™"dokument"
+ÿ’ÿ¡
+ÿÉÿ±ÿáÿ™"dokument"ÿ£codeku.dokument
+ÿÙ
+ÿ’ÿ¡
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	ÿÉÿ±ÿáÿ™"adressen"ÿ£codema.adressen
+ÿÙ
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡PrvVerfahr$ÿ"Zahlungseingang"ÿp
+
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿ¡ÿJ(maa12%(i%),codema.buchung1)ÿp
+ÿ™"Buchung1"
+ÿ£codema.buchung1
+ÿÉÿ`
+codemaBU%ÿmaa12%(i%)
+ÿÉÿ¥codemaBU%ÿáÿ™"Buchung1"ÿ£codema.buchung1
+ÿ¡reqExpBuch%ÿ1ÿp
+
+ÿØÿOÿB("buchung1")ÿcodema.buchung1ÿcodemaKV%
+ÿÊÿË"Kennzeichen in Buchungsdatei setzen ! "ÿÿ+(Buchungstext.buchung1,30)
+ExpAG.buchung1ÿ"1"
+ÿÌÿ™"buchung1"
+ÿ¡ÿJ(codevt.buchung1,codevt.zeingan1)ÿp
+ÿ™"zeingan1"
+ÿ£codevt.zeingan1
+ÿÉÿ`ÿ™"zeingan1"ÿ£codevt.zeingan1
+ÿÉÿ¥codevt.buchung1ÿáÿ™"zeingan1"ÿ£codevt.zeingan1
+ÿØÿOÿB("zeingan1")ÿcodevt.zeingan1ÿcodevt.buchung1
+ExpAG.zeingan1ÿ"1"
+ÿÌÿ™"zeingan1"
+ÿÉÿ±ÿáÿ™"zeingan1"
+ÿÙ
+ÿ’ÿ¡
+ÿ™"buchung1"
+ÿÉÿ±ÿá
+
+ÿÙ
+ÿ’ÿ¡
+ÿÊÿË"Kennzeichen in Buchungsdatei setzen !"
+ÿ½ UPDATE ExpAG.buchung1 = "1" WHERE codema.buchung1 = maa12%(i%)
+ÿ½ END UPDATE 
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ IF EXISTS (maa12%(i%),codema.zeingan1) THEN 
+ÿ½ SET STATUS "Kennzeichen in Buchungsdatei setzen !"
+ÿ½ UPDATE ExpAG.zeingan1 = "1" WHERE codema.zeingan1 = maa12%(i%)
+ÿ½ END UPDATE 
+ÿ½ END IF 
+ÿ^
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿ¡ÿJ(maa12%(i%),codema.buchung)ÿp
+ÿ™"Buchung"
+ÿ£codema.buchung
+ÿÉÿ`
+codemaBU%ÿmaa12%(i%)
+ÿÉÿ¥codemaBU%ÿáÿ™"Buchung"ÿ£codema.buchung
+ÿ¡reqExpBuch%ÿ1ÿp
+
+ÿØÿOÿB("buchung")ÿcodema.buchungÿcodemaKV%
+ÿÊÿË"Kennzeichen in Buchungsdatei setzen !"
+ExpAG.buchungÿ"1"
+ÿÌÿ™"buchung"
+ÿ¡ÿJ(codevt.buchung,codevt.zeingang)ÿp
+ÿ™"zeingang"
+ÿ£codevt.zeingang
+ÿÉÿ`ÿ™"zeingang"ÿ£codevt.zeingang
+ÿÉÿ¥codevt.buchungÿáÿ™"zeingang"ÿ£codevt.zeingang
+ÿØÿOÿB("zeingang")ÿcodevt.zeingangÿcodevt.buchung
+ExpAG.zeingangÿ"1"
+ÿÌÿ™"zeingang"
+ÿÉÿ±ÿáÿ™"zeingang"
+ÿÙ
+ÿ’ÿ¡
+ÿ™"buchung"
+ÿÉÿ±ÿá
+
+ÿÙ
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ IF EXISTS (maa12%(i%),codema.zeingang) THEN 
+ÿ½ SET STATUS "Kennzeichen in Buchungsdatei setzen !"
+ÿ½ UPDATE ExpAG.zeingang = "1" WHERE codema.zeingang = maa12%(i%)
+ÿ½ END UPDATE 
+ÿ½ END IF 
+ÿ’ÿ¡
+xtend250701001: 
+ ÿ±i%
+ ÿ™"Kvertrag"
+ ÿ£ExpAG.kvertrag
+ ÿÉÿ`
+ ÿÉÿ¥"1"ÿ™"KVERTRAG"ÿ£ExpAG.kvertrag
+ i1%ÿÿA("Kvertrag")
+ j1%ÿ0
+ ÿØÿOÿB("kvertrag")ÿExpAG.kvertragÿ"1"
+
+ÿ¡ExpAG.kvertragÿ"1"ÿp
+codeku%ÿcodeku.kvertrag
+codege%ÿcodege.kvertrag
+codevt%ÿlfdnr.kvertrag
+codema%ÿcodema.kvertrag
+ÿ¡b”se%ÿÿ1ÿp
+ÿ¡ÿJ(codege%,codeku.dokge)ÿp
+	ÿÊÿË"Kennzeichen in Dokge setzen !"
+	ÿ™"dokge"
+	ÿÍExpAG.dokgeÿ"1"ÿĞcodeku.dokgeÿcodege%
+	ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ¡b”se%ÿÿ1ÿÿJ(codema%,codeku.dokma)ÿp
+	ÿÊÿË"Kennzeichen in Dokma setzen !"
+	ÿ™"dokma"
+	ÿÍExpAG.dokmaÿ"1"ÿĞcodeku.dokmaÿcodema%
+	ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ¡b”se%ÿÿ1ÿÿJ(codevt%,codeku.dokkv)ÿp
+	ÿÊÿË"Kennzeichen in Dokkv setzen !"
+	ÿ™"dokkv"
+	ÿÍExpAG.dokkvÿ"1"ÿĞcodeku.dokkvÿcodevt%
+	ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ¡b”se%ÿÿ1ÿÿJ(codeku%,codeku.akquise)ÿp
+	ÿÊÿË"Kennzeichen in Akquisedatei setzen !"
+	ÿ™"akquise"
+	ÿÍExpAG.akquiseÿ"1"ÿĞcodeku.akquiseÿcodeku%
+	ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ¡b”se%ÿÿ1ÿÿJ(codeku%,codeku.dokument)ÿp
+	ÿÊÿË"Kennzeichen in Dokumentdatei setzen !"
+	ÿ™"dokument"
+	ÿÍExpAG.dokumentÿ"1"ÿĞcodeku.dokumentÿcodeku%
+	ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ÿJ(codeku%,codeku.GAdrDat$)ÿp
+j1%ÿj1%ÿ1
+ÿÉÿ¥codeku%ÿáÿ™"adressen"ÿ£codeku.GAdrDat$
+ExpAG.GAdrDat$ÿ"1"
+ÿÌÿ™"Adressen"
+ÿ’ÿ¡
+ÿ¡ÿJ(codeku%,codeku.Telefon)ÿp
+ÿÊÿË"Kennzeichen in Telefondatei setzen !"
+ÿ™"Telefon"
+ÿÍExpAG.Telefonÿ"1"ÿĞcodeku.Telefonÿcodeku%
+ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿÉÿ±ÿ™"KVERTRAG"
+ ÿÊÿËÿ(j1%,"999999")ÿ" Datens„tze bernommen von :"ÿÿ(i1%,"999999")
+ ÿÙ
+ ÿßÿe
+ ÿ¡b”se%ÿÿ1ÿpÿwweit310320043
+ÿÊÿË"Bereinigung AKQUISE!"
+ÿ™"AKQUISE"
+ÿ£ExpAG.AKQUISE
+ÿÉÿ`
+ÿÉÿĞExpAG.AKQUISEÿ"1"
+dirmoment$ÿÿ
+ÿ¡ÿJ(_netpath$ÿ"Export\office\AKQUISE.csv")ÿp
+ÿ_netpath$ÿ"Export\office\AKQUISE.csv"
+ÿ’ÿ¡
+Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+Superbase.Converters.SBF.SourceFileÿ"AKQUISE"
+Superbase.Converters.SBF.Descendingÿ0
+Superbase.Converters.SBF.Mergeÿÿ1
+Superbase.Converters.SBF.LogErrorsÿ0
+Superbase.Converters.SBF.MultiResponseÿ0
+Superbase.Converters.ASD.DestFormatÿ"ASCII Delimited"
+Superbase.Converters.ASD.DestFileÿ_netpath$ÿ"Export\office\AKQUISE.csv"
+Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+Superbase.Converters.ASD.FieldSeparatorÿ","
+Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+Superbase.Converters.ASD.ANSIConvertÿÿ1
+Superbase.Converters.ASD.Convert(Superbase.Converters.SBF)
+ÿÉÿĞÿ™"AKQUISE"
+ÿ¾ÿaÿ™"AKQUISE":ÿ½                               RemoveAll
+ÿÉÿĞÿ™"AKQUISE":ÿ½                              ImportFile
+Superbase.Converters.ASD.SourceFormatÿ"ASCII Delimited"
+Superbase.Converters.ASD.SourceFileÿ_netpath$ÿ"EXPORT\office\AKQUISE.csv"
+Superbase.Converters.ASD.Descendingÿ0
+Superbase.Converters.ASD.Mergeÿÿ1
+Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+Superbase.Converters.ASD.FieldSeparatorÿ","
+Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+Superbase.Converters.ASD.ANSIConvertÿÿ1
+Superbase.Converters.SBF.DestFormatÿ"Superbase"
+Superbase.Converters.SBF.DestFileÿ"AKQUISE.SBF"
+Superbase.Converters.SBF.IndexSkipÿ0
+Superbase.Converters.SBF.LogErrorsÿ0
+Superbase.Converters.SBF.MultiResponseÿ0
+Superbase.Converters.SBF.Convert(Superbase.Converters.ASD)
+ÿ¡ÿJ(_netpath$ÿ"Export\office\AKQUISE.csv")ÿp
+ÿ_netpath$ÿ"Export\office\AKQUISE.csv"
+ÿ’ÿ¡
+
+ ÿßÿe
+ ÿÊÿË"Bereinigung DOKUMENT!"
+ ÿ™"DOKUMENT"
+ ÿ£ExpAG.DOKUMENT
+ ÿÉÿ`
+ ÿÉÿĞExpAG.DOKUMENTÿ"1"
+ dirmoment$ÿÿ
+ ÿ¡ÿJ(_netpath$ÿ"Export\office\DOKUMENT.csv")ÿp
+ÿ_netpath$ÿ"Export\office\DOKUMENT.csv"
+ ÿ’ÿ¡
+ Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+ Superbase.Converters.SBF.SourceFileÿ"DOKUMENT"
+ Superbase.Converters.SBF.Descendingÿ0
+ Superbase.Converters.SBF.Mergeÿÿ1
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.ASD.DestFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.DestFileÿ_netpath$ÿ"Export\office\DOKUMENT.csv"
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ","
+ Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+ Superbase.Converters.ASD.ANSIConvertÿÿ1
+ Superbase.Converters.ASD.Convert(Superbase.Converters.SBF)
+ ÿßÿe
+ ÿÉÿĞÿ™"DOKUMENT"
+ ÿ¾ÿaÿ™"DOKUMENT":ÿ½                               RemoveAll
+ ÿÉÿĞÿ™"DOKUMENT":ÿ½                              ImportFile
+ Superbase.Converters.ASD.SourceFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.SourceFileÿ_netpath$ÿ"EXPORT\office\DOKUMENT.csv"
+ Superbase.Converters.ASD.Descendingÿ0
+ Superbase.Converters.ASD.Mergeÿÿ1
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ","
+ Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+ Superbase.Converters.ASD.ANSIConvertÿÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"DOKUMENT.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.ASD)
+ ÿ¡ÿJ(_netpath$ÿ"Export\office\DOKUMENT.csv")ÿp
+ÿ_netpath$ÿ"Export\office\DOKUMENT.csv"
+ ÿ’ÿ¡
+ ÿßÿe
+
+ ÿÊÿË"Bereinigung DOKMA!"
+ ÿ™"DOKMA"
+ ÿ£ExpAG.DOKMA
+ ÿÉÿ`
+ ÿÉÿĞExpAG.DOKMAÿ"1"
+ dirmoment$ÿÿ
+ ÿ¡ÿJ(_netpath$ÿ"Export\office\DOKMA.csv")ÿp
+ÿ_netpath$ÿ"Export\office\DOKMA.csv"
+ ÿ’ÿ¡
+ Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+ Superbase.Converters.SBF.SourceFileÿ"DOKMA"
+ Superbase.Converters.SBF.Descendingÿ0
+ Superbase.Converters.SBF.Mergeÿÿ1
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.ASD.DestFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.DestFileÿ_netpath$ÿ"Export\office\DOKMA.csv"
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ","
+ Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+ Superbase.Converters.ASD.ANSIConvertÿÿ1
+ Superbase.Converters.ASD.Convert(Superbase.Converters.SBF)
+ ÿÉÿĞÿ™"DOKMA"
+ ÿ¾ÿaÿ™"DOKMA":ÿ½                               RemoveAll
+ ÿÉÿĞÿ™"DOKMA":ÿ½                              ImportFile
+ Superbase.Converters.ASD.SourceFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.SourceFileÿ_netpath$ÿ"EXPORT\office\DOKMA.csv"
+ Superbase.Converters.ASD.Descendingÿ0
+ Superbase.Converters.ASD.Mergeÿÿ1
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ","
+ Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+ Superbase.Converters.ASD.ANSIConvertÿÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"DOKMA.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.ASD)
+ ÿ¡ÿJ(_netpath$ÿ"Export\office\DOKMA.csv")ÿp
+ÿ_netpath$ÿ"Export\office\DOKMA.csv"
+ ÿ’ÿ¡
+ ÿßÿe
+ ÿÊÿË"Bereinigung DOKKV!"
+ ÿ™"DOKKV"
+ ÿ£ExpAG.DOKKV
+ ÿÉÿ`
+ ÿÉÿĞExpAG.DOKKVÿ"1"
+ dirmoment$ÿÿ
+ ÿ¡ÿJ(_netpath$ÿ"Export\office\DOKKV.csv")ÿp
+ÿ_netpath$ÿ"Export\office\DOKKV.csv"
+ ÿ’ÿ¡
+ ÿßÿe
+ Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+ Superbase.Converters.SBF.SourceFileÿ"DOKKV"
+ Superbase.Converters.SBF.Descendingÿ0
+ Superbase.Converters.SBF.Mergeÿÿ1
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.ASD.DestFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.DestFileÿ_netpath$ÿ"Export\office\DOKKV.csv"
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ","
+ Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+ Superbase.Converters.ASD.ANSIConvertÿÿ1
+ Superbase.Converters.ASD.Convert(Superbase.Converters.SBF)
+ ÿÉÿĞÿ™"DOKKV"
+ ÿ¾ÿaÿ™"DOKKV":ÿ½                               RemoveAll
+ ÿÉÿĞÿ™"DOKKV":ÿ½                              ImportFile
+ Superbase.Converters.ASD.SourceFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.SourceFileÿ_netpath$ÿ"EXPORT\office\DOKKV.csv"
+ Superbase.Converters.ASD.Descendingÿ0
+ Superbase.Converters.ASD.Mergeÿÿ1
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ","
+ Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+ Superbase.Converters.ASD.ANSIConvertÿÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"DOKKV.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.ASD)
+ ÿ¡ÿJ(_netpath$ÿ"Export\office\DOKKV.csv")ÿp
+ÿ_netpath$ÿ"Export\office\DOKKV.csv"
+ ÿ’ÿ¡
+ ÿßÿe
+ ÿÊÿË"Bereinigung DOKGE!"
+ ÿ½ REMOVE FROM FILE "adressen" WHERE ExpAG.GAdrDat$ <> "1"
+ ÿ™"DOKGE"
+ ÿ£ExpAG.DOKGE
+ ÿÉÿ`
+ ÿÉÿĞExpAG.DOKGEÿ"1"
+ dirmoment$ÿÿ
+ ÿ¡ÿJ(_netpath$ÿ"Export\office\DOKGE.csv")ÿp
+ÿ_netpath$ÿ"Export\office\DOKGE.csv"
+ ÿ’ÿ¡
+ Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+ Superbase.Converters.SBF.SourceFileÿ"DOKGE"
+ Superbase.Converters.SBF.Descendingÿ0
+ Superbase.Converters.SBF.Mergeÿÿ1
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.ASD.DestFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.DestFileÿ_netpath$ÿ"Export\office\DOKGE.csv"
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ","
+ Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+ Superbase.Converters.ASD.ANSIConvertÿÿ1
+ Superbase.Converters.ASD.Convert(Superbase.Converters.SBF)
+ ÿÉÿĞÿ™"DOKGE"
+ ÿ¾ÿaÿ™"DOKGE":ÿ½                               RemoveAll
+ ÿÉÿĞÿ™"DOKGE":ÿ½                              ImportFile
+ Superbase.Converters.ASD.SourceFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.SourceFileÿ_netpath$ÿ"EXPORT\office\DOKGE.csv"
+ Superbase.Converters.ASD.Descendingÿ0
+ Superbase.Converters.ASD.Mergeÿÿ1
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ","
+ Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+ Superbase.Converters.ASD.ANSIConvertÿÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"DOKGE.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.ASD)
+ ÿ¡ÿJ(_netpath$ÿ"Export\office\DOKGE.csv")ÿp
+ÿ_netpath$ÿ"Export\office\DOKGE.csv"
+ ÿ’ÿ¡
+ ÿßÿe
+weit310320043: 
+ ÿßÿe
+ ÿÊÿË"Bereinigung Telefondatei!"
+ ÿ½ REMOVE FROM FILE "adressen" WHERE ExpAG.GAdrDat$ <> "1"
+ ÿ™"telefon"
+ ÿ£ExpAG.telefon
+ ÿÉÿ`
+ ÿÉÿĞExpAG.telefonÿ"1"
+ dirmoment$ÿÿ
+ ÿ¡ÿJ(_netpath$ÿ"Export\office\telefon.csv")ÿp
+ÿ_netpath$ÿ"Export\office\telefon.csv"
+ ÿ’ÿ¡
+ Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+ Superbase.Converters.SBF.SourceFileÿ"TELEFON"
+ Superbase.Converters.SBF.Descendingÿ0
+ Superbase.Converters.SBF.Mergeÿÿ1
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.ASD.DestFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.DestFileÿ_netpath$ÿ"Export\office\telefon.csv"
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ","
+ Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+ Superbase.Converters.ASD.ANSIConvertÿÿ1
+ Superbase.Converters.ASD.Convert(Superbase.Converters.SBF)
+ ÿÉÿĞÿ™"telefon"
+ ÿ¾ÿaÿ™"telefon":ÿ½                               RemoveAll
+ ÿÉÿĞÿ™"telefon":ÿ½                              ImportFile
+ Superbase.Converters.ASD.SourceFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.SourceFileÿ_netpath$ÿ"EXPORT\office\telefon.csv"
+ Superbase.Converters.ASD.Descendingÿ0
+ Superbase.Converters.ASD.Mergeÿÿ1
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ","
+ Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+ Superbase.Converters.ASD.ANSIConvertÿÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"TELEFON.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.ASD)
+ ÿ¡ÿJ(_netpath$ÿ"Export\office\telefon.csv")ÿp
+ÿ_netpath$ÿ"Export\office\telefon.csv"
+ ÿ’ÿ¡
+ ÿßÿe
+ ÿßÿe
+ ÿÊÿË"Bereinigung Adressdatei!"
+ ÿ™"adressen"
+ ÿ£ExpAG.GAdrDat$
+ ÿßÿe
+ ÿƒThousANoTh()
+ ÿßÿe
+ ÿÉÿ`
+ ÿÉÿĞExpAG.GAdrDat$ÿ"1"
+ dirmoment$ÿÿ
+ ÿ¡ÿJ(_netpath$ÿ"Export\office\adressen.csv")ÿp
+ÿ_netpath$ÿ"Export\office\adressen.csv"
+ ÿ’ÿ¡
+ Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+ Superbase.Converters.SBF.SourceFileÿ"ADRESSEN"
+ Superbase.Converters.SBF.Descendingÿ0
+ Superbase.Converters.SBF.Mergeÿÿ1
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.ASD.DestFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.DestFileÿ_netpath$ÿ"Export\office\adressen.csv"
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ","
+ Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+ Superbase.Converters.ASD.ANSIConvertÿÿ1
+ Superbase.Converters.ASD.Convert(Superbase.Converters.SBF)
+ ÿÉÿĞÿ™"ADRESSEN"
+ ÿ¾ÿaÿ™"ADRESSEN":ÿ½                               RemoveAll
+ ÿÉÿĞÿ™"ADRESSEN":ÿ½                              ImportFile
+ Superbase.Converters.ASD.SourceFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.SourceFileÿ_netpath$ÿ"EXPORT\office\adressen.csv"
+ Superbase.Converters.ASD.Descendingÿ0
+ Superbase.Converters.ASD.Mergeÿÿ1
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ","
+ Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+ Superbase.Converters.ASD.ANSIConvertÿÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"ADRESSEN.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.ASD)
+ ÿ¡ÿJ(_netpath$ÿ"Export\office\adressen.csv")ÿp
+ÿ_netpath$ÿ"Export\office\adressen.csv"
+ ÿ’ÿ¡
+ ÿßÿe
+ ÿƒThousAYesTh()
+ ÿßÿe
+ ÿ½ SET STATUS "Bereinigung Termindatei!"
+ ÿ½ REMOVE FROM FILE GAkquiDat$ WHERE ExpAG.GAkquiDat$ = "0"
+ ÿÊÿË"Bereinigung Vertragsdatei!"
+ ÿ½ REMOVE FROM FILE "kvertrag" WHERE ExpAG.kvertrag <> "1"
+ ÿßÿe
+ ÿƒThousendNOK()
+ ÿßÿe
+ ÿÊÿË"Bereinigung Vertragsdatei!"
+ ÿ™"kvertrag"
+ ÿ£ExpAG.kvertrag
+ ÿÉÿ`
+ ÿÉÿĞexpag.kvertragÿ"1"
+ ÿ¡ÿJ(_netpath$ÿ"Export\provis\kvertrag.csv")ÿp
+ÿ_netpath$ÿ"Export\provis\kvertrag.csv"
+ ÿ’ÿ¡
+ ÿÊÿË"Export der gltigen Daten der Vertragsdatei in eine ASCII - Datei!"
+ Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+ Superbase.Converters.SBF.SourceFileÿ"KVERTRAG"
+ Superbase.Converters.SBF.Descendingÿ0
+ Superbase.Converters.SBF.Mergeÿÿ1
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.ASD.DestFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.DestFileÿ_netpath$ÿ"Export\provis\kvertrag.csv"
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ","
+ Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+ Superbase.Converters.ASD.ANSIConvertÿÿ1
+ Superbase.Converters.ASD.Convert(Superbase.Converters.SBF)
+ ÿÉÿĞÿ™"KVERTRAG"
+ ÿÊÿË"Bereinigung Vertragsdatei!"
+ ÿ¾ÿaÿ™"KVERTRAG":ÿ½                               RemoveAll
+ ÿÉÿĞÿ™"KVERTRAG":ÿ½                              ImportFile
+ ÿÊÿË"Import der gltigen Daten der Vertragsdatei aus der ASCII - Datei!"
+ Superbase.Converters.ASD.SourceFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.SourceFileÿ_netpath$ÿ"Export\provis\kvertrag.csv"
+ Superbase.Converters.ASD.Descendingÿ0
+ Superbase.Converters.ASD.Mergeÿÿ1
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ","
+ Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+ Superbase.Converters.ASD.ANSIConvertÿÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"KVERTRAG.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.ASD)
+ ÿ¡ÿJ(_netpath$ÿ"Export\provis\kvertrag.csv")ÿp
+ÿ_netpath$ÿ"Export\provis\kvertrag.csv"
+ ÿ’ÿ¡
+ ÿƒThousendYesK()
+ ÿÊÿË"Vertragsdatei fertiggestellt!"
+ 
+ ÿßÿe
+ 
+ ÿ¡PrvVerfahr$ÿ"Zahlungseingang"ÿp
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿÊÿË"Bereinigung Buchungsdatei!"
+ÿ½ REMOVE FROM FILE "buchung1" WHERE ExpAG.buchung1 <> "1"
+ÿßÿe
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿƒThousendNOB()
+ÿ’ÿ¡
+ÿßÿe
+ÿ™"buchung1"
+ÿ£Expag.buchung1
+ÿÉÿĞexpag.buchung1ÿ"1"
+ÿ¡ÿJ(_netpath$ÿ"Export\provis\BUCHUNG1.csv")ÿp
+ÿ_netpath$ÿ"Export\provis\BUCHUNG1.csv"
+ÿ’ÿ¡
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿÊÿË"Export der gltigen Daten der Buchungsdatei in eine ASCII-Datei!"
+Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+Superbase.Converters.SBF.SourceFileÿ"BUCHUNG1"
+Superbase.Converters.SBF.Descendingÿ0
+Superbase.Converters.SBF.Mergeÿÿ1
+Superbase.Converters.SBF.LogErrorsÿ0
+Superbase.Converters.SBF.MultiResponseÿ0
+Superbase.Converters.ASD.DestFormatÿ"ASCII Delimited"
+Superbase.Converters.ASD.DestFileÿ_netpath$ÿ"Export\provis\BUCHUNG1.csv"
+Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+Superbase.Converters.ASD.FieldSeparatorÿ","
+Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+Superbase.Converters.ASD.ANSIConvertÿÿ1
+Superbase.Converters.ASD.Convert(Superbase.Converters.SBF)
+ÿ’ÿ¡
+ÿßÿe
+ÿÉÿĞÿ™"BUCHUNG1"
+ÿÊÿË"Bereinigung Buchungsdatei!"
+ÿ¾ÿaÿ™"BUCHUNG1":ÿ½                               RemoveAll
+ÿÉÿĞÿ™"BUCHUNG1":ÿ½                              ImportFile
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿÊÿË"Import der gltigen Daten der Buchungsdatei aus der ASCII-Datei!"
+Superbase.Converters.ASD.SourceFormatÿ"ASCII Delimited"
+Superbase.Converters.ASD.SourceFileÿ_netpath$ÿ"Export\provis\BUCHUNG1.csv"
+Superbase.Converters.ASD.Descendingÿ0
+Superbase.Converters.ASD.Mergeÿÿ1
+Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+Superbase.Converters.ASD.FieldSeparatorÿ","
+Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+Superbase.Converters.ASD.ANSIConvertÿÿ1
+Superbase.Converters.SBF.DestFormatÿ"Superbase"
+Superbase.Converters.SBF.DestFileÿ"BUCHUNG1.SBF"
+Superbase.Converters.SBF.IndexSkipÿ0
+Superbase.Converters.SBF.LogErrorsÿ0
+Superbase.Converters.SBF.MultiResponseÿ0
+Superbase.Converters.SBF.Convert(Superbase.Converters.ASD)
+ÿ’ÿ¡
+ÿßÿe
+ÿ¡ÿJ(_netpath$ÿ"Export\provis\BUCHUNG1.csv")ÿp
+ÿ_netpath$ÿ"Export\provis\BUCHUNG1.csv"
+ÿ’ÿ¡
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿƒThousendYESB()
+ÿ’ÿ¡
+ÿÊÿË"Buchungsdatei erstellt!"
+
+ÿÊÿË"Bereinigung Zdatei!"
+ÿ½ REMOVE FROM FILE "buchung1" WHERE ExpAG.buchung1 <> "1"
+ÿßÿe
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿƒThousendNoZei()
+ÿ’ÿ¡
+ÿßÿe
+ÿ™"zeingan1"
+ÿ£Expag.zeingan1
+ÿÉÿĞexpag.zeingan1ÿ"1"
+ÿ¡ÿJ(_netpath$ÿ"Export\provis\zeingan1.csv")ÿp
+ÿ_netpath$ÿ"Export\provis\zeingan1.csv"
+ÿ’ÿ¡
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿÊÿË"Export der gltigen Daten der zeingandatei in eine ASCII-Datei!"
+Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+Superbase.Converters.SBF.SourceFileÿ"zeingan1"
+Superbase.Converters.SBF.Descendingÿ0
+Superbase.Converters.SBF.Mergeÿÿ1
+Superbase.Converters.SBF.LogErrorsÿ0
+Superbase.Converters.SBF.MultiResponseÿ0
+Superbase.Converters.ASD.DestFormatÿ"ASCII Delimited"
+Superbase.Converters.ASD.DestFileÿ_netpath$ÿ"Export\provis\zeingan1.csv"
+Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+Superbase.Converters.ASD.FieldSeparatorÿ","
+Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+Superbase.Converters.ASD.ANSIConvertÿÿ1
+Superbase.Converters.ASD.Convert(Superbase.Converters.SBF)
+ÿ’ÿ¡
+ÿÉÿĞÿ™"zeingan1"
+ÿÊÿË"Bereinigung zeingandatei!"
+ÿ¾ÿaÿ™"zeingan1":ÿ½                               RemoveAll
+ÿÉÿĞÿ™"zeingan1":ÿ½                              ImportFile
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿÊÿË"Import der gltigen Daten der zeingandatei aus der ASCII-Datei!"
+Superbase.Converters.ASD.SourceFormatÿ"ASCII Delimited"
+Superbase.Converters.ASD.SourceFileÿ_netpath$ÿ"Export\provis\zeingan1.csv"
+Superbase.Converters.ASD.Descendingÿ0
+Superbase.Converters.ASD.Mergeÿÿ1
+Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+Superbase.Converters.ASD.FieldSeparatorÿ","
+Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+Superbase.Converters.ASD.ANSIConvertÿÿ1
+Superbase.Converters.SBF.DestFormatÿ"Superbase"
+Superbase.Converters.SBF.DestFileÿ"zeingan1.SBF"
+Superbase.Converters.SBF.IndexSkipÿ0
+Superbase.Converters.SBF.LogErrorsÿ0
+Superbase.Converters.SBF.MultiResponseÿ0
+Superbase.Converters.SBF.Convert(Superbase.Converters.ASD)
+ÿ’ÿ¡
+ÿ¡ÿJ(_netpath$ÿ"Export\provis\zeingan1.csv")ÿp
+ÿ_netpath$ÿ"Export\provis\zeingan1.csv"
+ÿ’ÿ¡
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿƒThousendZei()
+ÿ’ÿ¡
+ÿÊÿË"Zdatei erstellt!"
+ÿßÿe
+
+
+ÿ’ÿ¡
+ ÿ^
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿÊÿË"Bereinigung Buchungsdatei!"
+ÿ½ REMOVE FROM FILE "buchung" WHERE ExpAG.buchung <> "1"
+ÿ™"buchung"
+ÿ£Expag.buchung
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿƒThousendNOB1()
+ÿ’ÿ¡
+ÿÉÿĞexpag.buchungÿ"1"
+ÿ¡ÿJ(_netpath$ÿ"Export\provis\BUCHUNG.csv")ÿp
+ÿ_netpath$ÿ"Export\provis\BUCHUNG.csv"
+ÿ’ÿ¡
+Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+Superbase.Converters.SBF.SourceFileÿ"BUCHUNG"
+Superbase.Converters.SBF.Descendingÿ0
+Superbase.Converters.SBF.Mergeÿÿ1
+Superbase.Converters.SBF.LogErrorsÿ0
+Superbase.Converters.SBF.MultiResponseÿ0
+Superbase.Converters.ASD.DestFormatÿ"ASCII Delimited"
+Superbase.Converters.ASD.DestFileÿ_netpath$ÿ"Export\provis\BUCHUNG.csv"
+Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+Superbase.Converters.ASD.FieldSeparatorÿ","
+Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+Superbase.Converters.ASD.ANSIConvertÿÿ1
+Superbase.Converters.ASD.Convert(Superbase.Converters.SBF)
+ÿÉÿĞÿ™"BUCHUNG"
+ÿ¾ÿaÿ™"BUCHUNG":ÿ½                               RemoveAll
+ÿÉÿĞÿ™"BUCHUNG":ÿ½                              ImportFile
+Superbase.Converters.ASD.SourceFormatÿ"ASCII Delimited"
+Superbase.Converters.ASD.SourceFileÿ_netpath$ÿ"Export\provis\BUCHUNG.csv"
+Superbase.Converters.ASD.Descendingÿ0
+Superbase.Converters.ASD.Mergeÿÿ1
+Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+Superbase.Converters.ASD.FieldSeparatorÿ","
+Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+Superbase.Converters.ASD.ANSIConvertÿÿ1
+Superbase.Converters.SBF.DestFormatÿ"Superbase"
+Superbase.Converters.SBF.DestFileÿ"BUCHUNG.SBF"
+Superbase.Converters.SBF.IndexSkipÿ0
+Superbase.Converters.SBF.LogErrorsÿ0
+Superbase.Converters.SBF.MultiResponseÿ0
+Superbase.Converters.SBF.Convert(Superbase.Converters.ASD)
+ÿ¡ÿJ(_netpath$ÿ"Export\provis\BUCHUNG.csv")ÿp
+ÿ_netpath$ÿ"Export\provis\BUCHUNG.csv"
+ÿ’ÿ¡
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿƒThousendYESB1()
+ÿ’ÿ¡
+
+ÿÊÿË"Bereinigung Zdatei!"
+ÿ½ REMOVE FROM FILE "buchung1" WHERE ExpAG.buchung1 <> "1"
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿƒThousendNoZei()
+ÿ’ÿ¡
+ÿ™"zeingang"
+ÿ£Expag.zeingang
+ÿÉÿĞexpag.zeingangÿ"1"
+ÿ¡ÿJ(_netpath$ÿ"Export\provis\zeingang.csv")ÿp
+ÿ_netpath$ÿ"Export\provis\zeingang.csv"
+ÿ’ÿ¡
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿÊÿË"Export der gltigen Daten der zeingandatei in eine ASCII-Datei!"
+Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+Superbase.Converters.SBF.SourceFileÿ"zeingang"
+Superbase.Converters.SBF.Descendingÿ0
+Superbase.Converters.SBF.Mergeÿÿ1
+Superbase.Converters.SBF.LogErrorsÿ0
+Superbase.Converters.SBF.MultiResponseÿ0
+Superbase.Converters.ASD.DestFormatÿ"ASCII Delimited"
+Superbase.Converters.ASD.DestFileÿ_netpath$ÿ"Export\provis\zeingang.csv"
+Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+Superbase.Converters.ASD.FieldSeparatorÿ","
+Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+Superbase.Converters.ASD.ANSIConvertÿÿ1
+Superbase.Converters.ASD.Convert(Superbase.Converters.SBF)
+ÿ’ÿ¡
+ÿÉÿĞÿ™"zeingang"
+ÿÊÿË"Bereinigung zeingandatei!"
+ÿ¾ÿaÿ™"zeingang":ÿ½                               RemoveAll
+ÿÉÿĞÿ™"zeingang":ÿ½                              ImportFile
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿÊÿË"Import der gltigen Daten der zeingandatei aus der ASCII-Datei!"
+Superbase.Converters.ASD.SourceFormatÿ"ASCII Delimited"
+Superbase.Converters.ASD.SourceFileÿ_netpath$ÿ"Export\provis\zeingang.csv"
+Superbase.Converters.ASD.Descendingÿ0
+Superbase.Converters.ASD.Mergeÿÿ1
+Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+Superbase.Converters.ASD.FieldSeparatorÿ","
+Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+Superbase.Converters.ASD.ANSIConvertÿÿ1
+Superbase.Converters.SBF.DestFormatÿ"Superbase"
+Superbase.Converters.SBF.DestFileÿ"zeingang.SBF"
+Superbase.Converters.SBF.IndexSkipÿ0
+Superbase.Converters.SBF.LogErrorsÿ0
+Superbase.Converters.SBF.MultiResponseÿ0
+Superbase.Converters.SBF.Convert(Superbase.Converters.ASD)
+ÿ’ÿ¡
+ÿ¡ÿJ(_netpath$ÿ"Export\provis\zeingang.csv")ÿp
+ÿ_netpath$ÿ"Export\provis\zeingang.csv"
+ÿ’ÿ¡
+ÿ¡reqExpBuch%ÿ1ÿp
+ÿƒThousendZei()
+ÿ’ÿ¡
+ÿÊÿË"Zdatei erstellt!"
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡b”se%ÿÿ1ÿp
+ÿ¡reqfle%ÿ1ÿpÿƒFehler("EXPORT Dokumente","")
+ÿƒDFile(6,"dokument"ÿ_fpw$)
+ÿƒDFile(6,"dokge"ÿ_fpw$)
+ÿƒDFile(6,"dokkv"ÿ_fpw$)
+ÿƒDFile(6,"dokma"ÿ_fpw$)
+lw$ÿÿ+(_netpath$,2)
+ÿ™"dokument"
+ff$ÿÿ™
+ÿ£codedok
+ÿÉÿ`
+ÿØÿOÿB(ff$)
+quell$ÿ_netpath$ÿDateiname.ff$
+ÿ¡ÿJ(quell$)ÿp
+ÿ¡Dateiname.ff$ÿ"*vertr.dok*"ÿp
+	ÿ½ CALL Fehler(Dateiname.ff$,"")
+ÿ’ÿ¡
+zw$ÿDateiname.ff$
+t1%ÿÿ?(4,zw$,"\")
+zw1$ÿÿ,(zw$,t1%)
+l1%ÿÿ/(zw1$)
+ok%ÿÿ1
+von%ÿ2
+ÿØok%ÿÿ1
+	t0%ÿÿ?(von%,zw1$,"\")
+	ÿ¡t0%ÿvon%ÿp
+von%ÿt0%ÿ1
+	ÿ^
+ok%ÿ0
+	ÿ’ÿ¡
+ÿÙ
+dname$ÿÿ,(zw1$,von%)
+t1%ÿÿ?(zw1$,dname$)
+dlen%ÿl1%ÿt1%ÿ1
+plen%ÿl1%ÿdlen%
+pfad$ÿÿ+(zw1$,plen%)
+ÿ¡Dateiname.ff$ÿ"*OFFICE*"ÿp
+	pfad$ÿ"\OFFICE"ÿpfad$
+ÿ’ÿ¡
+ÿ¡Dateiname.ff$ÿ"*PROVIS*"ÿp
+	pfad$ÿ"\PROVIS"ÿpfad$
+ÿ’ÿ¡
+ÿ½ IF pfad$ LIKE "*vertr.dok*" THEN 
+	ÿ½ pfad$ = "\PROVIS\VERTR.DOK\"
+ÿ½ ELSE 
+	ÿ½ IF pfad$ LIKE "*geadr.dok*" THEN 
+ÿ½ pfad$ = "\PROVIS\geadr.DOK\"
+	ÿ½ ELSE 
+ÿ½ IF pfad$ LIKE "*maadr.dok*" THEN 
+ÿ½ pfad$ = "\PROVIS\MAADR.DOK\"
+ÿ½ END IF 
+	ÿ½ END IF 
+ÿ½ END IF 
+zielp$ÿ_netpath$ÿ"EXPORT"ÿpfad$
+bef$ÿ"md "ÿzielp$
+ÿƒ(bef$)
+zieldat$ÿzielp$ÿdname$
+kkk%ÿkkk%ÿ1
+ÿ¡kkk%ÿ100ÿp
+	ÿÏÿ›1
+	kkk%ÿ0
+ÿ’ÿ¡
+ÿ³ÿ_ÿwn280720061
+ÿ½ CALL Fehler(quell$ + " vorhanden?",zieldat$)
+ÿ¡ÿJ(quell$)ÿp
+	ÿˆquell$ÿqzieldat$
+ÿ’ÿ¡
+n280720061: 
+ÿ³ÿ_ÿwErrorHandler
+ÿ’ÿ¡
+ÿÉÿ±ÿ™ff$
+ÿ½ anz$ = STR$ ( RECCOUNT (ff$),"999999")
+ÿÊÿËdateiname.ff$
+ÿÙ
+
+ ÿ’ÿ¡
+ 
+expend071197: 
+ ÿÊÿË"Dateien schlieáen"
+ ÿ½ CALL Fehler("","")
+ ÿƒDFile(5,"OPENFILE"ÿ_fpw$)
+ ÿƒDFile(7,"MAADR"ÿ_fpw$)
+ ÿ™"maadr"
+ ÿ£codema.maadr
+ ÿÉÿ`
+ ÿÉÿ¥_cuma%ÿáÿ™"maadr"ÿ£codema.maadr
+ vorg„nger.maadrÿcodema.maadr
+ Namevorg.maadrÿnachname.maadrÿ","ÿvorname.maadrÿ","ÿagenturnr.maadr
+ ÿÌÿ™"maadr"
+ ÿ†ÿ™"maadr"
+ ÿƒCloseDatei1()
+ 
+ ÿ½ 310898
+ ÿÊÿË"L”schen der Masken, Icons und doc files"
+ ÿ³ÿ_ÿwex3108985
+ ÿ_netpath$ÿ"export\provis\*.sbv"
+ex3108985: 
+ ÿ³ÿ_ÿwex3108986
+ ÿ_netpath$ÿ"export\provis\*.hlp"
+ex3108986: 
+ ÿ³ÿ_ÿwex3108986a 
+ ÿ_netpath$ÿ"export\provis\*.ico"
+ex3108986a: 
+ ÿ³ÿ_ÿwex3108987
+ ÿ_netpath$ÿ"export\provis\*.sb!"
+ex3108987:
+ ÿ³ÿ_ÿwex3108988
+ ÿ_netpath$ÿ"export\provis\*.exe"
+ex3108988:
+ ÿ³ÿ_ÿwex3108989a 
+ ÿ_netpath$ÿ"export\provis\*.doc"
+ex3108989a:
+ ÿ³ÿ_ÿwex3108989
+ ÿ_netpath$ÿ"export\provis\superbase.net"
+ex3108989:
+ ÿ³ÿ_ÿwex31089810
+ ÿ¡b”se%ÿÿ1ÿp
+ÿ_netpath$ÿ"export\provis\gekond.*"
+ ÿ’ÿ¡
+ex31089810:
+ ÿ³ÿ_ÿwex31089811
+ ÿ¡b”se%ÿÿ1ÿp
+ÿ_netpath$ÿ"export\provis\vkond.*"
+ ÿ’ÿ¡
+ex31089811:
+ ÿ³ÿ_ÿwex31089812
+ ÿ_netpath$ÿ"export\provis\statist.*"
+ex31089812:
+ ÿ³ÿ_ÿwex31089813
+ ÿ_netpath$ÿ"export\provis\statist2.*"
+ex31089813:
+ ÿ³ÿ_ÿwex31089814
+ ÿ_netpath$ÿ"export\provis\*.xls"
+ex31089814: 
+ ÿ³ÿ_ÿwex31089815
+ ÿ_netpath$ÿ"export\provis\*.doc"
+ex31089815: 
+ ÿ³ÿ_ÿwex31089816
+ ÿ_netpath$ÿ"export\provis\*.sbq"
+ex31089816: 
+ ÿ³ÿ_ÿwex31089817
+ ÿ_netpath$ÿ"export\provis\*.dbf"
+ex31089817: 
+ ÿ³ÿ_ÿwex31089818
+ ÿ_netpath$ÿ"export\office\*.sb!"
+ex31089818: 
+ ÿ³ÿ_ÿwex31089819
+ ÿ_netpath$ÿ"export\office\banken.*"
+ex31089819: 
+ ÿ³ÿ_ÿwex31089820
+ ÿ_netpath$ÿ"export\office\superbas.net"
+ex31089820: 
+ ÿ³ÿ_ÿwex31089821
+ ÿ_netpath$ÿ"export\office\*.dbf"
+ex31089821: 
+ ÿ³ÿ_ÿwex31089822
+ ÿ_netpath$ÿ"export\office\*.xls"
+ex31089822: 
+ ÿ³ÿ_ÿwex31089823
+ ÿ_netpath$ÿ"export\office\*.doc"
+ex31089823: 
+ ÿ³ÿ_ÿwex31089824
+ ÿ_netpath$ÿ"export\office\*.sbq"
+ex31089824: 
+ ÿ³ÿ_ÿwErrorHandler 
+ ÿ³ÿ_ÿwex31089825 
+ ÿ¡b”se%ÿÿ1ÿp
+ÿ_netpath$ÿ"export\provis\vpgekond.*"
+ ÿ’ÿ¡
+ex31089825: 
+ ÿ³ÿ_ÿwErrorHandler 
+ 
+ ÿ¡anp%ÿ0ÿp
+ÿƒDFile(5,"supervis"ÿ_fpw$)
+ÿ™"supervis"
+ÿ£codema.supervis
+ÿÉÿ`ÿá
+AGSperreAB.supervisÿanp%
+ÿÌÿ™"supervis"
+ÿ†ÿ™"supervis"
+ ÿ^
+ ÿ’ÿ¡
+ 
+ ÿ½ CALL _netpath$ + "\export\office\provag.bat"
+ ÿßÿ³
+ ÿÂ"Export beendet!!!","",0
+ ÿ½ CALL DFile(2,"supervis" + _fpw$)
+ t1$ÿ"Ein Backup der exportierten Dateien k”nnen Sie ber START / Programme / CODie - Anwendungen / SmartPROVIS - Mitarbeiter - EXPORT erzeugen lassen(die erzeugte Datei provis.arj findenSie unter...\codie\EXPORT\support)"
+ ÿƒFehler(t1$,"Diese Datei k”nnen Sie dem Vermittler zur Verfgung stellen, der sie dann ber Start / Programme / Codie-Anwendungen / SmartPROVIS Restore importieren kann.")
+ ÿ¡gasp%ÿp
+ÿƒFehler("Die Inhaber einer ASP Version mssen per Hand das Programm ...\codie\export\support\ProvBax.exe aufrufen, um die Datei provis.arj erzeugen zu lassen!","")
+ ÿ’ÿ¡
+ 
+ ÿ½ ttt$ = _netpath$ + "EXPORT\SUPPORT\PROVBAK.EXE"
+ ÿ½ a% = CALL ("ShellExecute",0,"open",ttt$,"","",1)
+ ÿ½ WAIT FOR 3
+test310320041: 
+ ÿ½ REQUEST "Das Programm muá jetzt neu gestartet werden!","",2
+ ÿ¡ÿJ(_netpath$ÿ"AUTOBAK.EXE")ÿp
+ÿ¡ÿOÿJ(_netpath$ÿ"EXPORT\AUTOBAK.EXE")ÿp
+ÿˆ_netpath$ÿ"AUTOBAK.EXE"ÿq_netpath$ÿ"EXPORT\AUTOBAK.EXE"
+ÿ’ÿ¡
+ÿ_netpath$ÿ"EXPORT\SUPPORT"
+v$ÿÿ
+l$ÿÿ+(v$,2)
+ÿ½ CALL Fehler ("Es wird jetzt das SmartPROVIS-Mitarbeiter-EXPORT-BACKUP gestartet! Wenn Sie m”chten, daá sich die erzeugte Datei PROVIS.ARJ im Verzeichnis: " + v$ + " befinden soll, mssen Sie im Backup-Dialog das Laufwerk: " + l$ + " eingeben!","")
+ÿ†ÿt
+a%ÿÿƒ("ShellExecute",0,"open",_netpath$ÿ"EXPORT\AUTOBAK.EXE","","",1)
+ ÿ^
+ÿ¡ÿJ(_netpath$ÿ"EXPORT\SUPPORT\PROVBAK.EXE")ÿp
+ÿ_netpath$ÿ"EXPORT\SUPPORT"
+v$ÿÿ
+l$ÿÿ+(v$,2)
+ÿƒFehler ("Es wird jetzt das SmartPROVIS-Mitarbeiter-EXPORT-BACKUP gestartet! Wenn Sie m”chten, daá sich die erzeugte Datei PROVIS.ARJ im Verzeichnis: "ÿv$ÿ" befinden soll, mssen Sie im Backup-Dialog das Laufwerk: "ÿl$ÿ" eingeben!","")
+ÿ†ÿt
+a%ÿÿƒ("ShellExecute",0,"open",_netpath$ÿ"EXPORT\SUPPORT\PROVBAK.EXE","","",1)
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿƒEXIT()
+end310320042: 
+ ÿÊÿË""
+ ÿ’ÿÿ
+ 
+ 
+ÿÿThousendNOK()
+ÿ™"KVERTRAG"
+ÿßÿe
+ÿÊÿË"KVERTRAG - Passe Feldformat fr ASCII-Export an!"
+ÿƒFldAddT("Bewertungssumme","NUM;999999999.00",0)
+ÿƒFldAddT("VSumme","NUM;999999999.00",0)
+ÿƒFldAddT("StornoBetrag","NUM;99999999.00",0)
+ÿƒFldAddT("Volumen","NUM;999999999.00",0)'                          ; W„hrungsanzeige entfernt
+ÿƒFldAddT("Fahrzeugst„rke","NUM;999999.",0)
+ÿƒFldAddT("Fahrzeugwert","NUM;99999999.00",0)
+ÿƒFldAddT("HV_SFR","NUM;999.",0)
+ÿƒFldAddT("TK_Betrag","NUM;99999999.00",0)
+ÿƒFldAddT("VK_Betrag","NUM;99999999.00",0)
+ÿƒFldAddT("VK_SFR","NUM;999.",0)
+ÿ½ 210597
+ÿƒFldAddT("Basisinvalid","NUM;99999999.00",0)
+ÿƒFldAddT("Progression1","NUM;999.00",0)
+ÿƒFldAddT("Progression2","NUM;999.00",0)
+ÿƒFldAddT("Todesfall","NUM;99999999.00",0)
+ÿƒFldAddT("KHT","NUM;99999999.00",0)
+ÿƒFldAddT("Genesungsgeld","NUM;99999999.00",0)
+ÿƒFldAddT("šbergangsleist","NUM;99999999.00",0)
+ÿƒFldAddT("Chir_Leist","NUM;99999999.00",0)
+ÿƒFldAddT("Unfallrente","NUM;99999999.00",0)
+ÿƒFldAddT("Unfall_KHT","NUM;99999999.00",0)
+ÿƒFldAddT("Bewertungssumme","NUM;99999999.00",0)
+ÿƒFldAddT("VSumme","NUM;99999999.00",0)
+ÿƒFldAddT("F_VS","NUM;99999999.00;",0)
+ÿƒFldAddT("F_Satz","NUM;9999.000",0)
+ÿƒFldAddT("F_Beitrag","NUM;99999999.00",0)
+ÿƒFldAddT("FKBU_VS","NUM;99999999.00",0)
+ÿƒFldAddT("FKBU_Satz","NUM;9999.000",0)
+ÿƒFldAddT("FKBU_Beitrag","NUM;99999999.00",0)
+ÿƒFldAddT("LW_VS","NUM;99999999.00",0)
+ÿƒFldAddT("LW_Satz","NUM;9999.000",0)
+ÿƒFldAddT("LW_Beitrag","NUM;99999999.00",0)
+ÿƒFldAddT("LWKBU_VS","NUM;99999999.00",0)
+ÿƒFldAddT("LWKBU_Satz","NUM;9999.000",0)
+ÿƒFldAddT("LWKBU_Beitrag","NUM;99999999.00",0)
+ÿƒFldAddT("ST_VS","NUM;99999999.00",0)
+ÿƒFldAddT("ST_Satz","NUM;9999.000",0)
+ÿƒFldAddT("ST_Beitrag","NUM;99999999.00",0)
+ÿƒFldAddT("STKBU_VS","NUM;99999999.00",0)
+ÿƒFldAddT("STKBU_Satz","NUM;9999.000",0)
+ÿƒFldAddT("STKBU_Beitrag","NUM;99999999.00",0)
+ÿƒFldAddT("ED_VS","NUM;99999999.00",0)
+ÿƒFldAddT("ED_Satz","NUM;9999.000",0)
+ÿƒFldAddT("ED_Beitrag","NUM;99999999.00",0)
+ÿƒFldAddT("EDVANDA_VS","NUM;99999999.00",0)
+ÿƒFldAddT("EDVANDA_Satz","NUM;9999.000",0)
+ÿƒFldAddT("EDVANDA_Beitrag","NUM;99999999.00",0)
+ÿƒFldAddT("EDKBU_VS","NUM;99999999.00",0)
+ÿƒFldAddT("EDKBU_Satz","NUM;9999.000",0)
+ÿƒFldAddT("EDKBU_Beitrag","NUM;99999999.00",0)
+ÿƒFldAddT("Gesamtbeitrag","NUM;999999999999.00",0)
+ÿƒFldAddT("Deckung_Pers","NUM;999999999.00",0)
+ÿƒFldAddT("Deckung_Sach","NUM;999999999.00",0)
+ÿƒFldAddT("Deckung_Verm","NUM;999999999.00",0)
+ÿƒFldAddT("T„tigk_Sch„den","NUM;999999999.00",0)
+ÿƒFldAddT("T„tigk_SBBetrag","NUM;999999.00",0)
+ÿƒFldAddT("T„tigk_SBSatz","NUM;99.99",0)
+ÿƒFldAddT("Ums_Betrag","NUM;999999999.00",0)
+ÿƒFldAddT("Ums_Satz","NUM;9999.000",0)
+ÿƒFldAddT("Ums_Beitrag","NUM;999999999.00",0)
+ÿƒFldAddT("L”hne_Betrag","NUM;999999999.00",0)
+ÿƒFldAddT("L”hne_Satz","NUM;9999.",0)
+ÿƒFldAddT("L”hne_Beitrag","NUM;999999999.00",0)
+ÿƒFldAddT("Gehalt_Betrag","NUM;999999999.00",0)
+ÿƒFldAddT("Gehalt_Satz","NUM;9999.",0)
+ÿƒFldAddT("Gehalt_Beitrag","NUM;999999999.00",0)
+ÿƒFldAddT("PersB_Betrag","NUM;999999999.00",0)
+ÿƒFldAddT("PersB_Satz","NUM;9999.",0)
+ÿƒFldAddT("PersB_Beitrag","NUM;999999999.00",0)
+ÿƒFldAddT("PersBa_Betrag","NUM;999999999.00",0)
+ÿƒFldAddT("PersBa_Satz","NUM;9999.",0)
+ÿƒFldAddT("PersBa_Beitrag","NUM;999999999.00",0)
+ÿƒFldAddT("Gesamt_Beitrag","NUM;999999999.00",0)
+ÿƒFldAddT("Pool","NUM;99999999.00",0)
+ÿƒFldAddT("Beitragssatz","NUM;999.00",0)
+ÿƒFldAddT("Eintrittsalter","NUM;999",0)
+ÿƒFldAddT("Wohnfl„che","NUM;999.99",0)
+ÿƒFldAddT("BZDauer","NUM;999",0)
+ÿƒFldAddT("Leistungsdauer","NUM;999",0)
+ 
+ÿƒFldAddT("Vollinvalid","NUM;99999999.00",0)
+ÿƒFldAddT("Vollinvalid1","NUM;99999999.00",0)
+ÿƒFldAddT("Vollinvalid2","NUM;99999999.00",0)
+ÿƒFldAddT("Vollinvalid3","NUM;99999999.00",0)
+ÿƒFldAddT("Vollinvalid4","NUM;99999999.00",0)
+ÿƒFldAddT("Basisinvalid1","NUM;99999999.00",0)
+ÿƒFldAddT("Basisinvalid2","NUM;99999999.00",0)
+ÿƒFldAddT("Basisinvalid3","NUM;99999999.00",0)
+ÿƒFldAddT("Basisinvalid4","NUM;99999999.00",0)
+ÿƒFldAddT("Progression1_1","NUM;99999999.00",0)
+ÿƒFldAddT("Progression1_2","NUM;99999999.00",0)
+ÿƒFldAddT("Progression1_3","NUM;99999999.00",0)
+ÿƒFldAddT("Progression1_4","NUM;99999999.00",0)
+ÿƒFldAddT("Progression2_1","NUM;99999999.00",0)
+ÿƒFldAddT("Progression2_2","NUM;99999999.00",0)
+ÿƒFldAddT("Progression2_3","NUM;99999999.00",0)
+ÿƒFldAddT("Progression2_4","NUM;99999999.00",0)
+ÿƒFldAddT("Todesfall1","NUM;99999999.00",0)
+ÿƒFldAddT("Todesfall2","NUM;99999999.00",0)
+ÿƒFldAddT("Todesfall3","NUM;99999999.00",0)
+ÿƒFldAddT("Todesfall4","NUM;99999999.00",0)
+ÿƒFldAddT("KHT1","NUM;99999999.00",0)
+ÿƒFldAddT("KHT2","NUM;99999999.00",0)
+ÿƒFldAddT("KHT3","NUM;99999999.00",0)
+ÿƒFldAddT("KHT4","NUM;99999999.00",0)
+ÿƒFldAddT("Genesungsgeld1","NUM;99999999.00",0)
+ÿƒFldAddT("Genesungsgeld2","NUM;99999999.00",0)
+ÿƒFldAddT("Genesungsgeld3","NUM;99999999.00",0)
+ÿƒFldAddT("Genesungsgeld4","NUM;99999999.00",0)
+ÿƒFldAddT("šbergangsleist1","NUM;99999999.00",0)
+ÿƒFldAddT("šbergangsleist2","NUM;99999999.00",0)
+ÿƒFldAddT("šbergangsleist3","NUM;99999999.00",0)
+ÿƒFldAddT("šbergangsleist4","NUM;99999999.00",0)
+ÿƒFldAddT("Chir_Leist1","NUM;99999999.00",0)
+ÿƒFldAddT("Chir_Leist2","NUM;99999999.00",0)
+ÿƒFldAddT("Chir_Leist3","NUM;99999999.00",0)
+ÿƒFldAddT("Chir_Leist4","NUM;99999999.00",0)
+ÿƒFldAddT("Unfallrente1","NUM;99999999.00",0)
+ÿƒFldAddT("Unfallrente2","NUM;99999999.00",0)
+ÿƒFldAddT("Unfallrente3","NUM;99999999.00",0)
+ÿƒFldAddT("Unfallrente4","NUM;99999999.00",0)
+ÿƒFldAddT("Kartenwert","NUM;99999.00",0)
+ÿƒFldAddT("Kartenanzahl","NUM;999999.",0)
+ÿ½ Leben
+ÿƒFldAddT("BURenteMonat","NUM;999999999.00",0)
+ÿ½ Unfall
+ÿƒFldAddT("KuBeitrag","NUM;999999999.00",0)
+ÿƒFldAddT("zvp1Beitrag","NUM;999999999.00",0)
+ÿƒFldAddT("zvp2Beitrag","NUM;999999999.00",0)
+ÿƒFldAddT("zvp3Beitrag","NUM;999999999.00",0)
+ÿƒFldAddT("zvp4Beitrag","NUM;999999999.00",0)
+ÿƒFldAddT("SummeBeitrag","NUM;999999999.00",0)
+ÿ½ Inventar Praxis
+ÿƒFldAddT("IVSu","NUM;999999999.00",0)
+ÿƒFldAddT("IVSB","NUM;999999999.00",0)
+ÿƒFldAddT("IVSatz","NUM;99999999.000",0)
+ÿƒFldAddT("IVBeitrag","NUM;999999999.00",0)
+ÿƒFldAddT("KBUSu","NUM;999999999.00",0)
+ÿƒFldAddT("KBUSB","NUM;999999999.00",0)
+ÿƒFldAddT("KBUSatz","NUM;99999999.000",0)
+ÿƒFldAddT("KBUBeitrag","NUM;999999999.00",0)
+ÿƒFldAddT("GLESu","NUM;999999999.00",0)
+ÿƒFldAddT("GLESB","NUM;999999999.00",0)
+ÿƒFldAddT("GLESatz","NUM;99999999.000",0)
+ÿƒFldAddT("GLEBeitrag","NUM;999999999.00",0)
+ÿƒFldAddT("GLPSu","NUM;999999999.00",0)
+ÿƒFldAddT("GLPSB","NUM;999999999.00",0)
+ÿƒFldAddT("GLPSatz","NUM;99999999.000",0)
+ÿƒFldAddT("GLPBeitrag","NUM;999999999.00",0)
+ÿƒFldAddT("ELSu","NUM;999999999.00",0)
+ÿƒFldAddT("ELSB","NUM;999999999.00",0)
+ÿƒFldAddT("ELSatz","NUM;99999999.000",0)
+ÿƒFldAddT("ELBeitrag","NUM;999999999.00",0)
+ÿƒFldAddT("BEWSu","NUM;999999999.00",0)
+ÿƒFldAddT("BEWSB","NUM;999999999.00",0)
+ÿƒFldAddT("BEWSatz","NUM;99999999.000",0)
+ÿƒFldAddT("BEWBeitrag","NUM;999999999.00",0)
+ÿƒFldAddT("IVPRabatt","NUM;99999999.000",0)
+ÿƒFldAddT("IVPSumme","NUM;999999999.00",0)
+ÿ½ Berufshaftpflicht
+ÿƒFldAddT("BHBeitrag","NUM;999999999.00",0)
+ÿƒFldAddT("BEHZusRisiko","NUM;999999999.00",0)
+ÿƒFldAddT("BEHRabatt","NUM;99999999.000",0)
+ÿƒFldAddT("BEHPHV","NUM;999999999.00",0)
+ÿƒFldAddT("BEHSumme","NUM;999999999.00",0)
+ÿ½ Rechtsschutz
+ÿƒFldAddT("RSPrivatSB","NUM;999999999.00",0)
+ÿƒFldAddT("RSPrivatBeitrag","NUM;999999999.00",0)
+ÿƒFldAddT("RSBerufSB","NUM;999999999.00",0)
+ÿƒFldAddT("RSBerufBeitrag","NUM;999999999.00",0)
+ÿƒFldAddT("RSVerkSB","NUM;999999999.00",0)
+ÿƒFldAddT("RSVerkBeitrag","NUM;999999999.00",0)
+ÿƒFldAddT("RSVertrSB","NUM;999999999.00",0)
+ÿƒFldAddT("RSVertrBeitrag","NUM;999999999.00",0)
+ÿƒFldAddT("RSRegrSB","NUM;999999999.00",0)
+ÿƒFldAddT("RSRegrBeitrag","NUM;999999999.00",0)
+ÿƒFldAddT("RSSpeziSB","NUM;999999999.00",0)
+ÿƒFldAddT("RSSpeziBeitrag","NUM;999999999.00",0)
+ÿƒFldAddT("RSWohnSB","NUM;999999999.00",0)
+ÿƒFldAddT("RSWohnBeitrag","NUM;999999999.00",0)
+ÿƒFldAddT("Rechtsumme","NUM;999999999.00",0)
+ÿ½ Kapitalanlagen
+ÿƒFldAddT("AnlFond1","NUM;99999999999999.",0)
+ÿƒFldAddT("AnlFond2","NUM;99999999999999.",0)
+ÿƒFldAddT("AnlFond3","NUM;99999999999999.",0)
+ÿƒFldAddT("AnlFond4","NUM;99999999999999.",0)
+ÿƒFldAddT("AnlFond5","NUM;99999999999999.",0)
+ÿƒFldAddT("AnlFond6","NUM;99999999999999.",0)
+ÿƒFldAddT("AnliFond1","NUM;99999999999999.",0)
+ÿƒFldAddT("AnliFond2","NUM;99999999999999.",0)
+ÿƒFldAddT("AnliFond3","NUM;99999999999999.",0)
+ÿƒFldAddT("AnliFond4","NUM;99999999999999.",0)
+ÿƒFldAddT("AnliFond5","NUM;99999999999999.",0)
+ÿƒFldAddT("AnliFond6","NUM;99999999999999.",0)
+ÿƒFldAddT("SparFond1","NUM;99999999999999.",0)
+ÿƒFldAddT("SparFond2","NUM;99999999999999.",0)
+ÿƒFldAddT("SparFond3","NUM;99999999999999.",0)
+ÿƒFldAddT("SparFond4","NUM;99999999999999.",0)
+ÿƒFldAddT("SparFond5","NUM;99999999999999.",0)
+ÿƒFldAddT("SparFond6","NUM;99999999999999.",0)
+ÿƒFldAddT("SpariFond1","NUM;99999999999999.",0)
+ÿƒFldAddT("SpariFond2","NUM;99999999999999.",0)
+ÿƒFldAddT("SpariFond3","NUM;99999999999999.",0)
+ÿƒFldAddT("SpariFond4","NUM;99999999999999.",0)
+ÿƒFldAddT("SpariFond5","NUM;99999999999999.",0)
+ÿƒFldAddT("SpariFond6","NUM;99999999999999.",0)
+ÿƒFldAddT("HRWertsachProz","NUM;9999.0000",0)
+ÿƒFldAddT("HRUnterdeckProz","NUM;9999.0000",0)
+ÿƒFldAddT("HRšberspannProz","NUM;9999.0000",0)
+ÿƒFldAddT("HRFahrdiebProz","NUM;9999.000",0)
+ÿƒFldAddT("HRWohnfl„che","NUM;99999.000",0)
+ÿƒFldAddT("HRZuschlagProz","NUM;99999.0000",0)
+ 
+ÿ½ Glasbruch
+ÿƒFldAddT("KFZHaftBeitrag","NUM;999999999.00",0)
+ÿƒFldAddT("KFZVollkBeitrag","NUM;999999999.00",0)
+ÿƒFldAddT("KFZTeilkBeitrag","NUM;999999999.00",0)
+ÿƒFldAddT("KFZGesBeitrag","NUM;999999999.00",0)
+ÿ½ tats„chliches Kndigungsdatum
+ÿƒFldAddT("Deckung1","NUM;99999999.00",0)
+ÿƒFldAddT("Deckung2","NUM;99999999.00",0)
+ÿƒFldAddT("Deckung3","NUM;99999999.00",0)
+ÿƒFldAddT("Deckung4","NUM;99999999.00",0)
+ÿƒFldAddT("VGezGesamtPlus","NUM;999999999.00",0)
+ÿƒFldAddT("VGezGesamtMinus","NUM;999999999.00",0)
+ 
+ÿƒFldAddT("Umrechnung","NUM;99999999.000000",0)
+ÿƒFldAddT("FEigmittel","NUM;999999999.00",0)
+ÿƒFldAddT("FDarlBetrag","NUM;999999999.00",0)
+ÿƒFldAddT("FZinsNom","NUM;999.0000",0)
+ÿƒFldAddT("FZinsEff","NUM;999.0000",0)
+ÿƒFldAddT("FBeitrag","NUM;999999999.00",0)
+ÿƒFldAddT("FAuszahl","NUM;999999999.00",0)
+ÿƒFldAddT("FTilgung","NUM;999999999.00",0)
+ÿƒFldAddT("KFZ_Genes","NUM;99999999.00",0)
+ÿƒFldAddT("BeitrSum","NUM;9999999999.00",0)
+ÿƒFldAddT("BewertEinm","NUM;99999999.00",0)
+ÿƒFldAddT("SummeAnteile","NUM;99999999999.000",0)
+ÿƒFldAddT("SummeEinzDM","NUM;999999999999.00",0)
+ÿƒFldAddT("SummeEinzUS","NUM;999999999999.00",0)
+ÿƒFldAddT("SummeEinzEur","NUM;999999999999.00",0)
+ÿƒFldAddT("NettoBeitrag","NUM;999999999999.00",0)
+ÿƒFldAddT("Einheiten","NUM;999999999.00",0)
+ÿƒFldAddT("PoolV","NUM;99999999.00",0)
+ÿƒFldAddT("SummeEinzWaehr","NUM;999999999999.00",0)
+ÿƒFldAddT("BAnteilsprWaehr","NUM;9999999999.0000",0)
+ÿƒFldAddT("BAnteilsprDM","NUM;9999999999.0000",0)
+ÿƒFldAddT("BAnteilsprUS","NUM;9999999999.0000",0)
+ÿƒFldAddT("BAnteilsprEuro","NUM;9999999999.0000",0)
+ÿƒFldAddT("SummeBestWaehr","NUM;999999999999.00",0)
+ÿƒFldAddT("BRckkaufWaehr","NUM;9999999999.0000",0)
+ÿƒFldAddT("BRckkaufDM","NUM;9999999999.0000",0)
+ÿƒFldAddT("BRckkaufUS","NUM;9999999999.0000",0)
+ÿƒFldAddT("BRckkaufEuro","NUM;9999999999.0000",0)
+ÿƒFldAddT("BBestandDM","NUM;999999999999.00",0)
+ÿƒFldAddT("BBestandUS","NUM;999999999999.00",0)
+ÿƒFldAddT("BBestandEuro","NUM;999999999999.00",0)
+ÿƒFldAddT("BBestandWaehr","NUM;999999999999.00",0)
+
+ÿƒFldAddT("EinzBeitrag","NUM;999999999999.00",0)
+ÿƒFldAddT("Courtage","NUM;999999999999.00",0)
+ÿƒFldAddT("EinzCourtage","NUM;999999999999.00",0)
+ÿƒFldAddT("EinzBeitragOld","NUM;999999999999.00",0)
+ÿƒFldAddT("DradDiSum","NUM;999999999.00",0)
+ÿƒFldAddT("KMStand","NUM;999999999999.",0)
+ÿƒFldAddT("Schadquote","NUM;9999999.0000",0)
+ÿƒFldAddT("AFSKPAUEUR","NUM;99999.00",0)
+
+ÿÅÿ™"KVERTRAG"
+ ÿ’ÿÿ
+ 
+ÿÿThousendNOB()
+ÿÊÿË"Buchung1 - Passe Feldformat fr ASCII-Export an!"
+ÿ™"BUCHUNG1"
+ÿƒFldAddT("Volumen","NUM;9999999.00",0)' -- W„hrungsanzeige entfernt
+ÿƒFldAddT("Gesamtbetrag","NUM;9999999.00",0)
+ÿƒFldAddT("gezahlt","NUM;9999999.00",0)
+ÿƒFldAddT("Einheiten","NUM;9999999999.00",0)
+ÿƒFldAddT("GesamtbetragEU","NUM;9999999999.00",0)
+ÿƒFldAddT("BetragEU","NUM;9999999999.00",0)
+ÿƒFldAddT("SREU","NUM;9999999999.00",0)
+ÿƒFldAddT("BewertungssumEU","NUM;9999999999.00",0)
+ÿƒFldAddT("gezahltEU","NUM;9999999999.00",0)
+ 
+ÿƒFldAddT("Bewertung2","NUM;9999999.00",0)
+ÿƒFldAddT("Bewertung2EU","NUM;9999999.00",0)
+ÿƒFldAddT("VSumme","NUM;999999999999.00",0)
+ÿƒFldAddT("BeitragBrut","NUM;999999999.00",0)
+ÿƒFldAddT("BeitragNet","NUM;999999999.00",0)
+ÿƒFldAddT("VSummeEU","NUM;999999999999.00",0)
+ÿƒFldAddT("BeitragBrutEU","NUM;999999999.00",0)
+ÿƒFldAddT("BeitragNetEU","NUM;999999999.00",0)
+ÿƒFldAddT("JahresBBrut","NUM;999999999.00",0)
+ÿƒFldAddT("JahresBNet","NUM;999999999.00",0)
+ÿƒFldAddT("JahresBBrutEU","NUM;999999999.00",0)
+ÿƒFldAddT("JahresBNetEU","NUM;999999999.00",0)
+ÿƒFldAddT("ProvBasiswert","NUM;999999999.00",0)
+ÿƒFldAddT("KundEinzahlung","NUM;999999999.00",0)
+ÿƒFldAddT("KundEinzahluEU","NUM;999999999.00",0)
+
+ÿƒFldAddT("EinheitenEU","NUM;9999999999.00",0)
+ÿÅÿ™"BUCHUNG1"
+ ÿ’ÿÿ
+ 
+
+ÿÿThousendNOB1()
+ÿÊÿË"Buchung - Passe Feldformat fr ASCII-Export an!"
+ÿ™"BUCHUNG"
+ÿƒFldAddT("Volumen","NUM;9999999.00",0)' -- W„hrungsanzeige entfernt
+ÿƒFldAddT("Gesamtbetrag","NUM;9999999.00",0)
+ÿƒFldAddT("gezahlt","NUM;9999999.00",0)
+ÿƒFldAddT("Einheiten","NUM;9999999999.00",0)
+ÿƒFldAddT("GesamtbetragEU","NUM;9999999999.00",0)
+ÿƒFldAddT("BetragEU","NUM;9999999999.00",0)
+ÿƒFldAddT("SREU","NUM;9999999999.00",0)
+ÿƒFldAddT("BewertungssumEU","NUM;9999999999.00",0)
+ÿƒFldAddT("gezahltEU","NUM;9999999999.00",0)
+ÿƒFldAddT("Bewertung2","NUM;9999999.00",0)
+ÿƒFldAddT("Bewertung2EU","NUM;9999999.00",0)
+ÿƒFldAddT("VSumme","NUM;999999999999.00",0)
+ÿƒFldAddT("BeitragBrut","NUM;999999999.00",0)
+ÿƒFldAddT("BeitragNet","NUM;999999999.00",0)
+ÿƒFldAddT("VSummeEU","NUM;999999999999.00",0)
+ÿƒFldAddT("BeitragBrutEU","NUM;999999999.00",0)
+ÿƒFldAddT("BeitragNetEU","NUM;999999999.00",0)
+ÿƒFldAddT("JahresBBrut","NUM;999999999.00",0)
+ÿƒFldAddT("JahresBNet","NUM;999999999.00",0)
+ÿƒFldAddT("JahresBBrutEU","NUM;999999999.00",0)
+ÿƒFldAddT("JahresBNetEU","NUM;999999999.00",0)
+ÿƒFldAddT("ProvBasiswert","NUM;999999999.00",0)
+ÿƒFldAddT("KundEinzahlung","NUM;999999999.00",0)
+ÿƒFldAddT("KundEinzahluEU","NUM;999999999.00",0)
+
+ÿÅÿ™"BUCHUNG"
+ ÿ’ÿÿ
+ 
+ÿÿThousendZei()
+ÿƒFldAddT("BetragEU","NUM;,9999999.00",0)
+ÿƒFldAddT("BetraggezEU","NUM;,9999999.00",0)
+ÿƒFldAddT("gezahltEU","NUM;,9999999.00",0)
+ÿƒFldAddT("SREU","NUM;,9999999.00",0)
+ÿƒFldAddT("SRAuszahlungEU","NUM;,9999999.00",0)
+ÿƒFldAddT("BewertungEU","NUM;,999999999.00",0)
+ÿƒFldAddT("Umrechnung","NUM;,99999999.000000",0)
+ÿƒFldAddT("KundEinzahlung","NUM;,999999999.00",0)
+ÿƒFldAddT("KundEinzahluEU","NUM;,999999999.00",0)
+ ÿ’ÿÿ
+
+
+ÿÿThousendNoZei()
+ÿƒFldAddT("BetragEU","NUM;9999999.00",0)
+ÿƒFldAddT("BetraggezEU","NUM;9999999.00",0)
+ÿƒFldAddT("gezahltEU","NUM;9999999.00",0)
+ÿƒFldAddT("SREU","NUM;9999999.00",0)
+ÿƒFldAddT("SRAuszahlungEU","NUM;9999999.00",0)
+ÿƒFldAddT("BewertungEU","NUM;999999999.00",0)
+ÿƒFldAddT("Umrechnung","NUM;99999999.000000",0)
+ÿƒFldAddT("KundEinzahlung","NUM;999999999.00",0)
+ÿƒFldAddT("KundEinzahluEU","NUM;999999999.00",0)
+ ÿ’ÿÿ
+ 
+ÿÿFldAddT(Feldname$,NewFormat$,IndexType%)
+ÿ³ÿ_ÿwTTrapFileFind
+ tsfound%ÿ0
+ a$ÿÿö(FeldName$,0)
+ ÿÊÿË"Anpassung "ÿFeldname$
+ tsfound%ÿ1
+TTrapFileFind: 
+ ÿ¡test%ÿ0ÿpÿ³ÿ_ÿwErrorHandler ÿ^ÿ³ÿ_
+ ÿ¡tsfound%ÿ0ÿp
+ÿ½ ** Feld neu erstellen
+ÿ|Feldname$ÿ";"ÿNewFormat$ÿ";1;1"
+ÿÉÿæIndexType%
+ÿæ1
+ÿ‰ÿ£ÿ³Feldname$$
+ÿæ2
+ÿ‰ÿ£ÿ³Feldname$$ÿr
+ÿ’ÿÉ
+ ÿ^
+ÿ½ ** Feld auf Format„nderungen testen und anpassen
+ÿ¡ÿö(feldname$,3)ÿ"IX*"ÿIndexType%ÿ0ÿp
+
+ÿ¾ÿ£Feldname$$
+ÿ’ÿ¡
+ok%ÿ1
+NewForm%ÿ0
+NewIndex%ÿ0
+cFormat$ÿÿF(ÿö(Feldname$,0)ÿ";"ÿÿö(Feldname$,4))
+ÿ¡ÿ>(cformat$)ÿÿ>(NewFormat$)ÿp
+ok%ÿ0
+NewForm%ÿ1
+ÿ’ÿ¡
+IndexType$ÿÿö(feldname$,3)
+ÿ¡(IndexType$ÿ"IXD"ÿIndexType%ÿ2)ÿ(IndexType$ÿ"IXU"ÿIndexType%ÿ1)ÿp
+ok%ÿ0
+NewIndex%ÿ1
+ÿ’ÿ¡
+ÿ¡ÿö(feldname$,3)ÿ""ÿIndexType%ÿ0ÿp
+NewIndex%ÿ1
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡ok%ÿ0ÿp
+ÿ¡NewForm%ÿ1ÿIndexType$ÿ"IX*"ÿp
+ÿƒServer("UPDSTATUS","Indexl”schung")
+ÿ¾ÿ£Feldname$$
+ÿ’ÿ¡
+ÿ¡NewForm%ÿ1ÿp
+
+ÿ®Feldname$$,Feldname$ÿ";"ÿNewFormat$
+
+ÿÉÿæIndexType%
+ÿæ1
+	ÿ‰ÿ£ÿ³Feldname$$
+ÿæ2
+	ÿ‰ÿ£ÿ³Feldname$$ÿr
+ÿ’ÿÉ
+ok%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ok%ÿ0ÿp
+ÿ¡NewIndex%ÿ1ÿp
+ÿ¡IndexType$ÿ"IX*"ÿp
+
+	ÿ¾ÿ£Feldname$$
+ÿ’ÿ¡
+
+ÿÉÿæIndexType%
+ÿæ1
+	ÿ‰ÿ£ÿ³Feldname$$
+ÿæ2
+	ÿ‰ÿ£ÿ³Feldname$$ÿr
+ÿ’ÿÉ
+ok%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ 
+ÿÿThousendYesK()
+ÿÊÿË"Vertragsdatei - Rcksetzen Feldformat!"
+ÿƒFldAddT("Bewertungssumme","NUM;,999999999.00",0)
+ÿƒFldAddT("VSumme","NUM;,999999999.00",0)
+ÿƒFldAddT("StornoBetrag","NUM;,99999999.00",0)
+ÿƒFldAddT("Volumen","NUM;,999999999.00",0)'                          ; W„hrungsanzeige entfernt
+ÿƒFldAddT("Fahrzeugst„rke","NUM;,999999.",0)
+ÿƒFldAddT("Fahrzeugwert","NUM;,99999999.00",0)
+ÿƒFldAddT("HV_SFR","NUM;,999.",0)
+ÿƒFldAddT("TK_Betrag","NUM;,99999999.00",0)
+ÿƒFldAddT("VK_Betrag","NUM;,99999999.00",0)
+ÿƒFldAddT("VK_SFR","NUM;,999.",0)
+ÿ½ 210597
+ÿƒFldAddT("Basisinvalid","NUM;,99999999.00",0)
+ÿƒFldAddT("Progression1","NUM;,999.00",0)
+ÿƒFldAddT("Progression2","NUM;,999.00",0)
+ÿƒFldAddT("Todesfall","NUM;,99999999.00",0)
+ÿƒFldAddT("KHT","NUM;,99999999.00",0)
+ÿƒFldAddT("Genesungsgeld","NUM;,99999999.00",0)
+ÿƒFldAddT("šbergangsleist","NUM;,99999999.00",0)
+ÿƒFldAddT("Chir_Leist","NUM;,99999999.00",0)
+ÿƒFldAddT("Unfallrente","NUM;,99999999.00",0)
+ÿƒFldAddT("Unfall_KHT","NUM;,99999999.00",0)
+ÿƒFldAddT("Bewertungssumme","NUM;,99999999.00",0)
+ÿƒFldAddT("VSumme","NUM;,99999999.00",0)
+ÿƒFldAddT("F_VS","NUM;,99999999.00;",0)
+ÿƒFldAddT("F_Satz","NUM;,9999.000",0)
+ÿƒFldAddT("F_Beitrag","NUM;,99999999.00",0)
+ÿƒFldAddT("FKBU_VS","NUM;,99999999.00",0)
+ÿƒFldAddT("FKBU_Satz","NUM;,9999.000",0)
+ÿƒFldAddT("FKBU_Beitrag","NUM;,99999999.00",0)
+ÿƒFldAddT("LW_VS","NUM;,99999999.00",0)
+ÿƒFldAddT("LW_Satz","NUM;,9999.000",0)
+ÿƒFldAddT("LW_Beitrag","NUM;,99999999.00",0)
+ÿƒFldAddT("LWKBU_VS","NUM;,99999999.00",0)
+ÿƒFldAddT("LWKBU_Satz","NUM;,9999.000",0)
+ÿƒFldAddT("LWKBU_Beitrag","NUM;,99999999.00",0)
+ÿƒFldAddT("ST_VS","NUM;,99999999.00",0)
+ÿƒFldAddT("ST_Satz","NUM;,9999.000",0)
+ÿƒFldAddT("ST_Beitrag","NUM;,99999999.00",0)
+ÿƒFldAddT("STKBU_VS","NUM;,99999999.00",0)
+ÿƒFldAddT("STKBU_Satz","NUM;,9999.000",0)
+ÿƒFldAddT("STKBU_Beitrag","NUM;,99999999.00",0)
+ÿƒFldAddT("ED_VS","NUM;,99999999.00",0)
+ÿƒFldAddT("ED_Satz","NUM;,9999.000",0)
+ÿƒFldAddT("ED_Beitrag","NUM;,99999999.00",0)
+ÿƒFldAddT("EDVANDA_VS","NUM;,99999999.00",0)
+ÿƒFldAddT("EDVANDA_Satz","NUM;,9999.000",0)
+ÿƒFldAddT("EDVANDA_Beitrag","NUM;,99999999.00",0)
+ÿƒFldAddT("EDKBU_VS","NUM;,99999999.00",0)
+ÿƒFldAddT("EDKBU_Satz","NUM;,9999.000",0)
+ÿƒFldAddT("EDKBU_Beitrag","NUM;,99999999.00",0)
+ÿƒFldAddT("Gesamtbeitrag","NUM;,999999999999.00",0)
+ÿƒFldAddT("Deckung_Pers","NUM;,999999999.00",0)
+ÿƒFldAddT("Deckung_Sach","NUM;,999999999.00",0)
+ÿƒFldAddT("Deckung_Verm","NUM;,999999999.00",0)
+ÿƒFldAddT("T„tigk_Sch„den","NUM;,999999999.00",0)
+ÿƒFldAddT("T„tigk_SBBetrag","NUM;,999999.00",0)
+ÿƒFldAddT("T„tigk_SBSatz","NUM;,99.99",0)
+ÿƒFldAddT("Ums_Betrag","NUM;,999999999.00",0)
+ÿƒFldAddT("Ums_Satz","NUM;,9999.000",0)
+ÿƒFldAddT("Ums_Beitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("L”hne_Betrag","NUM;,999999999.00",0)
+ÿƒFldAddT("L”hne_Satz","NUM;,9999.",0)
+ÿƒFldAddT("L”hne_Beitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("Gehalt_Betrag","NUM;,999999999.00",0)
+ÿƒFldAddT("Gehalt_Satz","NUM;,9999.",0)
+ÿƒFldAddT("Gehalt_Beitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("PersB_Betrag","NUM;,999999999.00",0)
+ÿƒFldAddT("PersB_Satz","NUM;,9999.",0)
+ÿƒFldAddT("PersB_Beitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("PersBa_Betrag","NUM;,999999999.00",0)
+ÿƒFldAddT("PersBa_Satz","NUM;,9999.",0)
+ÿƒFldAddT("PersBa_Beitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("Gesamt_Beitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("Pool","NUM;,99999999.00",0)
+ÿƒFldAddT("Beitragssatz","NUM;,999.00",0)
+ÿƒFldAddT("Eintrittsalter","NUM;,999",0)
+ÿƒFldAddT("Wohnfl„che","NUM;,999.99",0)
+ÿƒFldAddT("BZDauer","NUM;,999",0)
+ÿƒFldAddT("Leistungsdauer","NUM;,999",0)
+ 
+ÿƒFldAddT("Vollinvalid","NUM;,99999999.00",0)
+ÿƒFldAddT("Vollinvalid1","NUM;,99999999.00",0)
+ÿƒFldAddT("Vollinvalid2","NUM;,99999999.00",0)
+ÿƒFldAddT("Vollinvalid3","NUM;,99999999.00",0)
+ÿƒFldAddT("Vollinvalid4","NUM;,99999999.00",0)
+ÿƒFldAddT("Basisinvalid1","NUM;,99999999.00",0)
+ÿƒFldAddT("Basisinvalid2","NUM;,99999999.00",0)
+ÿƒFldAddT("Basisinvalid3","NUM;,99999999.00",0)
+ÿƒFldAddT("Basisinvalid4","NUM;,99999999.00",0)
+ÿƒFldAddT("Progression1_1","NUM;,99999999.00",0)
+ÿƒFldAddT("Progression1_2","NUM;,99999999.00",0)
+ÿƒFldAddT("Progression1_3","NUM;,99999999.00",0)
+ÿƒFldAddT("Progression1_4","NUM;,99999999.00",0)
+ÿƒFldAddT("Progression2_1","NUM;,99999999.00",0)
+ÿƒFldAddT("Progression2_2","NUM;,99999999.00",0)
+ÿƒFldAddT("Progression2_3","NUM;,99999999.00",0)
+ÿƒFldAddT("Progression2_4","NUM;,99999999.00",0)
+ÿƒFldAddT("Todesfall1","NUM;,99999999.00",0)
+ÿƒFldAddT("Todesfall2","NUM;,99999999.00",0)
+ÿƒFldAddT("Todesfall3","NUM;,99999999.00",0)
+ÿƒFldAddT("Todesfall4","NUM;,99999999.00",0)
+ÿƒFldAddT("KHT1","NUM;,99999999.00",0)
+ÿƒFldAddT("KHT2","NUM;,99999999.00",0)
+ÿƒFldAddT("KHT3","NUM;,99999999.00",0)
+ÿƒFldAddT("KHT4","NUM;,99999999.00",0)
+ÿƒFldAddT("Genesungsgeld1","NUM;,99999999.00",0)
+ÿƒFldAddT("Genesungsgeld2","NUM;,99999999.00",0)
+ÿƒFldAddT("Genesungsgeld3","NUM;,99999999.00",0)
+ÿƒFldAddT("Genesungsgeld4","NUM;,99999999.00",0)
+ÿƒFldAddT("šbergangsleist1","NUM;,99999999.00",0)
+ÿƒFldAddT("šbergangsleist2","NUM;,99999999.00",0)
+ÿƒFldAddT("šbergangsleist3","NUM;,99999999.00",0)
+ÿƒFldAddT("šbergangsleist4","NUM;,99999999.00",0)
+ÿƒFldAddT("Chir_Leist1","NUM;,99999999.00",0)
+ÿƒFldAddT("Chir_Leist2","NUM;,99999999.00",0)
+ÿƒFldAddT("Chir_Leist3","NUM;,99999999.00",0)
+ÿƒFldAddT("Chir_Leist4","NUM;,99999999.00",0)
+ÿƒFldAddT("Unfallrente1","NUM;,99999999.00",0)
+ÿƒFldAddT("Unfallrente2","NUM;,99999999.00",0)
+ÿƒFldAddT("Unfallrente3","NUM;,99999999.00",0)
+ÿƒFldAddT("Unfallrente4","NUM;,99999999.00",0)
+ÿƒFldAddT("Kartenwert","NUM;,99999.00",0)
+ÿƒFldAddT("Kartenanzahl","NUM;,999999.",0)
+ÿ½ Leben
+ÿƒFldAddT("BURenteMonat","NUM;,999999999.00",0)
+ÿ½ Unfall
+ÿƒFldAddT("KuBeitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("zvp1Beitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("zvp2Beitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("zvp3Beitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("zvp4Beitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("SummeBeitrag","NUM;,999999999.00",0)
+ÿ½ Inventar Praxis
+ÿƒFldAddT("IVSu","NUM;,999999999.00",0)
+ÿƒFldAddT("IVSB","NUM;,999999999.00",0)
+ÿƒFldAddT("IVSatz","NUM;,99999999.000",0)
+ÿƒFldAddT("IVBeitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("KBUSu","NUM;,999999999.00",0)
+ÿƒFldAddT("KBUSB","NUM;,999999999.00",0)
+ÿƒFldAddT("KBUSatz","NUM;,99999999.000",0)
+ÿƒFldAddT("KBUBeitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("GLESu","NUM;,999999999.00",0)
+ÿƒFldAddT("GLESB","NUM;,999999999.00",0)
+ÿƒFldAddT("GLESatz","NUM;,99999999.000",0)
+ÿƒFldAddT("GLEBeitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("GLPSu","NUM;,999999999.00",0)
+ÿƒFldAddT("GLPSB","NUM;,999999999.00",0)
+ÿƒFldAddT("GLPSatz","NUM;,99999999.000",0)
+ÿƒFldAddT("GLPBeitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("ELSu","NUM;,999999999.00",0)
+ÿƒFldAddT("ELSB","NUM;,999999999.00",0)
+ÿƒFldAddT("ELSatz","NUM;,99999999.000",0)
+ÿƒFldAddT("ELBeitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("BEWSu","NUM;,999999999.00",0)
+ÿƒFldAddT("BEWSB","NUM;,999999999.00",0)
+ÿƒFldAddT("BEWSatz","NUM;,99999999.000",0)
+ÿƒFldAddT("BEWBeitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("IVPRabatt","NUM;,99999999.000",0)
+ÿƒFldAddT("IVPSumme","NUM;,999999999.00",0)
+ÿ½ Berufshaftpflicht
+ÿƒFldAddT("BHBeitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("BEHZusRisiko","NUM;,999999999.00",0)
+ÿƒFldAddT("BEHRabatt","NUM;,99999999.000",0)
+ÿƒFldAddT("BEHPHV","NUM;,999999999.00",0)
+ÿƒFldAddT("BEHSumme","NUM;,999999999.00",0)
+ÿ½ Rechtsschutz
+ÿƒFldAddT("RSPrivatSB","NUM;,999999999.00",0)
+ÿƒFldAddT("RSPrivatBeitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("RSBerufSB","NUM;,999999999.00",0)
+ÿƒFldAddT("RSBerufBeitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("RSVerkSB","NUM;,999999999.00",0)
+ÿƒFldAddT("RSVerkBeitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("RSVertrSB","NUM;,999999999.00",0)
+ÿƒFldAddT("RSVertrBeitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("RSRegrSB","NUM;,999999999.00",0)
+ÿƒFldAddT("RSRegrBeitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("RSSpeziSB","NUM;,999999999.00",0)
+ÿƒFldAddT("RSSpeziBeitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("RSWohnSB","NUM;,999999999.00",0)
+ÿƒFldAddT("RSWohnBeitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("Rechtsumme","NUM;,999999999.00",0)
+ÿ½ Kapitalanlagen
+ÿƒFldAddT("AnlFond1","NUM;,99999999999999.",0)
+ÿƒFldAddT("AnlFond2","NUM;,99999999999999.",0)
+ÿƒFldAddT("AnlFond3","NUM;,99999999999999.",0)
+ÿƒFldAddT("AnlFond4","NUM;,99999999999999.",0)
+ÿƒFldAddT("AnlFond5","NUM;,99999999999999.",0)
+ÿƒFldAddT("AnlFond6","NUM;,99999999999999.",0)
+ÿƒFldAddT("AnliFond1","NUM;,99999999999999.",0)
+ÿƒFldAddT("AnliFond2","NUM;,99999999999999.",0)
+ÿƒFldAddT("AnliFond3","NUM;,99999999999999.",0)
+ÿƒFldAddT("AnliFond4","NUM;,99999999999999.",0)
+ÿƒFldAddT("AnliFond5","NUM;,99999999999999.",0)
+ÿƒFldAddT("AnliFond6","NUM;,99999999999999.",0)
+ÿƒFldAddT("SparFond1","NUM;,99999999999999.",0)
+ÿƒFldAddT("SparFond2","NUM;,99999999999999.",0)
+ÿƒFldAddT("SparFond3","NUM;,99999999999999.",0)
+ÿƒFldAddT("SparFond4","NUM;,99999999999999.",0)
+ÿƒFldAddT("SparFond5","NUM;,99999999999999.",0)
+ÿƒFldAddT("SparFond6","NUM;,99999999999999.",0)
+ÿƒFldAddT("SpariFond1","NUM;,99999999999999.",0)
+ÿƒFldAddT("SpariFond2","NUM;,99999999999999.",0)
+ÿƒFldAddT("SpariFond3","NUM;,99999999999999.",0)
+ÿƒFldAddT("SpariFond4","NUM;,99999999999999.",0)
+ÿƒFldAddT("SpariFond5","NUM;,99999999999999.",0)
+ÿƒFldAddT("SpariFond6","NUM;,99999999999999.",0)
+ÿƒFldAddT("HRWertsachProz","NUM;,9999.0000",0)
+ÿƒFldAddT("HRUnterdeckProz","NUM;,9999.0000",0)
+ÿƒFldAddT("HRšberspannProz","NUM;,9999.0000",0)
+ÿƒFldAddT("HRFahrdiebProz","NUM;,9999.000",0)
+ÿƒFldAddT("HRWohnfl„che","NUM;,99999.000",0)
+ÿƒFldAddT("HRZuschlagProz","NUM;,99999.0000",0)
+ 
+ÿ½ Glasbruch
+ÿƒFldAddT("KFZHaftBeitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("KFZVollkBeitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("KFZTeilkBeitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("KFZGesBeitrag","NUM;,999999999.00",0)
+ÿ½ tats„chliches Kndigungsdatum
+ÿƒFldAddT("Deckung1","NUM;,99999999.00",0)
+ÿƒFldAddT("Deckung2","NUM;,99999999.00",0)
+ÿƒFldAddT("Deckung3","NUM;,99999999.00",0)
+ÿƒFldAddT("Deckung4","NUM;,99999999.00",0)
+ÿƒFldAddT("VGezGesamtPlus","NUM;,999999999.00",0)
+ÿƒFldAddT("VGezGesamtMinus","NUM;,999999999 .00",0)
+ÿƒFldAddT("Umrechnung","NUM;,99999999.000000",0)
+ÿƒFldAddT("FEigmittel","NUM;,999999999.00",0)
+ÿƒFldAddT("FDarlBetrag","NUM;,999999999.00",0)
+ÿƒFldAddT("FZinsNom","NUM;999.0000",0)
+ÿƒFldAddT("FZinsEff","NUM;999.0000",0)
+ÿƒFldAddT("FBeitrag","NUM;,999999999.00",0)
+ÿƒFldAddT("FAuszahl","NUM;,999999999.00",0)
+ÿƒFldAddT("FTilgung","NUM;,999999999.00",0)
+ÿƒFldAddT("KFZ_Genes","NUM;,99999999.00",0)
+ÿƒFldAddT("BeitrSum","NUM;,9999999999.00",0)
+ÿƒFldAddT("BewertEinm","NUM;,99999999.00",0)
+ÿƒFldAddT("SummeAnteile","NUM;,99999999999.000",0)
+ÿƒFldAddT("SummeEinzDM","NUM;,999999999999.00",0)
+ÿƒFldAddT("SummeEinzUS","NUM;,999999999999.00",0)
+ÿƒFldAddT("SummeEinzEur","NUM;,999999999999.00",0)
+ÿƒFldAddT("NettoBeitrag","NUM;,999999999999.00",0)
+ÿƒFldAddT("Einheiten","NUM;999999999.00",0)
+ÿƒFldAddT("PoolV","NUM;99999999.00",0)
+ÿƒFldAddT("SummeEinzWaehr","NUM;,999999999999.00",0)
+ÿƒFldAddT("BAnteilsprWaehr","NUM;,9999999999.0000",0)
+ÿƒFldAddT("BAnteilsprDM","NUM;,9999999999.0000",0)
+ÿƒFldAddT("BAnteilsprUS","NUM;,9999999999.0000",0)
+ÿƒFldAddT("BAnteilsprEuro","NUM;,9999999999.0000",0)
+ÿƒFldAddT("SummeBestWaehr","NUM;,999999999999.00",0)
+ÿƒFldAddT("BRckkaufWaehr","NUM;,9999999999.0000",0)
+ÿƒFldAddT("BRckkaufDM","NUM;,9999999999.0000",0)
+ÿƒFldAddT("BRckkaufUS","NUM;,9999999999.0000",0)
+ÿƒFldAddT("BRckkaufEuro","NUM;,9999999999.0000",0)
+ÿƒFldAddT("BBestandDM","NUM;,999999999999.00",0)
+ÿƒFldAddT("BBestandUS","NUM;,999999999999.00",0)
+ÿƒFldAddT("BBestandEuro","NUM;,999999999999.00",0)
+ÿƒFldAddT("BBestandWaehr","NUM;,999999999999.00",0)
+
+ÿƒFldAddT("EinzBeitrag","NUM;,999999999999.00",0)
+ÿƒFldAddT("Courtage","NUM;,999999999999.00",0)
+ÿƒFldAddT("EinzCourtage","NUM;,999999999999.00",0)
+ÿƒFldAddT("EinzBeitragOld","NUM;,999999999999.00",0)
+ÿƒFldAddT("DradDiSum","NUM;,999999999.00",0)
+ÿƒFldAddT("KMStand","NUM;,999999999999.",0)
+ÿƒFldAddT("Schadquote","NUM;,9999999.0000",0)
+ÿƒFldAddT("AFSKPAUEUR","NUM;,99999.00",0)
+ 
+ÿÅÿ™"KVERTRAG"
+ ÿ’ÿÿ
+ 
+ÿÿThousendYESB()
+ÿÊÿË"Buchung1 - Rcksetzen Feldformat!"
+ÿ™"BUCHUNG1"
+ÿƒFldAddT("Volumen","NUM;,9999999.00",0)' -- W„hrungsanzeige entfernt
+ÿƒFldAddT("Gesamtbetrag","NUM;,9999999.00",0)
+ÿƒFldAddT("gezahlt","NUM;,9999999.00",0)
+ÿƒFldAddT("gezahlt_am","DAT;0d.mm.yyyy",0)
+ÿƒFldAddT("Einheiten","NUM;,9999999999.00",0)
+ÿƒFldAddT("GesamtbetragEU","NUM;,9999999999.00",0)
+ÿƒFldAddT("BetragEU","NUM;,9999999999.00",0)
+ÿƒFldAddT("SREU","NUM;,9999999999.00",0)
+ÿƒFldAddT("BewertungssumEU","NUM;,9999999999.00",0)
+ÿƒFldAddT("gezahltEU","NUM;,9999999999.00",0)
+ÿƒFldAddT("Bewertung2","NUM;,9999999.00",0)
+ÿƒFldAddT("Bewertung2EU","NUM;,9999999.00",0)
+ÿƒFldAddT("VSumme","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeitragBrut","NUM;,999999999.00",0)
+ÿƒFldAddT("BeitragNet","NUM;,999999999.00",0)
+ÿƒFldAddT("VSummeEU","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeitragBrutEU","NUM;,999999999.00",0)
+ÿƒFldAddT("BeitragNetEU","NUM;,999999999.00",0)
+ÿƒFldAddT("JahresBBrut","NUM;,999999999.00",0)
+ÿƒFldAddT("JahresBNet","NUM;,999999999.00",0)
+ÿƒFldAddT("JahresBBrutEU","NUM;,999999999.00",0)
+ÿƒFldAddT("JahresBNetEU","NUM;,999999999.00",0)
+ÿƒFldAddT("ProvBasiswert","NUM;,999999999.00",0)
+ÿƒFldAddT("KundEinzahlung","NUM;,999999999.00",0)
+ÿƒFldAddT("KundEinzahluEU","NUM;,999999999.00",0)
+ÿƒFldAddT("EinheitenEU","NUM;,9999999999.00",0)
+ÿÅÿ™"BUCHUNG1"
+ ÿ’ÿÿ
+ 
+ÿÿThousendYESB1()
+ÿÊÿË"Buchung - Rcksetzen Feldformat!"
+ÿ™"BUCHUNG"
+ÿƒFldAddT("Volumen","NUM;,9999999.00",0)' -- W„hrungsanzeige entfernt
+ÿƒFldAddT("Gesamtbetrag","NUM;9999999.00",0)
+ÿƒFldAddT("gezahlt","NUM;9999999.00",0)
+ÿƒFldAddT("gezahlt_am","DAT;0d.mm.yyyy",0)
+ÿƒFldAddT("Einheiten","NUM;,9999999999.00",0)
+ÿƒFldAddT("GesamtbetragEU","NUM;,9999999999.00",0)
+ÿƒFldAddT("BetragEU","NUM;,9999999999.00",0)
+ÿƒFldAddT("SREU","NUM;,9999999999.00",0)
+ÿƒFldAddT("BewertungssumEU","NUM;,9999999999.00",0)
+ÿƒFldAddT("gezahltEU","NUM;,9999999999.00",0)
+ÿƒFldAddT("Bewertung2","NUM;,9999999.00",0)
+ÿƒFldAddT("Bewertung2EU","NUM;,9999999.00",0)
+ÿƒFldAddT("VSumme","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeitragBrut","NUM;,999999999.00",0)
+ÿƒFldAddT("BeitragNet","NUM;,999999999.00",0)
+ÿƒFldAddT("VSummeEU","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeitragBrutEU","NUM;,999999999.00",0)
+ÿƒFldAddT("BeitragNetEU","NUM;,999999999.00",0)
+ÿƒFldAddT("JahresBBrut","NUM;,999999999.00",0)
+ÿƒFldAddT("JahresBNet","NUM;,999999999.00",0)
+ÿƒFldAddT("JahresBBrutEU","NUM;,999999999.00",0)
+ÿƒFldAddT("JahresBNetEU","NUM;,999999999.00",0)
+ÿƒFldAddT("ProvBasiswert","NUM;,999999999.00",0)
+ÿƒFldAddT("KundEinzahlung","NUM;,999999999.00",0)
+ÿƒFldAddT("KundEinzahluEU","NUM;,999999999.00",0)
+ÿÅÿ™"BUCHUNG"
+ ÿ’ÿÿ
+ 
+ÿÿThousANoTh()
+ ÿÊÿË"Adressen - Passe Feldformat fr ASCII-Export an!"
+ ÿ™"ADRESSEN"
+ ÿƒFldAddT("Schadquote","NUM;9999999.0000",0)
+ ÿƒFldAddT("Stornoquote","NUM;99999.0000",0)
+ÿƒFldAddT("VertrGesamt","NUM;999999999999",0)
+ÿƒFldAddT("VertrStatu1","NUM;999999999999",0)
+ÿƒFldAddT("VertrStatu2","NUM;999999999999",0)
+ÿƒFldAddT("VertrStatu3","NUM;999999999999",0)
+ÿƒFldAddT("VertrStatu4","NUM;999999999999",0)
+ÿƒFldAddT("VertrStatu5","NUM;999999999999",0)
+ÿƒFldAddT("VertrStatu6","NUM;999999999999",0)
+ÿƒFldAddT("VertrStatu7","NUM;999999999999",0)
+ÿƒFldAddT("VertrStatu8","NUM;999999999999",0)
+ÿƒFldAddT("VertrStatu9","NUM;999999999999",0)
+ÿƒFldAddT("VertrStatu10","NUM;999999999999",0)
+ÿƒFldAddT("VertrStatu11","NUM;999999999999",0)
+ÿƒFldAddT("VertrStatu12","NUM;999999999999",0)
+ÿƒFldAddT("VertrStatu13","NUM;999999999999",0)
+ÿƒFldAddT("VertrStatu14","NUM;999999999999",0)
+ÿƒFldAddT("VertrStatu15","NUM;999999999999",0)
+ÿƒFldAddT("VertrStatu16","NUM;999999999999",0)
+ 
+ÿƒFldAddT("BWVertrGesamt","NUM;999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu1","NUM;999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu2","NUM;999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu3","NUM;999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu4","NUM;999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu5","NUM;999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu6","NUM;999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu7","NUM;999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu8","NUM;999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu9","NUM;999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu10","NUM;999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu11","NUM;999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu12","NUM;999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu13","NUM;999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu14","NUM;999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu15","NUM;999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu16","NUM;999999999999.00",0)
+ 
+ÿƒFldAddT("BeiVertrGesamt","NUM;999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu1","NUM;999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu2","NUM;999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu3","NUM;999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu4","NUM;999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu5","NUM;999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu6","NUM;999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu7","NUM;999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu8","NUM;999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu9","NUM;999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu10","NUM;999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu11","NUM;999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu12","NUM;999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu13","NUM;999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu14","NUM;999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu15","NUM;999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu16","NUM;999999999999.00",0)
+ 
+ÿƒFldAddT("EinhGesamt","NUM;9999999999.0000",0)
+ÿƒFldAddT("EinhStatu1","NUM;9999999999.0000",0)
+ÿƒFldAddT("EinhStatu2","NUM;9999999999.0000",0)
+ÿƒFldAddT("EinhStatu3","NUM;9999999999.0000",0)
+ÿƒFldAddT("EinhStatu4","NUM;9999999999.0000",0)
+ÿƒFldAddT("EinhStatu5","NUM;9999999999.0000",0)
+ÿƒFldAddT("EinhStatu6","NUM;9999999999.0000",0)
+ÿƒFldAddT("EinhStatu7","NUM;9999999999.0000",0)
+ÿƒFldAddT("EinhStatu8","NUM;9999999999.0000",0)
+ÿƒFldAddT("EinhStatu9","NUM;9999999999.0000",0)
+ÿƒFldAddT("EinhStatu10","NUM;9999999999.0000",0)
+ÿƒFldAddT("EinhStatu11","NUM;9999999999.0000",0)
+ÿƒFldAddT("EinhStatu12","NUM;9999999999.0000",0)
+ÿƒFldAddT("EinhStatu13","NUM;9999999999.0000",0)
+ÿƒFldAddT("EinhStatu14","NUM;9999999999.0000",0)
+ÿƒFldAddT("EinhStatu15","NUM;9999999999.0000",0)
+ÿƒFldAddT("EinhStatu16","NUM;9999999999.0000",0)
+ 
+ÿƒFldAddT("AnzSchGesamt","NUM;9999999999.",0)
+ÿƒFldAddT("AnzSchStatu1","NUM;9999999999.",0)
+ÿƒFldAddT("AnzSchStatu2","NUM;9999999999.",0)
+ÿƒFldAddT("AnzSchStatu3","NUM;9999999999.",0)
+ÿƒFldAddT("AnzSchStatu4","NUM;9999999999.",0)
+ÿƒFldAddT("AnzSchStatu5","NUM;9999999999.",0)
+ÿƒFldAddT("AnzSchStatu6","NUM;9999999999.",0)
+ÿƒFldAddT("AnzSchStatu7","NUM;9999999999.",0)
+ÿƒFldAddT("AnzSchStatu8","NUM;9999999999.",0)
+ÿƒFldAddT("AnzSchStatu9","NUM;9999999999.",0)
+ÿƒFldAddT("AnzSchStatu10","NUM;9999999999.",0)
+ÿƒFldAddT("AnzSchStatu11","NUM;9999999999.",0)
+ÿƒFldAddT("AnzSchStatu12","NUM;9999999999.",0)
+ÿƒFldAddT("AnzSchStatu13","NUM;9999999999.",0)
+ÿƒFldAddT("AnzSchStatu14","NUM;9999999999.",0)
+ÿƒFldAddT("AnzSchStatu15","NUM;9999999999.",0)
+ÿƒFldAddT("AnzSchStatu16","NUM;9999999999.",0)
+ 
+ÿƒFldAddT("SchGesamt","NUM;9999999999.00",0)
+ÿƒFldAddT("SchStatu1","NUM;9999999999.00",0)
+ÿƒFldAddT("SchStatu2","NUM;9999999999.00",0)
+ÿƒFldAddT("SchStatu3","NUM;9999999999.00",0)
+ÿƒFldAddT("SchStatu4","NUM;9999999999.00",0)
+ÿƒFldAddT("SchStatu5","NUM;9999999999.00",0)
+ÿƒFldAddT("SchStatu6","NUM;9999999999.00",0)
+ÿƒFldAddT("SchStatu7","NUM;9999999999.00",0)
+ÿƒFldAddT("SchStatu8","NUM;9999999999.00",0)
+ÿƒFldAddT("SchStatu9","NUM;9999999999.00",0)
+ÿƒFldAddT("SchStatu10","NUM;9999999999.00",0)
+ÿƒFldAddT("SchStatu11","NUM;9999999999.00",0)
+ÿƒFldAddT("SchStatu12","NUM;9999999999.00",0)
+ÿƒFldAddT("SchStatu13","NUM;9999999999.00",0)
+ÿƒFldAddT("SchStatu14","NUM;9999999999.00",0)
+ÿƒFldAddT("SchStatu15","NUM;9999999999.00",0)
+ÿƒFldAddT("SchStatu16","NUM;9999999999.00",0)
+ÿƒFldAddT("STATISTDATE","DAT;0d.mm.yyyy",0)
+ÿƒFldAddT("VertrStatu0","NUM;999999999999",0)
+ÿƒFldAddT("BWVertrStatu0","NUM;999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu0","NUM;999999999999.00",0)
+ÿƒFldAddT("EinhStatu0","NUM;9999999999.0000",0)
+ÿƒFldAddT("AnzSchStatu0","NUM;9999999999.",0)
+ÿƒFldAddT("SchStatu0","NUM;9999999999.00",0)
+ÿƒFldAddT("CAgez","NUM;999999999999.00",0)
+ÿÅÿ™"ADRESSEN"
+ ÿ’ÿÿ
+
+
+
+ÿÿThousAYesTh()
+ ÿÊÿË"Adressen - Passe Feldformat fr ASCII-Export an!"
+ ÿ™"ADRESSEN"
+ ÿƒFldAddT("Schadquote","NUM;9999999.0000",0)
+ ÿƒFldAddT("Stornoquote","NUM;99999.0000",0)
+ÿƒFldAddT("VertrGesamt","NUM;,999999999999",0)
+ÿƒFldAddT("VertrStatu1","NUM;,999999999999",0)
+ÿƒFldAddT("VertrStatu2","NUM;,999999999999",0)
+ÿƒFldAddT("VertrStatu3","NUM;,999999999999",0)
+ÿƒFldAddT("VertrStatu4","NUM;,999999999999",0)
+ÿƒFldAddT("VertrStatu5","NUM;,999999999999",0)
+ÿƒFldAddT("VertrStatu6","NUM;,999999999999",0)
+ÿƒFldAddT("VertrStatu7","NUM;,999999999999",0)
+ÿƒFldAddT("VertrStatu8","NUM;,999999999999",0)
+ÿƒFldAddT("VertrStatu9","NUM;,999999999999",0)
+ÿƒFldAddT("VertrStatu10","NUM;,999999999999",0)
+ÿƒFldAddT("VertrStatu11","NUM;,999999999999",0)
+ÿƒFldAddT("VertrStatu12","NUM;,999999999999",0)
+ÿƒFldAddT("VertrStatu13","NUM;,999999999999",0)
+ÿƒFldAddT("VertrStatu14","NUM;,999999999999",0)
+ÿƒFldAddT("VertrStatu15","NUM;,999999999999",0)
+ÿƒFldAddT("VertrStatu16","NUM;,999999999999",0)
+ 
+ÿƒFldAddT("BWVertrGesamt","NUM;,999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu1","NUM;,999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu2","NUM;,999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu3","NUM;,999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu4","NUM;,999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu5","NUM;,999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu6","NUM;,999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu7","NUM;,999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu8","NUM;,999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu9","NUM;,999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu10","NUM;,999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu11","NUM;,999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu12","NUM;,999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu13","NUM;,999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu14","NUM;,999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu15","NUM;,999999999999.00",0)
+ÿƒFldAddT("BWVertrStatu16","NUM;,999999999999.00",0)
+ 
+ÿƒFldAddT("BeiVertrGesamt","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu1","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu2","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu3","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu4","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu5","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu6","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu7","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu8","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu9","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu10","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu11","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu12","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu13","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu14","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu15","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu16","NUM;,999999999999.00",0)
+ 
+ÿƒFldAddT("EinhGesamt","NUM;,9999999999.0000",0)
+ÿƒFldAddT("EinhStatu1","NUM;,9999999999.0000",0)
+ÿƒFldAddT("EinhStatu2","NUM;,9999999999.0000",0)
+ÿƒFldAddT("EinhStatu3","NUM;,9999999999.0000",0)
+ÿƒFldAddT("EinhStatu4","NUM;,9999999999.0000",0)
+ÿƒFldAddT("EinhStatu5","NUM;,9999999999.0000",0)
+ÿƒFldAddT("EinhStatu6","NUM;,9999999999.0000",0)
+ÿƒFldAddT("EinhStatu7","NUM;,9999999999.0000",0)
+ÿƒFldAddT("EinhStatu8","NUM;,9999999999.0000",0)
+ÿƒFldAddT("EinhStatu9","NUM;,9999999999.0000",0)
+ÿƒFldAddT("EinhStatu10","NUM;,9999999999.0000",0)
+ÿƒFldAddT("EinhStatu11","NUM;,9999999999.0000",0)
+ÿƒFldAddT("EinhStatu12","NUM;,9999999999.0000",0)
+ÿƒFldAddT("EinhStatu13","NUM;,9999999999.0000",0)
+ÿƒFldAddT("EinhStatu14","NUM;,9999999999.0000",0)
+ÿƒFldAddT("EinhStatu15","NUM;,9999999999.0000",0)
+ÿƒFldAddT("EinhStatu16","NUM;,9999999999.0000",0)
+ 
+ÿƒFldAddT("AnzSchGesamt","NUM;,9999999999.",0)
+ÿƒFldAddT("AnzSchStatu1","NUM;,9999999999.",0)
+ÿƒFldAddT("AnzSchStatu2","NUM;,9999999999.",0)
+ÿƒFldAddT("AnzSchStatu3","NUM;,9999999999.",0)
+ÿƒFldAddT("AnzSchStatu4","NUM;,9999999999.",0)
+ÿƒFldAddT("AnzSchStatu5","NUM;,9999999999.",0)
+ÿƒFldAddT("AnzSchStatu6","NUM;,9999999999.",0)
+ÿƒFldAddT("AnzSchStatu7","NUM;,9999999999.",0)
+ÿƒFldAddT("AnzSchStatu8","NUM;,9999999999.",0)
+ÿƒFldAddT("AnzSchStatu9","NUM;,9999999999.",0)
+ÿƒFldAddT("AnzSchStatu10","NUM;,9999999999.",0)
+ÿƒFldAddT("AnzSchStatu11","NUM;,9999999999.",0)
+ÿƒFldAddT("AnzSchStatu12","NUM;,9999999999.",0)
+ÿƒFldAddT("AnzSchStatu13","NUM;,9999999999.",0)
+ÿƒFldAddT("AnzSchStatu14","NUM;,9999999999.",0)
+ÿƒFldAddT("AnzSchStatu15","NUM;,9999999999.",0)
+ÿƒFldAddT("AnzSchStatu16","NUM;,9999999999.",0)
+ 
+ÿƒFldAddT("SchGesamt","NUM;,9999999999.00",0)
+ÿƒFldAddT("SchStatu1","NUM;,9999999999.00",0)
+ÿƒFldAddT("SchStatu2","NUM;,9999999999.00",0)
+ÿƒFldAddT("SchStatu3","NUM;,9999999999.00",0)
+ÿƒFldAddT("SchStatu4","NUM;,9999999999.00",0)
+ÿƒFldAddT("SchStatu5","NUM;,9999999999.00",0)
+ÿƒFldAddT("SchStatu6","NUM;,9999999999.00",0)
+ÿƒFldAddT("SchStatu7","NUM;,9999999999.00",0)
+ÿƒFldAddT("SchStatu8","NUM;,9999999999.00",0)
+ÿƒFldAddT("SchStatu9","NUM;,9999999999.00",0)
+ÿƒFldAddT("SchStatu10","NUM;,9999999999.00",0)
+ÿƒFldAddT("SchStatu11","NUM;,9999999999.00",0)
+ÿƒFldAddT("SchStatu12","NUM;,9999999999.00",0)
+ÿƒFldAddT("SchStatu13","NUM;,9999999999.00",0)
+ÿƒFldAddT("SchStatu14","NUM;,9999999999.00",0)
+ÿƒFldAddT("SchStatu15","NUM;,9999999999.00",0)
+ÿƒFldAddT("SchStatu16","NUM;,9999999999.00",0)
+ÿƒFldAddT("STATISTDATE","DAT;0d.mm.yyyy",0)
+ÿƒFldAddT("VertrStatu0","NUM;,999999999999",0)
+ÿƒFldAddT("BWVertrStatu0","NUM;,999999999999.00",0)
+ÿƒFldAddT("BeiVertrStatu0","NUM;,999999999999.00",0)
+ÿƒFldAddT("EinhStatu0","NUM;,9999999999.0000",0)
+ÿƒFldAddT("AnzSchStatu0","NUM;,9999999999.",0)
+ÿƒFldAddT("SchStatu0","NUM;,9999999999.00",0)
+ÿƒFldAddT("CAgez","NUM;,999999999999.00",0)
+ÿÅÿ™"ADRESSEN"
+ ÿ’ÿÿ
+ 
+

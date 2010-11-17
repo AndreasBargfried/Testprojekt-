@@ -1,0 +1,26 @@
+SBP
+
+ÿÿmain()
+ ÿƒimp1()
+ ÿ’ÿÿ
+ 
+ÿÿimp1():ÿ½                                          09.12.2004
+ ÿŽ"E:\FSC24.NEU"
+ ÿŽ"E:\FSC24.NEU\PROVIS":ÿ½                    Menu:  ImportFile
+ ÿÉÿÐÿ™"GKLEER"
+ ÿ†ÿt:ÿ‡:ÿ½                                           CloseAll
+ ÿ´ÿ™"E:\FSC24.NEU\PROVIS\GKLEER.SBF":ÿÎ:ÿ½          OpenFile1
+ ÿÉÿÐÿ™"GKLEER":ÿ½                                ImportFile
+ Superbase.Converters.SBF.SourceFormatÿ"Superbase"
+ Superbase.Converters.SBF.SourceFileÿ"E:\FSC24.NEU\PROVIS\GKFB.SBF"
+ Superbase.Converters.SBF.Descendingÿ0
+ Superbase.Converters.SBF.Mergeÿÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"GKLEER.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.SBF)
+ ÿ’ÿÿ
+ 
+

@@ -1,0 +1,33 @@
+SBP
+
+ÿÿmain()
+ ÿƒKVExExp()
+ ÿ’ÿÿ
+ 
+ÿÿKVExExp():ÿ½                                       17.Apr.2002
+ ÿ×A$:ÿ½                                             Local variable
+ 
+ ÿ"F:\2001PRV.D01\PROVIS"
+ ÿ½ EDIT CURRENT :REM                                      Menu:  EditProgram
+ ÿ†ÿ˜
+ A$ÿ"VNehmer,VS_Nr,VS_Beginn,Kndigung,Beitrag,ZW,VSumme,zvP1Name,Waehrung,Kennzeichen,Fahrzeugart,Fabrikat,Fahrgestell_Nr,Typ_Nr,Typklasse,Fahrzeugst„rke,zvP1vName,zvP2Name,zvP2vName,zvP3Name,zvP3vName,zvP4Name,zvP4vName,zvP5Name,zvP"
+ A$ÿA$ÿ"5vName,zvP6Name,zvP6vName,VNehmer,zvP1Geb,zvP2Geb,zvP3Geb,zvP4Geb,zvP5Geb,zvP6Geb,zvP1vName"
+ ÿ´ÿ˜$A$
+ Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½        ExportFile
+ Superbase.Converters.SBF.SourceFileÿ"KVERTRAG"
+ Superbase.Converters.SBF.Descendingÿ0
+ Superbase.Converters.SBF.Mergeÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.XLS.DestFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.DestFileÿ"F:\2001PRV.D01\provis\KVExExp.XLS"
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.UseLabelsÿÿ1
+ Superbase.Converters.XLS.Convert(Superbase.Converters.SBF)
+ ÿ†ÿ˜
+ ÿ’ÿÿ
+ 
+

@@ -1,0 +1,236 @@
+SBP
+
+ÿÿmain()
+ _netpath$ÿ"\codie1.asp\"
+ path$ÿ"\codie1.asp\"
+ ÿ"\codie1.asp\"
+art%ÿ0
+ dateio1$ÿ"root;paris"
+ dateio$ÿ"root"
+ ÿ´ÿ™ÿà,0_netpath$ÿ"EXCEL\"ÿdateio1$
+ ÿ™dateio$
+ ÿ£lfdnr.dateio$
+ ÿ¾ÿaÿ™dateio$
+ ÿ×sbd$(300)
+ ÿÿsbd$,5,"*.SBD"
+ ÿ›i%ÿ0ÿq300
+ÿ¡ÿH(sbd$(i%))ÿ""ÿp
+lenge%ÿÿ/(sbd$(i%))
+datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
+datei0$ÿdatei$
+ÿ¡datei$ÿ"config"ÿp
+datei$ÿdatei$ÿ";london8474"
+ÿ^
+datei$ÿdatei$ÿ";paris"
+ÿ’ÿ¡
+ÿ¡ÿOÿ´(sbd$(i%))ÿp
+ÿ´ÿ™ÿà,0_netpath$ÿdatei$
+ÿ’ÿ¡
+ÿ½ ********Aufruf der SQL-Statement Generierung **************
+ÿÿ™dateio$
+lfdnr.dateio$ÿÿI(dateio$,1)
+ÿÌÿ™dateio$
+ÿÿ™dateio$
+lfdnr.dateio$ÿÿI(dateio$,1)
+FeldnameSB.dateio$ÿsbd$(i%)
+ÿÌÿ™dateio$
+ÿÿ™dateio$
+lfdnr.dateio$ÿÿI(dateio$,1)
+ÿÌÿ™dateio$
+ÿƒCreateINH(datei0$,path$,dateio$)
+ÿ†ÿ™datei0$
+ÿ½ ***********************************************************
+ÿ^
+i%ÿ301
+ÿ’ÿ¡
+ ÿ±i%
+
+ 
+
+ ÿÿsbd$(300,1)
+ ÿÿsbd$(300)
+ ÿpath$ÿ"OFFICE"
+ dateio1$ÿ"office;paris"
+ dateio$ÿ"office"
+ ÿ´ÿ™ÿà,0_netpath$ÿ"EXCEL\"ÿdateio1$
+ ÿ™dateio$
+ ÿ£lfdnr.dateio$
+ ÿ¾ÿaÿ™dateio$
+ ÿÿsbd$,5,"*.SBD"
+ ÿ›i%ÿ0ÿq300
+ÿ¡sbd$(i%)ÿ""ÿp
+lenge%ÿÿ/(sbd$(i%))
+datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
+datei0$ÿdatei$
+ÿ¡datei$ÿ"config"ÿp
+datei$ÿdatei$ÿ";london8474"
+ÿ^
+datei$ÿdatei$ÿ";paris"
+ÿ’ÿ¡
+ÿ¡ÿOÿ´(sbd$(i%))ÿp
+ÿ´ÿ™ÿà,0_netpath$ÿ"OFFICE\"ÿdatei$
+ÿ’ÿ¡
+ÿ½ ********Aufruf der SQL-Statement Generierung **************
+ÿÿ™dateio$
+lfdnr.dateio$ÿÿI(dateio$,1)
+ÿÌÿ™dateio$
+ÿÿ™dateio$
+lfdnr.dateio$ÿÿI(dateio$,1)
+FeldnameSB.dateio$ÿsbd$(i%)
+ÿÌÿ™dateio$
+ÿÿ™dateio$
+lfdnr.dateio$ÿÿI(dateio$,1)
+ÿÌÿ™dateio$
+ÿƒCreateINH(datei0$,path$,dateio$)
+ÿ½ ***********************************************************
+ÿ^
+i%ÿ301
+ÿ’ÿ¡
+ ÿ±i%
+
+ ÿÂ"OFFICE fertig","",2
+ ÿ¡art%ÿ1ÿp
+ÿ†ÿ¶
+ ÿ’ÿ¡
+ ÿ†ÿt
+
+
+
+ ÿÿsbd$(300,1)
+ ÿÿsbd$(300)
+ ÿpath$ÿ"PROVIS"
+ dateio1$ÿ"provis;paris"
+ dateio$ÿ"provis"
+ ÿ´ÿ™ÿà,0_netpath$ÿ"EXCEL\"ÿdateio1$
+ ÿ™dateio$
+ ÿ£lfdnr.dateio$
+ ÿ¾ÿaÿ™dateio$
+ ÿÿsbd$,5,"*.SBD"
+ ÿ›i%ÿ0ÿq300
+ÿ¡sbd$(i%)ÿ"UN021"ÿp
+
+ÿ’ÿ¡
+ÿ¡sbd$(i%)ÿ""ÿp
+lenge%ÿÿ/(sbd$(i%))
+datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
+datei0$ÿdatei$
+ÿ¡datei$ÿ"config"ÿp
+datei$ÿdatei$ÿ";london8474"
+ÿ^
+datei$ÿdatei$ÿ";paris"
+ÿ’ÿ¡
+ÿ¡ÿOÿ´(sbd$(i%))ÿp
+ÿ´ÿ™ÿà,0_netpath$ÿ"PROVIS\"ÿdatei$
+ÿ’ÿ¡
+ÿ½ ********Aufruf der SQL-Statement Generierung **************
+ÿÿ™dateio$
+lfdnr.dateio$ÿÿI(dateio$,1)
+ÿÌÿ™dateio$
+ÿÿ™dateio$
+lfdnr.dateio$ÿÿI(dateio$,1)
+FeldnameSB.dateio$ÿsbd$(i%)
+ÿÌÿ™dateio$
+ÿÿ™dateio$
+lfdnr.dateio$ÿÿI(dateio$,1)
+ÿÌÿ™dateio$
+ÿƒCreateINH(datei0$,path$,dateio$)
+ÿ½ ***********************************************************
+ÿ^
+i%ÿ301
+ÿ’ÿ¡
+ ÿ±i%
+ ÿÂ"PROVIS fertig","",2
+ ÿ¡art%ÿ1ÿp
+ÿ†ÿ¶
+ ÿ’ÿ¡
+ ÿ†ÿt
+
+
+
+ ÿÿsbd$(300,1)
+ ÿÿsbd$(300)
+ ÿpath$ÿ"GDV\GDV_DAT"
+ dateio1$ÿ"gdv;paris"
+ dateio$ÿ"gdv"
+ ÿ´ÿ™ÿà,0_netpath$ÿ"EXCEL\"ÿdateio1$
+ÿ™dateio$
+ ÿ£lfdnr.dateio$
+ ÿ¾ÿaÿ™dateio$
+ ÿÿsbd$,5,"*.SBD"
+ ÿ›i%ÿ0ÿq300
+ÿ¡sbd$(i%)ÿ""ÿp
+lenge%ÿÿ/(sbd$(i%))
+datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
+datei0$ÿdatei$
+ÿ¡datei$ÿ"config"ÿp
+datei$ÿdatei$ÿ";london8474"
+ÿ^
+datei$ÿdatei$ÿ";paris"
+ÿ’ÿ¡
+ÿ¡ÿOÿ´(sbd$(i%))ÿp
+ÿ´ÿ™ÿà,0_netpath$ÿ"GDV\GDV_DAT\"ÿdatei$
+ÿ’ÿ¡
+ÿ½ ********Aufruf der SQL-Statement Generierung **************
+ÿÿ™dateio$
+lfdnr.dateio$ÿÿI(dateio$,1)
+ÿÌÿ™dateio$
+ÿÿ™dateio$
+lfdnr.dateio$ÿÿI(dateio$,1)
+FeldnameSB.dateio$ÿdateio$
+ÿÌÿ™dateio$
+ÿÿ™dateio$
+lfdnr.dateio$ÿÿI(dateio$,1)
+ÿÌÿ™dateio$
+ÿƒCreateINH(datei0$,path$,dateio$)
+ÿ½ ***********************************************************
+ÿ^
+i%ÿ301
+ÿ’ÿ¡
+ ÿ±i%
+ 
+ ÿÂ"GDV fertig","",2
+ ÿ†ÿt
+
+
+ 
+ 
+ ÿÂ"Ende"
+ ÿ’ÿÿ
+
+ÿÿCreateINH(datei$,_netpath$,dateio$)
+
+
+ s$ÿ"0"
+ ÿ™datei$
+ ÿ×FldNam1$(1)
+ ÿÊÿËdatei$
+ ÿ½ S$="0" - CBuilder Format
+ ÿ½ S$="1" - SAPDB Format
+
+feldanz%ÿÿõ(datei$,1)
+ÿÿFldNam1$(feldanz%)
+ÿ×felder$(feldanz%)
+ÿ×feldtyp$(feldanz%)
+ÿ×feldindex$(feldanz%)
+ÿ×feldanzeig$(feldanz%)
+
+ÿÿfelder$,1
+ÿ™datei$
+ÿ›i%ÿ0ÿqfeldanz%ÿ1
+tttyp$ÿÿö(felder$(i%),0)
+feldtyp$(i%)ÿÿö(felder$(i%),0)
+feldindex$(i%)ÿÿö(felder$(i%),3)
+feldanzeig$(i%)ÿÿö(felder$(i%),4)
+ÿÿ™dateio$
+lfdnr.dateio$ÿÿI(dateio$,1)
+Feldnummer.dateio$ÿÿH(ÿ(i%ÿ1,"9999"))
+FeldnameSB.dateio$ÿfelder$(i%)
+TypeSB.dateio$ÿfeldtyp$(i%)
+AnzeigeSB.dateio$ÿfeldanzeig$(i%)
+IndexSB.dateio$ÿfeldindex$(i%)
+ÿÌÿ™dateio$
+ÿÊÿËdatei$ÿ" "ÿfelder$(i%)
+ÿ±i%
+
+ ÿ’ÿÿ
+

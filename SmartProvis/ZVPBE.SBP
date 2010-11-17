@@ -1,0 +1,162 @@
+SBP
+ ÿ½ Zu versichernde Person-Daten
+ÿÿZVersPer(i%)
+opt%ÿ1
+ÿ‰ÿñ"ADRLIST",0,0,192,98,"W„hlen Sie eine Option","MS Sans Serif",8
+ÿ|ÿñ"ADRLIST",9,4,9,20,21,2
+ÿ|ÿñ"ADRLIST",5,30,22,238,14,0,"W„hlen Sie eine Option aus!"
+ÿ|ÿñ"ADRLIST",3,30,40,234,10,0,"Neue Person zuweisen",1,opt%
+ÿ|ÿñ"ADRLIST",3,30,60,234,10,0,"Daten anzeigen",2,opt%
+ÿ|ÿñ"ADRLIST",1,49,80,51,14,1,"&Weiter",1,1
+ÿ|ÿñ"ADRLIST",1,102,80,51,14,0,"&Abbruch",0,0
+ÿñ"ADRLIST",req%
+ÿ¾ÿñ"ADRLIST"
+ÿ¡req%ÿ1ÿp
+	ÿ¡opt%ÿ1ÿp
+ÿƒVertrZVP(i%,lfdnr.kvertrag,codeku.kvertrag)
+	ÿ^
+ÿƒZVPBerarb(i%,lfdnr.kvertrag,codeku.kvertrag)
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+
+ ÿ½ ************************************************************************************************************
+ ÿ½ *    zu versichernde Person in dem Vertrag eintragen                                                       *
+ ÿ½ *    AB 11.08.2001                                                                                         *
+ ÿ½ *    nr% - Feldnr der zu versichernden Person 1-6                                                          *
+ ÿ½ *    lfdnr% - laufende Nr des Vertrages                                                                    *
+ ÿ½ *    codeku% - codeku der Adresse                                                                          *
+ ÿ½ ************************************************************************************************************
+ 
+ÿÿZVPBerarb(nr%,lfdnr$,codeku$)
+	ÿÉÿænr%
+ÿæ1
+feldName$ÿzvP1Name.kvertrag
+ÿ¡zvP1Geb.kvertragÿ0ÿpfeldGeb$ÿÿ(zvP1Geb.kvertrag,"0d.mm.yyyy")
+ÿ½ feldGeschl$ = zvP1Geschlecht.kvertrag
+feldadr$ÿzvp1ADR.kvertrag
+ÿæ2
+feldName$ÿzvP2Name.kvertrag
+ÿ¡zvP2Geb.kvertragÿ0ÿpfeldGeb$ÿÿ(zvP2Geb.kvertrag,"0d.mm.yyyy")
+ÿ½ feldGeschl$ = zvP2Geschlecht.kvertrag
+feldadr$ÿzvp2ADR.kvertrag
+ÿæ3
+feldName$ÿzvP3Name.kvertrag
+ÿ¡zvP3Geb.kvertragÿ0ÿpfeldGeb$ÿÿ(zvP3Geb.kvertrag,"0d.mm.yyyy")
+ÿ½ feldGeschl$ = zvP3Geschlecht.kvertrag
+feldadr$ÿzvp3ADR.kvertrag
+ÿæ4
+feldName$ÿzvP4Name.kvertrag
+ÿ¡zvP4Geb.kvertragÿ0ÿpfeldGeb$ÿÿ(zvP4Geb.kvertrag,"0d.mm.yyyy")
+ÿ½ feldGeschl$ = zvP4Geschlecht.kvertrag
+feldadr$ÿzvp4ADR.kvertrag
+ÿæ5
+feldName$ÿzvP5Name.kvertrag
+ÿ¡zvP5Geb.kvertragÿ0ÿpfeldGeb$ÿÿ(zvP5Geb.kvertrag,"0d.mm.yyyy")
+ÿ½ feldGeschl$ = zvP5Geschlecht.kvertrag
+feldadr$ÿzvp5ADR.kvertrag
+ÿæ6
+feldName$ÿzvP6Name.kvertrag
+ÿ¡zvP6Geb.kvertragÿ0ÿpfeldGeb$ÿÿ(zvP6Geb.kvertrag,"0d.mm.yyyy")
+ÿ½ feldGeschl$ = zvP6Geschlecht.kvertrag
+feldadr$ÿzvp6ADR.kvertrag
+	ÿ’ÿÉ
+ 
+ÿ×dlg ÿUDialog
+ÿ×control ÿUDialogControl
+ 
+Superbase.Dialogs.Add("Dialogname")
+ÿÊdlg ÿSuperbase.Dialogs.Dialogname
+dlg.Move(0,0,192,187)
+dlg.Captionÿ"Bearbeiten der zu versichernden Person"
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel1","DialogLabel")
+control.Move(5,9,101,11)
+control.Captionÿ"zu versichernde Person"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox1","DialogTextBox")
+control.Move(5,25,173,11)
+control.MaxLengthÿ40
+control.TextBindingÿ"feldname$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox2","DialogTextBox")
+control.Move(61,41,57,13)
+control.MaxLengthÿ10
+control.TextBindingÿ"feldgeb$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel2","DialogLabel")
+control.Move(4,43,49,9)
+control.Captionÿ"Geburtstag"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel3","DialogLabel")
+control.Move(5,57,155,8)
+control.Captionÿ"Adresse (Zeilenumbruch mit Strg+<ENTER>)"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox3","DialogTextBox")
+control.Move(5,68,177,96)
+control.ScrollEnableÿ1
+control.MultiLineÿ1
+control.ScrollBarsÿ2
+control.MaxLengthÿ100
+control.TextBindingÿ"feldadr$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(33,169,44,15)
+ÿ½ control.Default = 1
+control.Captionÿ"OK"
+control.ReturnValueÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton2","DialogCommandButton")
+control.Move(79,170,44,15)
+control.Captionÿ"Abbruch"
+control.ReturnValueÿ0
+ÿñ"Dialogname",req3%
+ÿßÿ³
+ÿ¾ÿñ"Dialogname"
+ 
+ 
+ÿ¡req3%ÿ1ÿp
+	ÿÉÿ¥lfdnr$ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+	ÿÉÿænr%
+ÿæ1
+zvP1Name.kvertragÿfeldName$
+zvP1Geb.kvertragÿfeldGeb$
+ÿ½ zvP1Geschlecht.kvertrag = feldGeschl$
+zvp1ADR.kvertragÿfeldadr$
+ÿæ2
+zvP2Name.kvertragÿfeldName$
+zvP2Geb.kvertragÿfeldGeb$
+ÿ½ zvP2Geschlecht.kvertrag = feldGeschl$
+zvp2ADR.kvertragÿfeldadr$
+ÿæ3
+zvP3Name.kvertragÿfeldName$
+zvP3Geb.kvertragÿfeldGeb$
+ÿ½ zvP3Geschlecht.kvertrag = feldGeschl$
+zvp3ADR.kvertragÿfeldadr$
+ÿæ4
+zvP4Name.kvertragÿfeldName$
+zvP4Geb.kvertragÿfeldGeb$
+ÿ½ zvP4Geschlecht.kvertrag = feldGeschl$
+zvp4ADR.kvertragÿfeldadr$
+ÿæ5
+zvP5Name.kvertragÿfeldName$
+zvP5Geb.kvertragÿfeldGeb$
+ÿ½ zvP5Geschlecht.kvertrag = feldGeschl$
+zvp5ADR.kvertragÿfeldadr$
+ÿæ6
+zvP6Name.kvertragÿfeldName$
+zvP6Geb.kvertragÿfeldGeb$
+ÿ½ zvP6Geschlecht.kvertrag = feldGeschl$
+zvp6aDR.kvertragÿfeldadr$
+	ÿ’ÿÉ
+	ÿƒQuickStore("KVERTRAG")
+ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+
+
+
+

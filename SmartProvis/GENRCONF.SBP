@@ -1,0 +1,118 @@
+SBP
+ÿÿmain()
+ ÿîÿ…
+ ÿî"SHELL","ShellExecute","IICCCCI"
+
+ ÿ½ Verwaltung
+ ÿ½ stammdir$ = "F:\1NewInst\Verw\Verw\"
+ ÿ½ CALL CreateDir(stammdir$)
+ ÿ½ stammdir$ = "F:\1NewInst\Verw\Verw.IMM\"
+ ÿ½ CALL CreateDir(stammdir$)
+ ÿ½ stammdir$ = "F:\1NewInst\Verw\VerwGDV\"
+ ÿ½ CALL CreateDir(stammdir$)
+ ÿ½ stammdir$ = "F:\1NewInst\Verw\VerwGDV.IMM\"
+ ÿ½ CALL CreateDir(stammdir$)
+
+ ÿ½ Vertrieb
+ ÿ½ stammdir$ = "F:\1NewInst\Vertrieb\Vert\"
+ ÿ½ CALL CreateDir(stammdir$)
+ ÿ½ stammdir$ = "F:\1NewInst\Vertrieb\Vert.IMM\"
+ ÿ½ CALL CreateDir(stammdir$)
+ ÿ½ stammdir$ = "F:\1NewInst\Vertrieb\VertGDV\"
+ ÿ½ CALL CreateDir(stammdir$)
+ ÿ½ stammdir$ = "F:\1NewInst\Vertrieb\VertGDV.IMM\"
+ ÿ½ CALL CreateDir(stammdir$)
+ ÿ½ stammdir$ = "F:\1NewInst\Vertrieb\VertGDVT\"
+ ÿ½ CALL CreateDir(stammdir$)
+ ÿ½ stammdir$ = "F:\1NewInst\Vertrieb\VertGDVT.IMM\"
+ ÿ½ CALL CreateDir(stammdir$)
+ ÿ½ stammdir$ = "F:\1NewInst\Vertrieb\VertT\"
+ ÿ½ CALL CreateDir(stammdir$)
+ ÿ½ stammdir$ = "F:\1NewInst\Vertrieb\VertT.IMM\"
+ ÿ½ CALL CreateDir(stammdir$)
+
+ ÿ½ Makler
+ ÿ½ stammdir$ = "F:\1NewInst\Makler\Mak\"
+ ÿ½ CALL CreateDir(stammdir$)
+ ÿ½ stammdir$ = "F:\1NewInst\Makler\Mak.IMM\"
+ ÿ½ CALL CreateDir(stammdir$)
+ ÿ½ stammdir$ = "F:\1NewInst\Makler\MakGDV\"
+ ÿ½ CALL CreateDir(stammdir$)
+ ÿ½ stammdir$ = "F:\1NewInst\Makler\MakGDV.IMM\"
+ ÿ½ CALL CreateDir(stammdir$)
+ ÿ½ stammdir$ = "F:\1NewInst\Makler\MAKGDVT\"
+ ÿ½ CALL CreateDir(stammdir$)
+ ÿ½ stammdir$ = "F:\1NewInst\Makler\MAKGDVT.IMM\"
+ ÿ½ CALL CreateDir(stammdir$)
+ ÿ’ÿÿ
+ 
+ÿÿCreateDir(stammdir$)
+ ÿstammdir$
+ wise$ÿ"F:\wise"ÿÿ,(stammdir$,12)
+ i%ÿ0
+ j%ÿ0
+ ÿØi%ÿ
+1001
+j%ÿj%ÿ1
+agzus%ÿ5
+ÿ¡i%ÿ0ÿp
+i%ÿi%ÿ1
+dir$ÿstammdir$ÿ"unendlic\"
+dir1$ÿwise$ÿ"unendlic\"
+ÿdir$
+ÿwwiseaufruf
+ÿ’ÿ¡
+ÿ¡i%ÿ10ÿp
+i%ÿi%ÿ10
+ÿ’ÿ¡
+ÿ¡i%ÿ
+10ÿp
+i%ÿi%ÿ1
+agzus%ÿ3
+ÿ’ÿ¡
+ÿ³ÿ_ÿwCreateDirCancel
+i$ÿÿH(ÿ(i%,"9999"))
+ÿªÿstammdir$ÿi$
+CreateDirCancel: 
+ÿ³ÿ_ÿwCreateDirCancel1
+ÿ½ MAKE DIRECTORY wise$ + i$
+CreateDirCancel1: 
+dir$ÿstammdir$ÿi$ÿ"\"
+ÿ¡ÿJ(dir$ÿ"config.sbf")ÿp
+ÿdir$ÿ"config.*"
+ÿ’ÿ¡
+ÿ¡ÿJ(dir$ÿ"nwpcf.exe")ÿp
+ÿdir$ÿ"nwpcf.exe"
+ÿ’ÿ¡
+dir1$ÿwise$ÿi$ÿ"\"
+ÿ¡ÿJ(dir1$ÿ"nwpcf.exe")ÿp
+ÿdir1$ÿ"nwpcf.*"
+ÿ’ÿ¡
+ÿˆstammdir$ÿ"\unendlic\*.*"ÿqdir$
+ÿdir$
+ÿ´ÿ™"CONFIG;london8474"
+ÿÉÿ`ÿá
+AnzAg.configÿi%
+agzus.configÿagzus%
+ÿÌÿ™"CONFIG"
+ÿ†ÿ™"CONFIG"
+wiseaufruf: 
+a%ÿÿƒ("ShellExecute",0,"open","nwpcf.wse","","",1)
+ÿ½ APPACTIVATE "nwpcf.wse"
+ÿ¡j%ÿ50ÿp
+ÿÂ"Weiter?","",130,req%
+ÿ¡req%ÿ1ÿpÿwendeCreateDir
+ÿ’ÿ¡
+ÿ½ WHILE NOT EXISTS (dir$ + "nwpcf.exe")
+ÿ½  WAIT FOR 1
+ÿ½ WEND 
+ÿ½ WAIT FOR 1
+ÿ½ IF req% <> 1 THEN GOTO endeCreateDir
+ÿ½ COPY dir$ + "nwpcf.exe" TO dir1$
+ÿstammdir$
+
+ ÿÙ
+endeCreateDir: 
+ ÿÂ"Ende?","",130,req%
+ ÿ’ÿÿ
+

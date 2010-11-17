@@ -1,0 +1,124 @@
+SBP
+ÿÿADRPost1()
+ ÿ™"ADRESSEN"
+ ÿ£codeku.adressen
+ ÿÉÿ`ÿáÿ™"ADRESSEN"
+ ÿØÿOÿB("ADRESSEN")
+i%ÿi%ÿ1
+ 
+ÿ¡briefanrede.adressenÿ""ÿp
+GADRDat$ÿ"ADRESSEN"
+ÿÉÿæÿ>(ÿ+(anrede.adressen,3))
+ÿæ"HER"
+briefanrede.GAdrDat$ÿ"Sehr geehrter Herr "ÿnachname.GAdrDat$ÿ","
+ÿæ"FRA","FR."
+briefanrede.GAdrDat$ÿ"Sehr geehrte Frau "ÿnachname.GAdrDat$ÿ","
+ÿæ"FRŽ","FRL"
+briefanrede.GAdrDat$ÿ"Sehr geehrtes Fr„ulein "ÿnachname.GAdrDat$ÿ","
+ÿæ"FA.","FIR",""
+briefanrede.GAdrDat$ÿ"Sehr geehrte Damen und Herren,"
+ÿæ"FAM"
+briefanrede.GAdrDat$ÿ"Sehr geehrte Familie "ÿnachname.GAdrDat$ÿ","
+ÿæ"EHE"
+briefanrede.GAdrDat$ÿ"Sehr geehrte Eheleute "ÿnachname.GAdrDat$ÿ","
+ÿæÿ^
+briefanrede.GAdrDat$ÿ"Sehr geehrte Damen und Herren,"
+ÿ’ÿÉ
+ÿ’ÿ¡
+ÿ¡BerProtok.adressenÿ""ÿpBerProtok.adressenÿ"n"
+ÿ¡PostBriefanrede.adressenÿ""ÿpPostBriefanrede.adressenÿBriefanrede.adressen
+ÿ¡FIIMMAK.adressenÿ""ÿpFIIMMAK.adressenÿ"j"
+ÿ¡ExpInternet.adressenÿ""ÿpExpInternet.adressenÿ"j"
+ÿ¡KVPflicht.adressenÿ""ÿpKVPflicht.adressenÿ"n"
+ÿ¡RVPflicht.adressenÿ""ÿpRVPflicht.adressenÿ"n"
+ÿ¡AAMakler.adressenÿ""ÿpAAMakler.adressenÿ"n"
+ÿ¡Vollmacht.adressenÿ""ÿpVollmacht.adressenÿ"n"
+ÿ¡GeneralVollmach.adressenÿ""ÿpGeneralVollmach.adressenÿ"n"
+ÿ¡AAGesellschaft.adressenÿ""ÿpAAGesellschaft.adressenÿ"n"
+ÿ¡AAMitarbeiter.adressenÿ""ÿpAAMitarbeiter.adressenÿ"n"
+ÿ¡Geburtstag.adressenÿ0ÿpGebDatKurz.adressenÿÿ+(ÿ(Geburtstag.adressen,"0dmmyyyy"),4)
+ÿ¡K1Geburtstag.adressenÿ0ÿpGebDatKurz1.adressenÿÿ+(ÿ(K1Geburtstag.adressen,"0dmmyyyy"),4)
+ÿ¡K2Geburtstag.adressenÿ0ÿpGebDatKurz2.adressenÿÿ+(ÿ(K2Geburtstag.adressen,"0dmmyyyy"),4)
+ÿ¡K3Geburtstag.adressenÿ0ÿpGebDatKurz3.adressenÿÿ+(ÿ(K3Geburtstag.adressen,"0dmmyyyy"),4)
+ÿ¡K4Geburtstag.adressenÿ0ÿpGebDatKurz4.adressenÿÿ+(ÿ(K4Geburtstag.adressen,"0dmmyyyy"),4)
+ÿ¡EGGeburtstag.adressenÿ0ÿpGebDatKurzEG.adressenÿÿ+(ÿ(EGGeburtstag.adressen,"0dmmyyyy"),4)
+ÿ¡ADRGruppe.GAdrDat$ÿ""ÿpADRGruppe.GAdrDat$ÿ"<OHNE ZUORDNUNG>"
+ÿ¡ÿJ(_netpath$ÿ_projekt$ÿ"\MAADR.SBF")ÿp
+ÿ¡ÿJ(codema.adressen,codema.maadr)ÿp
+ÿÉÿ¥codema.adressenÿ™"maadr"ÿ£codema.maadr
+AGNachname.adressenÿÿ+(Nachname.maadr,30)
+AGVorname.adressenÿÿ+(Vorname.maadr,30)
+AGAGNr.adressenÿÿ+(Agenturnr.maadr,20)
+ÿ^
+codema.adressenÿ0
+AGNachname.adressenÿ""
+AGVorname.adressenÿ""
+AGAGNr.adressenÿ""
+ÿ’ÿ¡
+ÿ’ÿ¡
+QNachname.adressenÿVSNRPack$(nachname.adressen)
+QVorname.adressenÿVSNRPack$(vorname.adressen)
+QOrt.adressenÿVSNRPack$(Ort.adressen)
+QStraáe.adressenÿVSNRPack$(Straáe.adressen)
+QPLZ.adressenÿVSNRPack$(PLZ.adressen)
+QGeburtsname.adressenÿVSNRPack$(Geburtsname.adressen)
+ÿ¡Matchcode.adressenÿ""ÿpMatchcode.adressenÿNachname.adressen
+QMatchcode.adressenÿVSNRPack$(Matchcode.adressen)
+QAusweisnr.adressenÿVSNRPack$(Ausweisnr.adressen)
+ÿ¡_projekt$ÿ"FACTURA"ÿcodie$ÿ"TRUE"ÿp
+ÿ¡ADRStatus.adressenÿ""ÿp
+ÿ’ÿ¡
+ÿ^
+ÿ¡ADRStatus.adressenÿ""ÿpADRStatus.adressenÿ"<OHNE ZUORDNUNG>"
+ÿ’ÿ¡
+ÿ¡Postanschrift.adressenÿ""ÿNeuPost%ÿÿ1ÿp
+ÿ½ CALL Fehler("","NeuPost% = - 1")
+p$ÿ""
+ÿ¡anrede.adressenÿ"Herr*"ÿanrede.adressenÿ"Fr*"ÿanrede.adressenÿ"Fam*"ÿp
+	p$ÿAnrede.adressenÿ" "
+	ÿ¡ÿH(Titel.adressen)ÿ""ÿp
+p$ÿp$ÿ" "ÿÿH(Titel.adressen)ÿÿ(13)ÿÿ(10)
+	ÿ^
+p$ÿp$ÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	ÿ¡vorname.adressenÿ""ÿp
+p$ÿp$ÿÿH(Vorname.adressen)ÿ" "ÿÿH(Nachname.adressen)ÿÿ(13)ÿÿ(10)
+	ÿ^
+p$ÿp$ÿÿH(Nachname.adressen)ÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	p$ÿp$ÿStraáe.adressenÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿplz.adressenÿ" "ÿOrt.adressenÿÿ(13)ÿÿ(10)
+	ÿ¡_projekt$ÿ"FACTURA"ÿp
+	ÿ^
+p$ÿp$ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿbriefanrede.adressen
+	ÿ’ÿ¡
+ÿ^
+	p$ÿÿH(Anrede.adressen)ÿ" "ÿÿH(titel.adressen)ÿÿ(13)ÿÿ(10)
+	ÿ¡Geburtsname.adressenÿ""ÿp
+p$ÿp$ÿÿH(nachname.adressen)ÿÿ(13)ÿÿ(10)ÿÿH(geburtsname.adressen)ÿÿ(13)ÿÿ(10)
+	ÿ^
+p$ÿp$ÿÿH(Nachname.adressen)ÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	ÿ¡vorname.adressenÿ""ÿp
+p$ÿp$ÿÿH(Vorname.adressen)ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+	ÿ^
+p$ÿp$ÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	p$ÿp$ÿStraáe.adressenÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿplz.adressenÿ" "ÿOrt.adressenÿÿ(13)ÿÿ(10)
+	ÿ¡land.adressenÿ""ÿpp$ÿp$ÿÿ(13)ÿÿ(10)ÿLand.adressen
+	ÿ¡_projekt$ÿ"FACTURA"ÿp
+	ÿ^
+p$ÿp$ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿbriefanrede.adressen
+	ÿ’ÿ¡
+ÿ’ÿ¡
+Postanschrift.adressenÿp$
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÌÿ™"Adressen"
+ÿÉÿ±ÿáÿ™"Adressen"
+zanz%ÿÿA("ADRESSEN")
+b$ÿÿH(ÿ(zanz%,",99999999"))
+ÿÊÿËÿ(i%,"999999999")ÿ" Adressen angepaát von "ÿb$
+ ÿÙ
+ 
+ ÿ’ÿÿ
+

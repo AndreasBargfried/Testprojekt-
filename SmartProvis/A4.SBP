@@ -1,0 +1,31 @@
+SBP
+ÿÿA4()
+ÿ×dlg ÿUDialog
+ÿ×control ÿUDialogControl
+ 
+Superbase.Dialogs.Add("Dialogname")
+ÿÊdlg ÿSuperbase.Dialogs.Dialogname
+dlg.Move(0,0,349,150)
+dlg.Captionÿ"Dialogfeld-Titel"
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg.Add("DialogListBox1","DialogListBox")
+control.Move(32,20,20,34)
+control.Sortedÿ1
+control.ScrollBarsÿ2
+control.Bind("GSpGruppe$","GSPGrausw$","GSpGrPrompt$")
+control.OnSelChangeÿ"SelChange"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox1","DialogTextBox")
+control.Move(20,67,140,17)
+control.ReadOnlyÿ1
+control.MaxLengthÿ20
+control.TextBindingÿ"ggewprod$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel1","DialogLabel")
+control.Move(22,96,284,14)
+control.NoKeyboardEquivalentÿ1
+control.CaptionBindingÿ"gewprod$"
+ 
+ ÿ’ÿÿ

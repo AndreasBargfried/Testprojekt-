@@ -1,0 +1,989 @@
+SBP
+ 
+ '      ******************************************
+ '      ** HORTUS (c)'93 CODIE Computer-Dienste **
+ '      ** Version 1.0                          **
+ '      ** Stand: 16.07.93                      ** 
+ '      ******************************************
+ 
+ÿÿmain()
+ ÿ½ DEBUG OFF 
+ ÿ†ÿt
+ ÿ¡ÿOÿ÷("CLIB")ÿpÿ¨"CLIB.sbr",ÿ°
+ ÿ½ CALL LIBInit("HORTUS","CoDIE-HORTUS V1.0",1,14)
+ ÿƒLIBInit("HORTUS","assistant hortus",1,14)
+ _fpw$ÿ";paris"
+ _help%ÿ0
+ ÿƒINIT()
+ _formend%ÿ0
+ Upd$ÿReadConfig$(_projekt$,"UPDATE")
+ ÿ´ÿœ_ppath$ÿ"HORTUS"
+ ÿÊÿÿ³
+ ÿ¡Upd$ÿ"TRUE"ÿp
+ÿ¡ÿOÿ÷("UPDATE")ÿpÿ¨_netpath$ÿ"UPDATE.SBR",ÿ°
+ÿƒDoUpdate()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿƒHORTUS()
+ÿÂ"Programm wirklich beenden?","",130,req%
+ÿ¡req%ÿ1ÿp_formend%ÿ1
+ ÿÙ
+ ÿƒEXIT()
+ ÿ’ÿÿ
+ 
+ 
+ '      *********************
+ '      ** INITIALISIERUNG **
+ '      *********************
+ 
+ ' Konstantendeklaration/Initialisierung
+ ' ======================================================================
+ 
+ÿÿINIT()
+ ÿßÿe
+ ÿÿf ÿUform
+ ÿÿPFLANZEsub%,PFsub%
+ ÿÿGAkquiDat$,GADRDat$,GTelDat$,GDokDat$
+ ÿÊÿÿÿ™_netpath$ÿ_projekt$ÿ"\"ÿ_projekt$ÿ".HLP"
+ ÿÊÿiÿ³
+ ÿƒDFile(2,"supervis"ÿ_fpw$)
+ ÿ¡test%ÿ0ÿpÿ³ÿ_ÿwErrorHandler
+ ÿ¡test%ÿ2ÿpÿƒLOGIN()
+
+ ÿ›m%ÿ0ÿq11
+monate$(m%)ÿÿ4("1."ÿÿ(m%ÿ1,"00")ÿ".92")
+ ÿ±m%
+ ÿ¡GTest%ÿ0ÿpÿÊÿÂ134ÿ1824
+ DOKKundFound%ÿ0
+ DOKGesFound%ÿ0
+ a%ÿ0
+ b%ÿ0
+ DOKGruppen$(0)ÿ"allgemeine Schreiben"
+ ÿ½ CALL Fehler("Doktest","")
+ ÿØDOKGruppen$(a%)ÿ"leer"
+ÿ¡MNdisabled%("DOCSINTERN")ÿp
+c$ÿÿåibm(ReadConfig$("Dokumentengruppen","Gruppe"ÿÿH(ÿ(a%,"999999"))))
+a%ÿa%ÿ1
+ÿ¡c$ÿ"interne Sc*"ÿc$ÿ"Vertr*"ÿp
+DOKGruppen$(a%)ÿ"---------------------"ÿÿH(ÿ(a%,"999999"))
+ÿ^
+DOKGruppen$(a%)ÿÿåibm(ReadConfig$("Dokumentengruppen","Gruppe"ÿÿH(ÿ(a%,"999999"))))
+ÿ’ÿ¡
+ÿ^
+a%ÿa%ÿ1
+DOKGruppen$(a%)ÿÿåibm(ReadConfig$("Dokumentengruppen","Gruppe"ÿÿH(ÿ(a%,"999999"))))
+ÿ’ÿ¡
+ ÿÙ
+ DOKGruppen$(a%)ÿ""
+ a%ÿ0
+ ber$ÿ""
+ BERICHTE$(0)ÿ"adrlist"
+ BERNAME$(0)ÿ"Adreáliste ohne Notiz"
+ ÿØber$ÿ"leer"ÿa%ÿ
+120
+a%ÿa%ÿ1
+ber$ÿÿåibm(ReadConfig$("UserReport",ÿH(ÿ(a%,"999999"))))
+SlashPos%ÿÿ?(ber$,",")
+ÿ¡SlashPos%ÿ0ÿp
+BERICHTE$(a%)ÿÿ,(ber$,1,SlashPos%ÿ1)
+BERNAME$(a%)ÿÿ,(ber$,SlashPos%ÿ1)
+ÿ’ÿ¡
+ ÿÙ
+ BERICHTE$(a%)ÿ""
+ BERNAME$(a%)ÿ""
+ 
+ 
+ 
+ ÿ½ CALL Lizensierung()
+ ÿßÿe
+ ÿ½ CALL Gauge(52,"")
+ ÿƒDFile(3,"hortus"ÿ_fpw$)
+ ÿƒDFile(3,"Bilder"ÿ_fpw$)
+ ÿƒDFile(3,"bluezeit"ÿ_fpw$)
+ ÿ½ CALL Gauge(100,"")
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ '      ***********************************
+ '      ** Formular "HORTUS" - Hauptmen **
+ '      *********************************** 
+ 
+ÿÿHORTUS()
+ GAkquiDat$ÿ"AKQUISE"
+ GADRDat$ÿ"ADRESSEN"
+ GTelDat$ÿ"TELEFON"
+ GDokDat$ÿ"DOKUMENT"
+ ÿÊÿŸtitle$ÿ" - Hauptbersicht"
+ ÿÊÿË"Hauptauswahl: W„hlen Sie die gewnschte Funktion!"
+ _formend%ÿ0
+ ÿ½ CALL Gauge(0,"")
+ ÿØ_formend%ÿ0
+HORTUSsub%ÿ0
+ÿ¡ÿœÿ"HORTUS"ÿp
+ÿßÿe
+ÿƒMNHORTUS()
+ÿ´ÿœ"HORTUS"
+ÿÊÿÿ³
+ÿƒHideStartup()
+ÿ’ÿ¡
+ÿßÿ³
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿ¬
+ÿÉÿæHORTUSsub%
+ÿæ1
+ÿƒPFLANZE()
+ÿæ2
+ÿƒOFFICE()
+ÿæ3
+ÿƒSETUP()
+ÿ’ÿÉ
+ ÿÙ
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+
+
+
+
+ '      *********************************
+ '      ** Routinen Formular "PFLANZE" **
+ '      *********************************
+
+ÿÿPFLANZE()
+ ÿßÿe
+ ÿÊÿË"Pflanzendatei"
+ _formend%ÿ0
+ ÿÊÿË""
+ ÿØ_formend%ÿ0
+PFLANZEsub%ÿ0
+ÿ¡ÿœÿ"PFLANZE"ÿp
+ÿÊÿŸtitle$ÿ" - Pflanzendatei"
+ÿ´ÿœ_ppath$ÿ"PFLANZE"
+ÿƒMNPFLANZE()
+ÿƒPFLIntro()
+ÿ’ÿ¡
+ÿßÿ³
+ÿ™"hortus"
+ÿÊÿË""
+ÿßÿ³
+ÿ¬ÿ³mnadr1%,mnadr2%
+ÿƒClearKBDBuffer()
+ÿÏÿßÿÿ¥ÿÿ¬
+ÿk$
+ÿÉÿæPFsub%
+ÿæ1
+ÿ¡ÿ("hortus")ÿÿ°("hortus")ÿpÿƒQuickStore("hortus")
+ÿƒPSelectPrev():ÿœ
+codepf%ÿCodepf.hortus
+ÿÉÿœÿ¥codepf%ÿ™"Bluezeit"ÿ£codepf.bluezeit
+ÿæ2
+ÿ¡ÿ("hortus")ÿÿ°("hortus")ÿpÿƒQuickStore("hortus")
+ÿƒPSelectNext():ÿœ
+codepf%ÿCodepf.hortus
+ÿÉÿœÿ¥codepf%ÿ™"Bluezeit"ÿ£codepf.Bluezeit
+ÿæ3
+ÿ³ÿ_ÿwBildErr150120032
+ÿœ3
+ÿœÿÈ
+BildErr150120032: 
+ÿ³ÿ_ÿwErrorHandler 
+ÿæ4
+codepf%ÿcodepf.hortus
+formlst%ÿÿí
+ÿƒBilder(codepf%,formlst%)
+ÿ’ÿÉ
+PFsub%ÿ0
+ÿÉÿæPFLANZEsub%
+ÿæ99
+ÿÉÿæÿí
+ÿæ1
+	ÿ”botanische_bez.hortus,0
+ÿæ2
+	ÿ”charakteristika.hortus,0
+ÿæ3
+	ÿ”Blhzeit.Bluezeit,0
+ÿ’ÿÉ
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡FileChanged%("hortus")ÿ1ÿpÿƒQuickStore("hortus")
+ _formend%ÿ0
+ ÿ’ÿÿ
+
+ 
+ ' Intro
+ ' ======================================================================
+ 
+ÿÿPFLIntro()
+ ÿßÿe
+ ÿ™"hortus"
+ ÿÉÿĞ
+ ÿÊÿŸtitle$ÿ" - Pflanzendatei"
+ ÿ£botanische_bez.hortus
+ ÿÉÿ`
+codepf%ÿCodepf.hortus
+ÿÉÿœÿ¥codepf%ÿ™"Bluezeit"ÿ£codepf.Bluezeit
+ ÿœ
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+ ' Pflanze Neu
+ ' ======================================================================
+ ' Zweck:       erzeugt neuen Datensatz fr Pflanzenerfassung
+ ' Nutzung:     CALL PFLNeu()
+ ' ======================================================================
+ 
+ÿÿPFLNeu()
+ ÿÊÿË"Lege neuen Datensatz an..."
+ ÿ¡(ÿ("hortus")ÿÿ°("hortus"))ÿdeutscher_name.hortusÿ""ÿpÿƒQuickStore("hortus")
+ ÿ
+ CodePF.hortusÿÿI("hortus",1)
+ ÿœ
+ PFLANZEsub%ÿ99
+ ÿ’ÿÿ
+ 
+ 
+ÿÿBlhzeitNeu()
+ ÿÊÿË"Lege neuen Datensatz an..."
+ ÿ¡(ÿ("Bluezeit")ÿÿ°("Bluezeit"))ÿpÿƒQuickStore("Bluezeit")
+ ÿ™"Bluezeit"
+ ÿ
+ CodePF.BluezeitÿCodepf.hortus
+ blhzeit.Bluezeitÿ"01.01.01"
+ ÿƒQuickStore("Bluezeit")
+ codepf%ÿCodepf.hortus
+ ÿ£codepf.Bluezeit
+ ÿÉÿ`
+ ÿ™"hortus"
+ ÿÉÿœÿ¥codepf%ÿ™"Bluezeit"ÿ£codepf.Bluezeit
+ ÿœ
+ PFLANZEsub%ÿ99
+ ÿ’ÿÿ
+ 
+
+
+ ' Pflanze suchen 
+ ' ====================================================================== 
+ ' Zweck:       Suchen einer Pflanze
+ ' ======================================================================
+ 
+ÿÿPFLSuchen()
+ ÿÊÿË"Pflanze suchen"
+ ÿ™"hortus":ÿ£deutscher_name.hortus
+ cupf%ÿcodepf.hortus
+ ÿ¡(ÿ("hortus")ÿÿ°("hortus"))ÿdeutscher_name.hortusÿ""ÿpÿƒQuickStore("hortus")
+ opt%ÿ1
+ÿ‰ÿñ"SADR",0,0,194,74,caption$,"MS Sans Serif",10
+ÿ|ÿñ"SADR",6,6,52,64,14,0,0,suna$,40
+ÿ|ÿñ"SADR",4,4,4,70,64,0," Suchen nach "
+ÿ|ÿñ"SADR",3,6,14,48,14,0,"bot. Name",1,opt%
+ÿ|ÿñ"SADR",3,6,25,48,14,0,"dt. Name",2,opt%
+ÿ|ÿñ"SADR",3,6,36,48,14,0,"Familie",3,opt%
+
+ÿ|ÿñ"SADR",1,80,5,98,16,1,"&Schnellsuche",1,1
+ÿ|ÿñ"SADR",1,80,27,98,16,0,"aus&fhrliche Suche",2,1
+ÿ|ÿñ"SADR",1,80,48,98,16,0,"&Abbruch",0,0
+ ÿñ"SADR",req%
+ ÿ¾ÿñÿt
+ ÿÉÿæopt%
+ ÿæ1
+feld$ÿ"QBotName.hortus"
+ ÿæ2
+feld$ÿ"QDeuName.hortus"
+ ÿæ3
+feld$ÿ"QPflanzFamil.hortus"
+ ÿ’ÿÉ
+ ÿ¡req%ÿ0ÿp
+ÿ£feld$$
+ÿÊÿË"Suche Pflanze..."
+ÿÉÿ¥suna$ÿ£feld$$
+ÿ¡ÿ>(ÿ+(feld$$,ÿ/(suna$)))ÿÿ>(suna$)ÿreq%ÿ2ÿp
+ÿ¡req%ÿ2ÿp
+req22%ÿ1
+ÿ^
+ÿÂ"Eintrag nicht gefunden!","hnliche Eintragungen suchen?",130,req22%
+ÿ’ÿ¡
+ÿ¡req22%ÿ1ÿp
+suna$ÿ"*"ÿsuna$ÿ"*"
+wi%ÿ0
+ÿƒServer("LISTBOXINIT","Pflanzenauswahl")
+ÿƒGauge(1,"Pflanzendatei wird durchsucht...")
+ÿƒServer("GAUGEENABLECANCEL","")
+ÿ™"hortus"
+ÿ£CodePF.hortus
+ÿÉÿ`
+ÿßÿe
+_prozt%ÿ0
+_anz%ÿÿI("hortus")
+ÿØÿOÿB("hortus")ÿServerReply$()ÿ"CANCEL"
+	_proz%ÿÿ((100ÿ_anz%)ÿCodePF.hortus)
+	ÿ¡_proz%ÿ100ÿp_proz%ÿ100
+	ÿ¡_proz%ÿ
+2ÿp_proz%ÿ2
+	ÿ¡_proz%ÿ_prozt%ÿp
+_prozt%ÿ_proz%
+ÿÊÿË"erweiterte Suche... "ÿÿ(_prozt%,"999")ÿ" %"
+ÿƒGauge(_proz%,"")
+	ÿ’ÿ¡
+	pflfound%ÿ0
+	ÿ¡feld$$ÿsuna$ÿppflfound%ÿ1
+	ÿ¡pflfound%ÿ1ÿp
+tmpZeile$ÿDeutscher_Name.HORTUSÿ", "ÿBotanische_Bez.HORTUSÿ" ("ÿÿ(CodePF.hortus,"000000")ÿ")"
+wi%ÿwi%ÿ1
+ÿƒServer("GaugeMessage","Pflanzendatei wird durchsucht... "ÿÿF(ÿ(wi%,"9999"))ÿ" gefunden")
+ÿƒServer("LISTBOXADD",tmpZeile$)
+	ÿ’ÿ¡
+	ÿÉÿ±ÿ™"hortus"ÿ£CodePF.hortus
+ÿÙ
+ÿƒGauge(0,"")
+ÿÊÿË"Bereit"
+ÿ¡wi%ÿ0ÿp
+	ÿÊÿË"Bitte w„hlen Sie eine Pflanze aus"
+	ÿ¬4,1,1,"aus Suchliste &w„hlen,F7","PflanzeWahl"
+	ÿƒServer("LISTBOXSHOW","Bitte w„hlen Sie die gewnschte Pflanze aus:")
+	erg$ÿServerReply$()
+	ÿ¡erg$ÿ""ÿp
+cupf%ÿÿ0(ÿ,(erg$,ÿ/(erg$)ÿ6,6))
+	ÿ’ÿ¡
+ÿ^
+	ÿ¬4,1,0,"aus Suchliste &w„hlen,F7","PflanzeWahl",""
+	ÿƒFehler("Keine entsprechende Pflanze gefunden!","")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ^
+cupf%ÿCodePF.hortus
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿÊÿË""
+ ÿÉÿ¥cupf%ÿ™"hortus"ÿ£Codepf.hortus
+ ÿÊÿ£feld$$
+ ÿ£feld$$
+ ÿœ
+ ÿßÿ³
+ ÿ’ÿÿ
+
+ÿÿPflanzeWahl()
+ ÿƒServer("LISTBOXSHOW","Bitte w„hlen Sie die gewnschte Pflanze aus:")
+ cfile$ÿÿ™
+ ÿ™"hortus"
+ cindex$ÿÿ£
+ erg$ÿServerReply$()
+ ÿ¡erg$ÿ""ÿp
+cupf%ÿÿ0(ÿ,(erg$,ÿ/(erg$)ÿ6,6))
+ÿÉÿ¥cupf%ÿ™"hortus"ÿ£Codepf.hortus
+ÿÊÿ£cindex$$
+ÿœ
+ ÿ’ÿ¡
+ ÿ£cindex$$
+ ÿ’ÿÿ
+ 
+ 
+ÿÿPFLLoeschen()
+ cupf%ÿCodePF.hortus
+ ÿÂ"Pflanze wirklich l”schen?","",135,req%
+ ÿ¡req%ÿ1ÿp
+ÿÉÿ¥cupf%ÿáÿ™"hortus"ÿ£CodePF.hortus
+ÿÉÿ¾
+ÿÉÿ±
+ÿœ
+ ÿ’ÿ¡
+ ÿœ
+ ÿ’ÿÿ
+
+
+
+ ' About
+ ' =====================================================================
+ 
+ÿÿAbout()
+ ÿÊÿË"šber "ÿtitle$
+ _dlg$(1)ÿtitle$
+ _dlg$(2)ÿ"(Netzwerk)"
+ _dlg$(3)ÿ""
+ _dlg$(4)ÿ"(c)'93 CoDIE Computer-Dienste"
+ _dlg$(5)ÿ"Fred Ahrens, Andreas Bargfried"
+ ÿƒDLG("šber...",5,120)
+ ÿ’ÿÿ
+
+
+ '      ***********************
+ '      ** Listen            **
+ '      ***********************
+ÿÿPFLANZEDrucken()
+ ÿ…ÿ&
+ ÿ³ÿ_ÿwFehl
+ ÿÁÿs"LISTE1"
+ ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿŸ
+ 
+ ÿš1
+ÿÊÿÁÿí"F_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿš
+ 
+ ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÉ
+ 
+ ÿÊÿiÿ³
+ ÿÊÿiÿáÿe
+ ÿ¡ÿ&ÿ11ÿp
+ ÿßÿe
+ÿÉ;
+ÿĞÿ~
+ÿµÿ~
+ÿqÿ~
+ÿ’ÿ¡
+Fehl: 
+ ÿ’ÿÿ
+
+ÿÿInfoStauden()
+ ÿ³ÿ_ÿwFehl
+ ÿ´ÿ˜Botanische_Bez,H”he,BltenFarbeForm,Blhbeginn,Blhzeit,WeitereSortArt,Lichtbedarf,Hinweise:ÿÎ
+ ÿÊÿiÿáÿ³:ÿ½                                        QuickReport
+ ÿÊÿiÿŸ"",0,0
+ ÿÉÿ\;ÿÓBotanische_Bez.HORTUSÿôÿÖÿe,H”he.HORTUS,BltenFarbeForm.HORTUS,Blhbeginn.HORTUS,Blhzeit.HORTUS,
+ WeitereSortArt,Lichtbedarf.HORTUS,Hinweise.HORTUS
+ ÿÁ
+ ÿĞÿ~
+ ÿµÿÁÿ~
+ ÿqÿ~
+ ÿ’ÿÉ
+Fehl: 
+ ÿ†ÿ˜:ÿÎ:ÿ½                                       FieldSelection
+ ÿÉÿĞ
+ ÿ’ÿÿ
+ 
+ÿÿInfoGeh”lze()
+ ÿ³ÿ_ÿwFehl
+ ÿ´ÿ˜Botanische_Bez,H”he,BltenFarbeForm,Blhbeginn,Blhzeit,LaubfarbeForm,Charakteristika,Fruchtfarbe,FruchtFarbeBegi,Lichtbedarf,Hinweise:ÿÎ
+ ÿÊÿiÿáÿ³:ÿ½                                        QuickReport
+ ÿÊÿiÿŸ"",0,0
+ ÿÉÿ\;ÿÓBotanische_Bez.HORTUSÿôÿÖÿe,H”he.HORTUS,BltenFarbeForm.HORTUS,Blhbeginn.HORTUS,Blhzeit.HORTUS,Charakteristika.HORTUS,
+ LaubfarbeForm.HORTUS,Fruchtfarbe.HORTUS,FruchtFarbeBegi.HORTUS,Lichtbedarf.HORTUS,Hinweise.HORTUS
+ ÿÁ
+ ÿĞÿ~
+ ÿµÿÁÿ~
+ ÿqÿ~
+ ÿ’ÿÉ
+ ÿÊÿiÿáÿe
+ ÿ´ÿ˜Botanische_Bez,H”he,BltenFarbeForm,Blhbeginn,Blhzeit,LaubfarbeForm,Charakteristika,Fruchtfarbe,FruchtFarbeBegi,Lichtbedarf,Hinweise:ÿÎ
+Fehl: 
+ ÿ†ÿ˜:ÿÎ:ÿ½                                       FieldSelection 
+ ÿÉÿĞ
+ ÿ’ÿÿ
+ 
+
+ '      ***********************
+ '      ** Mendeklarationen **
+ '      ***********************
+
+ÿÿMNHORTUS()
+ ÿ¬ÿ…
+ ÿƒMNProgramm()
+ ÿ¬2,0,1,"&Datenbank"
+ ÿ¬2,1,1,"&Pflanzen","PFLANZE","Pflanzendatei"
+ ÿ¬2,2,1,"&Bromanager","OFFICE",""
+ ÿ¬2,3,1,"&Einstellungen","SETUP","Programmeinstellungen"
+ ÿƒMNHilfe(3)
+ ÿ’ÿÿ
+ 
+
+ ' Formular ADRESSEN
+ ' ======================================================================
+ÿÿMNADRESSEN()
+ ÿ¬ÿ…
+ ÿƒMNProgramm()
+ ÿ¬1,1,1,"D&rucken...","ADRDrucken","Druckausgabe"
+ ÿ¬2,0,1,"&Daten","",""
+ ÿ¬2,1,1,"&Neu,F2","ADRNeu","eine neue Adresse erfassen"
+ ÿ¬2,2,1,"S&ichern,F4","MStore","aktuelle Adresse sichern"
+ ÿ¬2,3,1,"&Verwerfen,Alt+RckT","UNDO","letzte nderungen verwerfen"
+ ÿ¬2,4,1,"&Kopieren,F5","ADRKopieren",""
+ ÿ¡ÿOMNdisabled%("ADRLoeschen")ÿp
+ÿ¬2,5,1,"&L”schen","ADRLoeschen","aktuelle Adresse l”schen"
+ ÿ^
+ÿ¬2,5,0,"&L”schen"
+ ÿ’ÿ¡
+ ÿ¬2,6,1,"S&uchen,F6","ADRSuchen","Adresse suchen"
+ ÿ¬3,0,1,"Be&wegen","",""
+ ÿ¬3,1,1,"&N„chster,BildAb","ADRNext","n„chste Adresse"
+ ÿ¬3,2,1,"&Vorheriger,BildAuf","ADRPrev","vorherige Adresse"
+ ÿ¬3,3,1,"&Erster","ADRFirst","erste Adresse"
+ ÿ¬3,4,1,"&Letzter","ADRLast","letzte Adresse"
+ ÿ¬4,0,1,"&Optionen","",""
+ ÿ¬4,1,1,"&Termine","AKQUISE2","Termine zur aktuellen Adresse bearbeiten"
+ ÿ¬4,2,1,"Telefon/&Fax","ADRTelefon","Anzeige der Telefonbersicht/Versand von Kurzfaxen"
+ ÿ¬4,3,1,"Fil&ter...","","nur bestimmte Adressen anzeigen lassen..."
+ ÿ¬4,3;1,1,"normal","ADRFilter1","nur bestimmte Adressen anzeigen lassen (einfache Auswahl)"
+ ÿ¬4,3;2,1,"erweitert","ADRFilter2","nur bestimmte Adressen anzeigen lassen (erweiterte Auswahl)"
+ ÿ¬4,4,3
+ ÿ¡title$ÿ"*price it*"ÿtitle$ÿ"*firststep*"ÿp
+ÿ¬4,5,0,"Terminbersicht,F3","AQAdrHist1","Terminbersicht des Kunden ausgeben"
+ ÿ^
+ÿ¬4,5,1,"Terminbersicht,F3","AQAdrHist1","Terminbersicht des Kunden ausgeben"
+ ÿ’ÿ¡
+ ÿ¬4,6,0,"aus Suchliste &w„hlen,F7","ADRKurzSuche","Auflistung aller vorher gesuchten Adressen"
+ ÿ¬4,7,3
+ ÿ¬4,8,1,"Adressen nach dBase III/IV exportieren","ADRExport"
+ ÿ¬4,9,1,"Adressen aus \CODIE\IMPOADR.DBF importieren","ADRImport"
+ ÿ¬5,0,1,"Do&kumente"
+ a%ÿ0
+ ÿØDOKGruppen$(a%)ÿ""ÿa%ÿ
+19
+ÿ¡a%ÿ
+10ÿpmnline$ÿ"&"ÿ^mnline$ÿ""
+mnline$ÿmnline$ÿÿH(ÿ(a%,"999"))ÿ" "ÿDOKGruppen$(a%)
+ÿ¬5,a%ÿ1,1,mnline$,"ADRDOK","Dokument neu erfassen, einsehen oder bearbeiten"
+a%ÿa%ÿ1
+ ÿÙ
+ ÿ¬6,0,1,"&Vorg„nge"
+ ÿƒMNHilfe(7)
+ ÿ’ÿÿ
+
+ 
+
+ 
+ ' Formular PFLANZE
+ ' ======================================================================
+ 
+ÿÿMNPFLANZE()
+ ÿ¬ÿ…
+ ÿƒMNProgramm()
+ ÿ¬2,0,1,"&Daten","",""
+ ÿ¬2,1,1,"&Neu,F2","PFLNeu","einen neuen Datensatz erfassen"
+ ÿ¬2,2,1,"S&ichern,F4","MStore",""
+ ÿ¬2,3,1,"&Verwerfen,Alt+RckT","UNDO",""
+ ÿ¬2,4,1,"&L”schen","PFLLoeschen",""
+ ÿ¬2,5,1,"S&uchen,F6","PFLSuchen",""
+ ÿ¬3,0,1,"&Bewegen","",""
+ ÿ¬3,1,1,"&N„chster,BildAb","PFSelectNext","n„chster Datensatz"
+ ÿ¬3,2,1,"&Vorheriger,BildAuf","PFSelectPrev",""
+ ÿ¬3,3,1,"&Erster,Pos1","PFSelectFirst",""
+ ÿ¬3,4,1,"&Letzter,Ende","PFSelectLast",""
+ ÿ¬4,0,1,"Optionen","",""
+ ÿ¬4,1,0,"aus Suchliste &w„hlen,F7","PflanzeWahl",""
+ ÿƒMNHilfe(5)
+ ÿ’ÿÿ
+ 
+ÿÿPFSelectNext()
+ ÿƒPSelectNext()
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿPFSelectPrev()
+ ÿƒPSelectPrev()
+ ÿœ
+ ÿ’ÿÿ
+
+ÿÿPFSelectFirst()
+ ÿƒPSelectFirst()
+ ÿœ
+ ÿ’ÿÿ
+
+ÿÿPFSelectLast()
+ ÿƒPSelectLast()
+ ÿœ
+ ÿ’ÿÿ
+
+ÿÿKVNoteBig(fnam$)
+ÿ™"Hortus"
+notizn$ÿfnam$ÿ".hortus"
+L„nge$ÿÿö(notizn$,4)
+l„nge%ÿÿ0(L„nge$)
+inh$ÿnotizn$$
+ÿÊÿÿÉÿe
+ÿÊÿÿÉÿ³
+nr$ÿBotanische_Bez.hortusÿ" / "ÿDeutscher_Name.hortus
+ÿ‰ÿñ"Pflanze",0,0,350,253,"Notiz","MS Sans Serif",10
+ÿ|ÿñ"Pflanze",5,5,6,56,10,0,"Vertrag:"
+ÿ|ÿñ"Pflanze",5,62,6,380,9,128,nr$
+ÿ|ÿñ"Pflanze",5,5,22,165,10,0,"Notiz: zum Zeilenumbruch Strg+Enter drcken"
+ÿ½ ADD DIALOG "Pflanze",6,5,32,430,200,4,0,inh$
+ÿ|ÿñ"Pflanze",6,5,32,340,200,68,3,inh$,l„nge%
+ÿ|ÿñ"Pflanze",1,100,235,55,15,1,"&OK",1,1
+ÿ|ÿñ"Pflanze",1,170,235,55,15,0,"&Druck",2,2
+ÿñ"Pflanze",req%
+ÿ¾ÿñÿt
+ÿ¡inh$ÿnotizn$$ÿp
+ÿ½ es wurde ge„ndert
+ÿÂ"nderungen speichern?","",130,req%
+ÿ¡req%ÿ1ÿp
+	ÿÉÿYÿáÿ™"Hortus"
+	notizn$$ÿÿ+(inh$,l„nge%)
+	ÿƒQuickStore("Hortus")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡req%ÿ2ÿp
+ÿ¹;
+ÿ{inh$
+ÿ;
+ÿ’ÿ¡
+ÿÊÿÿÉÿ³
+ ÿ’ÿÿ
+
+
+
+ ÿ½ Bild laden
+ÿÿBild1Neu()
+ ÿ½ IF disabled%("ADRBILDEDIT") THEN END SUB 
+ path2$ÿÿ
+ codepf%ÿcodepf.Hortus
+ ÿ½ bildname$ = STR$ (codeob%,"00000") + STR$ (bildcount%,"000") + ".bmp"
+ ÿ³ÿ_ÿwBildFehl1
+ icondatei$ÿ"*.*"
+ ÿÉÿ¥codepf%ÿáÿ™"Hortus"ÿ£codepf.Hortus
+ ÿ³ÿ_ÿwbw14012003
+ ÿªÿ_netpath$ÿ"HORTUS\Bilder"
+bw14012003: 
+ÿ³ÿ_ÿwErrorHandler
+path1$ÿ_netpath$ÿ"Hortus\Bilder\"
+ÿÂ"Bild laden"," ",26,req%,icondatei$
+ÿ½ IF icondatei$ <> "" AND icondatei$ <> "*.bmp" THEN 
+ÿ¡icondatei$ÿ""ÿicondatei$ÿ"*.*"ÿp
+ 
+ÿ½ Bildcount.objekte = bildcount%
+ÿ½ bildname$ = STR$ (codepf%,"000000") + STR$ (bildnr%,"00") + ".bmp"
+bildname$ÿÿ(codepf%,"000000")ÿÿ(bildnr%,"00")ÿ"."ÿÿ-(icondatei$,3)
+ 
+ÿˆicondatei$ÿqpath1$ÿbildname$
+ÿÉÿæbildnr%
+ÿæ1
+Bild1.Hortusÿpath1$ÿbildname$
+nBild1.Hortusÿpath1$ÿbildname$
+ÿæ2
+Bild2.Hortusÿpath1$ÿbildname$
+nBild2.Hortusÿpath1$ÿbildname$
+ÿæ3
+Bild3.Hortusÿpath1$ÿbildname$
+nBild3.Hortusÿpath1$ÿbildname$
+ÿæ4
+Bild4.Hortusÿpath1$ÿbildname$
+nBild4.Hortusÿpath1$ÿbildname$
+ÿæ5
+Bild5.Hortusÿpath1$ÿbildname$
+nBild5.Hortusÿpath1$ÿbildname$
+ÿæ6
+Bild6.Hortusÿpath1$ÿbildname$
+nBild6.Hortusÿpath1$ÿbildname$
+ÿæ7
+Bild7.Hortusÿpath1$ÿbildname$
+nBild7.Hortusÿpath1$ÿbildname$
+ÿæ8
+Bild8.Hortusÿpath1$ÿbildname$
+nBild8.Hortusÿpath1$ÿbildname$
+ÿæ9
+Bild9.Hortusÿpath1$ÿbildname$
+ÿæ10
+Bild10.Hortusÿpath1$ÿbildname$
+ÿæ11
+Bild11.Hortusÿpath1$ÿbildname$
+ÿæ12
+Bild12.Hortusÿpath1$ÿbildname$
+ÿæ13
+Bild13.Hortusÿpath1$ÿbildname$
+ÿæ14
+Bild14.Hortusÿpath1$ÿbildname$
+ÿæ15
+Bild15.Hortusÿpath1$ÿbildname$
+ÿæ16
+Bild16.Hortusÿpath1$ÿbildname$
+ÿæ17
+Bild17.Hortusÿpath1$ÿbildname$
+ÿæ18
+Bild18.Hortusÿpath1$ÿbildname$
+ÿæ19
+Bild19.Hortusÿpath1$ÿbildname$
+ÿæ20
+Bild20.Hortusÿpath1$ÿbildname$
+ÿ’ÿÉ
+
+ÿƒQuickStore("Hortus")
+ ÿ’ÿ¡
+ ÿpath2$
+ ÿ³ÿ_ÿwBildFehl1
+ ÿœ1
+ ÿœ3
+ ÿœÿÈ
+BildFehl1: 
+ ÿ³ÿ_ÿwErrorHandler
+ ÿpath2$
+ ÿ’ÿÿ
+ 
+ 
+ 
+ÿÿBild1Edit()
+ codepf%ÿcodepf.Hortus
+ ÿ¡ÿ("Hortus")ÿÿ°("Hortus")ÿpÿƒFStore("Hortus")
+ ÿ½ SELECT FIRST 
+ ÿ³ÿ_ÿwBildFehl2
+ 
+ ÿ½ SELECT KEY codepf% LOCK FILE "Hortus" INDEX codeob.Hortus
+ 
+ÿÉÿæbildnr%
+ÿæ1
+bildname$ÿBild1.Hortus
+ÿæ2
+bildname$ÿBild2.Hortus
+ÿæ3
+bildname$ÿBild3.Hortus
+ÿæ4
+bildname$ÿBild4.Hortus
+ÿæ5
+bildname$ÿBild5.Hortus
+ÿæ6
+bildname$ÿBild6.Hortus
+ÿæ7
+bildname$ÿBild7.Hortus
+ÿæ8
+bildname$ÿBild8.Hortus
+ÿæ9
+bildname$ÿBild9.Hortus
+ÿæ10
+bildname$ÿBild10.Hortus
+ÿæ11
+bildname$ÿBild11.Hortus
+ÿæ12
+bildname$ÿBild12.Hortus
+ÿæ13
+bildname$ÿBild13.Hortus
+ÿæ14
+bildname$ÿBild14.Hortus
+ÿæ15
+bildname$ÿBild15.Hortus
+ÿæ16
+bildname$ÿBild16.Hortus
+ÿæ17
+bildname$ÿBild17.Hortus
+ÿæ18
+bildname$ÿBild18.Hortus
+ÿæ19
+bildname$ÿBild19.Hortus
+ÿæ20
+bildname$ÿBild20.Hortus
+
+ÿ’ÿÉ
+ ÿ¡bildname$ÿ""ÿp
+a%ÿÿƒ("ShellExecute",0,"open",bildname$,"","",1)
+
+ ÿ’ÿ¡
+ 
+ ÿœÿÈ
+BildFehl2: 
+ ÿ³ÿ_ÿwErrorHandler
+ ÿ’ÿÿ
+ 
+ ÿ’ÿÿ
+ 
+ 
+
+
+
+
+
+ÿÿBilder(codepf%,formlst%)
+ ÿßÿe
+ ÿÊÿË"Bilderdatei"
+ _formend%ÿ0
+ ÿÊÿË""
+Err200420031: 
+ÿ³ÿ_ÿwErrorHandler 
+ ÿØ_formend%ÿ0
+ 
+PFLANZEsub%ÿ0
+ÿ¡ÿœÿ"PFLANZE"ÿp
+ÿÊÿŸtitle$ÿ" - Bilderdatei"
+ÿ´ÿœ_ppath$ÿ"PFLANZE"
+ÿ’ÿ¡
+ÿ³ÿ_ÿwBildErr150120035
+ÿ¡ÿíÿ
+5ÿp
+ÿœ4
+ÿœÿÈ
+BildErr150120035: 
+ÿ³ÿ_ÿwErrorHandler 
+ÿƒMNPFLANZE()
+ÿƒBilderIntro(codepf%)
+ÿ’ÿ¡
+ÿßÿ³
+ÿ™"Bilder"
+ÿÊÿË""
+ÿßÿ³
+ÿ¬ÿ³mnadr1%,mnadr2%
+ÿƒClearKBDBuffer()
+ÿÏÿßÿÿ¥ÿÿ¬
+ÿk$
+ÿÉÿæPFLANZEsub%
+ÿæ5
+codebild%ÿCodeBild.bilder
+ÿÉÿ¥codebild%ÿ™"Bilder"ÿ£codebild.bilder
+ÿ³ÿ_ÿwBildErr150120038
+ÿœ5
+ÿœÿÈ
+BildErr150120038: 
+ÿ³ÿ_ÿwErrorHandler 
+ÿ’ÿÉ
+PFsub%ÿ0
+ÿ³ÿ_ÿwErr200420031
+ ÿÙ
+ ÿ¡FileChanged%("hortus")ÿ1ÿpÿƒQuickStore("hortus")
+ _formend%ÿ0
+ ÿ¡formlst%ÿ3ÿp
+ÿœformlst%
+ ÿ^
+ÿ³ÿ_ÿwBildErr150120037
+ÿœ3
+ÿœÿÈ
+BildErr150120037: 
+ÿ³ÿ_ÿwErrorHandler 
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+
+ 
+ ' Intro
+ ' ======================================================================
+ 
+ÿÿBilderIntro(codepf%)
+ ÿßÿe
+ ÿ™"hortus"
+ ÿÉÿĞÿ™"hortus"
+ ÿÊÿŸtitle$ÿ" - Bilderdatei"
+ ÿ£botanische_bez.hortus
+ ÿ™"Bilder"
+ ÿ£codepf.bilder
+ ÿ¡ÿOÿJ(codepf%,codepf.bilder)ÿp
+ÿÿ™"Bilder"
+CodeBild.BilderÿÿI("Bilder",1)
+CodePF.Bilderÿcodepf%
+BildT.Bilderÿ"Neu"
+ÿÌÿ™"Bilder"
+ ÿ’ÿ¡
+ ÿÉÿ`ÿ™"Bilder"ÿ£codepf.Bilder
+ ÿÉÿœÿ¥codepf%ÿ™"Bilder"ÿ£codepf.Bilder
+ ÿœ
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+ ' Pflanze Neu
+ ' ======================================================================
+ ' Zweck:       erzeugt neuen Datensatz fr Pflanzenerfassung
+ ' Nutzung:     CALL PFLNeu()
+ ' ======================================================================
+ 
+ÿÿBilderNeu(codepf%)
+ ÿÊÿË"Lege neuen Datensatz an..."
+ ÿ¡(ÿ("Bilder")ÿÿ°("Bilder"))ÿpÿƒQuickStore("Bilder")
+ ÿ¡(ÿ("hortus")ÿÿ°("hortus"))ÿdeutscher_name.hortusÿ""ÿpÿƒQuickStore("hortus")
+ ÿÿ™"Bilder"
+ CodeBild%ÿÿI("Bilder",1)
+ CodeBild.BilderÿCodeBild%
+ CodePF.Bilderÿcodepf%
+ BildT.Bilderÿ"Neu"
+ ÿÌÿ™"Bilder"
+ ÿƒBilderIntro(codepf%)
+ ÿœ
+ Bildersub%ÿ99
+ ÿ’ÿÿ
+ 
+
+
+ÿÿBilderNeu1(codepf%)
+ ÿÊÿË"Lege neuen Datensatz an..."
+ ÿ¡(ÿ("Bilder")ÿÿ°("Bilder"))ÿpÿƒQuickStore("Bilder")
+ ÿ¡(ÿ("hortus")ÿÿ°("hortus"))ÿdeutscher_name.hortusÿ""ÿpÿƒQuickStore("hortus")
+ ÿÿ™"Bilder"
+ CodeBild%ÿÿI("Bilder",1)
+ CodeBild.BilderÿCodeBild%
+ CodePF.Bilderÿcodepf%
+ BildT.Bilderÿ"Neu"
+ ÿÌÿ™"Bilder"
+ ÿÉÿ¥codebild%ÿ™"Bilder"ÿ£codebild.bilder
+ ÿœ
+ Bildersub%ÿ99
+ ÿ’ÿÿ
+ ÿ½ Bild laden
+
+
+ÿÿBild2Neu(CodeBild%)
+ ÿ½ IF disabled%("ADRBILDEDIT") THEN END SUB 
+ path2$ÿÿ
+ ÿ½ bildname$ = STR$ (codeob%,"00000") + STR$ (bildcount%,"000") + ".bmp"
+ ÿ³ÿ_ÿwBildFehl1
+ icondatei$ÿ"*.*"
+ ÿÉÿ¥codebild%ÿáÿ™"Bilder"ÿ£codebild.Bilder
+ ÿ³ÿ_ÿwbw140120031
+ ÿªÿ_netpath$ÿ"Hortus\Bilder1"
+bw140120031: 
+ÿ³ÿ_ÿwErrorHandler
+path1$ÿ_netpath$ÿ"Hortus\Bilder1\"
+ÿÂ"Bild laden"," ",26,req%,icondatei$
+ÿ¡icondatei$ÿ"*.*"ÿp
+ÿ½ Bildcount.objekte = bildcount%
+bildname$ÿÿ(codebild%,"000000")ÿ"."ÿÿ-(icondatei$,3)
+ÿˆicondatei$ÿqpath1$ÿbildname$
+Bild.Bilderÿpath1$ÿbildname$
+nBild.Bilderÿpath1$ÿbildname$
+ÿƒQuickStore("Bilder")
+ ÿ’ÿ¡
+ ÿpath2$
+ ÿ³ÿ_ÿwBildFehl11
+ ÿœ1
+ ÿœ5
+ ÿœÿÈ
+BildFehl11: 
+ ÿ³ÿ_ÿwErrorHandler
+ ÿpath2$
+ ÿ’ÿÿ
+ 
+ 
+ÿÿBildLoe(CodeBild%)
+ ÿÂ"Wirklich L”schen?","",130,req%
+ ÿ¡req%ÿ1ÿp
+NBild$ÿNBild.bilder
+codepf%ÿCodepf.bilder
+ÿ¡Bild.Bilderÿ""ÿp
+ÿÂ"Soll auch die zugeh”rige Datei gel”scht werden?","",130,req%
+ÿ^
+req%ÿ0
+ÿ’ÿ¡
+ÿ¾ÿaÿ™"Bilder"ÿĞCodeBild.BilderÿCodeBild%
+ÿ¡req%ÿ1ÿp
+ÿ¾ÿ™NBild$
+ÿ’ÿ¡
+ÿ¡ÿJ(codepf%,codepf.bilder)ÿp
+ÿƒBilderIntro(codepf%)
+ÿœ4
+ÿ^
+_formend%ÿ1
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+
+
+ 
+ÿÿBild2Edit(codebild%)
+ ÿ¡ÿ("Bilder")ÿÿ°("Bilder")ÿpÿƒFStore("Bilder")
+ ÿ½ SELECT FIRST 
+ ÿ³ÿ_ÿwBildFehl211
+ 
+ ÿ½ SELECT KEY codebild% LOCK FILE "Bilder" INDEX codeob.Bilder
+ 
+bildname$ÿBild.Bilder
+ ÿ¡bildname$ÿ""ÿp
+a%ÿÿƒ("ShellExecute",0,"open",bildname$,"","",1)
+
+ ÿ’ÿ¡
+ 
+ ÿœÿÈ
+BildFehl211: 
+ ÿ³ÿ_ÿwErrorHandler
+ ÿ’ÿÿ
+ 
+ ÿ’ÿÿ
+ 
+ 
+

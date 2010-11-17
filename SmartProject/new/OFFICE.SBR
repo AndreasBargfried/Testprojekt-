@@ -1,0 +1,143 @@
+SBP
+ 
+ '      **********************************************
+ '      ** OFFICE (c)'92-'98 CODIE Computer-Dienste **
+ '      ** Version 4.2                              **
+ '      ** Stand: 10.01.98                          ** 
+ '      **********************************************
+
+ÿÿmain()
+ ÿßÿe
+ ÿ½ DEBUG OFF 
+ ÿ†ÿt
+ ÿ¡ÿOÿ÷("CLIB")ÿpÿ¨"CLIB.SBR",ÿ°
+ ÿƒLIBInit("OFFICE","OFFICE",1,4)
+ ÿ½ CALL MNOFFICE()
+ _help%ÿ0
+ ÿƒINIT()
+ _formend%ÿ0
+ ÿ½ CALL Gauge(0,"")
+ Upd$ÿReadConfig$(_projekt$,"UPDATE")
+ ÿ¡Upd$ÿ"TRUE"ÿp
+ÿ¡ÿOÿ÷("UPDATE")ÿpÿ¨_netpath$ÿ"UPDATE.SBR",ÿ°
+ÿƒDoUpdate()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿƒOFFICE()
+ÿÊÿË"Programmende?"
+ÿÂ"Programm wirklich beenden?","",130,req%
+ÿ¡req%ÿ1ÿp_formend%ÿ1
+ ÿÙ
+ ÿƒEXIT()
+ ÿ’ÿÿ
+
+
+ '      *********************
+ '      ** INITIALISIERUNG **
+ '      *********************
+ 
+ ' Konstantendeklaration/Initialisierung
+ ' ======================================================================
+ ' 0001 04.11.92/FA: variabler Projektpfad eingefhrt
+ ' 0002 10.01.93/FA: in SUB umgewandelt
+ ' 0003 04.03.93/FA: SUB DECLARE(), INIT() und OpenFile() zusammengefaát
+ ' ======================================================================
+
+ÿÿINIT()
+ ÿßÿe
+ ÿÿf ÿUform
+ ÿÊÿÿÿ™_netpath$ÿ_projekt$ÿ"\"ÿ_projekt$ÿ".HLP"
+ ÿÊÿiÿ³
+ ÿƒDFile(2,"supervis"ÿ_fpw$)
+ _vcodema%ÿvcodema%
+ bezug%ÿ2
+ vbezug$ÿ"Adresse"
+ ÿƒLOGIN()
+ ÿƒLizensierung()
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+
+ ' Formular ADRESSEN
+ ' ======================================================================
+ 
+ÿÿMNADRESSEN()
+ ÿ¬ÿ…
+ ÿƒMNProgramm()
+ ÿ¬1,1,1,"&Drucken...,F3","ADRDrucken","Druckausgabe"
+ ÿ¬1,2,1,"Drucker&einrichtung...","PrinterSetup","Druckereinrichtung"
+ ÿ¬2,0,1,"&Daten","",""
+ ÿ¬2,1,1,"&Neu,F2","ADRNeu","einen neuen Datensatz erfassen"
+ ÿ¬2,2,1,"S&ichern,F4","MStore",""
+ ÿ¬2,3,1,"&Verwerfen,Alt+RckT","UNDO",""
+ ÿ¬2,4,1,"&Kopieren,F5","ADRKopieren",""
+ ÿ¡ÿOMNdisabled%("ADRLoeschen")ÿp
+ÿ¬2,5,1,"&L”schen","ADRLoeschen",""
+ ÿ^
+ÿ¬2,5,0,"&L”schen"
+ ÿ’ÿ¡
+ ÿ¬2,6,1,"S&uchen,F6","ADRSuchen",""
+ ÿ¬2,7,1,"Adressen nach dBase III/IV exportieren","ADRExport"
+ ÿ¬3,0,1,"Be&wegen","",""
+ ÿ¬3,1,1,"&N„chster,BildAb","ADRNext","n„chster Datensatz"
+ ÿ¬3,2,1,"&Vorheriger,BildAuf","ADRPrev",""
+ ÿ¬3,3,1,"&Erster","ADRFirst",""
+ ÿ¬3,4,1,"&Letzter","ADRLast",""
+ ÿ¬4,0,1,"&Optionen","",""
+ ÿ¬4,1,1,"&Termine","AKQUISE2",""
+ ÿ¬4,2,1,"Telefon/&Fax","ADRTelefon",""
+ ÿ¬4,3,1,"Fil&ter...","",""
+ ÿ¬4,3;1,1,"normal","ADRFilter1",""
+ ÿ¬4,3;2,1,"erweitert","ADRFilter2",""
+ ÿ¬5,0,1,"Do&kumente"
+ a%ÿ0
+ ÿØDOKGruppen$(a%)ÿ""ÿa%ÿ
+19
+ÿ¡a%ÿ
+10ÿpmnline$ÿ"&"ÿ^mnline$ÿ""
+mnline$ÿmnline$ÿÿH(ÿ(a%,"999"))ÿ" "ÿDOKGruppen$(a%)
+ÿ¬5,a%ÿ1,1,mnline$,"ADRDOK"
+a%ÿa%ÿ1
+ ÿÙ
+
+ ÿ½ MENU 6,0,1,"&Listen"
+ ÿ½ a% = 0
+ ÿ½ WHILE BERNAME$(a%) <> ""
+ ÿ½   IF a% < 10 THEN mnline$ = "&" ELSE mnline$ = ""
+ ÿ½   mnline$ = mnline$ + LTRIM$ ( STR$ (a%,"999")) + " " + BERNAME$(a%)
+ ÿ½   MENU 6,a% + 1,1,mnline$,"UserReport"
+ ÿ½   a% = a% + 1
+ ÿ½ WEND 
+
+ ÿƒMNHilfe(6)
+ ÿ’ÿÿ
+
+ÿÿUserReport()
+ cdir$ÿÿ
+ ÿ_netpath$ÿ"REPORT\"
+ befehl$ÿBERICHTE$(mnadr2%ÿ1)
+ ÿ½ IF NOT PROGRAMFILE (befehl$) THEN LOAD befehl$, NEW 
+ ÿ½ CALL befehl$
+ ÿ½ CLOSE PROGRAMFILE befehl$
+
+ ÿÁÿsbefehl$
+ ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿŸ
+ 
+ ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÉ
+ 
+ ÿÊÿiÿe
+ ÿÊÿiÿáÿe
+ ÿÉ;
+ÿĞÿ~
+ÿµNachname.ADRESSENÿ~
+ÿqÿ~
+ 
+ ÿcdir$
+ ÿ’ÿÿ
+

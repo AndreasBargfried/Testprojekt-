@@ -1,0 +1,3402 @@
+ 
+ '      *********************************************************************************
+ '      ** SPAR- Warenwirtschaft  (c)'93,'97 CODIE, Andreas Bargfried **
+ '      ** Version 4.0                                                                 **
+ '      ** Stand: 09.04.97  03.05                                                      ** 
+ '      *********************************************************************************
+ 
+SUB main()
+ MOUSE OFF 
+ REM DEBUG OFF 
+ CLOSE ALL 
+ IF NOT PROGRAMFILE ("SPCLIB") THEN LOAD "SPCLIB.SBR", NEW 
+ IF NOT PROGRAMFILE ("SPEXTLIB") THEN LOAD "SPEXTLIB.SBR", NEW 
+ CALL LIBInit("SPAR","CoDIESPAR",1,6)
+ _help% = 0
+ CALL INIT()
+ _formend% = 0
+ Upd$ = ReadConfig$(_projekt$,"UPDATE")
+ IF Upd$ LIKE "TRUE" THEN 
+   IF NOT PROGRAMFILE ("SPUPDATE") THEN LOAD _netpath$ + "SPUPDATE.SBR", NEW 
+   CALL DoUpdate()
+ END IF 
+ WHILE _formend% = 0
+   CALL SPAR()
+   SET STATUS "Programmende?"
+   REQUEST "Programm wirklich beenden?","",130,req%
+   IF req% = 1 THEN _formend% = 1
+ WEND 
+ CALL EXIT()
+ END SUB 
+ 
+ 
+ '      *********************
+ '      ** INITIALISIERUNG **
+ '      *********************
+ 
+ ' Konstantendeklaration/Initialisierung
+ ' ======================================================================
+ 
+SUB INIT()
+ MOUSE OFF 
+ GLOBAL f AS form
+ GLOBAL GRUPPENsub%,ARTIKELsub%,MSsub%,SCHsub%,FLOSKELsub%,MSArt%,MSArt$
+ GLOBAL cugrp%,cuart%,_mwst%,cums%,cupos%,cufl%,ProdGruppen$(100)
+ GLOBAL Rabatt$,RabattBetrag$,cums1%,MSart1%,MSArt1$
+ GLOBAL Ansicht$(200),SFORM$
+ GLOBAL MwStSchl%(10),MwStBetrag%(10),MWStBetrag1%,MwStCount%,MWSTText2$(10),MWSTBetrag2$(10)
+ GLOBAL MwStText$,MwStBetrag$,RabattText$,asuchopt%,asuchglob%,Gruppenausw$,sunaglob$,artausw$
+ GLOBAL kundennr$,leervorAdr$,Lieferant$(8000),AuswArtikel$(30000),AuswArtikel1$,neumaster$
+ GLOBAL Debitorkto$,Bestandskto$,Warenausgkto$,cashpath$,stationsnr$
+ GLOBAL GlervorAdr%,GlernachAdr%,GlerKopfSeite%,GlerFusSeite%
+ GLOBAL DEFA$,BestfÅhr$,ArtiAutoNum$,Bestrechnung$,Provrechnung$,_kalkart$,periode%,defaneu$
+ GLOBAL vkonto%(10),perieing%
+ GLOBAL Nummernkreise$,TerminVorlage%,artsucheok%,frage%,ARTIKeyword$
+ GLOBAL Zeile1$,Zeile2$,Zeile3$,Zeile4$,Zeile5$,Zeile6$
+ GLOBAL WertZeile1$,WertZeile2$,WertZeile3$,WertZeile4$,WertZeile5$,WertZeile6$,dokfehl%
+ GLOBAL noedit$,abbruch%,tot%,priebe$,artsort$,cusch%
+ tot% = 0
+ abbruch% = 0
+ ProServ$ = "FALSE"
+ noedit$ = "n"
+ ARTIKeyword$ = UCASE$ (ReadINI$("SPAR","AutoKeyword"))
+ artsucheok% = 0
+ cashpath$ = ReadINI$("CASH","NetDirectory")
+ _kalkart$ = UCASE$ (ReadConfig$("SPAR","Kalkulationsschema"))
+ priebe$ = UCASE$ (ReadConfig$("SPAR","Priebe"))
+ Nummernkreise$ = UCASE$ (ReadConfig$("SPAR","Nummernkreise"))
+ Debitorkto$ = ReadConfig$("SPAR","StandardDebitorKonto")
+ Bestandskto$ = ReadConfig$("SPAR","StandardBestandsKonto")
+ Warenausgkto$ = ReadConfig$("SPAR","StandardWarenausgKto")
+ BestfÅhr$ = UCASE$ (ReadConfig$("SPAR","Bestandsfuehrung"))
+ ArtiAutoNum$ = UCASE$ (ReadConfig$("SPAR","ArtikelAutoNum"))
+ stationsnr$ = ReadConfig$("SPAR","STATION")
+ GlervorAdr% = VAL (ReadConfig$("SPAR","LeerzeilenVorAdresse"))
+ GlernachAdr% = VAL (ReadConfig$("SPAR","LeerzeilenNachAdresse"))
+ TerminVorlage% = VAL (ReadConfig$("SPAR","TerminVorlage"))
+ IF TerminVorlage% = 0 THEN TerminVorlage% = 14
+ GlerKopfSeite% = VAL (ReadConfig$("SPAR","LeerzeilenSeitenKopf"))
+ REM GlerFusSeite% = VAL (ReadConfig$("SPAR","LeerzeilenSeitenFuss"))
+ DEFA$ = UCASE$ (ReadConfig$("SPAR","DEFA"))
+ IF DEFA$ = "MEGA" THEN 
+   IF stationsnr$ = "leer" THEN CALL Fehler("Beim DEFA-Projekt mu· in der \codie\codieapp.net","im Abschnitt [FACTURA] eine Stationsnummer angegeben werden!")
+ END IF 
+ i% = 0
+ FOR i% = 0 TO 9
+   v$ = "V" + STR$ (i%,"0")
+   vkonto%(i%) = VAL (ReadConfig$("SPAR",v$))
+ NEXT i%
+ Bestrechnung$ = UCASE$ (ReadConfig$("SPAR","Bestandsrechnung"))
+ Provrechnung$ = UCASE$ (ReadConfig$("SPAR","Provisionsrechnung"))
+ 
+ _mwst% = VAL (ReadConfig$("SPAR","MwSt"))
+ defaneu$ = "n"
+ 
+ neumaster$ = "n"
+ artausw$ = "n"
+ gruppenausw$ = ""
+ asuchopt% = 1
+ asuchglob% = 4
+ SET HELP FILE _netpath$ + _projekt$ + "\" + _projekt$ + ".HLP"
+ SET QUERY ON 
+ CALL DFile(2,"supervis" + _fpw$)
+ _vcodema% = vcodema%
+ bezug% = 2
+ vbezug$ = "Adresse"
+ IF test% = 0 THEN ON ERROR GOTO ErrorHandler
+ REM ON ERROR GOTO ErrorHandler
+ CALL LOGIN()
+ CALL Lizensierung()
+ CALL DFile(3,"GRUPPEN" + _fpw$)
+ FILE "gruppen"
+ INDEX CodeGR.gruppen
+ SELECT FIRST 
+ WHILE NOT EOF ("gruppen")
+   ProdGruppen$(a%) = Kurzbezeichnung.gruppen
+   a% = a% + 1
+   SELECT NEXT 
+ WEND 
+ END SUB 
+ 
+ 
+ '      ************************************
+ '      ** Formular "SPAR" - HauptmenÅ **
+ '      ************************************
+ 
+SUB SPAR()
+ ON ERROR GOTO ErrorHandler
+ SET STATUS "Hauptauswahl: WÑhlen Sie die gewÅnschte Funktion!"
+ _formend% = 0
+ WHILE _formend% = 0
+   PRICEsub% = 0
+   IF FORM <> "SPAR" THEN 
+     CALL MNFACTURA()
+     OPEN FORM "SPAR"
+     SET HEADING title$ + " - HauptÅbersicht"
+     SET STATUS "HauptÅbersicht"
+     SET DISPLAY ON 
+     CALL HideStartup()
+   END IF 
+   MENU ON addon1%,addon2%
+   MOUSE ON 
+   WAIT MOUSE OR KEY OR MENU 
+   CALL Server("LISTBOXINIT","Auswahl")
+   artausw$ = "n"
+   SELECT CASE PRICEsub%
+   CASE 1
+     CALL ADRESSEN()
+   CASE 2
+     MOUSE OFF 
+     CALL GRUPPEN()
+   CASE 3
+     CALL ARTIKEL()
+   CASE 4
+     CALL ABZUGANG(0)
+     CALL ScheinGenerator(0)
+   CASE 5
+     REM CALL VERLUST()
+     CALL ABZUGANG(1)
+   CASE 6
+      CALL INVENTUR()
+   CASE 7
+     CALL UMSKUNDEN()
+   CASE 8
+     CALL UMSARTIKEL()
+   CASE 9
+     CALL UMSGRUPPE()
+   CASE 10
+     REM CALL ORECHNUNGEN()
+     REM CALL RechnungAllg()
+     CALL OffeneVorgÑnge(2)
+   CASE 11
+     REM CALL OANGEBOTE()
+     CALL OffeneVorgÑnge(1)
+   CASE 12
+     REM CALL OBESTELLUNGEN()
+     CALL OffeneVorgÑnge(5)
+   CASE 13
+     CALL BESTELLV()
+   CASE 14
+     CALL PREISLISTE()
+   CASE 15
+     CALL FLOSKEL()
+   CASE 16
+     CALL DFile(3,"ABZUGANG" + _fpw$)
+     CALL DFile(3,"MASTER" + _fpw$)
+     CALL DFile(3,"ARTIKEL" + _fpw$)
+     CALL DFile(3,"SCHEIN" + _fpw$)
+     CALL DFile(3,"ARTPROV" + _fpw$)
+     CALL DFile(3,"LIEFRUCK" + _fpw$)
+     CALL DFile(3,"UMSATZ" + _fpw$)
+     CALL DFile(3,"VERTRETE" + _fpw$)
+     CALL DFile(3,"serienr" + _fpw$)
+     CALL DFile(3,"PROVISIO" + _fpw$)
+     CALL DFile(3,"FLOSKEL" + _fpw$)
+     NUMBASE "$ ,9999999999.00"
+     CALL BMKurzbericht()
+   CASE 17
+     CALL OFFICE()
+   CASE 18
+     CALL SETUP()
+   CASE 66
+     CALL RueckStell()
+   CASE 77
+     CALL LBelege()
+   END SELECT 
+ WEND 
+ _formend% = 0
+ END SUB 
+ 
+SUB RueckStell()
+ CALL DFile(3,"Liefruck" + _fpw$)
+ von$ = ""
+ bis$ = ""
+ buch$ = "n"
+ sort% = 1
+    CREATE DIALOG "UMSATZ",0,0,233,137,"Liefer - RÅckstellungen","MS Sans Serif",8
+    ADD DIALOG "UMSATZ",4,0,0,233,115,0,""
+    ADD DIALOG "UMSATZ",9,6,12,20,21,2
+    ADD DIALOG "UMSATZ",5,40,16,166,9,0,"Bitte geben Sie den Zeitraum ein, fÅr den Sie eine"
+    ADD DIALOG "UMSATZ",5,40,25,141,10,0,"Liefer - RÅckstellungsÅbersicht wÅnschen."
+    ADD DIALOG "UMSATZ",5,40,38,184,8,0,"Wenn Sie keinen Zeitraum bestimmen, werden sÑmtliche"
+    ADD DIALOG "UMSATZ",5,40,48,119,9,0,"Liefer - RÅckstellungen angezeigt."
+    ADD DIALOG "UMSATZ",3,40,59,150,13,0,"Sortierung nach Kunden",0,sort%
+    ADD DIALOG "UMSATZ",3,40,73,150,13,0,"Sortierung nach Lieferanten",1,sort%
+    ADD DIALOG "UMSATZ",6,62,96,35,13,0,0,von$,8
+    ADD DIALOG "UMSATZ",6,153,96,35,13,0,0,bis$,8
+    ADD DIALOG "UMSATZ",5,40,98,18,9,0,"von:"
+    ADD DIALOG "UMSATZ",5,133,98,13,9,0,"bis:"
+    ADD DIALOG "UMSATZ",1,58,118,55,14,1,"&OK",1,1
+    ADD DIALOG "UMSATZ",1,115,118,55,14,0,"&Abbrechen",0,0
+ DIALOG "UMSATZ",req%
+ REMOVE DIALOG "UMSATZ"
+ IF req% <> 1 THEN END SUB 
+ ok% = 0
+ IF DateOK%(von$) OR von$ = "" THEN 
+   IF DateOK%(bis$) OR bis$ = "" THEN 
+     IF von$ = "" THEN vondat$ = "1.1.80" ELSE vondat$ = von$
+     IF bis$ = "" THEN bisdat$ = DATE$ ( TODAY ) ELSE bisdat$ = bis$
+   ELSE 
+     CALL Fehler("Falsches Datum bei 'bis:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+     ok% = - 1
+   END IF 
+ ELSE 
+   CALL Fehler("Falsches Datum bei 'von:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+   ok% = - 1
+ END IF 
+ IF ok% <> - 1 THEN 
+   IF sort% = 0 THEN CALL Rueckk(vondat$,bisdat$)
+   IF sort% = 1 THEN CALL Rueckl(vondat$,bisdat$)
+ END IF 
+ END SUB 
+ 
+SUB LBelege()
+ CALL DFile(3,"lbelege" + _fpw$)
+ von$ = ""
+ bis$ = ""
+ buch$ = "n"
+ sort% = 1
+    CREATE DIALOG "UMSATZ",0,0,233,137,"BelegÅbersicht","MS Sans Serif",8
+    ADD DIALOG "UMSATZ",4,0,0,233,115,0,""
+    ADD DIALOG "UMSATZ",9,6,12,20,21,2
+    ADD DIALOG "UMSATZ",5,40,16,166,9,0,"Bitte geben Sie den Zeitraum ein, fÅr den Sie eine"
+    ADD DIALOG "UMSATZ",5,40,25,141,10,0,"BelegÅbersicht wÅnschen."
+    ADD DIALOG "UMSATZ",5,40,38,184,8,0,"Wenn Sie keinen Zeitraum bestimmen, werden sÑmtliche"
+    ADD DIALOG "UMSATZ",5,40,48,119,9,0,"Belege angezeigt."
+    ADD DIALOG "UMSATZ",3,40,59,150,13,0,"Sortierung nach Kunden",0,sort%
+    ADD DIALOG "UMSATZ",3,40,73,150,13,0,"Sortierung nach Lieferanten",1,sort%
+    ADD DIALOG "UMSATZ",6,62,96,35,13,0,0,von$,8
+    ADD DIALOG "UMSATZ",6,153,96,35,13,0,0,bis$,8
+    ADD DIALOG "UMSATZ",5,40,98,18,9,0,"von:"
+    ADD DIALOG "UMSATZ",5,133,98,13,9,0,"bis:"
+    ADD DIALOG "UMSATZ",1,58,118,55,14,1,"&OK",1,1
+    ADD DIALOG "UMSATZ",1,115,118,55,14,0,"&Abbrechen",0,0
+ DIALOG "UMSATZ",req%
+ REMOVE DIALOG "UMSATZ"
+ IF req% <> 1 THEN END SUB 
+ ok% = 0
+ IF DateOK%(von$) OR von$ = "" THEN 
+   IF DateOK%(bis$) OR bis$ = "" THEN 
+     IF von$ = "" THEN vondat$ = "1.1.80" ELSE vondat$ = von$
+     IF bis$ = "" THEN bisdat$ = DATE$ ( TODAY ) ELSE bisdat$ = bis$
+   ELSE 
+     CALL Fehler("Falsches Datum bei 'bis:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+     ok% = - 1
+   END IF 
+ ELSE 
+   CALL Fehler("Falsches Datum bei 'von:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+   ok% = - 1
+ END IF 
+ IF ok% <> - 1 THEN 
+   IF sort% = 0 THEN CALL LBelegk(vondat$,bisdat$)
+   IF sort% = 1 THEN CALL LBelegl(vondat$,bisdat$)
+ END IF 
+ END SUB 
+ 
+SUB LBelegl(vondat$,bisdat$)
+ REPORT USING "LBELEGEL"
+ BEFORE REPORT 
+     SET REPORT PAGE "H_REPORT"
+     OUTPUT REPORT PAGE 
+ END REPORT 
+ 
+ AFTER REPORT 
+     SET REPORT PAGE "F_REPORT"
+     OUTPUT REPORT PAGE 
+ END REPORT 
+ 
+ FOOTING 1
+     SET REPORT PAGE "F_PAGE"
+     OUTPUT REPORT PAGE 
+ END FOOTING 
+ 
+ GROUP Liefname.LBELEGE
+ BEFORE GROUP Liefname.LBELEGE
+     SET REPORT PAGE "H_Liefname.L002"
+     OUTPUT REPORT PAGE 
+ END GROUP 
+ 
+ AFTER SELECT 
+     SET REPORT PAGE "F_SELECT"
+     OUTPUT REPORT PAGE 
+ END SELECT 
+ 
+ SET QUERY OFF 
+ SET QUERY LOCK OFF 
+ SELECT ;
+     WHERE datum >= DAYS (vondat$) AND datum <= DAYS (bisdat$)
+     ORDER REPORT Liefname.LBELEGE,Datum.LBELEGE,Kundenname.LBELEGE
+     TO ASK 
+ END SUB 
+ 
+SUB LBelegk(vondat$,bisdat$)
+ REPORT USING "LBELEGEK"
+ BEFORE REPORT 
+     SET REPORT PAGE "H_REPORT"
+     OUTPUT REPORT PAGE 
+ END REPORT 
+ 
+ AFTER REPORT 
+     SET REPORT PAGE "F_REPORT"
+     OUTPUT REPORT PAGE 
+ END REPORT 
+ 
+ FOOTING 1
+     SET REPORT PAGE "F_PAGE"
+     OUTPUT REPORT PAGE 
+ END FOOTING 
+ 
+ GROUP Kundenname.LBELEGE
+ BEFORE GROUP Kundenname.LBELEGE
+     SET REPORT PAGE "H_Kundenname002"
+     OUTPUT REPORT PAGE 
+ END GROUP 
+ 
+ AFTER SELECT 
+     SET REPORT PAGE "F_SELECT"
+     OUTPUT REPORT PAGE 
+ END SELECT 
+ 
+ SET QUERY OFF 
+ SET QUERY LOCK OFF 
+ SELECT ;
+     WHERE datum >= DAYS (vondat$) AND datum <= DAYS (bisdat$)
+     ORDER REPORT Kundenname.LBELEGE,Datum.LBELEGE,Liefname.LBELEGE
+     TO ASK 
+ END SUB 
+ 
+SUB Rueckl(vondat$,bisdat$)
+ REPORT USING "RUECKL"
+ BEFORE REPORT 
+     SET REPORT PAGE "H_REPORT"
+     OUTPUT REPORT PAGE 
+ END REPORT 
+ 
+ AFTER REPORT 
+     SET REPORT PAGE "F_REPORT"
+     OUTPUT REPORT PAGE 
+ END REPORT 
+ 
+ FOOTING 1
+     SET REPORT PAGE "F_PAGE"
+     OUTPUT REPORT PAGE 
+ END FOOTING 
+ 
+ GROUP Liefname.LIEFRUCK
+ BEFORE GROUP Liefname.LIEFRUCK
+     SET REPORT PAGE "H_Liefname.L002"
+     OUTPUT REPORT PAGE 
+ END GROUP 
+ 
+ AFTER SELECT 
+     SET REPORT PAGE "F_SELECT"
+     OUTPUT REPORT PAGE 
+ END SELECT 
+ 
+ SET QUERY OFF 
+ SET QUERY LOCK OFF 
+ SELECT ;
+     WHERE RMenge.LIEFRUCK > 0 AND rdatum >= DAYS (vondat$) AND rdatum <= DAYS (bisdat$)
+     ORDER REPORT Liefname.LIEFRUCK,Produktgruppe.LIEFRUCK,RDatum.LIEFRUCK
+     TO ASK 
+ END SUB 
+ 
+SUB Rueckk(vondat$,bisdat$)
+ REPORT USING "RUECKKU"
+ BEFORE REPORT 
+     SET REPORT PAGE "H_REPORT"
+     OUTPUT REPORT PAGE 
+ END REPORT 
+ 
+ AFTER REPORT 
+     SET REPORT PAGE "F_REPORT"
+     OUTPUT REPORT PAGE 
+ END REPORT 
+ 
+ FOOTING 1
+     SET REPORT PAGE "F_PAGE"
+     OUTPUT REPORT PAGE 
+ END FOOTING 
+ 
+ GROUP Kundenname.LIEFRUCK
+ BEFORE GROUP Kundenname.LIEFRUCK
+     SET REPORT PAGE "H_Kundenname002"
+     OUTPUT REPORT PAGE 
+ END GROUP 
+ 
+ AFTER SELECT 
+     SET REPORT PAGE "F_SELECT"
+     OUTPUT REPORT PAGE 
+ END SELECT 
+ 
+ SET QUERY OFF 
+ SET QUERY LOCK OFF 
+ SELECT ;
+     WHERE RMenge.LIEFRUCK > 0 AND rdatum >= DAYS (vondat$) AND rdatum <= DAYS (bisdat$)
+     ORDER REPORT Kundenname.LIEFRUCK,Liefname.LIEFRUCK,Produktgruppe.LIEFRUCK,RDatum.LIEFRUCK
+     TO ASK 
+ END SUB 
+ 
+ 
+ 
+SUB PeriodenPruef()
+  IF DEFA$ = "MEGA" THEN 
+   CALL DFile(3,"ABZUGANG" + _fpw$)
+   REM --- Abfragen, ob Periodenabschlu· fÑllig oder Åberschritten ist ----------
+   ym% = VAL ( LEFT$ ( DATE$ ( TODAY ,"yymmdd"),4))
+   yy% = VAL ( LEFT$ ( DATE$ ( TODAY ,"yymmdd"),2))
+   mm% = VAL ( LEFT$ ( DATE$ ( TODAY ,"mmyydd"),2))
+   IF mm% = 1 THEN 
+     mmvor% = 12
+     yyvor% = yy% - 1
+   ELSE 
+     mmvor% = mm% - 1
+     yyvor% = yy%
+   END IF 
+   pabschlus% = yyvor% * 100 + mmvor%
+   pabschlus$ = STR$ (pabschlus%,"0000")
+   FILE "abzugang"
+   INDEX PAbschlus.abzugang
+   IF NOT EXISTS (pabschlus%,Pabschlus.abzugang) THEN 
+     REM --- vorherige Periode wurde noch nicht abgeschlossen ---
+     REQUEST "Die Periode " + pabschlus$ + " ist noch nicht abgeschlossen","Mîchten Sie trotzdem mit der Eingabe fortfahren?",130,reqp%
+     IF reqp% <> 1 THEN 
+       periode% = 0
+       END SUB 
+     ELSE 
+       periode% = pabschlus%
+     END IF 
+   ELSE 
+     periode% = ym%
+   END IF 
+ END IF 
+ END SUB 
+ 
+SUB PeriodenAb()
+ IF DEFA$ = "MEGA" THEN 
+   CALL DFile(3,"ABZUGANG" + _fpw$)
+   REM --- Abfragen, ob Periodenabschlu· fÑllig oder Åberschritten ist ----------
+   ym% = VAL ( LEFT$ ( DATE$ ( TODAY ,"yymmdd"),4))
+   yy% = VAL ( LEFT$ ( DATE$ ( TODAY ,"yymmdd"),2))
+   mm% = VAL ( LEFT$ ( DATE$ ( TODAY ,"mmyydd"),2))
+   IF mm% = 1 THEN 
+     mmvor% = 12
+     yyvor% = yy% - 1
+   ELSE 
+     mmvor% = mm% - 1
+     yyvor% = yy%
+   END IF 
+   pabschlus% = yyvor% * 100 + mmvor%
+   pabschlus$ = STR$ (pabschlus%,"0000")
+   FILE "abzugang"
+   INDEX PAbschlus.abzugang
+   IF NOT EXISTS (pabschlus%,Pabschlus.abzugang) THEN 
+     REM --- vorherige Periode wurde noch nicht abgeschlossen ---
+     REQUEST "Die Periode " + pabschlus$ + " ist noch nicht abgeschlossen","Soll der Periodenabschlu· durchgefÅhrt werden?",130,reqp%
+     IF reqp% <> 1 THEN 
+       periode% = 0
+       END SUB 
+     ELSE 
+       periode% = pabschlus%
+       INDEX periode.abzugang
+       SELECT FIRST 
+       SELECT KEY periode% FILE "abzugang" INDEX periode.abzugang
+       i% = 0
+       WHILE periode.abzugang = periode% AND NOT EOF ("abzugang")
+         PAbschlus.abzugang = periode%
+         i% = i% + 1
+         i$ = STR$ (i%,"9999999")
+         SET STATUS "                            Anzahl der SÑtze: " + i$
+         CALL QuickStore("abzugang")
+       SELECT NEXT LOCK 
+       WEND 
+       CALL DFile(3,"KSATZ" + _fpw$)
+       CALL DFile(3,"SSATZ" + _fpw$)
+       FILE "Ksatz"
+       INDEX periode.ksatz
+       SELECT FIRST 
+       SELECT KEY periode% FILE "ksatz" INDEX periode.ksatz
+       i% = 0
+       WHILE periode.ksatz = periode% AND NOT EOF ("ksatz")
+         PAbschlus.ksatz = periode%
+         i% = i% + 1
+         i$ = STR$ (i%,"9999999")
+         SET STATUS "Anzahl der SÑtze: " + i$
+         CALL QuickStore("ksatz")
+       SELECT NEXT LOCK 
+       WEND 
+       FILE "ssatz"
+       INDEX periode.ssatz
+       SELECT FIRST 
+       SELECT KEY periode% FILE "ssatz" INDEX periode.ssatz
+       i% = 0
+       WHILE periode.ssatz = periode% AND NOT EOF ("ssatz")
+         PAbschlus.ssatz = periode%
+         i% = i% + 1
+         i$ = STR$ (i%,"9999999")
+         SET STATUS "Anzahl der SÑtze: " + i$
+         CALL QuickStore("ssatz")
+       SELECT NEXT LOCK 
+       WEND 
+      REM Exportieren der S/K-SÑtze  
+       CALL SKExport()
+     END IF 
+   ELSE 
+     REQUEST "Der Periode " + pabschlus$ + " ist bereits abgeschlossen worden !!!","Soll der Abschlu· wiederholt werden?",130,reqw%
+     IF reqw% <> 1 THEN 
+       periode% = ym%
+     END IF 
+   END IF 
+ END IF 
+ END SUB 
+ 
+SUB SKExport()
+  CALL DFile(3,"ABZUGANG" + _fpw$)
+  CALL DFile(3,"KSATZ" + _fpw$)
+  CALL DFile(3,"SSATZ" + _fpw$)
+   ym% = VAL ( LEFT$ ( DATE$ ( TODAY ,"yymmdd"),4))
+   my% = VAL ( LEFT$ ( DATE$ ( TODAY ,"ddmmyy"),4))
+   yy% = VAL ( LEFT$ ( DATE$ ( TODAY ,"yymmdd"),2))
+   mm% = VAL ( LEFT$ ( DATE$ ( TODAY ,"mmyydd"),2))
+   IF mm% = 1 THEN 
+     mmvor% = 12
+     yyvor% = yy% - 1
+   ELSE 
+     mmvor% = mm% - 1
+     yyvor% = yy%
+   END IF 
+   pabschlus% = yyvor% * 100 + mmvor%
+   pabschlus$ = STR$ (pabschlus%,"0000")
+   FILE "abzugang"
+   INDEX PAbschlus.abzugang
+   IF NOT EXISTS (pabschlus%,Pabschlus.abzugang) THEN 
+     REM --- vorherige Periode wurde noch nicht abgeschlossen ---
+     REQUEST "Die Periode " + pabschlus$ + " ist noch nicht abgeschlossen","FÅhren Sie erst den Periodenabschlu· durch?",2
+     END SUB 
+   END IF 
+   REQUEST "Soll der Export der S/K-SÑtze fÅr die Periode " + pabschlu$," durchgefÅhrt werden?",130,reqex%
+   IF reqex% <> 1 THEN END SUB 
+   MOUSE OFF 
+   dateiname$ = "K" + STR$ (my%,"0000") + ".asc"
+   SET STATUS "Exportiere Datei nach " + dateiname$ + " ..."
+   IF EXISTS (dateiname$) THEN DELETE dateiname$
+   FILE "KSATZ"
+   SET ANSICONVERT OFF 
+   SELECT WHERE periode.ksatz = periode%
+   SELECT FIRST 
+   OPEN dateiname$ FOR OUTPUT 
+   CLOSE OUTPUT 
+   WHILE NOT EOF ("KSATZ") AND periode.ksatz = periode%
+     ksatz$ = "k!"
+     IF kostentrÑger.ksatz <> "" THEN 
+       ksatz$ = ksatz$ + kostentrÑger.ksatz + "!"
+     ELSE 
+       ksatz$ = ksatz$ + "949999999999999!"
+     END IF 
+     IF kostenstelle.ksatz <> 0 THEN 
+       ksatz$ = ksatz$ + STR$ (kostenstelle.ksatz,"000000") + "!"
+     ELSE 
+       ksatz$ = ksatz$ + LEFT$ (kostentrÑger.ksatz,1) + "3" + MID$ (kostentrÑger.ksatz,3,4) + "!"
+     END IF 
+     NUMDELIM ".,"
+     ksatz$ = ksatz$ + STR$ (Nettobetrag.ksatz,"999999999999.00") + "!"
+     NUMDELIM ",."
+     ksatz$ = ksatz$ + "Materialverbrauch"
+     SET STATUS ksatz$
+     OPEN dateiname$ FOR APPEND 
+     ? FN ansi(ksatz$)
+     CLOSE OUTPUT 
+     SELECT NEXT 
+   WEND 
+   SET STATUS "Ausgabe " + dateiname$ + " beendet!"
+   FILE "SSATZ"
+   dateiname$ = "S" + STR$ (my%,"0000") + ".asc"
+   SET STATUS "Exportiere Datei nach " + dateiname$ + " ..."
+   IF EXISTS (dateiname$) THEN DELETE dateiname$
+   SET ANSICONVERT OFF 
+   SELECT WHERE periode.ssatz = periode%
+   SELECT FIRST 
+   OPEN dateiname$ FOR OUTPUT 
+   CLOSE OUTPUT 
+   WHILE NOT EOF ("SSATZ") AND periode.ssatz = periode%
+     ssatz$ = "S!"
+     ssatz$ = ssatz$ + STR$ (Verbrauchskonto.ssatz,"000000") + "!" + STR$ (Bestandskonto.ssatz,"000000") + "!"
+     ssatz$ = ssatz$ + belegnummer.ssatz + "!"
+     ssatz$ = ssatz$ + DATE$ (Belegdatum.ssatz,"ddmmyy") + "!"
+     NUMDELIM ".,"
+     ssatz$ = ssatz$ + LTRIM$ ( STR$ (Nettobetrag.ssatz,"999999999999.00")) + "!"
+     NUMDELIM ",."
+     ssatz$ = ssatz$ + "s!Materialverbrauch!01"
+     SET STATUS ssatz$
+     OPEN dateiname$ FOR APPEND 
+     ? FN ansi(ssatz$)
+     CLOSE OUTPUT 
+     SELECT NEXT 
+   WEND 
+   SET STATUS "Ausgabe " + dateiname$ + " beendet!"
+   MOUSE ON 
+ END SUB 
+ 
+SUB CHKombi()
+ codear% = codear.artikel
+ CALL QuickStore("artikel")
+ IF IsKombi%(CodeAR%) AND (KostenTransport <> 0 OR KostenReparatur <> 0 OR KostenSonstiges <> 0) THEN 
+   REQUEST "Eingabe von Kosten bei Kombiartikeln nicht mîglich!","Kalkulieren Sie die Kosten bei den einzelnen Artikeln!",2
+   FILE "artikel"
+   SELECT KEY codear% LOCK FILE "artikel" INDEX codear.artikel
+   KostenTransport.artikel = 0
+   Kostenreparatur.artikel = 0
+   Kostensonstiges.artikel = 0
+   CALL QuickStore("artikel")
+   FORM 
+   ENTER Handelsspanne.artikel,0
+ END IF 
+ frage% = 1
+ CALL CHVKNetto()
+ REM CALL CHHandelssp()
+ CALL CHMwSt()
+ CALL CHVKBrutto()
+ CALL CHKombiN()
+ CALL CHKombiB()
+ geseinkauf% = ek.artikel + KostenTransport.artikel + KostenReparatur.artikel + KostenSonstiges.artikel
+ HSpanneDM$ = STR$ (VKnetto.ARTIKEL - geseinkauf%,",9999999999.00")
+ PrDif% = VKnetto.ARTIKEL - geseinkauf%
+ Handelsspanne.ARTIKEL = (100 / geseinkauf%) * PrDif%
+ REM CALL QuickStore("artikel")
+ frage% = 0
+ FORM 
+ END SUB 
+ 
+  
+ 
+ ' RechnungsÅbersicht allgemein
+ ' =======================================================================
+ ' ! 
+ ' ! 
+ 
+ 
+SUB RechnungAllg()
+ 
+ END SUB 
+ 
+ 
+ ' UmsatzÅbersicht kundenbezogen
+ ' =======================================================================
+ ' ! beim Aufruf aus ADRESSEN heraus wird nur der aktuelle
+ ' ! Kunde ausgewertet
+ 
+SUB UMSKUNDEN()
+ von$ = ""
+ bis$ = ""
+ adrform$ = "ADRESSEN"
+ IF DEFA$ = "MEGA" THEN adrform$ = "ADRDEFA"
+ IF FORM LIKE adrform$ THEN 
+   IF AAKunde.ADRESSEN LIKE "j" AND AALieferant.ADRESSEN LIKE "j" THEN 
+     opt% = 1
+     CREATE DIALOG "UMSADR",177,150,117,78,title$,"MS Sans Serif",8
+     ADD DIALOG "UMSADR",4,0,0,117,56,0,""
+     ADD DIALOG "UMSADR",9,5,9,20,21,2
+     ADD DIALOG "UMSADR",5,33,12,72,10,0,"UmsatzÅbersicht fÅr"
+     ADD DIALOG "UMSADR",3,33,25,37,11,0,"&Kunde",1,opt%
+     ADD DIALOG "UMSADR",3,33,38,44,11,0,"&Lieferant",2,opt%
+     ADD DIALOG "UMSADR",1,2,59,55,15,1,"&OK",1,1
+     ADD DIALOG "UMSADR",1,58,59,55,15,0,"&Abbrechen",0,0
+     DIALOG "UMSADR",req%
+     REMOVE DIALOG "UMSADR"
+     IF req% = 0 THEN opt% = 0
+   ELSE 
+     IF AAKunde.ADRESSEN LIKE "j" THEN opt% = 1
+     IF AALieferant.ADRESSEN LIKE "j" THEN opt% = 2
+   END IF 
+ ELSE 
+   opt% = 3
+ END IF 
+ IF opt% <> 0 THEN 
+    buch$ = "n"
+    CREATE DIALOG "UMSATZ",0,0,233,142,title$,"MS Sans Serif",8
+    ADD DIALOG "UMSATZ",4,0,1,233,117,0,""
+    ADD DIALOG "UMSATZ",9,6,12,20,21,2
+    ADD DIALOG "UMSATZ",5,40,16,166,9,0,"Bitte geben Sie den Zeitraum ein, fÅr den Sie eine"
+    ADD DIALOG "UMSATZ",5,40,25,93,10,0,"UmsatzÅbersicht wÅnschen."
+    ADD DIALOG "UMSATZ",5,40,38,184,8,0,"Wenn Sie keinen Zeitraum bestimmen, werden sÑmtliche"
+    ADD DIALOG "UMSATZ",5,40,48,65,9,0,"UmsÑtze angezeigt."
+    ADD DIALOG "UMSATZ",2,40,70,180,16,0,"nur gebuchte Belege anzeigen","j","n",buch$
+    ADD DIALOG "UMSATZ",6,62,97,35,13,0,0,von$,8
+    ADD DIALOG "UMSATZ",6,153,97,35,13,0,0,bis$,8
+    ADD DIALOG "UMSATZ",5,40,99,18,9,0,"von:"
+    ADD DIALOG "UMSATZ",5,133,99,13,9,0,"bis:"
+    ADD DIALOG "UMSATZ",1,57,124,55,15,1,"&OK",1,1
+    ADD DIALOG "UMSATZ",1,114,124,55,15,0,"&Abbrechen",0,0
+    DIALOG "UMSATZ",req%
+   REMOVE DIALOG "UMSATZ"
+   IF req% = 1 THEN 
+     IF DateOK%(von$) OR von$ = "" THEN 
+       IF DateOK%(bis$) OR bis$ = "" THEN 
+         MOUSE OFF 
+         CALL DFile(3,"MASTER" + _fpw$)
+         CALL DFile(2,"OFFICE\adressen" + _fpw$)
+         IF von$ = "" THEN vondat$ = "1.1.80" ELSE vondat$ = von$
+         IF bis$ = "" THEN bisdat$ = DATE$ ( TODAY ) ELSE bisdat$ = bis$
+         REPORT USING "UMSATZK"
+         REPORT ON sumNetto% AS "gummnetto%",sumBrutto% AS "gumbrutto%",brabatt% AS "gesrabattb%",nrabatt% AS "gesrabattn%"
+         AFTER REPORT 
+           SET REPORT PAGE "F_REPORT"
+           OUTPUT REPORT PAGE 
+         END REPORT 
+ 
+         SELECT CASE opt%
+         CASE 1
+           Header2$ = "Umsatz nach Kunde (Einzelkunde)
+         CASE 2
+           Header2$ = "Umsatz nach Lieferant"
+         CASE 3
+           Header2$ = "Umsatz nach Kunde (gesamt)"
+         END SELECT 
+         Ueberschrift$ = "Zeitraum:"
+         IF von$ = "" AND bis$ <> "" THEN Ueberschrift$ = Ueberschrift$ + " bis " + DATE$ ( TODAY ,"dd.mm.yy")
+         IF von$ <> "" AND bis$ = "" THEN Ueberschrift$ = Ueberschrift$ + " ab " + von$
+         IF von$ <> "" AND bis$ <> "" THEN Ueberschrift$ = Ueberschrift$ + " vom " + von$ + " bis " + bis$
+         IF von$ = "" AND bis$ = "" THEN Ueberschrift$ = Ueberschrift$ + " (GesamtÅbersicht)"
+         HEADING 
+           SET REPORT PAGE "H_PAGE"
+           OUTPUT REPORT PAGE 
+         END HEADING 
+         FOOTING 1
+           SET REPORT PAGE "F_PAGE"
+           OUTPUT REPORT PAGE 
+         END FOOTING 
+         GROUP CodeKU.ADRESSEN,sumNetto% AS "KundenUmsatzN%",sumBrutto% AS "KundenUmsatzB%",nrabatt% AS "sumrabattn%",brabatt% AS "sumrabattb%"
+         BEFORE GROUP CodeKU.ADRESSEN
+         SET REPORT PAGE "H_CodeKU.ADR002"
+           OUTPUT REPORT PAGE 
+         END GROUP 
+         AFTER GROUP CodeKU.ADRESSEN
+           SET REPORT PAGE "F_CodeKU.ADR002"
+           OUTPUT REPORT PAGE 
+         END GROUP 
+         AFTER SELECT 
+           SET REPORT PAGE "F_SELECT"
+           OUTPUT REPORT PAGE 
+         END SELECT 
+         SET QUERY OFF 
+         SET QUERY LOCK OFF 
+         vondat% = DAYS (vondat$)
+         bisdat% = DAYS (bisdat$)
+         ON ERROR GOTO ErrUMSK
+         IF opt% = 1 THEN 
+           _cuku% = CodeKU.ADRESSEN
+           IF buch$ = "j" THEN 
+             SELECT ;
+               WHERE CodeKU.ADRESSEN = CodeKU.MASTER AND CodeKU.MASTER = _cuku% AND StatusM.MASTER = "b" AND (Art.MASTER = 2 OR Art.master = 7) AND Datum.MASTER >= DAYS (vondat$) AND Datum.MASTER <= DAYS (bisdat$)
+               ORDER Nachname.ADRESSEN,Datum.MASTER
+               TO ASK 
+             SELECT FORM KEY _cuku% FILE "ADRESSEN" INDEX CodeKU.ADRESSEN
+           ELSE 
+             SELECT ;
+               WHERE CodeKU.ADRESSEN = CodeKU.MASTER AND CodeKU.MASTER = _cuku% AND (Art.MASTER = 2 OR Art.master = 7) AND Datum.MASTER >= DAYS (vondat$) AND Datum.MASTER <= DAYS (bisdat$)
+               ORDER Nachname.ADRESSEN,Datum.MASTER
+               TO ASK 
+             SELECT FORM KEY _cuku% FILE "ADRESSEN" INDEX CodeKU.ADRESSEN
+           END IF 
+         END IF 
+         IF opt% = 2 THEN 
+           _cuku% = CodeKU.ADRESSEN
+           IF buch$ = "j" THEN 
+             SELECT ;
+               WHERE CodeKU.ADRESSEN = CodeKU.MASTER AND CodeKU.MASTER = _cuku% AND StatusM.MASTER = "b" AND Art.MASTER = 5 AND Datum.MASTER >= DAYS (vondat$) AND Datum.MASTER <= DAYS (bisdat$)
+               ORDER Nachname.ADRESSEN,Datum.MASTER
+               TO ASK 
+             SELECT FORM KEY _cuku% FILE "ADRESSEN" INDEX CodeKU.ADRESSEN
+           ELSE 
+             SELECT ;
+               WHERE CodeKU.ADRESSEN = CodeKU.MASTER AND CodeKU.MASTER = _cuku% AND Art.MASTER = 5 AND Datum.MASTER >= DAYS (vondat$) AND Datum.MASTER <= DAYS (bisdat$)
+               ORDER Nachname.ADRESSEN,Datum.MASTER
+               TO ASK 
+             SELECT FORM KEY _cuku% FILE "ADRESSEN" INDEX CodeKU.ADRESSEN
+           END IF 
+         END IF 
+         IF opt% = 3 THEN 
+           IF buch$ = "j" THEN 
+             SELECT ;
+               WHERE CodeKU.ADRESSEN = CodeKU.MASTER AND StatusM.MASTER = "b" AND (Art.MASTER = 2 OR Art.master = 7) AND Datum.MASTER >= DAYS (vondat$) AND Datum.MASTER <= DAYS (bisdat$)
+               ORDER Nachname.ADRESSEN,Datum.MASTER
+               TO ASK 
+           ELSE 
+             SELECT ;
+               WHERE CodeKU.ADRESSEN = CodeKU.MASTER AND (Art.MASTER = 2 OR Art.master = 7) AND Datum.MASTER >= DAYS (vondat$) AND Datum.MASTER <= DAYS (bisdat$)
+               ORDER Nachname.ADRESSEN,Datum.MASTER
+               TO ASK 
+           END IF 
+ErrUMSK: 
+             ON ERROR GOTO ErrorHandler
+         END IF 
+       ELSE 
+         CALL Fehler("Falsches Datum bei 'bis:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+       END IF 
+     ELSE 
+       CALL Fehler("Falsches Datum bei 'von:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+     END IF 
+   END IF 
+ END IF 
+ adrform$ = "ADRESSEN"
+ IF DEFA$ = "MEGA" THEN adrform$ = "ADRDEFA"
+ IF FORM LIKE adrform$ THEN FILE "ADRESSEN"
+ MOUSE ON 
+ END SUB 
+ 
+ 
+ 
+ 
+ 
+ 
+SUB ListeAllg()
+ CALL DFile(3,"MASTER" + _fpw$)
+ CALL DFile(2,"OFFICE\adressen" + _fpw$)
+ von$ = ""
+ bis$ = ""
+ adrform$ = "ADRESSEN"
+ IF DEFA$ = "MEGA" THEN adrform$ = "ADRDEFA"
+ opt% = 2
+ kontrollfeld$ = "n"
+ CREATE DIALOG "ZUGART",0,0,134,139,title$,"MS Sans Serif",8
+ ADD DIALOG "ZUGART",9,6,1,20,21,2
+ ADD DIALOG "ZUGART",9,6,1,20,21,2
+ ADD DIALOG "ZUGART",4,26,1,84,85,0,"öbersicht fÅr"
+ ADD DIALOG "ZUGART",3,33,16,60,10,0,"Angebote",1,opt%
+ ADD DIALOG "ZUGART",3,33,27,60,10,0,"Rechnungen",2,opt%
+ ADD DIALOG "ZUGART",3,33,38,60,10,0,"Lieferscheine",3,opt%
+ ADD DIALOG "ZUGART",3,33,49,60,10,0,"AuftrÑge",4,opt%
+ ADD DIALOG "ZUGART",3,33,60,60,10,0,"Bestellungen",5,opt%
+ ADD DIALOG "ZUGART",3,33,71,60,10,0,"Gutschriften",7,opt%
+ ADD DIALOG "ZUGART",2,28,94,85,10,0,"Export nach EXCEL","j","n",Kontrollfeld$
+ ADD DIALOG "ZUGART",1,11,118,55,14,1,"&OK",1,1
+ ADD DIALOG "ZUGART",1,67,118,55,14,0,"&Abbrechen",0,0
+ DIALOG "ZUGART",req%
+ REMOVE DIALOG "ZUGART"
+ IF req% = 0 THEN opt% = 0
+ IF FORM LIKE adrform$ THEN 
+   ausgart% = 1
+ ELSE 
+   ausgart% = 2
+ END IF 
+ IF opt% <> 0 THEN 
+   CREATE DIALOG "UMSATZ",0,0,233,108,title$,"MS Sans Serif",8
+   ADD DIALOG "UMSATZ",4,0,0,233,86,0,""
+   ADD DIALOG "UMSATZ",9,6,12,20,21,2
+   ADD DIALOG "UMSATZ",5,40,16,166,9,0,"Bitte geben Sie den Zeitraum ein, fÅr den Sie eine"
+   ADD DIALOG "UMSATZ",5,40,26,93,9,0,"öbersicht wÅnschen."
+   ADD DIALOG "UMSATZ",5,40,38,184,9,0,"Wenn Sie keinen Zeitraum bestimmen, werden sÑmtliche"
+   ADD DIALOG "UMSATZ",5,40,48,65,9,0,"VorgÑnge angezeigt."
+   ADD DIALOG "UMSATZ",6,62,65,35,13,0,0,von$,8
+   ADD DIALOG "UMSATZ",6,153,65,35,13,0,0,bis$,8
+   ADD DIALOG "UMSATZ",5,40,67,18,9,0,"von:"
+   ADD DIALOG "UMSATZ",5,133,67,13,10,0,"bis:"
+   ADD DIALOG "UMSATZ",1,57,89,55,15,1,"&OK",1,1
+   ADD DIALOG "UMSATZ",1,114,89,55,15,0,"&Abbrechen",0,0
+   DIALOG "UMSATZ",req%
+   REMOVE DIALOG "UMSATZ"
+   IF req% = 1 THEN 
+     IF DateOK%(von$) OR von$ = "" THEN 
+       IF DateOK%(bis$) OR bis$ = "" THEN 
+         MOUSE OFF 
+         IF von$ = "" THEN vondat$ = "1.1.80" ELSE vondat$ = von$
+         IF bis$ = "" THEN bisdat$ = DATE$ ( TODAY ) ELSE bisdat$ = bis$
+         IF kontrollfeld$ = "n" THEN 
+           REPORT USING "LISTEALG"
+           SELECT CASE opt%
+           CASE 1
+             Header2$ = "AngebotsÅbersicht"
+           CASE 2
+             Header2$ = "RechnungsÅbersicht"
+           CASE 3
+             Header2$ = "LieferscheinÅbersicht"
+           CASE 4
+             Header2$ = "AuftragsÅbersicht"
+           CASE 5
+             Header2$ = "BestellÅbersicht"
+           CASE 7
+             Header2$ = "GutschriftsÅbersicht"
+           END SELECT 
+           IF ausgart% = 1 THEN 
+             SELECT KEY codeku.adressen FILE "adressen" INDEX codeku.adressen
+             nachname$ = nachname.adressen
+             header2$ = Header2$ + " fÅr Adresse: " + nachname.adressen
+             FILE "master"
+           END IF 
+           Ueberschrift$ = "Zeitraum:"
+           IF von$ = "" AND bis$ <> "" THEN Ueberschrift$ = Ueberschrift$ + " bis " + DATE$ ( TODAY ,"dd.mm.yy")
+           IF von$ <> "" AND bis$ = "" THEN Ueberschrift$ = Ueberschrift$ + " ab " + von$
+           IF von$ <> "" AND bis$ <> "" THEN Ueberschrift$ = Ueberschrift$ + " vom " + von$ + " bis " + bis$
+           IF von$ = "" AND bis$ = "" THEN Ueberschrift$ = Ueberschrift$ + " (GesamtÅbersicht)"
+           REPORT ON GesBrutto.MASTER AS "summeges%"
+           AFTER REPORT 
+           SET REPORT PAGE "F_REPORT"
+           OUTPUT REPORT PAGE 
+           END REPORT 
+        
+           HEADING 
+           SET REPORT PAGE "H_PAGE"
+           OUTPUT REPORT PAGE 
+           END HEADING 
+       
+           FOOTING 1
+           SET REPORT PAGE "F_PAGE"
+           OUTPUT REPORT PAGE 
+           END FOOTING 
+      
+           AFTER SELECT 
+           SET REPORT PAGE "F_SELECT"
+           OUTPUT REPORT PAGE 
+           END SELECT 
+      
+           SET QUERY ON 
+           SET QUERY LOCK OFF 
+           vondat% = DAYS (vondat$)
+           bisdat% = DAYS (bisdat$)
+           ON ERROR GOTO ErrUMSK
+           IF ausgart% = 2 THEN 
+             SELECT ;
+               WHERE Datum.MASTER >= DAYS (vondat$) AND Datum.MASTER <= DAYS (bisdat$) AND art.master = opt%
+               ORDER Datum.MASTER,nummer.master
+               TO ASK 
+           END IF 
+           IF ausgart% = 1 THEN 
+             _cuku% = CodeKU.ADRESSEN
+             SELECT ;
+               WHERE CodeKU.MASTER = _cuku% AND Datum.MASTER >= DAYS (vondat$) AND Datum.MASTER <= DAYS (bisdat$) AND art.master = opt%
+               ORDER Datum.MASTER
+               TO ASK 
+             SELECT FORM KEY _cuku% FILE "ADRESSEN" INDEX CodeKU.ADRESSEN
+ErrUMSK: 
+             ON ERROR GOTO ErrorHandler
+           END IF 
+         ELSE 
+           vondat% = DAYS (vondat$)
+           bisdat% = DAYS (bisdat$)
+           CALL MasterExport(vondat$,bisdat$,opt%)
+         END IF 
+       ELSE 
+         CALL Fehler("Falsches Datum bei 'bis:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+       END IF 
+     ELSE 
+       CALL Fehler("Falsches Datum bei 'von:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+     END IF 
+   END IF 
+ END IF 
+ adrform$ = "ADRESSEN"
+ IF DEFA$ = "MEGA" THEN adrform$ = "ADRDEFA"
+ IF FORM LIKE adrform$ THEN FILE "ADRESSEN"
+ MOUSE ON 
+ END SUB 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ' UmsatzÅbersicht artikelbezogen
+ ' =======================================================================
+ ' ! beim Aufruf aus ARTIKEL heraus wird nur der aktuelle
+ ' ! Artikel ausgewertet
+ 
+SUB UMSARTIKEL()
+ von$ = ""
+ bis$ = ""
+ buch$ = "n"
+ sort% = 1
+ CREATE DIALOG "UMSATZ",0,0,233,168,title$,"MS Sans Serif",8
+ ADD DIALOG "UMSATZ",4,0,0,233,142,0,""
+ ADD DIALOG "UMSATZ",9,6,12,20,21,2
+ ADD DIALOG "UMSATZ",5,40,16,166,9,0,"Bitte geben Sie den Zeitraum ein, fÅr den Sie eine"
+ ADD DIALOG "UMSATZ",5,40,25,93,10,0,"UmsatzÅbersicht wÅnschen."
+ ADD DIALOG "UMSATZ",5,40,38,184,8,0,"Wenn Sie keinen Zeitraum bestimmen, werden sÑmtliche"
+ ADD DIALOG "UMSATZ",5,40,48,65,9,0,"UmsÑtze angezeigt."
+ ADD DIALOG "UMSATZ",2,40,70,180,16,0,"nur gebuchte Belege anzeigen","j","n",buch$
+ ADD DIALOG "UMSATZ",3,40,89,151,13,0,"Sortierung nach Artikelnummer",0,sort%
+ ADD DIALOG "UMSATZ",3,40,104,150,12,0,"Sortierung nach Artikelbezeichnung",1,sort%
+ ADD DIALOG "UMSATZ",6,62,126,35,13,0,0,von$,8
+ ADD DIALOG "UMSATZ",6,153,126,35,13,0,0,bis$,8
+ ADD DIALOG "UMSATZ",5,40,128,18,9,0,"von:"
+ ADD DIALOG "UMSATZ",5,133,128,13,9,0,"bis:"
+ ADD DIALOG "UMSATZ",1,56,148,55,15,1,"&OK",1,1
+ ADD DIALOG "UMSATZ",1,113,148,55,15,0,"&Abbrechen",0,0
+ DIALOG "UMSATZ",req%
+ REMOVE DIALOG "UMSATZ"
+ IF req% = 1 THEN 
+   CALL DFile(3,"SCHEIN" + _fpw$)
+   CALL DFile(3,"LIEFRUCK" + _fpw$)
+   FILE "schein"
+   IF sort% = 1 THEN 
+     INDEX bezeichnung.schein
+     SELECT FIRST 
+   ELSE 
+     INDEX artikelnummer.schein
+     SELECT FIRST 
+   END IF 
+   IF DateOK%(von$) OR von$ = "" THEN 
+     IF DateOK%(bis$) OR bis$ = "" THEN 
+       MOUSE OFF 
+       CALL DFile(3,"ARTIKEL" + _fpw$)
+       CALL DFile(3,"schein" + _fpw$)
+       CALL DFile(3,"LIEFRUCK" + _fpw$)
+       CALL DFile(3,"ARTPROV" + _fpw$)
+       CALL DFile(3,"VERTRETE" + _fpw$)
+       CALL DFile(3,"master" + _fpw$)
+       IF von$ = "" THEN vondat$ = "1.1.80" ELSE vondat$ = von$
+       IF bis$ = "" THEN bisdat$ = DATE$ ( TODAY ) ELSE bisdat$ = bis$
+       IF sort% = 1 THEN REPORT USING "UMSART"
+       IF sort% = 0 THEN REPORT USING "UMSART1"
+       Ueberschrift$ = "Zeitraum:"
+       IF von$ = "" AND bis$ <> "" THEN Ueberschrift$ = Ueberschrift$ + " bis " + DATE$ ( TODAY ,"dd.mm.yy")
+       IF von$ <> "" AND bis$ = "" THEN Ueberschrift$ = Ueberschrift$ + " ab " + von$
+       IF von$ <> "" AND bis$ <> "" THEN Ueberschrift$ = Ueberschrift$ + " vom " + von$ + " bis " + bis$
+      IF von$ = "" AND bis$ = "" THEN Ueberschrift$ = Ueberschrift$ + " (GesamtÅbersicht)"
+       vondat% = DAYS (vondat$)
+       bisdat% = DAYS (bisdat$)
+ 
+       REPORT ON vknetto% AS "gsumnetto%",vkbrutto% AS "gsumbrutto%",rabattb% AS "bgesumrab%",rabattn% AS "ngesumrab%"
+       AFTER REPORT 
+       SET REPORT PAGE "F_REPORT"
+       OUTPUT REPORT PAGE 
+       END REPORT 
+       HEADING 
+       SET REPORT PAGE "H_PAGE"
+       OUTPUT REPORT PAGE 
+       END HEADING 
+       FOOTING 1
+       SET REPORT PAGE "F_PAGE"
+       OUTPUT REPORT PAGE 
+       END FOOTING 
+       IF sort% = 1 THEN 
+         GROUP Bezeichnung.SCHEIN,vknetto% AS "sumnetto%",vkbrutto% AS "sumbrutto%",rabattb% AS "rabattgesb%",rabattn% AS "rabattgesn%",anzahl% AS "gesanz%"
+         BEFORE GROUP Bezeichnung.SCHEIN
+         SET REPORT PAGE "H_Bezeichnun002"
+       ELSE 
+         GROUP Artikelnummer.SCHEIN,vknetto% AS "sumnetto%",vkbrutto% AS "sumbrutto%",rabattb% AS "rabattgesb%",rabattn% AS "rabattgesn%",anzahl% AS "gesanz%"
+         BEFORE GROUP Artikelnummer.SCHEIN
+         SET REPORT PAGE "H_Artikelnum002"
+       END IF 
+       OUTPUT REPORT PAGE 
+       END GROUP 
+       IF sort% = 1 THEN 
+         AFTER GROUP Bezeichnung.SCHEIN
+         SET REPORT PAGE "F_Bezeichnun002"
+       ELSE 
+         AFTER GROUP Artikelnummer.SCHEIN
+         SET REPORT PAGE "F_Artikelnum002"
+       END IF 
+       OUTPUT REPORT PAGE 
+       END GROUP 
+ 
+       AFTER SELECT 
+       SET REPORT PAGE "F_SELECT"
+       OUTPUT REPORT PAGE 
+       END SELECT 
+ 
+ 
+      SET QUERY OFF 
+      SET QUERY LOCK OFF 
+       ON ERROR GOTO ErrUMSART
+       IF FORM LIKE "artikel" THEN 
+         _cuart% = CodeAR.ARTIKEL
+         IF buch$ = "j" THEN 
+           IF sort% = 1 THEN 
+             SELECT ;
+             WHERE CodeAR.schein = _cuart% AND StatusM.MASTER = "b" AND CodeMS.SCHEIN = CodeMS.MASTER AND Datum.master >= DAYS (vondat$) AND Datum.master <= DAYS (bisdat$) AND (Art.MASTER = 2 OR Art.MASTER = 7)
+             ORDER REPORT bezeichnung.schein
+             TO ASK 
+           ELSE 
+             SELECT ;
+             WHERE CodeAR.schein = _cuart% AND StatusM.MASTER = "b" AND CodeMS.SCHEIN = CodeMS.MASTER AND Datum.master >= DAYS (vondat$) AND Datum.master <= DAYS (bisdat$) AND (Art.MASTER = 2 OR Art.MASTER = 7)
+             ORDER REPORT Artikelnummer.schein
+             TO ASK 
+           END IF 
+           SELECT FORM KEY _cuart% FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+         ELSE 
+           IF sort% = 1 THEN 
+             SELECT ;
+             WHERE CodeAR.schein = _cuart% AND CodeMS.SCHEIN = CodeMS.MASTER AND Datum.master >= DAYS (vondat$) AND Datum.master <= DAYS (bisdat$) AND (Art.MASTER = 2 OR Art.MASTER = 7)
+             ORDER REPORT bezeichnung.schein
+             TO ASK 
+           ELSE 
+             SELECT ;
+             WHERE CodeAR.schein = _cuart% AND CodeMS.SCHEIN = CodeMS.MASTER AND Datum.master >= DAYS (vondat$) AND Datum.master <= DAYS (bisdat$) AND (Art.MASTER = 2 OR Art.MASTER = 7)
+             ORDER REPORT Artikelnummer.schein
+             TO ASK 
+           END IF 
+           SELECT FORM KEY _cuart% FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+         END IF 
+       ELSE 
+         IF buch$ = "j" THEN 
+           IF sort% = 1 THEN 
+             SELECT ;
+             WHERE CodeMS.SCHEIN = CodeMS.MASTER AND StatusM.MASTER = "b" AND Datum.master >= DAYS (vondat$) AND Datum.master <= DAYS (bisdat$) AND (Art.MASTER = 2 OR Art.MASTER = 7)
+             ORDER REPORT bezeichnung.schein
+             TO ASK 
+           ELSE 
+             SELECT ;
+             WHERE CodeMS.SCHEIN = CodeMS.MASTER AND StatusM.MASTER = "b" AND Datum.master >= DAYS (vondat$) AND Datum.master <= DAYS (bisdat$) AND (Art.MASTER = 2 OR Art.MASTER = 7)
+             ORDER REPORT Artikelnummer.schein
+             TO ASK 
+           END IF 
+         ELSE 
+           IF sort% = 1 THEN 
+             SELECT ;
+             WHERE CodeMS.SCHEIN = CodeMS.MASTER AND Datum.master >= DAYS (vondat$) AND Datum.master <= DAYS (bisdat$) AND (Art.MASTER = 2 OR Art.MASTER = 7)
+             ORDER REPORT bezeichnung.schein
+             TO ASK 
+           ELSE 
+             SELECT ;
+             WHERE CodeMS.SCHEIN = CodeMS.MASTER AND Datum.master >= DAYS (vondat$) AND Datum.master <= DAYS (bisdat$) AND (Art.MASTER = 2 OR Art.MASTER = 7)
+             ORDER REPORT Artikelnummer.schein
+             TO ASK 
+           END IF 
+         END IF 
+ErrUMSART: 
+           ON ERROR GOTO ErrorHandler
+       END IF 
+     ELSE 
+       CALL Fehler("Falsches Datum bei 'bis:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+     END IF 
+   ELSE 
+     CALL Fehler("Falsches Datum bei 'von:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+   END IF 
+ END IF 
+ IF FORM LIKE "artikel" THEN FILE "ARTIKEL"
+ MOUSE ON 
+ END SUB 
+ 
+ 
+ ' UmsatzÅbersicht gruppenbezogen
+ ' =======================================================================
+ ' ! beim Aufruf aus GRUPPEN heraus wird nur der aktuelle
+ ' ! Produktgruppe ausgewertet
+ 
+SUB UMSGRUPPE()
+ von$ = ""
+ bis$ = ""
+ buch$ = "n"
+ sort% = 1
+ CREATE DIALOG "UMSATZ",0,0,233,168,title$,"MS Sans Serif",8
+ ADD DIALOG "UMSATZ",4,0,0,233,142,0,""
+ ADD DIALOG "UMSATZ",9,6,12,20,21,2
+ ADD DIALOG "UMSATZ",5,40,16,166,9,0,"Bitte geben Sie den Zeitraum ein, fÅr den Sie eine"
+ ADD DIALOG "UMSATZ",5,40,25,93,10,0,"UmsatzÅbersicht wÅnschen."
+ ADD DIALOG "UMSATZ",5,40,38,184,8,0,"Wenn Sie keinen Zeitraum bestimmen, werden sÑmtliche"
+ ADD DIALOG "UMSATZ",5,40,48,65,9,0,"UmsÑtze angezeigt."
+ ADD DIALOG "UMSATZ",2,40,70,180,16,0,"nur gebuchte Belege anzeigen","j","n",buch$
+ ADD DIALOG "UMSATZ",3,40,89,151,13,0,"Sortierung nach Artikelnummer",0,sort%
+ ADD DIALOG "UMSATZ",3,40,104,150,12,0,"Sortierung nach Artikelbezeichnung",1,sort%
+ ADD DIALOG "UMSATZ",6,62,126,35,13,0,0,von$,8
+ ADD DIALOG "UMSATZ",6,153,126,35,13,0,0,bis$,8
+ ADD DIALOG "UMSATZ",5,40,128,18,9,0,"von:"
+ ADD DIALOG "UMSATZ",5,133,128,13,9,0,"bis:"
+ ADD DIALOG "UMSATZ",1,56,148,55,15,1,"&OK",1,1
+ ADD DIALOG "UMSATZ",1,113,148,55,15,0,"&Abbrechen",0,0
+ DIALOG "UMSATZ",req%
+ REMOVE DIALOG "UMSATZ"
+ IF req% = 1 THEN 
+   IF DateOK%(von$) OR von$ = "" THEN 
+     IF DateOK%(bis$) OR bis$ = "" THEN 
+       MOUSE OFF 
+       CALL DFile(3,"master" + _fpw$)
+       CALL DFile(3,"schein" + _fpw$)
+       CALL DFile(3,"ARTPROV" + _fpw$)
+       CALL DFile(3,"LIEFRUCK" + _fpw$)
+       CALL DFile(3,"GRUPPEN" + _fpw$)
+       IF von$ = "" THEN vondat$ = "1.1.80" ELSE vondat$ = von$
+       IF bis$ = "" THEN bisdat$ = DATE$ ( TODAY ) ELSE bisdat$ = bis$
+       REPORT USING "UMSATZG"
+       Ueberschrift$ = "Zeitraum:"
+       IF von$ = "" AND bis$ <> "" THEN Ueberschrift$ = Ueberschrift$ + " bis " + DATE$ ( TODAY ,"dd.mm.yy")
+       IF von$ <> "" AND bis$ = "" THEN Ueberschrift$ = Ueberschrift$ + " ab " + von$
+       IF von$ <> "" AND bis$ <> "" THEN Ueberschrift$ = Ueberschrift$ + " vom " + von$ + " bis " + bis$
+       IF von$ = "" AND bis$ = "" THEN Ueberschrift$ = Ueberschrift$ + " (GesamtÅbersicht)"
+       REPORT ON vknetto% AS "gsumnetto%",vkbrutto% AS "gsumbrutto%",rabattb% AS "bgesumrab%",rabattn% AS "ngesumrab%"
+       AFTER REPORT 
+       SET REPORT PAGE "F_REPORT"
+       OUTPUT REPORT PAGE 
+       END REPORT 
+       HEADING 
+       SET REPORT PAGE "H_PAGE"
+       OUTPUT REPORT PAGE 
+       END HEADING 
+       FOOTING 1
+       SET REPORT PAGE "F_PAGE"
+       OUTPUT REPORT PAGE 
+       END FOOTING 
+ 
+       GROUP Produktgruppe.SCHEIN,vknetto% AS "sunnetto%",vkbrutto% AS "sumbrutto%",rabattb% AS "rabattgesb%",rabattn% AS "rabattgesn%",anzahl% AS "gesanz%"
+       BEFORE GROUP Produktgruppe.SCHEIN
+       SET REPORT PAGE "H_Produktgru002"
+       OUTPUT REPORT PAGE 
+       END GROUP 
+       AFTER GROUP Produktgruppe.SCHEIN
+       SET REPORT PAGE "F_Produktgru002"
+       OUTPUT REPORT PAGE 
+       END GROUP 
+ 
+       AFTER SELECT 
+       SET REPORT PAGE "F_SELECT"
+       OUTPUT REPORT PAGE 
+       END SELECT 
+  
+       vondat% = DAYS (vondat$)
+       bisdat% = DAYS (bisdat$)
+       ON ERROR GOTO ErrUMSGRP
+       IF FORM LIKE "gruppen" THEN 
+         _cugr% = CodeGR.GRUPPEN
+         IF buch$ = "j" THEN 
+           IF sort% = 1 THEN 
+             SELECT ;
+             WHERE CodeGR.schein = _cugr% AND CodeMS.SCHEIN = CodeMS.MASTER AND (Art.MASTER = 2 OR Art.MASTER = 7) AND StatusM.MASTER = "b" AND Datum.master >= DAYS (vondat$) AND Datum.master <= DAYS (bisdat$)
+             ORDER REPORT Produktgruppe.schein,Bezeichnung.schein,Datum.master
+             TO ASK 
+           ELSE 
+             SELECT ;
+             WHERE CodeGR.schein = _cugr% AND CodeMS.SCHEIN = CodeMS.MASTER AND (Art.MASTER = 2 OR Art.MASTER = 7) AND StatusM.MASTER = "b" AND Datum.master >= DAYS (vondat$) AND Datum.master <= DAYS (bisdat$)
+             ORDER REPORT Produktgruppe.schein,Artikelnummer.schein,Datum.master
+             TO ASK 
+           END IF 
+             SELECT FORM KEY _cugr% FILE "GRUPPEN" INDEX CodeGR.GRUPPEN
+         ELSE 
+           IF sort% = 1 THEN 
+             SELECT ;
+             WHERE CodeGR.schein = _cugr% AND CodeMS.schein = CodeMS.MASTER AND (Art.MASTER = 2 OR Art.MASTER = 7) AND Datum.master >= DAYS (vondat$) AND Datum.master <= DAYS (bisdat$)
+             ORDER REPORT Produktgruppe.schein,Bezeichnung.schein,Datum.master
+             TO ASK 
+           ELSE 
+             SELECT ;
+             WHERE CodeGR.schein = _cugr% AND CodeMS.schein = CodeMS.MASTER AND (Art.MASTER = 2 OR Art.MASTER = 7) AND Datum.master >= DAYS (vondat$) AND Datum.master <= DAYS (bisdat$)
+             ORDER REPORT Produktgruppe.schein,Artikelnummer.schein,Datum.master
+             TO ASK 
+           END IF 
+             SELECT FORM KEY _cugr% FILE "GRUPPEN" INDEX CodeGR.GRUPPEN
+         END IF 
+       ELSE 
+         IF buch$ = "j" THEN 
+           IF sort% = 1 THEN 
+             SELECT ;
+             WHERE CodeMS.SCHEIN = CodeMS.MASTER AND (Art.MASTER = 2 OR Art.MASTER = 7) AND StatusM.MASTER = "b" AND Datum.master >= DAYS (vondat$) AND Datum.master <= DAYS (bisdat$)
+             ORDER REPORT Produktgruppe.schein,Bezeichnung.schein,datum.master
+             TO ASK 
+           ELSE 
+             SELECT ;
+             WHERE CodeMS.SCHEIN = CodeMS.MASTER AND (Art.MASTER = 2 OR Art.MASTER = 7) AND StatusM.MASTER = "b" AND Datum.master >= DAYS (vondat$) AND Datum.master <= DAYS (bisdat$)
+             ORDER REPORT Produktgruppe.schein,Artikelnummer.schein,datum.master
+             TO ASK 
+           END IF 
+         ELSE 
+           IF sort% = 1 THEN 
+             SELECT ;
+             WHERE CodeMS.SCHEIN = CodeMS.MASTER AND (Art.MASTER = 2 OR Art.MASTER = 7) AND Datum.master >= DAYS (vondat$) AND Datum.master <= DAYS (bisdat$)
+             ORDER REPORT Produktgruppe.schein,Bezeichnung.schein,datum.master
+             TO ASK 
+           ELSE 
+             SELECT ;
+             WHERE CodeMS.SCHEIN = CodeMS.MASTER AND (Art.MASTER = 2 OR Art.MASTER = 7) AND Datum.master >= DAYS (vondat$) AND Datum.master <= DAYS (bisdat$)
+             ORDER REPORT Produktgruppe.schein,Artikelnummer.schein,datum.master
+             TO ASK 
+           END IF 
+         END IF 
+ErrUMSGRP: 
+           ON ERROR GOTO ErrorHandler
+       END IF 
+     ELSE 
+       CALL Fehler("Falsches Datum bei 'bis:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+     END IF 
+   ELSE 
+     CALL Fehler("Falsches Datum bei 'von:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+   END IF 
+ END IF 
+ IF FORM LIKE "GRUPPEN" THEN FILE "GRUPPEN"
+ MOUSE ON 
+ END SUB 
+ 
+ 
+  
+ ' Produkte einer Gruppe bearbeiten
+ ' =======================================================================
+ 
+SUB GRPProduct()
+ cugrp% = CodeGR.gruppen
+ CALL ARTIKEL()
+ END SUB 
+ 
+ 
+ '      ******************************************************
+ '      ** Routinen fÅr Formular "ARTIKEL" - Produktdetails **
+ '      ******************************************************
+ 
+SUB ARTIKEL()
+ CALL DFile(3,"GRUPPEN" + _fpw$)
+ CALL DFile(3,"ARTIKEL" + _fpw$)
+ CALL DFile(3,"ARTPROV" + _fpw$)
+ CALL DFile(3,"VERTRETE" + _fpw$)
+ CALL DFile(3,"KOMBI" + _fpw$)
+ CALL DFile(3,"Serienr" + _fpw$)
+ CALL DFile(2,"OFFICE\adressen" + _fpw$)
+ _formend% = 0
+ WHILE _formend% = 0
+   ARTIKELsub% = 0
+   artiform$ = "ARTIKEL"
+   IF DEFA$ = "MEGA" THEN artiform$ = "ARTIDEFA"
+   IF UCASE$ ( FORM ) <> artiform$ THEN 
+     CALL MNARTIKEL()
+     MENU ON 
+     OPEN FORM artiform$
+     SET f = superbase.form
+     SET HEADING title$ + " - Artikel"
+     SET STATUS "Artikel"
+     CALL ARTIntro()
+     CALL ARTUpdate()
+   END IF 
+   REM CALL ARTUpdate()
+   MOUSE ON 
+   f.abbruch1.visible = 0
+   f.abbruch1.enabled = 0
+   CALL ClearKBDBuffer()
+   WAIT MOUSE OR KEY OR MENU 
+   GET k$
+   SELECT CASE ASC (k$)
+   CASE CrsLeft%,PgUp%
+     CALL ARTPrev()
+   CASE CrsRight%,PgDn%
+     CALL ARTNext()
+   END SELECT 
+   IF k$ = CHR$ (27) THEN 
+     IF PAGE > 1 THEN 
+       FORM 1
+     ELSE 
+       _formend% = 1
+     END IF 
+   END IF 
+   SELECT CASE ARTIKELsub%
+   CASE 1
+     CALL KOMBIntro()
+     CALL ARTUpdate()
+   CASE 2
+     codear% = codear.artikel
+     CALL SerienListe(codear%)
+     CALL ARTUpdate()
+   CASE 3
+     codear% = codear.artikel
+     CALL UMSARTIKEL()
+     CALL ARTUpdate()
+   CASE 98
+     IF DEFA$ = "MEGA" THEN ENTER Artikelnummer.artikel,0
+     IF DEFA$ <> "MEGA" THEN ENTER Bezeichnung.artikel,0
+     CALL ARTUpdate()
+   CASE 99
+     IF DEFA$ = "MEGA" THEN 
+       IF PAGE = 1 THEN ENTER Artikelnummer.artikel,0
+     END IF 
+     IF PAGE = 1 AND DEFA$ <> "MEGA" THEN 
+       IF RECCOUNT ("ARTIKEL") = 0 THEN 
+         CALL ARTNeu()
+       ELSE 
+         CALL ButDesabled()
+         f.suchen.enabled = 0
+         f.suchen.visible = 0
+         f.abbruch.enabled = - 1
+         f.abbruch.visible = - 1
+         f.loeschen.enabled = 0
+         f.bestandsfuehrung.enabled = 0
+         f.bestandteile.enabled = 0
+         f.produktgruppe.enabled = 0
+         f.kopieren.enabled = 0
+         f.lieferant1.enabled = 0
+         f.lieferant2.enabled = 0
+         f.lieferant3.enabled = 0
+         f.seriennummer.enabled = 0
+         f.umsatz.enabled = 0
+         SET EDIT SELECT ON 
+         ENTER Bezeichnung.ARTIKEL,0
+         SET EDIT SELECT OFF 
+         CALL ButEnabled()
+         codear% = Codear.artikel
+         f.suchen.enabled = - 1
+         f.suchen.visible = - 1
+         f.abbruch.enabled = 0
+         f.abbruch.visible = 0
+         f.loeschen.enabled = - 1
+         f.kopieren.enabled = - 1
+         f.umsatz.enabled = - 1
+         f.bestandsfuehrung.enabled = - 1
+         f.bestandteile.enabled = - 1
+         f.produktgruppe.enabled = - 1
+         f.lieferant1.enabled = - 1
+         f.lieferant2.enabled = - 1
+         f.lieferant3.enabled = - 1
+         f.seriennummer.enabled = - 1
+ 
+         WHILE NOT EOF ("vertrete")
+           codema% = codema.vertrete
+           quickarma$ = STR$ (codear%,"000000") + STR$ (codema%,"000000")
+           name$ = name.vertrete
+           IF NOT EXISTS (quickarma$,quickarma.artprov) THEN 
+             IF name$ LIKE "ZZZ GELôSCHT" THEN 
+             ELSE 
+               BLANK FILE "artprov"
+               codear.artprov = codear%
+               codema.artprov = codema.vertrete
+               ProvisProz.artprov = 0
+               ProvisDM.artprov = 0
+               CALL QuickStore("artprov")
+             END IF 
+           END IF 
+         SELECT NEXT FILE "vertrete"
+         WEND 
+         FILE "artprov"
+         INDEX codear.artprov
+         SELECT FIRST 
+         SELECT FORM KEY codear% FILE "artprov" INDEX codear.artprov
+         MOUSE ON 
+       END IF 
+     END IF 
+     IF DEFA$ = "MEGA" THEN 
+       SET EDIT SELECT ON 
+       IF PAGE = 3 THEN ENTER Dispomenge.artikel,0
+       SET EDIT SELECT OFF 
+     ELSE 
+       IF PAGE = 3 THEN 
+         f.abbruch1.enabled = - 1
+         f.abbruch1.visible = - 1
+         f.seite1.enabled = 0
+         f.bearb1.enabled = 0
+         f.lief1.enabled = 0
+         f.lief2.enabled = 0
+         f.lief3.enabled = 0
+         f.erg.enabled = 0
+         SET EDIT SELECT ON 
+         ENTER Bestand.ARTIKEL,0
+         SET EDIT SELECT OFF 
+         f.abbruch1.enabled = 0
+         f.abbruch1.visible = 0
+         f.seite1.enabled = - 1
+         f.bearb1.enabled = - 1
+         f.lief1.enabled = - 1
+         f.lief2.enabled = - 1
+         f.lief3.enabled = - 1
+         f.erg.enabled = - 1
+       END IF 
+     END IF 
+     CALL ARTUpdate()
+   END SELECT 
+   IF abbruch% = - 1 THEN 
+     SELECT KEY codear.artikel FILE "artikel" INDEX codear.artikel
+     FORM 
+     abbruch% = 0
+   END IF 
+ WEND 
+ _formend% = 0
+ END SUB 
+ 
+ REM Berechnung des Mengenrabattes in DM
+SUB RmeDM()
+ IF rme1.artikel > 0 THEN 
+   IF rmeproz1.artikel > 0 THEN 
+     rmedm1.artikel = rmeproz1.artikel * vknetto.artikel / 100
+   END IF 
+ END IF 
+ IF rme2.artikel > 0 THEN 
+   IF rmeproz2.artikel > 0 THEN 
+     rmedm2.artikel = rmeproz2.artikel * vknetto.artikel / 100
+   END IF 
+ END IF 
+ IF rme3.artikel > 0 THEN 
+   IF rmeproz3.artikel > 0 THEN 
+     rmedm3.artikel = rmeproz3.artikel * vknetto.artikel / 100
+   END IF 
+ END IF 
+ IF rme4.artikel > 0 THEN 
+   IF rmeproz4.artikel > 0 THEN 
+     rmedm4.artikel = rmeproz4.artikel * vknetto.artikel / 100
+   END IF 
+ END IF 
+ IF rme5.artikel > 0 THEN 
+   IF rmeproz5.artikel > 0 THEN 
+     rmedm5.artikel = rmeproz5.artikel * vknetto.artikel / 100
+   END IF 
+ END IF 
+ FORM 
+ END SUB 
+ 
+SUB RmeDMS()
+ IF rme1.schein > 0 THEN 
+   IF rmeproz1.schein > 0 THEN 
+     rmedm1.schein = rmeproz1.schein * vknetto.schein / 100
+   END IF 
+ END IF 
+ IF rme2.schein > 0 THEN 
+   IF rmeproz2.schein > 0 THEN 
+     rmedm2.schein = rmeproz2.schein * vknetto.schein / 100
+   END IF 
+ END IF 
+ IF rme3.schein > 0 THEN 
+   IF rmeproz3.schein > 0 THEN 
+     rmedm3.schein = rmeproz3.schein * vknetto.schein / 100
+   END IF 
+ END IF 
+ IF rme4.schein > 0 THEN 
+   IF rmeproz4.schein > 0 THEN 
+     rmedm4.schein = rmeproz4.schein * vknetto.schein / 100
+   END IF 
+ END IF 
+ IF rme5.schein > 0 THEN 
+   IF rmeproz5.schein > 0 THEN 
+     rmedm5.schein = rmeproz5.schein * vknetto.schein / 100
+   END IF 
+ END IF 
+ FORM 
+ END SUB 
+ 
+ 
+ 
+  REM Berechnung des Mengenrabattes in %
+SUB RmeProz()
+ IF rme1.artikel > 0 THEN 
+   IF rmedm1.artikel > 0 THEN 
+     rmeproz1.artikel = rmedm1.artikel * 100 / VKNetto.artikel
+   END IF 
+ END IF 
+ IF rme2.artikel > 0 THEN 
+   IF rmedm2.artikel > 0 THEN 
+     rmeproz2.artikel = rmedm2.artikel * 100 / VKNetto.artikel
+   END IF 
+ END IF 
+ IF rme3.artikel > 0 THEN 
+   IF rmedm3.artikel > 0 THEN 
+     rmeproz3.artikel = rmedm3.artikel * 100 / VKNetto.artikel
+   END IF 
+ END IF 
+ IF rme4.artikel > 0 THEN 
+   IF rmedm4.artikel > 0 THEN 
+     rmeproz4.artikel = rmedm4.artikel * 100 / VKNetto.artikel
+   END IF 
+ END IF 
+ IF rme5.artikel > 0 THEN 
+   IF rmedm5.artikel > 0 THEN 
+     rmeproz5.artikel = rmedm5.artikel * 100 / VKNetto.artikel
+   END IF 
+ END IF 
+ FORM 
+ END SUB 
+ 
+SUB RmeProzS()
+ IF rme1.schein > 0 THEN 
+   IF rmedm1.schein > 0 THEN 
+     rmeproz1.schein = rmedm1.schein * 100 / VKNetto.schein
+   END IF 
+ END IF 
+ IF rme2.schein > 0 THEN 
+   IF rmedm2.schein > 0 THEN 
+     rmeproz2.schein = rmedm2.schein * 100 / VKNetto.schein
+   END IF 
+ END IF 
+ IF rme3.schein > 0 THEN 
+   IF rmedm3.schein > 0 THEN 
+     rmeproz3.schein = rmedm3.schein * 100 / VKNetto.schein
+   END IF 
+ END IF 
+ IF rme4.schein > 0 THEN 
+   IF rmedm4.schein > 0 THEN 
+     rmeproz4.schein = rmedm4.schein * 100 / VKNetto.schein
+   END IF 
+ END IF 
+ IF rme5.schein > 0 THEN 
+   IF rmedm5.schein > 0 THEN 
+     rmeproz5.schein = rmedm5.schein * 100 / VKNetto.schein
+   END IF 
+ END IF 
+ FORM 
+ END SUB 
+ 
+ 
+ 
+SUB CHKombi()
+ codear% = codear.artikel
+ CALL QuickStore("artikel")
+ IF IsKombi%(CodeAR%) AND (KostenTransport <> 0 OR KostenReparatur <> 0 OR KostenSonstiges <> 0) THEN 
+   REQUEST "Eingabe von Kosten bei Kombiartikeln nicht mîglich!","Kalkulieren Sie die Kosten bei den einzelnen Artikeln!",2
+   FILE "artikel"
+   SELECT KEY codear% LOCK FILE "artikel" INDEX codear.artikel
+   KostenTransport.artikel = 0
+   Kostenreparatur.artikel = 0
+   Kostensonstiges.artikel = 0
+   CALL QuickStore("artikel")
+   FORM 
+   SET EDIT SELECT ON 
+   ENTER Handelsspanne.artikel,0
+   SET EDIT SELECT OFF 
+ END IF 
+ END SUB 
+ 
+ ' ARTIKEL Update
+ ' =======================================================================
+ 
+SUB ARTUpdate()
+ SELECT KEY CodeGR.ARTIKEL FILE "GRUPPEN" INDEX CodeGR.GRUPPEN
+ IF CodeGR.GRUPPEN = CodeGR.ARTIKEL THEN pgr$ = Kurzbezeichnung.GRUPPEN
+ SELECT KEY Lieferant.ARTIKEL FILE "ADRESSEN" INDEX CodeKU.ADRESSEN
+ IF Lieferant.ARTIKEL = CodeKU.ADRESSEN THEN lieferant$ = Nachname.ADRESSEN ELSE lieferant$ = "<keine Zuordnung>"
+ SELECT KEY Lieferant2.ARTIKEL FILE "ADRESSEN" INDEX CodeKU.ADRESSEN
+ IF Lieferant2.ARTIKEL = CodeKU.ADRESSEN THEN lieferant2$ = Nachname.ADRESSEN ELSE lieferant2$ = "<keine Zuordnung>"
+ SELECT KEY Lieferant3.ARTIKEL FILE "ADRESSEN" INDEX CodeKU.ADRESSEN
+ IF Lieferant3.ARTIKEL = CodeKU.ADRESSEN THEN lieferant3$ = Nachname.ADRESSEN ELSE lieferant3$ = "<keine Zuordnung>"
+ SELECT FORM KEY CodeAR.ARTIKEL FILE "serienr" INDEX Codear.serienr
+ SELECT KEY CodeAR.ARTIKEL FILE "KOMBI" INDEX CodeKO.KOMBI
+ IF FOUND ("KOMBI") THEN kombi$ = "Bestandteile erfassen Æ" ELSE kombi$ = "Bestandteile erfassen"
+ IF KombiNetto.ARTIKEL <> 0 THEN 
+   geseinkauf% = ek.artikel + KostenTransport.artikel + KostenReparatur.artikel + KostenSonstiges.artikel
+   KHSpanneP$ = STR$ ((100 / geseinkauf% * KombiNetto.ARTIKEL) - 100,",9999999999.00")
+   KHSpanneDM$ = STR$ (KombiNetto.ARTIKEL - geseinkauf%,",9999999999.00")
+ ELSE 
+   KHSpanneP$ = "- - -"
+   KHSpanneDM$ = "- - -"
+ END IF 
+ geseinkauf% = ek.artikel + KostenTransport.artikel + KostenReparatur.artikel + KostenSonstiges.artikel
+ HSpanneDM$ = STR$ (VKnetto.ARTIKEL - geseinkauf%,",9999999999.00")
+ IF IsKombi%(CodeAR.ARTIKEL) THEN MENU 4,2,1,"Kombiartikel neu kalkulieren","ARTKALK","Kombiartikel neu kalkulieren" ELSE MENU 4,2,0,"Kombiartikel neu kalkulieren"
+ IF BestandsfÅhrung.ARTIKEL LIKE "j" THEN s2$ = "Bestands&fÅhrung Æ" ELSE s2$ = "Bestands&fÅhrung"
+ CALL CLMNARTIKEL()
+ IF INDEX LIKE "Bezeichnung" THEN MENU 5,1,2
+ IF INDEX LIKE "Artikelnummer" THEN MENU 5,2,2
+ IF INDEX LIKE "CodeGR" THEN MENU 5,3,2
+ IF INDEX LIKE "Lieferant" THEN MENU 5,4,2
+ FORM 
+ END SUB 
+ 
+SUB ARTKALK()
+ CALL KOMBRechnen(CodeAR.ARTIKEL)
+ FORM 
+ END SUB 
+ 
+ 
+ 
+ ' ARTIKEL Intro 
+ ' =======================================================================
+ 
+SUB ARTIntro()
+ MOUSE OFF 
+ FILE "ARTIKEL"
+ INDEX Bezeichnung.ARTIKEL
+ IF cugrp% <> 0 THEN 
+   IF cuart% <> 0 THEN 
+     SELECT KEY cuart% FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+     SELECT KEY cuart% FILE "ARTPROV" INDEX CodeAR.ARTPROV
+   ELSE 
+     WHILE CodeGR.ARTIKEL <> cugrp% AND NOT EOF ("ARTIKEL")
+       SELECT NEXT FILE "ARTIKEL"
+       SELECT FORM CURRENT 
+     WEND 
+   END IF 
+ ELSE 
+   SELECT FIRST 
+   IF EOF ("") THEN 
+     REM BLANK 
+     REM CodeAR.ARTIKEL = SER ("ARTIKEL",1)
+     REM ARTIKELsub% = 99
+     CALL ARTNeu()
+   END IF 
+ END IF 
+ vknettoeinz% = vknetto.artikel / bezugsmenge.artikel
+ FORM 
+ MOUSE ON 
+ END SUB 
+ 
+ 
+ ' Produktdetail Neu
+ ' =======================================================================
+ 
+SUB ARTNeu()
+ MOUSE OFF 
+ _cugrp% = CodeGR.ARTIKEL
+ _cuku% = Lieferant.ARTIKEL
+ _mwstt% = MwSt.ARTIKEL
+ IF DEFA$ = "MEGA" THEN 
+   _cuart% = CodeAR.artikel
+   INDEX CodeAR.ARTIKEL
+   SELECT LAST 
+   bkonto% = Bestandskonto.artikel
+   me$ = me_.artikel
+ END IF 
+ IF Bezeichnung.ARTIKEL <> "" THEN CALL FStore("ARTIKEL")
+ ARTIKELsub% = 99
+ MOUSE OFF 
+ BLANK FORM 
+ CodeAR% = SER ("ARTIKEL",1)
+ CodeAR.ARTIKEL = CodeAR%
+ CodeGR.ARTIKEL = _cugrp%
+ Lieferant.ARTIKEL = _cuku%
+ Bestandskonto.artikel = bkonto%
+ me_.artikel = me$
+ Bezugsmenge.artikel = 1
+ IF BestfÅhr$ = "TRUE" THEN BestandsfÅhrung.artikel = "j"
+ IF ArtiAutoNum$ = "TRUE" AND DEFA$ = "MEGA" THEN 
+   artcodeneu% = artcsernum%("artikel")
+   Artikelnummer.artikel = LTRIM$ ( STR$ (artcodeneu%,"99999999999999")) + "-" + stationsnr$
+ END IF 
+ IF ArtiAutoNum$ = "TRUE" AND DEFA$ <> "MEGA" THEN 
+   nnum% = VAL (ReadConfig$("SPAR","LASTArtikelnummer")) + 1
+   CALL WriteConfig("SPAR","LASTArtikelnummer", LTRIM$ ( STR$ (nnum%,"99999999999999")))
+   Artikelnummer.artikel = LTRIM$ ( STR$ (nnum%,"99999999999999"))
+ END IF 
+ IF DEFA$ = "MEGA" THEN BestandsfÅhrung.artikel = "j"
+ MwST.ARTIKEL = _mwstt%
+ CALL QuickStore("artikel")
+ MOUSE OFF 
+ ARTIKELsub% = 98
+ IF cugrp% <> 0 THEN SELECT KEY cugrp% FILE "gruppen" INDEX CodeGR.gruppen
+ FILE "vertrete"
+ INDEX nachname.vertrete
+ SELECT FIRST 
+ WHILE NOT EOF ("vertrete")
+   IF name.vertrete LIKE "ZZZ GELôSCHT" THEN 
+   ELSE 
+     BLANK FILE "artprov"
+     codear.artprov = codear%
+     codema.artprov = codema.vertrete
+     ProvisProz.artprov = 0
+     ProvisDM.artprov = 0
+     CALL QuickStore("artprov")
+     MOUSE OFF 
+   END IF 
+ SELECT NEXT FILE "vertrete"
+ WEND 
+ FILE "artprov"
+ INDEX codear.artprov
+ SELECT FIRST 
+ SELECT FORM KEY codear% FILE "artprov" INDEX codear.artprov
+ MOUSE ON 
+ FILE "artikel"
+ SELECT KEY codear% LOCK FILE "artikel" INDEX codear.artikel
+ FORM 
+ MOUSE ON 
+ END SUB 
+ 
+SUB VKontoGener()
+ IF DEFA$ = "MEGA" THEN 
+   REQUEST "Wurde die Verbrauchskontonummer an die Artikelnummer","angehangen?",130,req%
+   IF req% = 1 THEN 
+     nummer% = VAL ( RIGHT$ (Artikelnummer.artikel,1))
+     Verbrauchskonto.artikel = VKonto%(nummer%)
+     CALL QuickStore("Artikel")
+     ENTER ME_.artikel,0
+   END IF 
+ END IF 
+ END SUB 
+ 
+ REM ***********************************************************************
+ REM *                     Artikel kopieren                                *
+ REM ***********************************************************************
+ 
+SUB ARTKopieren()
+ codearVorlage% = CodeAR.artikel
+ REQUEST "Wollen Sie den Artikel kopieren ?","",130,req%
+ IF req% <> 1 THEN END SUB 
+ IF Bezeichnung.ARTIKEL <> "" THEN CALL FStore("ARTIKEL")
+ COPY FROM CodeGR,EK,VKbrutto,VKnetto,Handelsspanne,MwST,ME_,KombiNetto,KombiBrutto,CodeSYS,Bestellnummer,Lieferant,LieferEK,rme1,rmeproz1,rmedm1,rme2,rmeproz2,rmedm2,rme3,rmeproz3,rmedm3,rme4,rmeproz4,rmedm4,rme5,rmeproz5,rmedm5
+ Bezugsmenge% = Bezugsmenge:Maschine$ = Maschine:ZeitproBezug% = ZeitproBezugsme
+ Beschreibung$ = Beschreibung.artikel
+ IF DEFA$ = "MEGA" THEN 
+   Vkonto% = Verbrauchskonto.artikel
+   BKonto% = Bestandskonto.artikel
+ END IF 
+ artikelnr$ = artikelnummer.artikel
+ bezeichnung$ = "(K) " + bezeichnung.artikel
+ BLANK 
+ codearneu% = SER ("ARTIKEL",1)
+ CodeAR.ARTIKEL = codearneu%
+ CodeGR.ARTIKEL = _cugrp%
+ artikelnummer.artikel = LEFT$ (artikelnr$,20)
+ IF ArtiAutoNum$ = "TRUE" AND DEFA$ <> "MEGA" THEN 
+   nnum% = VAL (ReadConfig$("SPAR","LASTArtikelnummer")) + 1
+   CALL WriteConfig("SPAR","LASTArtikelnummer", LTRIM$ ( STR$ (nnum%,"99999999999999")))
+   Artikelnummer.artikel = "K" + LTRIM$ ( STR$ (nnum%,"99999999999999"))
+ END IF 
+ IF ArtiAutoNum$ = "TRUE" AND DEFA$ = "MEGA" THEN 
+   artcodeneu% = artcsernum%("artikel")
+   Artikelnummer.artikel = LTRIM$ ( STR$ (artcodeneu%,"99999999999999"))
+ END IF 
+ Beschreibung.artikel = Beschreibung$
+ bezeichnung.artikel = LEFT$ (bezeichnung$,50)
+ IF BestfÅhr$ = "TRUE" THEN BestandsfÅhrung.artikel = "j"
+ IF DEFA$ = "MEGA" THEN 
+   Verbrauchskonto.artikel = VKonto%
+   Bestandskonto.artikel = BKonto%
+   BestandsfÅhrung.artikel = "j"
+ END IF 
+ REM CALL QuickStore("Artikel")
+ REM COPY TO CodeGR,EK,VKbrutto,VKnetto,Handelsspanne,MwST,ME_,KombiNetto,KombiBrutto,CodeSYS,Bestellnummer,Lieferant,LieferEK
+ COPY TO CodeGR,EK,VKbrutto,VKnetto,Handelsspanne,MwST,ME_,KombiNetto,KombiBrutto,CodeSYS,Bestellnummer,Lieferant,LieferEK,rme1,rmeproz1,rmedm1,rme2,rmeproz2,rmedm2,rme3,rmeproz3,rmedm3,rme4,rmeproz4,rmedm4,rme5,rmeproz5,rmedm5
+ Bezugsmenge = Bezugsmenge%:Maschine = Maschine$:ZeitproBezugsme = ZeitproBezug%
+ CALL QuickStore("Artikel")
+ IF IsKombi%(CodearVorlage%) THEN 
+   CALL DFile(3,"KOMBI" + _fpw$)
+   CALL DFile(3,"KKOpIE" + _fpw$)
+   FILE "KOMBI"
+   SELECT FIRST 
+   SELECT KEY CodearVorlage% LOCK FILE "KOMBI" INDEX CodeKO.KOMBI
+   WHILE CodeKO.kombi = CodearVorlage% AND NOT EOF ("KOMBI")
+     codearkom% = CodeAR.Kombi
+     codegrkom% = CodeGR.Kombi
+     bez$ = bezeichnung.kombi
+     kombinetto% = KombiNetto.kombi
+     kombibrutto% = kombibrutto.kombi
+     anzahl% = anzahl.kombi
+     me$ = me_.kombi
+     ek% = ek.kombi
+     FILE "kkopie"
+     BLANK 
+     CodeKO.Kkopie = codearneu%
+     CodeAR.Kkopie = codearkom%
+     CodeGR.Kkopie = codegrkom%
+     bezeichnung.Kkopie = bez$
+     kombinetto.Kkopie = kombinetto%
+     kombibrutto.Kkopie = kombibrutto%
+     anzahl.kKopie = anzahl%
+     me_.Kkopie = me$
+     ek.kkopie = ek%
+     CALL QuickStore("KKopie")
+     FILE "kombi"
+     SELECT NEXT LOCK 
+   WEND 
+   IMPORT "KKOPIE.sbf" TO FILE "KOMBI" WHERE CodeKO.kkopie = codearneu%
+   FILE "KKopie"
+   REMOVE FROM FILE "KKOPIE"
+ END IF 
+ DIM zw%(10000)
+ i% = 0
+ FILE "artprov"
+ SELECT FIRST 
+ SELECT KEY codearVorlage% FILE "artprov" INDEX codear.artprov
+ WHILE NOT EOF ("artprov") AND codear.artprov = codearVorlage%
+   zw%(i%) = codearneu%
+   zw%(i% + 1) = codema.artprov
+   zw%(i% + 2) = ProvisProz.artprov
+   zw%(i% + 3) = ProvisDM.artprov
+   i% = i% + 4
+   SELECT NEXT 
+ WEND 
+ FOR a% = 0 TO i% - 5 STEP 4
+   BLANK FILE "artprov"
+   codear.artprov = zw%(a%)
+   codema.artprov = zw%(a% + 1)
+   ProvisProz.artprov = zw%(a% + 2)
+   ProvisDM.artprov = zw%(a% + 3)
+   CALL QuickStore("artprov")
+ NEXT a%
+ MOUSE ON 
+ FILE "artikel"
+ SELECT FORM KEY codearneu% LOCK FILE "artikel" INDEX codear.artikel
+ SELECT KEY codearneu% LOCK FILE "artikel" INDEX codear.artikel
+ FORM 
+ REM ENTER bezeichnung.artikel
+ END SUB 
+ 
+ 
+ 
+ 
+ ' auf doppelte Artikelnummern testen
+ ' =======================================================================
+ 
+SUB ARTArtNummer()
+ _cuart% = CodeAR.ARTIKEL
+ IF Artikelnummer.ARTIKEL <> "" THEN 
+   _nummer$ = Artikelnummer.ARTIKEL
+   IF NEW ("ARTIKEL") OR MOD ("ARTIKEL") AND DEFA$ <> "MEGA" THEN 
+     CALL FStore("ARTIKEL")
+   ELSE 
+     CALL QuickStore("Artikel")
+     _cuart% = CodeAR.artikel
+   END IF 
+ 
+   MOUSE OFF 
+   SET STATUS "Suche doppelte Artikelnummern..."
+   _index$ = INDEX 
+   FILE "ARTIKEL"
+   INDEX Artikelnummer.ARTIKEL
+   SELECT FIRST 
+   _found% = 0
+   SELECT KEY _nummer$ FILE "ARTIKEL" INDEX Artikelnummer.ARTIKEL
+   WHILE Artikelnummer.ARTIKEL = _nummer$ AND NOT EOF ("ARTIKEL")
+     IF CodeAR.ARTIKEL <> _cuart% AND _found% = 0 THEN 
+       REQUEST "Es ist bereits ein Artikel mit dieser Nummer vorhanden!","",139
+       _found% = 1
+     END IF 
+     SELECT NEXT FILE "ARTIKEL" INDEX Artikelnummer.ARTIKEL
+   WEND 
+   SET INDEX _index$$
+   INDEX _index$$
+   SELECT KEY _cuart% FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+   SET STATUS ""
+ END IF 
+ MOUSE ON 
+ FORM 
+ END SUB 
+ 
+ 
+  
+ ' Produkt Suchen
+ ' =======================================================================
+ 
+SUB ARTSuchen()
+ FILE "ARTIKEL"
+ REDIM AuswArtikel$( RECCOUNT ("Artikel"))
+ artiform$ = "ARTIKEL"
+ IF DEFA$ = "MEGA" THEN artiform$ = "ARTIDEFA"
+ IF UCASE$ ( FORM ) = artiform$ THEN 
+   cuart% = CodeAR.ARTIKEL
+   _cugrp% = CodeGR.ARTIKEL
+   IF NEW ("ARTIKEL") OR MOD ("ARTIKEL") THEN CALL FStore("ARTIKEL")
+ ELSE 
+   FILE "artikel"
+   SELECT LAST 
+   _cugrp% = CodeGR.ARTIKEL
+ END IF 
+ artsucheok% = 0
+ FILE "gruppen"
+ INDEX CodeGR.gruppen
+ SELECT FIRST 
+ a% = 0
+ 
+ REM WHILE NOT EOF ("gruppen")
+ REM   ProdGruppen$(a%) = Kurzbezeichnung.gruppen
+ REM   a% = a% + 1
+ REM   SELECT NEXT 
+ REM WEND 
+ Auswahl$ = ProdGruppen$(0)
+ asuchopt% = 0
+ suna$ = ""
+ req% = 1
+ WHILE suna$ = "" AND asuchopt% < 4 AND req% = 1
+   suna$ = sunaglob$
+   IF asuchglob% < 1 THEN 
+     asuchopt% = 4
+     IF _projekt$ LIKE "WAWI" THEN asuchopt% = 1
+   ELSE 
+     asuchopt% = asuchglob%
+   END IF 
+   IF Gruppenausw$ <> "" THEN Auswahl$ = Gruppenausw$
+   CREATE DIALOG "SCHAuswahl",0,0,237,170,title$,"MS Sans Serif",8
+   ADD DIALOG "SCHAuswahl",4,0,1,237,138,0,""
+   ADD DIALOG "SCHAuswahl",9,4,12,20,23,2
+   ADD DIALOG "SCHAuswahl",4,30,14,200,95,0," Suche Åber... "
+   ADD DIALOG "SCHAuswahl",3,38,25,60,12,0,"Artikel&nummer",1,asuchopt%
+   ADD DIALOG "SCHAuswahl",3,38,36,60,12,0,"&Bestellnummer",2,asuchopt%
+   ADD DIALOG "SCHAuswahl",3,38,49,79,12,0,"Artikelbe&zeichnung",3,asuchopt%
+   ADD DIALOG "SCHAuswahl",3,38,60,79,12,0,"&Stichwort",5,asuchopt%
+   IF _projekt$ <> "WAWI" THEN 
+    ADD DIALOG "SCHAuswahl",3,38,72,103,12,0,"Produkt&gruppen/Leistungen",4,asuchopt%
+    ADD DIALOG "SCHAuswahl",8,48,86,169,66,259,2,Auswahl$,ProdGruppen$
+   END IF 
+   ADD DIALOG "SCHAuswahl",5,30,112,147,8,0,"&Suchbezeichnung"
+   ADD DIALOG "SCHAuswahl",6,30,121,200,12,0,0,suna$,20
+   ADD DIALOG "SCHAuswahl",1,65,145,53,16,1,"&Weiter",1,1
+   ADD DIALOG "SCHAuswahl",1,120,145,53,16,0,"&Abbruch",0,0
+   IF artausw$ = "j" THEN ADD DIALOG "SCHAuswahl",1,176,145,54,16,0,"Auswahl&liste",2,0
+   DIALOG "SCHAuswahl",req%
+   REMOVE DIALOG "SCHAuswahl"
+   IF asuchopt% < 4 AND suna$ = "" AND req% = 1 THEN REQUEST "Bitte geben Sie einen Suchbegriff ein !!!","",139
+ WEND 
+ IF req% = 0 THEN artsucheok% = 0
+ IF req% > 0 THEN 
+   artsucheok% = 1
+   IF artausw$ <> "j" OR asuchglob% <> asuchopt% THEN 
+     CALL Server("LISTBOXINIT","Artikelauswahl")
+   END IF 
+   asuchglob% = asuchopt%
+   IF req% = 2 THEN 
+     artiform$ = "ARTIKEL"
+     IF DEFA$ = "MEGA" THEN artiform$ = "ARTIDEFA"
+     IF UCASE$ ( FORM ) = artiform$ THEN 
+       SET STATUS "Bitte wÑhlen Sie einen Artikel aus"
+       CALL Server("LISTBOXSHOW","Bitte wÑhlen Sie den gewÅnschten Artikel aus:")
+       erg$ = ServerReply$()
+       IF erg$ <> "" THEN 
+         cuart% = VAL ( MID$ (erg$, LEN (erg$) - 6,6))
+       END IF 
+       GOTO ENDESuch1 
+     ELSE 
+       GOTO ENDESuch2
+     END IF 
+   END IF 
+   SELECT CASE asuchopt%
+   CASE 1
+     feld$ = "artikelnummer.artikel"
+   CASE 2
+     feld$ = "bestellnummer.artikel"
+   CASE 3
+     feld$ = "bezeichnung.artikel"
+   CASE 4
+     feld$ = "bezeichnung.artikel"
+   END SELECT 
+   IF asuchopt% = 5 THEN 
+     FILE "artikel"
+     REDIM AuswArtikel$( RECCOUNT ("artikel"))
+     b% = RECCOUNT ("artikel")
+     FOR a% = 0 TO b%:AuswArtikel$(a%) = "":NEXT 
+     feld$ = "stichwort.artikel"
+     INDEX stichwort.artikel
+     ok% = 1
+     REM --------------- IF req% = 1 THEN 
+     REM --------------- IF feld$ LIKE "Stichwort.artikel" THEN 
+     CALL DFile(3,"artikeys" + _fpw$)
+     FILE "artikeys"
+     INDEX keyword
+     SELECT FIRST 
+     a% = 0
+     SELECT WHERE keyword <> ""
+     SELECT FIRST 
+     WHILE NOT EOF ("artikeys")
+       AuswArtikel$(a%) = LTRIM$ (keyword)
+       a% = a% + 1
+       SELECT NEXT 
+     WEND 
+     LAuswahl$ = AuswArtikel$(0)
+     LAuswahl1$(0) = LAuswahl$
+     CREATE DIALOG "ADRSTICHW",0,0,194,202,title$,"MS Sans Serif",8
+     ADD DIALOG "ADRSTICHW",7,5,6,183,168,2,2,AuswArtikel$,Lauswahl1$,AuswArtikel$(0)
+     ADD DIALOG "ADRSTICHW",1,33,180,55,16,1,"&OK",1,1
+     ADD DIALOG "ADRSTICHW",1,93,180,55,16,0,"&Abbrechen",0,0
+     DIALOG "ADRSTICHW",req5%
+     MOUSE ON 
+     REMOVE DIALOG "ADRSTICHW"
+     IF req5% = 1 THEN 
+       LAuswahl$ = LAuswahl1$(0)
+       suna$ = "*" + LEFT$ (LAuswahl$) + "*"
+     ELSE 
+       ok% = 0
+       AdrSuche% = 0
+       REDIM AuswArtikel$( RECCOUNT ("Artikel"))
+       GOTO Ende1
+     END IF 
+     MOUSE OFF 
+     FOR cl% = 0 TO RECCOUNT ("Artikel")
+       AuswArtikel$(cl%) = ""
+     NEXT cl%
+     FILE "artikel"
+     INDEX feld$$
+     a% = 0
+     SELECT FIRST 
+     SELECT KEY suna$ INDEX feld$$
+     adrmax% = RECCOUNT ("artikel")
+     cp% = 0
+     lp% = 0
+     pc% = 0
+     artlistok% = 0
+     CALL Server("LISTBOXINIT","Artikelauswahl")
+     WHILE NOT EOF ("artikel")
+       pc% = pc% + 1
+       cp% = INT (100 / adrmax% * pc%)
+       IF cp% <> lp% THEN 
+         SET STATUS "Verarbeitung: " + STR$ (cp%,"999") + "%"
+         lp% = cp%
+       END IF 
+       IF Stichwort.artikel LIKE suna$ THEN 
+         sok% = - 1
+         IF MNdisabled%("DATALOCK") THEN 
+           IF Sperre.artikel <> 0 AND Sperre.artikel <> vcodema% THEN sok% = 0
+         END IF 
+         IF sok% THEN 
+           artiform$ = "ARTIKEL"
+           IF DEFA$ = "MEGA" THEN artiform$ = "ARTIDEFA"
+           IF UCASE$ ( FORM ) = artiform$ THEN 
+             item$ = Artikelnummer.ARTIKEL
+             IF item$ <> "" THEN item$ = item$ + ";"
+             item$ = item$ + Bezeichnung.ARTIKEL + ", " + LEFT$ (Beschreibung.ARTIKEL,100) + " (" + STR$ (CodeAR.ARTIKEL,"000000") + ")"
+             CALL Server("LISTBOXADD",item$)
+             artlistok% = 1
+           ELSE 
+             IF KalkArt.MASTER = 0 THEN 
+               item$ = Artikelnummer.ARTIKEL
+               IF item$ <> "" THEN item$ = item$ + ";"
+               item$ = item$ + Bezeichnung.ARTIKEL + ", " + LTRIM$ ( STR$ (VKnetto.ARTIKEL,",9999999999.00"))
+               IF BestandsfÅhrung.ARTIKEL = "j" THEN item$ = item$ + " **Bestand:" + STR$ (Bestand.artikel,"99999999.00") + " **"
+               item$ = item$ + ", " + LEFT$ (Beschreibung.ARTIKEL,100) + " (" + STR$ (CodeAR.ARTIKEL,"000000") + ")"
+             ELSE 
+               item$ = Artikelnummer.ARTIKEL
+               IF item$ <> "" THEN item$ = item$ + ";"
+               item$ = item$ + Bezeichnung.ARTIKEL + ", " + LTRIM$ ( STR$ (VKbrutto.ARTIKEL,",9999999999.00"))
+               IF BestandsfÅhrung.ARTIKEL = "j" THEN item$ = item$ + " **Bestand:" + STR$ (Bestand.artikel,"99999999.00") + " **"
+               item$ = item$ + ", " + LEFT$ (Beschreibung.ARTIKEL,100) + " (" + STR$ (CodeAR.ARTIKEL,"000000") + ")"
+             END IF 
+             IF BestandsfÅhrung.ARTIKEL <> "j" THEN 
+               CALL Server("LISTBOXADD",item$)
+               artlistok% = 1
+             ELSE 
+               IF MSArt% <> 2 AND MSArt% <> 3 THEN 
+                 CALL Server("LISTBOXADD",item$)
+                 artlistok% = 1
+               ELSE 
+                 REM IF Bestand.ARTIKEL > 0 THEN 
+                   REM item$ = item$ + " Bestand:" + STR$ (Bestand.artikel,"99999999.00")
+                   CALL Server("LISTBOXADD",item$)
+                   artlistok% = 1
+                 REM END IF 
+               END IF 
+             END IF 
+           END IF 
+           REM AuswArtikel$(a%) = LTRIM$ (Bezeichnung) + ", " + LTRIM$ (Artikelnummer) + SPACE$ (120) + STR$ (codear,"000000")
+           a% = a% + 1
+         END IF 
+       END IF 
+       SELECT NEXT 
+     WEND 
+     SET STATUS "Bereit"
+     IF a% = 0 THEN 
+       CALL Fehler("Es wurde kein Artikel mit diesem Stichwort gefunden!","")
+       artsucheok% = 0
+       AdrSuche% = 0
+       ok% = 0
+     END IF 
+     REM ------     END IF 
+     LAuswahl$ = AuswArtikel$(0)
+     LAuswahl1$(0) = LAuswahl$
+     req3% = 0
+     IF a% <> 0 THEN 
+       artausw$ = "j"
+       MENU 4,3,1,"Auswahl&liste,F7","ArtAusw","Artikel aus der Auswahlliste auswÑhlen"
+       REM CREATE DIALOG "ADRLISTE",0,0,340,197,title$,"MS Sans Serif",8
+       REM ADD DIALOG "ADRLISTE",7,5,8,328,161,2,2,AuswArtikel$,Lauswahl1$,AuswArtikel$(0)
+       REM ADD DIALOG "ADRLISTE",1,114,174,56,16,1,"&OK",1,1
+       REM ADD DIALOG "ADRLISTE",1,174,174,56,16,0,"&Abbrechen",0,0
+       REM DIALOG "ADRLISTE",req3%
+       MOUSE ON 
+       REM REMOVE DIALOG "ADRLISTE"
+       REM IF req3% = 1 THEN 
+       REM LAuswahl$ = LAuswahl1$(0)
+       REM ArtiSuche% = VAL ( RIGHT$ (LAuswahl$,6))
+       REM artifound% = VAL ( RIGHT$ (LAuswahl$,6))
+       REM cuart% = artifound%
+       IF UCASE$ ( FORM ) = artiform$ AND artlistok% <> 0 THEN 
+         CALL Server("LISTBOXSHOW","")
+         MOUSE ON 
+         erg$ = ServerReply$()
+         IF erg$ <> "" THEN 
+           cuart% = VAL ( MID$ (erg$, LEN (erg$) - 6,6))
+         END IF 
+       ELSE 
+         CALL Fehler("Es konnte kein entsprechender Artikel gefunden werden!","")
+         artsucheok% = 0
+       END IF 
+       ok% = 0
+       SET STATUS "Artikel gefunden..."
+     ELSE 
+       ArtiSuche% = 0
+     END IF 
+   END IF 
+   REM ### ende asuchopt%=5 
+   IF asuchopt% = 4 THEN 
+     SELECT KEY Auswahl$ FILE "gruppen" INDEX Kurzbezeichnung.gruppen
+     _cugrp% = CodeGR.gruppen
+     Gruppenausw$ = Auswahl$
+     IF cugrp% <> 0 THEN cugrp% = _cugrp%
+     artlistok% = 0
+     CALL Server("LISTBOXINIT","Auswahl")
+     FILE "ARTIKEL"
+     INDEX CodeGR.ARTIKEL
+     SELECT FIRST 
+     SELECT KEY _cugrp%
+     WHILE CodeGR.ARTIKEL = _cugrp% AND NOT EOF ("ARTIKEL")
+       artausw$ = "j"
+       MOUSE OFF 
+       IF Bezeichnung.ARTIKEL LIKE "*" + suna$ + "*" OR Beschreibung.ARTIKEL LIKE "*" + suna$ + "*" THEN 
+         artiform$ = "ARTIKEL"
+         IF DEFA$ = "MEGA" THEN artiform$ = "ARTIDEFA"
+         IF UCASE$ ( FORM ) = artiform$ THEN 
+           item$ = Artikelnummer.ARTIKEL
+           IF item$ <> "" THEN item$ = item$ + ";"
+           item$ = item$ + Bezeichnung.ARTIKEL + ", " + LEFT$ (Beschreibung.ARTIKEL,100) + " (" + STR$ (CodeAR.ARTIKEL,"000000") + ")"
+           CALL Server("LISTBOXADD",item$)
+           artlistok% = 1
+         ELSE 
+           IF KalkArt.MASTER = 0 THEN 
+             item$ = Artikelnummer.ARTIKEL
+             IF item$ <> "" THEN item$ = item$ + ";"
+             item$ = item$ + Bezeichnung.ARTIKEL + ", " + LTRIM$ ( STR$ (VKnetto.ARTIKEL,",9999999999.00"))
+             IF BestandsfÅhrung.ARTIKEL = "j" THEN item$ = item$ + " **Bestand:" + STR$ (Bestand.artikel,"99999999.00") + " **"
+             item$ = item$ + ", " + LEFT$ (Beschreibung.ARTIKEL,100) + " (" + STR$ (CodeAR.ARTIKEL,"000000") + ")"
+           ELSE 
+             item$ = Artikelnummer.ARTIKEL
+             IF item$ <> "" THEN item$ = item$ + ";"
+             item$ = item$ + Bezeichnung.ARTIKEL + ", " + LTRIM$ ( STR$ (VKbrutto.ARTIKEL,",9999999999.00"))
+             IF BestandsfÅhrung.ARTIKEL = "j" THEN item$ = item$ + " **Bestand:" + STR$ (Bestand.artikel,"99999999.00") + " **"
+             item$ = item$ + ", " + LEFT$ (Beschreibung.ARTIKEL,100) + " (" + STR$ (CodeAR.ARTIKEL,"000000") + ")"
+           END IF 
+           IF BestandsfÅhrung.ARTIKEL <> "j" THEN 
+             CALL Server("LISTBOXADD",item$)
+             artlistok% = 1
+           ELSE 
+             IF MSArt% <> 2 AND MSArt% <> 3 THEN 
+               CALL Server("LISTBOXADD",item$)
+               artlistok% = 1
+             ELSE 
+               REM IF Bestand.ARTIKEL > 0 THEN 
+                 REM item$ = item$ + " Bestand:" + STR$ (Bestand.artikel,"99999999.00")
+                 CALL Server("LISTBOXADD",item$)
+                 artlistok% = 1
+               REM END IF 
+             END IF 
+           END IF 
+         END IF 
+       END IF 
+       SELECT NEXT FILE "ARTIKEL" INDEX CodeGR.ARTIKEL
+     WEND 
+     MOUSE ON 
+     artiform$ = "ARTIKEL"
+     IF DEFA$ = "MEGA" THEN artiform$ = "ARTIDEFA"
+     IF UCASE$ ( FORM ) = artiform$ AND artlistok% <> 0 THEN 
+       REM DEBUG ASK 
+       CALL Server("LISTBOXSHOW","")
+       MOUSE ON 
+       erg$ = ServerReply$()
+       IF erg$ <> "" THEN 
+         cuart% = VAL ( MID$ (erg$, LEN (erg$) - 6,6))
+       END IF 
+     ELSE 
+       REM CALL Fehler("Es konnte kein entsprechender Artikel gefunden werden!","")
+       REM artsucheok% = 0
+     END IF 
+   END IF 
+   IF asuchopt% < 4 THEN 
+     FILE "ARTIKEL"
+     INDEX feld$$
+     SET STATUS "Suche Artikel..."
+     SELECT KEY suna$ INDEX feld$$
+     suche% = 0
+     artiform$ = "ARTIKEL"
+     IF DEFA$ = "MEGA" THEN artiform$ = "ARTIDEFA"
+     wi% = 0
+     artlistok% = 0
+     CALL Server("LISTBOXINIT","Artikelauswahl")
+     FILE "ARTIKEL"
+     INDEX feld$$
+     SELECT FIRST 
+     SELECT KEY suna$ INDEX feld$$
+     MOUSE OFF 
+     WHILE UCASE$ ( LEFT$ (feld$$, LEN (suna$))) = UCASE$ (suna$) AND NOT EOF ("artikel")
+       MOUSE OFF 
+       artausw$ = "j"
+       adrfound% = 0
+       wi% = wi% + 1
+       listok% = 0
+       artiform$ = "ARTIKEL"
+       IF DEFA$ = "MEGA" THEN artiform$ = "ARTIDEFA"
+       IF UCASE$ ( FORM ) = artiform$ THEN 
+         IF feld$ LIKE "bestellnummer.artikel" THEN 
+           item$ = Bestellnummer.ARTIKEL
+           IF item$ <> "" THEN item$ = item$ + ";"
+           item$ = item$ + Bezeichnung.ARTIKEL + ", " + LTRIM$ ( STR$ (EK.ARTIKEL,",9999999999.00")) + ", " + LEFT$ (Beschreibung.ARTIKEL,100) + " (" + STR$ (CodeAR.ARTIKEL,"000000") + ")"
+         ELSE 
+           item$ = Artikelnummer.ARTIKEL
+           IF item$ <> "" THEN item$ = item$ + ";"
+           item$ = item$ + Bezeichnung.ARTIKEL + ", " + LTRIM$ ( STR$ (VKnetto.ARTIKEL,",9999999999.00")) + ", " + LEFT$ (Beschreibung.ARTIKEL,100) + " (" + STR$ (CodeAR.ARTIKEL,"000000") + ")"
+         END IF 
+         CALL Server("LISTBOXADD",item$)
+         artlistok% = 1
+       ELSE 
+         IF KalkArt.MASTER = 0 THEN 
+           IF feld$ LIKE "bestellnummer.artikel" THEN 
+             item$ = Bestellnummer.ARTIKEL
+             IF item$ <> "" THEN item$ = item$ + ";"
+             item$ = item$ + Bezeichnung.ARTIKEL + ", " + LTRIM$ ( STR$ (EK.ARTIKEL,",9999999999.00"))
+             IF BestandsfÅhrung.ARTIKEL = "j" THEN item$ = item$ + " **Bestand:" + STR$ (Bestand.artikel,"99999999.00") + " **"
+             item$ = item$ + ", " + LEFT$ (Beschreibung.ARTIKEL,100) + " (" + STR$ (CodeAR.ARTIKEL,"000000") + ")"
+           ELSE 
+             item$ = Artikelnummer.ARTIKEL
+             IF item$ <> "" THEN item$ = item$ + ";"
+             item$ = item$ + Bezeichnung.ARTIKEL + ", " + LTRIM$ ( STR$ (VKnetto.ARTIKEL,",9999999999.00"))
+             IF BestandsfÅhrung.ARTIKEL = "j" THEN item$ = item$ + " **Bestand:" + STR$ (Bestand.artikel,"99999999.00") + " **"
+             item$ = item$ + ", " + LEFT$ (Beschreibung.ARTIKEL,100) + " (" + STR$ (CodeAR.ARTIKEL,"000000") + ")"
+           END IF 
+         ELSE 
+           IF feld$ LIKE "bestellnummer.artikel" THEN 
+             item$ = Bestellnummer.ARTIKEL
+             IF item$ <> "" THEN item$ = item$ + ";"
+             item$ = item$ + Bezeichnung.ARTIKEL + ", " + LTRIM$ ( STR$ (EK.ARTIKEL,",9999999999.00"))
+             IF BestandsfÅhrung.ARTIKEL = "j" THEN item$ = item$ + " **Bestand:" + STR$ (Bestand.artikel,"99999999.00") + " **"
+             item$ = item$ + ", " + LEFT$ (Beschreibung.ARTIKEL,100) + " (" + STR$ (CodeAR.ARTIKEL,"000000") + ")"
+           ELSE 
+             item$ = Artikelnummer.ARTIKEL
+             IF item$ <> "" THEN item$ = item$ + ";"
+             item$ = item$ + Bezeichnung.ARTIKEL + ", " + LTRIM$ ( STR$ (VKBrutto.ARTIKEL,",9999999999.00"))
+             IF BestandsfÅhrung.ARTIKEL = "j" THEN item$ = item$ + " **Bestand:" + STR$ (Bestand.artikel,"99999999.00") + " **"
+             item$ = item$ + ", " + LEFT$ (Beschreibung.ARTIKEL,100) + " (" + STR$ (CodeAR.ARTIKEL,"000000") + ")"
+           END IF 
+         END IF 
+         IF BestandsfÅhrung.ARTIKEL <> "j" THEN 
+           CALL Server("LISTBOXADD",item$)
+           artlistok% = 1
+         ELSE 
+           IF MSArt% <> 2 AND MSArt% <> 3 THEN 
+             CALL Server("LISTBOXADD",item$)
+             artlistok% = 1
+           ELSE 
+             REM IF Bestand.ARTIKEL > 0 THEN 
+               REM item$ = item$ + " Bestand:" + STR$ (bestand.artikel,"99999999.00")
+               CALL Server("LISTBOXADD",item$)
+               artlistok% = 1
+             REM END IF 
+           END IF 
+         END IF 
+       END IF 
+       CALL Server("GaugeMessage","Artikeldatei wird durchsucht... " + TRIM$ ( STR$ (wi%,"9999")) + " gefunden")
+       SELECT NEXT FILE "ARTIKEL" INDEX feld$$
+     WEND 
+     MOUSE ON 
+     CALL Gauge(0,"")
+     SET STATUS ""
+     artiform$ = "ARTIKEL"
+     IF DEFA$ = "MEGA" THEN artiform$ = "ARTIDEFA"
+     IF UCASE$ ( FORM ) = artiform$ THEN 
+       IF wi% <> 0 AND artlistok% <> 0 THEN 
+         SET STATUS "Bitte wÑhlen Sie einen Artikel aus"
+         REM MENU 2,6,1,"aus Suchliste &wÑhlen,F7","ADRWahl"
+         CALL Server("LISTBOXSHOW","Bitte wÑhlen Sie den gewÅnschten Artikel aus:")
+         erg$ = ServerReply$()
+         IF erg$ <> "" THEN 
+           cuart% = VAL ( MID$ (erg$, LEN (erg$) - 6,6))
+         END IF 
+       ELSE 
+         CALL Fehler("Es konnte kein entsprechender Artikel gefunden werden!","")
+         artsucheok% = 0
+       END IF 
+     ELSE 
+       IF wi% = 0 THEN 
+         CALL Fehler("Keinen entsprechenden Artikel gefunden!","")
+         artsucheok% = 0
+       END IF 
+     END IF 
+   END IF 
+ END IF 
+ENDESuch1: 
+ artiform$ = "ARTIKEL"
+ IF DEFA$ = "MEGA" THEN artiform$ = "ARTIDEFA"
+ IF UCASE$ ( FORM ) = artiform$ THEN 
+   FILE "ARTIKEL"
+   SELECT FORM KEY cuart% FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+   SET INDEX Bezeichnung.artikel
+   INDEX Bezeichnung.artikel
+   MOUSE ON 
+   CALL ARTUpdate()
+   FORM 
+   MENU 4,3,1,"Auswahl&liste,F7","ArtAusw","Artikel aus der Auswahlliste auswÑhlen"
+ END IF 
+ENDESuch2: 
+ END SUB 
+ 
+SUB ArtAusw()
+ artiform$ = "ARTIKEL"
+ IF DEFA$ = "MEGA" THEN artiform$ = "ARTIDEFA"
+ IF UCASE$ ( FORM ) = artiform$ THEN 
+   SET STATUS "Bitte wÑhlen Sie einen Artikel aus"
+   REM MENU 2,6,1,"aus Suchliste &wÑhlen,F7","ADRWahl"
+   CALL Server("LISTBOXSHOW","Bitte wÑhlen Sie den gewÅnschten Artikel aus:")
+   erg$ = ServerReply$()
+   IF erg$ <> "" THEN 
+     cuart% = VAL ( MID$ (erg$, LEN (erg$) - 6,6))
+   END IF 
+   FILE "ARTIKEL"
+   SELECT FORM KEY cuart% FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+   SET INDEX Bezeichnung.artikel
+   INDEX Bezeichnung.artikel
+   MOUSE ON 
+   FORM 
+   MENU 4,3,1,"Auswahl&liste,F7","ArtAusw","Artikel aus der Auswahlliste auswÑhlen"
+ END IF 
+ END SUB 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ' Produkt lîschen
+ ' =======================================================================
+ 
+SUB ARTLoeschen()
+ IF disabled%("ARTLoeschen") THEN END SUB 
+ cuart% = CodeAR.ARTIKEL
+ REQUEST "Datensatz lîschen?","",130,req%
+ IF req% = 1 THEN 
+   MOUSE OFF 
+   SET STATUS "WARTEN: Datensatz wird gelîscht..."
+   SELECT KEY cuart% LOCK FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+   SELECT REMOVE 
+ END IF 
+ FILE "artprov"
+ INDEX codear.artprov
+ SELECT FIRST 
+ SELECT KEY cuart% FILE "artprov" INDEX codear.artprov
+ WHILE NOT EOF ("artprov") AND codear.artprov = cuart%
+   SELECT FIRST 
+   IF EXISTS (cuart%,codear.artprov) THEN 
+     SELECT KEY cuart% LOCK FILE "artprov" INDEX codear.artprov
+     SELECT REMOVE 
+   ELSE 
+     SELECT LAST 
+   END IF 
+ WEND 
+ FILE "ARTIKEL"
+ SET INDEX Bezeichnung.artikel
+ INDEX Bezeichnung.artikel
+ CALL ARTUpdate()
+ FORM 
+ SET STATUS ""
+ MOUSE ON 
+ END SUB 
+ 
+ 
+ ' Produktgruppe zuordnen
+ ' =======================================================================
+ 
+SUB ARTGruppe()
+ IF Bezeichnung.ARTIKEL <> "" THEN 
+   _cugrp% = CodeGR.ARTIKEL
+   cuart% = CodeAR.ARTIKEL
+   IF NEW ("ARTIKEL") OR MOD ("ARTIKEL") THEN CALL FStore("ARTIKEL")
+     FILE "gruppen"
+     DIM Auswahl1$(1)
+     INDEX CodeGR.gruppen
+     SELECT FIRST 
+     a% = 0
+     WHILE NOT EOF ("gruppen")
+       ProdGruppen$(a%) = Kurzbezeichnung.gruppen
+       a% = a% + 1
+       SELECT NEXT 
+     WEND 
+     Auswahl$ = ProdGruppen$(0)
+     Auswahl1$(0) = Auswahl$
+     FILE "artikel"
+     CREATE DIALOG "PREISLIS",0,0,150,164,title$,"MS Sans Serif",8
+      ADD DIALOG "PREISLIS",4,0,0,149,137,0," Auswahl Produktgruppe"
+      ADD DIALOG "PREISLIS",7,5,14,139,125,2,2,Prodgruppen$,Auswahl1$," "
+      ADD DIALOG "PREISLIS",1,17,145,55,16,1,"&OK",1,1
+      ADD DIALOG "PREISLIS",1,77,145,55,16,0,"&Abbrechen",0,0
+      DIALOG "PREISLIS",req%
+      REMOVE DIALOG "PREISLIS"
+      IF req% = 1 THEN 
+        Auswahl$ = Auswahl1$(0)
+        SELECT KEY Auswahl$ FILE "gruppen" INDEX Kurzbezeichnung.gruppen
+        _cugrp% = CodeGR.gruppen
+        IF cugrp% > 0 THEN cugrp% = _cugrp%
+        SELECT KEY _cugrp% FILE "gruppen" INDEX CodeGR.gruppen
+        SELECT KEY cuart% LOCK FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+        CodeGR.ARTIKEL = _cugrp%
+        IF Handelsspanne.ARTIKEL < 1 THEN 
+          Handelsspanne.ARTIKEL = Handelsspanne.gruppen
+        END IF 
+        CALL FStore("ARTIKEL")
+        SELECT FORM KEY cuart% FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+        SET INDEX bezeichnung.ARTIKEL
+        INDEX bezeichnung.ARTIKEL
+      END IF 
+ END IF 
+ pgr$ = Kurzbezeichnung.GRUPPEN
+ MOUSE ON 
+ FORM 
+ END SUB 
+ 
+ 
+SUB ARTGruppeS()
+ codear% = Codear.schein
+ codesch% = CodeSch.schein
+ IF Bezeichnung.schein = "" THEN Bezeichnung.schein = "NEU"
+ IF codear% = 0 THEN 
+   BLANK FILE "artikel"
+   codear% = SER ("artikel")
+   codear.schein = codear%
+   CALL QuickStore("Schein")
+   codear.artikel = codear%
+   CALL QuickStore("artikel")
+ ELSE 
+   CALL QuickStore("Schein")
+ END IF 
+ SELECT KEY codear% LOCK FILE "Artikel" INDEX codear.artikel
+ IF Bezeichnung.ARTIKEL = "" AND Bezeichnung.schein = "" THEN 
+   Bezeichnung.ARTIKEL = "NEU"
+ ELSE 
+   IF Bezeichnung.artikel = "" THEN Bezeichnung.artikel = Bezeichnung.schein
+ END IF 
+ IF Bezeichnung.ARTIKEL <> "" THEN 
+   _cugrp% = CodeGR.ARTIKEL
+   cuart% = CodeAR.ARTIKEL
+   IF NEW ("ARTIKEL") OR MOD ("ARTIKEL") THEN CALL FStore("ARTIKEL")
+     FILE "gruppen"
+     DIM Auswahl1$(1)
+     INDEX CodeGR.gruppen
+     SELECT FIRST 
+     a% = 0
+     WHILE NOT EOF ("gruppen")
+       ProdGruppen$(a%) = Kurzbezeichnung.gruppen
+       a% = a% + 1
+       SELECT NEXT 
+     WEND 
+     Auswahl$ = ProdGruppen$(0)
+     Auswahl1$(0) = Auswahl$
+     FILE "artikel"
+     CREATE DIALOG "PREISLIS",0,0,150,164,title$,"MS Sans Serif",8
+      ADD DIALOG "PREISLIS",4,0,0,149,137,0," Auswahl Produktgruppe"
+      ADD DIALOG "PREISLIS",7,5,14,139,125,2,2,Prodgruppen$,Auswahl1$," "
+      ADD DIALOG "PREISLIS",1,17,145,55,16,1,"&OK",1,1
+      ADD DIALOG "PREISLIS",1,77,145,55,16,0,"&Abbrechen",0,0
+      DIALOG "PREISLIS",req%
+      REMOVE DIALOG "PREISLIS"
+      IF req% = 1 THEN 
+        Auswahl$ = Auswahl1$(0)
+        SELECT KEY Auswahl$ FILE "gruppen" INDEX Kurzbezeichnung.gruppen
+        _cugrp% = CodeGR.gruppen
+        IF cugrp% > 0 THEN cugrp% = _cugrp%
+        SELECT KEY _cugrp% FILE "gruppen" INDEX CodeGR.gruppen
+        SELECT KEY cuart% LOCK FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+        CodeGR.ARTIKEL = _cugrp%
+        IF Handelsspanne.ARTIKEL < 1 THEN 
+          Handelsspanne.ARTIKEL = Handelsspanne.gruppen
+        END IF 
+        CALL QuickStore("ARTIKEL")
+        SELECT KEY cuart% FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+        SELECT KEY codesch% LOCK FILE "schein" INDEX codesch.schein
+        CodeGR.schein = _cugrp%
+        CALL QuickStore("schein")
+      END IF 
+ END IF 
+ pgr1$ = Kurzbezeichnung.GRUPPEN
+ MOUSE ON 
+ SELECT FORM KEY codesch% FILE "schein" INDEX codesch.schein
+ FORM 
+ END SUB 
+ 
+ 
+ 
+ 
+SUB ARTNext()
+ MOUSE OFF 
+ ind$ = INDEX 
+ cuart% = CodeAR.ARTIKEL
+ IF NEW ("ARTIKEL") OR MOD ("ARTIKEL") THEN CALL FStore("ARTIKEL")
+ SELECT FORM NEXT FILE "Artikel" INDEX ind$$
+ IF cugrp% <> 0 THEN 
+   IF CodeGR.ARTIKEL <> cugrp% THEN 
+     WHILE CodeGR.ARTIKEL <> cugrp% AND NOT EOF ("ARTIKEL")
+       SELECT FORM NEXT FILE "Artikel" INDEX ind$$
+     WEND 
+   END IF 
+ END IF 
+ IF EOF ("ARTIKEL") THEN 
+   REQUEST "keine weiteren Eintragungen!","",2
+   SELECT FORM KEY cuart% FILE "Artikel" INDEX CodeAR.ARTIKEL
+   SET INDEX ind$$
+   INDEX ind$$
+ END IF 
+ CALL ARTUpdate()
+ FORM 
+ MOUSE ON 
+ END SUB 
+ 
+SUB ARTPrev()
+ MOUSE OFF 
+ ind$ = INDEX 
+ cuart% = CodeAR.ARTIKEL
+ IF NEW ("ARTIKEL") OR MOD ("ARTIKEL") THEN CALL FStore("ARTIKEL")
+ SELECT FORM PREVIOUS FILE "Artikel" INDEX ind$$
+ IF cugrp% <> 0 THEN 
+   IF CodeGR.ARTIKEL <> cugrp% THEN 
+     WHILE CodeGR.ARTIKEL <> cugrp% AND NOT EOF ("ARTIKEL")
+       SELECT FORM PREVIOUS FILE "Artikel" INDEX ind$$
+     WEND 
+   END IF 
+ END IF 
+ IF EOF ("ARTIKEL") THEN 
+   REQUEST "keine weiteren Eintragungen!","",2
+   SELECT FORM KEY cuart% FILE "Artikel" INDEX CodeAR.ARTIKEL
+   SET INDEX ind$$
+   INDEX ind$$
+ END IF 
+ CALL ARTUpdate()
+ FORM 
+ MOUSE ON 
+ END SUB 
+ 
+ 
+ ' Lieferant fÅr einen Artikel bestimmen
+ ' =======================================================================
+ 
+SUB ARTLieferant(nr%)
+ cuart% = CodeAR.ARTIKEL
+ MOUSE OFF 
+ IF NEW ("ARTIKEL") OR MOD ("ARTIKEL") THEN CALL FStore("ARTIKEL")
+ FILE "adressen"
+ DIM LAuswahl1$(1)
+ a% = 0
+ INDEX AALieferant.adressen
+ SELECT FIRST 
+ SELECT KEY "j" FILE "adressen" INDEX aalieferant.adressen
+ WHILE aalieferant.adressen = "j" AND NOT EOF ("adressen")
+   Lieferant$(a%) = nachname.adressen + SPACE$ (120) + STR$ (codeku.adressen,"000000")
+   a% = a% + 1
+   SELECT NEXT 
+ WEND 
+ LAuswahl$ = Lieferant$(0)
+ LAuswahl1$(0) = LAuswahl$
+ CREATE DIALOG "PREISLIS",0,0,155,148,title$,"MS Sans Serif",8
+    ADD DIALOG "PREISLIS",4,1,1,152,123,0," Auswahl des Lieferanten"
+    ADD DIALOG "PREISLIS",7,4,14,146,114,2,2,Lieferant$,Lauswahl1$," "
+    ADD DIALOG "PREISLIS",1,16,130,54,16,1,"&OK",1,1
+    ADD DIALOG "PREISLIS",1,76,130,54,16,0,"&Abbrechen",0,0
+ DIALOG "PREISLIS",req%
+ REMOVE DIALOG "PREISLIS"
+ IF req% = 1 THEN 
+   LAuswahl$ = LAuswahl1$(0)
+   SELECT KEY VAL ( RIGHT$ (LAuswahl$,6)) FILE "adressen" INDEX codeku.adressen
+   codeku% = CodeKu.adressen
+   FILE "Artikel"
+   SELECT KEY cuart% LOCK FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+   IF nr% = 1 THEN Lieferant.artikel = codeku%
+   IF nr% = 2 THEN Lieferant2.artikel = codeku%
+   IF nr% = 3 THEN Lieferant3.artikel = codeku%
+   CALL FStore("ARTIKEL")
+ END IF 
+ CALL ARTUpdate()
+ FORM 
+ MOUSE ON 
+ END SUB 
+ 
+ 
+ ' Kombination Intro
+ ' =======================================================================
+ 
+SUB KOMBIntro()
+ cuart% = CodeAR.ARTIKEL
+ FORM 2
+ SELECT FORM KEY cuart% FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+ FORM 
+ END SUB 
+ 
+ ' Kombination neu
+ ' =======================================================================
+ 
+SUB KOMBNeu()
+ IF NEW ("KOMBI") OR MOD ("KOMBI") THEN CALL FStore("KOMBI")
+ BLANK FILE "KOMBI"
+ CodeKO.KOMBI = CodeAR.ARTIKEL
+ CALL FStore("KOMBI")
+ SELECT FORM KEY cuart% FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+ CALL KOMBAuswahl()
+ END SUB 
+ 
+ ' Kombination sichern
+ ' =======================================================================
+ 
+SUB KOMBSichern()
+ IF NEW ("KOMBI") OR MOD ("KOMBI") THEN CALL FStore("KOMBI")
+ CALL KOMBRechnen(cuart%)
+ END SUB 
+ 
+ ' Kombi-Positionen in Hauptartikel Åbernehmen
+ ' =======================================================================
+ 
+SUB KOMBRechnen(Artikel%)
+ MOUSE OFF 
+ cfile$ = FILE 
+ SET STATUS "Gesamtpreis wird kalkuliert..."
+ vknetto% = 0
+ vkbrutto% = 0
+ ek% = 0
+ FILE "KOMBI"
+ INDEX CodeKO.KOMBI
+ SELECT FIRST 
+ SELECT KEY Artikel%
+ WHILE CodeKO.KOMBI = Artikel% AND NOT EOF ("KOMBI")
+   SELECT KEY CodeAR.KOMBI FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+   IF KombiNetto.ARTIKEL <> 0 THEN vknetto% = vknetto% + (Anzahl.KOMBI * KombiNetto.ARTIKEL) ELSE vknetto% = vknetto% + (Anzahl.KOMBI * VKnetto.ARTIKEL)
+   IF KombiBrutto.ARTIKEL <> 0 THEN vkbrutto% = vkbrutto% + (Anzahl.KOMBI * KombiBrutto.ARTIKEL) ELSE vkbrutto% = vkbrutto% + (Anzahl.KOMBI * VKbrutto.ARTIKEL)
+   IF LieferEK.ARTIKEL <> 0 THEN ek% = ek% + (Anzahl.KOMBI * LieferEK.ARTIKEL) ELSE ek% = ek% + (Anzahl.KOMBI * EK.ARTIKEL)
+   mwst% = MwSt.ARTIKEL
+   SELECT NEXT FILE "KOMBI" INDEX CodeKO.KOMBI
+ WEND 
+ FILE "ARTIKEL"
+ SELECT FORM KEY Artikel% LOCK FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+ SELECT KEY Artikel% LOCK FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+ EK.ARTIKEL = ek%
+ gesek% = ek% + KostenTransport.artikel + KostenReparatur.artikel + KostenSonstiges.artikel
+ VKNetto.ARTIKEL = vknetto%
+ 
+ VKbrutto.ARTIKEL = VKnetto% + ((VKnetto% / 100) * mwst%)
+ REM VKbrutto.ARTIKEL = vkbrutto%
+ MwSt.ARTIKEL = mwst%
+ 
+ Handelsspanne.ARTIKEL = (100 / ek%) * (VKnetto.ARTIKEL - ek%)
+ HSpanneDM$ = STR$ (VKnetto.ARTIKEL - ek%,",9999999999.00")
+ CALL QuickStore("ARTIKEL")
+ FILE cfile$
+ MOUSE ON 
+ SET STATUS ""
+ FORM 
+ END SUB 
+ 
+ 
+ ' öberprÅfung, ob Artikel aus Kombiartikeln besteht
+ ' =======================================================================
+ 
+FUNCTION IsKombi%(CodeAR%)
+ SELECT KEY CodeAR% FILE "KOMBI" INDEX CodeKO.KOMBI
+ IF FOUND ("KOMBI") THEN IsKombi% = - 1 ELSE IsKombi% = 0
+ END FUNCTION 
+ 
+ 
+ ' Kombi-Position lîschen
+ ' =======================================================================
+ 
+SUB KOMBLoeschen()
+ IF disabled%("KOMBLoeschen") THEN END SUB 
+ scode% = QuickCode.KOMBI
+ IF NEW ("KOMBI") OR MOD ("KOMBI") THEN CALL FStore("KOMBI")
+ REQUEST "Wollen Sie die aktuelle Position wirklich lîschen?","",135,req%
+ IF req% = 1 THEN 
+   MOUSE OFF 
+   FILE "KOMBI"
+   SELECT KEY scode% LOCK FILE "KOMBI" INDEX QuickCode.KOMBI
+   SELECT REMOVE FILE "KOMBI"
+   SELECT FORM KEY cuart% FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+   SELECT FORM CURRENT PAGE 
+   FORM 
+   MOUSE ON 
+ END IF 
+ END SUB 
+ 
+ 
+ ' KOMBI-Position auswÑhlen
+ ' =======================================================================
+ 
+SUB KOMBAuswahl()
+ scode% = QuickCode.KOMBI
+ SELECT KEY scode% LOCK FILE "KOMBI" INDEX QuickCode.KOMBI
+ IF CodeGR.KOMBI > 0 THEN 
+   _cugrp% = CodeGR.KOMBI
+ ELSE 
+   _cugrp% = 0
+ END IF 
+ FILE "gruppen"
+ INDEX CodeGR
+ SELECT FIRST 
+ a% = 0
+ WHILE NOT EOF ("gruppen")
+   ProdGruppen$(a%) = Kurzbezeichnung.gruppen
+   a% = a% + 1
+   SELECT NEXT 
+ WEND 
+ SELECT KEY _cugrp% FILE "GRUPPEN" INDEX CodeGR.GRUPPEN
+ Auswahl$ = Kurzbezeichnung.GRUPPEN
+ suna$ = ""
+ CREATE DIALOG "KOMBAuswahl",0,0,186,84,title$,"MS Sans Serif",8
+ ADD DIALOG "KOMBAuswahl",9,2,6,20,22,2
+ ADD DIALOG "KOMBAuswahl",5,34,8,86,8,0,"Produkt-/Leistungs&gruppe"
+ ADD DIALOG "KOMBAuswahl",8,34,18,148,53,259,2,Auswahl$,ProdGruppen$
+ ADD DIALOG "KOMBAuswahl",5,34,36,147,9,0,"&Such&bezeichnung"
+ ADD DIALOG "KOMBAuswahl",6,34,46,148,14,0,0,suna$,20
+ ADD DIALOG "KOMBAuswahl",1,54,64,50,14,1,"&Weiter",1,1
+ ADD DIALOG "KOMBAuswahl",1,106,64,50,14,0,"&Abbruch",0,0
+ DIALOG "KOMBAuswahl",req%
+ REMOVE DIALOG "KOMBAuswahl"
+ IF req% = 1 THEN 
+   MOUSE OFF 
+   SELECT KEY Auswahl$ FILE "gruppen" INDEX Kurzbezeichnung.gruppen
+   _cugrp% = CodeGR.GRUPPEN
+   CALL Server("LISTBOXINIT","Auswahl")
+   FILE "ARTIKEL"
+   INDEX CodeGR.ARTIKEL
+   SELECT FIRST 
+   SELECT KEY _cugrp%
+   WHILE CodeGR.ARTIKEL = _cugrp% AND NOT EOF ("ARTIKEL")
+     IF KombiNetto.ARTIKEL = 0 THEN 
+       nettopr$ = LTRIM$ ( STR$ (VKNetto.ARTIKEL,",9999999.00"))
+     ELSE 
+       nettopr$ = LTRIM$ ( STR$ (KombiNetto.ARTIKEL,",9999999.00"))
+     END IF 
+     item$ = Bezeichnung.ARTIKEL + ", " + LEFT$ (Beschreibung.ARTIKEL,100) + "; " + nettopr$ + " (" + STR$ (CodeAR.ARTIKEL,"000000") + ")"
+     IF Bezeichnung.ARTIKEL LIKE "*" + suna$ + "*" OR Beschreibung.ARTIKEL LIKE "*" + suna$ + "*" THEN CALL Server("LISTBOXADD",item$)
+     SELECT NEXT FILE "ARTIKEL" INDEX CodeGR.ARTIKEL
+   WEND 
+   CALL Server("LISTBOXSHOW","")
+   MOUSE ON 
+   erg$ = ServerReply$()
+   IF erg$ <> "" THEN 
+     _cuart% = VAL ( MID$ (erg$, LEN (erg$) - 6,6))
+     SELECT KEY _cuart% LOCK FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+     Anzahl% = 1
+     IF KombiNetto.ARTIKEL = 0 THEN Einzelpreis% = VKnetto.ARTIKEL ELSE Einzelpreis% = KombiNetto.ARTIKEL
+     CREATE DIALOG "KOMBAuswahl",0,0,230,92,title$,"MS Sans Serif",8
+     ADD DIALOG "KOMBAuswahl",9,5,4,21,24,2
+     ADD DIALOG "KOMBAuswahl",5,41,11,185,12,0,Bezeichnung.ARTIKEL
+     ADD DIALOG "KOMBAuswahl",5,41,25,45,12,0,"Anzahl:"
+     ADD DIALOG "KOMBAuswahl",6,84,25,40,12,0,0,Anzahl%,20
+     ADD DIALOG "KOMBAuswahl",6,84,41,76,12,0,0,Einzelpreis%,20
+     ADD DIALOG "KOMBAuswahl",5,41,43,42,18,0,"Einzelpreis (netto):"
+     ADD DIALOG "KOMBAuswahl",1,53,68,55,15,0,"&Weiter",1,1
+     ADD DIALOG "KOMBAuswahl",1,112,68,55,15,0,"&Abbrechen",0,0
+     DIALOG "KOMBAuswahl",req%
+     REMOVE DIALOG "KOMBAuswahl"
+     IF req% = 1 THEN 
+       CodeAR.KOMBI = CodeAR.ARTIKEL
+       Anzahl.KOMBI = Anzahl%
+       Bezeichnung.KOMBI = Bezeichnung.ARTIKEL
+       REM EK.KOMBI = EK.ARTIKEL
+       CodeGR.KOMBI = CodeGR.ARTIKEL
+       KombiNetto.ARTIKEL = Einzelpreis%
+       KombiBrutto.ARTIKEL = KombiNetto.ARTIKEL + (KombiNetto.ARTIKEL / 100 * MwSt.ARTIKEL)
+       CALL QuickStore("ARTIKEL")
+       ME_.KOMBI = ME_.ARTIKEL
+       CALL FStore("KOMBI")
+       CALL KOMBRechnen(cuart%)
+     END IF 
+   END IF 
+ END IF 
+ SELECT FORM KEY cuart% FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+ SELECT KEY scode% LOCK FILE "KOMBI" INDEX QuickCode.KOMBI
+ FORM 
+ END SUB 
+ 
+ 
+ ' Artikelbeschreibung generieren
+ ' =======================================================================
+ 
+SUB KOMBBeschr()
+ SET STATUS "Artikelbeschreibung wird erstellt..."
+ MOUSE OFF 
+ FILE "KOMBI"
+ INDEX CodeKO.KOMBI
+ SELECT FIRST 
+ beschr$ = "bestehend aus:"
+ SELECT KEY cuart%
+ WHILE cuart% = CodeKO.KOMBI AND NOT EOF ("KOMBI")
+   SELECT KEY CodeAR.KOMBI FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+   IF Anzahl.KOMBI > 1 THEN 
+     beschr$ = beschr$ + CHR$ (13) + CHR$ (10) + LTRIM$ ( STR$ (Anzahl.KOMBI,",9999999999")) + "x " + Bezeichnung.ARTIKEL
+   ELSE 
+     beschr$ = beschr$ + CHR$ (13) + CHR$ (10) + Bezeichnung.ARTIKEL
+   END IF 
+   IF Beschreibung.ARTIKEL <> "" THEN beschr$ = beschr$ + "; " + Beschreibung.ARTIKEL
+   SELECT NEXT FILE "KOMBI" INDEX CodeKO.KOMBI
+ WEND 
+ FILE "ARTIKEL"
+ SELECT FORM KEY cuart% LOCK FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+ SELECT KEY cuart% LOCK FILE "ARTIKEL" INDEX CodeAR.ARTIKEL
+ IF Beschreibung.ARTIKEL <> "" THEN beschr$ = Beschreibung.ARTIKEL + CHR$ (13) + CHR$ (10) + CHR$ (13) + CHR$ (10) + beschr$
+ CREATE DIALOG "KOMBBeschr",0,0,302,224,title$,"MS Sans Serif",8
+ ADD DIALOG "KOMBBeschr",9,5,8,20,20,2
+ ADD DIALOG "KOMBBeschr",5,32,12,66,10,0,"Artikelbezeichnung:"
+ ADD DIALOG "KOMBBeschr",5,100,12,180,10,0,Bezeichnung.artikel
+ ADD DIALOG "KOMBBeschr",5,100,22,153,11,0,Artikelnummer.ARTIKEL
+ ADD DIALOG "KOMBBeschr",5,32,24,49,11,0,"Artikelnummer:"
+ ADD DIALOG "KOMBBeschr",5,32,41,68,10,0,"Artikelbeschreibung:"
+ ADD DIALOG "KOMBBeschr",6,32,52,261,143,68,2,beschr$,4000
+ ADD DIALOG "KOMBBeschr",1,176,200,55,15,0,"&OK",1,1
+ ADD DIALOG "KOMBBeschr",1,235,200,55,15,0,"&Abbrechen",0,0
+ DIALOG "KOMBBeschr",req%
+ REMOVE DIALOG "KOMBBeschr"
+ IF req% = 1 THEN 
+   Beschreibung.ARTIKEL = beschr$
+   CALL FStore("ARTIKEL")
+ END IF 
+ MOUSE ON 
+ END SUB 
+ 
+ 
+ 
+  
+ 
+ 
+ ' Kombination beenden
+ ' =======================================================================
+ 
+SUB KOMBEnde()
+ FORM 1
+ END SUB 
+ 
+ 
+ 
+  
+ ' Artikel/Leistungsverwaltung
+ ' =======================================================================
+ 
+SUB MNARTIKEL()
+ MENU CLEAR 
+ CALL MNProgramm()
+ MENU 2,0,1,"&Daten","",""
+ MENU 2,1,1,"&Neu,F2","ARTNeu","einen neuen Artikel erfassen"
+ MENU 2,2,1,"S&ichern,F4","MStore","Daten des aktuellen Artikels sichern"
+ MENU 2,3,1,"&Verwerfen,Strg+RckT","UNDO","letzte énderungen verwerfen"
+ IF NOT MNdisabled%("ARTLoeschen") THEN 
+   MENU 2,4,1,"&Lîschen","ARTLoeschen","aktuellen Artikel lîschen"
+ ELSE 
+   MENU 2,4,0,"&Lîschen"
+ END IF 
+ MENU 2,5,1,"&Kopieren,F5","ARTKopieren",""
+ MENU 2,6,1,"S&uchen,F6","ARTSuchen","Artikel suchen"
+ MENU 3,0,1,"&Bewegen","",""
+ MENU 3,1,1,"&NÑchster,BildAb","ARTNext","nÑchster Artikel"
+ MENU 3,2,1,"&Vorheriger,BildAuf","ARTPrev","vorheriger Artikel"
+ MENU 3,3,1,"&Erster","SelectFirst","erster Artikel"
+ MENU 3,4,1,"&Letzter","SelectLast","letzter Artikel"
+ MENU 4,0,1,"&Optionen"
+ MENU 4,1,1,"&UmsatzÅbersicht","UMSARTIKEL","UmsatzÅbersicht des Artikels anzeigen"
+ IF artausw$ = "j" THEN 
+   MENU 4,3,1,"Auswahl&liste,F7","ArtAusw","Artikel aus der Auswahlliste auswÑhlen"
+ ELSE 
+   MENU 4,3,0,"Auswahl&liste,F7","ArtAusw","Artikel aus der Auswahlliste auswÑhlen"
+ END IF 
+ MENU 5,0,1,"Sor&tierung"
+ MENU 5,1,1,"Bezeichnung","SortBezeichnung","Sortierung nach Bezeichnung"
+ MENU 5,2,1,"Artikelnummer","SortNummer","Sortierung nach Artikelnummer"
+ MENU 5,3,1,"Produktgruppen","SortGruppe","Sortierung nach Produktgruppen"
+ MENU 5,4,1,"Lieferant","SortLiefer","Sortierung nach Lieferanten"
+ CALL MNHilfe(6)
+ END SUB 
+ 
+SUB CLMNARTIKEL()
+ MENU 5,1,1
+ MENU 5,2,1
+ MENU 5,3,1
+ MENU 5,4,1
+ END SUB 
+ 
+SUB SortBezeichnung()
+ SET INDEX Bezeichnung.ARTIKEL
+ INDEX Bezeichnung.ARTIKEL
+ bez$ = Bezeichnung.ARTIKEL
+ artsort$ = "Bezeichnung"
+ SELECT FIRST 
+ SELECT FORM KEY bez$ FILE "Artikel" INDEX Bezeichnung.ARTIKEL
+ FORM 
+ END SUB 
+ 
+SUB SortNummer()
+ SET INDEX Artikelnummer.ARTIKEL
+ INDEX Artikelnummer.ARTIKEL
+ artsort$ = "Artikelnummer"
+ art$ = Artikelnummer.ARTIKEL
+ SELECT FIRST 
+ SELECT FORM KEY art$ FILE "Artikel" INDEX Artikelnummer.ARTIKEL
+ FORM 
+ END SUB 
+ 
+SUB SortGruppe()
+ SET INDEX CodeGR.ARTIKEL
+ INDEX CodeGR.ARTIKEL
+ artsort$ = "Produktgruppe"
+ gr% = codegr.artikel
+ SELECT FIRST 
+ SELECT FORM KEY gr% FILE "Artikel" INDEX codegr.artikel
+ FORM 
+ END SUB 
+ 
+SUB SortLiefer()
+ SET INDEX Lieferant.ARTIKEL
+ INDEX Lieferant.ARTIKEL
+ artsort$ = "Lieferant"
+ lie% = Lieferant.ARTIKEL
+ SELECT FIRST 
+ SELECT FORM KEY lie% FILE "Artikel" INDEX Lieferant.ARTIKEL
+ FORM 
+ END SUB 
+ 
+ 
+ ' HauptmenÅ
+ ' ======================================================================
+ 
+SUB MNFACTURA()
+ MENU CLEAR 
+ CALL MNProgramm()
+ MENU 2,0,1,"Datenbanken"
+ MENU 2,1,1,"Adressen","ADRESSEN","Adre·verwaltung"
+ MENU 2,2,1,"Produktgruppen","GRUPPEN","Produktgruppenverwaltung"
+ MENU 2,3,1,"Artikel","ARTIKEL","Artikelverwaltung"
+ MENU 2,4,1,"ZugÑnge","ABZUGANG","Erfassung von ArtikelzugÑngen"
+ MENU 2,5,1,"Verlustbuchung","VERLUST","Verlustbuchung"
+ MENU 2,6,1,"Inventur","INVENTUR","Inventur"
+ MENU 3,0,1,"öbersichten"
+ MENU 3,1,1,"Umsatz Kunden","UMSKUNDEN","UmsatzÅbersicht nach Kunden"
+ MENU 3,2,1,"Umsatz Artikel","UMSARTIKEL","UmsatzÅbersicht nach Artikeln"
+ MENU 3,3,1,"Umsatz Produktgruppe","UMSGRUPPE","UmsatzÅbersicht nach Produktgruppen"
+ MENU 3,4,1,"offene Rechnungen","ORECHNUNGEN","öbersicht Åber offene Rechnungen"
+ MENU 3,5,1,"offene Angebote","OANGEBOTE","öbersicht Åber offene Angebote"
+ MENU 3,6,1,"offene Bestellungen","OBESTELLUNGEN","öbersicht Åber offene Bestellungen"
+ MENU 3,7,3
+ MENU 3,8,1,"allg.öbersichten Ang./Rechn/Liefer...","ListeAllg","öbersicht ÅberAng/Rechn/Liefersch/Auftr/Bestell/Gutschr"
+ MENU 4,0,1,"Sonstiges"
+ MENU 4,1,1,"Bestellvorschlag","BESTELLV","Bestellvorschlag"
+ MENU 4,2,1,"Preisliste","PREISLISTE","Preislistenausgabe"
+ MENU 4,3,1,"Floskeltexte","FLOSKEL","Floskeltextverwaltung"
+ MENU 4,4,1,"Kurzberichte","BMKurzbericht","Kurzberichte"
+ MENU 4,5,1,"BÅromanager","OFFICE","Aufruf BÅromanager/OFFICE"
+ MENU 4,6,1,"UmsÑtze neu berechnen","UmsFuel","Alle UmsÑtze neu berechnen"
+ MENU 4,7,1,"Programmeinstellungen","SETUP","Einstellungen/Mitarbeiterverwaltung"
+ MENU 4,8,3
+ MENU 4,9,1,"Reorganisation der Datenbank","ReorgDB","Reorganisiert alle Dateien, die zur Datenbank gehîren"
+ MENU 5,0,1,"Optionen"
+ MENU 5,1,1,"Kombiartikel neu kalkulieren","KALKKOMBI","Kombiartikel neu kalkulieren"
+ MENU 5,2,1,"Akt&ionen","AKTIONEN","Aufruf der Aktionsverwaltung"
+ IF title$ LIKE "*FACTURA*" OR title$ LIKE "*firststep*" THEN 
+   MENU 5,3,0,"Termine","AKQUISE1()","TerminÅbersicht"
+ ELSE 
+   MENU 5,3,1,"Termine","AKQUISE1()","TerminÅbersicht"
+ END IF 
+ MENU 5,4,1,"Do&kumente","DOKallg","Dokumente erstellen, einsehen und bearbeiten"
+ SELECT KEY vcodema% FILE "SUPERVIS" INDEX CodeMA.supervis
+ IF NOT MNdisabled%("DOKUMENTE") THEN 
+   MENU 5,5,1,"&Dokumentenverwaltung","DOKUMENTSRV","erweiterte Dokumentenverwaltung"
+ ELSE 
+   MENU 5,5,0,"&Dokumentenverwaltung"
+ END IF 
+ mnline$ = ReadINI$("AddOn","1")
+ IF mnline$ <> "leer" THEN 
+   a% = 0
+   AddOn$(0) = ""
+   WHILE AddOn$(a%) <> "leer"
+     AddOn$(a%) = FN ibm(ReadINI$("AddOn", LTRIM$ ( STR$ (a% + 1,"999999"))))
+     IF AddOn$(a%) <> "leer" THEN a% = a% + 1
+   WEND 
+   AddOn$(a%) = ""
+   MENU 6,0,1,"An&wendungen"
+   a% = 0
+   WHILE AddOn$(a%) <> ""
+     IF a% < 10 THEN mnline$ = "&" ELSE mnline$ = ""
+     mnline$ = mnline$ + LTRIM$ ( STR$ (a%,"999")) + " " + AddOn$(a%)
+     MENU 6,a% + 1,1,mnline$,"ADDON"
+     a% = a% + 1
+   WEND 
+   CALL MNHilfe(7)
+ ELSE 
+   CALL MNHilfe(6)
+ END IF 
+ END SUB 
+ 
+  
+ ' Umsetzungen fÅr MenÅaufrufe
+ ' =======================================================================
+ 
+SUB ORECHNUNGEN()
+ CALL OffeneVorgÑnge(2)
+ END SUB 
+ 
+SUB OANGEBOTE()
+ CALL OffeneVorgÑnge(1)
+ END SUB 
+ 
+SUB OBESTELLUNGEN()
+ CALL OffeneVorgÑnge(5)
+ END SUB 
+ 
+ 
+SUB MasterExport(vondat$,bisdat$,opt%)
+ REM OPEN FIELDS Kundennummer,Anrede,Nachname,Vorname,Geburtsname,Stra·e,Ort,Plz,Nummer,Datum,GesNetto,Rabatt,GesBrutto 
+ REM                                                           ExportFile
+ REM EXPORT FILE "MASTER" INDEX CodeKU TO "C:\CODIE\FACTURA\TEST1.XLS" WHERE Nachname.MASTER LIKE "1&1*" USING LABELS 
+ REQUEST "Wollen Sie die ausgewÑhlten SÑtze nach EXCEL exportieren?","",130,req%
+ IF req% = 1 THEN 
+   MOUSE OFF 
+   FILE "master"
+   INDEX codems.master
+   IF ausgart% = 1 THEN 
+     SELECT WHERE CodeKU.MASTER = _cuku% AND Datum.MASTER >= DAYS (vondat$) AND Datum.MASTER <= DAYS (bisdat$) AND art.master = opt%
+     SELECT WHERE ASK 
+   ELSE 
+     SELECT WHERE Datum.MASTER >= DAYS (vondat$) AND Datum.MASTER <= DAYS (bisdat$) AND art.master = opt%
+     SELECT WHERE ASK 
+   END IF 
+   bedingung$ = WHERE 
+   SET ANSICONVERT OFF 
+   OPEN FIELDS Kundennummer,Anrede,Nachname,Vorname,Geburtsname,Stra·e,Ort,Plz,Nummer,Datum,GesNetto,Rabatt,GesBrutto:VIEW 
+   OPEN FIELDS ASK 
+   cdir$ = DIRECTORY 
+   DIRECTORY _netpath$
+   dateiname$ = "EXPMAST.XLS"
+   REQUEST "Export nach EXCEL..."," ",27,req%,dateiname$
+   IF req% = 1 THEN 
+     befehl$ = "EXPORT FILE " + CHR$ (34) + "MASTER" + CHR$ (34) + " INDEX CODEKU TO " + CHR$ (34) + dateiname$ + CHR$ (34) + " where " + bedingung$ + " USING LABELS"
+     REM EXPORT FILE "MASTER" INDEX CodeKU TO "C:\CODIE\EXPMAST.XLS" USING LABELS 
+     EXECUTE befehl$
+     REQUEST "Export nach EXCEL beendet!","",2
+   END IF 
+ END IF 
+ FILE "master"
+ SELECT WHERE 
+ CLOSE FIELDS 
+ DIRECTORY cdir$
+ MOUSE ON 
+ END SUB 
+ 
+SUB MastADRCon()
+ IF MOD ("master") THEN CALL QuickStore("master")
+ codems% = codems.master
+ SELECT KEY codems% LOCK FILE "master" INDEX codems.master
+ DIM AdrListe$( RECCOUNT ("ADRESSEN"))
+ knr% = CodeKU.ADRESSEN
+ FILE "ADRESSEN"
+ INDEX VorgÑnger.ADRESSEN
+ SELECT FIRST 
+ SELECT KEY knr%
+ prompt$ = "ZZZZZZZZ"
+ a% = 0
+ WHILE VorgÑnger.ADRESSEN = knr% AND NOT EOF ("ADRESSEN")
+   AdrListe$(a%) = Nachname + ", " + Vorname + ", " + Ort + SPACE$ (120) + STR$ (CodeKU,"000000")
+   IF Nachname < prompt$ THEN prompt$ = AdrListe$(a%)
+   SELECT NEXT 
+   a% = a% + 1
+ WEND 
+ SELECT KEY knr% FILE "ADRESSEN" INDEX CodeKU.ADRESSEN
+ CREATE DIALOG "ADRCON1",0,0,241,182,title$,"MS Sans Serif",8
+ ADD DIALOG "ADRCON1",4,0,0,241,158,0,""
+ ADD DIALOG "ADRCON1",9,5,9,20,21,2
+ ADD DIALOG "ADRCON1",5,30,10,206,28,0,"Bitte wÑhlen Sie eine der untergeordneten Adressen aus oder wÑhlen Sie 'Neu' um eine neue Adresse in die Gruppe aufzunehmen."
+ ADD DIALOG "ADRCON1",5,30,40,205,20,0,"Mit 'Lîschen' kînnen Sie die VerknÅpfung zur angewÑhlten Adresse lîschen."
+ ADD DIALOG "ADRCON1",7,30,64,204,89,2,2,AdrListe$,Auswahl$,prompt$
+ ADD DIALOG "ADRCON1",1,3,162,55,15,1,"&WÑhlen",1,1
+ IF UCASE$ ( FORM ) LIKE "ADRESSEN" THEN 
+   ADD DIALOG "ADRCON1",1,63,162,55,15,0,"&Neu",2,1
+   ADD DIALOG "ADRCON1",1,123,162,55,15,0,"&Lîschen",3,1
+ END IF 
+ ADD DIALOG "ADRCON1",1,183,162,55,15,0,"&Abbrechen",0,0
+ DIALOG "ADRCON1",req%
+ REMOVE DIALOG "ADRCON1"
+ MOUSE OFF 
+ nknr% = VAL ( RIGHT$ (Auswahl$(0),6))
+ SELECT CASE req%
+ CASE 0
+   FILE "adressen"
+   SELECT FIRST 
+   SELECT FORM KEY knr% FILE "adressen" INDEX codeku.adressen
+   FILE "master"
+   MOUSE ON 
+   FORM 
+   END SUB 
+ CASE 1
+   IF nknr% <> 0 THEN SELECT KEY nknr% FILE "ADRESSEN" INDEX CodeKU.ADRESSEN
+ CASE 2
+   nachfolger% = ADRSuche%()
+   IF nachfolger% <> 0 THEN 
+     SELECT KEY nachfolger% LOCK FILE "ADRESSEN" INDEX CodeKU.ADRESSEN
+     ok% = - 1
+     IF VorgÑnger.ADRESSEN <> 0 AND VorgÑnger.ADRESSEN <> knr% THEN 
+       REQUEST "Die gewÑhlte Adresse gehîrt bereits zu einer anderen Gruppe!","Trotzdem Åbernehmen?",134,req2%
+       IF req2% <> 1 THEN ok% = 0
+     END IF 
+     IF ok% THEN VorgÑnger.ADRESSEN = knr%
+     CALL QuickStore("ADRESSEN")
+   END IF 
+   SELECT KEY knr% FILE "ADRESSEN" INDEX CodeKU.ADRESSEN
+ CASE 3
+   IF nknr% <> 0 THEN 
+     SELECT KEY nknr% LOCK FILE "ADRESSEN" INDEX CodeKU.ADRESSEN
+     VorgÑnger.ADRESSEN = 0
+     CALL QuickStore("ADRESSEN")
+   END IF 
+   SELECT KEY knr% FILE "ADRESSEN" INDEX CodeKU.ADRESSEN
+ END SELECT 
+ SET INDEX Nachname.ADRESSEN
+ INDEX Nachname.ADRESSEN
+ 
+ REM öbernahme der gewÑhlten Adresse in Masterdatei
+ REQUEST "Mîchten Sie die gewÑhlte Adresse Åbernehmen?","",130,req%
+ IF req% = 1 THEN 
+   FILE "master"
+   REM CodeKU.MASTER = codeku.adressen
+   Anrede.MASTER = Anrede.adressen
+   Nachname.Master = Nachname.adressen
+   Vorname.master = Vorname.adressen
+   Geburtsname.master = Geburtsname.adressen
+   Stra·e.master = Stra·e.adressen
+   PLZ.master = PLZ.adressen
+   Ort.Master = Ort.Adressen
+   Adresse$ = MakeAdr$(CodeKU.ADRESSEN, - 1,0,0)
+   adresstext.master = adresse$
+   IF MSArt% <> 5 THEN 
+     REM Kundennummer.Master = Kundennummer.adressen
+     IF DEFA$ = "MEGA" AND KostentrÑger.adressen <> "" THEN 
+       REM KostentrÑger.master = KostentrÑger.adressen
+     ELSE 
+       REM Kostenstelle.master = Kostenstelle.adressen
+     END IF 
+   ELSE 
+     REM Kundennummer.Master = eigKunr.Adressen
+   END IF 
+   CALL QuickStore("master")
+ END IF 
+ FILE "master"
+ knr% = codeku.master
+ CALL MSUpdate()
+ MOUSE ON 
+ FORM 
+ END SUB 
+ 
+SUB MastADRVorg()
+ IF MOD ("master") THEN CALL QuickStore("master")
+ codems% = codems.master
+ codeku% = codeku.master
+ SELECT KEY codems% LOCK FILE "master" INDEX codems.master
+ FILE "adressen"
+ SELECT KEY codeku% FILE "adressen" INDEX codeku.adressen
+ REQUEST "Mîchten Sie wieder die Originaladresse eintragen?","",130,req%
+ IF req% = 1 THEN 
+   FILE "master"
+   REM CodeKU.MASTER = codeku.adressen
+   Anrede.MASTER = Anrede.adressen
+   Nachname.Master = Nachname.adressen
+   Vorname.master = Vorname.adressen
+   Geburtsname.master = Geburtsname.adressen
+   Stra·e.master = Stra·e.adressen
+   PLZ.master = PLZ.adressen
+   Ort.Master = Ort.Adressen
+   Adresse$ = MakeAdr$(CodeKU.ADRESSEN, - 1,0,0)
+   adresstext.master = adresse$
+   IF MSArt% <> 5 THEN 
+     REM Kundennummer.Master = Kundennummer.adressen
+     IF DEFA$ = "MEGA" AND KostentrÑger.adressen <> "" THEN 
+       REM KostentrÑger.master = KostentrÑger.adressen
+     ELSE 
+       REM Kostenstelle.master = Kostenstelle.adressen
+     END IF 
+   ELSE 
+     REM Kundennummer.Master = eigKunr.Adressen
+   END IF 
+   CALL QuickStore("master")
+ END IF 
+ 
+ FILE "master"
+ knr% = codeku.master
+ CALL MSUpdate()
+ FORM 
+ END SUB 
+ 
+SUB SumList()
+ CALL DFile(3,"ARTIKEL" + _fpw$)
+ CALL DFile(3,"schein" + _fpw$)
+ CALL DFile(3,"ARTPROV" + _fpw$)
+ CALL DFile(3,"master" + _fpw$)
+ CALL DFile(3,"LIEFRUCK" + _fpw$)
+ von% = YEAR ( TODAY )
+ buch$ = "n"
+ CREATE DIALOG "UMSATZ",0,0,233,142,title$,"MS Sans Serif",8
+ ADD DIALOG "UMSATZ",4,0,1,233,117,0,""
+ ADD DIALOG "UMSATZ",9,6,12,20,21,2
+ ADD DIALOG "UMSATZ",5,40,16,166,9,0,"Bitte geben Sie das Jahr ein, fÅr das Sie eine"
+ ADD DIALOG "UMSATZ",5,40,25,93,10,0,"UmsatzÅbersicht wÅnschen."
+ ADD DIALOG "UMSATZ",2,40,70,180,16,0,"nur gebuchte Belege anzeigen","j","n",buch$
+ ADD DIALOG "UMSATZ",6,62,97,35,13,0,0,von%,8
+ ADD DIALOG "UMSATZ",5,40,99,18,9,0,"von:"
+ ADD DIALOG "UMSATZ",5,133,99,13,9,0,"bis:"
+ ADD DIALOG "UMSATZ",1,57,124,55,15,1,"&OK",1,1
+ ADD DIALOG "UMSATZ",1,114,124,55,15,0,"&Abbrechen",0,0
+ DIALOG "UMSATZ",req%
+ IF req% = 1 THEN 
+   FILE "schein"
+   INDEX codems.schein
+   SELECT FIRST 
+   FILE "master"
+   INDEX codems.master
+   SELECT FIRST 
+   WHILE NOT EOF ("master")
+     datum% = YEAR (date.master)
+     monat% = MONTH (date.master)
+     IF (Art.MASTER = 2 OR Art.master = 7) AND datum% = von% THEN 
+       SELECT CASE monat%
+         CASE 1
+           IF buch$ = "j" THEN 
+             SELECT KEY CodeMS.MASTER FILE "ABZUGANG" INDEX CodeMS.ABZUGANG
+             IF FOUND ("ABZUGANG") THEN buchung$ = "Bu&chung Æ" ELSE buchung$ = "Bu&chung"
+           ELSE 
+ 
+           END IF 
+         CASE 2
+  
+         CASE 3
+ 
+         CASE 4
+     
+         CASE 5
+ 
+         CASE 6
+ 
+         CASE 7
+ 
+         CASE 8
+ 
+         CASE 9
+ 
+         CASE 10
+ 
+         CASE 11
+      
+         CASE 12
+       END SELECT 
+ 
+     END IF 
+     SELECT NEXT 
+   WEND 
+ END IF 
+ END SUB 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+

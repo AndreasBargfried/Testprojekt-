@@ -1,0 +1,51 @@
+SBP
+ÿÿmain()
+ÿwweit07122004
+ÿ½ CALL FldAdd("VorschM1von","NUM;,999999.00",0)
+ÿ½ CALL FldAdd("VorschW1","NUM;,999999.00",0)
+ÿ½ CALL FldAdd("VorschRM1","NUM;,999999.00",0)
+ÿ½ CALL FldAdd("VorschVD1","NUM;,999999.00",0)
+ÿ™"MAADR"
+ÿÍVorschArtÿ1
+ÿ’ÿÍ
+ÿÍVorschG1 ÿ1000:VorschW1 ÿ2000:VorschGRM1 ÿ2000:VorschRM1 ÿ3000:VorschGVD1 ÿ5000:VorschVD1 ÿ6000
+ÿ’ÿÍ
+ÿÍVorschG2 ÿ3000:VorschW2 ÿ2000:VorschGRM2 ÿ5000:VorschRM2 ÿ3000:VorschGVD2 ÿ9000:VorschVD2 ÿ6000
+ÿ’ÿÍ
+ÿÍVorschG3 ÿ4000:VorschW3 ÿ2000:VorschGRM3 ÿ6000:VorschRM3 ÿ3000:VorschGVD3 ÿ12000:VorschVD3 ÿ6000
+ÿ’ÿÍ
+ÿÍVorschG4 ÿ5000:VorschW4 ÿ2000:VorschGRM4 ÿ7000:VorschRM4 ÿ3000:VorschGVD4 ÿ14000:VorschVD4 ÿ6000
+ÿ’ÿÍ
+ÿÍVorschG5 ÿ5000:VorschW5 ÿ2000:VorschGRM5 ÿ7000:VorschRM5 ÿ3000:VorschGVD5 ÿ14000:VorschVD5 ÿ6000
+ÿ’ÿÍ
+ÿÍVorschG6 ÿ5000:VorschW6 ÿ2000:VorschGRM6 ÿ7000:VorschRM6 ÿ3000:VorschGVD6 ÿ14000:VorschVD6 ÿ6000
+ÿ’ÿÍ
+ÿ™"kvertrag"
+ÿÍkzv.kvertragÿ"j"
+ÿ’ÿÍ
+ÿÍkzv.kvertragÿ"1"ÿĞÿ-(FS24Satz_ID2.kvertrag,3)ÿ"PPV"
+ÿ’ÿÍ
+weit07122004: 
+ s$ÿ"MAVORG"
+ d$ÿ"MAVOLER"
+ ÿ™s$
+ ÿ£codema.s$
+ ÿÉÿ`
+ i%ÿ0
+ j%ÿÿA(s$)
+ ÿØÿOÿB(s$)
+i%ÿi%ÿ1
+ÿÿ™d$
+a%ÿCopyRecord%(s$,d$)
+ÿÌÿ™d$
+ÿÊÿËÿ(i%,",999999")ÿ" von "ÿÿ(j%,",999999")ÿ" umgesetzt"
+ÿÉÿ±ÿ™s$
+ ÿÙ
+ ÿ™D$
+ ÿ£codekey
+ ÿÉÿb
+ wert%ÿcodekey
+ ÿØÿI(d$,1)ÿ
+wert%:ÿÙ
+ ÿ’ÿÿ
+

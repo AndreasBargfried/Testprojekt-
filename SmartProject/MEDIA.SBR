@@ -1,0 +1,972 @@
+ '
+ ' MEDIA - Medienverwaltung
+ ' Copyright (c) 1993-1995 CoDIE Computer-Dienste
+ ' Stand: 2. Mai 1995
+ '
+ 
+
+SUB main()
+ REM DEBUG OFF 
+ CLOSE ALL 
+ IF NOT PROGRAMFILE ("CLIB") THEN LOAD "CLIB.sbr", NEW 
+ REM CALL LIBInit("MEDIA","Mediathek",1,12)
+ CALL LIBInit("MEDIA","SmartMedia",1,12)
+ _fpw$ = ";paris"
+ _help% = 0
+ CALL INIT()
+ _formend% = 0
+ Upd$ = ReadConfig$(_projekt$,"UPDATE")
+ IF Upd$ LIKE "TRUE" THEN 
+   IF NOT PROGRAMFILE ("UPDATE") THEN LOAD _netpath$ + "UPDATE.SBR", NEW 
+   CALL DoUpdate()
+ END IF 
+ WHILE _formend% = 0
+   CALL MEDIA()
+   REQUEST "Programm wirklich beenden?","",130,req%
+   IF req% = 1 THEN _formend% = 1
+ WEND 
+ CALL EXIT()
+ END SUB 
+ 
+SUB INIT()
+ MOUSE OFF 
+ GLOBAL cuvl%,cuvi%
+ GLOBAL VERLEIHsub%,FILMEsub%,Medium$(10)
+ SET HELP FILE _netpath$ + _projekt$ + "\" + _projekt$ + ".HLP"
+ SET QUERY ON 
+ IF test% = 0 THEN ON ERROR GOTO ErrorHandler
+ CALL LOGIN()
+ CALL Lizensierung()
+ MOUSE OFF 
+ CALL DFile(3,"FILME" + _fpw$)
+ CALL DFile(3,"VERLEIH" + _fpw$)
+ CALL DFile(3,"medium" + _fpw$)
+ CALL DFile(3,"Journal" + _fpw$)
+ CALL DFile(2,"OFFICE\adressen" + _fpw$)
+ FILE "medium"
+ INDEX CodeME.medium
+ SELECT FIRST 
+ a% = 0
+ WHILE NOT EOF ("medium")
+   Medium$(a%) = Medium.medium
+   SELECT NEXT FILE "medium" INDEX CodeME.medium
+   a% = a% + 1
+ WEND 
+ END SUB 
+ 
+ 
+ 
+ ' Formular "ADRESSEN" aktualisieren
+ ' =======================================================================
+  
+SUB ADRUpdate()
+ cfile$ = FILE 
+ _knr% = CodeKU.adressen
+ SELECT KEY _knr% FILE "VERLEIH" INDEX CodeKU.VERLEIH
+ IF FOUND ("VERLEIH") THEN 
+   Verleih$ = "&Verleih Æ"
+ ELSE 
+   Verleih$ = "&Verleih"
+ END IF 
+ MOUSE ON 
+ END SUB 
+ 
+ 
+ 
+SUB ADRsub6()
+ CALL VERLEIH()
+ END SUB 
+ 
+ 
+ ' =======================================================================
+ ' Routinen Formular "MEDIA" - HauptmenÅ                         
+ ' =======================================================================
+ 
+SUB MEDIA()
+ SET HEADING title$ + " - HauptÅbersicht"
+ SET STATUS "Hauptauswahl: WÑhlen Sie die gewÅnschte Funktion!"
+ _formend% = 0
+ CALL Gauge(0,"")
+ WHILE _formend% = 0
+ MEDIAsub% = 0
+   IF FORM <> "MEDIA" THEN 
+     CALL MNMEDIA()
+     OPEN FORM "MEDIA"
+     SET DISPLAY ON 
+     SET STATUS "Medienverwaltung"
+     CALL HideStartup()
+     MENU ON 
+   END IF 
+   FORM 
+   WAIT MOUSE OR KEY OR MENU 
+   SELECT CASE MEDIAsub%
+   CASE 1
+     CALL ADRESSEN()
+   CASE 2
+     CALL FILME()
+   CASE 3
+     CALL VLRÅcknahme()
+   CASE 4
+     CALL OFFICE()
+   CASE 5
+     CALL SETUP()
+   CASE 6
+     CALL Tarife()
+   END SELECT 
+ WEND 
+ _formend% = 0
+ END SUB 
+ 
+ 
+ 
+ ' ======================================================================
+ ' Routinen fÅr Formular "MEDIA"
+ ' ======================================================================
+ 
+SUB FILME()
+ _formend% = 0
+ SET STATUS ""
+ WHILE _formend% = 0
+   IF FORM <> "FILME" THEN 
+     OPEN FORM "FILME" PAGE 1
+     CALL MNFILME()
+     CALL FILMEIntro()
+   END IF 
+   MENU ON 
+   MOUSE ON 
+   Medium$ = Medium$(Medium.filme)
+   FILMEsub% = 0
+   CALL FLMUpdate()
+   FORM 
+   WAIT MOUSE OR KEY OR MENU 
+   SELECT CASE FILMEsub%
+   CASE 99
+     ENTER nummer.FILME,0
+   END SELECT 
+ WEND 
+ cuvi% = 0
+ _formend% = 0
+ END SUB 
+ 
+SUB FILMEIntro()
+ FILE "FILME"
+ SET HEADING title$ + " - Medienverwaltung"
+ INDEX Titel.FILME
+ SELECT FIRST 
+ FORM 
+ END SUB 
+ 
+ 
+ ' Film neu
+ ' ======================================================================
+ 
+SUB FILMENeu()
+ IF ( MOD ("FILME") OR NEW ("FILME")) AND titel.FILME <> "" THEN CALL FStore("FILME")
+ BLANK 
+ CodeFL.FILME = SER ("FILME",1)
+ FILMEsub% = 99
+ FORM 
+ END SUB 
+ 
+ 
+ ' Test auf doppelt vergebene Nummern
+ ' ======================================================================
+ 
+SUB FLMNumTest()
+ cufl% = CodeFL.FILME
+  _nummer$ = Nummer.FILME
+ IF NEW ("FILME") OR MOD ("FILME") THEN CALL FStore("FILME")
+ _index$ = INDEX 
+ FILE "FILME"
+ INDEX Nummer.FILME
+ SELECT FIRST 
+ _found% = 0
+ SELECT KEY _nummer$ FILE "FILME" INDEX Nummer.FILME
+ WHILE Nummer.FILME = _nummer$ AND NOT EOF ("FILME")
+   IF CodeFL.FILME <> cufl% AND _found% = 0 THEN 
+     REQUEST "Es ist bereits ein Datensatz mit dieser Nummer vorhanden!","",139
+     _found% = 1
+   END IF 
+   SELECT NEXT FILE "FILME" INDEX Nummer.FILME
+ WEND 
+ SELECT KEY cufl% FILE "FILME" INDEX CodeFL.FILME
+ SET INDEX _index$
+ INDEX _index$
+ MOUSE ON 
+ FORM 
+ END SUB 
+ 
+ 
+ 
+ ' Felder im Formular "FILME" updaten
+ ' ======================================================================
+ 
+SUB FLMUpdate()
+ SELECT KEY CodeFL.FILME FILE "VERLEIH" INDEX CodeFL.VERLEIH
+ IF FOUND ("VERLEIH") THEN 
+   verliehen$ = "<verliehen>"
+ ELSE 
+   verliehen$ = ""
+ END IF 
+ _tarif$ = STR$ (Tarif.FILME + 1,"0")
+ Tarif$ = STR$ ( VAL (ReadConfig$("MEDIA","Tarif" + _tarif$)),"999.00")
+ END SUB 
+ 
+ 
+ ' Tarif fÅr aktuellen Film festlegen
+ ' ======================================================================
+ 
+SUB FLMTarif()
+ Tarif1$ = STR$ ( VAL (ReadConfig$("MEDIA","Tarif1")),"999.00")
+ Tarif2$ = STR$ ( VAL (ReadConfig$("MEDIA","Tarif2")),"999.00")
+ Tarif3$ = STR$ ( VAL (ReadConfig$("MEDIA","Tarif3")),"999.00")
+ Tarif4$ = STR$ ( VAL (ReadConfig$("MEDIA","Tarif4")),"999.00")
+ CREATE DIALOG "TARIF",0,0,70,109,"","MS Sans Serif",8
+ ADD DIALOG "TARIF",4,0,0,70,108,0,""
+ ADD DIALOG "TARIF",1,7,12,55,16,0,Tarif1$,1,1
+ ADD DIALOG "TARIF",1,7,30,55,16,0,Tarif2$,2,1
+ ADD DIALOG "TARIF",1,7,48,55,16,0,Tarif3$,3,1
+ ADD DIALOG "TARIF",1,7,66,55,16,0,Tarif4$,4,1
+ ADD DIALOG "TARIF",1,7,84,55,16,0,"&Abbrechen",0,0
+ DIALOG "TARIF",req%
+ REMOVE DIALOG "TARIF"
+ IF req% <> 0 THEN 
+   cuvi% = CodeFL.FILME
+   SELECT KEY cuvi% LOCK FILE "FILME" INDEX CodeFL.FILME
+   Tarif.FILME = req% - 1
+   CALL FStore("FILME")
+ END IF 
+ END SUB 
+ 
+ 
+ ' Film suchen
+ ' ======================================================================
+ 
+SUB FILMESuchen()
+ SET STATUS "Film suchen"
+ FILE "filme":INDEX Titel.filme
+ cufl% = CodeFL.filme
+ IF ( MOD ("filme") OR NEW ("filme")) AND Titel.filme <> "" THEN CALL FStore("filme")
+ opt% = 1
+ CREATE DIALOG "SFLM",0,0,132,116,title$,"MS Sans Serif",8
+ ADD DIALOG "SFLM",4,4,4,70,106,0," Suchen nach "
+ ADD DIALOG "SFLM",6,8,94,63,13,0,0,suna$,30
+ ADD DIALOG "SFLM",3,6,15,27,11,0,"&Titel",1,opt%
+ ADD DIALOG "SFLM",3,6,26,43,11,0,"N&ummer",2,opt%
+ ADD DIALOG "SFLM",3,6,37,46,11,0,"&Darsteller",3,opt%
+ ADD DIALOG "SFLM",3,6,48,47,11,0,"Re&gisseur",4,opt%
+ ADD DIALOG "SFLM",3,6,59,47,11,0,"&Buch",5,opt%
+ ADD DIALOG "SFLM",3,6,70,47,11,0,"&Musik",6,opt%
+ ADD DIALOG "SFLM",3,6,81,36,11,0,"T&hema",7,opt%
+ ADD DIALOG "SFLM",1,78,75,50,16,1,"&Suchen",1,1
+ ADD DIALOG "SFLM",1,78,94,50,16,0,"&Abbruch",0,0
+ DIALOG "SFLM",req%
+ REMOVE DIALOG ALL 
+ SELECT CASE opt%
+ CASE 1
+   feld$ = "Titel.FILME"
+ CASE 2
+   feld$ = "Nummer.FILME"
+ CASE 3
+   feld$ = "Hauptdarsteller.FILME"
+ CASE 4
+   feld$ = "Regisseur.FILME"
+ CASE 5
+   feld$ = "Buch.FILME"
+ CASE 6
+   feld$ = "Musik.FILME"
+ CASE 7
+   feld$ = "Thema.FILME"
+ END SELECT 
+ IF req% <> 0 THEN 
+   INDEX feld$$
+   SET STATUS "Suche Film..."
+   SELECT KEY suna$ INDEX feld$$
+   IF UCASE$ ( LEFT$ (feld$$, LEN (suna$))) <> UCASE$ (suna$) THEN 
+     REQUEST "Eintrag nicht gefunden!","Erweiterte Suche durchfÅhren?",130,req%
+     IF req% = 1 THEN 
+       suna$ = "*" + suna$ + "*"
+       _cufl% = 0
+       REQUEST "Auswahl","Nummer, Titel, Darsteller",20,req%,_cufl%,72,codefl.FILME,Titel.FILME,Hauptdarsteller.FILME INDEX feld$$ WHERE feld$$ LIKE suna$
+       IF req% = 1 THEN 
+         cufl% = _cufl%
+       END IF 
+     END IF 
+   ELSE 
+     cufl% = CodeFL.FILME
+   END IF 
+ END IF 
+ SELECT KEY cufl% INDEX codefl.FILME
+ SET INDEX feld$$
+ INDEX feld$$
+ FORM 
+ END SUB 
+ 
+ 
+ ' Auswahl Medienart
+ ' ======================================================================
+ 
+SUB FLMMedium()
+ cfile$ = FILE 
+ cufl% = CodeFL.filme
+ tmpArt$ = ""
+ IF NEW ("filme") OR MOD ("filme") THEN CALL FStore("filme")
+ caption$ = "Auswahl: Medienart"
+ CREATE DIALOG "AUSWArt",0,0,202,215,caption$,"MS Sans Serif",8
+ ADD DIALOG "AUSWArt",5,28,6,174,8,0,"Bitte geben Sie an, zu welcher Art von Medium"
+ ADD DIALOG "AUSWArt",9,4,9,20,21,2
+ ADD DIALOG "AUSWArt",5,28,16,174,9,0,"der aktuelle Datensatz zugeordnet werden soll:"
+ ADD DIALOG "AUSWArt",5,28,26,174,8,0,""
+ ADD DIALOG "AUSWArt",6,26,176,170,12,0,0,tmpArt$,35
+ ADD DIALOG "AUSWArt",7,26,36,170,138,2,0,Medium$,Auswahl$,Medium$(Medium.filme)
+ ADD DIALOG "AUSWArt",1,86,193,55,16,1,"&OK",1,1
+ ADD DIALOG "AUSWArt",1,142,193,55,16,0,"&Abbruch",0,0
+ DIALOG "AUSWArt",req%
+ REMOVE DIALOG "AUSWArt"
+ IF req% = 1 THEN 
+   IF tmpArt$ <> "" THEN 
+     REQUEST tmpArt$ + " als neue Medienart aufnehmen?","",130,req%
+     IF req% = 1 THEN 
+       BLANK FILE "medium"
+       CodeME.medium = SER ("medium",1)
+       Medium.medium = tmpArt$
+       CALL FStore("medium")
+       a% = 0
+       WHILE Medium$(a%) <> ""
+         a% = a% + 1
+       WEND 
+       Medium$(a%) = tmpArt$
+       SELECT KEY cufl% LOCK FILE cfile$ INDEX Codefl.filme
+       Medium.filme = a%
+       CALL FStore("filme")
+     END IF 
+   ELSE 
+     FOR a% = 0 TO 10
+       IF Auswahl$(0) = Medium$(a%) THEN 
+         SELECT KEY cufl% LOCK FILE "filme" INDEX CodeFL.filme
+         Medium.filme = a%
+         CALL FStore("FILME")
+       END IF 
+     NEXT a%
+   END IF 
+ END IF 
+ Medium$ = Auswahl$(0)
+ FILE cfile$
+ SELECT FORM KEY cufl% FILE cfile$ INDEX CodeFL.filme
+ FORM 
+ END SUB 
+ 
+ 
+SUB FILMELoeschen()
+ cuvi% = CodeFL.FILME
+ REQUEST "Datensatz wirklich lîschen?","",135,req%
+ IF req% = 1 THEN 
+   SELECT KEY cuvi% LOCK FILE "FILME" INDEX CodeFL.FILME
+   SELECT REMOVE 
+   FORM 
+ END IF 
+ FORM 
+ END SUB 
+ 
+ 
+ ' Katalog drucken
+ ' =======================================================================
+ 
+SUB FILMEDrucken()
+ cufl% = CodeFL.filme
+ cfile$ = FILE 
+ cindex$ = INDEX 
+ IF NEW ("filme") OR MOD ("filme") THEN CALL FSTore("Filme")
+ opt1% = 1
+ opt2% = 1
+ WRI% = 0
+ suna$ = ""
+ CREATE DIALOG "KATALOG",0,0,214,240,"Katalog","MS Sans Serif",8
+ ADD DIALOG "KATALOG",4,0,0,213,212,0,""
+ ADD DIALOG "KATALOG",9,9,14,21,22,2
+ ADD DIALOG "KATALOG",5,38,14,167,11,0,"Ausgabe eines Medienkataloges:"
+ ADD DIALOG "KATALOG",5,38,27,167,38,0,"Geben Sie die gewÅnschten Kategorien ein, fÅr die Sie einen Katalog ausgeben mîchten oder lassen Sie die Auswahl leer, um einen Gesamtkatalog zu erzeugen."
+ ADD DIALOG "KATALOG",5,38,65,168,17,0,"ZusÑtzlich kînnen Sie die Art der Sortierung und die Ausgabeform bestimmen."
+ ADD DIALOG "KATALOG",5,42,162,74,10,0,"&Suchbezeichnung"
+ ADD DIALOG "KATALOG",6,42,172,78,12,0,0,suna$,30
+ ADD DIALOG "KATALOG",4,38,87,87,101,0,"Auswahl"
+ ADD DIALOG "KATALOG",3,42,100,75,11,0,"Titel",1,opt1%
+ ADD DIALOG "KATALOG",3,42,111,75,13,0,"Produzent",2,opt1%
+ ADD DIALOG "KATALOG",3,42,124,75,11,0,"Regisseur",3,opt1%
+ ADD DIALOG "KATALOG",3,42,135,75,13,0,"Darsteller",4,opt1%
+ ADD DIALOG "KATALOG",3,42,148,75,11,0,"Thema",5,opt1%
+ ADD DIALOG "KATALOG",4,139,86,55,43,0,"sortiert nach"
+ ADD DIALOG "KATALOG",3,143,98,29,12,0,"Titel",1,opt2%
+ ADD DIALOG "KATALOG",3,143,110,39,12,0,"Nummer",2,opt2%
+ ADD DIALOG "KATALOG",2,38,194,144,13,0,"Rohkatalog im Write-Format erzeugen",1,0,WRI%
+ ADD DIALOG "KATALOG",1,48,218,55,15,1,"&OK",1,1
+ ADD DIALOG "KATALOG",1,104,218,55,15,0,"&Abbrechen",0,0
+ DIALOG "KATALOG",req%
+ REMOVE DIALOG "KATALOG"
+ IF req% = 1 THEN 
+   MOUSE OFF 
+   SELECT CASE opt1%
+   CASE 1
+     feld$ = "Titel.filme"
+   CASE 2
+     feld$ = "Produzent.filme"
+   CASE 3
+     feld$ = "Regisseur.filme"
+   CASE 4
+     feld$ = "Hauptdarsteller.filme"
+   CASE 5
+     feld$ = "Thema.filme"
+   END SELECT 
+   SELECT CASE opt2%
+   CASE 1
+     sfeld$ = "Titel.filme"
+   CASE 2
+     sfeld$ = "Nummer.filme"
+   CASE 3
+     sfeld$ = "FSK.filme"
+   CASE 4
+     sfeld$ = "Medium.filme"
+   END SELECT 
+   IF WRI% = 0 THEN 
+     suna$ = "*" + suna$ + "*"
+     REPORT USING "KATALOG"
+     HEADING 
+       SET REPORT PAGE "H_PAGE"
+       OUTPUT REPORT PAGE 
+     END HEADING 
+     AFTER SELECT 
+       SET REPORT PAGE "F_SELECT"
+       OUTPUT REPORT PAGE 
+     END SELECT 
+     SET QUERY OFF 
+     SET QUERY LOCK OFF 
+     ON ERROR GOTO ErrKatalog
+     SELECT ;
+       ORDER REPORT sfeld$$
+       WHERE feld$$ LIKE suna$
+       TO ASK 
+ErrKatalog: 
+     IF test% = 0 THEN ON ERROR GOTO ErrorHandler ELSE ON ERROR 
+   ELSE 
+     CALL Fehler("Bitte beachten Sie, da· wÑhrend der Erstellung des Rohkataloges keine Taste gedrÅckt oder eine Mausaktion durchgefÅhrt wird!","")
+     FILE "FILME"
+     INDEX sfeld$$
+     SELECT FIRST 
+     CALL "WRITE",3
+     IF FN sys(1) < 36 THEN 
+       APPACTIVATE "Write"
+     ELSE 
+       WAIT FOR 4
+       APPACTIVATE "Dokument - WordPad"
+     END IF 
+     SENDKEYS "%FAArial{TAB}{TAB}10{ENTER}Medienkatalog erstellt am " + DATE$ ( TODAY ,"dd.mm.yy") + ".{ENTER}"
+     SENDKEYS "Kategorie: "
+     SELECT CASE opt1%
+     CASE 1
+       kat$ = "Titel"
+     CASE 2
+       kat$ = "Produzent"
+     CASE 3
+       kat$ = "Regisseur"
+     CASE 4
+       kat$ = "Hauptdarsteller"
+     CASE 5
+       kat$ = "Thema"
+     END SELECT 
+     SENDKEYS kat$ + ", Suchbegriff: " + suna$ + ", sortiert nach: "
+     IF opt2% = 1 THEN SENDKEYS "Titel" ELSE SENDKEYS "Nummer"
+     SENDKEYS "{ENTER 2}
+     suna$ = "*" + suna$ + "*"
+     WHILE NOT EOF ("FILME")
+       IF feld$$ LIKE suna$ THEN 
+         IF FN sys(1) < 36 THEN 
+           APPACTIVATE "Write"
+         ELSE 
+           APPACTIVATE "Dokument - WordPad"
+         END IF 
+         SENDKEYS "(" + Nummer.FILME + "){ENTER}"
+         SENDKEYS "%FR%FR"
+         SENDKEYS Titel.FILME + "{ENTER}"
+         SENDKEYS "%FL%FL"
+         IF Regisseur.FILME <> "" THEN SENDKEYS "^FR:^F{TAB}" + Regisseur.FILME + "{ENTER}"
+         IF Hauptdarsteller.FILME <> "" THEN SENDKEYS "^FD:^F{TAB}" + Hauptdarsteller.FILME + "{ENTER}"
+         IF Buch.FILME <> "" THEN SENDKEYS "^FB:^F{TAB}" + Buch.FILME + "{ENTER}"
+         IF Musik.FILME <> "" THEN SENDKEYS "^FM:^F{TAB}" + Musik.FILME + "{ENTER}"
+         infoline$ = ""
+         IF Land.FILME <> "" THEN infoline$ = Land.Filme
+         IF Jahr.FILME > 0 THEN 
+           IF infoline$ <> "" THEN infoline$ = infoline$ + ", "
+           infoline$ = infoline$ + LTRIM$ ( STR$ (Jahr.FILME,"9999"))
+         END IF 
+         IF Spieldauer.FILME > 0 THEN 
+           IF infoline$ <> "" THEN infoline$ = infoline$ + ", "
+           infoline$ = infoline$ + "LÑnge: ^F" + LTRIM$ ( STR$ (Spieldauer.FILME,"999")) + " min^F"
+         END IF 
+         IF infoline$ <> "" THEN SENDKEYS infoline$ + "{ENTER}"
+         IF FSK.FILME <> 0 THEN SENDKEYS "^FFSK:^F{TAB}" + LTRIM$ ( STR$ (FSK.FILME,"999")) + "{ENTER}"
+         IF Bemerkung.FILME <> "" THEN SENDKEYS "{ENTER}" + Bemerkung.FILME + "{ENTER}"
+         SENDKEYS "{ENTER 2}"
+       END IF 
+       SELECT NEXT FILE "FILME" INDEX Titel.FILME
+     WEND 
+     CALL Fehler("Der Rohkatalog wurde vollstÑndig erstellt!","Sie kînnen jetzt mit dem Programm weiterarbeiten.")
+   END IF 
+ END IF 
+ SELECT KEY cufl% FILE "FILME" INDEX CodeFL.filme
+ FILE cfile$
+ SET INDEX cindex$$
+ INDEX cindex$$
+ MOUSE ON 
+ END SUB 
+ 
+ 
+ ' ADRESSEN Suchen (abgewandelt fÅr MEDIA)
+ ' ====================================================================== 
+ ' Zweck:       Suchen einer Adresse
+ ' Nutzung:     wird vom Adressenformular verwendet
+ ' ======================================================================
+ 
+SUB VADRSuchen()
+ SET STATUS "Adresse suchen"
+ FILE "adressen":INDEX nachname.adressen
+ cuknr% = codeku.adressen
+ IF ( MOD ("adressen") OR NEW ("adressen")) AND nachname.adressen <> "" THEN CALL FStore("adressen")
+ adr% = ADRSuche%(0)
+ IF adr% <> 0 THEN cuknr% = adr%
+ SELECT KEY cuknr% FILE "adressen" INDEX CodeKU.adressen
+ FORM 
+ MOUSE ON 
+ END SUB 
+ 
+ 
+ '      *************
+ '      ** Verleih **
+ '      *************
+ 
+SUB VERLEIH()
+ knr% = CodeKU.adressen
+ CALL VLTest()
+ SET STATUS ""
+ WHILE _formend% = 0
+   IF FORM <> "VERLEIH" THEN 
+     OPEN FORM "VERLEIH" PAGE 1
+     CALL MNVERLEIH()
+     CALL VLIntro()
+   END IF 
+   MENU ON 
+   MOUSE ON 
+   WAIT MOUSE OR KEY OR MENU 
+ WEND 
+ MOUSE OFF 
+ SET STATUS "Buchungsdatei wird aktualisiert..."
+ scode$ = DATE$ ( TODAY ,"yymmdd") + STR$ (knr%,"000000")
+ FILE "verleih"
+ INDEX QuickCodeKU.verleih
+ SELECT FIRST 
+ SELECT KEY scode$ LOCK 
+ WHILE (QuickCodeKU.verleih = scode$) AND ( NOT EOF ("verleih"))
+   IF Journal.VERLEIH <> "J" THEN 
+     BLANK FILE "JOURNAL"
+     CodeJO.JOURNAL = SER ("JOURNAL",1)
+     CodeKU.JOURNAL = knr%
+     CodeMA.JOURNAL = vcodema%
+     Betrag.JOURNAL = GebÅhr.VERLEIH
+     CodeFL.JOURNAL = CodeFL.VERLEIH
+     Datum.JOURNAL = TODAY 
+     SELECT KEY CodeFL.VERLEIH FILE "FILME" INDEX CodeFL.FILME
+     SELECT KEY knr% FILE "ADRESSEN" INDEX CodeKU.ADRESSEN
+     Buchungstext.JOURNAL = "(" + Kundennummer.ADRESSEN + ") " + Nachname.Adressen + ", " + LEFT$ (Vorname.ADRESSEN,1) + "., (" + Nummer.VERLEIH + ") " + Titel.FILME
+     CALL FStore("JOURNAL")
+     Journal.VERLEIH = "J"
+     CALL FStore("VERLEIH")
+   END IF 
+   SELECT NEXT LOCK FILE "VERLEIH" INDEX QuickCodeKU.VERLEIH
+ WEND 
+ MOUSE ON 
+ _formend% = 0
+ END SUB 
+ 
+ 
+ ' Testet, ob Eintragungen fÅr den Kunden vorhanden sind
+ ' ======================================================================
+ 
+SUB VLTest()
+ FILE "VERLEIH"
+ SELECT KEY knr% FILE "VERLEIH" INDEX CodeKU.verleih
+ END SUB 
+ 
+ ' Intro fÅr Formular "MEDIA"
+ ' ======================================================================
+ 
+SUB VLIntro()
+ FILE "adressen"
+ SET HEADING title$ + " - Medienverleih"
+ INDEX CodeKU.adressen
+ SELECT FORM KEY knr% FILE "adressen" INDEX CodeKu.adressen
+ FORM 
+ END SUB 
+ 
+ 
+ ' Ausgabe von Medien
+ ' ======================================================================
+ 
+ 
+SUB VLAusgabe()
+ REQUEST "Bitte geben Sie die Filmnummer ein:","",4,req%,flmnr$
+ IF req% = 1 THEN 
+   ok% = 1
+   SELECT KEY flmnr$ LOCK FILE "filme" INDEX Nummer.filme
+   IF NOT FOUND ("filme") THEN 
+     CALL Fehler("Es wurde kein Medium mit dieser Nummer gefunden oder der Film ist zur Zeit im Verleih!","")
+     ok% = 0
+   ELSE 
+     SELECT KEY flmnr$ FILE "VERLEIH" INDEX Nummer.VERLEIH
+     IF FOUND ("VERLEIH") THEN 
+       CALL Fehler("Dieses Medium ist zur Zeit verliehen!","")
+       ok% = 0
+     END IF 
+   END IF 
+   IF ok% = 1 THEN 
+     cufl% = CodeFL.FILME
+     tarif% = VAL (ReadConfig$("MEDIA","Tarif" + STR$ (tarif.filme + 1,"0")))
+     NUMDELIM ".,"
+     CALL Server("medienverleih", LTRIM$ ( STR$ (tarif%,"9999.00")))
+     NUMDELIM ",."
+     erg$ = ServerReply$()
+     IF erg$ <> "CANCELED" THEN 
+       FILE "verleih"
+       BLANK 
+       CodeKU.VERLEIH = knr%
+       Nummer.VERLEIH = Nummer.filme
+       CodeFL.Verleih = CodeFL.filme
+       Datum.VERLEIH = TODAY 
+       termin$ = DATE$ ( TODAY + 2,"dd.mm.yy")
+       SlashPos% = INSTR (erg$,"/")
+       SlashPos2% = INSTR (SlashPos% + 1,erg$,"/")
+       NUMDELIM ".,"
+       GebÅhr.VERLEIH = VAL ( MID$ (erg$,1,SlashPos% - 1))
+       NUMDELIM ",."
+       AnzahlTage.VERLEIH = VAL ( MID$ (erg$,SlashPos% + 1,1))
+       Termin.VERLEIH = MID$ (erg$,SlashPos2% + 1, LEN (erg$) - SlashPos2%)
+       CALL FStore("verleih")
+       MOUSE OFF 
+       SET STATUS "Eintragung in Mediendatei..."
+       FILE "filme"
+       INDEX Nummer.filme
+       SELECT KEY flmnr$ LOCK FILE "FILME" INDEX Nummer.filme
+       WHILE NOT EOF ("FILME") AND Nummer.filme = flmnr$
+         ZÑhler.filme = ZÑhler.filme + 1
+         verliehen.filme = "j"
+         CALL FStore("FILME")
+         SELECT NEXT LOCK FILE "FILME" INDEX Nummer.filme
+       WEND 
+     END IF 
+     SET STATUS ""
+     FILE "adressen"
+     SELECT FORM KEY knr% FILE "adressen" INDEX CodeKU.adressen
+     FORM 
+   END IF 
+ END IF 
+ MOUSE ON 
+ END SUB 
+  
+  
+ ' RÅcknahme von Medien
+ ' ======================================================================
+ 
+SUB VLRÅcknahme()
+ REQUEST "Bitte geben Sie die Filmnummer ein:","",4,req%,flmnr$
+ IF req% = 1 THEN 
+   FILE "VERLEIH"
+   SELECT KEY flmnr$ FILE "VERLEIH" INDEX Nummer.verleih
+   IF NOT FOUND ("VERLEIH") THEN 
+     CALL Fehler("Das angegebene Medium ist zur Zeit nicht verliehen!","")
+   ELSE 
+     IF FORM LIKE "VERLEIH" AND CodeKU.VERLEIH <> knr% THEN 
+       CALL Fehler("Das angegebene Medium ist zur Zeit nicht verliehen!","")
+     ELSE 
+       MOUSE OFF 
+       SET STATUS "RÅcknahme wird registriert..."
+       ok% = 1
+       IF Termin.VERLEIH < TODAY THEN 
+         SELECT KEY CodeKU.VERLEIH FILE "ADRESSEN" INDEX CodeKU.adressen
+         SELECT KEY CodeFL.VERLEIH FILE "FILME" INDEX CodeFL.FILME
+         gebuehr% = 0
+         CREATE DIALOG "MAHNUNG",0,0,200,190,"","MS Sans Serif",8
+         ADD DIALOG "MAHNUNG",9,4,6,22,22,1
+         ADD DIALOG "MAHNUNG",5,38,6,74,12,0,"VerspÑtete RÅckgabe!"
+         ADD DIALOG "MAHNUNG",5,38,17,70,12,0,"RÅckgabetermin war:"
+         ADD DIALOG "MAHNUNG",5,118,17,68,12,0,termin.verleih
+         ADD DIALOG "MAHNUNG",5,38,41,43,12,0,"Kundeninfo:"
+         ADD DIALOG "MAHNUNG",5,38,51,75,12,0,anrede.adressen
+         ADD DIALOG "MAHNUNG",5,38,61,108,12,0,nachname.adressen
+         ADD DIALOG "MAHNUNG",5,38,71,87,12,0,vorname.adressen
+         ADD DIALOG "MAHNUNG",5,38,81,100,12,0,stra·e.adressen
+         ADD DIALOG "MAHNUNG",5,65,91,112,12,0,ort.adressen
+         ADD DIALOG "MAHNUNG",5,38,91,27,12,0,plz.adressen
+         ADD DIALOG "MAHNUNG",5,38,112,40,12,0,"Medieninfo:"
+         ADD DIALOG "MAHNUNG",5,38,121,51,12,0,nummer.filme
+         ADD DIALOG "MAHNUNG",5,65,121,130,20,0,titel.filme
+         ADD DIALOG "MAHNUNG",5,38,149,52,12,0,"VerzugsgebÅhr:"
+         ADD DIALOG "MAHNUNG",6,98,149,33,12,0,0,gebuehr%,20
+         ADD DIALOG "MAHNUNG",1,70,173,55,15,1,"&OK",1,1
+         DIALOG "MAHNUNG",req%
+         REMOVE DIALOG "MAHNUNG"
+         IF req% = 1 THEN 
+           BLANK FILE "JOURNAL"
+           CodeJO.JOURNAL = SER ("JOURNAL",1)
+           CodeKU.JOURNAL = CodeKU.VERLEIH
+           CodeMA.JOURNAL = vcodema%
+           CodeFL.JOURNAL = CodeFL.VERLEIH
+           Betrag.JOURNAL = gebuehr%
+           Datum.JOURNAL = TODAY 
+           Buchungstext.JOURNAL = "Verzug (" + DATE$ (termin.verleih,"dd.mm.yy") + "): (" + Kundennummer.ADRESSEN + ") " + Nachname.Adressen + ", " + LEFT$ (Vorname.ADRESSEN,1) + "., (" + Nummer.VERLEIH + ") " + Titel.FILME
+           CALL FStore("JOURNAL")
+         ELSE 
+           ok% = 0
+         END IF 
+       END IF 
+       IF ok% = 1 THEN 
+         REMOVE FROM FILE "VERLEIH" WHERE Nummer.VERLEIH = flmnr$
+         FILE "filme"
+         INDEX Nummer.filme
+         SELECT KEY flmnr$ LOCK FILE "FILME" INDEX Nummer.filme
+         WHILE NOT EOF ("FILME") AND Nummer.filme = flmnr$
+           verliehen.filme = "n"
+           CALL FStore("FILME")
+           SELECT NEXT LOCK FILE "FILME" INDEX Nummer.filme
+         WEND 
+       END IF 
+     END IF 
+   END IF 
+   FILE "adressen"
+   IF FORM LIKE "VERLEIH" THEN SELECT FORM KEY knr% FILE "adressen" INDEX CodeKU.adressen
+   FORM 
+ END IF 
+ END SUB 
+ 
+ 
+ ' Verleihliste drucken
+ ' ======================================================================
+ 
+SUB VLDruck()
+ MOUSE OFF 
+ REPORT USING "VLISTE"
+ HEADING 
+   SET REPORT PAGE "H_PAGE"
+   OUTPUT REPORT PAGE 
+ END HEADING 
+ GROUP Datum.VERLEIH,GebÅhr.VERLEIH AS "Gesamt%"
+ AFTER GROUP Datum.VERLEIH
+   SET REPORT PAGE "F_Datum.VERL002"
+   OUTPUT REPORT PAGE 
+ END GROUP 
+ AFTER SELECT 
+   SET REPORT PAGE "F_SELECT"
+   OUTPUT REPORT PAGE 
+ END SELECT 
+ SET QUERY OFF 
+ SET QUERY LOCK OFF 
+ ON ERROR GOTO ErrVerleih
+ SELECT ;
+   WHERE CodeKU.VERLEIH = CodeKU.ADRESSEN AND Nummer.VERLEIH = Nummer.FILME AND CodeKU.VERLEIH = knr% AND Datum.VERLEIH = TODAY 
+   ORDER REPORT Titel.FILME
+   TO ASK 
+ErrVerleih: 
+ IF test% = 0 THEN ON ERROR GOTO ErrorHandler ELSE ON ERROR 
+ MOUSE ON 
+ SET STATUS ""
+ END SUB 
+ 
+ 
+  
+ ' Tarife festlegen
+ ' ======================================================================
+ 
+SUB Tarife()
+ NUMBASE "999.00"
+ Tarif1% = VAL (ReadConfig$("MEDIA","Tarif1"))
+ Tarif2% = VAL (ReadConfig$("MEDIA","Tarif2"))
+ Tarif3% = VAL (ReadConfig$("MEDIA","Tarif3"))
+ Tarif4% = VAL (ReadConfig$("MEDIA","Tarif4"))
+ CREATE DIALOG "Tarife",0,0,158,145,"Tarife","MS Sans Serif",8
+ ADD DIALOG "Tarife",4,0,0,158,124,0,""
+ ADD DIALOG "Tarife",9,5,9,20,21,2
+ ADD DIALOG "Tarife",5,33,9,116,11,0,"Bitte geben Sie die verschiedenen"
+ ADD DIALOG "Tarife",5,33,17,115,11,0,"GebÅhrenstaffeln ein:"
+ ADD DIALOG "Tarife",5,28,38,12,11,2,"1"
+ ADD DIALOG "Tarife",5,28,58,12,11,2,"2"
+ ADD DIALOG "Tarife",5,28,78,12,11,2,"3"
+ ADD DIALOG "Tarife",5,28,98,12,11,2,"4"
+ ADD DIALOG "Tarife",6,42,36,71,13,0,0,Tarif1%,20
+ ADD DIALOG "Tarife",6,42,56,71,13,0,0,Tarif2%,20
+ ADD DIALOG "Tarife",6,42,76,71,13,0,0,Tarif3%,20
+ ADD DIALOG "Tarife",6,42,96,71,13,0,0,Tarif4%,20
+ ADD DIALOG "Tarife",1,24,126,54,14,0,"&OK",1,1
+ ADD DIALOG "Tarife",1,82,126,54,14,0,"&Abbrechen",0,0
+ DIALOG "Tarife",req%
+ REMOVE DIALOG "Tarife"
+ IF req% = 1 THEN 
+   CALL WriteConfig("MEDIA","Tarif1", STR$ (Tarif1%,"999.00"))
+   CALL WriteConfig("MEDIA","Tarif2", STR$ (Tarif2%,"999.00"))
+   CALL WriteConfig("MEDIA","Tarif3", STR$ (Tarif3%,"999.00"))
+   CALL WriteConfig("MEDIA","Tarif4", STR$ (Tarif4%,"999.00"))
+   REQUEST "Tarife wurden geÑndert!","",2
+ END IF 
+ NUMBASE "0000000000"
+ END SUB 
+ 
+ 
+ ' Tagesjournal drucken
+ ' ======================================================================
+ 
+SUB Journal()
+ REPORT USING "JOURNAL"
+ Datum$ = DATE$ ( TODAY ,"dd.mm.yy"):REQUEST "GewÅnschtes Datum:","",4,req%,Datum$
+ HEADING 
+     SET REPORT PAGE "H_PAGE"
+     OUTPUT REPORT PAGE 
+ END HEADING 
+ 
+ GROUP Datum.JOURNAL,Betrag.JOURNAL AS "Gesamt%"
+ AFTER GROUP Datum.JOURNAL
+     SET REPORT PAGE "F_Datum.JOUR002"
+     OUTPUT REPORT PAGE 
+ END GROUP 
+ 
+ AFTER SELECT 
+     SET REPORT PAGE "F_SELECT"
+     OUTPUT REPORT PAGE 
+ END SELECT 
+ 
+ SET QUERY OFF 
+ SET QUERY LOCK OFF 
+ ON ERROR GOTO ErrJournal
+ SELECT ;
+   WHERE CodeMA.JOURNAL = CodeMA.SUPERVIS AND Datum.JOURNAL = DAYS (Datum$)
+   ORDER REPORT Nachname.SUPERVIS
+   TO ASK 
+ErrJournal: 
+ IF test% = 0 THEN ON ERROR GOTO ErrorHandler ELSE ON ERROR 
+ END SUB 
+ 
+ 
+ ' Fehlliste drucken
+ ' ======================================================================
+  
+SUB Fehlliste()
+ REPORT USING "FEHLLIST"
+ HEADING 
+   SET REPORT PAGE "H_PAGE"
+   OUTPUT REPORT PAGE 
+ END HEADING 
+ AFTER SELECT 
+   SET REPORT PAGE "F_SELECT"
+   OUTPUT REPORT PAGE 
+ END SELECT 
+ SET QUERY OFF 
+ SET QUERY LOCK OFF 
+ ON ERROR GOTO ErrFEHLLIST
+ SELECT ;
+   WHERE CodeFL.VERLEIH = CodeFL.FILME AND CodeKU.VERLEIH = CodeKU.ADRESSEN AND Termin.VERLEIH <= TODAY 
+   ORDER REPORT Termin.VERLEIH
+   TO ASK 
+ErrFEHLLIST: 
+ IF test% = 0 THEN ON ERROR GOTO ErrorHandler ELSE ON ERROR 
+ END SUB 
+ 
+ 
+ 
+ ' HauptmenÅ
+ ' =======================================================================
+ 
+SUB MNMEDIA()
+ CALL MNProgramm()
+ MENU 1,1,1,"&Drucken...","",""
+ MENU 1,1;1,1,"Journal","Journal",""
+ MENU 1,1;2,1,"Fehlliste","Fehlliste",""
+ MENU 1,1;3,1,"Katalog","FILMEDrucken",""
+ MENU 2,0,1,"&Funktionen","",""
+ MENU 2,1,1,"&Kunden","ADRESSEN"
+ MENU 2,2,1,"&Filme","FILME"
+ MENU 2,3,1,"&RÅcknahme","VLRÅcknahme"
+ MENU 2,4,1,"&BÅromanager","BMANAG"
+ MENU 2,5,1,"&Tarife","Tarife"
+ MENU 3,0,1,"&Optionen","",""
+ MENU 3,1,1,"&Einstellungen","SETUP",""
+ MENU 3,2,1,"&Reorganisation","ReorgDB","automatische Dateikorrektur"
+ CALL MNHilfe(4)
+ END SUB 
+ 
+  
+ ' ADRESSEN
+ ' =======================================================================
+ 
+SUB MNADRESSEN()
+ CALL MNProgramm()
+ MENU 1,1,1,"&Drucken...","ADRDrucken","Druckausgabe"
+ MENU 2,0,1,"&Daten","",""
+ MENU 2,1,1,"&Neu,F2","ADRNeu","einen neuen Datensatz erfassen"
+ MENU 2,2,1,"S&ichern,F4","MStore",""
+ MENU 2,3,1,"&Verwerfen,Alt+RckT","UNDO",""
+ MENU 2,4,1,"&Kopieren,F5","ADRKopieren",""
+ IF NOT MNdisabled%("ADRLoeschen") THEN 
+   MENU 2,5,1,"&Lîschen","ADRLoeschen",""
+ ELSE 
+   MENU 2,5,0,"&Lîschen"
+ END IF 
+ MENU 2,6,1,"S&uchen,F6","ADRSuchen",""
+ MENU 3,0,1,"Be&wegen","",""
+ MENU 3,1,1,"&NÑchster,BildAb","ADRNext","nÑchster Datensatz"
+ MENU 3,2,1,"&Vorheriger,BildAuf","ADRPrev",""
+ MENU 3,3,1,"&Erster","ADRFirst",""
+ MENU 3,4,1,"&Letzter","ADRLast",""
+ MENU 4,0,1,"&Optionen","",""
+ MENU 4,1,1,"&Termine","AKQUISE2",""
+ MENU 4,2,1,"Telefon/&Fax","ADRTelefon",""
+ MENU 4,3,1,"Fil&ter...","",""
+ MENU 4,3;1,1,"normal","ADRFilter1",""
+ MENU 4,3;2,1,"erweitert","ADRFilter2",""
+ CALL MNDOK(5)
+ CALL MNHilfe(6)
+ END SUB 
+ 
+ ' FILME
+ ' =======================================================================
+ 
+SUB MNFILME()
+ CALL MNProgramm()
+ MENU 1,1,1,"&Drucken...","FILMEDrucken","Druckausgabe"
+ MENU 2,0,1,"&Daten","",""
+ MENU 2,1,1,"&Neu,F2","FILMENeu","einen neuen Datensatz erfassen"
+ MENU 2,2,1,"S&ichern,F4","MStore",""
+ MENU 2,3,1,"&Verwerfen,Alt+RckT","UNDO",""
+ IF NOT MNdisabled%("FILMELoeschen") THEN 
+   MENU 2,4,1,"&Lîschen","FILMELoeschen","aktuellen Datensatz lîschen"
+ ELSE 
+   MENU 2,4,0,"&Lîschen"
+ END IF 
+ MENU 2,5,1,"S&uchen,F6","FILMESuchen",""
+ MENU 3,0,1,"Be&wegen","",""
+ MENU 3,1,1,"&NÑchster,BildAb","SelectNext","nÑchster Datensatz"
+ MENU 3,2,1,"&Vorheriger,BildAuf","SelectPrevious",""
+ MENU 3,3,1,"&Erster","SelectFirst",""
+ MENU 3,4,1,"&Letzter","SelectLast",""
+ CALL MNHilfe(4)
+ END SUB 
+ 
+ 
+ ' VERLEIH
+ ' =======================================================================
+ 
+SUB MNVERLEIH()
+ CALL MNProgramm()
+ MENU 1,1,1,"&Drucken...","FILMEDrucken","Druckausgabe"
+ MENU 2,0,1,"&Daten","",""
+ MENU 2,1,1,"&Ausgabe,F3","VLAusgabe",""
+ MENU 2,2,1,"&RÅckgabe,F4","VLRÅcknahme",""
+ MENU 2,3,1,"&Drucken,F5","VLDruck",""
+ CALL MNHilfe(3)
+ END SUB 
+ 
+

@@ -1,0 +1,88 @@
+SBP
+ÿÿSERSPA()
+ ÿƒDFile(2,"OFFICE\keywords"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\adressen"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\telefon"ÿ_fpw$)
+ ÿ™"keywords"
+ ÿ£keyword
+ ÿ¡ÿOÿJ("PROVINT0305SERBRIEF",keyword.keywords)ÿp
+ÿÿ™"keywords"
+keyword.keywordsÿ"PROVINT0305SERBRIEF"
+ÿÌÿ™"keywords"
+ÿÿ™"keywords"
+keyword.keywordsÿ"PROVINT0305SERMAIL"
+ÿÌÿ™"keywords"
+ ÿ’ÿ¡
+ ÿ™"telefon"
+ ÿ£codeku.telefon
+ ÿ™"adressen"
+ ÿ£codeku.adressen
+ ÿÉÿ`ÿáÿ™"adressen"
+ i%ÿ0
+ k%ÿ0
+ j%ÿÿA("ADRESSEN")
+ ÿßÿe
+ ÿØÿOÿB("ADRESSEN")
+ok%ÿ0
+ÿ¡ADRStatus ÿ"INTERESSENT"ÿp
+codeku%ÿcodeku.adressen
+ÿ¡stichwort ÿ"PROVISDEMOERH"ÿstichwort ÿ"PROVISDEMOERH*"ÿstichwort ÿ"*PROVISDEMOERH*"ÿp
+ok%ÿÿ1
+ÿ’ÿ¡
+ÿ¡stichwort ÿ"PROV/IMMAKDEMOANF"ÿstichwort ÿ"PROV/IMMAKDEMOANF*"ÿstichwort ÿ"*PROV/IMMAKDEMOANF*"ÿp
+ok%ÿÿ1
+ÿ’ÿ¡
+ÿ¡stichwort ÿ"PROV/IMMAKDEMOERH"ÿstichwort ÿ"PROV/IMMAKDEMOERH*"ÿstichwort ÿ"*PROV/IMMAKDEMOERH*"ÿp
+ok%ÿÿ1
+ÿ’ÿ¡
+ÿ¡stichwort ÿ"PROV/IMMAKDEMOERH"ÿstichwort ÿ"PROV/IMMAKDEMOERH*"ÿstichwort ÿ"*PROV/IMMAKDEMOERH*"ÿp
+ok%ÿÿ1
+ÿ’ÿ¡
+ÿ¡Kunde_seit ÿ"1.1.2002"ÿok%ÿÿ1ÿp
+i%ÿi%ÿ1
+okt%ÿ0
+ÿ¡ÿJ(codeku.adressen,codeku.telefon)ÿp
+
+ÿÉÿ`ÿ™"telefon"ÿ£codeku.telefon
+
+ÿÉÿ¥codeku%ÿ™"telefon"ÿ£codeku.telefon
+
+ÿØÿOÿB("telefon")ÿcodeku.telefonÿcodeku%
+
+ÿ¡nummer.telefonÿ"*@*"ÿp
+k%ÿk%ÿ1
+okt%ÿÿ1
+ÿÉÿbÿ™"telefon"
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"telefon"
+
+ÿÙ
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ok%ÿÿ1ÿokt%ÿ0ÿp
+ÿ½ nur serienbrief
+ÿ¡stichwort ÿ"*PROVINT0305SERBRIEF"ÿstichwort ÿ"*PROVINT0305SERBRIEF*"ÿp
+ÿ^
+stichwort ÿstichwort ÿ";PROVINT0305SERBRIEF"
+ÿÌÿ™"ADRESSEN"
+ÿ’ÿ¡
+ÿ^
+ÿ¡ok%ÿÿ1ÿokt%ÿÿ1ÿp
+ÿ½ email
+ÿ¡stichwort ÿ"*PROVINT0305SERMAIL"ÿstichwort ÿ"*PROVINT0305SERMAIL*"ÿp
+ÿ^
+
+stichwort ÿstichwort ÿ";PROVINT0305SERMAIL"
+
+ÿÌÿ™"ADRESSEN"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÊÿËÿ(k%,",99999999")ÿ" mit EMAIL/ "ÿÿ(i%,",99999999")ÿ" insgesamt ADR"
+ÿÉÿ±ÿáÿ™"adressen"
+ ÿÙ
+ ÿƒFehler(ÿ(k%,",99999999")ÿ" mit EMAIL",ÿ(i%,",99999999")ÿ" insgesamt ADR")
+ ÿßÿ³
+ ÿ’ÿÿ
+

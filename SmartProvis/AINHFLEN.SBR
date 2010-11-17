@@ -1,0 +1,587 @@
+SBP
+ ÿƒmain()
+
+ÿÿainhflen()
+ ÿ½ _netpath$ = "\codie.c36\"
+ path$ÿ_netpath$
+ ÿ_netpath$
+ ÿ´ÿœ"dummy2.sbv"
+art%ÿ0
+ ÿƒFehler("Sie erhalten jetzt die M”glichkeit entweder die wichtigsten Dateien zu exportieren oder komplett alle Dateien zu exportieren!","Sie finden die exportierten Dateien im Ordner "ÿ_netpath$ÿ"EXPDAT")
+ ÿÂ"Nur die wichtigsten Dateien exportieren?","",130,req%
+ ÿ¡req%ÿ1ÿp
+alle%ÿ0
+ ÿ^
+alle%ÿ1
+ ÿ’ÿ¡
+ ÿ¡ÿOÿ´("EXPDAT")ÿp
+ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
+ ÿ’ÿ¡
+ ÿƒFehler("Sie k”nnen jetzt w„hlen, ob Sie die Daten im XML-Format oder im CSV exportieren m”chten","")
+ ÿÂ"Im XML-Format exportieren?","",130,xml%
+ ÿßÿe
+ ÿ×sbd$(300)
+ ÿÿsbd$,5,"*.SBD"
+ ÿ›i%ÿ0ÿq300
+ÿ¡ÿH(sbd$(i%))ÿ""ÿp
+lenge%ÿÿ/(sbd$(i%))
+datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
+datei0$ÿdatei$
+datname$ÿÿ>(datei$)
+ÿ½ CALL Fehler("EXPDAT","")
+ÿ¡datei$ÿ"config"ÿp
+datei$ÿdatei$ÿ";london8474"
+ÿ^
+datei$ÿdatei$ÿ";paris"
+ÿ’ÿ¡
+ÿ¡ÿOÿ´(sbd$(i%))ÿp
+ÿ´ÿ™ÿà,0_netpath$ÿdatei$
+ÿ’ÿ¡
+ÿ½ ********Aufruf der SQL-Statement Generierung **************
+ok11%ÿ0
+ÿ¡datei0$ÿ"supervis"ÿp
+ok11%ÿÿ1
+ÿ½ CALL Fehler("Supervis","")
+ÿ’ÿ¡
+ÿ¡datei0$ÿ"masuper"ÿpok11%ÿÿ1
+ÿ¡alle%ÿ1ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"expdat*"ÿpok11%ÿ0
+ÿ¡datei0$ÿ"abg*"ÿpok11%ÿ0
+ÿ¡datei0$ÿ"ope*"ÿpok11%ÿ0
+ÿ¡datei0$ÿ"zero*"ÿpok11%ÿ0
+ÿ¡ÿOÿJ(datname$,datname.expdat)ÿpok11%ÿ0
+ÿ¡ok11%ÿÿ1ÿp
+ÿßÿe
+ÿ¡xml%ÿ1ÿp
+
+ÿƒCreateINH(datei0$,path$,art%)
+ÿ^
+
+datei1$ÿdatei0$ÿ".CSV"
+
+textdo1$ÿdatei1$
+
+textdo$ÿ"Exportiere "ÿdatei1$
+
+ÿœ
+
+ÿ¡ÿJ(datei1$)ÿpÿdatei1$
+
+Superbase.Converters.SBF.SourceFormatÿ"Superbase"
+
+Superbase.Converters.SBF.SourceFileÿdatei0$
+
+Superbase.Converters.SBF.Descendingÿ0
+
+Superbase.Converters.SBF.Mergeÿ0
+
+Superbase.Converters.SBF.LogErrorsÿ0
+
+Superbase.Converters.SBF.MultiResponseÿ0
+
+Superbase.Converters.CSV.DestFormatÿ"Comma-separated values"
+
+Superbase.Converters.CSV.DestFileÿ_netpath$ÿ"EXPDAT\"ÿdatei0$ÿ".csv"
+
+Superbase.Converters.CSV.UseLabelsÿÿ1
+
+Superbase.Converters.CSV.ANSIConvertÿ0
+
+Superbase.Converters.CSV.Convert(Superbase.Converters.SBF)
+
+ÿÏÿ›2
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡datei0$ÿ"EXPDAT"ÿp
+ÿ^
+ÿ†ÿ™datei0$
+ÿ’ÿ¡
+ÿ½ ***********************************************************
+ÿ^
+i%ÿ301
+ÿ’ÿ¡
+ ÿ±i%
+
+ ÿ¡art%ÿ1ÿp
+ÿ†ÿ¶
+ ÿ’ÿ¡
+ ÿƒFehler("Fertig mit Wurzel","")
+
+ ÿÿsbd$(300,1)
+ ÿÿsbd$(300)
+ ÿ_netpath$
+ ÿ´ÿœ"dummy2.sbv"
+ ÿ¡ÿOÿ´("EXPDAT")ÿp
+ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
+ ÿ’ÿ¡
+
+ path$ÿ_netpath$ÿ"OFFICE\"
+ ÿpath$
+ ÿÿsbd$,5,"*.SBD"
+ ÿ›i%ÿ0ÿq300
+ÿ¡sbd$(i%)ÿ""ÿp
+lenge%ÿÿ/(sbd$(i%))
+datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
+datei0$ÿdatei$
+datname$ÿÿ>(datei$)
+ÿ½ CALL Fehler("EXPDAT","")
+ÿ¡datei$ÿ"config"ÿp
+datei$ÿdatei$ÿ";london8474"
+ÿ^
+datei$ÿdatei$ÿ";paris"
+ÿ’ÿ¡
+
+ÿ¡ÿOÿ´(sbd$(i%))ÿp
+ÿ³ÿ_ÿwtsts
+ÿ´ÿ™ÿà,0path$ÿdatei$
+tsts: 
+ÿ³ÿ_ÿwErrorHandler
+ÿ’ÿ¡
+ÿ½ ********Aufruf der SQL-Statement Generierung **************
+ok11%ÿ0
+ÿ¡datei0$ÿ"adressen"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"aktionen"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"akquise"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"dokument*"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"connect"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"dokge"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"dokma"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"dokkv"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"telefon"ÿpok11%ÿÿ1
+ÿ¡alle%ÿ1ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"*tmp*"ÿpok11%ÿ0
+ÿ¡datei0$ÿ"*temp*"ÿpok11%ÿ0
+ÿ¡datei0$ÿ"*leer*"ÿpok11%ÿ0
+ÿ¡datei0$ÿ"out*"ÿpok11%ÿ0
+ÿ¡ÿOÿJ(datname$,datname.expdat)ÿpok11%ÿ0
+ok11%ÿ0
+ÿ¡datname$ÿ"telefon"ÿdatname$ÿ"titel"ÿdatname$ÿ"tvorlage"ÿpok11%ÿÿ1
+ÿ¡ok11%ÿÿ1ÿp
+ÿßÿe
+ÿ¡xml%ÿ1ÿp
+
+ÿ¡datei0$ÿ"BANKEN*"ÿp
+
+ÿ^
+ÿƒCreateINH(datei0$,path$,art%)
+
+ÿ’ÿ¡
+ÿ^
+
+datei1$ÿdatei0$ÿ".CSV"
+
+textdo1$ÿdatei1$
+
+textdo$ÿ"Exportiere "ÿdatei1$
+
+ÿœ
+
+ÿ¡ÿJ(datei1$)ÿpÿdatei1$
+
+Superbase.Converters.SBF.SourceFormatÿ"Superbase"
+
+Superbase.Converters.SBF.SourceFileÿdatei0$
+
+Superbase.Converters.SBF.Descendingÿ0
+
+Superbase.Converters.SBF.Mergeÿ0
+
+Superbase.Converters.SBF.LogErrorsÿ0
+
+Superbase.Converters.SBF.MultiResponseÿ0
+
+Superbase.Converters.CSV.DestFormatÿ"Comma-separated values"
+
+Superbase.Converters.CSV.DestFileÿ_netpath$ÿ"EXPDAT\"ÿdatei0$ÿ".csv"
+
+Superbase.Converters.CSV.UseLabelsÿÿ1
+
+Superbase.Converters.CSV.ANSIConvertÿ0
+
+Superbase.Converters.CSV.Convert(Superbase.Converters.SBF)
+
+ÿÏÿ›2
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ ***********************************************************
+ÿ^
+i%ÿ301
+ÿ’ÿ¡
+ ÿ±i%
+
+ ÿÂ"OFFICE fertig","",2
+ ÿ¡art%ÿ1ÿp
+ÿ†ÿ¶
+ ÿ’ÿ¡
+ ÿ†ÿt
+
+
+ ÿ¡ÿOÿ´("EXPDAT")ÿp
+ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
+ ÿ’ÿ¡
+ ÿÿsbd$(300,1)
+ ÿÿsbd$(300)
+ ÿ_netpath$
+ ÿ´ÿœ_netpath$ÿ"dummy2.sbv"
+ path$ÿ_netpath$ÿ"PROVIS\"
+ ÿpath$
+ ÿÿsbd$,5,"*.SBD"
+ ÿ›i%ÿ0ÿq300
+ÿ¡sbd$(i%)ÿ""ÿp
+lenge%ÿÿ/(sbd$(i%))
+datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
+datei0$ÿdatei$
+datname$ÿÿ>(datei$)
+ÿ½ CALL Fehler("EXPDAT","")
+ÿ¡datei$ÿ"config"ÿp
+datei$ÿdatei$ÿ";london8474"
+ÿ^
+datei$ÿdatei$ÿ";paris"
+ÿ’ÿ¡
+ÿ¡datei0$ÿ"UN0*"ÿpÿww030320061
+ÿ¡datei0$ÿ"??0*"ÿpÿww030320061
+ÿ¡ÿOÿ´(sbd$(i%))ÿp
+ÿ´ÿ™ÿà,0path$ÿdatei$
+ÿ’ÿ¡
+ÿ½ ********Aufruf der SQL-Statement Generierung **************
+ok11%ÿ0
+ÿÊÿËdatei0$
+ÿßÿe
+ÿ¡datei0$ÿ"buchung"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"buchung1"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"geadr"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"geadr2"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"gekond"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"kvertrag"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"MAADR"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"MAVORG"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"sparten"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"spgruppe"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"spezkond"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"statukey"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"tarif"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"vorgang"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"vprodukt"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"waehrung"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"wknr"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"zeingan1"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"zeingang"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"zeinvor"ÿpok11%ÿÿ1
+ÿ¡alle%ÿ1ÿpok11%ÿÿ1
+dattest$ÿ_netpath$ÿ"EXPDAT\"ÿdatei0$ÿ".cod"
+ÿ¡ÿOÿJ(datname$,datname.expdat)ÿpok11%ÿ0
+ÿ¡ÿJ(dattest$)ÿp
+ÿ½ ok11% = 0
+ÿ’ÿ¡
+ÿ¡ok11%ÿÿ1ÿp
+ÿ½ CALL Fehler(datei0$,"")
+ÿßÿe
+ÿ¡xml%ÿ1ÿp
+
+ÿƒCreateINH(datei0$,path$,art%)
+ÿ^
+
+datei1$ÿdatei0$ÿ".CSV"
+
+textdo1$ÿdatei1$
+
+textdo$ÿ"Exportiere "ÿdatei1$
+
+ÿœ
+
+ÿ¡ÿJ(datei1$)ÿpÿdatei1$
+
+Superbase.Converters.SBF.SourceFormatÿ"Superbase"
+
+Superbase.Converters.SBF.SourceFileÿdatei0$
+
+Superbase.Converters.SBF.Descendingÿ0
+
+Superbase.Converters.SBF.Mergeÿ0
+
+Superbase.Converters.SBF.LogErrorsÿ0
+
+Superbase.Converters.SBF.MultiResponseÿ0
+
+Superbase.Converters.CSV.DestFormatÿ"Comma-separated values"
+
+Superbase.Converters.CSV.DestFileÿ_netpath$ÿ"EXPDAT\"ÿdatei1$
+
+Superbase.Converters.CSV.UseLabelsÿÿ1
+
+Superbase.Converters.CSV.ANSIConvertÿ0
+
+Superbase.Converters.CSV.Convert(Superbase.Converters.SBF)
+
+ÿÏÿ›2
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ ***********************************************************
+ÿ^
+i%ÿ301
+ÿ’ÿ¡
+w030320061: 
+ ÿ±i%
+ ÿÂ"PROVIS fertig","",2
+ ÿ¡art%ÿ1ÿp
+ÿ†ÿ¶
+ ÿ’ÿ¡
+ ÿ†ÿt
+ ÿ¡ÿOÿ´("EXPDAT")ÿp
+ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
+ ÿ’ÿ¡
+ ÿwend041120051 
+
+ ÿÿsbd$(300,1)
+ ÿÿsbd$(300)
+ _netpath$ÿpath$ÿ"GDV\GDV_DAT\"
+ ÿpath$ÿ"GDV\GDV_DAT"
+ _netpath$ÿpath$ÿ"GDV\GDV_DAT\"
+ ÿÿsbd$,5,"*.SBD"
+ ÿ›i%ÿ0ÿq300
+ÿ¡sbd$(i%)ÿ""ÿp
+lenge%ÿÿ/(sbd$(i%))
+datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
+datei0$ÿdatei$
+ÿ¡datei$ÿ"config"ÿp
+datei$ÿdatei$ÿ";london8474"
+ÿ^
+datei$ÿdatei$ÿ";paris"
+ÿ’ÿ¡
+ÿ¡ÿOÿ´(sbd$(i%))ÿp
+ÿ´ÿ™ÿà,0_netpath$ÿdatei$
+ÿ’ÿ¡
+ÿ½ ********Aufruf der SQL-Statement Generierung **************
+ok11%ÿ0
+ÿ¡datei0$ÿ"telefon"ÿpok11%ÿÿ1
+ÿ¡ok11%ÿÿ1ÿp
+ÿƒCreateINH(datei0$,path$,art%)
+ÿ½ ***********************************************************
+ÿ^
+i%ÿ301
+ÿ’ÿ¡
+ ÿ±i%
+ 
+ ÿÂ"GDV fertig","",2
+ ÿ†ÿt
+
+ ÿ¡ÿOÿ´("EXPDAT")ÿp
+ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
+ ÿ’ÿ¡
+end041120051:
+ ÿ´ÿœ_netpath$ÿ"dummy2.sbv"
+ ÿÂ"Ende"
+ ÿ¡ÿOÿ´("EXPDAT")ÿp
+ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+
+ÿÿCreateINH(datei$,path$,art%)
+ ÿ´ÿœ_netpath$ÿ"dummy2.sbv"
+ s$ÿ"0"
+ ÿ×FldNam1$(1)
+ ÿÊÿËdatei$
+ ÿ½ S$="0" - CBuilder Format
+ ÿ½ S$="1" - SAPDB Format
+ ÿ¡art%ÿ1ÿp
+datei1$ÿ_netpath$ÿ"EXPDAT\"ÿdatei$ÿ".cod"
+ÿ¡ÿJ(datei1$)ÿpÿdatei1$
+ÿ´datei1$ÿ›ÿ¶
+ÿ{"<?xml version="ÿÿ(34)ÿ"1.0"ÿÿ(34)ÿ" encoding="ÿÿ(34)ÿ"ISO-8859-1"ÿÿ(34)ÿ"?> "
+ÿ{""
+ÿ{"<CODIE-EXPORT>"
+ ÿ’ÿ¡
+feldanz%ÿÿõ(datei$,1)
+ÿÿFldNam1$(feldanz%)
+ÿ×felder$(feldanz%)
+ÿ×feldtyp$(feldanz%)
+ÿ×feldindex$(feldanz%)
+ÿ×feldanzeig$(feldanz%)
+
+ÿÿfelder$,1
+ÿÉÿ`ÿ™datei$
+jjj%ÿ0
+kkk%ÿÿA(datei$)
+ÿÿFldNam1$(feldanz%,1)
+ÿÿFldNam1$(feldanz%)
+ÿ›i%ÿ0ÿqfeldanz%ÿ1
+ÿ¡felder$(i%)ÿ""ÿp
+feldtyp$(i%)ÿÿö(felder$(i%),0)
+feldindex$(i%)ÿÿö(felder$(i%),3)
+feldanzeig$(i%)ÿÿö(felder$(i%),4)
+fname$ÿVSNRPack$(ÿ>(felder$(i%)))
+fname1$ÿfelder$(i%)
+ÿ’ÿ¡
+ÿ±i%
+azsg041120051: 
+ÿØÿOÿB(datei$)
+ÿßÿe
+jjj%ÿjjj%ÿ1
+ÿÊÿËdatei$ÿ"    "ÿÿ(jjj%)ÿ"   von   "ÿÿ(kkk%)
+textdo1$ÿdatei$
+textdo$ÿ"Exportiere "ÿÿ(jjj%)ÿ"   von   "ÿÿ(kkk%)
+ÿœ
+ÿ{"<CODIE-SATZ>"
+
+ 
+ÿ›i%ÿ0ÿqfeldanz%ÿ1
+fname0$ÿfelder$(i%)
+fname1$ÿVSNRPackEx$(ÿ>(felder$(i%)))
+ÿ¡feldtyp$(i%)ÿ"DEL"ÿpÿwwei060120061
+ÿ¡feldtyp$(i%)ÿ"NUM"ÿp
+ÿ½ CALL Fehler("NUM",feldanzeig$(i%))
+le%ÿÿ/(feldanzeig$(i%))
+pos%ÿ0
+pos%ÿÿ?(feldanzeig$(i%),".")
+ok%ÿ0
+ÿ¡pos%ÿ0ÿle%ÿpos%ÿp
+
+ok%ÿ1
+
+vorkomma%ÿpos%ÿ1
+
+nachkomma%ÿle%ÿpos%
+
+ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿÿH(ÿ(fname0$$,"999999999.00"))ÿ"]]></"ÿfname1$ÿ">"
+ÿ^
+
+ok%ÿ1
+
+ÿ¡fname$ÿ"TIMESTAMP*"ÿp
+
+ÿ^
+ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿÿH(ÿ(fname0$$,"999999999."))ÿ"]]></"ÿfname1$ÿ">"
+
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"NMI"ÿp
+ok%ÿ1
+ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿÿH(ÿ(fname0$$,"999999999."))ÿ"]]></"ÿfname1$ÿ">"
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"TXT*"ÿp
+ok%ÿ1
+
+finh$ÿfname0$$
+ÿ½ IF LEFT$ (finh$,1) = "<" THEN 
+
+ÿ½ tinh$ = MID$ (finh$,2)
+
+ÿ½ finh$ = tinh$
+ÿ½ END IF 
+ÿ½ IF RIGHT$ (finh$,1) = ">" THEN 
+
+ÿ½ len1% = LEN (finh$) - 1
+
+ÿ½ tinh$ = MID$ (finh$,1,len1%)
+
+ÿ½ finh$ = tinh$
+ÿ½ END IF 
+le%ÿÿ/(finh$)
+ÿ¡le%ÿ2000ÿp
+
+txt1$ÿÿåansi(ÿ+(finh$,2000))
+
+ÿ{"<"ÿfname1$ÿ"><![CDATA["
+
+ÿ{txt1$
+
+txt1$ÿÿåansi(ÿ,(finh$,2000))
+
+ÿ{txt1$
+
+ÿ{"</"ÿfname1$ÿ">"
+ÿ^
+
+ÿ½ CALL Fehler(fname0$,nachname.supervis)
+
+ÿ¡(fname0$ÿ"Paáwort")ÿ(datei$ÿ"supervis"ÿdatei$ÿ"filiale")ÿp
+pw$ÿ""
+ÿ¡datei$ÿ"supervis"ÿp
+pw$ÿPWDecoded$()
+ÿ’ÿ¡
+ÿ¡datei$ÿ"filiale"ÿp
+pw$ÿFPWDecoded$()
+ÿ’ÿ¡
+ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿÿåansi(pw$)ÿ"]]></"ÿfname1$ÿ">"
+
+ÿ^
+ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿÿ+(ÿåansi(ÿF(ÿH(finh$))),le%)ÿ"]]></"ÿfname1$ÿ">"
+
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"LOG"ÿp
+ok%ÿ1
+ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿfname0$$ÿ"]]></"ÿfname1$ÿ">"
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"DAT"ÿp
+ok%ÿ1
+ÿ¡fname0$$ÿ0ÿp
+
+ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿÿ(fname0$$,"yyyymmdd")ÿ"]]></"ÿfname1$ÿ">"
+ÿ^
+
+ÿ{"<"ÿfname1$ÿ">"ÿ"</"ÿfname1$ÿ">"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"TIM"ÿp
+ok%ÿ1
+ÿ¡fname0$$ÿ0ÿp
+
+ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿÿ7(fname0$$,"hh:mm")ÿ"]]></"ÿfname1$ÿ">"
+ÿ^
+	ÿ{"<"ÿfname1$ÿ">"ÿ"</"ÿfname1$ÿ">"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡fname$ÿ"TIMESTAMP*"ÿp
+ok%ÿ1
+ÿ{"<"ÿfname1$ÿ">"ÿ"</"ÿfname1$ÿ">"
+ÿ’ÿ¡
+ÿ½ ? befstring$;
+ÿ¡ok%ÿ0ÿp
+t$ÿfeldtyp$(i%)
+ÿÂt$,"nicht angelegt",2
+ÿ’ÿ¡
+wei060120061: 
+ÿ±i%
+
+ÿ{"</CODIE-SATZ>"
+
+ÿÉÿ±ÿ™datei$
+ÿÙ
+ ÿ¡art%ÿ1ÿp
+ÿ{"</CODIE-EXPORT>"
+ÿ†ÿ¶
+ ÿ’ÿ¡
+ ÿ½ CALL Fehler("TMPSTR99","")
+ ÿ½ ? "AAAA"
+ ÿ½ LOAD "TMPSTR99.SBP", NEW 
+ ÿ½ CALL TMPSTR99()
+ ÿ½ CLOSE PROGRAMFILE "TMPSTR99"
+ ÿ’ÿÿ
+
+
+
+ÿÿVSNRPackEx$(VSNR$)
+ tVSNR$ÿ""
+ ÿ›a%ÿ1ÿqÿ/(VSNR$)
+tC$ÿÿ>(ÿ,(VSNR$,a%,1))
+	x%ÿÿ.(ÿ+(ÿ>(tC$),1))
+	ÿÉÿæx%
+ÿæ142
+tC$ÿ"AE"
+ÿæ153
+tC$ÿ"OE"
+ÿæ154
+tC$ÿ"UE"
+	ÿ’ÿÉ
+	ÿ¡tc$ÿ"á"ÿptc$ÿ"SS"
+ÿ½ SELECT CASE tC$
+ÿ½ CASE "A" TO "Z","0" TO "9"
+tVSNR$ÿtVSNR$ÿtC$
+ÿ½ END SELECT 
+ ÿ±a%
+ VSNRPackEx$ÿtVSNR$
+ ÿ’ÿÿ
+

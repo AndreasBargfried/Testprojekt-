@@ -1,0 +1,1347 @@
+SBP
+ ÿƒmain()
+
+ÿÿainhflen()
+ ÿÿexpverz$
+ ÿ½ _netpath$ = "\codie.c36\"
+ tnow%ÿÿR
+ path$ÿ_netpath$
+ ÿ_netpath$
+ ÿ´ÿœ"dummy2.sbv"
+ art%ÿ0
+ expverz$ÿ_netpath$ÿ"EXPDAT"
+ ÿ‰ÿñ"Konto1",0,0,221,165,title$,"MS Sans Serif",8
+ ÿ|ÿñ"Konto1",9,6,7,24,22,2
+ ÿ|ÿñ"Konto1",5,34,8,170,9,0,"Exportverzeichnis:"
+ ÿ|ÿñ"Konto1",4,34,14,176,5,0,""
+ ÿ|ÿñ"Konto1",5,34,22,175,16,0,"Bitte geben Sie im Feld <Exportverzeichnis>, das gewnschte Exportverzeichnis ein"
+ ÿ|ÿñ"Konto1",5,34,40,175,32,0,"Beachten Sie, daá zum Import die Daten im Verzeichnis ...\codie\expdat  liegen mssen"
+ ÿ|ÿñ"Konto1",5,34,78,72,8,0,"Exportverzeichnis"
+ ÿ|ÿñ"Konto1",6,5,89,185,11,0,0,expverz$,128
+ ÿ½ ADD DIALOG "Konto1",2,34,97,148,11,0,"Liste mit Volumen ausgeben","j","n",volumen$
+ ÿ½ ADD DIALOG "Konto1",5,44,108,167,25,0,"(es werden auch die Provisionen angezeigt, die wegen fehlender Zahlungsbeitr„ge in der Mahnlist sind)"
+ ÿ|ÿñ"Konto1",1,50,144,55,15,1,"&Weiter",1,1
+ ÿ|ÿñ"Konto1",1,110,144,55,15,0,"&Abbruch",0,0
+ ÿñ"Konto1",req%
+ ÿ¾ÿñ"Konto1"
+ ÿ¡req%ÿ0ÿp
+ÿwend041120051
+ ÿ’ÿ¡
+
+ ÿ³ÿ_ÿww041020063
+ ÿªÿexpverz$
+w041020063: 
+ ÿ³ÿ_ÿwErrorHandler
+ ÿ¡ÿOÿ´("EXPDAT")ÿp
+ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
+ÿ™"expdat"
+ÿ£datname.expdat
+ ÿ’ÿ¡
+ ÿƒFehler("Sie erhalten jetzt die M”glichkeit entweder die Dateien ab dem letzten Wiederanlaufpunkt zu exportieren oder komplett alle Dateien NEU zu exportieren!","Sie finden die exportierten Dateien im Ordner "ÿ_netpath$ÿ"EXPDAT")
+ ÿÂ"Dateien ab letzten WIEDERANLAUFPUNKT exportieren?","",130,req%
+ ÿ¡req%ÿ1ÿp
+ÿÂ"Sind Sie absolut sicher, daá Sie ALLE Dateien erneut exportieren wollen?","",135,req%
+ÿ¡req%ÿ1ÿp
+ÿßÿe
+ÿÍzero.expdatÿ0:MAName.expdatÿ""
+ÿ’ÿÍ
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿƒAutoFiVorg()
+ ÿƒCheckConnect()
+ ÿƒVKMainMani()
+ ÿƒCheckKVSKOND()
+ ÿƒCheckDynVertr()
+ ÿƒCheckBuch()
+ ÿ½ CALL Fehler("Sie erhalten jetzt die M”glichkeit entweder die wichtigsten Dateien zu exportieren oder komplett alle Dateien zu exportieren!","Sie finden die exportierten Dateien im Ordner " + _netpath$ + "EXPDAT")
+ ÿ½ REQUEST "Nur die wichtigsten Dateien exportieren?","",130,req%
+
+ ÿ¡req%ÿ1ÿp
+alle%ÿ0
+ ÿ^
+alle%ÿ1
+ ÿ’ÿ¡
+ art%ÿ0
+ ÿ¡ÿOÿ´("EXPDAT")ÿp
+ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
+ÿ™"expdat"
+ÿ£datname.expdat
+ ÿ’ÿ¡
+ ÿ½ CALL Fehler("Sie k”nnen jetzt w„hlen, ob Sie die Daten im XML-Format oder im CSV exportieren m”chten","")
+ ÿ½ REQUEST "Im XML-Format exportieren?","",130,xml%
+ xml%ÿ1
+
+ ÿßÿe
+ ÿ×sbd$(300)
+ ÿÿsbd$,5,"*.SBD"
+ ÿ›i%ÿ0ÿq300
+ÿ¡ÿH(sbd$(i%))ÿ""ÿp
+lenge%ÿÿ/(sbd$(i%))
+datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
+datei0$ÿdatei$
+datname$ÿÿ>(datei$)
+ÿ½ CALL Fehler("EXPDAT","")
+ÿ¡datei$ÿ"config"ÿp
+datei$ÿdatei$ÿ";london8474"
+ÿ^
+datei$ÿdatei$ÿ";paris"
+ÿ’ÿ¡
+ÿ¡ÿOÿ´(sbd$(i%))ÿp
+ÿ´ÿ™ÿà,0_netpath$ÿdatei$
+ÿ’ÿ¡
+ÿ½ ********Aufruf der SQL-Statement Generierung **************
+ok11%ÿÿ1
+ÿ¡datei0$ÿ"supervis"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"masuper"ÿpok11%ÿÿ1
+ÿ¡alle%ÿ1ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"expdat*"ÿpok11%ÿ0
+ÿ¡datei0$ÿ"abg*"ÿpok11%ÿ0
+ÿ¡datei0$ÿ"ope*"ÿpok11%ÿ0
+ÿ¡datei0$ÿ"zero*"ÿpok11%ÿ0
+ÿ¡ÿOÿJ(datname$,datname.expdat)ÿp
+ok11%ÿ0
+ÿ^
+ÿÉÿ`ÿ™"expdat"ÿ£datname.expdat
+ÿÉÿ¥datname$ÿáÿ™"expdat"ÿ£datname.expdat
+ÿ’ÿ¡
+ÿ½ ok11% = 0
+ÿ¡ok11%ÿÿ1ÿzero.expdatÿ1ÿÿA(datei0$)ÿ0ÿp
+tnow1%ÿÿR
+ÿßÿe
+ÿ¡xml%ÿ1ÿp
+
+ÿ¡ÿA(datei0$)ÿ0ÿpÿƒCreateINH(datei0$,path$,art%)
+ÿ^
+
+datei1$ÿdatei0$ÿ".CSV"
+
+textdo1$ÿdatei1$
+
+textdo$ÿ"Exportiere "ÿdatei1$
+
+ÿœ
+
+ÿ¡ÿJ(datei1$)ÿpÿdatei1$
+
+Superbase.Converters.SBF.SourceFormatÿ"Superbase"
+
+Superbase.Converters.SBF.SourceFileÿdatei0$
+
+Superbase.Converters.SBF.Descendingÿ0
+
+Superbase.Converters.SBF.Mergeÿ0
+
+Superbase.Converters.SBF.LogErrorsÿ0
+
+Superbase.Converters.SBF.MultiResponseÿ0
+
+Superbase.Converters.CSV.DestFormatÿ"Comma-separated values"
+
+Superbase.Converters.CSV.DestFileÿ_netpath$ÿ"EXPDAT\"ÿdatei0$ÿ".csv"
+
+Superbase.Converters.CSV.UseLabelsÿÿ1
+
+Superbase.Converters.CSV.ANSIConvertÿ0
+
+Superbase.Converters.CSV.Convert(Superbase.Converters.SBF)
+
+ÿÏÿ›2
+ÿ’ÿ¡
+tende1%ÿÿR
+tende1$ÿÿ7(tende1%,"hh:mm:ss")
+tnow1$ÿÿ7(tnow1%,"hh:mm:ss")
+tdiff1%ÿtende1%ÿtnow1%
+tdiff1$ÿÿ7(tdiff1%,"hh:mm:ss")
+MAName.expdatÿ"Start: "ÿtnow1$ÿ"  Ende: "ÿtende1$ÿ"   Dauer: "ÿtdiff1$
+zero.expdatÿ1
+ÿÌÿ™"expdat"
+ÿ’ÿ¡
+ÿ¡datei0$ÿ"EXPDAT"ÿp
+ÿ^
+ÿ†ÿ™datei0$
+ÿ’ÿ¡
+ÿ½ ***********************************************************
+ÿ^
+i%ÿ301
+ÿ’ÿ¡
+ ÿ±i%
+
+ ÿ¡art%ÿ1ÿp
+ÿ†ÿ¶
+ ÿ’ÿ¡
+ ÿ½ CALL Fehler("Fertig mit Wurzel","")
+
+ ÿÿsbd$(300,1)
+ ÿÿsbd$(300)
+ ÿ_netpath$
+ ÿ´ÿœ"dummy2.sbv"
+ ÿ¡ÿOÿ´("EXPDAT")ÿp
+ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
+ÿ™"expdat"
+ÿ£datname.expdat
+ ÿ’ÿ¡
+
+ path$ÿ_netpath$ÿ"OFFICE\"
+ ÿpath$
+ ÿÿsbd$,5,"*.SBD"
+ ÿ›i%ÿ0ÿq300
+ÿ¡sbd$(i%)ÿ""ÿp
+lenge%ÿÿ/(sbd$(i%))
+datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
+datei0$ÿdatei$
+datname$ÿÿ>(datei$)
+ÿ½ CALL Fehler("EXPDAT","")
+ÿ¡datei$ÿ"config"ÿp
+datei$ÿdatei$ÿ";london8474"
+ÿ^
+datei$ÿdatei$ÿ";paris"
+ÿ’ÿ¡
+
+ÿ¡ÿOÿ´(sbd$(i%))ÿp
+ÿ³ÿ_ÿwtsts
+ÿ´ÿ™ÿà,0path$ÿdatei$
+tsts: 
+ÿ³ÿ_ÿwErrorHandler
+ÿ’ÿ¡
+ÿ½ ********Aufruf der SQL-Statement Generierung **************
+ok11%ÿÿ1
+ÿ¡datei0$ÿ"adressen"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"akquise"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"dokument*"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"connect"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"dokge"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"dokma"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"dokkv"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"telefon"ÿpok11%ÿÿ1
+ÿ¡alle%ÿ1ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"*tmp*"ÿpok11%ÿ0
+ÿ¡datei0$ÿ"*temp*"ÿpok11%ÿ0
+ÿ¡datei0$ÿ"*leer*"ÿpok11%ÿ0
+ÿ¡datei0$ÿ"out*"ÿpok11%ÿ0
+ÿ¡ÿOÿJ(datname$,datname.expdat)ÿp
+ok11%ÿ0
+ÿ^
+ÿÉÿ`ÿ™"expdat"ÿ£datname.expdat
+ÿÉÿ¥datname$ÿáÿ™"expdat"ÿ£datname.expdat
+ÿ’ÿ¡
+
+ÿ¡datei0$ÿ"aktionen"ÿpok11%ÿÿ1
+ÿ½ IF datname$ LIKE "adressen" THEN ok11% = - 1
+ÿ¡ok11%ÿÿ1ÿpÿww301020071 
+ÿ¡ok11%ÿÿ1ÿzero.expdatÿ1ÿÿA(datei0$)ÿ0ÿp
+tnow1%ÿÿR
+ÿßÿe
+ÿ¡datei0$ÿ"akquise"ÿp
+
+ÿ™"akquise"
+
+ÿ£codeaq.akquise
+
+ÿÉÿ`ÿá
+
+jj%ÿÿA("akquise")
+
+ii%ÿ0
+
+codeaqold%ÿ0
+
+ÿØÿOÿB("akquise")
+ii%ÿii%ÿ1
+codeaq%ÿcodeaq.akquise
+ÿ¡codeaq%ÿcodeaqold%ÿp
+codeaq.akquiseÿÿI("Akquise",1)
+ÿÌÿ™"akquise"
+ÿÉÿ`ÿá
+ii%ÿ0
+codeaqold%ÿ0
+ÿ^
+codeaqold%ÿcodeaq%
+ÿÉÿ±ÿáÿ™"akquise"ÿ£codeaq.akquise
+ÿ’ÿ¡
+ÿÊÿËÿ(ii%,",99999999")ÿ" von "ÿÿ(jj%,",99999999")ÿ" in Datei Akquise geprft"
+
+ÿÙ
+ÿ’ÿ¡
+
+ÿ¡datei0$ÿ"dokument"ÿÿA(datei0$)ÿ0ÿp
+
+ÿ™"dokument"
+
+ÿ£codedok.dokument
+
+ÿÉÿ`ÿá
+
+jj%ÿÿA("dokument")
+
+ii%ÿ0
+
+codedokold%ÿ0
+
+ÿØÿOÿB("dokument")
+ii%ÿii%ÿ1
+codedok%ÿcodedok.dokument
+ÿ¡codedok%ÿcodedokold%ÿp
+codedok.dokumentÿÿI("dokument",1)
+ÿÌÿ™"dokument"
+ÿÉÿ`ÿá
+ii%ÿ0
+codeaqold%ÿ0
+ÿ^
+codeaqold%ÿcodeaq%
+ÿÉÿ±ÿáÿ™"dokument"ÿ£codedok.dokument
+ÿ’ÿ¡
+ÿÊÿËÿ(ii%,",99999999")ÿ" von "ÿÿ(jj%,",99999999")ÿ" in Datei Dokument geprft"
+
+ÿÙ
+ÿ’ÿ¡
+
+	
+ÿ¡datei0$ÿ"telefon"ÿp
+
+ÿ™"telefon"
+
+ÿ£codeku.telefon
+
+ÿÉÿ`ÿá
+
+jj%ÿÿA("telefon")
+
+ii%ÿ0
+
+ÿØÿOÿB("telefon")
+ii%ÿii%ÿ1
+codetel.telefonÿii%
+ÿÌÿ™"telefon"
+ÿÊÿËÿ(ii%,",99999999")ÿ" von "ÿÿ(jj%,",99999999")ÿ" in Datei Telefon geprft"
+ÿÉÿ±ÿáÿ™"telefon"ÿ£codeku.telefon
+
+ÿÙ
+ÿ’ÿ¡
+
+
+ÿßÿe
+ÿ¡xml%ÿ1ÿp
+
+ÿ¡datei0$ÿ"BANKEN*"ÿp
+
+ÿ^
+ÿ¡ÿA(datei0$)ÿ0ÿpÿƒCreateINH(datei0$,path$,art%)
+
+ÿ’ÿ¡
+ÿ^
+
+datei1$ÿdatei0$ÿ".CSV"
+
+textdo1$ÿdatei1$
+
+textdo$ÿ"Exportiere "ÿdatei1$
+
+ÿœ
+
+ÿ¡ÿJ(datei1$)ÿpÿdatei1$
+
+Superbase.Converters.SBF.SourceFormatÿ"Superbase"
+
+Superbase.Converters.SBF.SourceFileÿdatei0$
+
+Superbase.Converters.SBF.Descendingÿ0
+
+Superbase.Converters.SBF.Mergeÿ0
+
+Superbase.Converters.SBF.LogErrorsÿ0
+
+Superbase.Converters.SBF.MultiResponseÿ0
+
+Superbase.Converters.CSV.DestFormatÿ"Comma-separated values"
+
+Superbase.Converters.CSV.DestFileÿ_netpath$ÿ"EXPDAT\"ÿdatei0$ÿ".csv"
+
+Superbase.Converters.CSV.UseLabelsÿÿ1
+
+Superbase.Converters.CSV.ANSIConvertÿ0
+
+Superbase.Converters.CSV.Convert(Superbase.Converters.SBF)
+
+ÿÏÿ›2
+ÿ’ÿ¡
+tende1%ÿÿR
+tende1$ÿÿ7(tende1%,"hh:mm:ss")
+tnow1$ÿÿ7(tnow1%,"hh:mm:ss")
+tdiff1%ÿtende1%ÿtnow1%
+tdiff1$ÿÿ7(tdiff1%,"hh:mm:ss")
+MAName.expdatÿ"Start: "ÿtnow1$ÿ"  Ende: "ÿtende1$ÿ"   Dauer: "ÿtdiff1$
+zero.expdatÿ1
+ÿÌÿ™"expdat"
+ÿ’ÿ¡
+w301020071: 
+ÿ½ ***********************************************************
+ÿ^
+i%ÿ301
+ÿ’ÿ¡
+ ÿ±i%
+
+ ÿÂ"OFFICE fertig","",2
+ ÿ¡art%ÿ1ÿp
+ÿ†ÿ¶
+ ÿ’ÿ¡
+ ÿ†ÿt
+
+
+ ÿ¡ÿOÿ´("EXPDAT")ÿp
+ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
+ÿ™"expdat"
+ÿ£datname.expdat
+ ÿ’ÿ¡
+ ÿÿsbd$(300,1)
+ ÿÿsbd$(300)
+ ÿ_netpath$
+ ÿ´ÿœ_netpath$ÿ"dummy2.sbv"
+ path$ÿ_netpath$ÿ"PROVIS\"
+ ÿpath$
+ ÿÿsbd$,5,"*.SBD"
+ ÿ›i%ÿ0ÿq300
+ÿ¡sbd$(i%)ÿ""ÿp
+lenge%ÿÿ/(sbd$(i%))
+datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
+datei0$ÿdatei$
+datname$ÿÿ>(datei$)
+ÿ½ CALL Fehler("EXPDAT","")
+ÿ¡datei$ÿ"config"ÿp
+datei$ÿdatei$ÿ";london8474"
+ÿ^
+datei$ÿdatei$ÿ";paris"
+ÿ’ÿ¡
+ÿ¡datei0$ÿ"UN0*"ÿpÿww030320061
+ÿ¡datei0$ÿ"??0*"ÿpÿww030320061
+ÿ¡ÿOÿ´(sbd$(i%))ÿp
+ÿ´ÿ™ÿà,0path$ÿdatei$
+ÿ’ÿ¡
+ÿ½ ********Aufruf der SQL-Statement Generierung **************
+ok11%ÿÿ1
+ÿÊÿËdatei0$
+ÿßÿe
+ÿ¡PrvVerfahr$ÿ"ZAHLUNGSEINGANG"ÿp
+ÿ¡datei0$ÿ"buchung"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"zeingang"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"buchung1"ÿpok11%ÿ0
+ÿ¡datei0$ÿ"zeingan1"ÿpok11%ÿ0
+ÿ¡datei0$ÿ"zeinvor"ÿpok11%ÿ0
+ÿ¡ÿJ(_netpath$ÿ"EXPDAT\"ÿ"buchung1.cod")ÿpÿ_netpath$ÿ"EXPDAT\"ÿ"buchung1.cod"
+ÿ¡ÿJ(_netpath$ÿ"EXPDAT\"ÿ"zeingan1.cod")ÿpÿ_netpath$ÿ"EXPDAT\"ÿ"zeingan1.cod"
+ÿ¡ÿJ(_netpath$ÿ"EXPDAT\"ÿ"zeinvor.cod")ÿpÿ_netpath$ÿ"EXPDAT\"ÿ"zeinvor.cod"
+ÿ^
+ÿ¡datei0$ÿ"buchung"ÿpok11%ÿ0
+ÿ¡datei0$ÿ"zeingang"ÿpok11%ÿ0
+ÿ¡ÿJ(_netpath$ÿ"EXPDAT\"ÿ"buchung.cod")ÿpÿ_netpath$ÿ"EXPDAT\"ÿ"buchung.cod"
+ÿ¡ÿJ(_netpath$ÿ"EXPDAT\"ÿ"zeingang.cod")ÿpÿ_netpath$ÿ"EXPDAT\"ÿ"zeingang.cod"
+ÿ¡datei0$ÿ"buchung1"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"zeingan1"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"zeinvor"ÿpok11%ÿÿ1
+ÿ’ÿ¡
+
+ÿ¡datei0$ÿ"geadr"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"geadr2"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"gekond"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"kvertrag"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"MAADR"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"MAVORG"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"sparten"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"spgruppe"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"spezkond"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"statukey"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"tarif"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"vorgang"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"vprodukt"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"waehrung"ÿpok11%ÿÿ1
+ÿ¡datei0$ÿ"wknr"ÿpok11%ÿÿ1
+ÿ¡alle%ÿ1ÿpok11%ÿÿ1
+dattest$ÿ_netpath$ÿ"EXPDAT\"ÿdatei0$ÿ".cod"
+ÿ¡ÿOÿJ(datname$,datname.expdat)ÿp
+ok11%ÿ0
+ÿ^
+ÿÉÿ`ÿ™"expdat"ÿ£datname.expdat
+ÿÉÿ¥datname$ÿáÿ™"expdat"ÿ£datname.expdat
+ÿ’ÿ¡
+ÿ½ ok11% = 0
+ÿ¡ok11%ÿÿ1ÿzero.expdatÿ1ÿÿA(datei0$)ÿ0ÿp
+tnow1%ÿÿR
+ÿ½ CALL Fehler(datei0$,"")
+ÿßÿe
+ÿ¡xml%ÿ1ÿp
+
+ÿ¡ÿA(datei0$)ÿ0ÿpÿƒCreateINH(datei0$,path$,art%)
+ÿ^
+
+datei1$ÿdatei0$ÿ".CSV"
+
+textdo1$ÿdatei1$
+
+textdo$ÿ"Exportiere "ÿdatei1$
+
+ÿœ
+
+ÿ¡ÿJ(datei1$)ÿpÿdatei1$
+
+Superbase.Converters.SBF.SourceFormatÿ"Superbase"
+
+Superbase.Converters.SBF.SourceFileÿdatei0$
+
+Superbase.Converters.SBF.Descendingÿ0
+
+Superbase.Converters.SBF.Mergeÿ0
+
+Superbase.Converters.SBF.LogErrorsÿ0
+
+Superbase.Converters.SBF.MultiResponseÿ0
+
+Superbase.Converters.CSV.DestFormatÿ"Comma-separated values"
+
+Superbase.Converters.CSV.DestFileÿ_netpath$ÿ"EXPDAT\"ÿdatei1$
+
+Superbase.Converters.CSV.UseLabelsÿÿ1
+
+Superbase.Converters.CSV.ANSIConvertÿ0
+
+Superbase.Converters.CSV.Convert(Superbase.Converters.SBF)
+
+ÿÏÿ›2
+ÿ’ÿ¡
+tende1%ÿÿR
+tende1$ÿÿ7(tende1%,"hh:mm:ss")
+tnow1$ÿÿ7(tnow1%,"hh:mm:ss")
+tdiff1%ÿtende1%ÿtnow1%
+tdiff1$ÿÿ7(tdiff1%,"hh:mm:ss")
+MAName.expdatÿ"Start: "ÿtnow1$ÿ"  Ende: "ÿtende1$ÿ"   Dauer: "ÿtdiff1$
+zero.expdatÿ1
+ÿÌÿ™"expdat"
+ÿ’ÿ¡
+ÿ½ ***********************************************************
+ÿ^
+i%ÿ301
+ÿ’ÿ¡
+w030320061: 
+ ÿ±i%
+ ÿÂ"PROVIS fertig","",2
+ ÿ¡art%ÿ1ÿp
+ÿ†ÿ¶
+ ÿ’ÿ¡
+ ÿ†ÿt
+ ÿ¡ÿOÿ´("EXPDAT")ÿp
+ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
+ ÿ’ÿ¡
+ ÿwend041120051 
+
+ ÿÿsbd$(300,1)
+ ÿÿsbd$(300)
+ _netpath$ÿpath$ÿ"GDV\GDV_DAT\"
+ ÿpath$ÿ"GDV\GDV_DAT"
+ _netpath$ÿpath$ÿ"GDV\GDV_DAT\"
+ ÿÿsbd$,5,"*.SBD"
+ ÿ›i%ÿ0ÿq300
+ÿ¡sbd$(i%)ÿ""ÿp
+lenge%ÿÿ/(sbd$(i%))
+datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
+datei0$ÿdatei$
+ÿ¡datei$ÿ"config"ÿp
+datei$ÿdatei$ÿ";london8474"
+ÿ^
+datei$ÿdatei$ÿ";paris"
+ÿ’ÿ¡
+ÿ¡ÿOÿ´(sbd$(i%))ÿp
+ÿ´ÿ™ÿà,0_netpath$ÿdatei$
+ÿ’ÿ¡
+ÿ½ ********Aufruf der SQL-Statement Generierung **************
+ok11%ÿ0
+ÿ¡datei0$ÿ"telefon"ÿpok11%ÿÿ1
+ÿ¡ok11%ÿÿ1ÿÿA(datei0$)ÿ0ÿp
+ÿ¡ÿA(datei0$)ÿ0ÿpÿƒCreateINH(datei0$,path$,art%)
+ÿ½ ***********************************************************
+ÿ^
+i%ÿ301
+ÿ’ÿ¡
+ ÿ±i%
+ 
+ ÿÂ"GDV fertig","",2
+ ÿ†ÿt
+
+ ÿ¡ÿOÿ´("EXPDAT")ÿp
+ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
+ ÿ’ÿ¡
+end041120051:
+ ÿ´ÿœ_netpath$ÿ"dummy2.sbv"
+ ÿÂ"Ende"
+ ÿ¡ÿOÿ´("EXPDAT")ÿp
+ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
+ ÿ’ÿ¡
+ tende%ÿÿR
+ tende$ÿÿ7(tende%,"hh:mm:ss")
+ tnow$ÿÿ7(tnow%,"hh:mm:ss")
+ tdiff%ÿtende%ÿtnow%
+ tdiff$ÿÿ7(tdiff%,"hh:mm:ss")
+ ÿƒFehler("Export beendet!","Start: "ÿtnow$ÿ"  Ende: "ÿtende$ÿ"   Dauer: "ÿtdiff$)
+ ÿ’ÿÿ
+
+ÿÿCreateINH(datei$,path$,art%)
+ ÿ½ CALL Fehler("CreateINH",datei$)
+ ÿ´ÿœ_netpath$ÿ"dummy2.sbv"
+ s$ÿ"0"
+ az%ÿ0
+ ÿ×FldNam1$(1)
+ ÿÊÿËdatei$
+ ÿ¡art%ÿ1ÿp
+ÿ¡datei$ÿ"buchung*"ÿp
+ÿ›u%ÿ0ÿq99
+ÿ¡ÿ>(datei$)ÿ"BUCHUNG"ÿp
+datei1$ÿexpverz$ÿ"\"ÿ"buch-"ÿÿ(u%,"00")ÿ".cod"
+ÿ^
+datei1$ÿexpverz$ÿ"\"ÿ"buch1-"ÿÿ(u%,"00")ÿ".cod"
+ÿ’ÿ¡
+ÿ¡ÿJ(datei1$)ÿpÿdatei1$
+ÿ±u%
+ÿ^
+datei1$ÿexpverz$ÿ"\"ÿdatei$ÿ".cod"
+ÿ¡ÿJ(datei1$)ÿpÿdatei1$
+ÿ´datei1$ÿ›ÿ¶
+ÿ{"<?xml version="ÿÿ(34)ÿ"1.0"ÿÿ(34)ÿ" encoding="ÿÿ(34)ÿ"ISO-8859-1"ÿÿ(34)ÿ"?> "
+ÿ{""
+ÿ{"<CODIE-EXPORT>"
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ½ CALL Fehler("del","")
+feldanz%ÿÿõ(datei$,1)
+ÿÿFldNam1$(feldanz%)
+ÿ×felder$(feldanz%)
+ÿ×feldtyp$(feldanz%)
+ÿ×feldindex$(feldanz%)
+ÿ×feldanzeig$(feldanz%)
+ÿ×feldera$(feldanz%)
+
+ÿÿfelder$,1
+ÿÉÿ`ÿ™datei$
+ÿ½ SELECT KEY 2696731 FILE datei$ INDEX codebu
+jjj%ÿ0
+xjj%ÿ0
+kkk%ÿÿA(datei$)
+ÿÿFldNam1$(feldanz%,1)
+ÿÿFldNam1$(feldanz%)
+ÿ›i%ÿ0ÿqfeldanz%ÿ1
+ÿ¡felder$(i%)ÿ""ÿp
+feldtyp$(i%)ÿÿö(felder$(i%),0)
+feldindex$(i%)ÿÿö(felder$(i%),3)
+feldanzeig$(i%)ÿÿö(felder$(i%),4)
+fname$ÿVSNRPack$(ÿ>(felder$(i%)))
+fname1$ÿÿ>(felder$(i%))
+feldera$(i%)ÿVSNRPackEx$(ÿ>(felder$(i%)))
+ÿ’ÿ¡
+ÿ±i%
+xend%ÿ0
+
+azsg041120051: 
+ÿ¡datei$ÿ"buchung"ÿdatei$ÿ"buchung1"ÿp
+az%ÿaz%ÿ1
+xjj%ÿ0
+xend%ÿ0
+ÿ¡ÿ>(datei$)ÿ"BUCHUNG"ÿp
+datei1$ÿexpverz$ÿ"\"ÿ"buch-"ÿÿ(az%,"00")ÿ".cod"
+ÿ^
+datei1$ÿexpverz$ÿ"\"ÿ"buch1-"ÿÿ(az%,"00")ÿ".cod"
+ÿ’ÿ¡
+ÿ´datei1$ÿ›ÿ¶
+ÿ{"<?xml version="ÿÿ(34)ÿ"1.0"ÿÿ(34)ÿ" encoding="ÿÿ(34)ÿ"ISO-8859-1"ÿÿ(34)ÿ"?> "
+ÿ{""
+ÿ{"<CODIE-EXPORT>"
+ÿ’ÿ¡
+origdatei$ÿdatei$
+ÿ¡datei$ÿ"connect"ÿdatei$ÿ"conbck"ÿdatei$ÿ"conadr1"ÿp
+ÿ¡ÿJ(_netpath$ÿ"office\conreo.sbf")ÿp
+ÿ¡ÿ´("conreo")ÿpÿ†ÿ™"conreo"
+ÿ_netpath$ÿ"\office\conreo.*"
+ÿ’ÿ¡
+ÿÏÿ›1
+ÿÀÿ™datei$ÿq_netpath$ÿ"office\conreo.sbf"
+ÿÏÿ›3
+fcon$ÿ"conreo"
+ÿ™fcon$
+ÿ£codeku.fcon$
+ÿÉÿ`
+l%ÿ0
+ÿØÿOÿB(fcon$)
+codecon%ÿcodecon.fcon$
+codeku%ÿcodeku.fcon$
+codekucon$ÿÿ(codecon%,"000000")ÿÿ(codeku%,"000000")
+ÿ¡ÿJ(codekucon$,codekucon.fcon$)ÿp
+	ÿ¾ÿaÿ™fcon$ÿĞcodekucon.fcon$ÿcodekucon$
+	l%ÿl%ÿ1
+ÿ’ÿ¡
+ÿÊÿËÿ(l%,",999999")
+ÿÉÿ±ÿ™fcon$
+ÿÙ
+datei$ÿfcon$
+ÿÉÿ`ÿ™datei$
+ÿ’ÿ¡
+ÿØÿOÿB(datei$)
+ÿßÿe
+jjj%ÿjjj%ÿ1
+xjj%ÿxjj%ÿ1
+ÿÊÿËdatei$ÿ"    "ÿÿ(jjj%,",99999999")ÿ"   von   "ÿÿ(kkk%,",99999999")
+textdo1$ÿdatei$
+textdo$ÿ"Exportiere "ÿÿ(jjj%,",99999999")ÿ"   von   "ÿÿ(kkk%,",99999999")
+ÿœ
+ÿ{"<CODIE-SATZ>"
+
+ 
+ÿ›i%ÿ0ÿqfeldanz%ÿ1
+fname0$ÿfelder$(i%)
+ÿ¡fname0$ÿ"VertrStatu*"ÿfname0$ÿ"BWVertrStatu*"ÿfname0$ÿ"BeiVertrStatu*"ÿfname0$ÿ"EinhStatu*"ÿfname0$ÿ"AnzSchStatu*"ÿfname0$ÿ"SchStatu*"ÿfname0$ÿ"CAgez*"ÿp
+	ÿwwei060120061
+ÿ’ÿ¡
+fname1$ÿfeldera$(i%)
+ÿ½ IF fname1$ LIKE "*" OR fname1$ LIKE "**" OR fname1$ LIKE "š*" OR fname1$ LIKE "*š*" OR fname1$ LIKE "™*" OR fname1$ LIKE "*™*" OR fname1$ LIKE "á*" OR fname1$ LIKE "*á*" THEN 
+	ÿ½ fname1$ = VSNRPackEx$( UCASE$ (felder$(i%)))
+ÿ½ END IF 
+ÿ¡feldtyp$(i%)ÿ"DEL"ÿpÿwwei060120061
+ÿ¡feldtyp$(i%)ÿ"NUM"ÿp
+ÿ½ CALL Fehler("NUM",feldanzeig$(i%))
+le%ÿÿ/(feldanzeig$(i%))
+pos%ÿ0
+pos%ÿÿ?(feldanzeig$(i%),".")
+ok%ÿ0
+ÿ¡pos%ÿ0ÿle%ÿpos%ÿp
+
+ok%ÿ1
+
+vorkomma%ÿpos%ÿ1
+
+nachkomma%ÿle%ÿpos%
+
+ÿ¡fname0$$ÿ0ÿfname0$ÿ"noan*"ÿfname0$ÿ"cod*"ÿfname0$ÿ"vorg*"ÿfname0$ÿ"lfdnr*"ÿfname0$ÿ"filia*"ÿfname0$ÿ"workstation*"ÿfname0$ÿ"bro*"ÿp
+ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿÿH(ÿ(fname0$$,"999999999.0000"))ÿ"]]></"ÿfname1$ÿ">"
+
+ÿ’ÿ¡
+ÿ^
+
+ok%ÿ1
+
+ÿ¡fname$ÿ"TIMESTAMP*"ÿp
+
+ÿ^
+ÿ¡fname0$$ÿ0ÿfname0$ÿ"noan*"ÿfname0$ÿ"cod*"ÿfname0$ÿ"vorg*"ÿfname0$ÿ"lfdnr*"ÿfname0$ÿ"filia*"ÿfname0$ÿ"workstation*"ÿfname0$ÿ"bro*"ÿp
+ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿÿH(ÿ(fname0$$,"999999999."))ÿ"]]></"ÿfname1$ÿ">"
+ÿ’ÿ¡
+
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"NMI"ÿp
+ok%ÿ1
+ÿ¡fname0$$ÿ0ÿfname0$ÿ"noan*"ÿpÿ{"<"ÿfname1$ÿ"><![CDATA["ÿÿH(ÿ(fname0$$,"999999999."))ÿ"]]></"ÿfname1$ÿ">"
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"TXT*"ÿp
+ok%ÿ1
+ÿ¡fname0$ÿ"Waehrung*"ÿp
+
+ÿ½ CALL Fehler("","")
+
+finh$ÿÿ>(fname0$$)
+ÿ^
+
+finh$ÿfname0$$
+ÿ’ÿ¡
+ÿ½ IF LEFT$ (finh$,1) = "<" THEN 
+
+ÿ½ tinh$ = MID$ (finh$,2)
+
+ÿ½ finh$ = tinh$
+ÿ½ END IF 
+ÿ½ IF RIGHT$ (finh$,1) = ">" THEN 
+
+ÿ½ len1% = LEN (finh$) - 1
+
+ÿ½ tinh$ = MID$ (finh$,1,len1%)
+
+ÿ½ finh$ = tinh$
+ÿ½ END IF 
+le%ÿÿ/(finh$)
+ÿ¡le%ÿ2000ÿp
+
+txt1$ÿÿåansi(ÿ+(finh$,2000))
+
+testwert$ÿÿ(7)
+
+pos%ÿ0
+
+pos%ÿÿ?(txt1$,testwert$)
+
+ÿ¡pos%ÿ0ÿp
+txt1a$ÿÿ+(txt1$,pos%ÿ1)ÿÿ,(txt1$,pos%ÿ1)
+txt1$ÿtxt1a$
+
+ÿ’ÿ¡
+
+ÿ{"<"ÿfname1$ÿ"><![CDATA["
+
+ÿ{txt1$
+
+txt1$ÿÿåansi(ÿ,(finh$,2000))
+
+testwert$ÿÿ(7)
+
+pos%ÿ0
+
+pos%ÿÿ?(txt1$,testwert$)
+
+ÿ¡pos%ÿ0ÿp
+txt1a$ÿÿ+(txt1$,pos%ÿ1)ÿÿ,(txt1$,pos%ÿ1)
+txt1$ÿtxt1a$
+
+ÿ’ÿ¡
+
+ÿ{txt1$
+
+ÿ{"]]></"ÿfname1$ÿ">"
+ÿ^
+
+ÿ½ CALL Fehler(fname0$,nachname.supervis)
+
+ÿ¡(fname0$ÿ"Paáwort")ÿ(datei$ÿ"supervis"ÿdatei$ÿ"filiale")ÿp
+pw$ÿ""
+ÿ¡datei$ÿ"supervis"ÿp
+pw$ÿPWDecoded$()
+ÿ’ÿ¡
+ÿ¡datei$ÿ"filiale"ÿp
+pw$ÿFPWDecoded$()
+ÿ’ÿ¡
+ÿ¡pw$ÿ""ÿpÿ{"<"ÿfname1$ÿ"><![CDATA["ÿÿåansi(pw$)ÿ"]]></"ÿfname1$ÿ">"
+
+ÿ^
+txt1$ÿÿ+(ÿåansi(ÿF(ÿH(finh$))),le%)
+ÿ¡txt1$ÿ""ÿfname0$ÿ"noan*"ÿp
+ÿ½ ASCII -> BEL
+testwert$ÿÿ(7)
+pos%ÿ0
+pos%ÿÿ?(txt1$,testwert$)
+ÿ¡pos%ÿ0ÿp
+txt1a$ÿÿ+(txt1$,pos%ÿ1)ÿÿ,(txt1$,pos%ÿ1)
+txt1$ÿtxt1a$
+ÿ’ÿ¡
+
+ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿtxt1$ÿ"]]></"ÿfname1$ÿ">"
+ÿ’ÿ¡
+
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"LOG"ÿp
+ok%ÿ1
+ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿfname0$$ÿ"]]></"ÿfname1$ÿ">"
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"DAT"ÿp
+	ok%ÿ1
+	ÿ¡fname0$$ÿ0ÿp
+ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿÿ(fname0$$,"yyyymmdd")ÿ"]]></"ÿfname1$ÿ">"
+	ÿ^
+ÿ½ ? "<" + fname1$ + ">" + "</" + fname1$ + ">"
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"TIM"ÿp
+	ok%ÿ1
+	ÿ¡fname0$$ÿ0ÿp
+ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿÿ7(fname0$$,"hh:mm")ÿ"]]></"ÿfname1$ÿ">"
+	ÿ^
+ÿ½ ? "<" + fname1$ + ">" + "</" + fname1$ + ">"
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡fname$ÿ"TIMESTAMP*"ÿp
+	ok%ÿ1
+	ÿ½ ? "<" + fname1$ + ">" + "</" + fname1$ + ">"
+ÿ’ÿ¡
+ÿ½ ? befstring$;
+ÿ¡ok%ÿ0ÿp
+	t$ÿfeldtyp$(i%)
+	ÿÂt$,"nicht angelegt",2
+ÿ’ÿ¡
+wei060120061: 
+ÿ±i%
+
+ÿ{"</CODIE-SATZ>"
+ÿ½ CALL Fehler( STR$ (xjj%,",999999"),"")
+ÿ¡ÿ>(datei$)ÿ"BUCHUNG*"ÿp
+ÿ¡xjj%ÿ200000ÿp
+	ÿ{"</CODIE-EXPORT>"
+	ÿ†ÿ¶
+	xend%ÿ1
+	ÿwazsg041120051
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿ™datei$
+ÿÙ
+ datei$ÿorigdatei$
+ ÿ¡art%ÿ1ÿxend%ÿ0ÿp
+ÿ{"</CODIE-EXPORT>"
+ÿ†ÿ¶
+ ÿ’ÿ¡
+ ÿ½ CALL Fehler("TMPSTR99","")
+ ÿ½ ? "AAAA"
+ ÿ½ LOAD "TMPSTR99.SBP", NEW 
+ ÿ½ CALL TMPSTR99()
+ ÿ½ CLOSE PROGRAMFILE "TMPSTR99"
+ ÿ’ÿÿ
+
+
+
+ÿÿVSNRPackEx$(VSNR$)
+ tVSNR$ÿ""
+ ÿ›a%ÿ1ÿqÿ/(VSNR$)
+tC$ÿÿ>(ÿ,(VSNR$,a%,1))
+	x%ÿÿ.(ÿ+(ÿ>(tC$),1))
+	ÿÉÿæx%
+ÿæ142
+tC$ÿ"AE"
+ÿæ153
+tC$ÿ"OE"
+ÿæ154
+tC$ÿ"UE"
+	ÿ’ÿÉ
+	ÿ¡tc$ÿ"á"ÿptc$ÿ"SS"
+ÿ½ SELECT CASE tC$
+ÿ½ CASE "A" TO "Z","0" TO "9"
+tVSNR$ÿtVSNR$ÿtC$
+ÿ½ END SELECT 
+ ÿ±a%
+ VSNRPackEx$ÿtVSNR$
+ ÿ’ÿÿ
+
+ÿÿCheckKVSKOND()
+ ÿßÿe
+ ÿƒDFile(3,"KVERTRAG"ÿ_fpw$)
+ ÿƒDFile(3,"VPGEKOND"ÿ_fpw$)
+ ÿƒDFile(3,"KVSKOND"ÿ_fpw$)
+ ÿßÿe
+ ÿ™"kvertrag"
+ ÿ£lfdnr
+ ÿ™"vpgekond"
+ ÿ£codekey
+ ÿ™"kvskond"
+ ÿ£codeko
+ ÿ¡ÿA("kvskond")ÿ0ÿp
+codekoold%ÿ0
+i%ÿ0
+f%ÿ0
+j%ÿÿA("kvskond")
+ÿÉÿ`ÿá
+ÿØÿOÿB("KVSKOND")
+codeko%ÿcodeko.kvskond
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ"     codeko = "ÿÿ(codeko%,",99999999")ÿ"  gel”scht: "ÿÿ(f%,",99999999")
+anfkvs010320071: 
+codeko%ÿcodeko.kvskond
+ÿ¡ÿOÿJ(codeko%,codekey.vpgekond)ÿp
+ÿßÿe
+f%ÿf%ÿ1
+ÿÊÿËÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ"     codeko = "ÿÿ(codeko%,",99999999")ÿ"  gel”scht: "ÿÿ(f%,",99999999")
+ÿ½ REMOVE FROM FILE "kvskond" WHERE codeko.kvskond = codeko%
+ÿÉÿ¾ÿ™"kvskond"
+ÿÉÿ¥codekoold%ÿáÿ™"kvskond"ÿ£codeko.kvskond
+i%ÿ0
+j%ÿÿA("kvskond")
+ÿwanfkvs010320071
+ÿ’ÿ¡
+codekoold%ÿcodeko%
+ÿÉÿ±ÿáÿ™"kvskond"ÿ£codeko.kvskond
+ÿÙ
+ÿ™"kvskond"
+ÿ£codevt.kvskond
+ÿÉÿ`
+ÿ™"kvertrag"
+ÿ£lfdnr
+i%ÿ0
+j%ÿÿA("kvertrag")
+ÿÉÿ`ÿá
+ÿØÿOÿB("Kvertrag")
+lfdnr%ÿlfdnr.kvertrag
+ÿßÿe
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ" Vertr„ge bearbeitet"
+ÿ¡sollst.kvertragÿ"j"ÿp
+ÿ¡ÿOÿJ(lfdnr%,codevt.kvskond)ÿp
+
+sollst.kvertragÿ"n"
+
+ÿÌÿ™"kvertrag"
+ÿ’ÿ¡
+ÿ^
+ÿ¡ÿJ(lfdnr%,codevt.kvskond)ÿp
+
+ÿÉÿ¥lfdnr%ÿáÿ™"kvskond"ÿ£codevt.kvskond
+
+ÿÉÿ¾ÿ™"kvskond"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÙ
+ ÿ^
+ÿßÿe
+ÿÊÿË"Bitte warten, Vertragsdatei wird angepasst!"
+ÿ™"kvertrag"
+ÿÍsollst.kvertragÿ"n"
+ÿ’ÿÍ
+ÿÊÿË"Vertragsdatei wurde angepasst!"
+ ÿ’ÿ¡
+ ÿÂ"Konditionsprfung und Anpassung Vertragsdatei beendet!","",2
+ ÿÊÿË""
+ ÿ’ÿÿ
+
+ÿÿCheckDynVertr()
+ ÿƒDFile(3,"KVERTRAG"ÿ_fpw$)
+ ÿƒDFile(3,"VKOND"ÿ_fpw$)
+ÿ™"vkond"
+ÿ£codevk.vkond
+ÿ™"kvertrag"
+ÿ³ÿ_ÿww070820082
+ÿ‰ÿ£ÿ³codeko.kvertrag
+w070820082: 
+ÿ³ÿ_ÿwErrorHandler
+ÿ£codeko.kvertrag
+ÿÉÿ`
+ÿÉÿ¥1ÿáÿ™"kvertrag"ÿ£codeko.kvertrag
+i%ÿ0
+j%ÿÿA("kvertrag")
+ÿØÿOÿB("kvertrag")
+ÿÉÿ`ÿ™"vkond"ÿ£codevk.vkond
+_kond%ÿcodeko.kvertrag
+codevt%ÿlfdnr.kvertrag
+ÿ¡codevstatus.kvertragÿ
+1ÿp
+codevstatus.kvertragÿ12
+VStatusTxT.kvertragÿ"Antrag"
+ÿÌÿ™"KVERTRAG"
+ÿ’ÿ¡
+ÿÉÿ`ÿ™"vkond"ÿ£codevk.vkond
+ok%ÿÿ1
+ÿØok%ÿÿ1
+ÿÉÿ¥_kond%ÿáÿ™"vkond"ÿ£codevk.vkond
+codevt.vkondÿcodevt%
+ÿÌÿ™"vkond"
+ÿ¡n„chsteKond.VKONDÿ0ÿp
+_kond%ÿn„chsteKond.VKOND
+ÿÉÿ`ÿ™"vkond"ÿ£codevk.vkond
+a%ÿa%ÿ1
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+ÿÙ
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ" von KVERTRAG bearbeitet, Prf. VKOND"
+ÿÉÿ±ÿáÿ™"kvertrag"
+ÿÙ
+ 
+ 
+ ÿww070820081
+ ÿ™"kvertrag"
+ÿ£codeko.kvertrag
+ÿÉÿ`
+ÿÉÿ¥1ÿ™"kvertrag"ÿ£codeko.kvertrag
+codekoold%ÿ0
+i%ÿ0
+lfdnrold%ÿ0
+vs_nrold$ÿ""
+ÿØÿOÿB("kvertrag")
+i%ÿi%ÿ1
+ÿ¡codeko.kvertragÿcodekoold%ÿp
+ÿ½ ? "old: " + STR$ (lfdnrold%,"000000") + "/" + vs_nrold$ + " - " + statusold$ + "---akt: " + STR$ (lfdnr.kvertrag,"000000") + " - " + VStatusTxT.kvertrag + "/" + STR$ (codeko.kvertrag,"000000")
+ÿ^
+codekoold%ÿcodeko.kvertrag
+lfdnrold%ÿlfdnr.kvertrag
+vs_nrold$ÿvs_nr.kvertrag
+statusold$ÿVStatusTxT.kvertrag
+ÿ’ÿ¡
+ÿÊÿËÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ" von KVERTRAG bearbeitet"
+ÿÉÿ±ÿ™"kvertrag"
+ÿÙ
+ 
+w070820081: 
+ ÿ™"kvertrag"
+ÿ£lfdnr.kvertrag
+ÿÉÿ`ÿá
+codekoold%ÿ0
+i%ÿ0
+lfdnrold%ÿ0
+vs_nrold$ÿ""
+j%ÿÿA("kvertrag")
+ÿØÿOÿB("kvertrag")
+i%ÿi%ÿ1
+ÿ¡Antragsdatum.kvertragÿ
+1ÿp
+Antragsdatum.kvertragÿVS_Beginn.kvertrag
+ÿÌÿ™"KVERTRAG"
+ÿ’ÿ¡
+ÿÊÿËÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ" von KVERTRAG bearbeitet wegen Antragsdatum"
+ÿÉÿ±ÿáÿ™"kvertrag"
+ÿÙ
+ 
+
+ ÿ’ÿÿ
+
+ÿÿVKMainMani()
+ ÿ¡ÿOÿ´("sparten")ÿpÿƒDFile(3,"sparten"ÿ_fpw$)
+ ÿ¡ÿOÿ´("geadr")ÿpÿƒDFile(3,"geadr"ÿ_fpw$)
+ ÿ¡ÿOÿ´("gekond")ÿpÿƒDFile(3,"gekond"ÿ_fpw$)
+ ÿ¡ÿOÿ´("vkond")ÿpÿƒDFile(3,"vkond"ÿ_fpw$)
+ ÿ¡ÿOÿ´("maadr")ÿpÿƒDFile(3,"maadr"ÿ_fpw$)
+ ÿ¡ÿOÿ´("kvertrag")ÿpÿƒDFile(3,"kvertrag"ÿ_fpw$)
+ ÿ¡ÿOÿ´("vprodukt")ÿpÿƒDFile(3,"vprodukt"ÿ_fpw$)
+ 
+ ÿ™"kvertrag"
+ ÿ£proviab.kvertrag
+ ÿÉÿ`ÿ™"kvertrag"ÿ£proviab.kvertrag
+ ÿÉÿ¥1ÿ™"kvertrag"ÿ£proviab.kvertrag
+ i%ÿ0
+ j%ÿÿA("kvertrag")
+ ÿØÿOÿB("kvertrag")
+i%ÿi%ÿ1
+ÿ¡proviab.kvertragÿ0ÿp
+ÿ¡codeko.kvertragÿ0ÿp
+ÿƒVKONDManipula(lfdnr.kvertrag)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÊÿËÿ(i%,",999999")ÿ"/"ÿÿ(j%,",999999")ÿ" Vertragskonditionen geprft"
+ÿÉÿ±ÿ™"kvertrag"ÿ£proviab.kvertrag
+ ÿÙ
+ ÿ’ÿÿ
+ 
+ÿÿVKONDManipula(codevt%)
+ ÿÉÿ`ÿ™"stamm"
+ oberfirma%ÿoberfirma.stamm
+ BWStart%ÿproviab.kvertrag
+ codeko%ÿcodeko.kvertrag
+ codvp%ÿcodevp.kvertrag
+ codege%ÿcodege.kvertrag
+ codeva%ÿcodeva.kvertrag
+ proviab%ÿproviab.kvertrag
+ QuickCode$ÿÿ(oberfirma%,"000000")ÿÿ(CodeGE%,"000000")ÿÿ(CodeVA%,"000000")
+ _kond%ÿcodeko%
+ ÿ¡ÿOÿ´("gekond")ÿpÿƒDFile(3,"gekond"ÿ_fpw$)
+ ÿ¡ÿOÿ´("vkond")ÿpÿƒDFile(3,"vkond"ÿ_fpw$)
+ ÿ¡ÿOÿ´("maadr")ÿpÿƒDFile(3,"maadr"ÿ_fpw$)
+ ÿ¡ÿOÿ´("kvertrag")ÿpÿƒDFile(3,"kvertrag"ÿ_fpw$)
+ ÿ½ CALL Fehler("Start: VKOND-Manipulation","")
+ ok%ÿÿ1
+ a%ÿ0
+ ÿØok%ÿÿ1
+ÿÉÿ`ÿ™"VKOND"ÿ£CodeVK.VKOND
+ÿÉÿ¥_kond%ÿ™"VKOND"ÿ£CodeVK.VKOND
+
+ÿÉÿ`ÿ™"GEKOND"ÿ£lfdnr.GEKOND
+ÿÉÿ¥CodeKO.VKONDÿ™"GEKOND"ÿ£lfdnr.GEKOND
+ap%ÿap.gekond
+courtage%ÿcourtage.gekond
+PflegeProvi%ÿPflegeProvi.gekond
+ÿÉÿ`ÿ™"MAADR"ÿ£CodeMA.MAADR
+ÿÉÿ¥CodeMA.GEKONDÿ™"MAADR"ÿ£CodeMA.MAADR
+ÿ¡n„chsteKond.VKONDÿ0ÿp
+_kond%ÿn„chsteKond.VKOND
+a%ÿa%ÿ1
+ÿ^
+ÿ½ CALL Fehler( STR$ (a%,"99") + " n„chste VKOND=0","")
+ok%ÿ0
+ÿ’ÿ¡
+ ÿÙ
+ ÿ¡codema.vkondÿoberfirma%ÿp
+ÿ¡codege%ÿ54ÿcodeva%ÿ99ÿp
+ÿ½ CALL Fehler("AuM,Sach-Wohngeb„ude","")
+ÿ’ÿ¡
+codevkold%ÿCodeVK.VKOND
+ÿ½ die Oberfirma ist nicht der letzte Vorg„nger
+lfdnrold%ÿlfdnr.gekond
+ÿ¡ÿJ(QuickCode$,QuickCode.gekond)ÿp
+ÿÉÿ`ÿ™"gekond"ÿ£QuickCode.gekond
+ÿÉÿ¥QuickCode$ÿáÿ™"gekond"ÿ£QuickCode.gekond
+lfdnrneu%ÿ0
+notfound%ÿ1
+ÿØnotfound%ÿ1ÿQuickCode.GEKONDÿQuickCode$ÿÿOÿB("GEKOND")
+ 
+ÿ½ -------------------------------
+ÿ½ -- Bewertungszeitraum ermitteln
+ÿ½ -------------------------------
+ 
+ÿ¡ÿ1(BWvon.GEKOND)ÿ
+1ÿpBWvon%ÿÿ1("1.1.1980")ÿ^BWvon%ÿÿ1(BWvon.GEKOND)
+ÿ¡ÿ1(BWbis.GEKOND)ÿ
+1ÿpBWbis%ÿÿ1("31.12.2300")ÿ^BWbis%ÿÿ1(BWbis.GEKOND)
+ÿ½ 130597
+ÿ¡BWStart%ÿBWvon%ÿBWStart%ÿ	BWbis%ÿp
+	notfound%ÿ0
+ÿ^
+	ÿÉÿ±ÿáÿ™"gekond"ÿ£QuickCode.GEKOND
+ÿ’ÿ¡
+ÿÙ
+ÿ¡notfound%ÿ0ÿp
+lfdnrneu%ÿlfdnr.gekond
+ÿ^
+lfdnrneu%ÿ0
+ÿ’ÿ¡
+ÿ^
+notfound%ÿ1
+ÿ’ÿ¡
+ÿ¡notfound%ÿ0ÿp
+ÿ¡ap.gekondÿ
+ap%ÿpap.gekondÿap%
+ÿ¡courtage.gekondÿ
+courtage%ÿpcourtage.gekondÿcourtage%
+ÿ¡PflegeProvi.gekondÿ
+PflegeProvi%ÿpPflegeProvi.gekondÿPflegeProvi%
+ÿÌÿ™"gekond"
+ÿ’ÿ¡
+ÿ¡notfound%ÿ1ÿp
+ÿÉÿ`ÿ™"gekond"ÿ£lfdnr.gekond
+ÿÉÿ¥lfdnrold%ÿ™"gekond"ÿ£lfdnr.gekond
+ÿÿ]ÿ™"gekond"
+lfdnrneu%ÿÿI("gekond",1)
+lfdnr.gekondÿlfdnrneu%
+codema.gekondÿoberfirma%
+SRjn.gekondÿ"n"
+sr.gekondÿ0
+ÿƒQuickStore("gekond")
+ÿ’ÿ¡
+ÿ½ jetzt VKOND Datensatz neu anlegen und den vorhandenen n„chsteKond.VKOND=codevkneu
+ÿÿ™"vkond"
+codevkneu%ÿÿI("vkond",1)
+codevk.vkondÿcodevkneu%
+codeko.vkondÿlfdnrneu%
+codevt.vkondÿcodevt%
+codema.vkondÿoberfirma%
+n„chsteKond.vkondÿ0
+ÿƒQuickStore("vkond")
+ÿ½ jetzt die alte VKOND manipulieren und bei n„chstekond.vkond lfdnrneu eintragen
+ÿÉÿ`ÿ™"VKOND"ÿ£CodeVK.VKOND
+ÿÉÿ¥codevkold%ÿáÿ™"VKOND"ÿ£CodeVK.VKOND
+n„chsteKond.Vkondÿcodevkneu%
+ÿƒQuickStore("vkond")
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+
+ÿÿCheckConnect()
+ ÿßÿe
+ ÿƒDFile(2,"office\connect"ÿ_fpw$)
+ ÿ™"connect"
+ ÿ£codecon
+ ÿÉÿ`ÿá
+ i%ÿ0
+ j%ÿÿA("connect")
+ ÿØÿOÿB("connect")
+i%ÿi%ÿ1
+ÿ¡codekey.connectÿ
+1ÿp
+codekey.connectÿÿI("connect",1)
+ÿÌÿ™"connect"
+ÿ’ÿ¡
+ÿÊÿËÿ(i%,",999999")ÿ"/"ÿÿ(j%,",999999")
+ÿÉÿ±ÿáÿ™"connect"ÿ£codecon.connect
+ ÿÙ
+ ÿ’ÿÿ
+
+
+ÿÿAutoFiVorg()
+ ÿÉÿ`ÿ™"stamm"
+ oberfirma%ÿoberfirma.stamm
+ ÿ¡ÿOÿ´("maadr")ÿpÿƒDFile(3,"maadr"ÿ_fpw$)
+ ÿ¡ÿOÿ´("mavorg")ÿpÿƒDFile(3,"mavorg"ÿ_fpw$)
+ ÿ™"mavorg"
+ ÿ£codema.mavorg
+ ÿ¾ÿaÿ™"mavorg"ÿĞcodema.mavorgÿ0
+ ÿ™"maadr"
+ ÿ£codema.maadr
+ ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ ÿÉÿ¥oberfirma%ÿ™"maadr"ÿ£codema.maadr
+maname$ÿnachname.maadr
+mavorname$ÿvorname.maadr
+maagnr$ÿAgenturnr.maadr
+ 
+ ÿÉÿ`ÿáÿ™"maadr"ÿ£codema.maadr
+ ÿØÿOÿB("maadr")
+codema%ÿcodema.maadr
+ÿ¡(codema.maadrÿvorg„nger.maadrÿcodema.maadrÿoberfirma%)ÿp
+ÿ½ Oberfirma zum Vorg„nger machen
+ÿÉÿ`ÿ™"mavorg"ÿ£codema.mavorg
+ÿÉÿ¥codema%ÿáÿ™"mavorg"ÿ£codema.mavorg
+ÿ¡aktiviert.mavorgÿ"j"ÿp
+codevma.mavorgÿoberfirma%
+NameVMA.mavorgÿmaname$
+VornameMA.mavorgÿmavorname$
+AgenturnrVMA.mavorgÿmaagnr$
+aktiviert.mavorgÿ"j"
+ÿÌÿ™"mavorg"
+vorg„nger.maadrÿoberfirma%
+ÿÌÿ™"maadr"
+ÿ’ÿ¡
+ÿ^
+ÿ¡codema.maadrÿ0ÿvorg„nger.maadrÿ0ÿp
+ÿ½ oberfirma als vorg„nger aufnehmen
+codema%ÿcodema.maadr
+ÿƒFehler("codema: "ÿÿ(codema%,"000000"),"")
+ÿÿ™"mavorg"
+
+codekey%ÿÿI("mavorg",1)
+codekey.mavorgÿcodekey%
+ÿÉÿ¥codekey%ÿáÿ™"mavorg"ÿ£codekey.mavorg
+codema.mavorgÿcodema%
+codevma.mavorgÿoberfirma%
+NameVMA.mavorgÿmaname$
+VornameMA.mavorgÿmavorname$
+AgenturnrVMA.mavorgÿmaagnr$
+von.mavorgÿ"01.01.1990"
+aktiviert.mavorgÿ"j"
+ÿÌÿ™"mavorg"
+vorg„nger.maadrÿoberfirma%
+ÿÌÿ™"maadr"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿáÿ™"maadr"ÿ£codema.maadr
+ ÿÙ
+ ÿ’ÿÿ
+ 
+
+ÿÿCheckBuch()
+ ÿ¡ÿOÿ´("stamm")ÿpÿƒDFile(3,"stamm"ÿ_fpw$)
+ ÿÉÿ`ÿ™"stamm"
+ÿ¡PrvVerfahr$ÿ"Zahlungseingang"ÿp
+budat$ÿ"Buchung1"
+ ÿ^
+budat$ÿ"Buchung"
+ ÿ’ÿ¡
+ ÿ¡ÿOÿ´(budat$)ÿpÿƒDFile(3,budat$ÿ_fpw$)
+ ÿ™budat$
+ ÿ£codebu
+ ÿ¡ÿA(budat$)ÿ0ÿp
+i%ÿ0
+j%ÿÿA(budat$)
+ÿÉÿ`ÿáÿ™budat$ÿ£codebu
+ÿØÿOÿB(budat$)
+ÿßÿe
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ" "ÿbudat$
+ÿ¡provisionÿ"j"ÿp
+ÿ¡buchungstext ÿ"AP*"ÿbuchungstext ÿ"Abschlu*"ÿp
+	apjnÿ"j"
+	courtjn ÿ"n"
+	pflegejnÿ"n"
+ÿ’ÿ¡
+ÿ¡buchungstext ÿ"Courtag*"ÿp
+	apjn ÿ"n"
+	courtjn ÿ"j"
+	pflegejn ÿ"n"
+ÿ’ÿ¡
+ÿ¡buchungstext ÿ"Pfleg*"ÿp
+	apjn ÿ"n"
+	courtjn ÿ"n"
+	pflegejn ÿ"j"
+ÿ’ÿ¡
+ÿÌÿ™budat$
+ÿ’ÿ¡
+ÿÉÿ±ÿáÿ™budat$ÿ£codebu
+ÿÙ
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+
+

@@ -1,0 +1,344 @@
+SBP
+ÿÿmain()
+ ÿ¾ÿñÿt
+ÿÿGSpGruppe$(1),GSPGrausw$(1),GSpGrPrompt$
+ÿÿGGesell$(1),GGesellausw$(1),GGesellPrompt$
+ÿÿGSpart$(1),GSpartausw$(1),GSpartPrompt$
+ÿÿggewprod$(1),ggewprod1$(1),ggewprod2$
+
+ÿÿdlg ÿUDIALOG ,control ÿUDialogControl
+
+ÿƒA2()
+ ÿ’ÿÿ
+
+ÿÿA2()
+
+ ÿ™"spgruppe"
+ ÿ£Gruppe
+ ÿÉÿ`
+ codegrsp%ÿcodegrsp.spgruppe
+ ÿ½ control.Bind("GSpGruppe$","GSPGrausw$","GSpGrPrompt$")
+ ÿÿGSpGruppe$(ÿA("spgruppe"),1)
+ ÿÿGSpGruppe$(ÿA("spgruppe"))
+ a%ÿ0
+ ÿØÿOÿB("spgruppe")
+ÿ¡ÿH(Gruppe.spgruppe)ÿ""ÿp
+GSpGruppe$(a%)ÿGruppe.spgruppeÿÿ'(160)ÿÿ(CodeGRSP.spgruppe,"000000")
+a%ÿa%ÿ1
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"spgruppe"
+ ÿÙ
+ GSpGrPrompt$ÿGSpGruppe$(0)
+ GSpGranz%ÿa%
+ 
+ ÿ½ GGesell$(1),GGesellausw$(1),GGesellPrompt$
+ ÿÿGGesell$(ÿA("geadr"),1)
+ ÿÿGGesell$(ÿA("geadr"))
+ ÿ™"vprodukt"
+ ÿ£codegrsp.vprodukt
+ ÿÉÿĞ
+ ÿÉÿĞcodegrsp.vproduktÿcodegrsp%
+ ÿ£codege.vprodukt
+ GGesellanz%ÿ0
+ ÿÉÿ`
+codegeold%ÿÿ1
+a%ÿ0
+ÿØÿOÿB("Vprodukt")
+ÿ¡codege.vproduktÿ0ÿcodege.vproduktÿcodegeold%ÿp
+codege%ÿcodege.Vprodukt
+codegeold%ÿcodege.Vprodukt
+j%ÿÿ1
+ÿ¡ÿH(Gesellschaft.vprodukt)ÿ""ÿp
+	GGesell$(a%)ÿGesellschaft.vproduktÿÿ'(160)ÿÿ(CodeGE.vprodukt,"000000")
+	a%ÿa%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"Vprodukt"ÿ£codege.Vprodukt
+ÿÙ
+GGesellPrompt$ÿGGesell$(0)
+ÿ¡a%ÿ0ÿpGGesellanz%ÿa%
+
+ ÿ½ GSpart$(1),GSpartausw$(1),GSpartPrompt$
+ ÿÿGSpart$(ÿA("Sparten"),1)
+ ÿÿGSpart$(ÿA("Sparten"))
+ ÿ£codeva.vprodukt
+ ÿÉÿ`
+codevaold%ÿÿ1
+a%ÿ0
+Gspartanz%ÿ0
+ÿØÿOÿB("Vprodukt")
+ÿ¡codeva.vproduktÿ0ÿcodeva.vproduktÿcodevaold%ÿp
+codeva%ÿcodeva.Vprodukt
+codevaold%ÿcodeva.Vprodukt
+j%ÿÿ1
+ÿ¡ÿH(Sparte.vprodukt)ÿ""ÿp
+	ge$ÿÿ+(Gesellschaft.vprodukt,20)
+	ge$ÿÿK(ge$,20)
+	gsp$ÿge$ÿ"  -  "ÿsparte.vprodukt
+	GSpart$(a%)ÿgsp$ÿÿ'(160)ÿÿ(Codevp.vprodukt,"000000")
+	a%ÿa%ÿ1
+ÿ’ÿ¡
+ÿ½ END IF 
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"Vprodukt"ÿ£codeva.Vprodukt
+ÿÙ
+GSpartPrompt$ÿGSpart$(0)
+ÿ¡a%ÿ0ÿpGspartanz%ÿa%
+ÿÉÿĞÿ™"vprodukt"
+ÿßÿ³
+
+
+ÿ½ DIM dlg AS Dialog
+ÿ½ DIM control AS DialogControl
+ 
+Superbase.Dialogs.Add("ProdSel")
+ÿÊdlg ÿSuperbase.Dialogs.ProdSel
+ÿ½ dlg.OnActivate = "PFillList1"
+dlg.Move(0,0,526,310)
+dlg.Captionÿ"Produktauswahl"
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+
+ÿÊcontrol ÿdlg.Add("DialogLabel1","DialogLabel")
+control.Move(4,10,57,13)
+control.Captionÿ"Spartengruppen"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel2","DialogLabel")
+control.Move(137,10,57,13)
+control.Captionÿ"Gesellschaften"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel3","DialogLabel")
+control.Move(284,10,57,11)
+control.Captionÿ"Produkte"
+ 
+ÿÊcontrol ÿdlg.Add("spgruppen","DialogListBox")
+control.Move(2,23,127,274)
+control.ScrollBarsÿ2
+control.Sortedÿ1
+control.Bind("GSpGruppe$","GSPGrausw$","GSpGrPrompt$")
+control.OnSelChangeÿ"SelSpGruppe"
+ 
+ÿÊcontrol ÿdlg.Add("gesell","DialogListBox")
+control.Move(136,23,120,274)
+control.ScrollBarsÿ2
+control.Sortedÿ1
+control.Bind("GGesell$","GGesellausw$","GGesellPrompt$")
+control.OnSelChangeÿ"SelGesell"
+ 
+ÿÊcontrol ÿdlg.Add("produkte","DialogListBox")
+control.Move(260,23,218,274)
+control.ScrollBarsÿ2
+control.Sortedÿ1
+control.Bind("GSpart$","GSpartausw$","GSpartPrompt$")
+control.OnSelChangeÿ"SelProdukt"
+
+ggewprod$(0)ÿ"gew„hltes Produkt: "
+ÿÊcontrol ÿdlg.Add("prodwahl","DialogListBox")
+control.Move(22,297,284,12)
+control.Bind("ggewprod$","ggewprod1$","ggewprod2$")
+
+ 
+ÿÊcontrol ÿdlg.Add("OK","DialogCommandButton")
+control.Move(484,260,38,13)
+control.Defaultÿ1
+control.Captionÿ"&OK"
+control.ReturnValueÿ1
+ 
+ÿÊcontrol ÿdlg.Add("Abbruch","DialogCommandButton")
+control.Move(484,276,38,12)
+control.Defaultÿ0
+control.Captionÿ"&Abbruch"
+control.ReturnValueÿ0
+ 
+ÿñ"ProdSel",req%
+ÿ¾ÿñ"ProdSel"
+ÿÂ"Dialog Ende",""
+ÿ¾ÿñÿt
+ÿ¡req%ÿ1ÿp
+ÿÂ"ausgew.Produkt",ÿ+(GSpartausw$(0),20)
+codevp%ÿÿ0(ÿ-(GSpartausw$(0),6))
+ÿ’ÿ¡
+ ÿ’ÿÿ
+
+ÿÿSelProdukt()
+ lidx%ÿdlg.produkte.ListIndex
+ ÿ¡lidx%ÿ0ÿp
+item$ÿdlg.produkte.List(lidx%)
+codevp%ÿÿ0(ÿ-(item$,6))
+ÿÉÿ`ÿ™"vprodukt"ÿ£codevp.vprodukt
+ÿÉÿ¥codevp%ÿ™"vprodukt"ÿ£codevp.vprodukt
+ggewprod$ÿ"gew„hltes Produkt: "ÿGesellschaft.vproduktÿ"  -  "ÿsparte.vprodukt
+ÿ¡dlg.prodwahl.ListCountÿ0ÿpdlg.prodwahl.RemoveItem(1)
+dlg.prodwahl.AddItem(ggewprod$)
+ÿ½ REQUEST LEFT$ (ggewprod$,40),""
+ ÿ’ÿ¡
+ 
+ ÿ’ÿÿ
+
+ÿÿSelGesell()
+ ÿßÿe
+ ÿ™"spgruppe"
+ ÿ£Gruppe
+ ÿÉÿ`
+ lidx%ÿdlg.spgruppen.ListIndex
+ ÿ¡lidx%ÿ0ÿp
+item$ÿdlg.spgruppen.List(lidx%)
+codegrsp%ÿÿ0(ÿ-(item$,6))
+ ÿ’ÿ¡
+ ÿ¡codegrsp%ÿ
+1ÿpÿww160620053 
+ lidy%ÿdlg.gesell.ListIndex
+ ÿ¡lidy%ÿ0ÿp
+item$ÿdlg.gesell.List(lidy%)
+codege%ÿÿ0(ÿ-(item$,6))
+ ÿ’ÿ¡
+ 
+ ÿ¡codege%ÿ
+1ÿpÿww160620053 
+ 
+ ÿ™"vprodukt"
+ ÿÉÿĞ
+ ÿÉÿĞcodegrsp.vproduktÿcodegrsp%ÿcodege.vproduktÿcodege%
+ ÿ£codeva.vprodukt
+ ÿÉÿ`
+ ÿÿGSpart$(ÿA("Sparten"),1)
+ ÿÿGSpart$(ÿA("Sparten"))
+ ÿ£codeva.vprodukt
+ ÿÉÿ`ÿ™"vprodukt"
+codevaold%ÿÿ1
+a%ÿ0
+x%ÿdlg.produkte.ListCount
+ÿ¡x%ÿ0ÿp
+ÿ›i%ÿ0ÿqx%ÿ1
+dlg.produkte.RemoveItem(1)
+ÿ±i%
+ÿ’ÿ¡
+Gspartanz%ÿ0
+ÿØÿOÿB("Vprodukt")
+ÿ¡codeva.vproduktÿ0ÿcodeva.vproduktÿcodevaold%ÿp
+codeva%ÿcodeva.Vprodukt
+codevaold%ÿcodeva.Vprodukt
+ÿ¡ÿH(Sparte.vprodukt)ÿ""ÿp
+	ge$ÿÿ+(Gesellschaft.vprodukt,20)
+	ge$ÿÿK(ge$,20)
+	gsp$ÿge$ÿ"  -  "ÿsparte.vprodukt
+	GSpart$(a%)ÿgsp$ÿÿ'(160)ÿÿ(Codevp.vprodukt,"000000")
+	dlg.produkte.AddItem(GSpart$(a%))
+	a%ÿa%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+ÿÉÿ±ÿ™"Vprodukt"ÿ£codeva.Vprodukt
+ÿÙ
+GSpartPrompt$ÿGSpart$(0)
+x%ÿdlg.produkte.ListCount
+ÿÉÿĞÿ™"vprodukt"
+w160620053: 
+ ÿßÿ³
+ ÿ’ÿÿ
+
+
+ÿÿSelSpGruppe()
+ÿ½ GLOBAL GSpGruppe$(1),GSPGrausw$(1),GSpGrPrompt$
+ÿ½ GLOBAL GGesell$(1),GGesellausw$(1),GGesellPrompt$
+ÿ½ GLOBAL GSpart$(1),GSpartausw$(1),GSpartPrompt$
+ÿ½ SET STATUS GSPGrausw$(0)
+ ÿ½  REQUEST "selspgr",""
+ ÿ™"spgruppe"
+ ÿ£Gruppe
+ ÿÉÿ`
+ lidx%ÿdlg.spgruppen.ListIndex
+ ÿ¡lidx%ÿ0ÿp
+item$ÿdlg.spgruppen.List(lidx%)
+codegrsp%ÿÿ0(ÿ-(item$,6))
+ ÿ’ÿ¡
+ ÿ¡codegrsp%ÿ
+1ÿpÿww160620052
+ GSpGrPrompt$ÿGSPGrausw$(0)
+ ÿÿGGesell$(ÿA("geadr"),1)
+ ÿÿGGesell$(ÿA("geadr"))
+ ÿ™"vprodukt"
+ ÿ£codegrsp.vprodukt
+ ÿÉÿĞ
+ ÿÉÿĞcodegrsp.vproduktÿcodegrsp%
+ ÿ£codege.vprodukt
+ ÿÉÿ`ÿ™"vprodukt"
+codegeold%ÿÿ1
+a%ÿ0
+x%ÿdlg.gesell.ListCount
+ÿ¡x%ÿ0ÿp
+ÿ›i%ÿ0ÿqx%ÿ1
+dlg.gesell.RemoveItem(1)
+ÿ±i%
+ÿ’ÿ¡
+GGesellanz%ÿ0
+ÿØÿOÿB("Vprodukt")
+ÿ¡codege.vproduktÿ0ÿcodege.vproduktÿcodegeold%ÿp
+codege%ÿcodege.Vprodukt
+codegeold%ÿcodege.Vprodukt
+j%ÿÿ1
+ÿ¡ÿH(Gesellschaft.vprodukt)ÿ""ÿp
+	ÿ½ REQUEST "Gesell",Gesellschaft.vprodukt
+	GGesell$(a%)ÿGesellschaft.vproduktÿÿ'(160)ÿÿ(CodeGE.vprodukt,"000000")
+	dlg.gesell.AddItem(GGesell$(a%))
+	a%ÿa%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"Vprodukt"ÿ£codege.Vprodukt
+ÿÙ
+GGesellPrompt$ÿGGesell$(0)
+ 
+ ÿ½ GSpart$(1),GSpartausw$(1),GSpartPrompt$
+ ÿÿGSpart$(ÿA("Sparten"),1)
+ ÿÿGSpart$(ÿA("Sparten"))
+ ÿ£codeva.vprodukt
+ ÿÉÿ`
+codevaold%ÿÿ1
+a%ÿ0
+x%ÿdlg.produkte.ListCount
+ÿ¡x%ÿ0ÿp
+ÿ›i%ÿ0ÿqx%ÿ1
+dlg.produkte.RemoveItem(1)
+ÿ±i%
+ÿ’ÿ¡
+ÿØÿOÿB("Vprodukt")
+ÿ¡codeva.vproduktÿ0ÿcodeva.vproduktÿcodevaold%ÿp
+codeva%ÿcodeva.Vprodukt
+codevaold%ÿcodeva.Vprodukt
+j%ÿÿ1
+ÿ¡ÿH(Sparte.vprodukt)ÿ""ÿp
+	ge$ÿÿ+(Gesellschaft.vprodukt,20)
+	ge$ÿÿK(ge$,20)
+	gsp$ÿge$ÿ"  -  "ÿsparte.vprodukt
+	
+	GSpart$(a%)ÿgsp$ÿÿ'(160)ÿÿ(Codevp.vprodukt,"000000")
+	dlg.produkte.AddItem(GSpart$(a%))
+	a%ÿa%ÿ1
+ÿ’ÿ¡
+ÿ½ END IF 
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"Vprodukt"ÿ£codeva.Vprodukt
+ÿÙ
+GSpartPrompt$ÿGSpart$(0)
+ÿÉÿĞÿ™"vprodukt"
+w160620052: 
+ÿßÿ³
+ 
+ ÿ’ÿÿ
+
+
+ÿÿSelSpGruppeold()
+ lidx%ÿdlg.spgruppen.ListIndex
+ lidy%ÿdlg.gesell.ListIndex
+ ÿ¡lidx%ÿ0ÿp
+item$ÿdlg.spgruppen.List(lidx%)
+codegrsp%ÿÿ0(item$)
+ÿ½ hier jetzt die Listen fr Gesellschaften und Sparten leeren
+
+dlg.adrList.RemoveItem(lidx%)
+
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ 
+

@@ -1,0 +1,26 @@
+SBP
+
+ÿÿmain()
+ ÿƒMAKRO2()
+ ÿ’ÿÿ
+ 
+ÿÿMAKRO2():ÿ½                                        31.01.2006
+ ÿŽ"E:\CODIE.FPB"
+ ÿ™"SUFP1A":ÿ½                                      Combo: Current File
+ Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+ Superbase.Converters.SBF.SourceFileÿ"SUFP1A"
+ Superbase.Converters.SBF.Descendingÿ0
+ Superbase.Converters.SBF.Mergeÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.XLS.DestFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.DestFileÿ"sufp1a.XLS"
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.UseLabelsÿÿ1
+ Superbase.Converters.XLS.Convert(Superbase.Converters.SBF)
+ ÿ’ÿÿ
+ 
+

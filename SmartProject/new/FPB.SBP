@@ -1,0 +1,2074 @@
+SBP
+ ÿƒmain()
+
+ÿÿFPImport()
+GAdrDat$ÿ"ADRESSEN"
+GConDat$ÿ"CONNECT"
+GTelDat$ÿ"TELEFON"
+GAkquiDat$ÿ"AKQUISE"
+GDokDat$ÿ"DOKUMENT"
+GADRStat$ÿ"ADRSTAT"
+ ÿƒDFile(2,"OFFICE\"ÿ"ADRHIS"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\"ÿ"ORT"ÿ_fpw$)
+ ÿ¡GADRDat$ÿ"ADRESSEN"ÿp
+ÿ¡disabled%("ADRESSEN")ÿpÿ’ÿÿ
+ ÿ’ÿ¡
+ ÿ¡GADRDat$ÿ"ADRE1"ÿp
+ÿ¡disabled%("ADRE1")ÿpÿ’ÿÿ
+ ÿ’ÿ¡
+ ÿ¡GADRDat$ÿ"BCKONTAK"ÿp
+ÿ¡disabled%("BCKONTAK")ÿpÿ’ÿÿ
+ ÿ’ÿ¡
+ ÿ¡GBENE%ÿp
+ÿƒDFile(2,"OFFICE\"ÿ"ADRE1"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\"ÿ"AKQUI1"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\"ÿ"TELADR1"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\"ÿ"DOKADR1"ÿ_fpw$)
+ ÿ’ÿ¡
+ ÿ¡intverw.stammÿ"j"ÿGADRDat$ÿ"BCKONTAK"ÿp
+ÿƒDFile(2,"OFFICE\"ÿ"BCKONTAK"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\"ÿ"AKQUIBCK"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\"ÿ"TELBCK"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\"ÿ"DOKBCK"ÿ_fpw$)
+ ÿ’ÿ¡
+ ÿƒDFile(2,"OFFICE\"ÿ"ADRESSEN"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\"ÿ"AKQUISE"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\"ÿ"AKTIONEN"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\"ÿ"TELEFON"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\"ÿ"DOKUMENT"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\adrstat"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\adrgrup"ÿ_fpw$)
+ ÿ¡ÿ´("adrtemp")ÿp
+ÿ¡ÿA("adrtemp")ÿ0ÿpÿ¾ÿaÿ™"adrtemp"
+ÿ½ CLOSE FILE "ADRTEMP"
+ ÿ^
+ÿƒDFile(2,"OFFICE\adrtemp"ÿ_fpw$)
+ÿ¡ÿA("adrtemp")ÿ0ÿpÿ¾ÿaÿ™"adrtemp"
+ ÿ’ÿ¡
+ ÿƒDFile(2,"color"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\"ÿGConDat$ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\banken"ÿ_fpw$)
+ ÿƒDFile(3,"STAMM"ÿ_fpw$)
+ ÿ¡_projekt$ÿ"PROV*"ÿGAufrufproj$ÿ"PROVIS"ÿp
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\kvertrag.sbf")ÿpÿƒDFile(3,"KVERTRAG"ÿ_fpw$)
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\vermoeg.sbf")ÿpÿƒDFile(3,"VERMOEG"ÿ_fpw$)
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\vorgang.sbf")ÿpÿƒDFile(3,"VORGANG"ÿ_fpw$)
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\maadr.sbf")ÿpÿƒDFile(3,"MAADR"ÿ_fpw$)
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\kukto.sbf")ÿpÿƒDFile(3,"KUKTO"ÿ_fpw$)
+ÿ¡ÿJ(_netpath$ÿ"office\kvhis.sbf")ÿpÿƒDFile(2,"OFFICE\KVHIS"ÿ_fpw$)
+ÿ¡GAFSK$ÿ"TRUE"ÿp
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\afsksut.sbf")ÿpÿƒDFile(3,"AFSKSUT"ÿ_fpw$)
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\afspsp.sbf")ÿpÿƒDFile(3,"AFSpsp"ÿ_fpw$)
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡MAKLER$ÿ"TRUE"ÿ(_projekt$ÿ"PROV*"ÿGAufrufproj$ÿ"PROV*")ÿp
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\inkstamm.sbf")ÿpÿƒDFile(3,"INKSTAMM"ÿ_fpw$)
+ ÿ’ÿ¡
+ ÿƒDFile(3,"WKNR"ÿ_fpw$)
+ ÿƒDFile(3,"AUmsatz"ÿ_fpw$)
+ ÿƒDFile(3,"STATUKEY"ÿ_fpw$)
+ ÿƒDFile(3,"FONDS"ÿ_fpw$)
+ ÿƒDFile(3,"KGEADR"ÿ_fpw$)
+ ÿƒDFile(3,"KURSHIST"ÿ_fpw$)
+ ÿƒDFile(3,"sparten"ÿ_fpw$)
+ ÿƒDFile(3,"geadr"ÿ_fpw$)
+ ÿƒDFile(3,"geadr2"ÿ_fpw$)
+ ÿƒDFile(3,"maadrgru"ÿ_fpw$)
+ ÿƒDFile(3,"vkond"ÿ_fpw$)
+ ÿƒDFile(3,"formular"ÿ_fpw$)
+ ÿƒDFile(3,"spgruppe"ÿ_fpw$)
+ ÿƒDFile(3,"vpspezko"ÿ_fpw$)
+ ÿƒDFile(3,"spezkond"ÿ_fpw$)
+ ÿƒDFile(3,"vprodukt"ÿ_fpw$)
+ ÿƒDFile(3,"vpgekond"ÿ_fpw$)
+ ÿƒDFile(3,"maadrag"ÿ_fpw$)
+ ÿƒDFile(3,"kvfael"ÿ_fpw$)
+ ÿƒDFile(3,"maadr"ÿ_fpw$)
+ ÿƒDFile(3,"spgruppe"ÿ_fpw$)
+ ÿ¡GAFSK$ÿ"TRUE"ÿp
+ÿƒDFile(3,"MABETREU"ÿ_fpw$)
+ÿƒDFile(3,"kvpsp"ÿ_fpw$)
+ ÿ’ÿ¡
+ ÿƒDFile(2,"OFFICE\"ÿGADRDat$ÿ_fpw$)
+ 
+ ÿ´ÿ™ÿà"C:\CODIE.FPB\0-IMPORT\WKN\WKN.SBF"
+ ÿ½ OPEN FILE SHARE "C:\CODIE.FPB\0-IMPORT\ABS\ABS.SBF"
+ ÿ½ OPEN FILE SHARE "C:\CODIE.FPB\0-IMPORT\KUNDE\KUNDEN.SBF"
+ ÿ½ OPEN FILE SHARE "C:\CODIE.FPB\0-IMPORT\KUNDE\BRIEF\Brief.sbf"
+ ÿ½ OPEN FILE SHARE "C:\CODIE.FPB\0-IMPORT\KUNDE\FAX\Fax.sbf"
+ ÿƒFehler("Dateien ge”ffnet","")
+
+ 
+ ÿ½ OPEN FILE SHARE "C:\CODIE.FPB\0-IMPORT\GESELL\GESELL.SBF"
+ ÿ½ OPEN FILE SHARE "C:\CODIE.FPB\0-IMPORT\MITARB\MITARB.SBF"
+ ÿ½ OPEN FILE SHARE "C:\CODIE.FPB\0-IMPORT\PROD\PROD.SBF"
+ ÿ½ OPEN FILE SHARE "C:\CODIE.FPB\0-IMPORT\ABS\ABS.SBF"
+ ÿ½ CALL FPApollo()
+ ÿ½ CALL FPWKNeu()
+
+ ÿ½ CALL FPWKNSPum()
+
+ ÿ½ CALL FPWknr()
+
+ ÿ½ CALL FPBriefImp()
+
+ ÿ½ CALL FPABSImp()
+
+ ÿ½ CALL FPProdImp()
+ ÿ½ CALL FPWKNImp()
+ ÿ½ CALL FPKUTest()
+ ÿ½ CALL FPAdrImp()
+ ÿ½ CALL FPGesImp()
+ ÿ½ CALL FPMaImp()
+ ÿ’ÿÿ
+ 
+
+ÿÿFPApollo()
+k$ÿ"KVERTRAG"
+ÿ™k$
+ÿ£lfdnr.k$
+ÿÉÿ`ÿá
+i%ÿ0
+g%ÿ0
+j%ÿÿA(k$)
+ÿØÿOÿB(k$)
+i%ÿi%ÿ1
+ÿ¡codeva.k$ÿ5127ÿcodege.k$ÿ81ÿp
+g%ÿg%ÿ1
+codeva.k$ÿ5301
+codevp.k$ÿ3233
+ÿƒQuickStore(k$)
+ÿ’ÿ¡
+ÿ¡codeva.k$ÿ5481ÿcodege.k$ÿ81ÿp
+g%ÿg%ÿ1
+codeva.k$ÿ5301
+codevp.k$ÿ3233
+ÿƒQuickStore(k$)
+ÿ’ÿ¡
+ÿÊÿËÿ(i%)ÿ"/"ÿÿ(g%)ÿ"/"ÿÿ(j%)
+ÿÉÿ±ÿáÿ™k$
+ÿÙ
+ ÿ’ÿÿ
+
+
+ÿÿFPWKNeu()
+wo$ÿ"WKN"
+w$ÿ"WKNR"
+ÿ™wo$
+ÿÉÿ`
+ÿØÿOÿB(wo$)
+ÿÿ™w$
+codekey.w$ÿÿI(w$)
+WKNText.w$ÿs_fonds.wo$
+WKNR.w$ÿÿH(ÿ(n_wkn.wo$,"999999999"))
+WKNGesell.w$ÿs_KAG.wo$
+AAuf.w$ÿs_AAuf.wo$
+ÿÌÿ™w$
+ÿÉÿ±ÿ™wo$
+ÿÙ
+ ÿ’ÿÿ
+
+
+ÿÿFPWKNSPum()
+ k$ÿ"kvertrag"
+ s$ÿ"Sparten"
+ v$ÿ"vprodukt"
+ ÿ™v$
+ ÿ£codegrsp.v$
+ ÿ™k$
+ ÿ£lfdnr.k$
+ ÿÉÿ`ÿáÿ™k$
+ i%ÿ0
+ j%ÿÿA(k$)
+ f%ÿ0
+ g%ÿ0
+ ÿØÿOÿB(k$)
+i%ÿi%ÿ1
+ÿ¡codegrsp.k$ÿ24ÿp
+codege%ÿcodege.k$
+codeva%ÿcodeva.k$
+codevp%ÿcodevp.k$
+Teiler%ÿTeiler.k$
+Teiler$ÿÿH(ÿ(Teiler%,"999999999.0000"))
+wkntext$ÿsparte.k$
+ÿÉÿ`ÿ™v$ÿ£codegrsp.v$
+ÿÉÿ¥15ÿ™v$ÿ£codegrsp.v$
+ok%ÿ0
+ÿØÿOÿB(v$)ÿcodegrsp.v$ÿ15ÿok%ÿ0
+BWB$ÿÿH(ÿ(Bewertungsbasis.v$,"999999999.0000"))
+ÿ¡codege.v$ÿcodege%ÿBWB$ÿteiler$ÿp
+	g%ÿg%ÿ1
+	ÿ¡codege%ÿ269ÿTeiler$ÿ"940,0705"ÿp
+codeva.k$ÿ77
+codevp.k$ÿ397
+altcodeva.k$ÿcodeva%
+altcodevp.k$ÿcodevp%
+altcodegrsp.k$ÿ24
+codegrsp.k$ÿ15
+wkntext.k$ÿwkntext$
+ÿƒQuickStore(k$)
+ok%ÿÿ1
+	ÿ^
+ÿ½ Produkt gefunden
+codeva.k$ÿcodeva.v$
+codevp.k$ÿcodevp.v$
+altcodeva.k$ÿcodeva%
+altcodevp.k$ÿcodevp%
+altcodegrsp.k$ÿ24
+codegrsp.k$ÿ15
+wkntext.k$ÿwkntext$
+ÿƒQuickStore(k$)
+ok%ÿÿ1
+	ÿ’ÿ¡
+ÿ^
+	ÿÉÿ±ÿ™v$
+ÿ’ÿ¡
+ÿÙ
+ÿ¡ok%ÿ0ÿp
+ÿÉÿæcodege%
+ÿæ37
+	ÿ¡teiler$ÿ"988,2400"ÿp
+codeva.k$ÿ53
+codevp.k$ÿ631
+ok%ÿÿ1
+	ÿ’ÿ¡
+	ÿ¡teiler$ÿ"2130,0000"ÿp
+codeva.k$ÿ25
+codevp.k$ÿ3585
+ok%ÿÿ1
+	ÿ’ÿ¡
+	ÿ¡teiler$ÿ"965,7200"ÿp
+codeva.k$ÿ53
+codevp.k$ÿ631
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+	ÿ¡teiler$ÿ"966,0000"ÿp
+codeva.k$ÿ5508
+codevp.k$ÿ3601
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+	ÿ¡teiler$ÿ"1400,0000"ÿp
+codeva.k$ÿ5500
+codevp.k$ÿ3593
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+	ÿ¡teiler$ÿ"952,3800"ÿp
+codeva.k$ÿ57
+codevp.k$ÿ2633
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+
+ÿ¡teiler$ÿ"865,4700"ÿp
+codeva.k$ÿ5508
+codevp.k$ÿ3601
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+	ÿ¡teiler$ÿ"943,4200"ÿp
+codeva.k$ÿ57
+codevp.k$ÿ2633
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+	ÿ¡teiler$ÿ"896,0600"ÿp
+codeva.k$ÿ57
+codevp.k$ÿ2633
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+
+ÿ¡teiler$ÿ"846,0000"ÿp
+codeva.k$ÿ5508
+codevp.k$ÿ3601
+ok%ÿÿ1
+	ÿ’ÿ¡
+ 
+	ÿ¡teiler$ÿ"1625,3600"ÿp
+codeva.k$ÿ33
+codevp.k$ÿ3591
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+
+ÿ¡teiler$ÿ"921,8700"ÿp
+codeva.k$ÿ5508
+codevp.k$ÿ3601
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+	ÿ¡teiler$ÿ"845,6700"ÿp
+codeva.k$ÿ5508
+codevp.k$ÿ3601
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+	ÿ¡teiler$ÿ"1664,6500"ÿp
+codeva.k$ÿ33
+codevp.k$ÿ3591
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+	ÿ½ **************************************************************************************************
+	ÿ¡teiler$ÿ"1625,0000"ÿp
+codeva.k$ÿ33
+codevp.k$ÿ3591
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+	ÿ¡teiler$ÿ"1195,0000"ÿp
+codeva.k$ÿ45
+codevp.k$ÿ635
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+	ÿ¡teiler$ÿ"1195,4600"ÿp
+codeva.k$ÿ45
+codevp.k$ÿ635
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+	ÿ¡teiler$ÿ"2186,6700"ÿp
+codeva.k$ÿ25
+codevp.k$ÿ3585
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+	ÿ¡teiler$ÿ"782,0000"ÿp
+codeva.k$ÿ73
+codevp.k$ÿ3299
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+	ÿ¡teiler$ÿ"2129,9300"ÿp
+codeva.k$ÿ25
+codevp.k$ÿ3585
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+	ÿ¡teiler$ÿ"902,6700"ÿp
+codeva.k$ÿ5506
+codevp.k$ÿ3599
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+	ÿ¡teiler$ÿ"941,1800"ÿp
+codeva.k$ÿ57
+codevp.k$ÿ2633
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+
+ÿ¡teiler$ÿ"882,0000"ÿp
+codeva.k$ÿ5508
+codevp.k$ÿ3601
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+
+ÿ¡teiler$ÿ"1310,0000"ÿp
+codeva.k$ÿ5502
+codevp.k$ÿ3595
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+ÿ¡teiler$ÿ"922,0000"ÿp
+codeva.k$ÿ5506
+codevp.k$ÿ3599
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+
+ÿ¡teiler$ÿ"882,0300"ÿp
+codeva.k$ÿ5508
+codevp.k$ÿ3601
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+ÿ¡teiler$ÿ"781,7100"ÿp
+codeva.k$ÿ73
+codevp.k$ÿ3299
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+
+ÿ¡teiler$ÿ"1223,5300"ÿp
+codeva.k$ÿ45
+codevp.k$ÿ635
+ok%ÿÿ1
+	ÿ’ÿ¡
+
+ÿ¡teiler$ÿ"1400,0700"ÿp
+codeva.k$ÿ5500
+codevp.k$ÿ3593
+ok%ÿÿ1
+	ÿ’ÿ¡
+	ÿ½ **************************************************************************************************
+
+
+
+
+	ÿ¡ok%ÿÿ1ÿp
+g%ÿg%ÿ1
+altcodeva.k$ÿcodeva%
+altcodevp.k$ÿcodevp%
+altcodegrsp.k$ÿ24
+codegrsp.k$ÿ15
+wkntext.k$ÿwkntext$
+ÿƒQuickStore(k$)
+	ÿ’ÿ¡
+ÿæ45
+	ÿ¡teiler$ÿ"1111,1111"ÿp
+codeva.k$ÿ5504
+codevp.k$ÿ3635
+ok%ÿÿ1
+	ÿ’ÿ¡
+ 
+	ÿ¡ok%ÿÿ1ÿp
+g%ÿg%ÿ1
+altcodeva.k$ÿcodeva%
+altcodevp.k$ÿcodevp%
+altcodegrsp.k$ÿ24
+codegrsp.k$ÿ15
+wkntext.k$ÿwkntext$
+ÿƒQuickStore(k$)
+	ÿ’ÿ¡
+ÿæ127
+	ÿ¡teiler$ÿ"965,7200"ÿp
+codeva.k$ÿ45
+codevp.k$ÿ3637
+ok%ÿÿ1
+	ÿ’ÿ¡
+ 
+	ÿ¡ok%ÿÿ1ÿp
+g%ÿg%ÿ1
+altcodeva.k$ÿcodeva%
+altcodevp.k$ÿcodevp%
+altcodegrsp.k$ÿ24
+codegrsp.k$ÿ15
+wkntext.k$ÿwkntext$
+ÿƒQuickStore(k$)
+	ÿ’ÿ¡
+ÿæ143
+	ÿ¡teiler$ÿ"846,0000"ÿp
+codeva.k$ÿ5508
+codevp.k$ÿ3575
+ok%ÿÿ1
+	ÿ’ÿ¡
+	ÿ¡teiler$ÿ"1400,0700"ÿp
+codeva.k$ÿ5500
+codevp.k$ÿ3565
+ok%ÿÿ1
+	ÿ’ÿ¡
+	ÿ¡teiler$ÿ"965,7200"ÿp
+codeva.k$ÿ33
+codevp.k$ÿ3451
+ok%ÿÿ1
+	ÿ’ÿ¡
+	ÿ¡teiler$ÿ"1195,4600"ÿp
+codeva.k$ÿ45
+codevp.k$ÿ2861
+ok%ÿÿ1
+	ÿ’ÿ¡
+	ÿ¡ok%ÿÿ1ÿp
+g%ÿg%ÿ1
+altcodeva.k$ÿcodeva%
+altcodevp.k$ÿcodevp%
+altcodegrsp.k$ÿ24
+codegrsp.k$ÿ15
+wkntext.k$ÿwkntext$
+ÿƒQuickStore(k$)
+	ÿ’ÿ¡
+ÿæ269
+	ÿ½ GAMAx
+	ÿ¡teiler$ÿ"940,0700"ÿteiler$ÿ"940,0000"ÿp
+g%ÿg%ÿ1
+codeva.k$ÿ77
+codevp.k$ÿ397
+altcodeva.k$ÿcodeva%
+altcodevp.k$ÿcodevp%
+altcodegrsp.k$ÿ24
+codegrsp.k$ÿ15
+wkntext.k$ÿwkntext$
+ÿƒQuickStore(k$)
+ok%ÿÿ1
+	ÿ’ÿ¡
+ÿ’ÿÉ
+ÿ¡ok%ÿ0ÿp
+	f%ÿf%ÿ1
+	fehler.k$ÿ"kein P"
+	ÿÌÿ™k$
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿÊÿËÿ(i%)ÿ"/"ÿÿ(j%)ÿ"g: "ÿÿ(g%)ÿ"/ fehl: "ÿÿ(f%)
+ ÿÉÿ±ÿáÿ™k$
+ ÿÙ
+ ÿ’ÿÿ
+
+
+ÿÿFPWknr()
+ a$ÿ"ABS"
+ k$ÿ"kvertrag"
+ ÿ™a$
+ ÿÉÿ`
+ i%ÿ0
+ j%ÿÿA(a$)
+ ÿØÿOÿB(a$)
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ"/"ÿÿ(j%)
+ÿ¡codevt.a$ÿ0ÿp
+ÿ¡n_wkn.a$ÿ0ÿp
+ÿÉÿ`ÿ™k$ÿ£lfdnr.k$
+ÿÉÿ¥codevt.a$ÿáÿ™k$ÿ£lfdnr.k$
+wknr.k$ÿÿH(ÿ(n_wkn.a$,"999999999"))
+ÿÌÿ™k$
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿ™a$
+ ÿÙ
+ ÿ’ÿÿ
+
+ÿÿFPBriefImp()
+ GDokDat$ÿ"Dokument"
+ a$ÿ"ADRESSEN"
+ d$ÿ"Dokument"
+ ÿ½ b$ = "brief"
+ ÿ½ docpath$ = "OFFICE\TEXT\BRIEF\"
+ ÿ½ textv$ = _netpath$ + "0-Import\Kunde\Brief\"
+ ÿ½ gruppe$ = "Brief"
+ b$ÿ"Fax"
+ docpath$ÿ"OFFICE\TEXT\FAX\"
+ textv$ÿ_netpath$ÿ"0-Import\Kunde\FAX\"
+ gruppe$ÿ"Fax"
+ ÿ™b$
+ i%ÿ0
+ j%ÿÿA(b$)
+ ÿ£_universalID
+ ÿÉÿ`ÿáÿ™b$
+ ÿØÿOÿB(b$)
+hkt%ÿhkt1.b$
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ"/"ÿÿ(j%)
+ÿ¡codedok.b$ÿ0ÿpÿww290620054
+ÿ¡ÿJ(hkt%,hkt.a$)ÿp
+ÿÉÿ`ÿ™a$ÿ£hkt.a$
+ÿÉÿ¥hkt%ÿ™a$ÿ£hkt.a$
+knr%ÿcodeku.a$
+dokname$ÿDI_BESCHREIBUNG.b$
+textvorlage$ÿtextv$ÿ_RenderedDoc.b$
+ÿÿ™GDokDat$
+CodeDOK.GDokDat$ÿÿI(GDokDat$)
+codedok%ÿCodeDOK.GDokDat$
+textdatei$ÿdocpath$ÿÿH(ÿ(CodeDOK.GDokDat$,"999999"))ÿ"."ÿÿ-(textvorlage$,3)
+dokument.GDokDat$ÿdokname$
+ÿ³ÿ_ÿww290620055
+erstellt_am.GDokDat$ÿÿ+(datum.b$,10)
+letzte_Bearbeit.GDokDat$ÿÿ+(datum.b$,10)
+w290620055: 
+ÿ³ÿ_ÿwErrorHandler
+ÿ½ CodeMA.GDokDat$ = GMAcodema%
+CodeKU.GDokDat$ÿknr%
+Gruppe.Gdokdat$ÿgruppe$
+Dateiname.d$ÿtextdatei$
+ÿ¡DI_Ersteller.b$ÿ""ÿp
+pos%ÿÿ?(DI_Ersteller.b$,"/")
+Creator.d$ÿÿ,(DI_Ersteller.b$,4,pos%ÿ1)
+ÿ’ÿ¡
+DokNotiz.d$ÿ"Empf„nger: "ÿDI_Empf„nger.b$ÿÿ(13)ÿÿ(10)
+DokNotiz.d$ÿDokNotiz.d$ÿ"Ersteller: "ÿDI_Ersteller.b$ÿÿ(13)ÿÿ(10)
+DokNotiz.d$ÿDokNotiz.d$ÿ"ge„ndert durch: "ÿ_UpdatedBy.b$ÿÿ(13)ÿÿ(10)
+DokNotiz.d$ÿDokNotiz.d$ÿ"Originaldatei: "ÿ_RenderedDoc.b$ÿÿ(13)ÿÿ(10)
+ÿÌÿ™d$
+codedok.b$ÿCodeDOK%
+ÿÌÿ™b$
+
+a%ÿÿƒ("_SBFileExists",textvorlage$)
+ÿ¡a%ÿÿ1ÿp
+von$ÿtextvorlage$
+nach$ÿ_netpath$ÿtextdatei$
+ÿ½ CALL Fehler("Kopiere von: " + von$,"Nach: " + nach$)
+ÿ½ a% = CALL ("_SBFileCopy",_netpath$ + textdatei$,textvorlage$)
+a%ÿÿƒ("_SBFileCopy",von$,nach$)
+ÿ^
+ÿƒFehler("Fehler: Vorlage nicht gefunden: "ÿtextvorlage$,textdatei$)
+ÿ’ÿ¡
+
+ÿ^
+fehlerÿ"HKT nicht gefunden: "ÿhkt.b$
+ÿ’ÿ¡
+w290620054: 
+ÿÉÿ±ÿáÿ™b$
+ ÿÙ
+ ÿ’ÿÿ
+
+
+ÿÿFPKUTest()
+ k%ÿ0
+anf28060051: 
+ k$ÿ"Kunden"
+ ÿ™k$
+ i%ÿ0
+ j%ÿÿA(k$)
+ 
+ ÿÉÿ`ÿáÿ™k$
+ ÿØÿOÿB(k$)
+i%ÿi%ÿ1
+
+pos%ÿÿ?(name.k$,"%0D%0A")
+name0$ÿname.k$
+ÿ¡pos%ÿ1ÿp
+name$ÿÿ,(name.k$,7)
+ÿ½ CALL Fehler(name0$,name$)
+name.k$ÿname$
+ÿ’ÿ¡
+ÿ¡pos%ÿ1ÿp
+name$ÿÿ,(name.k$,1,pos%ÿ1)ÿ" "ÿÿ,(name.k$,pos%ÿ6)
+ÿ½ CALL Fehler(name0$,name$)
+name.k$ÿname$
+ÿ’ÿ¡
+
+pos%ÿÿ?(ort.k$,"%0D%0A")
+ort0$ÿort.k$
+ÿ¡pos%ÿ1ÿp
+ort$ÿÿ,(ort.k$,7)
+ÿ½ CALL Fehler(name0$,name$)
+ort.k$ÿort$
+ÿ’ÿ¡
+ÿ¡pos%ÿ1ÿp
+ort$ÿÿ,(ort.k$,1,pos%ÿ1)ÿ" "ÿÿ,(ort.k$,pos%ÿ6)
+ÿ½ CALL Fehler(name0$,name$)
+ort.k$ÿort$
+ÿ’ÿ¡
+
+pos%ÿÿ?(strasse.k$,"%0D%0A")
+strasse0$ÿstrasse.k$
+ÿ¡pos%ÿ1ÿp
+strasse$ÿÿ,(strasse.k$,7)
+ÿ½ CALL Fehler(name0$,name$)
+strasse.k$ÿstrasse$
+ÿ’ÿ¡
+ÿ¡pos%ÿ1ÿp
+strasse$ÿÿ,(strasse.k$,1,pos%ÿ1)ÿ" "ÿÿ,(strasse.k$,pos%ÿ6)
+ÿ½ CALL Fehler(name0$,name$)
+strasse.k$ÿstrasse$
+ÿ’ÿ¡
+
+ÿÌÿ™k$
+ÿÊÿËÿ(i%)ÿ"/"ÿÿ(j%)ÿ"/"ÿÿ(k%)
+ÿÉÿ±ÿáÿ™k$
+ ÿÙ
+ k%ÿk%ÿ1
+ ÿ¡k%ÿ
+5ÿpÿwanf28060051
+ ÿƒFehler("Fertig","")
+ ÿ’ÿÿ
+
+
+ ÿ½ 09062005
+ÿÿFPABSImp()
+ a$ÿ"ABS"
+ b$ÿ"ADRESSEN"
+ g$ÿ"GEADR"
+ s$ÿ"SPARTEN"
+ v$ÿ"VPRODUKT"
+ m$ÿ"MAADR"
+ ÿ™m$
+ ÿ£codema.m$
+ ÿ™b$
+ ÿ£hkt.b$
+ ÿ™g$
+ ÿ£gesellschaft.g$
+ ÿ™s$
+ ÿ£sparte.s$
+ ÿ™a$
+ ÿ£_UniversalID.a$
+ ÿÉÿ`
+ jj%ÿÿA("ABS")
+ ii%ÿ0
+ ÿØÿOÿB(a$)
+ii%ÿii%ÿ1
+ÿÊÿËÿ(ii%,",999999")ÿ"/"ÿÿ(jj%,",999999")
+hkt%ÿhkt.a$
+uid$ÿ_UniversalID.a$
+fehler$ÿ""
+codeku%ÿ0
+codevt%ÿ0
+codege%ÿ0
+codeva%ÿ0
+codevp%ÿ0
+codegrsp%ÿ0
+ÿ¡ÿJ(Gesellschaft.a$,Gesellschaft.g$)ÿp
+ÿÉÿ`ÿ™g$ÿ£gesellschaft.g$
+ÿÉÿ¥Gesellschaft.a$ÿ™g$ÿ£gesellschaft.g$
+codege%ÿcodege.g$
+ÿ^
+ÿƒFehler(Gesellschaft.a$ÿ" fehlt","")
+fehler$ÿfehler$ÿGesellschaft.a$ÿ" fehlt"
+ÿ½ -------- Gesellschaft aufnehmen
+codege%ÿCreateFPGe%(Gesellschaft.a$)
+ÿ¡codege%ÿ0ÿp
+ÿÉÿ`ÿ™g$ÿ£gesellschaft.g$
+ÿÉÿ¥Gesellschaft.a$ÿ™g$ÿ£gesellschaft.g$
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+spg$ÿ"SpGruppe"
+ÿ™"SpGruppe"
+ÿ£gruppe.spg$
+ÿww130620051
+ÿ¡ÿJ(Pr_Sparte.a$,gruppe.spg$)ÿp
+ÿÉÿ`ÿ™spg$ÿ£gruppe.spg$
+ÿÉÿ¥Pr_Sparte.a$ÿ™spg$ÿ£gruppe.spg$
+codegrsp%ÿcodegrsp.spg$
+ÿ^
+ÿƒFehler("Spartengruppe: "ÿPr_Sparte.a$ÿ" fehlt","")
+fehler$ÿfehler$ÿ"   "ÿ"Spartengruppe: "ÿPr_Sparte.a$ÿ" fehlt"
+ÿ½ ..........Sparte aufnehmen 
+codeva%ÿCreateFPSpagr%(Pr_Sparte.a$)
+ÿ¡codegrsp%ÿ0ÿp
+ÿÉÿ`ÿ™spg$ÿ£gruppe.spg$
+ÿÉÿ¥Pr_Sparte.a$ÿ™spg$ÿ£gruppe.spg$
+codegrsp%ÿcodegrsp.spg$
+ÿ’ÿ¡
+ÿ’ÿ¡
+w130620051: 
+prod$ÿPr_produkt.a$
+ÿÉÿæprod$
+ÿæ"Aktien-/Rentenfonds (2%25)","Aktien-/Rentenfonds (2,00 %25)"
+prod$ÿ"Aktien-/Rentenfonds (2,00%)"
+ÿæ"Aktien-/Rentenfonds (2,25 %25)"
+prod$ÿ"Aktien-/Rentenfonds (2,25%)"
+ÿæ"Aktien-/Rentenfonds (2,50 %25)","Aktien-/Rentenfonds (2,5%25)"
+prod$ÿ"Aktien-/Rentenfonds (2,50%)"
+ÿæ"Aktien-/Rentenfonds (2,75 %25)","Aktien-/Rentenfonds (2,75%25)"
+prod$ÿ"Aktien-/Rentenfonds (2,75%)"
+ÿæ"Aktien-/Rentenfonds (3%25)","Aktien-/Rentenfonds (3,00 %25)"
+prod$ÿ"Aktien-/Rentenfonds (3,00%)"
+ÿæ"Aktien-/Rentenfonds (3,5%25)","Aktien-/Rentenfonds (3,50 %25)"
+prod$ÿ"Aktien-/Rentenfonds (3,50%)"
+ÿæ"Aktien-/Rentenfonds (3,75 %25)","Aktien-/Rentenfonds (3,75%25)"
+prod$ÿ"Aktien-/Rentenfonds (3,75%)"
+ÿæ"Aktien-/Rentenfonds (4%25)","Aktien-/Rentenfonds (4,00 %25)"
+prod$ÿ"Aktien-/Rentenfonds (4,00%)"
+ÿæ"Aktien-/Rentenfonds (4,5%25)","Aktien-/Rentenfonds (4,50 %25)"
+prod$ÿ"Aktien-/Rentenfonds (4,50%)"
+ÿæ"Aktien-/Rentenfonds (5%25)","Aktien-/Rentenfonds (5,00 %25)"
+prod$ÿ"Aktien-/Rentenfonds (5,00%)"
+ÿæ"Aktien-/Rentenfonds (5,25 %25)","Aktien-/Rentenfonds (5,25%25)"
+prod$ÿ"Aktien-/Rentenfonds (5,25%)"
+ÿæ"Aktien-/Rentenfonds (5,5%25)","Aktien-/Rentenfonds (5,50 %25)"
+prod$ÿ"Aktien-/Rentenfonds (5,50%)"
+ÿæ"Aktien-/Rentenfonds (5,75 %25)","Aktien-/Rentenfonds (5,75%25)"
+prod$ÿ"Aktien-/Rentenfonds (5,75%)"
+ÿæ"Aktien-/Rentenfonds (6,1%25)","Aktien-/Rentenfonds (6,10 %25)"
+prod$ÿ"Aktien-/Rentenfonds (6,10%)"
+ÿæ"Aktien-/Rentenfonds (6,25 %25)","Aktien-/Rentenfonds (6,25%25)"
+prod$ÿ"Aktien-/Rentenfonds (6,25%)"
+ÿæ"Easy Plus","EasyPlus"
+prod$ÿ"Easy Plus"
+ 
+
+ÿæ"Aktien-/Rentenfonds (1%25)","Aktien-/Rentenfonds (1,00 %25)"
+prod$ÿ"Aktien-/Rentenfonds (1,00%)"
+ÿæ"Aktien-/Rentenfonds (0%25)","Aktien-/Rentenfonds","Aktien-/Rentenfonds (0,00 %25)"
+prod$ÿ"Aktien-/Rentenfonds (0%)"
+ÿæ"Interfonds","Interfonds AG","Investment","Investment-Einmalanlage"
+prod$ÿ"Aktien-/Rentenfonds (5,00 %25)"
+ÿæ"VVW Steuer opt.","x","Young Generation","Aktien-/Rentenfonds (5,00 %25)"
+prod$ÿ"Aktien-/Rentenfonds (5,00 %25)"
+ÿæ"Apollo Pro Media","Apollo Pro Media 3","ApolloProMedia","ApolloProMedia 2","ApolloProMedia I"
+prod$ÿ"Apollo Pro Media"
+ÿæ"Berufshaftpflicht","Berufs-Haftpflicht"
+prod$ÿ"Berufshaftpflicht"
+ÿæ"Betriebshaftpflicht","Betr. HV","Betriebs Haftpflicht","Betriebs HP","Betriebs-HV","Betriebshaftpfl.","BHV","Haftpflicht (betrieblich)"
+prod$ÿ"Betriebshaftpflicht"
+ÿæ"BU","32/M","B 1","B1","BUFD","BUM","BUMD","BV 10","BV10","Golden","Golden BU","Gothaer","NB2009","NBF2001","NBR2001","NLT","NLT mit BU","NTL","Pro Fund BU","Probeantrag","R1F","RI-BuZ","SBU","Spezial Bu","SpezialBU","T940"
+prod$ÿ"BU"
+ÿæ"BU Beitragsrabatt","Darlehen"
+prod$ÿ"BU Beitragsrabatt"
+ÿæ"Depot Chance, Asset (5%25)","Depot Chance"
+prod$ÿ"Depot Chance, Asset (5%25)"
+ÿæ"Depot Stabilit„t (3%25)","Depot Stabilit„t"
+prod$ÿ"Depot Stabilit„t (3%25)"
+ÿæ"EuroSparbuch Classic","Euro Sparbuch","EuroSparbuch"
+prod$ÿ"EuroSparbuch Classic"
+ÿæ"FIB","Peak Performance"
+prod$ÿ"FIB"
+ÿæ"Finanzierung","BauFi","Immobilienfinanzierung","Rheinhyp Darlehen","WoB Darl."
+prod$ÿ"Finanzierung"
+ÿæ"FLV / FRV","FLV  FRV","Fondsg. LV / RV","Fondsgeb. LV"
+prod$ÿ"FLV / FRV"
+ÿæ"Fondsg. LV / RV","2110 NF","3D","830 FRV 1T Profi-Plan","F","F 2","F2","F2-Junior","FLC","FP","FR2","FRC","FRV","Junior","Junior Fonds-Police","Junior FP","NF 2114G","NF2000","NF2000M","NF2010","NF2010S","NF2110F","NFR2007","NFR2010","NFR2010F"
+prod$ÿ"Fondsg. LV / RV"
+ÿæ"NFR2010M","NFR2110","NFR2110C"
+prod$ÿ"Fondsg. LV / RV"
+ÿæ"Freelax","Feelax","Freeelax","Freelax Direktversicherung"
+prod$ÿ"Freelax"
+ÿæ"Generation private","CAN Generation"
+prod$ÿ"Generation private"
+ÿæ"Gesch„ftsinhalt","Gesch.Vers.","Gesch„ftsvers.","Kleingewerbepolice"
+prod$ÿ"Gesch„ftsinhalt"
+ÿæ"Hausrat","Hausrat + Glas","Hausrat, Geb„ude, Feuer, PHV, Unfall (1-4 J.)","Hausrat, Geb„ude, Feuer, PHV, Unfall (5 J.)","Hausrat, Haftpflicht"
+prod$ÿ"Hausrat"
+ÿæ"Hausratversicherung","Hausrat, Wohngeb„ude, PHV, Unfall, RS","WšBa Hausrat"
+prod$ÿ"Hausrat"
+ÿæ"IBU","IBU 2000","IBU 2100CF","IBU C","IBU CF","IBU/C","IBU2100","IBU2100M","IBUC"
+prod$ÿ"IBU"
+ÿæ"Immobilie Regensburg","Andreasstadl"
+prod$ÿ"Immobilie Regensburg"
+ÿæ"Immobilie-Berlin","Boessner H”fe","Boessner H”fe RH Nr. 9","Brunnenstr."
+prod$ÿ"Immobilie-Berlin"
+ÿæ"Immobilienfonds Holland","Immobilienfond Holland"
+prod$ÿ"Immobilienfonds Holland"
+ÿæ"Jagdhaftpflicht","Jagd-Haftpflicht"
+prod$ÿ"Jagdhaftpflicht"
+ÿæ"KFZ","A&M KFZ","A+M KFZ","Flottenvertrag","KFZ Campingfahrzeug","KFZ Garanta","KFZ Universa","KFZ Vers.","KFZ-Versicherung","KFZ/Anh„nger","Moped","Motorrad","R+V Moped","telcom-Privatgesch„ft","Telcon KFZ"
+prod$ÿ"KFZ"
+ÿæ"Telcon Lady KFZ","telcon-Privatgesch„ft","Universa Kfz","KFZ Telcon"prod$ÿ"KFZ"
+prod$ÿ"KFZ"
+ÿæ"Konstant Plus-Darlehen","Konstant-Plus Darlehen"
+prod$ÿ"Konstant Plus-Darlehen"
+ÿæ"Leben","11 GM","940 RLV","BAV","Beitragsdepot","Corporate Flex","E-T2","Erh”hung"
+prod$ÿ"Leben"
+ÿæ"LV / RV","KLV   KRV","KLV / KRV","KLV / RV","Leben / Renten","Leben/Renten","LV","N 2101 K2","N2001","N2001 BR","N2001 F","N2001 M","N2004","N21","N2101 BR","N2101/BU","N2101F","N2101M","N2101M+B+R","NLVT","REN 301Z","Rente","RV","T 900"
+prod$ÿ"LV / RV"
+ÿæ"Rentenversicherung"
+prod$ÿ"LV / RV"
+ÿæ"Pflege-Anteil","Pflege","Pflegeanteil"
+prod$ÿ"Pflege-Anteil"
+ÿæ"PHV","Familienhaftpflicht","Haftpflcht","Haftpflicht","Haftpflicht (privat)","Haftpflichtversicherung","PHV","PHV, Unfall","Privat-Haftpflicht","Securitas"
+prod$ÿ"PHV"
+ÿæ"PKV","Compact Care","CompactCare","Continentale","CS2","CS 2","DBV","Krankenversicherung","KV","PKV","PKV - Tarif Comfort","PKV - Vertragserweiterung","PKV-Erh”hung","Private Krankenvers.","Privatkrankenversicherung"
+prod$ÿ"PKV"
+ÿæ"PVBN","Quadriga","Restkosten-KV","RKJ","S II/20","S II/30","Vision 1","Vision 1 F","Vision 2","Voll-KV"
+prod$ÿ"PKV"
+ÿæ"Plan for Life","Flex. Renten-Plan","PPR","PSP","Rentenplan"
+prod$ÿ"Plan for Life"
+ÿæ"Privathaftpflicht","Dienst-Privathaftpflicht"
+prod$ÿ"Privathaftpflicht"
+ÿæ"Rechtsschutz","Deurag","Firmen-Rechtsschutz","Maschinen, Rechtsschutz","NRV","™rag Rechtsschutz","™RAG RS","Rechtschutz","RS","Verkehrs-RS","Verkehrsrechtsschutz"
+prod$ÿ"Rechtsschutz"
+ÿæ"Riester","Rieser","Riester-Rente"
+prod$ÿ"Riester"
+ÿæ"Risiko-LV","Premium Risk","Risiko LV","RLV"
+prod$ÿ"Risiko-LV"
+ÿæ"Risiko-LV mit BU","RLV mit BU"
+prod$ÿ"Risiko-LV mit BU"
+ÿæ"Schiffsbeteiligung","HCI Schiffsbeteiligung","Schiffsbeteiligung (geringere Einzahlung)","Schiffsbeteiligung (ber Baumg„rtner & Duscher)","Schiffsbeteiligungen","Stille Beteiligung"
+prod$ÿ"Schiffsbeteiligung"
+ÿæ"Sterbegeldversicherung","Sterbeversicherung"
+prod$ÿ"Sterbegeldversicherung"
+ÿæ"Swing","Erh”hung Swing"
+prod$ÿ"Swing"
+ÿæ"Tagegeldkonto","Tagegeld"
+prod$ÿ"Tagegeldkonto"
+ÿæ"Tarif 1","T1","T 1","Tarif 1 Plus"
+prod$ÿ"Tarif 1"
+ÿæ"Tarif 4","T4","T4/3","T4/Erh”hung","Tarif 2 oder 4","Tarif 4 Erh”hung","Tarif 4 Plus"
+prod$ÿ"Tarif 4"
+ÿæ"Transportversicherung","Transporthaftpflichtvers.","Transportvers."
+prod$ÿ"Transportversicherung"
+ÿæ"Unfall","Sebastian Unfall","U1000-90008768096","Unfall Exclusiv","Unfall Luxus","Unfall Modell 1","Unfall, PHV, Hausrat, Geb„ude","Unfall, Wohngeb„ude, Hausrat, PHV","Unfall-Exclusiv","Unfallvers."
+prod$ÿ"Unfall"
+ÿæ"Unfallvers. Vema","Unfallversicherung","UV","UV/VEMA"
+prod$ÿ"Unfall"
+ÿæ"Veranstalterhaftpflicht","Veranstalter Haftpflicht","Veranstalter-HV"
+prod$ÿ"Veranstalterhaftpflicht"
+ÿæ"Vereinsbank Victoria Bauspar AG","Victoria Bausp. . HVB"
+prod$ÿ"Vereinsbank Victoria Bauspar AG"
+ÿæ"Wachstumszertifikat","Wachstums-Zertifikat","Wachstumsz.","WAZ"
+prod$ÿ"Wachstumszertifikat"
+ÿæ"Windkraftfonds","Windkraft","Windpark Kmper"
+prod$ÿ"Windkraftfonds"
+ÿæ"Wohngeb„ude","Feuer","Feuer Landwirtschaft","Feuer und Elementar","Feuer-Inhalt","Geb„ude","Geb„udeversicherung","Wohngeb„ude","Wohngeb„udevers."
+prod$ÿ"Wohngeb„ude"
+ÿæ"Zusatz-KV","CC","EFT 21","EKE","GE","Krankenhaustagegeld","Krankentagegeld","Krankenzusatz","KV-Zusatz","PKV-Zusatz","Zusatz","Zusatz - KV","Zusatz 194","Zusatz EG/z50","Zusatz GZE 1","Zusatz KV","Zusatz zum CS2","Zusatzvers."
+prod$ÿ"Zusatz-KV"
+ÿæ"Zusatzversicherung"
+prod$ÿ"Zusatz-KV"
+ÿ’ÿÉ
+ÿ¡ÿJ(prod$,sparte.s$)ÿp
+ÿÉÿ`ÿ™s$ÿ£sparte.s$
+ÿÉÿ¥prod$ÿ™s$ÿ£sparte.s$
+codeva%ÿcodeva.s$
+codegrsp%ÿcodegrsp.s$
+ÿ^
+ÿ¡prod$ÿ""ÿp
+ÿ½ CALL Fehler("Sparte: " + Pr_Produkt.a$ + " fehlt","")
+ÿ’ÿ¡
+fehler$ÿfehler$ÿ"   "ÿ"Sparte: "ÿprod$ÿ" fehlt"
+ÿ½ ..........Sparte aufnehmen 
+ÿ¡prod$ÿ""ÿp
+codeva%ÿCreateFPSpa%(prod$,codegrsp%)
+ÿ¡codeva%ÿ0ÿp
+	ÿÉÿ`ÿ™s$ÿ£sparte.s$
+	ÿÉÿ¥prod$ÿ™s$ÿ£sparte.s$
+	codeva%ÿcodeva.s$
+	codegrsp%ÿcodegrsp.s$
+ÿ’ÿ¡
+ÿ^
+ÿÉÿ`ÿ™a$ÿ£_UniversalID.a$
+ÿÉÿ¥uid$ÿáÿ™a$ÿ£_UniversalID.a$
+fehler.a$ÿfehler$
+nichtueb.a$ÿ1
+ÿƒQuickStore(a$)
+ÿwend110620051 
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+berater%ÿÿ0(berater.a$)
+ÿ¡ÿJ(berater%,codema.m$)ÿp
+ÿÉÿ`ÿ™m$ÿ£codema.m$
+ÿÉÿ¥berater%ÿ™m$ÿ£codema.m$
+codema%ÿcodema.m$
+qcodegeva$ÿÿ(codege%,"000000")ÿÿ(codeva%,"000000")
+ÿ^
+ÿƒFehler(berater.a$ÿ" fehlt","")
+fehler$ÿfehler$ÿ"   "ÿberater.a$ÿ" fehlt"
+ÿ½ ++++++++++ Vermittler aufnehmen
+codema%ÿCreateFPMa%(VMName1.a$,berater%)
+ÿ¡codema%ÿ0ÿp
+ÿÉÿ`ÿ™m$ÿ£codema.m$
+ÿÉÿ¥berater%ÿ™m$ÿ£codema.m$
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ÿ¡ÿJ(qcodegeva$,Qcodegeva.v$)ÿp
+ÿÉÿ`ÿ™v$ÿ£Qcodegeva.v$
+ÿÉÿ¥qcodegeva$ÿáÿ™v$ÿ£Qcodegeva.v$
+codevp%ÿcodevp.v$
+ÿ^
+ÿÿ™v$
+codevp%ÿÿI(v$,1)
+codevp.v$ÿcodevp%
+codege.v$ÿcodege%
+codeva.v$ÿcodeva%
+codegrsp.v$ÿcodegrsp%
+Gesellschaft.v$ÿÿ+(Gesellschaft.g$,30)
+Sparte.v$ÿsparte.s$
+Gruppe.v$ÿgruppe.spg$
+ÿƒQuickStore(v$)
+ÿÉÿ`ÿ™v$ÿ£Qcodegeva.v$
+ÿÉÿ¥qcodegeva$ÿáÿ™v$ÿ£Qcodegeva.v$
+ÿ’ÿ¡
+ 
+ÿ¡ÿJ(hkt%,hkt.b$)ÿp
+ÿÉÿ`ÿ™b$ÿ£hkt.b$
+ÿÉÿ¥hkt%ÿ™b$ÿ£hkt.b$
+codeku%ÿcodeku.b$
+knr%ÿcodeku%
+ÿ^
+ÿ½ IF hkt% > 0 THEN CALL Fehler("Kunde: " + STR$ (hkt%,"000000") + " fehlt","")
+fehler$ÿfehler$ÿ"   "ÿ"Kunde: "ÿÿ(hkt%,"000000")ÿ" fehlt"
+ÿ¡hkt%ÿ
+1ÿp
+fehler$ÿfehler$ÿ"   HKT<1"
+ÿÉÿ`ÿ™a$ÿ£_UniversalID.a$
+ÿÉÿ¥uid$ÿáÿ™a$ÿ£_UniversalID.a$
+fehler.a$ÿfehler$
+nichtueb.a$ÿ1
+ÿƒQuickStore(a$)
+ÿwend110620051
+ÿ^
+ÿ½ ******************* Adresse aufnehmen
+codeku%ÿCreateFPAdr%(hkt%,codema%)
+ÿ¡codeku%ÿ0ÿp
+	ÿÉÿ`ÿ™b$ÿ£hkt.b$
+	ÿÉÿ¥hkt%ÿ™b$ÿ£hkt.b$
+	knr%ÿcodeku%
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡Bewertungsbasis.vproduktÿ0ÿp
+ÿ¡Pr_Teiler.a$ÿ0ÿp
+Bewertungsbasis.vproduktÿPr_Teiler.a$
+ÿÌÿ™"vprodukt"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ 
+ 
+ÿ½ hier jetzt Vertrag anlegen::::::::::::::::::::::::::::::::
+ÿÿ™"KVERTRAG"
+lfdnr%ÿÿI("KVERTRAG",1)
+codevt%ÿlfdnr%
+CreateVertrag%ÿlfdnr%
+uid.kvertragÿ_UniversalID.a$
+Tarif.kvertragÿÿ+(Pr_Produkt.a$,50)
+ÿ½ Kennzeichen.kvertrag = LEFT$ (fkz$$,15)
+VS_NR.kvertragÿÿ+(VertrNr.a$,30)
+VS_Beginn.kvertragÿVertrBeginn.a$
+Antragsdatum.kvertragÿAntragsdatum.a$
+ÿ½ Tarif.kvertrag = fsumme$$
+beitr%ÿbeitrag.a$
+Bewertungssumme.kvertragÿBewSumme.a$
+Beitrag.kvertragÿbeitr%
+NettoBeitrag.kvertragÿbeitr%
+Kndigung.kvertragÿVertrAblauf.a$
+Policedatum.kvertragÿDat_VertrNr.a$
+ErfasDatum.kvertragÿEinr_Datum.a$
+lfdnr.KVERTRAGÿlfdnr%
+lfdnrtotal.KVERTRAGÿlfdnr%ÿ10000
+codeku.KVERTRAGÿknr%
+VNehmer.kvertragÿÿ+(ÿH(ÿF(Nachname.adressen))ÿ","ÿÿH(ÿF(vorname.adressen))ÿ","ÿÿH(ÿF(Straáe.adressen))ÿ","ÿÿH(ÿF(PLZ.adressenÿ" "ÿOrt.adressen)),210)
+codevp.kvertragÿ0
+ANachname.kvertragÿnachname.GAdrDat$
+AVorname.kvertragÿvorname.GAdrDat$
+AStrasse.kvertragÿStraáe.GAdrDat$
+AOrt.kvertragÿOrt.GAdrDat$
+APLZ.kvertragÿPlz.GAdrDat$
+letzteBearb.kvertragÿ0
+CodeMV.KVERTRAGÿ0
+codeGE.KVERTRAGÿcodege%
+codeMA.KVERTRAGÿcodema%
+codeVA.KVERTRAGÿcodeva%
+codegrsp.KVERTRAGÿ0
+codevp.kvertragÿcodevp%
+ÿ½ letzteBearb.KVERTRAG = fbegin$$
+Zahlart.KVERTRAGÿ1
+Inkart.kvertragÿ2
+mwst.kvertragÿ0
+VS_Dauer.kvertragÿLaufzeit.a$
+codew.kvertragÿ3
+umrechnung.kvertragÿ1
+waehrung.kvertragÿ"EUR"
+ÿ¡erg„nzung.a$ÿ""ÿpnotiz.kvertragÿ"Erg„nzung: "ÿerg„nzung.a$ÿÿ(13)ÿÿ(19)
+ÿ¡N_wkn.a$ÿ0ÿpnotiz.kvertragÿnotiz.kvertragÿ"WKN: "ÿÿH(ÿ(n_wkn.a$,"999999999999"))ÿÿ(13)ÿÿ(19)
+ 
+ 
+ÿ½ WaehrungBezeich.kvertrag = WaehrungBezeich.waehrung
+ÿ½ REQUEST "Wollen Sie einen Fremdvertrag erfassen?","",135,req%
+fstatus$ÿ"Status_.abs"
+ÿ½ 1 Eingereicht Servicezentrum
+ÿ½ 2 Eingereicht Gesellschaft
+ÿ½ 3 Reklamation
+ÿ½ 4 Reklamation erledigt
+ÿ½ 5 Antrag angenommen
+ÿ½ 6 Provisionseingang
+ÿ½ 7 Stornogefahr
+ÿ½ 8 Kndigung
+ 
+ÿ¡fstatus$$ÿ1ÿfstatus$$ÿ2ÿfstatus$$ÿ3ÿfstatus$$ÿ4ÿfstatus$$ÿ5ÿp
+	CodeVStatus.kvertragÿ12
+	VStatusTxT.kvertragÿ"Antrag"
+ÿ’ÿ¡
+ÿ¡fstatus$$ÿ6ÿfstatus$$ÿ7ÿp
+	CodeVStatus.kvertragÿ01
+	VStatusTxT.kvertragÿ"lebend"
+ÿ’ÿ¡
+ÿ¡fstatus$$ÿ8ÿp
+	CodeVStatus.kvertragÿ04
+	VStatusTxT.kvertragÿ"storniert"
+ÿ’ÿ¡
+ÿ½ IF fstatus$$ LIKE "Ant.storno*" THEN 
+	ÿ½ CodeVStatus.kvertrag = 15
+	ÿ½ VStatusTxT.kvertrag = "Antragswiderruf"
+ÿ’ÿ¡
+ 
+ÿÉÿæfstatus$$
+	ÿæ1
+statusintern.kvertragÿ"Eingereicht Servicezentrum"
+STATUSKey.kvertragÿ1
+ÿ¡ÿOÿJ(fstatus$$,Statuskey.statukey)ÿp
+ÿÿ™"statukey"
+Statuskey.statukeyÿfstatus$$
+keyword.statukeyÿ"Eingereicht Servicezentrum"
+ÿÌÿ™"statukey"
+ÿ’ÿ¡
+	ÿæ2
+statusintern.kvertragÿ"Eingereicht Gesellschaft"
+STATUSKey.kvertragÿ2
+ÿ¡ÿOÿJ(fstatus$$,Statuskey.statukey)ÿp
+ÿÿ™"statukey"
+Statuskey.statukeyÿfstatus$$
+keyword.statukeyÿ"Eingereicht Gesellschaft"
+ÿÌÿ™"statukey"
+ÿ’ÿ¡
+	ÿæ3
+statusintern.kvertragÿ"Reklamation"
+STATUSKey.kvertragÿ3
+ÿ¡ÿOÿJ(fstatus$$,Statuskey.statukey)ÿp
+ÿÿ™"statukey"
+Statuskey.statukeyÿfstatus$$
+keyword.statukeyÿ"Reklamation"
+ÿÌÿ™"statukey"
+ÿ’ÿ¡
+	ÿæ4
+statusintern.kvertragÿ"Reklamation erledigt"
+STATUSKey.kvertragÿ4
+ÿ¡ÿOÿJ(fstatus$$,Statuskey.statukey)ÿp
+ÿÿ™"statukey"
+Statuskey.statukeyÿfstatus$$
+keyword.statukeyÿ"Reklamation erledigt"
+ÿÌÿ™"statukey"
+ÿ’ÿ¡
+	ÿæ5
+statusintern.kvertragÿ"Antrag angenommen"
+STATUSKey.kvertragÿ5
+ÿ¡ÿOÿJ(fstatus$$,Statuskey.statukey)ÿp
+ÿÿ™"statukey"
+Statuskey.statukeyÿfstatus$$
+keyword.statukeyÿ"Antrag angenommen"
+ÿÌÿ™"statukey"
+ÿ’ÿ¡
+	ÿæ6
+statusintern.kvertragÿ"Provisionseingang"
+STATUSKey.kvertragÿ6
+ÿ¡ÿOÿJ(fstatus$$,Statuskey.statukey)ÿp
+ÿÿ™"statukey"
+Statuskey.statukeyÿfstatus$$
+keyword.statukeyÿ"Provisionseingang"
+ÿÌÿ™"statukey"
+ÿ’ÿ¡
+	ÿæ7
+statusintern.kvertragÿ"Stornogefahr"
+STATUSKey.kvertragÿ7
+ÿ¡ÿOÿJ(fstatus$$,Statuskey.statukey)ÿp
+ÿÿ™"statukey"
+Statuskey.statukeyÿfstatus$$
+keyword.statukeyÿ"Stornogefahr"
+ÿÌÿ™"statukey"
+ÿ’ÿ¡
+	ÿæ8
+statusintern.kvertragÿ"Kndigung"
+STATUSKey.kvertragÿ8
+ÿ¡ÿOÿJ(fstatus$$,Statuskey.statukey)ÿp
+ÿÿ™"statukey"
+Statuskey.statukeyÿfstatus$$
+keyword.statukeyÿ"Kndigung"
+ÿÌÿ™"statukey"
+ÿ’ÿ¡
+ÿ’ÿÉ
+ 
+ 
+ 
+ 
+ 
+ZW.KVERTRAGÿ55
+fzw$ÿ"Beitragsperiode.abs"
+ÿ½ #############################################
+ÿ½ was ist mit     Beitragsperiode.abs = "S" ???
+ÿ½ #############################################
+ÿ¡fzw$$ÿ"J"ÿp
+	ZW.KVERTRAGÿ1
+ÿ’ÿ¡
+ÿ¡fzw$$ÿ"1/2"ÿp
+	ZW.KVERTRAGÿ2
+ÿ’ÿ¡
+ÿ¡fzw$$ÿ"1/4"ÿp
+	ZW.KVERTRAGÿ4
+ÿ’ÿ¡
+ÿ¡fzw$$ÿ"M"ÿp
+	ZW.KVERTRAGÿ12
+ÿ’ÿ¡
+ÿ¡fzw$$ÿ"E"ÿp
+	ZW.KVERTRAGÿ0
+ÿ’ÿ¡
+cuvt%ÿlfdnr%
+spezProvAktiv.kvertragÿ"n"
+ 
+ÿ½ Spezialsachen von FPB
+Notiz.kvertragÿNotiz.kvertragÿ"Hierarchie: "ÿHierarchie.a$ÿÿ(13)ÿÿ(10)
+Notiz.kvertragÿNotiz.kvertragÿ"ProvStufe: "ÿÿH(ÿ(ProvStufe.a$,"99"))ÿÿ(13)ÿÿ(10)
+ÿ¡ProvStufe2.a$ÿ0ÿpNotiz.kvertragÿNotiz.kvertragÿ"ProvStufe2: "ÿÿH(ÿ(ProvStufe2.a$,"99"))ÿÿ(13)ÿÿ(10)
+ÿ¡ProvStufe3.a$ÿ0ÿpNotiz.kvertragÿNotiz.kvertragÿ"ProvStufe3: "ÿÿH(ÿ(ProvStufe3.a$,"99"))ÿÿ(13)ÿÿ(10)
+Notiz.kvertragÿNotiz.kvertragÿ"Teiler: "ÿÿH(ÿ(Pr_Teiler.a$,",99999999.0000"))ÿÿ(13)ÿÿ(10)
+Notiz.kvertragÿNotiz.kvertragÿ"ProvSatz: "ÿÿH(ÿ(Prov_Satz.a$,"999999999.9999"))ÿÿ(13)ÿÿ(10)
+ÿ¡Prov_SR.a$ÿ0ÿpNotiz.kvertragÿNotiz.kvertragÿ"ProvSR: "ÿÿH(ÿ(Prov_SR.a$,"999999.99"))ÿÿ(13)ÿÿ(10)
+ÿ¡ÿ0(Pr_AAufschl.a$)ÿ0ÿpNotiz.kvertragÿNotiz.kvertragÿ"Pr_AAufschl: "ÿPr_AAufschl.a$ÿÿ(13)ÿÿ(10)
+Notiz.kvertragÿNotiz.kvertragÿ"reellePunkte: "ÿÿH(ÿ(reellePunkte.a$,"999999999.9999"))ÿÿ(13)ÿÿ(10)
+Notiz.kvertragÿNotiz.kvertragÿ"tmp_Punkte: "ÿÿH(ÿ(tmp_Punkte.a$,"999999999.9999"))ÿÿ(13)ÿÿ(10)
+tmppunkte.kvertragÿtmp_Punkte.a$
+realPunkte.kvertragÿreellePunkte.a$
+Teiler.kvertragÿPr_Teiler.a$
+ProvStufe.kvertragÿProvStufe.a$
+ProvStufe2.kvertragÿProvStufe3.a$
+Prov_ausstehend.kvertragÿProv_ausstehend.a$
+Prov_Fortlaufen.kvertragÿProv_Fortlaufen.a$
+Prov_Einfr.kvertragÿProv_Einfrieren.a$
+Prov_Satz.kvertragÿProv_Satz.a$
+Prov_SR.kvertragÿProv_SR.a$
+Prov_SRWert.kvertragÿProv_SRWert.a$
+Prov_Vorr.kvertragÿProv_Vorr.a$
+ 
+ÿƒQuickStore("KVERTRAG")
+ 
+ 
+ 
+ 
+ÿ½ ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ÿÉÿ`ÿ™a$ÿ£_UniversalID.a$
+ÿÉÿ¥uid$ÿáÿ™a$ÿ£_UniversalID.a$
+codeku.a$ÿcodeku%
+codevt.a$ÿcodevt%
+codege.a$ÿcodege%
+codeva.a$ÿcodeva%
+codevp.a$ÿcodevp%
+codegrsp.a$ÿcodegrsp%
+fehler.a$ÿfehler$
+ÿƒQuickStore(a$)
+end110620051: 
+ÿßÿe
+ÿÉÿ±ÿ™a$ÿ£_UniversalID.a$
+ÿÙ
+ ÿ’ÿÿ
+ 
+ 
+ 
+ÿÿCreateFPGe%(Gesellschaft$)
+ ÿÿ™"geadr"
+ gesellschaft.geadrÿGesellschaft$
+ CreateFPGe%ÿÿI("GEADR",1)
+ codege.geadrÿCreateFPGe%
+ ÿƒQuickStore("GEADR")
+ ÿ’ÿÿ
+ 
+ÿÿCreateFPSpagr%(gruppe$)
+ ÿÿ™"spgruppe"
+ CreateFPSpagr%ÿÿI("spgruppe",1)
+ codegrsp.spgruppeÿCreateFPSpagr%
+ gruppe.spgruppeÿgruppe$
+ ÿƒQuickStore("spgruppe")
+ ÿ’ÿÿ
+ 
+ÿÿCreateFPSpa%(Sparte$,codegrsp%)
+ ÿÿ™"Sparten"
+ CreateFPSpa%ÿÿI("sparten",1)
+ codeva.spartenÿCreateFPSpa%
+ codegrsp.spartenÿcodegrsp%
+ Sparte.spartenÿsparte$
+ ÿƒQuickStore("Sparten")
+ ÿ’ÿÿ
+ 
+ÿÿCreateFPMa%(VMName1$,berater%)
+ÿÿ™"maadr"
+CreateFPMa%ÿberater%
+codema.maadrÿCreateFPMa%
+Agenturnr.maadrÿÿH(ÿ(berater%,"99999999"))
+pos%ÿÿ?(VMName1$," ")
+ÿ¡pos%ÿ0ÿp
+vorname.maadrÿÿ+(VMName1$,pos%ÿ1)
+nachname.maadrÿÿ,(VMName1$,pos%ÿ1)
+ÿ^
+nachname.maadrÿVMName1$
+ÿ’ÿ¡
+ÿƒQuickStore("maadr")
+ ÿ’ÿÿ
+ 
+ 
+ÿÿCreateFPAdr%(hkt%,codema%)
+k$ÿ"ABS"
+ÿ¡ÿOÿJ(codema%,codema.maadr)ÿp
+ÿÿ™"maadr"
+codema.maadrÿcodema%
+Agenturnr.maadrÿÿH(ÿ(codema%,"99999999"))
+pos%ÿÿ?(Beratername.k$," ")
+ÿ¡pos%ÿ0ÿp
+vorname.maadrÿÿ+(Beratername.k$,pos%ÿ1)
+nachname.maadrÿÿ,(Beratername.k$,pos%ÿ1)
+ÿ^
+nachname.maadrÿBeratername.k$
+ÿ’ÿ¡
+ÿƒQuickStore("maadr")
+ÿ’ÿ¡
+
+a$ÿ"ADRESSEN"
+ÿÿ™"ADRESSEN"
+codeku%ÿÿI("ADRESSEN",1)
+codeku.a$ÿcodeku%
+CreateFPAdr%ÿcodeku%
+hkt.a$ÿhkt%
+Kundennummer.a$ÿÿH(ÿ(hkt%,"000000"))
+codema.a$ÿcodema%
+beruf.a$ÿÿ+(vn_beruf.k$,50)
+nachname.a$ÿvn_name.k$
+vorname.a$ÿvn_Vorname.k$
+ort.a$ÿvn_ort.k$
+Straáe.a$ÿÿ+(vn_strasse.k$,50)
+plz.a$ÿÿ+(vn_plz.k$,8)
+k1blz.a$ÿ""
+k1Bank.a$ÿ""
+K1Konto.a$ÿ""
+ 
+	k1blz.a$ÿsov_blz.k$
+	k1Bank.a$ÿÿ+(sov_Bank.K$,50)
+	kto$ÿsov_Konto.k$
+	K1Konto.a$ÿsov_konto.k$
+d$ÿvn_gebdatum.k$
+ ÿ¡vn_gebdatum.k$ÿ""ÿpGeburtstag.a$ÿÿ1(ÿ+(vn_gebdatum.k$,10))
+ 
+ÿƒQuickStore(a$)
+ 
+ 
+n$ÿk$
+ÿ¡VN_Telefon.n$ÿ""ÿp
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku.telefonÿcodeku%
+n$ÿk$
+Nummer.telefonÿVN_Telefon.n$
+art.telefonÿ"Telefon"
+fonoderfax.telefonÿ"n"
+KART1.telefonÿ"FON"
+ÿƒQuickStore ("telefon")
+ÿ’ÿ¡
+ÿ¡VN_Telefon_2.n$ÿ""ÿp
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku.telefonÿcodeku%
+Nummer.telefonÿVN_Telefon_2.n$
+art.telefonÿ"Telefon priv."
+fonoderfax.telefonÿ"n"
+KART1.telefonÿ"FON"
+ÿƒQuickStore ("telefon")
+ÿ’ÿ¡
+ÿ¡VN_Telefon_3.n$ÿ""ÿp
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku.telefonÿcodeku%
+Nummer.telefonÿVN_Telefon_3.n$
+art.telefonÿ"Telefon gesch"
+fonoderfax.telefonÿ"n"
+KART1.telefonÿ"FON"
+ÿƒQuickStore ("telefon")
+ÿ’ÿ¡
+ÿ¡VN_Telefax.n$ÿ""ÿp
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku.telefonÿcodeku%
+Nummer.telefonÿVN_TeleFax.n$
+art.telefonÿ"Fax"
+fonoderfax.telefonÿ"j"
+KART1.telefonÿ"FAX"
+ÿƒQuickStore ("telefon")
+ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ÿÿFPWKNImp()
+w$ÿ"WKN"
+m$ÿ"PROD"
+g$ÿ"GEADR"
+s$ÿ"SPARTEN"
+t$ÿ"TARIF"
+v$ÿ"VPRODUKT"
+ÿ™w$
+ÿ£n_wkn.w$
+ÿÉÿ`
+ÿØÿOÿB(w$)
+ges$ÿs_KAG.w$
+spa$ÿs_Fonds.w$
+aa%ÿs_AAuf
+nwkn%ÿn_WKN.w$
+ÿ¡ÿOÿJ(ges$,Gesellschaft.g$)ÿp
+ÿÿ™g$
+codege.g$ÿÿI(g$,1)
+codege%ÿcodege.g$
+gesellschaft.g$ÿges$
+Notiz.g$ÿ"WKN"
+ÿÌÿ™g$
+ÿ^
+ÿÉÿ`ÿ™g$ÿ£gesellschaft.g$
+ÿÉÿ¥ges$ÿ™g$ÿ£gesellschaft.g$
+codege%ÿcodege.g$
+ÿ’ÿ¡
+ÿ¡ÿOÿJ(spa$,sparte.s$)ÿp
+ÿÿ™s$
+codeva.s$ÿÿI(s$,1)
+codeva%ÿcodeva.s$
+Sparte.s$ÿspa$
+codegrsp.s$ÿ24
+Notiz.s$ÿ"WKN: "ÿÿH(ÿ(nwkn%,"9999999999999"))
+ÿÌÿ™s$
+ÿ^
+ÿÉÿ`ÿ™s$ÿ£sparte.s$
+ÿÉÿ¥spa$ÿ™s$ÿ£sparte.s$
+codeva%ÿcodeva.s$
+codegrsp%ÿcodegrsp.s$
+ÿ’ÿ¡
+ÿÉÿ`ÿ™"spgruppe"ÿ£codegrsp.spgruppe
+ÿÉÿ¥codegrsp%ÿ™"spgruppe"ÿ£codegrsp.spgruppe
+qgesp$ÿÿ(codegr%,"000000")ÿÿ(codeva%,"000000")
+ÿ¡ÿOÿJ(qgesp$,qcodegeva.v$)ÿp
+ÿÿ™v$
+codevp.v$ÿÿI(v$,1)
+codege.v$ÿcodege%
+gesellschaft.v$ÿÿ+(gesellschaft.g$,30)
+sparte.v$ÿsparte.s$
+QCodegeva.v$ÿqgespa$
+codeva.v$ÿcodeva%
+codegrsp.v$ÿ24
+Gruppe.v$ÿ"WKN"
+wkn.v$ÿnwkn%
+ausgauf.v$ÿaa%
+ÿƒQuickStore(v$)
+ÿ’ÿ¡
+ÿÊÿËgesellschaft.v$ÿ"/"ÿsparte.v$
+ÿÉÿ±ÿ™w$
+ÿÙ
+ ÿ’ÿÿ
+ 
+ÿÿFPProdImp()
+w$ÿ"WKN"
+m$ÿ"PROD"
+g$ÿ"GEADR"
+s$ÿ"SPARTEN"
+t$ÿ"TARIF"
+ÿ½ GOTO vp0706051 
+ÿ™g$
+ÿ£gesellschaft.g$
+ÿ™m$
+ÿ£Gesellschaft.m$
+ÿÉÿ`
+ÿØÿOÿB(m$)
+ges$ÿGesellschaft.m$
+ÿ¡ÿOÿJ(ges$,gesellschaft.g$)ÿp
+ÿƒFehler(ges$,"nicht gefunden")
+ÿ½ ? ges$
+ÿ’ÿ¡
+ÿÉÿ±ÿ™m$
+ÿÙ
+ 
+spg$ÿ"SpGruppe"
+ÿ™"SpGruppe"
+ÿ£gruppe.spg$
+ÿ™m$
+ÿ£Pr_Sparte.m$
+ÿÉÿ`
+ÿØÿOÿB(m$)
+ÿ½ sp$ = Pr_Sparte.m$
+sp$ÿPr_Sparte.m$
+ÿ¡ÿOÿJ(sp$,Gruppe.spg$)ÿsp$ÿ"."ÿp
+ÿÿ™spg$
+codegrsp.spg$ÿÿI(spg$,1)
+Gruppe.spg$ÿsp$
+ÿƒQuickStore(spg$)
+ÿ’ÿ¡
+ÿÉÿ±ÿ™m$
+ÿÙ
+ 
+ 
+ÿ™"Sparten"
+ÿ£sparte.s$
+ÿ™m$
+ÿ£Pr_Produkt.m$
+ÿÉÿ`
+ÿØÿOÿB(m$)
+ÿ½ sp$ = Pr_Sparte.m$
+sp$ÿPr_Produkt.m$
+ÿ¡ÿOÿJ(sp$,sparte.s$)ÿsp$ÿ"."ÿp
+ÿÉÿ`ÿ™"spgruppe"ÿ£gruppe.spgruppe
+ÿÉÿ¥Pr_Sparte.m$ÿ™"spgruppe"ÿ£gruppe.spgruppe
+codegrsp%ÿcodegrsp.spgruppe
+ÿÿ™s$
+codeva.s$ÿÿI(s$,1)
+sparte.s$ÿsp$
+codegrsp.S$ÿcodegrsp%
+ÿƒQuickStore(s$)
+ÿ^
+ÿ¡sp$ÿ"."ÿp
+ÿÉÿ`ÿ™s$ÿ£sparte.s$
+ÿÉÿ¥sp$ÿáÿ™s$ÿ£sparte.s$
+ÿÉÿ`ÿ™"spgruppe"ÿ£gruppe.spgruppe
+ÿÉÿ¥Pr_Sparte.m$ÿ™"spgruppe"ÿ£gruppe.spgruppe
+codegrsp%ÿcodegrsp.spgruppe
+codegrsp.S$ÿcodegrsp%
+ÿƒQuickStore(s$)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿ™m$
+ÿÙ
+ÿƒFehler("Ferig mit Sparten","")
+ 
+ 
+vp0706051: 
+ s$ÿ"Sparten"
+ÿ™g$
+ÿ£gesellschaft.g$
+ÿ™"Sparten"
+ÿ£sparte.s$
+ÿ™m$
+ÿ£Gesellschaft.m$
+ÿÉÿ`
+v$ÿ"vprodukt"
+ÿØÿOÿB(m$)
+ÿ½ sp$ = Pr_Sparte.m$
+sp$ÿPr_Produkt.m$
+sparte$ÿPr_Sparte.m$
+ÿÉÿ`ÿ™s$ÿ£sparte.s$
+ÿÉÿ¥sp$ÿ™s$ÿ£sparte.s$
+ÿ¡sp$ÿsparte.s$ÿp
+codeva%ÿcodeva.s$
+codegrsp%ÿcodegrsp.s$
+ÿÉÿ`ÿ™"SPGruppe"ÿ£codegrsp.spgruppe
+ÿÉÿ¥codegrsp%ÿ™"SPGruppe"ÿ£codegrsp.spgruppe
+gruppe$ÿgruppe.spgruppe
+ge$ÿGesellschaft.m$
+ÿÉÿ`ÿ™g$ÿ£gesellschaft.g$
+ÿÉÿ¥ge$ÿ™g$ÿ£gesellschaft.g$
+ÿ¡ge$ÿgesellschaft.g$ÿp
+codege%ÿcodege.g$
+qgesp$ÿÿ(codege%,"000000")ÿÿ(codeva%,"000000")
+ÿ¡ÿOÿJ(qgesp$,QCodeGEVA.vprodukt)ÿp
+
+ÿÿ™"vprodukt"
+
+codevp.vproduktÿÿI("vprodukt",1)
+
+codevp%ÿcodevp.vprodukt
+
+codege.v$ÿcodege%
+
+codeva.v$ÿcodeva%
+
+codegrsp.vproduktÿcodegrsp%
+
+gruppe.vproduktÿgruppe$
+
+QCodeGEVA.v$ÿqgesp$
+
+Gesellschaft.v$ÿÿ+(ge$,30)
+
+Bewertungsbasis.v$ÿPr_Teiler.m$
+
+Sparte.v$ÿÿ+(sp$,60)
+
+GesSpa.v$ÿge$ÿ"/"ÿsp$
+
+Notiz.v$ÿ"Pooleinstufung: "ÿÿ(Pooleinstufung.m$,"9")ÿÿ(13)ÿÿ(10)
+
+Notiz.v$ÿNotiz.v$ÿ"Pr_Bemerkung: "ÿPr_Bemerkung.m$ÿÿ(13)ÿÿ(10)
+
+Notiz.v$ÿNotiz.v$ÿ"Pr_Bewertung: "ÿPr_Bewertung.m$ÿÿ(13)ÿÿ(10)
+
+Notiz.v$ÿNotiz.v$ÿ"Pr_Produkt: "ÿPr_Produkt.m$ÿÿ(13)ÿÿ(10)
+
+Notiz.v$ÿNotiz.v$ÿ"Pr_Provisionssatz: "ÿÿH(ÿ(Pr_Provisionssa.m$,"9999999.000"))ÿÿ(13)ÿÿ(10)
+
+Notiz.v$ÿNotiz.v$ÿ"Pr_Stornoreserv: "ÿÿH(ÿ(Pr_Stornoreserv.m$,"9999999.000"))ÿÿ(13)ÿÿ(10)
+
+Notiz.v$ÿNotiz.v$ÿ"Vermittlernr: "ÿVermittlernr.m$ÿÿ(13)ÿÿ(10)
+
+ÿ½ Ermittlung und Eintragung der Berechnungsformel
+
+ÿÉÿæPr_Bewertung.m$
+ÿæ"1 * MNB","1* MNB","1*MNB","1*Monatsnettobeitrag","MNB","Monatsnettobeitrag","Netto-Gebhr"
+FormelBewertung.vproduktÿ"<NettoBeitrag>"
+ÿæ"Nettobeitrag * LZ (max. 45 Jahre)"
+FormelBewertung.vproduktÿ"<NettoBeitrag>"
+MaxBew.vproduktÿ45
+ÿæ"Monatsbeitrag * LZ"
+FormelBewertung.vproduktÿ"<Beitrag>*<Laufzeit>"
+ÿæ"1,75 * MNB"
+FormelBewertung.vproduktÿ"<NettoBeitrag>*1,75"
+ÿæ"2 * MNB","2* MNB"
+FormelBewertung.vproduktÿ"<NettoBeitrag>*2"
+ÿæ"20 %25 der VS","20 %25 der Versicherungssumme"
+FormelBewertung.vproduktÿ"<Vertragssumme>*20/100"
+ÿæ"Anlagesumme","Darlehenssumme","Grundwert","Kaufpreis","Kaufpreis ohne Agio","KP","Kaufpreis ohne Agio"
+FormelBewertung.vproduktÿ"<Vertragssumme>"
+ÿæ"Einmalbeitrag"
+FormelBewertung.vproduktÿ"<Beitrag>"
+ÿæ"Jahresbeitrag * LZ","Jahresbrutto * LZ"
+FormelBewertung.vproduktÿ"<Jahresbeitrag>*<Laufzeit>"
+ÿæ"Jahresbeitrag * LZ (max. 35 Jahre)","Jahresbeitrag * LZ (max. 35 Jahre)","Jahresbrutto * LZ (max. 35 Jahre)"
+FormelBewertung.vproduktÿ"<Jahresbeitrag>*<Laufzeit>"
+MaxBew.vproduktÿ35
+ÿæ"Jahresnettobeitrag","Jahresnettopr„mie","JNB"
+FormelBewertung.vproduktÿ"<NettoBeitrag>*<Zahlweise>"
+ÿæ"Jahresnettobeitrag * LZ"
+FormelBewertung.vproduktÿ"<NettoBeitrag>*<Zahlweise>*<Laufzeit>"
+
+ÿ’ÿÉ
+
+ÿÉÿæPr_Bemerkung.m$
+ÿæ"Jahresnetto*LZ (max. 35 Jahre)"
+FormelBewertung.vproduktÿ"<NettoBeitrag>*<Zahlweise>*<Laufzeit>"
+MaxBew.vproduktÿ35
+
+ÿæ"Bruttobeitrag gem„á Zahlweise"
+FormelBewertung.vproduktÿ"<Beitrag>"
+
+ÿ’ÿÉ
+
+AutomNetBer.vproduktÿ"j"
+
+ÿƒQuickStore(v$)
+
+ÿÊÿËGesSpa.v$
+
+ÿ¡sparte$ÿ"Bank*"ÿp
+
+ÿ^
+ÿ¡ÿOÿJ(codevp%,codevp.VPGekond)ÿp
+ÿÿ™"VPGekond"
+ÿ½ SET STATUS "Datensatz neu angelegt..."
+CodeKey.VPGekondÿÿI("VPGEKOND",1)
+codevp.VPGekondÿcodevp%
+bwvon.vpgekondÿ"01.01.1990"
+ÿ½ ap.vpgekond = 100
+ÿ¡sparte$ÿ"Sachver*"ÿp
+Courtage.vpgekondÿPr_Provisionssa.m$
+CourtageJN.vpgekondÿ"j"
+ÿ^
+AP.vpgekondÿPr_Provisionssa.m$
+APjn.vpgekondÿ"j"
+ÿ’ÿ¡
+ÿ¡Pr_Stornoreserv.m$ÿ0ÿp
+SRjn.vpgekondÿ"j"
+sr.vpgekondÿPr_Stornoreserv.m$
+ÿ’ÿ¡
+CourtageZWjn.VPGekondÿ"n"
+PflegeNachZahlw.VPGekondÿ"n"
+MAName.VPGEKONDÿGMANAME$
+MACodeMA.VPGEKONDÿGCodeMA%
+ÿ½ 140596
+ÿÌÿ™"VPGekond"
+ÿ¡sparte$ÿ"Invest*"ÿp
+ÿÿ™"VPGekond"
+ÿ½ SET STATUS "Datensatz neu angelegt..."
+CodeKey.VPGekondÿÿI("VPGEKOND",1)
+codevp.VPGekondÿcodevp%
+bwvon.vpgekondÿ"01.01.1990"
+ÿ½ ap.vpgekond = 100
+Courtage.vpgekondÿPr_Provisionssa.m$
+CourtageJN.vpgekondÿ"j"
+ÿ¡Pr_Stornoreserv.m$ÿ0ÿp
+SRjn.vpgekondÿ"j"
+sr.vpgekondÿPr_Stornoreserv.m$
+ÿ’ÿ¡
+CourtageZWjn.VPGekondÿ"n"
+PflegeNachZahlw.VPGekondÿ"n"
+MAName.VPGEKONDÿGMANAME$
+MACodeMA.VPGEKONDÿGCodeMA%
+ÿ½ 140596
+ÿÌÿ™"VPGekond"
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿ™m$
+ÿÙ
+ÿ½ ? "#############fertig##############"
+ÿƒFehler("fertich!","")
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFPMaImp()
+ ÿƒFehler("MAADR import","")
+ m$ÿ"MITARB"
+ a$ÿ"MAADR"
+ ÿ™m$
+ ÿ£_UniversalID.m$
+ ÿÉÿ`ÿ™m$
+ ÿØÿOÿB(m$)
+uid$ÿ_UniversalID.m$
+codema%ÿberater.m$
+ÿ¡ÿOÿJ(codema%,codema.maadr)ÿp
+ÿÿ™"maadr"
+codema.maadrÿcodema%
+ÿ^
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema%ÿáÿ™"maadr"ÿ£codema.maadr
+ÿ’ÿ¡
+pos%ÿÿ?(Username_.m$," ")
+ 
+ÿ¡pos%ÿ0ÿp
+vorname.maadrÿÿ+(Username_.m$,pos%ÿ1)
+nachname.maadrÿÿ,(Username_.m$,pos%ÿ1)
+ÿ^
+nachname.maadrÿUsername_.m$
+ÿ’ÿ¡
+Agenturnr.maadrÿÿH(ÿ(codema%,"99999999"))
+Username_.maadrÿUsername_.m$
+Mitarbeiter.maadrÿMitarbeiter.m$
+ort.maadrÿort.m$
+plz.maadrÿÿH(plz.m$)
+Straáe.maadrÿstrasse.m$
+k1Konto.maadrÿÿH(ÿ(kto.m$,"99999999999"))
+k1Bank.maadrÿBankname.m$
+k1BLZ.maadrÿblz.m$
+Telefon1.maadrÿTelefon.m$
+Telefax.maadrÿTelefax.m$
+email.maadrÿemail.m$
+Notiz.maadrÿ"MultiprovStufen: "ÿMultiprovStufen.m$ÿ"        Prov1Fuer: "ÿProv1Fuer.m$ÿ"      Prov1Fuer2: "ÿProv1Fuer2.m$ÿÿ(13)ÿÿ(10)
+Notiz.maadrÿNotiz.maadrÿ"ProvStufe: "ÿProvStufe.m$ÿ"       ProvStufe2: "ÿProvStufe2.m$ÿÿ(13)ÿÿ(10)
+Stufe.maadrÿÿ0(ProvStufe.m$)
+Notiz.maadrÿNotiz.maadrÿ"Vorg„nger: "ÿMitarbeiter.m$
+ÿƒQuickStore("maadr")
+ÿÉÿ±ÿ™m$
+ ÿÙ
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFPGesImp()
+ÿƒFehler("Gesell import","")
+g$ÿ"gesell"
+a$ÿ"geadr"
+ÿ™g$
+ÿ£_UniversalID.g$
+ÿÉÿ`
+ÿØÿOÿB(g$)
+uid$ÿ_UniversalID.g$
+ÿ¡ÿOÿJ(uid$,unid.a$)ÿp
+ÿÿ™"geadr"
+codege%ÿÿI("GEADR",1)
+codege.geadrÿcodege%
+gg$ÿGesellschaft.g$
+Gesellschaft.geadrÿgg$
+ort.geadrÿort.g$
+plz$ÿplz.g$
+plz.geadrÿplz.g$
+Straáe.geadrÿstrasse.g$
+Telefon1.geadrÿTelefon.g$
+Telefax.geadrÿTelefax.g$
+notiz.geadrÿ"Vermittlernr.: "ÿVermittlernr.g$
+ÿƒQuickStore("Geadr")
+ÿÉÿ`ÿ™g$ÿ£_UniversalID.g$
+ÿÉÿ¥uid$ÿáÿ™g$ÿ£_UniversalID.g$
+codege.g$ÿcodege%
+ÿÌÿ™g$
+ÿ’ÿ¡
+ÿÉÿ±ÿ™g$
+ÿÙ
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFPAdrImp()
+ ÿƒFehler("Adressimport","")
+ k$ÿ"kunden"
+ a$ÿ"ADRESSEN"
+ ÿ™k$
+ ÿ£kunnr.k$
+ ÿÉÿ`ÿá
+ y%ÿ0
+ z%ÿÿA(k$)
+ ÿØÿOÿB(k$)
+y%ÿy%ÿ1
+ÿÊÿËÿ(y%,",999999")ÿ"/"ÿÿ(z%,",999999")
+codema%ÿÿ0(Berater.k$)
+kunnr$ÿkunnr.k$
+ÿ¡ÿOÿJ(codema%,codema.maadr)ÿp
+ÿÿ™"maadr"
+codema.maadrÿcodema%
+Agenturnr.maadrÿÿH(ÿ(codema%,"99999999"))
+pos%ÿÿ?(Beratername.k$," ")
+ÿ¡pos%ÿ0ÿp
+vorname.maadrÿÿ+(Beratername.k$,pos%ÿ1)
+nachname.maadrÿÿ,(Beratername.k$,pos%ÿ1)
+ÿ^
+nachname.maadrÿBeratername.k$
+ÿ’ÿ¡
+ÿƒQuickStore("maadr")
+ÿ’ÿ¡
+ÿ¡codeku.k$ÿ
+1ÿp
+ÿÿ™"ADRESSEN"
+codeku%ÿÿI("ADRESSEN",1)
+codeku.a$ÿcodeku%
+unid.a$ÿkunnr.k$
+hkt.a$ÿhkt.k$
+ÿ¡kd_status.k$ÿ""ÿp
+Kundennummer.a$ÿkd_status.k$ÿÿH(ÿ(hkt.k$,"000000"))
+ÿ^
+Kundennummer.a$ÿÿH(ÿ(hkt.k$,"000000"))
+ÿ’ÿ¡
+codema%ÿÿ0(Berater.k$)
+codema.a$ÿÿ0(Berater.k$)
+Kunde_seit.a$ÿ_created.k$
+beruf.a$ÿÿ+(beruf.k$,50)
+titel.a$ÿÿ+(titel.k$,30)
+pos%ÿ0
+pos%ÿÿ?(name.k$,"%0D%0A")
+pos1%ÿ0
+pos1%ÿÿ?(vorname.k$,"%0D%0A")
+vorn$ÿvorname.k$
+ÿ¡Begrssung.k$ÿ""ÿpBriefanrede.a$ÿBegrssung.k$
+ÿ¡anrede.K$ÿ1ÿp
+anrede.a$ÿ"Herr"
+vorname.a$ÿvorname.k$
+nachname.a$ÿname.k$
+vorname$ÿvorname.k$
+nachname$ÿname.k$
+briefanrede.a$ÿ"Sehr geehrter Herr "ÿname.k$
+ÿ’ÿ¡
+ÿ¡anrede.K$ÿ2ÿp
+anrede.a$ÿ"Frau"
+vorname.a$ÿvorname.k$
+nachname.a$ÿname.k$
+vorname$ÿvorname.k$
+nachname$ÿname.k$
+briefanrede.a$ÿ"Sehr geehrte Frau "ÿname.k$
+ÿ’ÿ¡
+ÿ¡anrede.k$ÿ0ÿanrede.k$ÿ4ÿp
+ÿ¡anrede.k$ÿ4ÿpanrede.a$ÿ"Firma"
+ÿ’ÿ¡
+ÿ¡anrede.K$ÿ8ÿp
+anrede.a$ÿ"Herr und Frau"
+vorname.a$ÿvorname.k$
+nachname.a$ÿname.k$
+briefanrede.a$ÿ"Sehr geehrte Herr und Frau"ÿname.k$
+ÿ’ÿ¡
+geburtsn$ÿ""
+ÿ¡pos%ÿ0ÿpos1%ÿ0ÿp
+	ÿ¡pos%ÿ0ÿp
+ÿ¡pos%ÿ1ÿp
+nachname$ÿÿ,(name.k$,pos%ÿ6)
+ÿ½ CALL Fehler("Nachname1: " + name.k$,nachname$)
+ÿ^
+nachname$ÿÿ+(name.k$,pos%ÿ1)ÿ" "
+nachname$ÿnachname$ÿÿ,(name.k$,pos%ÿ6)
+ÿ¡ÿ/(nachname$)ÿ50ÿp
+nachname$ÿÿ+(name.k$,pos%ÿ1)
+geburtsn$ÿÿ,(name.k$,pos%ÿ6)
+ÿ’ÿ¡
+ÿ½ CALL Fehler("Nachname2: " + name.k$,nachname$)
+ÿ’ÿ¡
+	ÿ^
+nachname$ÿname.k$
+	ÿ’ÿ¡
+	ÿ¡pos1%ÿ0ÿp
+ÿ¡pos1%ÿ1ÿp
+vorname$ÿÿ,(vorname.k$,pos1%ÿ6)
+ÿƒFehler("Vorname1: "ÿvorname.k$,vorname$)
+ÿ^
+vorname$ÿÿ+(vorname.k$,pos1%ÿ1)ÿ" "
+vorname$ÿvorname$ÿÿ,(vorname.k$,pos1%ÿ6)
+ÿ½ CALL Fehler("Vorname2: " + vorname.k$,vorname$)
+ÿ’ÿ¡
+	ÿ^
+vorname$ÿvorname.k$
+	ÿ’ÿ¡
+ÿ^
+	vorname$ÿvorname.k$
+	nachname$ÿname.k$
+ÿ’ÿ¡
+ÿ¡nachname$ÿ""ÿvorname$ÿ""ÿp
+	nachname$ÿvorname$
+	vorname$ÿ""
+ÿ’ÿ¡
+ÿ³ÿ_ÿwtes200620052 
+ÿ¡ÿ/(nachname$)ÿ50ÿp
+	nachname.a$ÿÿ+(nachname$,45)
+	geburtsname.a$ÿÿ,(nachname$,46)
+	vorname.a$ÿvorname$
+ÿ^
+	nachname.a$ÿnachname$
+	vorname.a$ÿvorname$
+ÿ’ÿ¡
+ÿwpos28062005
+tes200620052: 
+ÿ³ÿ_ÿwErrorHandler
+ÿƒFehler(nachname$,vorname$)
+pos28062005: 
+ÿ¡geburtsn$ÿ""ÿp
+pos06062005: 
+	ÿ¡ÿ/(geburtsn$)ÿ50ÿp
+ÿ½ CALL Fehler("Geburtsname zu lang","")
+pos%ÿÿ?(geburtsn$,"%0D%0A")
+ÿ¡pos%ÿ0ÿp
+ÿ½ CALL Fehler("Geburtsname zu lang","")
+geb$ÿ""
+ok%ÿÿ1
+ÿØpos%ÿ0ÿok%ÿÿ1
+pos%ÿÿ?(geburtsn$,"%0D%0A")
+geb1$ÿgeburtsn$
+geburtsn$ÿÿ+(geburtsn$,pos%ÿ1)
+geb$ÿÿ,(geb1$,pos%ÿ6)
+geburtsn$ÿgeburtsn$ÿgeb$
+pos%ÿÿ?(geburtsn$,"%0D%0A")
+ÿ¡pos%ÿ0ÿpok%ÿ0
+ÿÙ
+ÿwpos06062005
+ÿ^
+notiz.a$ÿnotiz.a$ÿgebutsn$ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+	ÿ^
+geburtsname.a$ÿgeburtsn$
+	ÿ’ÿ¡
+	ÿ½ geburtsname.a$ = geburtsn$
+	ÿ½ notiz.a$ = notiz.a$ + geburtsn$ + CHR$ (13) + CHR$ (10)
+ÿ’ÿ¡
+ort.a$ÿort.k$
+Straáe.a$ÿÿ+(strasse.k$,50)
+plz.a$ÿÿ+(plz.k$,8)
+k1blz.a$ÿ""
+k1Bank.a$ÿ""
+K1Konto.a$ÿ""
+ÿ¡BV_BLZ.k$ÿ"*;*"ÿBV_kto.k$ÿ"*;*"ÿBV_kto.k$ÿ"*u.*"ÿp
+	Notiz.a$ÿNotiz.a$ÿ"BLZ :"ÿBV_BLZ.k$ÿÿ(13)ÿÿ(10)
+	Notiz.a$ÿNotiz.a$ÿ"Bank :"ÿBV_Institut.k$ÿÿ(13)ÿÿ(10)
+	Notiz.a$ÿNotiz.a$ÿ"Konto :"ÿBV_kto.k$ÿÿ(13)ÿÿ(10)
+ÿ^
+	blz$ÿ""
+	blz%ÿÿ0(BV_BLZ.k$)
+	ÿ¡blz%ÿ0ÿp
+blz$ÿÿH(ÿ(blz%,"99999999999"))
+	ÿ’ÿ¡
+	k1blz.a$ÿblz$
+	k1Bank.a$ÿÿ+(BV_Institut.K$,50)
+	kto$ÿBV_kto.k$
+	K1Konto.a$ÿkto$
+ÿ’ÿ¡
+Geburtstag.a$ÿGebdatum.k$
+EGGeburtstag.a$ÿGebDatum2.k$
+ADRGruppe.a$ÿArt.K$
+ÿ½ Adressstatus.a$ = 
+
+ÿ¡Arbeitgeber.k$ÿ""ÿpNotiz.a$ÿNotiz.a$ÿ"Arbeitgeber: "ÿArbeitgeber.k$ÿÿ(13)ÿÿ(10)
+ÿ¡GS.k$ÿ""ÿpNotiz.a$ÿNotiz.a$ÿ"GS: "ÿGS.k$ÿÿ(13)ÿÿ(10)
+ÿ¡aP_Datum.k$ÿ0ÿpNotiz.a$ÿNotiz.a$ÿ"aP_Datum: "ÿÿ(aP_Datum.k$,"0d.mm.yyyy")ÿÿ(13)ÿÿ(10)
+ÿ¡aP_Grund.k$ÿ""ÿpNotiz.a$ÿNotiz.a$ÿ"aP_Grund: "ÿaP_Grund.k$ÿÿ(13)ÿÿ(10)
+ÿ¡aP_Mitarbeiter.k$ÿ""ÿpNotiz.a$ÿNotiz.a$ÿ"aP_Mitarbeiter: "ÿaP_Mitarbeiter.k$ÿÿ(13)ÿÿ(10)
+ÿ¡aP_Produkt.k$ÿ""ÿpNotiz.a$ÿNotiz.a$ÿ"aP_Produkt: "ÿaP_Produkt.k$ÿÿ(13)ÿÿ(10)
+ 
+ÿ¡Leg_Ablauf.k$ÿ""ÿpNotiz.a$ÿNotiz.a$ÿ"Leg_Ablauf: "ÿLeg_Ablauf.k$ÿÿ(13)ÿÿ(10)
+ÿ¡Leg_Art.k$ÿ""ÿpNotiz.a$ÿNotiz.a$ÿ"Leg_Art: "ÿLeg_Art.k$ÿÿ(13)ÿÿ(10)
+ÿ¡Leg_Ausst.k$ÿ""ÿpNotiz.a$ÿNotiz.a$ÿ"Leg_Ausst: "ÿLeg_Ausst.k$ÿÿ(13)ÿÿ(10)
+ÿ¡Leg_Beh”rde.k$ÿ""ÿpNotiz.a$ÿNotiz.a$ÿ"Leg_Beh”rde: "ÿLeg_Beh”rde.k$ÿÿ(13)ÿÿ(10)
+ÿ¡Leg_Nr.k$ÿ""ÿpNotiz.a$ÿNotiz.a$ÿ"Leg_Nr: "ÿLeg_Nr.k$ÿÿ(13)ÿÿ(10)
+ÿ¡Leg_Person.k$ÿ""ÿpNotiz.a$ÿNotiz.a$ÿ"Leg_Person: "ÿLeg_Person.k$ÿÿ(13)ÿÿ(10)
+ 
+ÿ¡InfoPer.k$ÿ0ÿpNotiz.a$ÿNotiz.a$ÿ"InfoPer: "ÿÿ(InfoPer.k$,"0d.mm.yyyy")ÿÿ(13)ÿÿ(10)
+ÿ¡InfoPost.k$ÿ1ÿpStichwort.a$ÿ"INFOPOST; "
+ÿ½ Nationalit„t.a$ = Nationalit„t.k$
+ÿ¡familienstand.k$ÿ1ÿpfamilienstand.a$ÿ"verheiratet"
+ÿ¡familienstand.k$ÿ2ÿpfamilienstand.a$ÿ"ledig"
+ÿ¡familienstand.k$ÿ3ÿpfamilienstand.a$ÿ"geschieden"
+ÿ¡familienstand.k$ÿ4ÿpfamilienstand.a$ÿ"verwitwet"
+ÿ¡maklerauftrag.k$ÿ1ÿpAAMakler.a$ÿ"j"
+ÿƒQuickStore(a$)
+ 
+ 
+n$ÿk$
+ÿ¡Telefon.n$ÿ""ÿp
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku.telefonÿcodeku%
+n$ÿk$
+Nummer.telefonÿTelefon.n$
+art.telefonÿ"Telefon"
+fonoderfax.telefonÿ"n"
+KART1.telefonÿ"FON"
+ÿƒQuickStore ("telefon")
+ÿ’ÿ¡
+ÿ¡Telefon1.n$ÿ""ÿp
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku.telefonÿcodeku%
+Nummer.telefonÿTelefon1.n$
+art.telefonÿ"Telefon priv."
+fonoderfax.telefonÿ"n"
+KART1.telefonÿ"FON"
+ÿƒQuickStore ("telefon")
+ÿ’ÿ¡
+ÿ¡Telefon2.n$ÿ""ÿp
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku.telefonÿcodeku%
+Nummer.telefonÿTelefon2.n$
+art.telefonÿ"Telefon gesch"
+fonoderfax.telefonÿ"n"
+KART1.telefonÿ"FON"
+ÿƒQuickStore ("telefon")
+ÿ’ÿ¡
+ÿ¡Telefon3.n$ÿ""ÿp
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku.telefonÿcodeku%
+Nummer.telefonÿtelefon3.n$
+art.telefonÿ"Handy"
+fonoderfax.telefonÿ"n"
+KART1.telefonÿ"MOBIL"
+ÿƒQuickStore ("telefon")
+ÿ’ÿ¡
+ÿ¡Telefax.n$ÿ""ÿp
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku.telefonÿcodeku%
+Nummer.telefonÿTeleFax.n$
+art.telefonÿ"Fax"
+fonoderfax.telefonÿ"j"
+KART1.telefonÿ"FAX"
+ÿƒQuickStore ("telefon")
+ÿ’ÿ¡
+ÿ¡email.n$ÿ""ÿp
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku.telefonÿcodeku%
+Nummer.telefonÿemail.n$
+art.telefonÿ"email"
+fonoderfax.telefonÿ"n"
+KART1.telefonÿ"EMAIL"
+ÿƒQuickStore ("telefon")
+ÿ’ÿ¡
+ÿ¡email1.n$ÿ""ÿp
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku.telefonÿcodeku%
+Nummer.telefonÿemail1.n$
+art.telefonÿ"email1"
+fonoderfax.telefonÿ"n"
+KART1.telefonÿ"EMAIL"
+ÿƒQuickStore ("telefon")
+ÿ’ÿ¡
+ÿ¡email2.n$ÿ""ÿp
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku.telefonÿcodeku%
+Nummer.telefonÿemail2.n$
+art.telefonÿ"email2"
+fonoderfax.telefonÿ"n"
+KART1.telefonÿ"EMAIL"
+ÿƒQuickStore ("telefon")
+ÿ’ÿ¡
+ÿÉÿ`ÿ™k$ÿ£kunnr.k$
+ÿÉÿ¥kunnr$ÿáÿ™k$ÿ£kunnr.k$
+codeku.k$ÿcodeku%
+ÿÌÿ™k$
+ÿ’ÿ¡
+ÿÉÿ±ÿáÿ™k$ÿ£kunnr.k$
+ ÿÙ
+ 
+ ÿ’ÿÿ
+ 
+ÿÿKondEinhAnl()
+ ÿÉÿ`ÿ™"Vprodukt"ÿ£codevp.vprodukt
+ ÿÉÿ¥999999ÿ™"Vprodukt"ÿ£codevp.vprodukt
+ ÿ™"maadr"
+ ÿ£codema.maadr
+ ÿÉÿ`
+ ÿÉÿ¥1ÿ™"maadr"ÿ£codema.maadr
+ ÿØÿOÿB("maadr")
+ÿ¡ÿOÿJ(codema.maadr,codema.gekond)ÿp
+ÿ™"GEKOND"
+ÿÿ™"GEKOND"
+ÿÊÿË"Datensatz neu angelegt..."
+lfdnr.gekondÿÿI("gekond",1)
+codema.gekondÿcodema.maadr
+CourtageZWjn.gekondÿ"n"
+ÿ¡FirmaEinhTab.stammÿ"j"ÿPrvVerfahr$ÿ"ZAHLUNGSEINGANG"ÿp
+nurEinh.gekondÿ"j"
+APjn.gekondÿ"j"
+CourtageJN.gekondÿ"j"
+PflegeJN.gekondÿ"j"
+ÿ’ÿ¡
+bwvon.gekondÿ"01.01.1990"
+PflegeNachZahlw.gekondÿ"n"
+EuroproEinh.gekondÿProvsatz.maadr
+codege.gekondÿcodege.vprodukt
+codeva.gekondÿcodeva.vprodukt
+codevp.gekondÿcodevp.vprodukt
+ÿ½ CALL MATimeStamp("gekond")
+ÿƒQuickStore("gekond")
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"maadr"
+ ÿÙ
+ ÿ’ÿÿ
+

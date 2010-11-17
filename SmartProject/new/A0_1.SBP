@@ -1,0 +1,101 @@
+SBP
+ÿÿA0_1()
+ÿ×dlg ÿUDialog
+ÿ×control ÿUDialogControl
+ 
+Superbase.Dialogs.Add("Dialogname")
+ÿÊdlg ÿSuperbase.Dialogs.Dialogname
+dlg.Move(0,0,384,273)
+dlg.Captionÿ"Art der Adresse"
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame1","DialogFrame")
+control.Move(2,7,376,242)
+control.Captionÿ" W„hlen Sie eine Option "
+ 
+ÿÊcontrol ÿdlg.Add("DialogOptionButton1","DialogOptionButton")
+control.Move(6,20,159,10)
+control.Captionÿ"Adresse aus Rechnungsanschrift nehmen"
+control.Bind("opt%")
+control.ValueOnÿ6
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel1","DialogLabel")
+control.Move(6,32,335,20)
+control.CaptionBindingÿ"RechBeschr$"
+
+ÿÊcontrol ÿdlg.Add("DialogOptionButton7","DialogOptionButton")
+control.Move(6,53,160,10)
+control.Captionÿ"Adresse aus Lieferanschrift nehmen"
+control.Bind("opt%")
+control.ValueOnÿ7
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel2","DialogLabel")
+control.Move(6,65,335,21)
+control.CaptionBindingÿ"LieferBeschr$"
+
+ÿÊcontrol ÿdlg.Add("DialogOptionButton8","DialogOptionButton")
+control.Move(6,88,159,9)
+control.Captionÿ"Adresse aus dem Postanschriftsfeld nehmen"
+control.Bind("opt%")
+control.ValueOnÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogOptionButton2","DialogOptionButton")
+control.Move(6,100,214,8)
+control.Captionÿ"Adresse aus den Feldern der Adressmaske Seite 1 nehmen"
+control.Bind("opt%")
+control.ValueOnÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogOptionButton3","DialogOptionButton")
+control.Move(6,110,200,10)
+control.Captionÿ"Zweitanschrift verwenden"
+control.Bind("opt%")
+control.ValueOnÿ2
+
+ÿÊcontrol ÿdlg.Add("DialogLabel3","DialogLabel")
+control.Move(6,122,335,21)
+control.CaptionBindingÿ"ZweitBeschr$"
+
+ÿÊcontrol ÿdlg.Add("DialogOptionButton4","DialogOptionButton")
+control.Move(6,144,200,10)
+control.Captionÿ"Drittanschrift verwenden"
+control.Bind("opt%")
+control.ValueOnÿ3
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel4","DialogLabel")
+control.Move(6,156,335,21)
+control.CaptionBindingÿ"DrittBeschr$"
+
+ÿÊcontrol ÿdlg.Add("DialogOptionButton5","DialogOptionButton")
+control.Move(6,177,200,10)
+control.Captionÿ"Viertanschrift verwenden"
+control.Bind("opt%")
+control.ValueOnÿ4
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel5","DialogLabel")
+control.Move(6,189,335,21)
+control.CaptionBindingÿ"ViertBeschr$"
+
+ÿÊcontrol ÿdlg.Add("DialogOptionButton6","DialogOptionButton")
+control.Move(6,211,200,10)
+control.Captionÿ"Fnftanschrift verwenden"
+control.Bind("opt%")
+control.ValueOnÿ5
+
+ÿÊcontrol ÿdlg.Add("DialogLabel6","DialogLabel")
+control.Move(6,223,335,21)
+control.CaptionBindingÿ"FnftBeschr$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(138,252,43,16)
+control.Defaultÿ1
+control.Captionÿ"OK"
+control.ReturnValueÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton2","DialogCommandButton")
+control.Move(184,252,42,16)
+control.Captionÿ"Abbruch"
+control.ReturnValueÿ0
+ 
+ ÿ’ÿÿ
+

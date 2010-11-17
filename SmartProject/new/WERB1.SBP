@@ -1,0 +1,37 @@
+SBP
+ ÿ™"adressen"
+ ÿ½ FILE "keywords"
+ ÿ½ INDEX keyword
+ ÿ™"adressen"
+ ÿ£nachname.adressen
+ ÿÉÿ`
+ ÿ‡
+ i%ÿ0
+ j%ÿÿA("adressen")
+ g%ÿ0
+ ÿØÿOÿB("adressen")
+ok%ÿÿ1
+i%ÿi%ÿ1
+ÿ¡kunde_seit ÿ"01.01.2007"ÿp
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡adrstatus ÿ"*kunde*"ÿp
+ÿ½ ok% = 0
+ÿ’ÿ¡
+ÿ¡stichwort ÿ"*PROVISDEMOERH*"ÿp
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡stichwort ÿ"*PROVISDEMOERLED*"ÿp
+ÿ½ ok% = 0
+ÿ’ÿ¡
+ÿ¡ok%ÿÿ1ÿp
+g%ÿg%ÿ1
+ÿ{nachname ÿ" "ÿort
+ÿ’ÿ¡
+ÿÊÿËÿ(i%,"999999")ÿ"/"ÿÿ(j%,"999999")ÿ"/"ÿÿ(g%,"99999")
+ÿÉÿ±ÿ™"adressen"
+ ÿÙ
+ ÿ{ÿ(i%,"999999")ÿ"/"ÿÿ(j%,"999999")ÿ"/"ÿÿ(g%,"99999")
+

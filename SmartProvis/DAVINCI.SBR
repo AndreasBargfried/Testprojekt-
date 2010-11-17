@@ -1,0 +1,1577 @@
+SBP
+ ÿƒmain()
+
+
+ÿÿdokimdav1()
+ d$ÿ"Dokument"
+ a$ÿ"ADRESSEN"
+ b$ÿ"briefe1"
+GAdrDat$ÿ"ADRESSEN"
+GConDat$ÿ"CONNECT"
+GTelDat$ÿ"TELEFON"
+GAkquiDat$ÿ"AKQUISE"
+GDokDat$ÿ"DOKUMENT"
+GADRStat$ÿ"ADRSTAT"
+ ÿ™b$
+ ÿ£nvirtnr.b$
+ ÿÉÿ`
+ kp$ÿ"F:\DaVinci\"
+ i%ÿ0
+ j%ÿÿA(b$)
+ f%ÿ0
+ ÿØÿOÿB(b$)
+i%ÿi%ÿ1
+dok$ÿkp$ÿcdocfile.b$
+en$ÿÿ-(cdocfile.b$,4)
+codeku%ÿÿ0(ÿ-(ÿ(nkref.b$,"99999999999999"),6))
+ÿ¡ÿJ(dok$)ÿp
+ÿÿ™d$
+codedok.d$ÿÿI(d$,1)
+codedok$ÿÿ(codedok.d$,"000000")
+codeku.d$ÿcodeku%
+Gruppe.d$ÿ"allgemeine Schreiben"
+ÿˆdok$ÿq_netpath$ÿ"OFFICE\TEXT\"ÿcodedok$ÿen$
+dokument.d$ÿcbriefart.b$ÿ"/"ÿcart.b$
+
+erst$ÿÿ+(ddocdate.b$,10)
+ÿ¡DateOK%(erst$)ÿp
+erstellt_am.d$ÿÿ1(erst$)
+ÿ’ÿ¡
+Dateiname.d$ÿ"OFFICE\TEXT\"ÿcodedok$ÿen$
+
+ÿƒQuickStore(d$)
+ÿ^
+f%ÿf%ÿ1
+ÿ’ÿ¡
+ÿÊÿËÿ(i%)ÿ"/"ÿÿ(j%)ÿ"/"ÿÿ(f%)
+ÿÉÿ±ÿ™b$
+ ÿÙ
+
+ ÿ’ÿÿ
+
+
+ÿÿVertragDav1()
+ v$ÿ"vertrag1"
+ s$ÿ"sparten"
+ m$ÿ"maadr"
+ a$ÿ"ADRESSEN"
+ p$ÿ"tprod"
+ g$ÿ"geadr"
+ k$ÿ"kvertrag"
+ ÿ™g$
+ ÿ£codege
+ ÿ™m$
+ ÿ£codema
+ ÿ™s$
+ ÿ£sparte.s$
+
+ ÿ™p$
+ ÿ£nvirtnr
+ ÿ™v$
+ ÿ£nvirtnr
+ ÿÉÿ`
+ i%ÿ0
+ j%ÿÿA(v$)
+ gut%ÿ0
+ fehlp%ÿ0
+ fehlk%ÿ0
+ fehlg%ÿ0
+ fehls%ÿ0
+
+ ÿ¡ÿJ(_netpath$ÿ"0-Import\vfehl.txt")ÿpÿ_netpath$ÿ"0-Import\vfehl.txt"
+ ÿ´_netpath$ÿ"0-Import\vfehl.txt"ÿ›ÿT
+
+ ÿØÿOÿB(v$)
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%,",999999")ÿ"/"ÿÿ(j%,",999999")ÿ"/fehlp% "ÿÿ(fehlp%,",999999")ÿ"/fehlk% "ÿÿ(fehlk%,",999999")ÿ"/fehlg% "ÿÿ(fehlg%,",999999")ÿ"/fehls% "ÿÿ(fehls%,",999999")
+lfdnr%ÿÿ0(ÿ-(ÿ(nvirtnr.v$,"99999999999999"),6))
+codege%ÿÿ0(ÿ-(ÿ(ngesnr.v$,"99999999999999"),6))
+codeku%ÿÿ0(ÿ-(ÿ(nknr.v$,"99999999999999"),6))
+codema%ÿÿ0(ÿ-(ÿ(nmanr.v$,"99999999999999"),6))
+prod%ÿnprodnr.v$
+ÿ¡prod%ÿ0ÿÿJ(prod%,nvirtnr.p$)ÿp
+ÿÉÿ`ÿ™p$ÿ£nvirtnr.p$
+ÿÉÿ¥prod%ÿ™p$ÿ£nvirtnr.p$
+ÿ¡codeku%ÿ0ÿÿJ(codeku%,codeku.a$)ÿp
+ÿÉÿ`ÿ™a$ÿ£codeku.a$
+ÿÉÿ¥codeku%ÿ™a$ÿ£codeku.a$
+knr%ÿcodeku%
+ÿ¡codege%ÿ0ÿÿJ(codege%,codege.g$)ÿp
+	ÿÉÿ`ÿ™g$ÿ£codege.g$
+	ÿÉÿ¥codege%ÿ™g$ÿ£codege.g$
+	ÿÉÿ`ÿ™m$ÿ£codema.m$
+	ÿÉÿ¥codema%ÿ™m$ÿ£codema.m$
+	sparte$ÿcart.p$
+	ÿÉÿ`ÿ™s$ÿ£sparte.s$
+	ÿÉÿ¥sparte$ÿ™s$ÿ£sparte.S$
+	codeva%ÿcodeva.s$
+	ÿÿ™k$
+	lfdnr.k$ÿlfdnr%
+	codeku.k$ÿcodeku%
+	codeva.k$ÿcodeva%
+	codege.k$ÿcodege%
+	codema.k$ÿcodema%
+	vs_Nr.k$ÿcpolnn.v$
+	ÿ¡DateOK%(DBegin.v$)ÿp
+VS_Beginn.k$ÿDBegin.v$
+	ÿ’ÿ¡
+	ÿ¡DateOK%(DAblauf.v$)ÿp
+Kndigung.k$ÿDAblauf.v$
+	ÿ’ÿ¡
+	ÿ¡DateOK%(DAntrag.v$)ÿp
+Antragsdatum.k$ÿDAntrag.v$
+	ÿ’ÿ¡
+	ÿ¡DateOK%(DLedat.v$)ÿp
+ErfassDatum.k$ÿDledat.v$
+	ÿ’ÿ¡
+	ÿ½ **********************ZW********
+	zw.k$ÿnzahlw.v$
+
+	NettoBeitrag.k$ÿNGebeitr.v$
+	mwst.k$ÿnvsteuer.v$
+	Beitrag.k$ÿNettobeitrag.k$ÿ(100ÿmwst.k$)ÿ100
+	waehrung.k$ÿ"EUR"
+	codew.k$ÿ3
+	ÿ¡DateOK%(dhaftung.v$)ÿp
+Notiz.k$ÿ"Haftung bis: "ÿdhaftung.v$ÿ" ,"
+	ÿ’ÿ¡
+	ÿ¡leigen.v$ÿ"T"ÿp
+codevstatus.k$ÿ1
+vstatustxt.k$ÿ"lebend"
+ÿ¡cpolnn.v$ÿ"Antrag*"ÿp
+codevstatus.k$ÿ12
+vstatustxt.k$ÿ"Antrag"
+ÿ’ÿ¡
+	ÿ^
+codevstatus.k$ÿ11
+vstatustxt.k$ÿ"Fremdvertrag"
+	ÿ’ÿ¡
+	note$ÿNotiz.k$
+	ÿ½ IF cpolnn.v$ = "L 021055156012" THEN CALL Fehler("L 021055156012","")
+	ÿ¡ÿJ(nvirtnr.v$,nuknr.lebpers1)ÿp
+ÿÉÿ`ÿ™"lebpers1"ÿ£nuknr.lebpers1
+ÿÉÿ¥nvirtnr.v$ÿ™"lebpers1"ÿ£nuknr.lebpers1
+ÿØÿOÿB("lebpers1")ÿnvirtnr.v$ÿnuknr.lebpers1
+note$ÿnote$ÿ"Wagnis: "ÿcwagnis.lebpers1ÿ" ,VSErleb="ÿÿH(ÿ(nVSErleb.lebpers1,",999999999"))ÿ" ,VSTod="ÿÿH(ÿ(nVSTod.lebpers1,",999999999"))ÿ" ,BUZBR="ÿÿH(ÿ(nBUZBr.lebpers1,",999999999"))
+note$ÿnote$ÿÿ(13)ÿÿ(10)
+tarif.k$ÿctarif.lebpers1
+note$ÿnote$ÿ"ERBezug: "ÿcerbezug.lebpers1ÿ" ,TodBezug: "ÿcTodBezug.lebpers1ÿ" ,BUZBeginn="ÿDBUZBEG.lebpers1ÿ" ,BUZEnde="ÿDBUZend.lebpers1ÿ" ,BUZStaffel: "ÿCBUZStaffe.lebpers1
+note$ÿnote$ÿÿ(13)ÿÿ(10)
+note$ÿnote$ÿ"Rente: "ÿÿH(ÿ(Nrente.lebpers1,",99999999"))ÿ" ,Kapital="ÿÿH(ÿ(NKapital.lebpers1,",999999999"))ÿ" ,Witwe="ÿÿH(ÿ(NWitwe.lebpers1,",999999999"))
+note$ÿnote$ÿ" ,Waisen="ÿÿH(ÿ(NWaisen.lebpers1,",99999999"))
+note$ÿnote$ÿÿ(13)ÿÿ(10)
+ÿÉÿ±ÿ™"lebpers1"ÿ£nuknr.lebpers1
+ÿÙ
+	ÿ’ÿ¡
+
+
+	dd$ÿ"bauspar1"
+	ÿ¡ÿJ(nvirtnr.v$,nuknr.dd$)ÿp
+ÿÉÿ`ÿ™dd$ÿ£nuknr.dd$
+ÿÉÿ¥nvirtnr.v$ÿ™dd$ÿ£nuknr.dd$
+ÿØÿOÿB(dd$)ÿnvirtnr.v$ÿnuknr.dd$
+ÿ½ note$ = note$ + CHR$ (13) + CHR$ (10)
+ÿÉÿ±ÿ™dd$ÿ£nuknr.dd$
+ÿÙ
+	ÿ’ÿ¡
+
+	dd$ÿ"GEBAEU"
+	ÿ¡ÿJ(nvirtnr.v$,nuknr.dd$)ÿp
+ÿÉÿ`ÿ™dd$ÿ£nuknr.dd$
+ÿÉÿ¥nvirtnr.v$ÿ™dd$ÿ£nuknr.dd$
+ÿØÿOÿB(dd$)ÿnvirtnr.v$ÿnuknr.dd$
+note$ÿnote$ÿ"Risiko-Ort: "ÿcrisikoplz.dd$ÿ" "ÿcRisikoort.dd$ÿ", "ÿcrisikostr.dd$
+note$ÿnote$ÿÿ(13)ÿÿ(10)
+ÿÉÿ±ÿ™dd$ÿ£nuknr.dd$
+ÿÙ
+	ÿ’ÿ¡
+
+	dd$ÿ"GESCHINH"
+	ÿ¡ÿJ(nvirtnr.v$,nuknr.dd$)ÿp
+ÿÉÿ`ÿ™dd$ÿ£nuknr.dd$
+ÿÉÿ¥nvirtnr.v$ÿ™dd$ÿ£nuknr.dd$
+ÿØÿOÿB(dd$)ÿnvirtnr.v$ÿnuknr.dd$
+ÿ½ note$ = note$ + CHR$ (13) + CHR$ (10)
+ÿÉÿ±ÿ™dd$ÿ£nuknr.dd$
+ÿÙ
+	ÿ’ÿ¡
+
+	dd$ÿ"glas1"
+	ÿ¡ÿJ(nvirtnr.v$,nuknr.dd$)ÿp
+ÿÉÿ`ÿ™dd$ÿ£nuknr.dd$
+ÿÉÿ¥nvirtnr.v$ÿ™dd$ÿ£nuknr.dd$
+ÿØÿOÿB(dd$)ÿnvirtnr.v$ÿnuknr.dd$
+ÿ½ note$ = note$ + CHR$ (13) + CHR$ (10)
+ÿÉÿ±ÿ™dd$ÿ£nuknr.dd$
+ÿÙ
+	ÿ’ÿ¡
+ 
+	dd$ÿ"haft1"
+	ÿ¡ÿJ(nvirtnr.v$,nuknr.dd$)ÿp
+ÿÉÿ`ÿ™dd$ÿ£nuknr.dd$
+ÿÉÿ¥nvirtnr.v$ÿ™dd$ÿ£nuknr.dd$
+ÿØÿOÿB(dd$)ÿnvirtnr.v$ÿnuknr.dd$
+note$ÿnote$ÿ"Risiko-Ort: "ÿcrisikoplz.dd$ÿ" "ÿcRisikoort.dd$ÿ", "ÿcrisikostr.dd$
+note$ÿnote$ÿÿ(13)ÿÿ(10)
+ÿÉÿ±ÿ™dd$ÿ£nuknr.dd$
+ÿÙ
+	ÿ’ÿ¡
+ 
+	dd$ÿ"HAUSRAT1"
+	ÿ¡ÿJ(nvirtnr.v$,nuknr.dd$)ÿp
+ÿÉÿ`ÿ™dd$ÿ£nuknr.dd$
+ÿÉÿ¥nvirtnr.v$ÿ™dd$ÿ£nuknr.dd$
+ÿØÿOÿB(dd$)ÿnvirtnr.v$ÿnuknr.dd$
+note$ÿnote$ÿ"Risiko-Ort: "ÿcrisikoplz.dd$ÿ" "ÿcRisikoort.dd$ÿ", "ÿcrisikostr.dd$
+note$ÿnote$ÿÿ(13)ÿÿ(10)
+note$ÿnote$ÿ"Feuer: "ÿLFeuer.dd$ÿ" "ÿ"ED: "ÿLED.dd$ÿ" "ÿ"Raub: "ÿLRaub.dd$ÿ" "ÿ"Wasser: "ÿLWasser.dd$ÿ" "ÿ"Sturm: "ÿLSturm.dd$ÿ" "ÿ"Glas: "ÿLGlas.dd$ÿ" "ÿ"Hagel: "ÿLHagel.dd$
+note$ÿnote$ÿ" "ÿ"Spannung: "ÿLSpannung.dd$ÿ" "ÿ"Nutzfeuer: "ÿLNutzfeuer.dd$ÿ" "ÿ"Element: "ÿLElement.dd$ÿ" "ÿ"Wert: "ÿLWert.dd$ÿ" "ÿ"Fahrrad: "ÿLFahrrad.dd$ÿ" "ÿ"Aquarien: "ÿLAquarien.dd$
+note$ÿnote$ÿ" "ÿ"Hotel: "ÿLHotel.dd$ÿ" "ÿ"Implosion: "ÿLImplosion.dd$ÿ" "ÿ"Klima: "ÿLKlima.dd$ÿ" "ÿ"Alarm: "ÿLAlarm.dd$ÿ" "ÿ"Vandalismus: "ÿLVandal.dd$
+note$ÿnote$ÿÿ(13)ÿÿ(10)
+ÿÉÿ±ÿ™dd$ÿ£nuknr.dd$
+ÿÙ
+	ÿ’ÿ¡
+ 
+
+	dd$ÿ"kfz1"
+	ÿ¡ÿJ(nvirtnr.v$,nuknr.dd$)ÿp
+ÿÉÿ`ÿ™dd$ÿ£nuknr.dd$
+ÿÉÿ¥nvirtnr.v$ÿ™dd$ÿ£nuknr.dd$
+ÿØÿOÿB(dd$)ÿnvirtnr.v$ÿnuknr.dd$
+Kennzeichen.k$ÿckennz.dd$
+Fabrikat.k$ÿcherstell.dd$
+Typ_Nr.k$ÿctypschl.dd$
+Fahrzeugst„rke.k$ÿÿ0(nkw.dd$)
+risiko1.k$ÿcwagnis.dd$
+KFZ_WagKZ.k$ÿcwagnr.dd$
+Fahrgestell_Nr.k$ÿcidentnr.dd$
+kmstand.k$ÿnkmstand.dd$
+note$ÿnote$ÿ"Hubraum: "ÿnhubraum.dd$
+note$ÿnote$ÿÿ(13)ÿÿ(10)
+ÿÉÿ±ÿ™dd$ÿ£nuknr.dd$
+ÿÙ
+	ÿ’ÿ¡
+
+	dd$ÿ"kranken1"
+	ÿ¡ÿJ(nvirtnr.v$,nuknr.dd$)ÿp
+ÿÉÿ`ÿ™dd$ÿ£nuknr.dd$
+ÿÉÿ¥nvirtnr.v$ÿ™dd$ÿ£nuknr.dd$
+ÿØÿOÿB(dd$)ÿnvirtnr.v$ÿnuknr.dd$
+note$ÿnote$ÿCBezeich1.dd$ÿ" ,"
+note$ÿnote$ÿCBezeich2.dd$ÿ" ,"
+note$ÿnote$ÿCBezeich3.dd$ÿ" ,"
+note$ÿnote$ÿCBezeich4.dd$ÿ" ,"
+note$ÿnote$ÿCBezeich5.dd$ÿ" ,"
+note$ÿnote$ÿCBezeich6.dd$ÿ" ,"
+note$ÿnote$ÿCBezeich7.dd$ÿ" ,"
+note$ÿnote$ÿCBezeich8.dd$ÿ" ,"
+note$ÿnote$ÿCBezeich9.dd$ÿ" ,"
+note$ÿnote$ÿCBezeich10.dd$
+note$ÿnote$ÿÿ(13)ÿÿ(10)
+note$ÿnote$ÿ"Tar1: "ÿCTarif1.dd$ÿ" ,"
+note$ÿnote$ÿ"Tar2: "ÿCTarif2.dd$ÿ" ,"
+note$ÿnote$ÿ"Tar3: "ÿCTarif3.dd$ÿ" ,"
+note$ÿnote$ÿ"Tar4: "ÿCTarif4.dd$ÿ" ,"
+note$ÿnote$ÿ"Tar5: "ÿCTarif5.dd$ÿ" ,"
+note$ÿnote$ÿ"Tar6: "ÿCTarif6.dd$ÿ" ,"
+note$ÿnote$ÿ"Tar7: "ÿCTarif7.dd$ÿ" ,"
+note$ÿnote$ÿ"Tar8: "ÿCTarif8.dd$ÿ" ,"
+note$ÿnote$ÿ"Tar9: "ÿCTarif9.dd$ÿ" ,"
+note$ÿnote$ÿ"Tar10: "ÿCTarif10.dd$
+note$ÿnote$ÿÿ(13)ÿÿ(10)
+ÿÉÿ±ÿ™dd$ÿ£nuknr.dd$
+ÿÙ
+	ÿ’ÿ¡
+
+	dd$ÿ"unfall1"
+	ÿ¡ÿJ(nvirtnr.v$,nuknr.dd$)ÿp
+ÿÉÿ`ÿ™dd$ÿ£nuknr.dd$
+ÿÉÿ¥nvirtnr.v$ÿ™dd$ÿ£nuknr.dd$
+ÿØÿOÿB(dd$)ÿnvirtnr.v$ÿnuknr.dd$
+note$ÿnote$ÿCBeschr1.dd$ÿ" ,"
+note$ÿnote$ÿCBeschr2.dd$ÿ" ,"
+note$ÿnote$ÿCBeschr3.dd$ÿ" ,"
+note$ÿnote$ÿCBeschr4.dd$ÿ" ,"
+note$ÿnote$ÿCBeschr5.dd$ÿ" ,"
+note$ÿnote$ÿCBeschr6.dd$ÿ" ,"
+note$ÿnote$ÿCBeschr7.dd$ÿ" ,"
+note$ÿnote$ÿCBeschr8.dd$ÿ" ,"
+note$ÿnote$ÿCBeschr9.dd$ÿ" ,"
+note$ÿnote$ÿCBeschr10.dd$
+note$ÿnote$ÿÿ(13)ÿÿ(10)
+ÿÉÿ±ÿ™dd$ÿ£nuknr.dd$
+ÿÙ
+	ÿ’ÿ¡
+ 
+
+
+
+	Notiz.k$ÿnote$
+	ÿƒQuickStore(k$)
+ÿ^
+	fehlg%ÿfehlg%ÿ1
+ÿ’ÿ¡
+ÿ^
+fehlk%ÿfehlk%ÿ1
+ÿ’ÿ¡
+ÿ^
+fehlp%ÿfehlp%ÿ1
+prod$ÿÿ(prod%,"99999999999999")ÿ"  "ÿcpolnn.v$
+ÿ{prod$
+
+ÿ¡codeku%ÿ0ÿÿJ(codeku%,codeku.a$)ÿp
+ÿÉÿ`ÿ™a$ÿ£codeku.a$
+ÿÉÿ¥codeku%ÿ™a$ÿ£codeku.a$
+knr%ÿcodeku%
+ÿ¡codege%ÿ0ÿÿJ(codege%,codege.g$)ÿp
+	ÿÉÿ`ÿ™g$ÿ£codege.g$
+	ÿÉÿ¥codege%ÿ™g$ÿ£codege.g$
+	ÿÉÿ`ÿ™m$ÿ£codema.m$
+	ÿÉÿ¥codema%ÿ™m$ÿ£codema.m$
+	ÿ½ sparte$ = cart.p$
+	ÿ½ CALL Fehler(sparte$,"")
+	ÿ½ IF EXISTS (sparte$,sparte.S$) THEN 
+ÿ½ SELECT FIRST FILE s$ INDEX sparte.s$
+ÿ½ SELECT KEY sparte$ FILE s$ INDEX sparte.S$
+ÿ½ codeva% = codeva.s$
+	ÿ½ ELSE 
+ÿ½ codeva% = 0
+	ÿ½ END IF 
+	codeva%ÿ0
+	ÿÿ™k$
+	lfdnr.k$ÿlfdnr%
+	codeku.k$ÿcodeku%
+	codeva.k$ÿcodeva%
+	codege.k$ÿcodege%
+	codema.k$ÿcodema%
+	vs_Nr.k$ÿcpolnn.v$
+	ÿ¡DateOK%(DBegin.v$)ÿp
+VS_Beginn.k$ÿDBegin.v$
+	ÿ’ÿ¡
+	ÿ¡DateOK%(DAblauf.v$)ÿp
+Kndigung.k$ÿDAblauf.v$
+	ÿ’ÿ¡
+	ÿ¡DateOK%(DAntrag.v$)ÿp
+Antragsdatum.k$ÿDAntrag.v$
+	ÿ’ÿ¡
+	ÿ¡DateOK%(DLedat.v$)ÿp
+ErfassDatum.k$ÿDledat.v$
+	ÿ’ÿ¡
+	ÿ½ **********************ZW********
+	zw.k$ÿnzahlw.v$
+ 
+	NettoBeitrag.k$ÿNGebeitr.v$
+	mwst.k$ÿnvsteuer.v$
+	Beitrag.k$ÿNettobeitrag.k$ÿ(100ÿmwst.k$)ÿ100
+	waehrung.k$ÿ"EUR"
+	codew.k$ÿ3
+	ÿ¡DateOK%(dhaftung.v$)ÿp
+Notiz.k$ÿ"Haftung bis: "ÿdhaftung.v$
+	ÿ’ÿ¡
+	ÿ¡leigen.v$ÿ"T"ÿp
+codevstatus.k$ÿ1
+vstatustxt.k$ÿ"lebend"
+ÿ¡cpolnn.v$ÿ"Antrag*"ÿp
+codevstatus.k$ÿ12
+vstatustxt.k$ÿ"Antrag"
+ÿ’ÿ¡
+	ÿ^
+codevstatus.k$ÿ11
+vstatustxt.k$ÿ"Fremdvertrag"
+	ÿ’ÿ¡
+
+	dd$ÿ"bauspar1"
+	ÿ¡ÿJ(nvirtnr.v$,nuknr.dd$)ÿp
+ÿÉÿ`ÿ™dd$ÿ£nuknr.dd$
+ÿÉÿ¥nvirtnr.v$ÿ™dd$ÿ£nuknr.dd$
+ÿØÿOÿB(dd$)ÿnvirtnr.v$ÿnuknr.dd$
+ÿ½ note$ = note$ + CHR$ (13) + CHR$ (10)
+ÿÉÿ±ÿ™dd$ÿ£nuknr.dd$
+ÿÙ
+	ÿ’ÿ¡
+ 
+	dd$ÿ"GEBAEU"
+	ÿ¡ÿJ(nvirtnr.v$,nuknr.dd$)ÿp
+ÿÉÿ`ÿ™dd$ÿ£nuknr.dd$
+ÿÉÿ¥nvirtnr.v$ÿ™dd$ÿ£nuknr.dd$
+ÿØÿOÿB(dd$)ÿnvirtnr.v$ÿnuknr.dd$
+note$ÿnote$ÿ"Risiko-Ort: "ÿcrisikoplz.dd$ÿ" "ÿcRisikoort.dd$ÿ", "ÿcrisikostr.dd$
+note$ÿnote$ÿÿ(13)ÿÿ(10)
+ÿÉÿ±ÿ™dd$ÿ£nuknr.dd$
+ÿÙ
+	ÿ’ÿ¡
+ 
+	dd$ÿ"GESCHINH"
+	ÿ¡ÿJ(nvirtnr.v$,nuknr.dd$)ÿp
+ÿÉÿ`ÿ™dd$ÿ£nuknr.dd$
+ÿÉÿ¥nvirtnr.v$ÿ™dd$ÿ£nuknr.dd$
+ÿØÿOÿB(dd$)ÿnvirtnr.v$ÿnuknr.dd$
+ÿ½ note$ = note$ + CHR$ (13) + CHR$ (10)
+ÿÉÿ±ÿ™dd$ÿ£nuknr.dd$
+ÿÙ
+	ÿ’ÿ¡
+ 
+	dd$ÿ"glas1"
+	ÿ¡ÿJ(nvirtnr.v$,nuknr.dd$)ÿp
+ÿÉÿ`ÿ™dd$ÿ£nuknr.dd$
+ÿÉÿ¥nvirtnr.v$ÿ™dd$ÿ£nuknr.dd$
+ÿØÿOÿB(dd$)ÿnvirtnr.v$ÿnuknr.dd$
+ÿ½ note$ = note$ + CHR$ (13) + CHR$ (10)
+ÿÉÿ±ÿ™dd$ÿ£nuknr.dd$
+ÿÙ
+	ÿ’ÿ¡
+ 
+	dd$ÿ"haft1"
+	ÿ¡ÿJ(nvirtnr.v$,nuknr.dd$)ÿp
+ÿÉÿ`ÿ™dd$ÿ£nuknr.dd$
+ÿÉÿ¥nvirtnr.v$ÿ™dd$ÿ£nuknr.dd$
+ÿØÿOÿB(dd$)ÿnvirtnr.v$ÿnuknr.dd$
+note$ÿnote$ÿ"Risiko-Ort: "ÿcrisikoplz.dd$ÿ" "ÿcRisikoort.dd$ÿ", "ÿcrisikostr.dd$
+note$ÿnote$ÿÿ(13)ÿÿ(10)
+ÿÉÿ±ÿ™dd$ÿ£nuknr.dd$
+ÿÙ
+	ÿ’ÿ¡
+ 
+	dd$ÿ"HAUSRAT1"
+	ÿ¡ÿJ(nvirtnr.v$,nuknr.dd$)ÿp
+ÿÉÿ`ÿ™dd$ÿ£nuknr.dd$
+ÿÉÿ¥nvirtnr.v$ÿ™dd$ÿ£nuknr.dd$
+ÿØÿOÿB(dd$)ÿnvirtnr.v$ÿnuknr.dd$
+note$ÿnote$ÿ"Risiko-Ort: "ÿcrisikoplz.dd$ÿ" "ÿcRisikoort.dd$ÿ", "ÿcrisikostr.dd$
+note$ÿnote$ÿÿ(13)ÿÿ(10)
+note$ÿnote$ÿ"Feuer: "ÿLFeuer.dd$ÿ" "ÿ"ED: "ÿLED.dd$ÿ" "ÿ"Raub: "ÿLRaub.dd$ÿ" "ÿ"Wasser: "ÿLWasser.dd$ÿ" "ÿ"Sturm: "ÿLSturm.dd$ÿ" "ÿ"Glas: "ÿLGlas.dd$ÿ" "ÿ"Hagel: "ÿLHagel.dd$
+note$ÿnote$ÿ" "ÿ"Spannung: "ÿLSpannung.dd$ÿ" "ÿ"Nutzfeuer: "ÿLNutzfeuer.dd$ÿ" "ÿ"Element: "ÿLElement.dd$ÿ" "ÿ"Wert: "ÿLWert.dd$ÿ" "ÿ"Fahrrad: "ÿLFahrrad.dd$ÿ" "ÿ"Aquarien: "ÿLAquarien.dd$
+note$ÿnote$ÿ" "ÿ"Hotel: "ÿLHotel.dd$ÿ" "ÿ"Implosion: "ÿLImplosion.dd$ÿ" "ÿ"Klima: "ÿLKlima.dd$ÿ" "ÿ"Alarm: "ÿLAlarm.dd$ÿ" "ÿ"Vandalismus: "ÿLVandal.dd$
+note$ÿnote$ÿÿ(13)ÿÿ(10)
+ÿÉÿ±ÿ™dd$ÿ£nuknr.dd$
+ÿÙ
+	ÿ’ÿ¡
+ 
+ 
+	dd$ÿ"kfz1"
+	ÿ¡ÿJ(nvirtnr.v$,nuknr.dd$)ÿp
+ÿÉÿ`ÿ™dd$ÿ£nuknr.dd$
+ÿÉÿ¥nvirtnr.v$ÿ™dd$ÿ£nuknr.dd$
+ÿØÿOÿB(dd$)ÿnvirtnr.v$ÿnuknr.dd$
+Kennzeichen.k$ÿckennz.dd$
+Fabrikat.k$ÿcherstell.dd$
+Typ_Nr.k$ÿctypschl.dd$
+Fahrzeugst„rke.k$ÿÿ0(nkw.dd$)
+risiko1.k$ÿcwagnis.dd$
+KFZ_WagKZ.k$ÿcwagnr.dd$
+Fahrgestell_Nr.k$ÿcidentnr.dd$
+kmstand.k$ÿnkmstand.dd$
+note$ÿnote$ÿ"Hubraum: "ÿnhubraum.dd$
+note$ÿnote$ÿÿ(13)ÿÿ(10)
+ÿÉÿ±ÿ™dd$ÿ£nuknr.dd$
+ÿÙ
+	ÿ’ÿ¡
+ 
+	dd$ÿ"kranken1"
+	ÿ¡ÿJ(nvirtnr.v$,nuknr.dd$)ÿp
+ÿÉÿ`ÿ™dd$ÿ£nuknr.dd$
+ÿÉÿ¥nvirtnr.v$ÿ™dd$ÿ£nuknr.dd$
+ÿØÿOÿB(dd$)ÿnvirtnr.v$ÿnuknr.dd$
+note$ÿnote$ÿCBezeich1.dd$ÿ" ,"
+note$ÿnote$ÿCBezeich2.dd$ÿ" ,"
+note$ÿnote$ÿCBezeich3.dd$ÿ" ,"
+note$ÿnote$ÿCBezeich4.dd$ÿ" ,"
+note$ÿnote$ÿCBezeich5.dd$ÿ" ,"
+note$ÿnote$ÿCBezeich6.dd$ÿ" ,"
+note$ÿnote$ÿCBezeich7.dd$ÿ" ,"
+note$ÿnote$ÿCBezeich8.dd$ÿ" ,"
+note$ÿnote$ÿCBezeich9.dd$ÿ" ,"
+note$ÿnote$ÿCBezeich10.dd$
+note$ÿnote$ÿÿ(13)ÿÿ(10)
+note$ÿnote$ÿ"Tar1: "ÿCTarif1.dd$ÿ" ,"
+note$ÿnote$ÿ"Tar2: "ÿCTarif2.dd$ÿ" ,"
+note$ÿnote$ÿ"Tar3: "ÿCTarif3.dd$ÿ" ,"
+note$ÿnote$ÿ"Tar4: "ÿCTarif4.dd$ÿ" ,"
+note$ÿnote$ÿ"Tar5: "ÿCTarif5.dd$ÿ" ,"
+note$ÿnote$ÿ"Tar6: "ÿCTarif6.dd$ÿ" ,"
+note$ÿnote$ÿ"Tar7: "ÿCTarif7.dd$ÿ" ,"
+note$ÿnote$ÿ"Tar8: "ÿCTarif8.dd$ÿ" ,"
+note$ÿnote$ÿ"Tar9: "ÿCTarif9.dd$ÿ" ,"
+note$ÿnote$ÿ"Tar10: "ÿCTarif10.dd$
+note$ÿnote$ÿÿ(13)ÿÿ(10)
+ÿÉÿ±ÿ™dd$ÿ£nuknr.dd$
+ÿÙ
+	ÿ’ÿ¡
+ 
+	dd$ÿ"unfall1"
+	ÿ¡ÿJ(nvirtnr.v$,nuknr.dd$)ÿp
+ÿÉÿ`ÿ™dd$ÿ£nuknr.dd$
+ÿÉÿ¥nvirtnr.v$ÿ™dd$ÿ£nuknr.dd$
+ÿØÿOÿB(dd$)ÿnvirtnr.v$ÿnuknr.dd$
+note$ÿnote$ÿCBeschr1.dd$ÿ" ,"
+note$ÿnote$ÿCBeschr2.dd$ÿ" ,"
+note$ÿnote$ÿCBeschr3.dd$ÿ" ,"
+note$ÿnote$ÿCBeschr4.dd$ÿ" ,"
+note$ÿnote$ÿCBeschr5.dd$ÿ" ,"
+note$ÿnote$ÿCBeschr6.dd$ÿ" ,"
+note$ÿnote$ÿCBeschr7.dd$ÿ" ,"
+note$ÿnote$ÿCBeschr8.dd$ÿ" ,"
+note$ÿnote$ÿCBeschr9.dd$ÿ" ,"
+note$ÿnote$ÿCBeschr10.dd$
+note$ÿnote$ÿÿ(13)ÿÿ(10)
+ÿÉÿ±ÿ™dd$ÿ£nuknr.dd$
+ÿÙ
+	ÿ’ÿ¡
+ 
+ 
+ 
+ 
+	Notiz.k$ÿnote$
+
+	ÿƒQuickStore(k$)
+ÿ^
+	fehlg%ÿfehlg%ÿ1
+ÿ’ÿ¡
+ÿ^
+fehlk%ÿfehlk%ÿ1
+ÿ’ÿ¡
+
+
+
+ 
+
+ÿ’ÿ¡
+ÿÉÿ±ÿ™v$
+ ÿÙ
+ ÿ†ÿ¶
+ ÿƒFehler("Ende Vertragsimport","")
+ ÿ’ÿÿ
+
+ÿÿSpartDav1()
+ a$ÿ"ART1"
+ s$ÿ"Sparten"
+ ÿÉÿ`ÿ™a$
+ ÿØÿOÿB(a$)
+ÿ¡ÿOÿJ(cart.a$,sparte.sparten)ÿp
+ÿÿ™s$
+codeva.s$ÿÿI(s$,1)
+sparte.spartenÿcart.a$
+Vertragsart.s$ÿ"VERTR000"
+formular.s$ÿ"VERTR000"
+
+ÿÌÿ™s$
+ÿ’ÿ¡
+ÿÉÿ±ÿ™a$
+ ÿÙ
+ ÿ’ÿÿ
+
+
+ÿÿALLGADR1()
+ ÿ™"maadr"
+ ÿ£nachname.maadr
+ ÿ™"ALLGADR1"
+ ÿ£nvirtnr.ALLGADR1
+ ÿÉÿ`
+ a$ÿ"adressen"
+ k$ÿ"ALLGADR1"
+ j%ÿÿA(k$)
+ i%ÿ0
+ ÿØÿOÿB("ALLGADR1")
+ÿßÿe
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%,",999999")ÿ" von "ÿÿ(j%,",999999")
+ÿÿ™"Adressen"
+x%ÿÿI("ADRESSEN")
+ÿ½ cknr% = VAL (cknr.k$)
+codeku%ÿÿI("ADRESSEN",1)
+codeku.adressenÿcodeku%
+Nachname.a$ÿcname.k$
+Vorname.a$ÿcvorname.k$
+Anrede.a$ÿcanrede.k$
+titel.a$ÿCtitel.k$
+Kundennummer.a$ÿ"ALLG"ÿÿ(i%,"000")
+ADRGruppe.a$ÿ"ALLGEMEIN"
+FreeFormular.a$ÿ1
+plz.a$ÿcplz1.k$
+ort.a$ÿcort1.k$
+land.a$ÿcland1.k$
+Straáe.a$ÿcstras1.k$
+nationalit„t.a$ÿcnation.k$
+beruf.a$ÿcberuf.k$
+Familienstand.a$ÿcstand.k$
+k1bank.a$ÿcbank1.k$
+k1blz.a$ÿÿH(ÿ(nblz1.k$,"9999999999"))
+k1Konto.a$ÿckto1.k$
+k2bank.a$ÿcbank2.k$
+k2blz.a$ÿÿH(ÿ(nblz2.k$,"9999999999"))
+k2Konto.a$ÿckto2.k$
+Briefanrede.a$ÿCBRanr.k$
+POSTBriefanrede.a$ÿCBRanr.k$
+ÿ½ Stichwort.a$ = CADRART.k$
+ÿ¡DateOK%(dgebdat.k$)ÿp
+Geburtstag.a$ÿdgebdat.k$
+ÿ’ÿ¡
+p$ÿ""
+ÿ¡anrede.GAdrDat$ÿ"Herr*"ÿanrede.GAdrDat$ÿ"Fr*"ÿanrede.GAdrDat$ÿ"Fam*"ÿp
+	p$ÿAnrede.GAdrDat$ÿÿ(13)ÿÿ(10)
+	ÿ¡ÿH(Titel.GAdrDat$)ÿ""ÿp
+p$ÿp$ÿÿH(Titel.GAdrDat$)ÿ" "
+	ÿ’ÿ¡
+	ÿ¡vorname.GAdrDat$ÿ""ÿp
+p$ÿp$ÿÿH(Vorname.GAdrDat$)ÿ" "ÿÿH(Nachname.GAdrDat$)ÿÿ(13)ÿÿ(10)
+	ÿ^
+p$ÿp$ÿÿH(Nachname.GAdrDat$)ÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	p$ÿp$ÿStraáe.GAdrDat$ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿplz.GAdrDat$ÿ" "ÿOrt.GAdrDat$ÿÿ(13)ÿÿ(10)
+	ÿ½ p$ = p$ + CHR$ (13) + CHR$ (10) + CHR$ (13) + CHR$ (10) + CHR$ (13) + CHR$ (10) + briefanrede.GAdrDat$
+ÿ^
+	ÿ¡ÿH(Anrede.GAdrDat$)ÿ""ÿp
+	p$ÿÿH(Anrede.GAdrDat$)ÿ" "
+	ÿ’ÿ¡
+	ÿ¡ÿH(titel.GAdrDat$)ÿ""ÿp
+p$ÿp$ÿÿH(titel.GAdrDat$)
+	ÿ’ÿ¡
+	ÿ¡ÿH(Anrede.GAdrDat$)ÿ""ÿÿH(titel.GAdrDat$)ÿ""ÿp
+p$ÿp$ÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	ÿ¡geburtsname.GAdrDat$ÿ""ÿp
+p$ÿp$ÿÿH(nachname.GAdrDat$)ÿÿ(13)ÿÿ(10)ÿÿH(geburtsname.GAdrDat$)ÿÿ(13)ÿÿ(10)ÿÿH(Vorname.GAdrDat$)ÿÿ(13)ÿÿ(10)
+	ÿ^
+p$ÿp$ÿÿH(Nachname.GAdrDat$)ÿÿ(13)ÿÿ(10)ÿÿH(Vorname.GAdrDat$)ÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	p$ÿp$ÿStraáe.GAdrDat$ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿplz.GAdrDat$ÿ" "ÿOrt.GAdrDat$ÿÿ(13)ÿÿ(10)
+	ÿ½ IF land.GAdrDat$ <> "" THEN p$ = p$ + CHR$ (13) + CHR$ (10) + Land.GAdrDat$
+ÿ’ÿ¡
+Postanschrift.a$ÿp$
+ÿƒQuickStore("adressen")
+t$ÿ"Telefon"
+ÿÿ™"Telefon"
+codetel.t$ÿÿI("telefon")
+codeku.t$ÿcodeku.a$
+Art.t$ÿ"Telefon"
+Nummer.t$ÿctel1.k$
+KART1.t$ÿ"FON"
+ÿƒQuickStore(t$)
+ÿ¡cfax1.k$ÿ""ÿp
+ÿÿ™"Telefon"
+codetel.t$ÿÿI("telefon")
+codeku.t$ÿcodeku.a$
+Art.t$ÿ"Fax"
+Nummer.t$ÿcfax1.k$
+KART1.t$ÿ"FAX"
+ÿƒQuickStore(t$)
+ÿ’ÿ¡
+ÿ¡cmobil1.k$ÿ""ÿp
+ÿÿ™"Telefon"
+codetel.t$ÿÿI("telefon")
+codeku.t$ÿcodeku.a$
+Art.t$ÿ"Funk"
+Nummer.t$ÿcmobil1.k$
+KART1.t$ÿ"MOBIL"
+ÿƒQuickStore(t$)
+ÿ’ÿ¡
+ÿ¡cemail.k$ÿ""ÿp
+ÿÿ™"Telefon"
+codetel.t$ÿÿI("telefon")
+codeku.t$ÿcodeku.a$
+Art.t$ÿ"EMAIL"
+Nummer.t$ÿcemail.k$
+KART1.t$ÿ"EMAIL"
+ÿƒQuickStore(t$)
+ÿ’ÿ¡
+ÿ¡cwww.k$ÿ""ÿp
+ÿÿ™"Telefon"
+codetel.t$ÿÿI("telefon")
+codeku.t$ÿcodeku.a$
+Art.t$ÿ"WWW"
+Nummer.t$ÿcWWW.k$
+KART1.t$ÿ"WWWW"
+ÿƒQuickStore(t$)
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"ALLGADR1"
+ ÿÙ
+ ÿ™"adressen"
+ ÿ£codeku
+ ÿÉÿb
+ codeku%ÿcodeku.adressen
+ ÿØÿI("ADRESSEN",1)ÿ	codeku%
+ ÿÙ
+ ÿ’ÿÿ
+
+
+
+ÿÿGesell1()
+ v$ÿ"vertrag1"
+ ÿ™v$
+ ÿ£nvirtnr
+ g1$ÿ"Gesell1"
+ ÿ™g1$
+ ÿ£nvirtnr
+ g$ÿ"geadr"
+ ÿ™"geadr"
+ ÿ£codege
+ i%ÿ0
+ j%ÿÿA(v$)
+ g%ÿ0
+ ÿØÿOÿB(v$)
+ÿßÿe
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%,",999999")ÿ" Vertr„ge geprft auf Gesell. von "ÿÿ(j%,",999999")ÿ" aufgenommen "ÿÿ(g%,",999999")
+nvirtnrge%ÿngesnr.v$
+codege%ÿÿ0(ÿ-(ÿ(nvirtnrge%,"99999999999999"),6))
+ÿ¡ÿOÿJ(codege%,codege.g$)ÿcodege%ÿ0ÿp
+g%ÿg%ÿ1
+ÿÉÿ`ÿ™g1$ÿ£nvirtnr.g1$
+ÿÉÿ¥nvirtnrge%ÿ™g1$ÿ£nvirtnr.g1$
+ÿÿ™g$
+codege.g$ÿcodege%
+gesellschaft.g$ÿÿ+(cgname.g1$,30)
+gesellschaft2.g$ÿÿ,(cgname.g1$,31,30)
+vermittlernr.g$ÿcagentnr.g1$
+straáe.g$ÿÿ+(cstrasse.g1$,30)
+plz.g$ÿcplz.g1$
+ort.g$ÿcort.g1$
+Telefon1.g$ÿctel1.g1$
+Telefax.g$ÿcfax1.g1$
+Telefon2.g$ÿctel2.g1$
+email.g$ÿcemail.g1$
+BTX.g$ÿcfax2.g1$
+k1BLZ.g$ÿÿH(ÿ(nblz1,"999999999999"))
+k1Konto.g$ÿckonto1.g1$
+k1Bank.g$ÿcbank1.g1$
+k2BLZ.g$ÿÿH(ÿ(nblz2,"999999999999"))
+k2Konto.g$ÿckonto2.g1$
+k2Bank.g$ÿcbank2.g1$
+	p$ÿ""
+	p$ÿp$ÿÿH(cgname.g1$)ÿÿ(13)ÿÿ(10)
+	p$ÿp$ÿcstrasse.g1$ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿplz.geadrÿ" "ÿcort.g1$ÿÿ(13)ÿÿ(10)
+	Postanschrift.geadrÿp$
+ÿ½ CALL QuickStore(g$)
+ÿÌÿ™g$
+ÿ’ÿ¡
+ÿÉÿ±ÿ™v$
+ ÿÙ
+ ÿ™"geadr"
+ ÿ£codege
+ ÿÉÿb
+ codege%ÿcodege.geadr
+ ÿØÿI("geadr",1)ÿ	codege%
+ ÿÙ
+ ÿ’ÿÿ
+
+
+ÿÿTmitarb1()
+ t$ÿ"Tmitarb1"
+ m$ÿ"maadr"
+ ÿ™t$
+ ÿÉÿ`
+ j%ÿÿA(t$)
+ i%ÿ0
+ 
+ ÿØÿOÿB(t$)
+ÿßÿe
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%,",999999")ÿ" von "ÿÿ(j%,",999999")
+ÿÿ™m$
+nume$ÿÿ(nvirtnr.t$,"99999999999999")
+codema.m$ÿÿ0(ÿ-(nume$,6))
+xx%ÿÿI(m$)
+nachname.m$ÿcname.t$
+vorname.m$ÿcvorname.t$
+straáe.m$ÿcstrasse.t$
+plz.m$ÿcplz.t$
+ort.m$ÿcort.t$
+k1konto.m$ÿckto1.t$
+k1bank.m$ÿÿ+(cbank1.t$,20)
+k1blz.m$ÿÿH(ÿ(nblz1.t$,"9999999999999"))
+anrede.m$ÿcanrede.t$
+ÿ¡DateOK%(Dgebdat.t$)ÿp
+maseit.m$ÿDgebdat.t$
+ÿ’ÿ¡
+ÿ¡DateOK%(DZugang.t$)ÿp
+Geburtstag.m$ÿDZugang.t$
+ÿ’ÿ¡
+ÿ¡DateOK%(DAbgang.t$)ÿp
+Kndigung.m$ÿDAbgang.t$
+ÿ’ÿ¡
+Telefon1.m$ÿctel1.t$
+Telefon2.m$ÿctel2.t$
+Telefax.m$ÿcfax1.t$
+BTX.m$ÿcfax2.t$
+email.m$ÿcemail.t$
+ÿ¡ctel2.t$ÿ""ÿcautotel.t$ÿ""ÿpTelefon2.m$ÿcautotel.t$
+notiz.m$ÿ"Beruf: "ÿcberuf.t$ÿÿ(13)ÿÿ(10)
+notiz.m$ÿnotiz.m$ÿcstand.t$ÿ" Anz.Kinder: "ÿÿ(nkinder.t$,"99")ÿÿ(13)ÿÿ(10)
+ÿƒQuickStore(m$)
+ÿÉÿ±ÿ™t$
+ ÿÙ
+ ÿ™"maadr"
+ ÿ£codema.maadr
+ ÿÉÿb
+ codema%ÿcodema.maadr
+ ÿØÿI("maadr",1)ÿ	codema%
+ ÿÙ
+ ÿ’ÿÿ
+
+ÿÿKunden1()
+ ÿ™"maadr"
+ ÿ£nachname.maadr
+ ÿ™"kunden1"
+ ÿ£nvirtnr.kunden1
+ ÿÉÿ`
+ a$ÿ"adressen"
+ k$ÿ"kunden1"
+ j%ÿÿA(k$)
+ i%ÿ0
+ ÿØÿOÿB("kunden1")
+ÿßÿe
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%,",999999")ÿ" von "ÿÿ(j%,",999999")
+ÿÿ™"Adressen"
+x%ÿÿI("ADRESSEN")
+cknr%ÿÿ0(cknr.kunden1)
+nmanr$ÿÿ-(ÿ(nmanr.k$,"99999999999999"),6)
+codema%ÿÿ0(nmanr$)
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema%ÿ™"maadr"ÿ£codema.maadr
+codema.a$ÿcodema%
+AGNachname.gadrdat$ÿNachname.maadr
+AGVorname.gadrdat$ÿvorname.maadr
+AGAGNr.gadrdat$ÿAgenturnr.maadr
+codeku.adressenÿÿ0(cknr.kunden1)
+Nachname.a$ÿcname.k$
+Vorname.a$ÿcvorname.k$
+Anrede.a$ÿcanrede.k$
+titel.a$ÿCtitel.k$
+Kundennummer.a$ÿ"K"ÿcknr.k$
+plz.a$ÿcplz1.k$
+ort.a$ÿcort1.k$
+land.a$ÿcland1.k$
+Straáe.a$ÿcstras1.k$
+nationalit„t.a$ÿcnation.k$
+beruf.a$ÿcberuf.k$
+Familienstand.a$ÿcstand.k$
+k1bank.a$ÿcbank1.k$
+k1blz.a$ÿÿH(ÿ(nblz1.k$,"9999999999"))
+k1Konto.a$ÿckto1.k$
+k2bank.a$ÿcbank2.k$
+k2blz.a$ÿÿH(ÿ(nblz2.k$,"9999999999"))
+k2Konto.a$ÿckto2.k$
+Briefanrede.a$ÿCBRanr.k$
+POSTBriefanrede.a$ÿCBRanr.k$
+Stichwort.a$ÿCADRART.k$
+ÿ¡DateOK%(dkunseit.k$)ÿp
+Kunde_seit.a$ÿdkunseit.k$
+ÿ’ÿ¡
+ÿ¡DateOK%(dgebdat.k$)ÿp
+Geburtstag.a$ÿdgebdat.k$
+ÿ’ÿ¡
+ÿ¡CMAKLER.k$ÿ"j*"ÿp
+AAMakler.a$ÿ"j"
+ÿ¡DateOK%(dmakseit.k$)ÿp
+Notiz.a$ÿ"Maklerauftrag seit: "ÿdmakseit.k$
+ÿ’ÿ¡
+ÿ^
+AAMakler.a$ÿ"n"
+ÿ’ÿ¡
+geburtsname.a$ÿcgebname.k$
+ausweisnr.a$ÿcausart.k$ÿ" "ÿcpersnr.k$
+ÿ¡dateOK%(dpersam.k$)ÿp
+RPAusstellung.a$ÿdpersam.k$
+ÿ’ÿ¡
+RPAussteller.a$ÿcbehoerde.k$ÿ"/gltig bis: "ÿdgueltig.k$
+Hobbys.a$ÿchobby.k$
+ÿ½ Anzahl_Kinder.a$ = 
+p$ÿ""
+ÿ¡anrede.GAdrDat$ÿ"Herr*"ÿanrede.GAdrDat$ÿ"Fr*"ÿanrede.GAdrDat$ÿ"Fam*"ÿp
+	p$ÿAnrede.GAdrDat$ÿÿ(13)ÿÿ(10)
+	ÿ¡ÿH(Titel.GAdrDat$)ÿ""ÿp
+p$ÿp$ÿÿH(Titel.GAdrDat$)ÿ" "
+	ÿ’ÿ¡
+	ÿ¡vorname.GAdrDat$ÿ""ÿp
+p$ÿp$ÿÿH(Vorname.GAdrDat$)ÿ" "ÿÿH(Nachname.GAdrDat$)ÿÿ(13)ÿÿ(10)
+	ÿ^
+p$ÿp$ÿÿH(Nachname.GAdrDat$)ÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	p$ÿp$ÿStraáe.GAdrDat$ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿplz.GAdrDat$ÿ" "ÿOrt.GAdrDat$ÿÿ(13)ÿÿ(10)
+	ÿ½ p$ = p$ + CHR$ (13) + CHR$ (10) + CHR$ (13) + CHR$ (10) + CHR$ (13) + CHR$ (10) + briefanrede.GAdrDat$
+ÿ^
+	ÿ¡ÿH(Anrede.GAdrDat$)ÿ""ÿp
+	p$ÿÿH(Anrede.GAdrDat$)ÿ" "
+	ÿ’ÿ¡
+	ÿ¡ÿH(titel.GAdrDat$)ÿ""ÿp
+p$ÿp$ÿÿH(titel.GAdrDat$)
+	ÿ’ÿ¡
+	ÿ¡ÿH(Anrede.GAdrDat$)ÿ""ÿÿH(titel.GAdrDat$)ÿ""ÿp
+p$ÿp$ÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	ÿ¡geburtsname.GAdrDat$ÿ""ÿp
+p$ÿp$ÿÿH(nachname.GAdrDat$)ÿÿ(13)ÿÿ(10)ÿÿH(geburtsname.GAdrDat$)ÿÿ(13)ÿÿ(10)ÿÿH(Vorname.GAdrDat$)ÿÿ(13)ÿÿ(10)
+	ÿ^
+p$ÿp$ÿÿH(Nachname.GAdrDat$)ÿÿ(13)ÿÿ(10)ÿÿH(Vorname.GAdrDat$)ÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	p$ÿp$ÿStraáe.GAdrDat$ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿplz.GAdrDat$ÿ" "ÿOrt.GAdrDat$ÿÿ(13)ÿÿ(10)
+	ÿ½ IF land.GAdrDat$ <> "" THEN p$ = p$ + CHR$ (13) + CHR$ (10) + Land.GAdrDat$
+ÿ’ÿ¡
+Postanschrift.a$ÿp$
+ÿƒQuickStore("adressen")
+t$ÿ"Telefon"
+ÿÿ™"Telefon"
+codetel.t$ÿÿI("telefon")
+codeku.t$ÿcodeku.a$
+Art.t$ÿ"Telefon"
+Nummer.t$ÿctel1.k$
+KART1.t$ÿ"FON"
+ÿƒQuickStore(t$)
+ÿ¡ctel2.k$ÿ""ÿp
+ÿÿ™"Telefon"
+codetel.t$ÿÿI("telefon")
+codeku.t$ÿcodeku.a$
+Art.t$ÿ"Telefon"
+Nummer.t$ÿctel2.k$
+KART1.t$ÿ"FON"
+ÿƒQuickStore(t$)
+ÿ’ÿ¡
+ÿ¡cfax1.k$ÿ""ÿp
+ÿÿ™"Telefon"
+codetel.t$ÿÿI("telefon")
+codeku.t$ÿcodeku.a$
+Art.t$ÿ"Fax"
+Nummer.t$ÿcfax1.k$
+KART1.t$ÿ"FAX"
+ÿƒQuickStore(t$)
+ÿ’ÿ¡
+ÿ¡cfax2.k$ÿ""ÿp
+ÿÿ™"Telefon"
+codetel.t$ÿÿI("telefon")
+codeku.t$ÿcodeku.a$
+Art.t$ÿ"Fax"
+Nummer.t$ÿcfax2.k$
+KART1.t$ÿ"FAX"
+ÿƒQuickStore(t$)
+ÿ’ÿ¡
+ÿ¡cmobil1.k$ÿ""ÿp
+ÿÿ™"Telefon"
+codetel.t$ÿÿI("telefon")
+codeku.t$ÿcodeku.a$
+Art.t$ÿ"Funk"
+Nummer.t$ÿcmobil1.k$
+KART1.t$ÿ"MOBIL"
+ÿƒQuickStore(t$)
+ÿ’ÿ¡
+ÿ¡cmobil2.k$ÿ""ÿp
+ÿÿ™"Telefon"
+codetel.t$ÿÿI("telefon")
+codeku.t$ÿcodeku.a$
+Art.t$ÿ"Funk"
+Nummer.t$ÿcmobil2.k$
+KART1.t$ÿ"MOBIL"
+ÿƒQuickStore(t$)
+ÿ’ÿ¡
+
+ÿÉÿ±ÿ™"kunden1"
+ ÿÙ
+ ÿ™"adressen"
+ ÿ£codeku
+ ÿÉÿb
+ codeku%ÿcodeku.adressen
+ ÿØÿI("ADRESSEN",1)ÿ	codeku%
+ ÿÙ
+ ÿ’ÿÿ
+ 
+ÿÿImportXLS()
+ GAdrDat$ÿ"ADRESSEN"
+ GTelDat$ÿ"TELEFON"
+ ÿßÿe
+ ÿ_netpath$ÿ"0-IMPORT\DAVINCI"
+ ÿwvertrag1312
+ ÿ¾ÿaÿ™"ART1"
+ ÿÊÿË"Importiere art1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\ART1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"ART1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ ÿ¾ÿaÿ™"ALLGADR1"
+ ÿÊÿË"Importiere allgadr1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\ALLGADR1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"ALLGADR1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ ÿ¾ÿaÿ™"BAUSPAR1"
+ ÿÊÿË"Importiere bauspar1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\bauspar1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"bauspar1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ ÿ¾ÿaÿ™"BERUF1"
+ ÿÊÿË"Importiere beruf1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\beruf1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"beruf1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ ÿ¾ÿaÿ™"BRIEFE1"
+ ÿÊÿË"Importiere briefe1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\briefe1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"briefe1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ ÿ¾ÿaÿ™"CAL1"
+ ÿÊÿË"Importiere cal1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\CAL1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"CAL1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ ÿ¾ÿaÿ™"GEBAEU"
+ ÿÊÿË"Importiere gebaeu1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\gebaeu1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"gebaeu.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+geschinh1312:
+ ÿ¾ÿaÿ™"GESCHINH"
+ ÿÊÿË"Importiere geschinh"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\geschin1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"geschinh.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ 
+ ÿ¾ÿaÿ™"GESELL1"
+ ÿÊÿË"Importiere gesell1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\gesell1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"gesell1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ 
+ ÿ¾ÿaÿ™"GLAS1"
+ ÿÊÿË"Importiere glas1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\glas1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"glas1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ 
+ ÿ¾ÿaÿ™"haft1"
+ ÿÊÿË"Importiere haft1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\haft1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"haft1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ 
+ ÿ¾ÿaÿ™"hausrat1"
+ ÿÊÿË"Importiere hausrat1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\hausrat1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"hausrat1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ 
+ ÿ¾ÿaÿ™"kfz1"
+ ÿÊÿË"Importiere kfz1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\kfz1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"kfz1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ 
+ ÿ¾ÿaÿ™"kfzvers1"
+ ÿÊÿË"Importiere kfzpers1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\kfzvers1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"kfzvers1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ 
+ ÿ¾ÿaÿ™"kherst1"
+ ÿÊÿË"Importiere kherst1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\kherst1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"kherst1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ 
+ ÿ¾ÿaÿ™"kranken1"
+ ÿÊÿË"Importiere kranken1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\kranken1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"kranken1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ 
+ ÿ¾ÿaÿ™"ktyp1"
+ ÿÊÿË"Importiere ktyp1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\ktyp1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"ktyp1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ 
+ ÿ¾ÿaÿ™"kunden1"
+ ÿÊÿË"Importiere kunden1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\kunden1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"kunden1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ 
+ ÿ¾ÿaÿ™"kwagnis1"
+ ÿÊÿË"Importiere kwagnis1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\kwagnis1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"kwagnis1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ 
+ ÿ¾ÿaÿ™"leben1"
+ ÿÊÿË"Importiere leben1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\leben1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"leben1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ 
+ ÿ¾ÿaÿ™"lebpers1"
+ ÿÊÿË"Importiere lebpers1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\lebpers1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"lebpers1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ 
+ ÿ¾ÿaÿ™"sparte1"
+ ÿÊÿË"Importiere sparte1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\sparte1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"sparte1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ ÿ¾ÿaÿ™"tmitarb1"
+ ÿÊÿË"Importiere tmitarb1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\tmitarb1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"tmitarb1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+tprod1312: 
+ ÿ¾ÿaÿ™"tprod"
+ ÿÊÿË"Importiere tprod"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\tproduk1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"tprod.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ 
+ ÿ¾ÿaÿ™"unfall1"
+ ÿÊÿË"Importiere unfall1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\UNFALL1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"UNFALL1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+vertrag1312: 
+ ÿ¾ÿaÿ™"vertrag1"
+ ÿÊÿË"Importiere vertrag1"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\DAVINCI\vertrag1.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"vertrag1.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+
+ ÿƒFehler("šbernahme aus XLS beendet","")
+
+ ÿ’ÿÿ
+
+ÿÿDavinci()
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\art1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\ALLGADR1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\BAUSPAR1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\BERUF1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\BRIEFE1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\BRIEFV.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\CAL1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\GEBAEU.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\GESCHINH.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\GESELL1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\GLAS1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\HAFT1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\HAUSRAT1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\KFZ1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\KFZVERS1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\KHERST1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\KRANKEN1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\KTYP1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\KUNDEN1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\KWAGNIS1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\LEBEN1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\LEBPERS1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\SPARTE1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\tmitarb1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\TPROD.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\unfall1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\VERTRAG1.SBF"
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\DAVINCI\TMITARB1.SBF"
+
+
+
+
+
+ ÿƒDFile(2,"OFFICE\"ÿ"ADRHIS"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\"ÿ"ORT"ÿ_fpw$)
+ ÿ¡GADRDat$ÿ"ADRESSEN"ÿp
+ÿ¡disabled%("ADRESSEN")ÿpÿ’ÿÿ
+ ÿ’ÿ¡
+ ÿ¡GADRDat$ÿ"ADRE1"ÿp
+ÿ¡disabled%("ADRE1")ÿpÿ’ÿÿ
+ ÿ’ÿ¡
+ ÿ¡GADRDat$ÿ"BCKONTAK"ÿp
+ÿ¡disabled%("BCKONTAK")ÿpÿ’ÿÿ
+ ÿ’ÿ¡
+ ÿ¡GBENE%ÿp
+ÿƒDFile(2,"OFFICE\"ÿ"ADRE1"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\"ÿ"AKQUI1"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\"ÿ"TELADR1"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\"ÿ"DOKADR1"ÿ_fpw$)
+ ÿ’ÿ¡
+ ÿ¡intverw.stammÿ"j"ÿGADRDat$ÿ"BCKONTAK"ÿp
+ÿƒDFile(2,"OFFICE\"ÿ"BCKONTAK"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\"ÿ"AKQUIBCK"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\"ÿ"TELBCK"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\"ÿ"DOKBCK"ÿ_fpw$)
+ ÿ’ÿ¡
+ ÿƒDFile(2,"OFFICE\"ÿ"ADRESSEN"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\"ÿ"AKQUISE"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\"ÿ"AKTIONEN"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\"ÿ"TELEFON"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\"ÿ"DOKUMENT"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\adrstat"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\adrgrup"ÿ_fpw$)
+ ÿ¡ÿ´("adrtemp")ÿp
+ÿ¡ÿA("adrtemp")ÿ0ÿpÿ¾ÿaÿ™"adrtemp"
+ÿ½ CLOSE FILE "ADRTEMP"
+ ÿ^
+ÿƒDFile(2,"OFFICE\adrtemp"ÿ_fpw$)
+ÿ¡ÿA("adrtemp")ÿ0ÿpÿ¾ÿaÿ™"adrtemp"
+ ÿ’ÿ¡
+ ÿƒDFile(2,"color"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\"ÿGConDat$ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\banken"ÿ_fpw$)
+ ÿƒDFile(3,"STAMM"ÿ_fpw$)
+ ÿ¡_projekt$ÿ"PROV*"ÿGAufrufproj$ÿ"PROVIS"ÿp
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\sparten.sbf")ÿpÿƒDFile(3,"sparten"ÿ_fpw$)
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\vprodukt.sbf")ÿpÿƒDFile(3,"vprodukt"ÿ_fpw$)
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\geadr.sbf")ÿpÿƒDFile(3,"geadr"ÿ_fpw$)
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\kvertrag.sbf")ÿpÿƒDFile(3,"KVERTRAG"ÿ_fpw$)
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\statukey.sbf")ÿpÿƒDFile(2,"PROVIS\STATUKEY"ÿ_fpw$)
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\maadr.sbf")ÿpÿƒDFile(3,"MAADR"ÿ_fpw$)
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\kukto.sbf")ÿpÿƒDFile(3,"KUKTO"ÿ_fpw$)
+ÿ¡ÿJ(_netpath$ÿ"office\kvhis.sbf")ÿpÿƒDFile(2,"OFFICE\KVHIS"ÿ_fpw$)
+ ÿ’ÿ¡
+ ÿ¡MAKLER$ÿ"TRUE"ÿ(_projekt$ÿ"PROV*"ÿGAufrufproj$ÿ"PROV*")ÿp
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\inkstamm.sbf")ÿpÿƒDFile(3,"INKSTAMM"ÿ_fpw$)
+ ÿ’ÿ¡
+ 
+ ÿÂ"Excel-Dateien bernehmen?","",135,req%
+ ÿ¡req%ÿ1ÿp
+ÿƒFehler("Es erfolgt jetzt der EXCEL-Import","")
+ÿƒImportXLS()
+ ÿ’ÿ¡
+ ÿ½ CALL Fehler("MAADR","")
+ ÿ½ CALL Tmitarb1()
+ ÿ½ CALL Fehler("ADRESSEN","")
+ ÿ½ CALL Kunden1()
+ ÿ½ CALL Fehler("Gesellschaften","")
+ ÿ½ CALL Gesell1()
+ ÿ½ CALL Fehler("ALLGADR1","")
+ ÿ½ CALL ALLGADR1()
+ ÿ½ CALL Fehler("Sparten","")
+ ÿ½ CALL SpartDav1()
+ ÿ½ CALL Fehler("Vertrag","")
+ ÿ½ CALL VertragDav1()
+ ÿƒFehler("Dokumente","")
+ ÿƒdokimdav1()
+ ÿ’ÿÿ
+

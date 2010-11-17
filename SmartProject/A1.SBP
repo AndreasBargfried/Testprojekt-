@@ -1,0 +1,73 @@
+SBP
+ÿÿA1()
+ÿ×dlg ÿUDialog
+ÿ×control ÿUDialogControl
+ 
+Superbase.Dialogs.Add("Dialogname")
+ÿÊdlg ÿSuperbase.Dialogs.Dialogname
+dlg.Move(0,0,406,222)
+dlg.Captionÿ"Termine exportieren"
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel1","DialogLabel")
+control.Move(130,4,199,12)
+control.Captionÿ"Aktionen"
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame1","DialogFrame")
+control.Move(0,6,123,72)
+control.Captionÿ"W„hlen Sie eine Option"
+ 
+ÿÊcontrol ÿdlg.Add("DialogOptionButton1","DialogOptionButton")
+control.Move(5,24,108,11)
+control.Captionÿ"nur NICHT-erledigte Termine"
+control.Bind("optemail%")
+control.ValueOnÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogOptionButton2","DialogOptionButton")
+control.Move(5,44,67,13)
+control.Captionÿ"alle Termine"
+control.Bind("optemail%")
+control.ValueOnÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogListBox1","DialogListBox")
+control.Move(129,16,269,81)
+control.MultiSelectÿ1
+control.Sortedÿ1
+control.ScrollBarsÿ2
+control.Bind("Aktionen$","Aktiongew$")
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel3","DialogLabel")
+control.Move(8,84,43,10)
+control.Captionÿ"ab Datum:"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox1","DialogTextBox")
+control.Move(7,97,61,11)
+control.MaxLengthÿ10
+control.TextBindingÿ"von$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel2","DialogLabel")
+control.Move(130,102,199,11)
+control.Captionÿ"Mitarbeiter"
+ 
+ÿÊcontrol ÿdlg.Add("DialogListBox2","DialogListBox")
+control.Move(129,113,269,74)
+control.MultiSelectÿ1
+control.Sortedÿ1
+control.ScrollBarsÿ2
+control.Bind("Mitarb$","Mitarbgew$")
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(122,201,55,15)
+control.Defaultÿ1
+control.Captionÿ"&OK"
+control.ReturnValueÿ1
+control.Cancelÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton2","DialogCommandButton")
+control.Move(178,201,56,15)
+control.Captionÿ"&Abbruch"
+control.ReturnValueÿ0
+control.Cancelÿ1
+ 
+ ÿ’ÿÿ

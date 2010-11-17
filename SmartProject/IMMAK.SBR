@@ -1,0 +1,2834 @@
+SBP
+ 
+ '      ****************************************************
+ '      ** IMMAK 2.2                                      **
+ '      ** Copyright (c) 1992-1995 CoDIE Computer-Dienste **
+ '      ** Stand: 22.02.95                                ** 
+ '      ****************************************************
+
+ÿÿmain()
+ ÿ½ DEBUG OFF 
+ ÿ†ÿt
+ ÿ¡ÿOÿ÷("CLIB")ÿpÿ¨"CLIB.SBR",ÿ°
+ ÿ½ CALL LIBInit("IMMAK","SmartIMMAK",1,7)
+ ÿƒLIBInit("IMMAK","assistant immak",0,7)
+ ÿ½ CALL LIBInit("IMMAK","CoDIE IMMAK",1,7)
+ _fpw$ÿ";paris"
+ _help%ÿ0
+ ÿƒINIT()
+ _formend%ÿ0
+ Upd$ÿReadConfig$(_projekt$,"UPDATE")
+ ÿ¡Upd$ÿ"TRUE"ÿp
+ÿ¡ÿOÿ÷("UPDATE")ÿpÿ¨_netpath$ÿ"UPDATE.SBR",ÿ°
+ÿƒDoUpdate()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿƒIMMAK()
+ÿÂ"Programm wirklich beenden?","",130,req%
+ÿ¡req%ÿ1ÿp_formend%ÿ1
+ ÿÙ
+ ÿƒEXIT()
+ ÿ’ÿÿ
+ 
+ 
+ '      *********************
+ '      ** INITIALISIERUNG **
+ '      *********************
+ 
+ ' Konstantendeklaration/Initialisierung
+ ' ======================================================================
+ 
+ÿÿINIT()
+ ÿßÿe
+ ÿÿOBsub%,ANFsub%,GRPsub%,CLICKsub%,ESCHLIEsub%
+ ÿÿobezug%,cuob%,cugr%,anfragebuton$,angebotbuton$,Videokarte$
+ ÿÿOBArt$(500),OBLage1$(500),OBLage2$(500),OBErschl$(500),OBBranche$(500)
+ ÿÿCLAppID%,CLtopic%,CLLink%
+ ÿÊÿÿÿ™_netpath$ÿ_projekt$ÿ"\"ÿ_projekt$ÿ".HLP"
+ ÿÊÿiÿ³
+ ÿ¡test%ÿ2ÿpÿƒLOGIN()
+ ÿƒLizensierung()
+ ÿßÿe
+ ÿƒDFile(3,"anfrage"ÿ_fpw$)
+ ÿƒDFile(3,"immogrup"ÿ_fpw$)
+ ÿƒDFile(3,"objekte"ÿ_fpw$)
+ 
+
+ ÿ½ -- Laden der Bilddatenbank --
+
+ Videokarte$ÿReadINI$("CLICK","available")
+ ÿ¡ÿ>(Videokarte$)ÿ"TRUE"ÿp
+VideoTreiber$ÿReadINI$("CLICK","driver")
+ÿ¡ÿOÿ÷(VideoTreiber$)ÿpÿ¨_netpath$ÿVideoTreiber$ÿ".SBR",ÿ°
+ ÿ’ÿ¡
+ 
+ ÿ½ -- Einlesen der Auswahlarrays
+
+ a%ÿ0
+ OBArt$(0)ÿ"<keine Zuordnung>"
+ ÿØOBArt$(a%)ÿ"leer"
+a%ÿa%ÿ1
+OBArt$(a%)ÿÿåibm(ReadConfig$("IMMAK_Art","Art"ÿÿH(ÿ(a%,"999999"))))
+ ÿÙ
+ OBArt$(a%)ÿ""
+
+ a%ÿ0
+ OBLage1$(0)ÿ"<keine Zuordnung>"
+ ÿØOBLage1$(a%)ÿ"leer"
+a%ÿa%ÿ1
+OBLage1$(a%)ÿÿåibm(ReadConfig$("IMMAK_Lage1","Lage"ÿÿH(ÿ(a%,"999999"))))
+ ÿÙ
+ OBLage1$(a%)ÿ""
+ 
+ a%ÿ0
+ OBLage2$(0)ÿ"<keine Zuordnung>"
+ ÿØOBLage2$(a%)ÿ"leer"
+a%ÿa%ÿ1
+OBLage2$(a%)ÿÿåibm(ReadConfig$("IMMAK_Lage2","Lage"ÿÿH(ÿ(a%,"999999"))))
+ ÿÙ
+ OBLage2$(a%)ÿ""
+ 
+ a%ÿ0
+ OBErschl$(0)ÿ"<keine Zuordnung>"
+ ÿØOBErschl$(a%)ÿ"leer"
+a%ÿa%ÿ1
+OBErschl$(a%)ÿÿåibm(ReadConfig$("IMMAK_Erschl","Erschl"ÿÿH(ÿ(a%,"999999"))))
+ ÿÙ
+ OBErschl$(a%)ÿ""
+
+ a%ÿ0
+ OBBranche$(0)ÿ"<keine Zuordnung>"
+ ÿØOBBranche$(a%)ÿ"leer"
+a%ÿa%ÿ1
+OBBranche$(a%)ÿÿåibm(ReadConfig$("IMMAK_Branche","Branche"ÿÿH(ÿ(a%,"999999"))))
+ ÿÙ
+ OBBranche$(a%)ÿ""
+
+ ÿ’ÿÿ
+ 
+ '      **********************************
+ '      ** Formular "IMMAK" - Hauptmen **
+ '      **********************************
+ 
+ÿÿIMMAK()
+ ÿÊÿŸtitle$ÿ" - Hauptbersicht"
+ ÿÊÿË"Hauptauswahl: W„hlen Sie die gewnschte Funktion!"
+ _formend%ÿ0
+ ÿØ_formend%ÿ0
+IMMAKsub%ÿ0
+ÿ¡ÿœÿ"IMMAK"ÿp
+ÿ´ÿœ"IMMAK"
+ÿƒMNIMMAK()
+ÿ¬ÿ³
+ÿœ
+ÿÊÿÿ³
+ÿƒHideStartup()
+ÿ’ÿ¡
+ÿÊÿË"Breit"
+ÿÏÿßÿÿ¥ÿ¬
+ÿÉÿæIMMAKsub%
+ÿæ1
+ÿƒADRESSEN()
+ÿæ2
+ÿƒANGEBOT()
+ÿæ3
+ÿƒANFRAGE()
+ÿæ4
+ÿƒVERTRAEGE()
+ÿæ5
+ÿƒPROTOKOLLE()
+ÿæ6
+ÿƒDOSSIERS()
+ÿæ7
+ÿƒBMKurzbericht()
+ÿæ8
+ÿƒAKTIONEN()
+ÿæ9
+ÿƒIMList()
+ÿæ10
+ÿƒSETUP()
+ÿæ11
+ÿƒDOKUMENTSRV()
+ÿæ12
+ÿƒOFFICE()
+ÿæ13
+ÿƒCFRONTEND()
+ÿ’ÿÉ
+ ÿÙ
+ _formend%ÿ0
+ ÿ’ÿÿ
+
+
+ '      ***************************************************
+ '      ** projektabh„ngige Routinen fr Adreáverwaltung **
+ '      ***************************************************
+ 
+ÿÿADRsub4()
+ ÿƒANGEBOT()
+ ÿ’ÿÿ
+
+ÿÿADRsub5()
+ ÿƒANFRAGE()
+ ÿ’ÿÿ
+
+
+ 
+
+ ' Vertragserstellung / -bearbeitung
+ ' ======================================================================
+
+ÿÿVERTRAEGE()
+ ÿƒDOKUMENT("Vertr„ge",0)
+ ÿ’ÿÿ
+
+
+ ' Protokollerstellung / - bearbeitung
+ ' ======================================================================
+
+ÿÿPROTOKOLLE()
+ ÿƒDOKUMENT("Protokolle",0)
+ ÿ’ÿÿ
+ 
+ 
+ ' Dossiererstellung / - bearbeitung
+ ' ======================================================================
+ 
+ÿÿDOSSIERS()
+ ÿƒDOKUMENT("Expose",0)
+ ÿ’ÿÿ
+
+
+ ' zentraler Listendruck
+ ' ======================================================================
+ 
+ÿÿIMList()
+ ÿƒLizInfo()
+ ÿ’ÿÿ
+ 
+
+ ' Angebot suchen
+ ' ======================================================================
+
+ÿÿIMAngSuchen()
+ cuob%ÿcodeob.objekte
+ ÿ¡(ÿ("objekte")ÿÿ°("objekte"))ÿbezeichnung.objekteÿ""ÿpÿƒFStore("objekte")
+ suna$ÿ""
+ ÿÂ"Suche nach Kurzbezeichnung:","",4,req%,suna$,30
+ ÿ¡req%ÿ1ÿp
+ÿÉÿœÿ¥suna$ÿ£bezeichnung.objekte
+ÿ¡ÿ>(ÿ+(bezeichnung.objekte,ÿ/(suna$)))ÿÿ>(suna$)ÿp
+ÿÂ"Eintrag nicht gefunden!","hnliche Eintragungen suchen?",130,req%
+ÿ¡req%ÿ1ÿp
+suna$ÿ"*"ÿsuna$ÿ"*"
+ÿÂ"hnliche Eintragungen:","",25,req%,cuob%,72,codeob.objekte,bezeichnung.objekte,straáe.objekte,ort.objekteÿ£bezeichnung.objekteÿĞbezeichnung.objekteÿsuna$
+ÿ’ÿ¡
+ÿ^
+cuob%ÿCodeOB.objekte
+ÿ’ÿ¡
+ÿÉÿœÿ¥cuob%ÿ£codeob.objekte
+ÿÊÿ£bezeichnung.objekte
+ÿ£bezeichnung.objekte
+ ÿ’ÿ¡
+ ÿœ
+ ÿ’ÿÿ
+
+
+ ' Anfragen šbersicht
+ ' ======================================================================
+
+ÿÿOVAnfragen()
+ ÿÊÿŸtitle$ÿ" - Anfragen (šbersicht)"
+ ÿÊÿ¬ÿe
+ ÿ´ÿœ"IANFRAGE"
+ ÿ£codeob.anfrage
+ ÿ¡cuob%ÿ0ÿp
+ÿÉÿœÿ¥cuob%ÿ™"anfrage"ÿ£codeob.anfrage
+ ÿ^
+ÿÉÿœÿ`
+ ÿ’ÿ¡
+ _formend%ÿ0
+ ÿØ_formend%ÿ0
+ÿÊÿÿ³
+ÿÏÿßÿÿ¥ÿÿ¬
+ ÿÙ
+ _formend%ÿ0
+ ÿ’ÿÿ
+
+
+ ' Anfrage Suchen
+ ' ======================================================================
+
+ÿÿIMAnfSuchen()
+ cuob%ÿcodeob.anfrage
+ ÿ¡(ÿ("anfrage")ÿÿ°("anfrage"))ÿbezeichnung.anfrageÿ""ÿpÿƒFStore("anfrage")
+ suna$ÿ""
+ ÿÂ"Suche nach Kurzbezeichnung:","",4,req%,suna$,30
+ ÿ¡req%ÿ1ÿp
+ÿÉÿœÿ¥suna$ÿ£bezeichnung.anfrage
+ÿ¡ÿ>(ÿ+(bezeichnung.anfrage,ÿ/(suna$)))ÿÿ>(suna$)ÿp
+ÿÂ"Eintrag nicht gefunden!","hnliche Eintragungen suchen?",130,req%
+ÿ¡req%ÿ1ÿp
+suna$ÿ"*"ÿsuna$ÿ"*"
+ÿÂ"hnliche Eintragungen:","",25,req%,cuob%,72,codeob.anfrage,bezeichnung.anfrageÿ£bezeichnung.anfrageÿĞbezeichnung.anfrageÿsuna$
+ÿ’ÿ¡
+ÿ^
+cuob%ÿCodeOB.anfrage
+ÿ’ÿ¡
+ÿÉÿœÿ¥cuob%ÿ£codeob.anfrage
+ÿÊÿ£bezeichnung.anfrage
+ÿ£bezeichnung.anfrage
+ ÿ’ÿ¡
+ ÿœ
+ ÿ’ÿÿ
+
+ 
+
+ 
+ '      *********************************
+ '      ** Routinen Formular "OBJEKTE" **
+ '      *********************************
+
+ '      04.05.93/FA - Einfhrung kundenbezogener/allgemeiner Modus
+ '                    obezug% 1 = kundenbezogen
+ '                            2 = allgemein
+
+ÿÿANGEBOT()
+
+ ÿ½ -- Bezug ermitteln
+ 
+ ÿÉÿæÿ>(ÿœ)
+ ÿæ"ADRESSEN"
+obezug%ÿ1
+knr%ÿcodeku.adressen
+ ÿæ"IMMAK"
+ÿƒDFile(2,"OFFICE\adressen"ÿ_fpw$)
+obezug%ÿ2
+ ÿ’ÿÉ
+ ÿ™"objekte"
+ ÿ£CodeOB.objekte
+ _OK%ÿ1
+
+ ÿ½ -- testen auf bereits vorhandene Eintragungen
+
+ ÿÉÿæobezug%
+ ÿæ1
+ÿÉÿ¥knr%ÿ™"objekte"ÿ£CodeKU.objekte
+ÿ¡ÿOÿC("objekte")ÿp
+cuob%ÿ0
+ÿÂ"Von diesem Kunden wurde noch kein Angebot erfaát!","Wollen Sie mit der Erfassung fortfahren?",130,req%
+ÿ¡req%ÿ1ÿp_OK%ÿ0
+ÿ^
+cuob%ÿCodeOB.objekte
+ÿ’ÿ¡
+ ÿæ2
+ÿÉÿ`
+ÿ¡ÿB("objekte")ÿp
+ÿƒFehler("Es wurde noch kein Angebot erfaát!","")
+_OK%ÿ0
+ÿ^
+cuob%ÿCodeOB.objekte
+ÿ’ÿ¡
+ ÿ’ÿÉ
+
+ ÿ½ -- Eintritt in normale Verarbeitung
+
+ ÿ¡_OK%ÿ1ÿp
+ÿÊÿŸtitle$ÿ" - OBJEKTE"
+_formend%ÿ0
+ÿØ_formend%ÿ0
+ÿ¡ÿ>(ÿœ)ÿ"OBJEKTE"ÿp
+ÿ´ÿœ"OBJEKTE"ÿí1
+ÿ½ ***IF obezug% = 2 THEN 
+ÿ½ ***  SET FORM OFF neu$
+ÿ½ ***  SET FORM OFF saveit$
+ÿ½ ***  SET FORM OFF bearb$
+ÿ½ ***END IF 
+ÿƒMNANGEBOT()
+ÿƒOBIntro()
+ÿÊÿÿ³
+ÿ’ÿ¡
+ÿ¬ÿ³
+ÿßÿ³
+OBsub%ÿ0
+ÿƒOBUpdate()
+ÿÊÿË"Breit"
+ÿÏÿßÿÿ¥ÿÿ¬
+ÿÉÿæOBsub%
+ÿæ1
+ÿ¡bezeichnung.objekteÿ""ÿpÿƒOBCLICK()
+ÿæ99
+ÿ½ ***  IF obezug% = 1 THEN 
+	ÿÉÿæÿí
+	ÿæ1
+ÿ”bezeichnung.objekte,0
+	ÿæ2
+ÿ”Wohnfl„che.objekte,0
+	ÿæ3
+ÿ”MWohnMiete.objekte,0
+	ÿæ4
+ÿ”Baujahr.OBJEKTE,0
+	ÿæ5
+ÿ”asphStraáe.objekte,0
+	ÿæ6
+ÿ”F”rderung.objekte,0
+	ÿæ7
+ÿ”NKBetrKosten.objekte,0
+	ÿæ8
+ÿ”BGMaklerangebot.objekte,0
+	ÿæ9
+ÿ”BesJN.objekte,0
+	ÿæ10
+ÿ”VL1km.objekte,0
+	ÿæ11
+ÿ”Zimmeranzahl.objekte,0
+	ÿæ12
+ÿ”Gewerbebetriebe.objekte,0
+	ÿæ13
+ÿ”BGProvTeilg1.OBJEKTE,0
+	ÿ’ÿÉ
+ÿ½ ***  END IF 
+ÿ’ÿÉ
+ÿ¡ÿ("objekte")ÿÿ°("objekte")ÿpÿƒFStore("objekte")
+ÿÙ
+ ÿ’ÿ¡
+ _formend%ÿ0
+ ÿ’ÿÿ
+
+
+ ' Auswahl Immobilienart
+ ' ======================================================================
+ 
+ÿÿOBAuswArt()
+ cfile$ÿÿ™
+ cuob%ÿCodeOB
+ tmpArt$ÿ""
+ ÿ¡ÿ°(cfile$)ÿÿ(cfile$)ÿpÿƒFStore(cfile$)
+ caption$ÿ"Auswahl: Immobilienart"
+ ÿ‰ÿñ"AUSWArt",0,0,202,215,caption$,"MS Sans Serif",8
+ ÿ|ÿñ"AUSWArt",5,28,6,174,8,0,"Bitte geben Sie an, zu welcher Art von Immo-"
+ ÿ|ÿñ"AUSWArt",9,4,9,20,21,2
+ ÿ|ÿñ"AUSWArt",5,28,16,174,9,0,"bilien die aktuelle Anfrage zu geordnet werden"
+ ÿ|ÿñ"AUSWArt",5,28,26,174,8,0,"soll:"
+ ÿ|ÿñ"AUSWArt",6,26,176,170,12,0,0,tmpArt$,35
+ ÿ|ÿñ"AUSWArt",7,26,36,170,138,2,2,OBArt$,Auswahl$,OBArt$(art)
+ ÿ|ÿñ"AUSWArt",1,86,193,55,16,1,"&OK",1,1
+ ÿ|ÿñ"AUSWArt",1,142,193,55,16,0,"&Abbruch",0,0
+ ÿñ"AUSWArt",req%
+ ÿ¾ÿñ"AUSWArt"
+ ÿ¡req%ÿ1ÿp
+ÿ¡tmpArt$ÿ""ÿp
+ÿÂtmpArt$ÿ" als neue Immobilienart aufnehmen?","",130,req%
+ÿ¡req%ÿ1ÿp
+a%ÿ0
+ÿØOBArt$(a%)ÿ""
+	a%ÿa%ÿ1
+ÿÙ
+OBArt$(a%)ÿtmpArt$
+ÿƒWriteConfig("IMMAK_Art","Art"ÿÿH(ÿ(a%,"999999")),ÿåansi(tmpArt$))
+ÿÉÿ¥cuob%ÿáÿ™cfile$ÿ£CodeOB
+Art ÿa%
+ÿƒFStore(cfile$)
+ÿ’ÿ¡
+ÿ^
+ÿ›a%ÿ0ÿq500
+ÿ¡Auswahl$(0)ÿOBArt$(a%)ÿp
+	ÿÉÿ¥cuob%ÿáÿ™cfile$ÿ£CodeOB
+	Art ÿa%
+	ÿƒFStore(cfile$)
+ÿ’ÿ¡
+ÿ±a%
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ Art$ÿAuswahl$(0)
+ ÿ™cfile$
+ ÿÉÿœÿ¥cuob%ÿ™cfile$ÿ£CodeOB
+ ÿœ
+ ÿ’ÿÿ
+
+
+ ' Auswahl Lage1
+ ' ======================================================================
+ 
+ÿÿOBAuswLage1()
+ cfile$ÿÿ™
+ cuob%ÿCodeOB
+ tmpLage1$ÿ""
+ ÿ¡ÿ°("")ÿÿ("")ÿpÿƒFStore("")
+ caption$ÿ"Auswahl: Lage (Ort)"
+ ÿ‰ÿñ"AUSWArt",0,0,202,215,caption$,"MS Sans Serif",8
+ ÿ|ÿñ"AUSWArt",5,28,6,174,8,0,"Bitte geben Sie an, zu welcher Lage"
+ ÿ|ÿñ"AUSWArt",9,4,9,20,21,2
+ ÿ|ÿñ"AUSWArt",5,28,16,174,9,0,"das Objekt zugeordnet werden soll:"
+ ÿ|ÿñ"AUSWArt",5,28,26,174,8,0,""
+ ÿ|ÿñ"AUSWArt",6,26,176,170,12,0,0,tmpLage1$,35
+ ÿ|ÿñ"AUSWArt",7,26,36,170,138,0,2,OBLage1$,Auswahl$,OBLage1$(lage1)
+ ÿ|ÿñ"AUSWArt",1,86,193,55,16,1,"&OK",1,1
+ ÿ|ÿñ"AUSWArt",1,142,193,55,16,0,"&Abbruch",0,0
+ ÿñ"AUSWArt",req%
+ ÿ¾ÿñ"AUSWArt"
+ ÿ¡req%ÿ1ÿp
+ÿ¡tmpLage1$ÿ""ÿp
+ÿÂtmpLage1$ÿ" als neues Kriterium aufnehmen?","",130,req%
+ÿ¡req%ÿ1ÿp
+a%ÿ0
+ÿØOBLage1$(a%)ÿ""
+	a%ÿa%ÿ1
+ÿÙ
+OBLage1$(a%)ÿtmpLage1$
+ÿƒWriteConfig("IMMAK_Lage1","Lage"ÿÿH(ÿ(a%,"999999")),ÿåansi(tmpLage1$))
+ÿÉÿ¥cuob%ÿáÿ™cfile$ÿ£CodeOB
+Lage1 ÿa%
+ÿƒFStore(cfile$)
+ÿ’ÿ¡
+ÿ^
+ÿ›a%ÿ0ÿq500
+ÿ¡Auswahl$(0)ÿOBLage1$(a%)ÿp
+	ÿÉÿ¥cuob%ÿáÿ™cfile$ÿ£CodeOB
+	Lage1 ÿa%
+	ÿƒFStore(cfile$)
+ÿ’ÿ¡
+ÿ±a%
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ Lage1$ÿAuswahl$(0)
+ ÿ™cfile$
+ ÿÉÿœÿ¥cuob%ÿ™cfile$ÿ£CodeOB
+ ÿœ
+ ÿ’ÿÿ
+ 
+
+ ' Auswahl Lage2
+ ' ======================================================================
+ 
+ÿÿOBAuswLage2()
+ cfile$ÿÿ™
+ cuob%ÿCodeOB
+ ÿ¡ÿ°("")ÿÿ("")ÿpÿƒFStore("")
+ caption$ÿ"Auswahl: Lage (Qualit„t)"
+ tmpLage2$ÿ""
+ ÿ‰ÿñ"AUSWArt",0,0,202,215,caption$,"MS Sans Serif",8
+ ÿ|ÿñ"AUSWArt",5,28,6,174,8,0,"Bitte geben Sie an, zu welcher Lage"
+ ÿ|ÿñ"AUSWArt",9,4,9,20,21,2
+ ÿ|ÿñ"AUSWArt",5,28,16,174,9,0,"das Objekt zugeordnet werden soll:"
+ ÿ|ÿñ"AUSWArt",5,28,26,174,8,0,""
+ ÿ|ÿñ"AUSWArt",6,26,176,170,12,0,0,tmpLage2$,35
+ ÿ|ÿñ"AUSWArt",7,26,36,170,138,0,2,OBLage2$,Auswahl$,OBLage2$(lage2)
+ ÿ|ÿñ"AUSWArt",1,86,193,55,16,1,"&OK",1,1
+ ÿ|ÿñ"AUSWArt",1,142,193,55,16,0,"&Abbruch",0,0
+ ÿñ"AUSWArt",req%
+ ÿ¾ÿñ"AUSWArt"
+ ÿ¡req%ÿ1ÿp
+ÿ¡tmpLage2$ÿ""ÿp
+ÿÂtmpLage2$ÿ" als neues Kriterium aufnehmen?","",130,req%
+ÿ¡req%ÿ1ÿp
+a%ÿ0
+ÿØOBLage2$(a%)ÿ""
+	a%ÿa%ÿ1
+ÿÙ
+OBLage2$(a%)ÿtmpLage2$
+ÿƒWriteConfig("IMMAK_Lage2","Lage"ÿÿH(ÿ(a%,"999999")),ÿåansi(tmpLage2$))
+ÿÉÿ¥cuob%ÿáÿ™cfile$ÿ£CodeOB
+Lage2 ÿa%
+ÿƒFStore(cfile$)
+ÿ’ÿ¡
+ÿ^
+ÿ›a%ÿ0ÿq500
+ÿ¡Auswahl$(0)ÿOBLage2$(a%)ÿp
+	ÿÉÿ¥cuob%ÿáÿ™cfile$ÿ£CodeOB
+	Lage2 ÿa%
+	ÿƒFStore(cfile$)
+ÿ’ÿ¡
+ÿ±a%
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ Lage2$ÿAuswahl$(0)
+ ÿ™cfile$
+ ÿÉÿœÿ¥cuob%ÿ™cfile$ÿ£CodeOB
+ ÿœ
+ ÿ’ÿÿ
+
+
+ ' Auswahl Erschlieáung
+ ' ======================================================================
+ 
+ÿÿOBAuswErschl()
+ cfile$ÿÿ™
+ cuob%ÿCodeOB
+ ÿ¡ÿ°("")ÿÿ("")ÿpÿƒFStore("")
+ caption$ÿ"Auswahl: Erschlieáung"
+ tmpErschl$ÿ""
+ ÿ‰ÿñ"AUSWArt",0,0,202,215,caption$,"MS Sans Serif",8
+ ÿ|ÿñ"AUSWArt",5,28,6,174,8,0,"Bitte w„hlen Sie die Art der"
+ ÿ|ÿñ"AUSWArt",9,4,9,20,21,2
+ ÿ|ÿñ"AUSWArt",5,28,16,174,9,0,"Erschlieáung aus:"
+ ÿ|ÿñ"AUSWArt",5,28,26,174,8,0,""
+ ÿ|ÿñ"AUSWArt",6,26,176,170,12,0,0,tmpErschl$,35
+ ÿ|ÿñ"AUSWArt",7,26,36,170,138,2,2,OBErschl$,Auswahl$,OBErschl$(Erschlieáung)
+ ÿ|ÿñ"AUSWArt",1,86,193,55,16,1,"&OK",1,1
+ ÿ|ÿñ"AUSWArt",1,142,193,55,16,0,"&Abbruch",0,0
+ ÿñ"AUSWArt",req%
+ ÿ¾ÿñ"AUSWArt"
+ ÿ¡req%ÿ1ÿp
+ÿ¡tmpErschl$ÿ""ÿp
+ÿÂtmpErschl$ÿ" als neues Kriterium aufnehmen?","",130,req%
+ÿ¡req%ÿ1ÿp
+a%ÿ0
+ÿØOBErschl$(a%)ÿ""
+	a%ÿa%ÿ1
+ÿÙ
+OBErschl$(a%)ÿtmpErschl$
+ÿƒWriteConfig("IMMAK_Erschl","Erschl"ÿÿH(ÿ(a%,"999999")),ÿåansi(tmpErschl$))
+ÿÉÿ¥cuob%ÿáÿ™cfile$ÿ£CodeOB
+Erschlieáung ÿa%
+ÿƒFStore(cfile$)
+ÿ’ÿ¡
+ÿ^
+ÿ›a%ÿ0ÿq500
+ÿ¡Auswahl$(0)ÿOBErschl$(a%)ÿp
+	ÿÉÿ¥cuob%ÿáÿ™cfile$ÿ£CodeOB
+	Erschlieáung ÿa%
+	ÿƒFStore(cfile$)
+ÿ’ÿ¡
+ÿ±a%
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ Erschl$ÿAuswahl$(0)
+ ÿ™cfile$
+ ÿÉÿœÿ¥cuob%ÿ™cfile$ÿ£CodeOB
+ ÿœ
+ ÿ’ÿÿ
+ 
+
+ ' Auswahl Branche
+ ' ======================================================================
+ 
+ÿÿOBAuswBranche()
+ cfile$ÿÿ™
+ cuob%ÿCodeOB
+ ÿ¡ÿ°("")ÿÿ("")ÿpÿƒFStore("")
+ caption$ÿ"Auswahl: Branche"
+ tmpBranche$ÿ""
+ ÿ‰ÿñ"AUSWArt",0,0,202,215,caption$,"MS Sans Serif",8
+ ÿ|ÿñ"AUSWArt",5,28,6,174,8,0,"Bitte geben Sie an, zu welcher Art von Branche"
+ ÿ|ÿñ"AUSWArt",9,4,9,20,21,2
+ ÿ|ÿñ"AUSWArt",5,28,16,174,9,0,"der aktuelle Datensatz zugeordnet werden"
+ ÿ|ÿñ"AUSWArt",5,28,26,174,8,0,"soll:"
+ ÿ|ÿñ"AUSWArt",6,26,176,170,12,0,0,tmpBranche$,35
+ ÿ|ÿñ"AUSWArt",7,26,36,170,138,2,2,OBBranche$,Auswahl$,OBBranche$(Branche)
+ ÿ|ÿñ"AUSWArt",1,86,193,55,16,1,"&OK",1,1
+ ÿ|ÿñ"AUSWArt",1,142,193,55,16,0,"&Abbruch",0,0
+ ÿñ"AUSWArt",req%
+ ÿ¾ÿñ"AUSWArt"
+ ÿ¡req%ÿ1ÿp
+ÿ¡tmpBranche$ÿ""ÿp
+ÿÂtmpBranche$ÿ" als neue Branche aufnehmen?","",130,req%
+ÿ¡req%ÿ1ÿp
+a%ÿ0
+ÿØOBBranche$(a%)ÿ""
+	a%ÿa%ÿ1
+ÿÙ
+OBBranche$(a%)ÿtmpBranche$
+ÿƒWriteConfig("IMMAK_Branche","Branche"ÿÿH(ÿ(a%,"999999")),ÿåansi(tmpBranche$))
+ÿÉÿ¥cuob%ÿáÿ™cfile$ÿ£CodeOB
+Branche ÿa%
+ÿƒFStore(cfile$)
+ÿ’ÿ¡
+ÿ^
+ÿ›a%ÿ0ÿq500
+ÿ¡Auswahl$(0)ÿOBBranche$(a%)ÿp
+	ÿÉÿ¥cuob%ÿáÿ™cfile$ÿ£CodeOB
+	Branche ÿa%
+	ÿƒFStore(cfile$)
+ÿ’ÿ¡
+ÿ±a%
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ Branche$ÿAuswahl$(0)
+ ÿ™cfile$
+ ÿÉÿœÿ¥cuob%ÿ™cfile$ÿ£CodeOB
+ ÿœ
+ ÿ’ÿÿ
+ 
+
+ ' Inhaber suchen
+ ' ======================================================================
+
+ÿÿANGIHSuch()
+ cuih%ÿCodeIH.OBJEKTE
+ inhaber%ÿADRSuche%(0)
+ ÿ¡inhaber%ÿ0ÿp
+ÿÉÿ¥inhaber%ÿ™"ADRESSEN"ÿ£codeku.adressen
+ÿÉÿ¥cuob%ÿáÿ™"objekte"ÿ£CodeOB.objekte
+IHAnrede.OBJEKTEÿAnrede.adressen
+IHNachname.OBJEKTEÿNachname.Adressen
+IHOrt.OBJEKTEÿOrt.Adressen
+IHVorname.OBJEKTEÿVorname.Adressen
+IHPLZ.OBJEKTEÿPLZ.Adressen
+IHStraáe.OBJEKTEÿStraáe.adressen
+IHTelefax1.OBJEKTEÿTelefax.adressen
+IHTelefon1.OBJEKTEÿTelefon1.adressen
+IHTelefon2.OBJEKTEÿTelefon2.adressen
+CodeIH.objekteÿcuih%
+ÿƒQuickStore("OBJEKTE")
+ ÿ’ÿ¡
+ ÿœ
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+
+ ' Intro
+ ' ======================================================================
+
+ÿÿOBIntro()
+ ÿ¡cuob%ÿ0ÿp
+ÿÉÿœÿ¥cuob%ÿ£codeob.objekte
+ ÿ^
+ÿƒOBNeu()
+ ÿ’ÿ¡
+ ÿœ
+ ÿ’ÿÿ
+ 
+
+ ' neues Objekt erfassen
+ ' ======================================================================
+
+ÿÿOBNeu()
+ ÿ™"objekte"
+ ÿ¡obezug%ÿ2ÿp
+ÿÿœ
+CodeOB.objekteÿÿI("objekte",1)
+CodeGR.objekteÿ1
+CodeKU.objekteÿknr%
+ÿÉÿ¥CodeGR.objekteÿ™"immogrup"ÿ£CodeGR.immogrup
+ÿÉÿ¥CodeKU.objekteÿ™"adressen"ÿ£CodeKU.adressen
+OBsub%ÿ99
+ÿƒOBUpdate()
+ÿœ
+ ÿ^
+ÿÂ"Bitte wechseln Sie zur Adreámaske, um ein neues Angebot zu erfassen !","",113
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+
+ ' Objekt suchen
+ ' ======================================================================
+
+ÿÿOBSuchen()
+ cunr%ÿCodeOB.objekte
+ cuob%ÿCodeOB.objekte
+ ÿ¡Bezeichnung.objekteÿ""ÿpÿƒFStore("objekte")
+ ÿÉÿæobezug%
+ ÿæ1
+ÿÂ"alle Angebote des aktuellen Kunden:","",25,req%,cunr%,72,codeob.objekte,bezeichnung.objekte,straáe.objekte,ort.objekteÿ£bezeichnung.objekteÿĞcodeku.objekteÿknr%
+ ÿæ2
+opt%ÿ2
+ÿ‰ÿñ"OBSuche",0,0,144,94,"","MS Sans Serif",8
+ÿ|ÿñ"OBSuche",5,6,3,135,9,0,"W„hlen Sie eine der Suchm”glichkeiten:"
+ÿ|ÿñ"OBSuche",3,6,14,104,13,0,"Suche ber Liste",2,opt%
+ÿ|ÿñ"OBSuche",3,6,28,103,16,0,"Suche ber Bezeichnung",1,opt%
+ÿ|ÿñ"OBSuche",2,6,51,99,13,0,"vermietet/verkauft","j","n",Kfld$
+ÿ|ÿñ"OBSuche",1,17,75,51,14,1,"&Suchen",1,1
+ÿ|ÿñ"OBSuche",1,70,75,50,14,0,"&Abbruch",0,0
+ÿñ"OBSuche",req%
+ÿ¾ÿñÿt
+ÿ¡req%ÿ1ÿp
+ÿ¡opt%ÿ1ÿp
+ÿÂ"Bitte Suchbegriff eingeben.","",4,req%,suna$,30
+ÿÊÿË"Suche Angebot..."
+ÿÉÿ¥suna$ÿ£bezeichnung.objekte
+ÿ¡ÿ>(ÿ+(bezeichnung.objekte,ÿ/(suna$)))ÿÿ>(suna$)ÿp
+
+ÿÂ"Eintrag nicht gefunden!","hnliche Eintragungen suchen?",130,req%
+
+ÿ¡req%ÿ1ÿp
+suna$ÿ"*"ÿsuna$ÿ"*"
+ÿ¡kfld$ÿ"n"ÿp
+ÿÂ"Auswahl","Nummer, Bezeichnung",20,req%,cunr%,72,codeob.objekte,bezeichnung.objekteÿ£bezeichnung.objekteÿĞbezeichnung.objekteÿsuna$ÿverkauft.objekteÿ"j"
+ÿ^
+ÿÂ"Auswahl","Nummer, Bezeichnung",20,req%,cunr%,72,codeob.objekte,bezeichnung.objekteÿ£bezeichnung.objekteÿĞbezeichnung.objekteÿsuna$ÿverkauft.objekteÿ"j"
+ÿ’ÿ¡
+ÿÉÿ¥cunr%ÿ™"objekte"ÿ£codeob.objekte
+
+ÿ’ÿ¡
+ÿ’ÿ¡
+cunr%ÿcodeob.objekte
+ÿÊÿ£CodeKU.objekte
+ÿ£CodeKU.objekte
+ÿ^
+ÿ¡kfld$ÿ"n"ÿp
+
+ÿÂ"šbersicht ber alle offenen Angebote:","",25,req%,cunr%,72,codeob.objekte,bezeichnung.objekteÿ£bezeichnung.objekteÿĞverkauft.objekteÿ"j"
+ÿ^
+
+ÿÂ"šbersicht ber alle erledigten Angebote:","",25,req%,cunr%,72,codeob.objekte,bezeichnung.objekteÿ£bezeichnung.objekteÿĞverkauft.objekteÿ"j"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿÉ
+ ÿ¡req%ÿ1ÿp
+ÿÉÿœÿ¥cunr%ÿ™"objekte"ÿ£codeob.objekte
+ ÿ^
+ÿÉÿœÿ¥cuob%ÿ™"objekte"ÿ£codeob.objekte
+ ÿ’ÿ¡
+ ÿÊÿ£CodeKU.objekte
+ ÿ£CodeKU.objekte
+ ÿœ
+ ÿ’ÿÿ
+ 
+
+ ' Objektnotiz erfassen
+ ' ======================================================================
+ 
+ÿÿOBNotiz(notizart$)
+ cuob%ÿCodeOB.objekte
+ feld$ÿ"Note"ÿÿH(ÿ(ÿí,"99"))ÿ".objekte"
+ cuno%ÿfeld$$
+ ÿ¡ÿ°("objekte")ÿÿ("objekte")ÿpÿƒFStore("OBJEKTE")
+ ÿ¡cuno%ÿ
+1ÿp
+cuno%ÿNOTIZNeu%(notizart$,"IMMAK",cuob%)
+ÿ¡cuno%ÿ0ÿp
+ÿÉÿ¥cuob%ÿáÿ™"objekte"ÿ£CodeOB.objekte
+feld$$ÿcuno%
+ÿƒFStore("OBJEKTE")
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡cuno%ÿ0ÿp
+ÿƒNOTIZBearbeiten(cuno%)
+ÿÉÿ¥cuno%ÿ™"notiz"ÿ£CodeNO.notiz
+ÿ¡ÿOÿC("notiz")ÿp
+ÿÉÿ¥cuob%ÿáÿ™"objekte"ÿ£CodeOB.objekte
+feld$$ÿ0
+ÿƒFStore("OBJEKTE")
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+
+ ' OBJEKTE Eintrag zurck
+ ' ======================================================================
+
+ÿÿOBPrev()
+ ÿ¡ÿ("")ÿÿ°("")ÿpÿƒFStore("OBJEKTE")
+ ÿÉÿæobezug%
+ ÿæ1
+cunr%ÿcodeob.objekte
+ÿÉÿœÿgÿ£codeku.objekte
+ÿ¡codeku.objekteÿknr%ÿp
+ÿÂ"Dateianfang erreicht!","",2
+ÿÉÿœÿ¥cunr%ÿ£codeob.objekte
+ÿÉÿ¥knr%ÿ™"adressen"ÿ£codeku.adressen
+ÿ’ÿ¡
+ ÿæ2
+ÿÉÿœÿgÿ™"objekte"ÿ£codeob.objekte
+ÿ¡ÿOÿC("objekte")ÿp
+ÿÂ"Dateianfang erreicht!","",2
+ÿÉÿœÿ¥cunr%ÿ£codeob.objekte
+ÿÉÿ¥knr%ÿ™"adressen"ÿ£codeku.adressen
+ÿ’ÿ¡
+ ÿ’ÿÉ
+ ÿÊÿ£ÿt
+ ÿœ
+ ÿ’ÿÿ
+ 
+
+ ' OBJEKTE Eintrag vor
+ ' ======================================================================
+
+ÿÿOBNext()
+ ÿ¡ÿ("")ÿÿ°("")ÿpÿƒFStore("OBJEKTE")
+ ÿÉÿæobezug%
+ ÿæ1
+cunr%ÿcodeob.objekte
+ÿÉÿœÿ±ÿ£codeku.objekte
+ÿ¡codeku.objekteÿknr%ÿÿB("objekte")ÿp
+ÿÂ"Dateiende erreicht!","",2
+ÿÉÿœÿ¥cunr%ÿ£codeob.objekte
+ÿÉÿ¥knr%ÿ™"adressen"ÿ£codeku.adressen
+ÿ’ÿ¡
+ ÿæ2
+ÿÉÿœÿ±ÿ™"objekte"ÿ£codeob.objekte
+ÿ¡ÿOÿC("objekte")ÿp
+ÿÂ"Dateiende erreicht!","",2
+ÿÉÿœÿ¥cunr%ÿ£codeob.objekte
+ÿÉÿ¥knr%ÿ™"adressen"ÿ£codeku.adressen
+ÿ’ÿ¡
+ ÿ’ÿÉ
+ ÿÊÿ£CodeKU.objekte
+ ÿ£CodeKU.objekte
+ ÿœ
+ ÿ’ÿÿ
+
+
+ ' Objekt Nummer neu vergeben
+ ' ======================================================================
+
+ÿÿOBNummer()
+ ÿ¡codeob.objekteÿ
+1ÿp
+codegr.objekteÿ1
+codeku.objekteÿknr%
+codeob.objekteÿÿI("objekte",1)
+ÿÉÿ¥codegr.objekteÿ™"immogrup"ÿ£codegr.immogrup
+ÿÉÿ¥codeku.objekteÿ™"adressen"ÿ£codeku.adressen
+ÿœ
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+
+ 
+ ' Einzelimmobilie einer Gruppe zuordnen
+ ' ======================================================================
+
+ÿÿOBZuordnen()
+ cfile$ÿÿ™
+ cugr%ÿcodeGR.objekte
+ ÿ¡ÿ>(ÿœ)ÿ"ANFRAGE"ÿp
+cuob%ÿCodeOB.Anfrage
+ ÿ^
+cuob%ÿCodeOB.objekte
+ ÿ’ÿ¡
+ ÿ™"immogrup"
+ suna$ÿ""
+ ÿÂ"Zuordnung zu einer Immobiliengruppe","Geben Sie die Suchbezeichnung an:",4,req%,suna$,30
+ ÿ¡req%ÿ1ÿp
+suna$ÿ"*"ÿsuna$ÿ"*"
+ÿÂ"- Immobiliengruppen -","hnliche Bezeichnungen:",25,req%,cugr%,72,codeGR.immogrup,bezeichnung.immogrupÿ£bezeichnung.immogrupÿĞbezeichnung.immogrupÿsuna$
+ÿ¡req%ÿ1ÿp
+ÿÉÿ¥cugr%ÿ™"IMMOGRUP"ÿ£Codegr.immogrup
+w%ÿ230:h%ÿ160
+d$ÿ"OBJZUORD"
+ÿ‰ÿñd$,0,0,w%,h%,"Zuordnung Immobiliengruppe:","MS Sans Serif",8
+ÿ|ÿñd$,5,4,12,w%ÿ10,9,0,"Einzelimmobilie der gew„hlten Gruppe zuordnen?"
+ÿ|ÿñd$,5,4,32,w%ÿ10,9,0,bezeichnung.immogrup
+ÿ|ÿñd$,5,4,42,w%ÿ10,60,0,beschreibung.immogrup
+ÿ|ÿñd$,1,w%ÿ80,h%ÿ18,36,14,1,"&Ja",1,1
+ÿ|ÿñd$,1,w%ÿ40,h%ÿ18,36,14,0,"&Nein",2,0
+ÿñd$,a%
+ÿ¾ÿñd$
+ÿ¡a%ÿ1ÿp
+ÿ¡ÿ>(ÿœ)ÿ"ANFRAGE"ÿp
+	ÿÉÿ¥cuob%ÿáÿ™"anfrage"ÿ£CodeOB.anfrage
+	CodeGR.anfrageÿcugr%
+	ÿƒFStore("anfrage")
+ÿ^
+	ÿÉÿ¥cuob%ÿáÿ™"objekte"ÿ£CodeOB.objekte
+	CodeGR.objekteÿcugr%
+	ÿƒFStore ("OBJEKTE")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡ÿ>(ÿœ)ÿ"ANFRAGE"ÿp
+ÿƒFStore("anfrage")
+ ÿ^
+ÿƒFStore("objekte")
+ ÿ’ÿ¡
+ ÿ™cfile$
+ ÿ¡ÿ>(ÿœ)ÿ"ANFRAGE"ÿp
+ÿÉÿœÿ¥cuob%ÿ™"anfrage"ÿ£CodeOB.anfrage
+ ÿ^
+ÿÉÿœÿ¥cuob%ÿ™"objekte"ÿ£CodeOB.objekte
+ ÿ’ÿ¡
+ ÿœ
+ ÿ’ÿÿ
+
+
+ ' aktuelles Objekt l”schen
+ ' ======================================================================
+ 
+ÿÿOBLoeschen()
+ cuob%ÿCodeOB.objekte
+ ÿÂ"Soll das aktuelle Angebot wirklich gel”scht werden?","",135,req%
+ ÿ¡req%ÿ1ÿp
+ÿßÿe
+ÿÉÿ¥cuob%ÿáÿ™"objekte"ÿ£CodeOB.objekte
+ÿÉÿ¾
+ÿÉÿæobezug%
+ÿæ1
+ÿ½ Kundenbezogen
+ÿÉÿ¥knr%ÿ™"objekte"ÿ£CodeKU.objekte
+ÿ¡CodeKU.objekteÿknr%ÿp
+ÿÂ"Keine weiteren Angebote des Kunden vorhanden!","",0
+_formend%ÿ1
+ÿ’ÿ¡
+ÿæ2
+ÿ½ alle Angebote
+ÿÉÿ±
+ÿ¡ÿB("objekte")ÿp
+ÿÂ"Keine weiteren Angebote vorhanden!","",0
+_formend%ÿ1
+ÿ’ÿ¡
+ÿ’ÿÉ
+ ÿ’ÿ¡
+ ÿßÿ³
+ ÿœ
+ ÿ’ÿÿ
+
+
+ ' Angebot: Vertr„ge
+ ' ======================================================================
+ 
+ÿÿANGVertrag()
+ cuob%ÿCodeOB.objekte
+ ÿÊÿË"Dokumentenverwaltung (Vertr„ge)"
+ ÿƒDOKUMENT("Vertr„ge",cuob%)
+ ÿÊÿË""
+ ÿ’ÿÿ
+ 
+ 
+ 
+ ' Angebot: Protokoll
+ ' ======================================================================
+ 
+ÿÿANGProtokoll()
+ ÿÊÿË"Dokumentenverwaltung (Protokolle)"
+ cuob%ÿCodeOB.objekte
+ ÿƒDOKUMENT("Protokolle",cuob%)
+ ÿÊÿË""
+ ÿ’ÿÿ
+ 
+ 
+ ' Angebot: Dossier
+ ' ======================================================================
+ 
+ÿÿANGDossier()
+ ÿÊÿË"Dokumentenverwaltung (Expose)"
+ cuob%ÿCodeOB.objekte
+ ÿƒDOKUMENT("Expose",cuob%)
+ ÿÊÿË""
+ ÿ’ÿÿ
+
+
+ ' Angebot: Formular
+ ' ======================================================================
+ 
+ÿÿANGFormular()
+ ÿÊÿË"Dokumentenverwaltung (Formulare)"
+ cuob%ÿCodeOB.objekte
+ ÿƒDOKUMENT("Formulare",cuob%)
+ ÿÊÿË""
+ ÿ’ÿÿ
+
+ 
+ ' Abgleich: passende Anfragen zum Angebot suchen
+ ' ======================================================================
+ 
+ÿÿOBAbgleich()
+ cuob%ÿCodeOB.objekte
+ ÿÉÿ¥cuob%ÿáÿ™"objekte"ÿ£codeob.objekte
+ ÿ¡ÿ°("OBJEKTE")ÿÿ("OBJEKTE")ÿpÿƒFStore("OBJEKTE")
+ cfile$ÿÿ™
+ cdir$ÿÿ
+ ÿ¡Bezeichnung.OBJEKTEÿ""ÿp
+ÿƒFehler("Bitte geben Sie erst alle Angaben des Objektes komplett ein!")
+ ÿ^
+ÿ¡ABGNotiz.objekteÿ""ÿnotiz.objekteÿ""ÿp
+ABGNotiz.objekteÿnotiz.objekte
+ÿ’ÿ¡
+ÿ¡ÿ°("OBJEKTE")ÿÿ("OBJEKTE")ÿpÿƒFStore("OBJEKTE")
+ÿÊÿË"Festlegung der Abgleichstrategie..."
+ÿÉÿ¥cuob%ÿáÿ™"OBJEKTE"ÿ£CodeOB.objekte
+ÿ‰ÿñ"OBAbgleich",0,0,206,230,"Abgleich","MS Sans Serif",8
+ÿ|ÿñ"OBAbgleich",9,5,11,20,22,2
+ÿ|ÿñ"OBAbgleich",5,30,12,123,8,0,"Auflistung aller passenden Anfragen"
+ÿ|ÿñ"OBAbgleich",5,30,28,147,8,0,"Bitte geben Sie an, welche Parameter in den"
+ÿ|ÿñ"OBAbgleich",5,30,38,130,8,0,"Abgleich mit einbezogen werden sollen:"
+ÿ|ÿñ"OBAbgleich",2,30,51,79,11,0,"a&llgemeine Angaben","j","n",ABGallgemein.objekte
+ÿ|ÿñ"OBAbgleich",5,130,52,19,8,0,"Lage:"
+ÿ|ÿñ"OBAbgleich",2,30,62,38,11,0,"&Branche","j","n",ABGBranche.objekte
+ÿ|ÿñ"OBAbgleich",2,130,62,23,13,0,"&Ort","j","n",ABGOrt.objekte
+ÿ|ÿñ"OBAbgleich",2,30,73,38,13,0,"&Fl„chen","j","n",ABGFl„chen.objekte
+ÿ|ÿñ"OBAbgleich",2,130,75,36,11,0,"Orts&teil","j","n",ABGOrtsteil.objekte
+ÿ|ÿñ"OBAbgleich",2,30,86,34,11,0,"&Preise","j","n",ABGPreise.objekte
+ÿ|ÿñ"OBAbgleich",2,130,86,34,13,0,"&Straáe","j","n",ABGStraáe.objekte
+ÿ|ÿñ"OBAbgleich",2,30,97,55,13,0,"&Erschlieáung","j","n",ABGErschlieáung.objekte
+ÿ|ÿñ"OBAbgleich",2,130,97,44,13,0,"PLZ","j","n",ABGPLZ.objekte
+ÿ|ÿñ"OBAbgleich",2,130,115,52,13,0,"Ver&mietung","j","n",ABGMietint.objekte
+ÿ|ÿñ"OBAbgleich",2,30,116,54,12,0,"Ver&kauf","j","n",ABGKaufint.objekte
+ÿ|ÿñ"OBAbgleich",4,29,131,172,74,0,"Stichwort(e)"
+ÿ|ÿñ"OBAbgleich",5,132,139,66,8,1,"Verknpfung durch"
+ÿ|ÿñ"OBAbgleich",2,32,150,92,11,0,"einbe&ziehen","j","n",ABGStichwort.objekte
+ÿ|ÿñ"OBAbgleich",2,165,150,31,11,0,"ODER","j","n",ABGStODER.objekte
+ÿ|ÿñ"OBAbgleich",2,131,150,31,11,0,"UND","j","n",ABGStUND.objekte
+ÿ|ÿñ"OBAbgleich",6,33,163,165,37,4,0,ABGNotiz.objekte,500
+ÿ|ÿñ"OBAbgleich",1,89,209,55,15,0,"&Weiter",1,1
+ÿ|ÿñ"OBAbgleich",1,148,209,54,15,0,"&Abbruch",0,0
+ 
+ÿñ"OBAbgleich",req%
+ÿ¾ÿñ"OBAbgleich"
+ÿÊÿË""
+ÿ¡req%ÿ1ÿp
+ÿÂ"Soll zus„tzlich eine Mailingliste erzeugt werden?","",135,mailing%
+ÿßÿe
+stichwort$ÿABGnotiz.objekte
+ÿƒFStore("OBJEKTE")
+ÿÊÿË"Ergebnisdatei wird vorbereitet..."
+ÿ¡ÿJ(_localpath$ÿ"ABGLEICH.SBF")ÿpÿ_localpath$ÿ"ABGLEICH.SB*"
+ÿ‰_localpath$ÿ"ABGLEICH"
+ÿ|"CodeOB;NUM;000000"
+ÿ|"TimeStamp;NUM;0000000000"
+ÿª"ABGLEICH"
+ÿ‰ÿ£ÿ³CodeOB
+ÿÉÿ¥cuob%ÿ™"OBJEKTE"ÿ£CodeOB.objekte
+ÿÊÿË"Abgleich l„uft..."
+cuanf%ÿCodeOB.OBJEKTE
+ÿ™"ANFRAGE"
+ÿ£CodeOB.anfrage
+ÿÉÿ`
+onefound%ÿ0
+ÿØÿOÿB("ANFRAGE")
+obok%ÿ1
+ 
+ÿ½ ---Stichwort Abgleich
+ÿ¡ABGStichwort.objekteÿ"j"ÿp
+	k%ÿ0
+	ÿ¡stichwort$ÿ""ÿp
+j%ÿStichwortSel%(stichwort$)
+ÿ›i%ÿ1ÿqj%
+ÿ¡notiz.anfrageÿ"*"ÿstichworte$(i%)ÿ"*"ÿpk%ÿk%ÿ1
+ÿ±i%
+ÿ¡ABGStODER.objekteÿ"j"ÿp
+ÿ¡k%ÿ0ÿpobok%ÿ0
+ÿ’ÿ¡
+ÿ¡ABGStUND.objekteÿ"j"ÿp
+ÿ¡j%ÿk%ÿpobok%ÿ0
+ÿ’ÿ¡
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ 
+ÿ½ ---Objekt ist zu verkaufen
+ÿ¡ABGKaufint.objekteÿ"j"ÿABGMietint.objekteÿ"j"ÿp
+
+ÿ¡AAKaufint.anfrageÿ"j"ÿpobok%ÿ0
+ÿ’ÿ¡
+ÿ½ ---Objekt ist zu vermieten
+ÿ¡ABGMietint.objekteÿ"j"ÿABGKaufint.objekteÿ"j"ÿp
+
+ÿ¡AAMietint.anfrageÿ"j"ÿpobok%ÿ0
+ÿ’ÿ¡
+ 
+ÿ½ -- allgemeine Angaben --
+
+ÿ¡ABGallgemein.OBJEKTEÿ"j"ÿp
+	ÿ¡Art.objekteÿArt.ANFRAGEÿpobok%ÿ0
+	ÿ¡Lage1.objekteÿLage1.anfrageÿpobok%ÿ0
+	ÿ¡Lage2.OBJEKTEÿLage2.ANFRAGEÿpobok%ÿ0
+ÿ’ÿ¡
+ 
+ÿ½ -- Branche --
+ 
+ÿ¡ABGBranche.OBJEKTEÿ"j"ÿp
+	ÿ¡Branche.OBJEKTEÿBranche.anfrageÿpobok%ÿ0
+ÿ’ÿ¡
+ 
+
+ÿ½ -- Fl„chenmaáe --
+
+ÿ¡ABGFl„chen.OBJEKTEÿ"j"ÿp
+	ÿ¡NutzFl„che.OBJEKTEÿ0ÿp
+
+ÿ¡NutzFl„che.OBJEKTEÿ
+minFl„che.ANFRAGEÿpobok%ÿ0
+	ÿ’ÿ¡
+	ÿ¡Nutzfl„che.objekteÿmaxFl„che.anfrageÿmaxFl„che.anfrageÿ0ÿpobok%ÿ0
+	ÿ¡GrundFl„che.OBJEKTEÿ0ÿp
+
+ÿ¡GrundFl„che.OBJEKTEÿ
+minGrundstFl„ch.ANFRAGEÿpobok%ÿ0
+	ÿ’ÿ¡
+	ÿ¡Grundfl„che.objekteÿmaxGrundstFl„ch.anfrageÿmaxGrundstFl„ch.anfrageÿ0ÿpobok%ÿ0
+ÿ’ÿ¡
+
+ÿ½ -- Preisangaben --
+
+ÿ¡ABGPreise.OBJEKTEÿ"j"ÿp
+	ÿ¡Kaufpreis.OBJEKTEÿmaxKaufpreis.ANFRAGEÿmaxKaufpreis.ANFRAGEÿ0ÿpobok%ÿ0
+	ÿ¡PreisMiete.OBJEKTEÿmaxMietpreis.ANFRAGEÿmaxMietpreis.ANFRAGEÿ0ÿpobok%ÿ0
+	ÿ¡Preism2Miete.OBJEKTEÿmaxMietpreism2.ANFRAGEÿmaxMietpreism2.ANFRAGEÿ0ÿpobok%ÿ0
+	ÿ¡Preism2Grundst.OBJEKTEÿmaxGrundstprm2.ANFRAGEÿmaxGrundstprm2.ANFRAGEÿ0ÿpobok%ÿ0
+	ÿ¡PreisGrundst.OBJEKTEÿmaxGrundstpreis.ANFRAGEÿmaxGrundstpreis.ANFRAGEÿ0ÿpobok%ÿ0
+	
+	ÿ¡Kaufpreis.OBJEKTEÿ0ÿp
+ÿ¡Kaufpreis.OBJEKTEÿ
+minKaufpreis.ANFRAGEÿminKaufpreis.ANFRAGEÿ0ÿpobok%ÿ0
+	ÿ’ÿ¡
+	ÿ¡PreisMiete.OBJEKTEÿ0ÿp
+ÿ¡PreisMiete.OBJEKTEÿ
+minMietpreis.ANFRAGEÿminMietpreis.ANFRAGEÿ0ÿpobok%ÿ0
+	ÿ’ÿ¡
+	ÿ¡Preism2Miete.OBJEKTEÿ0ÿp
+ÿ¡Preism2Miete.OBJEKTEÿ
+minMietpreism2.ANFRAGEÿminMietpreism2.ANFRAGEÿ0ÿpobok%ÿ0
+	ÿ’ÿ¡
+	ÿ¡Preism2Grundst.OBJEKTEÿ0ÿp
+ÿ¡Preism2Grundst.OBJEKTEÿ
+minGrundstprm2.ANFRAGEÿminGrundstprm2.ANFRAGEÿ0ÿpobok%ÿ0
+	ÿ’ÿ¡
+	ÿ¡PreisGrundst.OBJEKTEÿ0ÿp
+ÿ¡PreisGrundst.OBJEKTEÿ
+minGrundstpreis.ANFRAGEÿminGrundstpreis.ANFRAGEÿ0ÿpobok%ÿ0
+	ÿ’ÿ¡
+ÿ’ÿ¡
+
+ÿ½ -- Erschlieáung --
+
+ÿ¡ABGErschlieáung.OBJEKTEÿ"j"ÿp
+	ÿ¡Erschlieáung.OBJEKTEÿErschlieáung.ANFRAGEÿpobok%ÿ0
+ÿ’ÿ¡
+ 
+ÿ½ -- Lage --
+
+ÿ¡ABGOrt.OBJEKTEÿ"j"ÿp
+	ÿ¡ort.anfrageÿ"*"ÿOrt.OBJEKTEÿ"*"ÿortsliste.anfrageÿ"*"ÿOrt.OBJEKTEÿ"*"ÿp
+	ÿ^
+obok%ÿ0
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ABGOrtsteil.OBJEKTEÿ"j"ÿp
+	ÿ¡Ortsteil.OBJEKTEÿ"*"ÿortsteil.anfrageÿ"*"ÿp
+	ÿ^
+obok%ÿ0
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ABGStraáe.OBJEKTEÿ"j"ÿp
+	ÿ¡ÿ>(ÿåalpha(Straáe.OBJEKTE))ÿ"*"ÿÿ>(ÿåalpha(Straáe.anfrage))ÿ"*"ÿp
+	ÿ^
+obok%ÿ0
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ÿ¡ABGPLZ.OBJEKTEÿ"j"ÿp
+	plz$ÿÿånumeric(PLZ.anfrage)
+	ÿ¡ÿånumeric(PLZ.OBJEKTE)ÿplz$ÿp
+	ÿ^
+obok%ÿ0
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ÿ½ -- bereits verkauf? --
+ÿ¡verkauft.objekteÿ"j"ÿpobok%ÿ0
+
+ÿ¡obok%ÿ1ÿp
+	ÿÿ™"ABGLEICH"
+	CodeOB.ABGLEICHÿCodeOB.anfrage
+	ÿƒFStore("ABGLEICH")
+	onefound%ÿ1
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"ANFRAGE"ÿ£CodeOB.anfrage
+ÿÙ
+ÿ¡onefound%ÿ1ÿp
+ 
+ÿ¡mailing%ÿ1ÿp
+	ÿÊÿË"Erzeuge Mailingliste..."
+	cfile2$ÿÿ™
+	destfile$ÿÿ(CodeMA.supervis,"00000000")
+	ÿ™"adressen"
+	ÿ×openfiles$(40)
+	ÿÿopenfiles$,0
+	ÿ›a%ÿ0ÿq40
+ÿ¡ÿ>(openfiles$(a%))ÿÿ>(destfile$)ÿp
+ÿ†ÿ™destfile$
+ÿ’ÿ¡
+	ÿ±a%
+	ÿ¡ÿJ(destfile$ÿ".sbf")ÿpÿdestfile$ÿ".*"
+	prolog$ÿ"SELECT CodeKU,Anrede,Briefanrede,Nachname,Vorname,Geburtsname,Straáe,PLZ,Ort,Telefon1,Telefon2,Telefax REPORT WHERE "
+	epilog$ÿ" ORDER REPORT TO FILE destfile$"
+	befehl$ÿprolog$ÿ"CodeOB.abgleich=CodeOB.anfrage and CodeKU.anfrage=CodeKU.adressen"ÿepilog$
+	ÿ–befehl$
+	ÿ™cfile2$
+ÿ’ÿ¡
+ 
+ÿÊÿË"Berichtsausgabe..."
+ÿÁÿs"ABGLANF"
+Ueberschr$ÿ"Anfragen fr: "ÿBezeichnung.objekte
+ÿŸ
+	ÿÊÿÁÿí"H_PAGE"
+	ÿ¶ÿÁÿí
+ÿ’ÿŸ
+ÿ}ÿÉ
+	ÿÊÿÁÿí"F_SELECT"
+	ÿ¶ÿÁÿí
+ÿ’ÿÉ
+ÿÊÿiÿ³
+ÿÊÿiÿáÿe
+ÿÉ;
+	ÿĞCodeOB.ABGLEICHÿCodeOB.ANFRAGEÿCodeKU.ANFRAGEÿCodeKU.ADRESSEN
+	ÿµBezeichnung.ANFRAGE
+	ÿqÿ~
+ÿ^
+ÿƒFehler("Es konnten keinen passenden Anfragen gefunden werden!","")
+ÿ’ÿ¡
+ÿ†ÿ™"ABGLEICH"
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿÉÿœÿ¥cuob%ÿ™"OBJEKTE"ÿ£CodeOB.objekte
+ ÿœ
+ ÿ™cfile$
+ ÿcdir$
+ ÿÊÿË""
+ ÿ’ÿÿ
+ 
+
+ÿÿOBCLICK()
+ av$ÿReadINI$("CLICK","available")
+ ÿ¡ÿ>(av$)ÿ"TRUE"ÿp
+ÿƒCLICK(AppID%,1,CodeOB.objekte)
+ ÿ^
+ÿƒFehler("Die Bildverarbeitung steht auf Ihrem Rechner nicht zur Verfgung!","")
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+
+
+ ' Angebot: Rohdossier erstellen
+ ' ======================================================================
+ 
+ÿÿRohdossier()
+ cfile$ÿÿ™
+ cdir$ÿÿ
+ ÿƒDFile(2,"OFFICE\notiz"ÿ_fpw$)
+ ndir$ÿReadConfig$("DOKUMENTE","Expose")
+ ÿndir$
+ dateiname$ÿ"*.ASC"
+ ÿÂ"Soll wirklich ein Rohexpose erstelt werden ?"," ",130,req%
+ ÿ¡req%ÿ1ÿp
+ÿÂ"Soll das Rohexpose als DBASE - Datei ausgegeben werden ?","",135,req%
+ÿ¡req%ÿ1ÿp
+ÿÂ"Rohexpose erstellen..."," ",27,req%,dateiname$
+ÿ¡req%ÿ1ÿpÿ’ÿÿ
+ÿßÿe
+ÿÊÿË"Erstelle Rohexpose..."
+ÿ¡ÿJ(dateiname$)ÿpÿdateiname$
+ÿ´dateiname$ÿ›ÿ¶
+ÿ{"Rohexpos‚ vom "ÿÿ(ÿQ,"dd.mm.yy")
+ÿ{
+ÿ{"Objekt:"
+ÿ{"======="
+ÿ{
+ÿ{ÿ(CodeOB.OBJEKTE,"000000")
+ÿ{Bezeichnung.OBJEKTEÿ" ("ÿOBart$(art.objekte)ÿ")"
+ÿ{Straáe.OBJEKTE
+ÿ¡ortsteil.objekteÿ""ÿpÿ{ortsteil.objekte
+ÿ{PLZ.OBJEKTEÿ" "ÿOrt.OBJEKTE"
+ÿ{
+ÿ¡note1.objekteÿ0ÿp
+ÿ™"notiz"
+note%ÿnote1.objekte
+ÿÉÿ¥note%ÿ£CodeNO.notiz
+ÿ{notiz.notiz
+ÿ™"objekte"
+ÿ’ÿ¡
+ÿ¡einwohner.objekteÿ0ÿpÿ{"Einwohner:"ÿÿ(einwohner.objekte,"00000000")
+ÿ¡einzugsgebiet.objekteÿ0ÿpÿ{"Einzugsgebiet:"ÿÿ(einzugsgebiet.objekte,"000000")
+ÿ{
+ÿ{
+ÿ{"Anbieter:"
+ÿ{"========="
+ÿ{
+ÿ{ÿ(CodeKU.OBJEKTE,"000000")
+ÿ{Anrede.adressen
+ÿ¡Anrede.adressenÿ"FIRMA"ÿAnrede.adressenÿ"fa."ÿp
+ÿ{Nachname.adressen
+ÿ¡Geburtsname.ADRESSENÿ""ÿp
+	ÿ{Geburtsname.adressen
+ÿ’ÿ¡
+ÿ¡vorname.adressenÿ""ÿp
+	ÿ{"z.H. "ÿvorname.adressen
+ÿ’ÿ¡
+ÿ^
+ÿ¡Vorname.adressenÿ""ÿp
+	ÿ{Vorname.adressenÿ" "ÿNachname.adressen
+ÿ^
+	ÿ{Nachname.adressen
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ{Straáe.adressen
+ÿ{PLZ.adressenÿ" "ÿOrt.adressen
+ÿ{
+ÿ{
+ÿ{"Verwaltungsangaben:"
+ÿ{"==================="
+ÿ{
+ÿ¡BGMaklerangebot.OBJEKTEÿ"j"ÿp
+ÿ{"Maklerangabot vom "ÿÿ(BGMakAngvom.OBJEKTE,"dd.mmm.yy")ÿ" (Laufzeit "ÿÿ(BGMakAngLZ.OBJEKTE,"999")ÿ" Monate)"
+ÿ{
+ÿ’ÿ¡
+ÿ{"Partner hat ";
+ÿ¡BGPAlleinauftr.OBJEKTEÿ1ÿp
+ÿ{"Alleinauftrag"
+ÿ^
+ÿ{"Auftrag vom "ÿÿ(BGALLAuftrvom.OBJEKTE,"dd.mmm.yy")
+ÿ’ÿ¡
+ÿ¡BGGemGesch.OBJEKTEÿ"j"ÿp
+ÿ{"Gemeinschaftsgesch„ft schriftlich vereinbart am "ÿÿ(BGGemGeschvom.OBJEKTE,"dd.mmm.yy")
+ÿ’ÿ¡
+ÿ{
+ÿ{"Provisionsteilung:
+ÿ{MAProvision1.objekteÿ" : "ÿÿ(BGProvTeilg1.OBJEKTE,"999%")
+ÿ{MAProvision2.objekteÿ" : "ÿÿ(BGProvTeilg2.OBJEKTE,"999%")
+ÿ{MAProvision3.objekteÿ" : "ÿÿ(BGProvTeilg3.OBJEKTE,"999%")
+ÿ{MAProvision4.objekteÿ" : "ÿÿ(BGProvTeilg4.OBJEKTE,"999%")
+ÿ{MAProvision5.objekteÿ" : "ÿÿ(BGProvTeilg5.OBJEKTE,"999%")
+ÿ{
+ÿ¡IHNachname.OBJEKTEÿ""ÿp
+ÿ{
+ÿ{"Eigentmer/Verp„chter:"
+ÿ{"======================"
+ÿ{
+ÿ{IHAnrede.OBJEKTE
+ÿ¡IHAnrede.OBJEKTEÿ"FIRMA"ÿIHAnrede.OBJEKTEÿ"fa."ÿp
+	ÿ{IHNachname.OBJEKTE
+	ÿ¡IHVorname.OBJEKTEÿ""ÿp
+ÿ{"z.H. "ÿIHVorname.OBJEKTE
+	ÿ’ÿ¡
+ÿ^
+	ÿ¡IHVorname.OBJEKTEÿ""ÿp
+ÿ{IHVorname.OBJEKTEÿ" "ÿIHNachname.OBJEKTE
+	ÿ^
+ÿ{IHNachname.OBJEKTE
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ{IHStraáe.OBJEKTE
+ÿ{IHPLZ.OBJEKTEÿ" "ÿIHOrt.OBJEKTE
+ÿ{
+ÿ{"Telefon: "ÿIHTelefon1.OBJEKTE
+ÿ{"Telefax: "ÿIHTelefax1.OBJEKTE
+ÿ{
+ÿ’ÿ¡
+ÿ{
+ÿ{"Lage:"
+ÿ{"====="
+ÿ{
+ÿ{OBLage1$(Lage1.objekte)ÿ" ("ÿOBLage2$(Lage2.OBJEKTE)ÿ")"
+ÿ{
+ÿ{
+ÿ{"Termine:"
+ÿ{"--------"
+ÿ{"beziehbar bis         : "ÿbeziehbarbis.objekte
+ÿ{"Baubeginn             : "ÿBaubeginn.objekte
+ÿ{"Fertigstellung        : "ÿFertigstellung.objekte
+ÿ{"Mietbeginn            : "ÿMietbeginn.objekte
+ÿ{
+ÿ{"Fl„chenangaben:"
+ÿ{"==============="
+ÿ{"Anzahl der R„ume: "ÿÿ(ZimmerAnzahl.objekte,"999999")
+ÿ{
+ÿ{"Nutzfl„che      : "ÿÿ(Nutzfl„che.OBJEKTE,",999999999.00")
+ÿ{
+ÿ{"vorgesehene Nutzung:"
+ÿ{"Ladenfl„che     : "ÿÿ(NULadenfl„che.OBJEKTE,",999999999.00")
+ÿ{"Brofl„che      : "ÿÿ(NUBrofl„che.OBJEKTE,",999999999.00")
+ÿ{"Wohnfl„che      : "ÿÿ(NUWohnfl„che.OBJEKTE,",999999999.00")
+ÿ{
+ÿ{"Gr”áenangaben:"
+ÿ{"Geschoázahl     : "ÿÿ(Geschoázahl.OBJEKTE,",999999999.00")
+ÿ{"Grundstcksgr”áe: "ÿÿ(Grundfl„che.OBJEKTE,",999999999.00")
+ÿ{"Ladenfl„che     : "ÿÿ(Ladenfl„che.OBJEKTE,",999999999.00")
+ÿ{"Brofl„che      : "ÿÿ(Brofl„che.OBJEKTE,",999999999.00")
+ÿ{"Wohnfl„che      : "ÿÿ(Wohnfl„che.OBJEKTE,",999999999.00")
+ÿ{"sonst.Gewerbefl.: "ÿÿ(Gewerbefl„che.OBJEKTE,",999999999.00")
+ÿ{"umbauter Raum   : "ÿÿ(umbauter_Raum.OBJEKTE,",999999999.00")
+ÿ{
+ÿ{"Angaben zur Schaufensterfront:
+ÿ{"ab Etage        : "ÿAbEtage.objekte
+ÿ{"Anzahl Etagen   : "ÿÿ(FrontEtagen.objekte,"99")
+ÿ{"L„nge Seite1    : "ÿÿ(FrontL„nge1.objekte,"99999.00")
+ÿ{"L„nge Seite2    : "ÿÿ(FrontL„nge2.objekte,"99999.00")
+
+ÿ{"Fl„chenreserven fr Erweiterungen:"
+ÿ{"Dachausbaufl„che: "ÿÿ(Ausbaufl„che.OBJEKTE,",999999999.00")
+ÿ{"Aufstockung     : "ÿÿ(EWAufstockung.OBJEKTE,",999999999.00")
+ÿ{"Anbau           : "ÿÿ(EWAnbau.OBJEKTE,",999999999.00")
+ÿ{"zus„tzl. Geb„ude: "ÿÿ(EWGeb„ude.OBJEKTE,",999999999.00")
+ÿ{
+ÿ{"vermietete Fl„chen:"
+ÿ{"Ladenfl„che     : "ÿÿ(MLadenfl„che.OBJEKTE,",999999999.00")
+ÿ{"Brofl„che      : "ÿÿ(MBrofl„che.OBJEKTE,",999999999.00")
+ÿ{"Wohnfl„che      : "ÿÿ(MWohnfl„che.OBJEKTE,",999999999.00")
+ÿ{"selbstgenutzt   : "ÿÿ(MeigWohnfl„che.OBJEKTE,",999999999.00")
+ÿ{"leerstehend     : "ÿÿ(MleerWohnfl„che.OBJEKTE,",999999999.00")
+ÿ{"sonst.Gewerbefl.: "ÿÿ(MGewerbefl„che.OBJEKTE,",999999999.00")
+ÿ{
+ÿ{"Parkm”glichkeiten  :"
+ÿ{"Stellpl„tze        : "ÿÿ(ESParkpl„tze.objekte,"9999")ÿ"     "ÿPNotiz1.objekte
+ÿ{"Tiefgarage/Parkhaus: "ÿÿ(ESParkhaus.objekte,"9999")ÿ"      "ÿPNotiz2.objekte
+ÿ{"Einzelgaragen      : "ÿÿ(ESGaragen.objekte,"9999")ÿ"      "ÿPNotiz3.objekte
+ÿ{
+ÿ{"Preisangaben:"
+ÿ{"============="
+ÿ{
+ÿ{"Kaufpreis gesamt: "ÿÿ(Kaufpreis.OBJEKTE,",999999999.00 $")
+ÿ{"Grundstck      : "ÿÿ(PreisGrundst.OBJEKTE,",999999999.00 $")
+ÿ{"Grundstck mı   : "ÿÿ(Preism2Grundst.OBJEKTE,",999999999.00 $")
+ÿ{"Miete           : "ÿÿ(PreisMiete.OBJEKTE,",999999999.00 $")
+ÿ{"Miete mı        : "ÿÿ(Preism2Miete.OBJEKTE,",999999999.00 $")
+ÿ{"Nebenkosten     : "ÿÿ(Nebenkosten.OBJEKTE,",999999999.00 $")
+ÿ{"Kaution         : "ÿKaution.objekte
+ÿ{"Kautionsbetrag  : "ÿÿ(KautionBetrag.objekte,"99999999.00 $")
+ÿ{
+ÿ{"Nebenkosten     :"
+ÿ{"-----------------"
+ÿ{"Betriebskosten  : "ÿÿ(NKBetrKosten.objekte,"9999999.00 $")
+ÿ{"Heizkosten      : "ÿÿ(NKHeizkosten.objekte,"9999999.00 $")
+ÿ{"Beitrag Werbegemeinschaft : "ÿÿ(NKWerbekosten.objekte,"999999.00 $")
+ÿ{"Hausverwaltungsgebhr     : "ÿÿ(NKHausvkosten.objekte,"9999999.00 $")
+ÿ{"Pauschal                  : "ÿÿ(Nebenkosten.objekte,"9999999.00 $")
+ÿ{
+ÿ¡F”rderung.OBJEKTEÿ"j"ÿp
+ÿ{
+ÿ{"”ffentliche F”rderung:"
+ÿ{"======================"
+ÿ{
+ÿ{"Restkredit      : "ÿÿ(™FRestkredit.OBJEKTE,",999999999.00 $")
+ÿ{"Zinssatz        : "ÿÿ(™FZinssatz.OBJEKTE,",999999999.00 %")
+ÿ{"Tilgung         : "ÿÿ(™FTilgung.OBJEKTE,",999999999.00 %")
+ÿ{"Grundschuld     : "ÿÿ(™FGrundschuld.OBJEKTE,",999999999.00 $")
+ÿ{"Bindungsfrist   : "ÿÿ(™FBindungsfrist.OBJEKTE,"99")ÿ" Jahre"
+ÿ{
+ÿ’ÿ¡
+ÿ{
+ÿ{"Sonstiges:"
+ÿ{"=========="
+ÿ{
+ÿ¡ErbbaurechtJN.OBJEKTEÿ"j"ÿp
+ÿ{"Erbbaurecht:"
+ÿ{"verbl. Laufzeit : "ÿÿ(ErbbaurechtLZ.OBJEKTE,"99")ÿ" Jahre"
+ÿ{"Erbbauzins      : "ÿÿ(Erbbauzins.OBJEKTE,"99 %")
+ÿ{
+ÿ’ÿ¡
+ÿ¡Restitution.OBJEKTEÿ"j"ÿpÿ{"Es besteht Restitutionsanspruch."
+ÿ{"Baujahr         : "ÿBaujahr.OBJEKTE
+ÿ†ÿ¶
+ÿÊÿË"Ausgabe beendet!"
+ÿƒ"WRITE "ÿdateiname$
+ÿ½ APPACTIVATE "W"
+ÿÿ	"u^+{END}%faCourier New~^{HOME}% b"
+ÿ^
+ÿ½ *************************************************
+ÿ½ *        Erzeugung einer DBASE-Datei            *
+ÿ½ *************************************************
+ÿ¡ÿJ(_localpath$ÿ"OB.SBF")ÿpÿ_localpath$ÿ"OB.SB*"
+ÿˆ_netpath$ÿ_projekt$ÿ"\ob.sbf"ÿq_localpath$ÿ"ob.sbf"
+ÿˆ_netpath$ÿ_projekt$ÿ"\ob.sbd"ÿq_localpath$ÿ"ob.sbd"
+ÿˆ_netpath$ÿ_projekt$ÿ"\ob.1"ÿq_localpath$ÿ"ob.1"
+ÿƒDFile(1,"ob"ÿ_fpw$)
+Bezeichnun.OBÿBezeichnung.objekte
+Straáe.OBÿStraáe.OBJEKTE
+ortsteil.obÿortsteil.objekte
+plz.obÿPLZ.OBJEKTE
+ort.obÿOrt.OBJEKTE
+
+ÿ¡note1.objekteÿ0ÿp
+
+ÿ™"notiz"
+note%ÿnote1.objekte
+ÿÉÿ¥note%ÿ£CodeNO.notiz
+ÿ™"ob"
+notiza.obÿÿF(ÿ+(notiz.notiz,250))
+notizb.obÿÿF(ÿ,(notiz.notiz,251,250))
+ÿ^
+notiza.obÿ""
+notizb.obÿ""
+ÿ’ÿ¡
+
+
+
+
+IHAnrede.obÿIHAnrede.OBJEKTE
+IHNachname.obÿIHNachname.OBJEKTE
+IHVorname.obÿIHVorname.OBJEKTE
+IHStraáe.obÿIHStraáe.OBJEKTE
+IHPLZ.obÿIHPLZ.OBJEKTE
+IHTelefon1.obÿIHTelefon1.OBJEKTE
+IHTelefax1.obÿIHTelefax1.OBJEKTE
+
+lageort.obÿOBLage1$(Lage1.objekte)
+lagequali.obÿOBLage2$(Lage2.OBJEKTE)
+immoart.obÿOBArt$(art.objekte)
+erschlieáu.obÿOBErschl$(erschlieáung.objekte)
+branche.obÿOBBranche$(Branche.objekte)
+etage.obÿetage.objekte
+geschoázah.obÿgeschoázahl.objekte
+umbauter_r.obÿumbauter_Raum.objekte
+grz.obÿgrz.objekte
+gfz.obÿgfz.objekte
+nutzfl„che.obÿnutzfl„che.objekte
+grundfl„ch.obÿgrundfl„che.objekte
+wohnfl„che.obÿwohnfl„che.objekte
+brofl„che.obÿbrofl„che.objekte
+ladenfl„ch.obÿladenfl„che.objekte
+gewerbefl„.obÿgewerbefl„che.objekte
+freifl„che.obÿfreifl„che.objekte
+frontetage.obÿfrontetagen.objekte
+frontl„ng1.obÿfrontl„nge1.objekte
+frontl„ng2.obÿfrontl„nge2.objekte
+kaution.obÿkaution.objekte
+kautionbet.obÿkautionbetrag.objekte
+preism2gru.obÿpreism2grundst.objekte
+preism2mie.obÿpreism2miete.objekte
+preism2kau.obÿpreism2kauf.objekte
+nebenkoste.obÿnebenkosten.objekte
+kaufpreis.obÿkaufpreis.objekte
+preisgrund.obÿpreisgrundst.objekte
+preismiete.obÿpreismiete.objekte
+mwohnmiete.obÿmwohnmiete.objekte
+mladenmiet.obÿmladenmiete.objekte
+mbromiete.obÿmbromiete.objekte
+mgewerbemi.obÿmgewerbemiete.objekte
+mfreimiete.obÿmfreimiete.objekte
+nkbetrkost.obÿnkbetrkosten.objekte
+nkheizkost.obÿnkheizkosten.objekte
+nkwerbekos.obÿnkwerbekosten.objekte
+nkhausvkos.obÿnkhausvkosten.objekte
+ewdach.obÿausbaufl„che.objekte
+ewaufstock.obÿewaufstockung.objekte
+ewanbau.obÿewanbau.objekte
+ewgeb„ude.obÿewgeb„ude.objekte
+erbbaurech.obÿerbbaurechtjn.objekte
+baugenehmi.obÿbaugenehmigung.objekte
+baujahr.obÿbaujahr.objekte
+heizung.obÿheizung.objekte
+besvon.obÿÿ7(besvon.objekte)
+besbis.obÿÿ7(besbis.objekte)
+bestelefon.obÿbestelefon.objekte
+esparkpl„t.obÿesparkpl„tze.objekte
+pnotiz1.obÿpnotiz1.objekte
+esparkhaus.obÿesparkhaus.objekte
+pnotiz2.obÿpnotiz2.objekte
+esgaragen.obÿesgaragen.objekte
+pnotiz3.obÿpnotiz3.objekte
+vl1km.obÿvl1km.objekte
+vl2km.obÿvl2km.objekte
+vl3km.obÿvl3km.objekte
+schulen.obÿschulen.objekte
+einkauf.obÿeinkauf.objekte
+freizeit.obÿfreizeit.objekte
+bundesstre.obÿbundesstrentf.objekte
+bundesstrb.obÿbundesstrbez.objekte
+autobahnen.obÿautobahnentf.objekte
+autobahnbe.obÿautobahnbez.objekte
+bahnhofent.obÿbahnhofentf.objekte
+bahnhofbez.obÿbahnhofbez.objekte
+gewerbebet.obÿgewerbebetriebe.objekte
+zimmeranza.obÿzimmeranzahl.objekte
+terrassefl.obÿterrassefl„che.objekte
+gartenjn.obÿgartenjn.objekte
+telefonnor.obÿtelefonnormal.objekte
+telefonisd.obÿtelefonisdn.objekte
+mietem2woh.obÿmietem2wohn.objekte
+mietem2br.obÿmietem2bro.objekte
+mietem2gew.obÿmietem2gewerbe.objekte
+mietem2lad.obÿmietem2laden.objekte
+mietem2lag.obÿmietem2lager.objekte
+mietem2fre.obÿmietem2freifl.objekte
+fahrstuhl.obÿfahrstuhl.objekte
+notiz.obÿnotiz.objekte
+raum1.obÿrtbez1.objekte
+raum2.obÿrtbez2.objekte
+raum3.obÿrtbez3.objekte
+raum4.obÿrtbez4.objekte
+raum5.obÿrtbez5.objekte
+raum6.obÿrtbez6.objekte
+raum7.obÿrtbez7.objekte
+raum8.obÿrtbez8.objekte
+raum9.obÿrtbez9.objekte
+raum10.obÿrtbez10.objekte
+raum11.obÿrtbez11.objekte
+m2raum1.obÿrtfl„che1.objekte
+m2raum2.obÿrtfl„che2.objekte
+m2raum3.obÿrtfl„che3.objekte
+m2raum4.obÿrtfl„che4.objekte
+m2raum5.obÿrtfl„che5.objekte
+m2raum6.obÿrtfl„che6.objekte
+m2raum7.obÿrtfl„che7.objekte
+m2raum8.obÿrtfl„che8.objekte
+m2raum9.obÿrtfl„che9.objekte
+m2raum10.obÿrtfl„che10.objekte
+m2raum11.obÿrtfl„che11.objekte
+
+
+
+ÿƒQuickStore("ob")
+
+
+ÿ¡ÿJ(_localpath$ÿ"EXPO1.dbf")ÿpÿ_localpath$ÿ"EXPO1.DBF"
+ÿ—ÿ™"OB"ÿ£BEZEICHNUN ÿq_localpath$ÿ"EXPO1.DBF"ÿs"3"
+ÿ†ÿ™"ob"
+ÿÂ"DBASE Datei wurde erstellt"
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿÊÿË""
+ ÿ™cfile$
+ ÿcdir$
+ ÿßÿ³
+ ÿ’ÿÿ
+
+
+ ' Formulardarstellung updaten
+ ' ======================================================================
+ 
+ÿÿOBUpdate()
+
+ ÿ½ ---- Knopfbeschriftung generieren ----
+
+ Erschl$ÿOBErschl$(Erschlieáung)
+ Art$ÿOBArt$(Art)
+ Lage1$ÿOBLage1$(Lage1)
+ Lage2$ÿOBLage2$(Lage2)
+ Branche$ÿOBBranche$(Branche)
+
+ ÿ½ ---- Kennzeichnug von Notizen ----
+
+ feld$ÿ"Note"ÿÿH(ÿ(ÿí,"99"))ÿ".objekte"
+ button$ÿ"S"ÿÿH(ÿ(ÿí,"99"))ÿ"notiz$"
+ ÿ¡feld$$ÿ0ÿpbutton$$ÿ"No&tiz ®"ÿ^button$$ÿ"No&tiz"
+ ÿ¡ÿœÿ"ANFRAGE"ÿp
+ÿ¡Ortsliste.ANFRAGEÿ""ÿpOLISTE$ÿ"erweiterte Ortsliste ®"ÿ^OLISTE$ÿ"erweiterte Ortsliste"
+ ÿ’ÿ¡
+ ÿœ
+ ÿ’ÿÿ
+
+
+ '      *************************
+ '      ** ANFRAGEN-Verwaltung **
+ '      *************************
+
+ÿÿANFRAGE()
+ 
+ ÿ½ -- Bezug ermitteln
+ 
+ ÿÉÿæÿ>(ÿœ)
+ ÿæ"ADRESSEN"
+obezug%ÿ1
+knr%ÿcodeku.adressen
+ ÿæ"IMMAK"
+ÿƒDFile(2,"OFFICE\adressen"ÿ_fpw$)
+obezug%ÿ2
+ ÿ’ÿÉ
+ ÿ™"anfrage"
+ ÿ£CodeOB.anfrage
+ _OK%ÿ1
+ 
+ ÿ½ -- testen auf bereits vorhandene Eintragungen
+ 
+ ÿÉÿæobezug%
+ ÿæ1
+ÿÉÿ¥knr%ÿ™"anfrage"ÿ£CodeKU.anfrage
+ÿ¡ÿOÿC("anfrage")ÿp
+cuob%ÿ0
+ÿÂ"Von diesem Kunden wurde noch keine Anfrage erfaát!","Wollen Sie mit der Erfassung fortfahren?",130,req%
+ÿ¡req%ÿ1ÿp_OK%ÿ0
+ÿ^
+cuob%ÿCodeOB.anfrage
+ÿ’ÿ¡
+ ÿæ2
+ÿÉÿ`
+ÿ¡ÿB("anfrage")ÿp
+ÿƒFehler("Es wurde noch keine Anfrage erfaát!","")
+_OK%ÿ0
+ÿ^
+cuob%ÿCodeOB.anfrage
+ÿ’ÿ¡
+ ÿ’ÿÉ
+ 
+ ÿ½ -- Eintritt in normale Verarbeitung
+ 
+ ÿ¡_OK%ÿ1ÿp
+ÿÊÿŸtitle$ÿ" - ANFRAGEN"
+_formend%ÿ0
+ÿØ_formend%ÿ0
+ÿ¡ÿ>(ÿœ)ÿ"ANFRAGE"ÿp
+ÿ´ÿœ"ANFRAGE"ÿí1
+ÿ½ ***IF obezug% = 2 THEN 
+ÿ½ ***  SET FORM OFF neu$
+ÿ½ ***  SET FORM OFF saveit$
+ÿ½ ***  SET FORM OFF bearb$
+ÿ½ ***END IF 
+ÿƒMNANFRAGE()
+ÿƒANFIntro()
+ÿÊÿÿ³
+ÿ’ÿ¡
+ÿ¬ÿ³
+ÿßÿ³
+ÿƒOBUpdate()
+ÿÏÿßÿÿ¥ÿÿ¬
+ÿÉÿæANFsub%
+ÿæ1
+ÿƒANFCLICK()
+ÿæ2
+ÿƒANFAbgleich()
+ÿ’ÿÉ
+ÿ¡ANFsub%ÿ99ÿp
+ÿÉÿæÿí
+ÿæ1
+	ÿ”Bezeichnung.anfrage,0
+ÿæ2
+	ÿ”Wohnfl„che.anfrage,0
+ÿæ3
+	ÿ”MWohnMiete.anfrage,0
+ÿæ4
+	ÿ”Baujahr.anfrage,0
+ÿæ5
+	ÿ”asphStraáe.anfrage,0
+ÿæ6
+	ÿ”F”rderung.anfrage,0
+ÿæ7
+	ÿ”NKBetrKosten.anfrage,0
+ÿæ8
+	ÿ”BGMaklerangebot.anfrage,0
+ÿæ9
+	ÿ”beziehbarbis.anfrage,0
+ÿæ10
+	ÿ”VL1km.anfrage,0
+ÿæ11
+	ÿ”Zimmeranzahl.anfrage,0
+ÿæ12
+	ÿ”Gewerbebetriebe.anfrage,0
+ÿæ13
+	ÿ”minFl„che.anfrage,0
+ÿ’ÿÉ
+ÿ¡ÿ("anfrage")ÿÿ°("anfrage")ÿpÿƒFStore("anfrage")
+ÿ’ÿ¡
+ANFsub%ÿ0
+ÿÙ
+ ÿ’ÿ¡
+ _formend%ÿ0
+ ÿ’ÿÿ
+
+
+ ' Intro
+ ' ======================================================================
+ 
+ÿÿANFIntro()
+ ÿ¡cuob%ÿ0ÿp
+ÿÉÿœÿ¥cuob%ÿ£codeob.anfrage
+ ÿ^
+ÿ¡obezug%ÿ2ÿp
+ÿƒANFNeu()
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ ' neue Anfrage erfassen
+ ' ======================================================================
+ 
+ÿÿANFNeu()
+ ÿ™"anfrage"
+ ÿ¡obezug%ÿ2ÿp
+ÿÿœ
+CodeOB.anfrageÿÿI("anfrage",1)
+CodeKU.anfrageÿknr%
+ÿÉÿ¥CodeGR.anfrageÿ™"immogrup"ÿ£CodeGR.immogrup
+ÿÉÿ¥CodeKU.anfrageÿ™"adressen"ÿ£CodeKU.adressen
+ÿœ
+ ÿ^
+ÿÂ"Bitte wechseln Sie zur Adreámaske, um neue Anfragen zu erfassen !","",113
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ 
+ ' Anfrage suchen
+ ' ======================================================================
+ 
+ÿÿANFSuchen()
+ cunr%ÿCodeOB.anfrage
+ cuob%ÿCodeOB.anfrage
+ ÿ¡Bezeichnung.anfrageÿ""ÿpÿƒFStore("anfrage")
+ ÿ¡obezug%ÿ1ÿp
+opt%ÿ1
+ÿ‰ÿñ"OBSuche",0,0,144,65,"","MS Sans Serif",8
+ÿ|ÿñ"OBSuche",5,6,3,135,9,0,"W„hlen Sie eine der Suchm”glichkeiten:"
+ÿ|ÿñ"OBSuche",3,6,12,70,16,0,"Suche ber Liste",1,opt%
+ÿ½  ADD DIALOG "OBSuche",3,6,28,106,13,0,"passende Angebote suchen",2,opt%
+ÿ|ÿñ"OBSuche",1,18,46,51,14,1,"&Suchen",1,1
+ÿ|ÿñ"OBSuche",1,70,46,50,14,0,"&Abbruch",0,0
+ÿñ"OBSuche",req%
+ÿ¾ÿñÿt
+ÿ¡req%ÿ1ÿp
+ÿ¡opt%ÿ1ÿp
+ÿÂ"alle Anfragen des aktuellen Kunden:","",25,req%,cunr%,72,codeob.anfrage,bezeichnung.anfrage,straáe.anfrage,ort.anfrageÿ£bezeichnung.anfrageÿĞcodeku.anfrageÿknr%
+ÿ^
+ÿÁÿs"ABGLOB"
+Ueberschr$ÿ"passende Angebote fr "ÿNachname.adressen
+ÿŸ
+	ÿÊÿÁÿí"H_PAGE"
+	ÿ¶ÿÁÿí
+ÿ’ÿŸ
+ÿ}ÿÉ
+	ÿÊÿÁÿí"F_SELECT"
+	ÿ¶ÿÁÿí
+ÿ’ÿÉ
+ÿÊÿiÿ³
+ÿÊÿiÿáÿe
+ÿÉ;
+	ÿĞLage1.OBJEKTEÿ	Lage1.ANFRAGEÿLage2.Objekteÿ	Lage2.ANFRAGEÿ(Kaufpreis.objekteÿ	Preis.anfrageÿPreism2Miete.objekteÿ	Preism2.anfrage)
+	ÿµBezeichnung.OBJEKTE
+ÿqÿ~
+req%ÿ0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ^
+opt%ÿ2
+ÿ‰ÿñ"OBSuche",0,0,144,94,"","MS Sans Serif",8
+ÿ|ÿñ"OBSuche",5,6,3,135,9,0,"W„hlen Sie eine der Suchm”glichkeiten:"
+ÿ|ÿñ"OBSuche",3,6,14,104,13,0,"Suche ber Liste",2,opt%
+ÿ|ÿñ"OBSuche",3,6,28,103,16,0,"Suche ber Bezeichnung",1,opt%
+ÿ|ÿñ"OBSuche",2,6,51,99,13,0,"vermietet/verkauft","j","n",Kfld$
+ÿ|ÿñ"OBSuche",1,17,75,51,14,1,"&Suchen",1,1
+ÿ|ÿñ"OBSuche",1,70,75,50,14,0,"&Abbruch",0,0
+ÿñ"OBSuche",req%
+ÿ¾ÿñÿt
+ÿ¡req%ÿ1ÿp
+ÿ¡opt%ÿ1ÿp
+ÿÂ"Bitte Suchbegriff eingeben.","",4,req%,suna$,30
+ÿÊÿË"Suche Anfrage..."
+ÿÉÿ¥suna$ÿ£bezeichnung.anfrage
+ÿ¡ÿ>(ÿ+(bezeichnung.anfrage,ÿ/(suna$)))ÿÿ>(suna$)ÿp
+	ÿÂ"Eintrag nicht gefunden!","hnliche Eintragungen suchen?",130,req%
+	ÿ¡req%ÿ1ÿp
+suna$ÿ"*"ÿsuna$ÿ"*"
+ÿ¡kfld$ÿ"n"ÿp
+ÿÂ"Auswahl","Nummer, Bezeichnung",20,req%,cunr%,72,codeob.anfrage,bezeichnung.anfrageÿ£bezeichnung.anfrageÿĞbezeichnung.anfrageÿsuna$ÿverkauft.anfrageÿ"j"
+ÿ^
+ÿÂ"Auswahl","Nummer, Bezeichnung",20,req%,cunr%,72,codeob.anfrage,bezeichnung.anfrageÿ£bezeichnung.anfrageÿĞbezeichnung.anfrageÿsuna$ÿverkauft.anfrageÿ"j"
+ÿ’ÿ¡
+ÿÉÿ¥cunr%ÿ™"anfrage"ÿ£codeob.anfrage
+	ÿ’ÿ¡
+ÿ’ÿ¡
+cunr%ÿcodeob.anfrage
+ÿÊÿ£CodeKU.anfrage
+ÿ£CodeKU.anfrage
+ÿ^
+ÿ¡kfld$ÿ"n"ÿp
+	ÿÂ"šbersicht ber alle offenen Anfragen:","",25,req%,cunr%,72,codeob.anfrage,bezeichnung.anfrageÿ£bezeichnung.anfrageÿĞverkauft.anfrageÿ"j"
+ÿ^
+	ÿÂ"šbersicht ber alle erledigten Anfragen:","",25,req%,cunr%,72,codeob.anfrage,bezeichnung.anfrageÿ£bezeichnung.anfrageÿĞverkauft.anfrageÿ"j"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡req%ÿ1ÿp
+ÿÉÿœÿ¥cunr%ÿ™"anfrage"ÿ£codeob.anfrage
+ ÿ^
+ÿÉÿœÿ¥cuob%ÿ™"anfrage"ÿ£codeob.anfrage
+ ÿ’ÿ¡
+ ÿÊÿ£CodeKU.anfrage
+ ÿ£CodeKU.anfrage
+ ÿœ
+ ÿ’ÿÿ
+
+ 
+ ' ANFRAGE Eintrag zurck
+ ' ======================================================================
+ 
+ÿÿANFPrev()
+ ÿ¡ÿ("ANFRAGE")ÿÿ°("ANFRAGE")ÿpÿƒFStore("ANFRAGE")
+ ÿÉÿæobezug%
+ ÿæ1
+cunr%ÿcodeob.anfrage
+ÿÉÿœÿgÿ£codeku.anfrage
+ÿ¡codeku.anfrageÿknr%ÿÿB("anfrage")ÿp
+ÿÂ"Dateianfang erreicht!","",2
+ÿÉÿœÿ¥cunr%ÿ£codeob.anfrage
+ÿ’ÿ¡
+ ÿæ2
+ÿÉÿœÿgÿ™"anfrage"ÿ£codeob.anfrage
+ÿ¡ÿOÿC("anfrage")ÿp
+ÿÂ"Dateianfang erreicht!","",2
+ÿÉÿœÿ¥cunr%ÿ£codeob.anfrage
+ÿ’ÿ¡
+ ÿ’ÿÉ
+ ÿÊÿ£CodeKU.anfrage
+ ÿ£CodeKU.anfrage
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ ' ANFRAGE Eintrag vor
+ ' ======================================================================
+ 
+ÿÿANFNext()
+ ÿ¡ÿ("anfrage")ÿÿ°("anfrage")ÿpÿƒFStore("anfrage")
+ ÿÉÿæobezug%
+ ÿæ1
+cunr%ÿcodeob.anfrage
+ÿÉÿœÿ±ÿ£codeku.anfrage
+ÿ¡codeku.anfrageÿknr%ÿÿB("anfrage")ÿp
+ÿÂ"Dateiende erreicht!","",2
+ÿÉÿœÿ¥cunr%ÿ£codeob.anfrage
+ÿ’ÿ¡
+ ÿæ2
+ÿÉÿœÿ±ÿ™"anfrage"ÿ£codeob.anfrage
+ÿ¡ÿOÿC("anfrage")ÿp
+ÿÂ"Dateianfang erreicht!","",2
+ÿÉÿœÿ¥cunr%ÿ£codeob.anfrage
+ÿ’ÿ¡
+ ÿ’ÿÉ
+ ÿÊÿ£CodeKU.anfrage
+ ÿ£CodeKU.anfrage
+ ÿœ
+ ÿ’ÿÿ
+
+
+ ' Anfragenotiz erfassen
+ ' ======================================================================
+ 
+ÿÿANFNotiz(notizart$)
+ cuob%ÿCodeOB.anfrage
+ feld$ÿ"Note"ÿÿH(ÿ(ÿí,"99"))ÿ".anfrage"
+ cuno%ÿfeld$$
+ ÿ¡ÿ°("anfrage")ÿÿ("anfrage")ÿpÿƒFStore("anfrage")
+ ÿ¡cuno%ÿ
+1ÿp
+cuno%ÿNOTIZNeu%(notizart$,"IMMAK",cuob%)
+ÿ¡cuno%ÿ0ÿp
+ÿÉÿ¥cuob%ÿáÿ™"anfrage"ÿ£CodeOB.anfrage
+feld$$ÿcuno%
+ÿƒFStore("ANFRAGE")
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡cuno%ÿ0ÿp
+ÿƒNOTIZBearbeiten(cuno%)
+ÿÉÿ¥cuno%ÿ™"notiz"ÿ£CodeNO.notiz
+ÿ¡ÿOÿC("notiz")ÿp
+ÿÉÿ¥cuob%ÿáÿ™"anfrage"ÿ£CodeOB.anfrage
+feld$$ÿ0
+ÿƒFStore("anfrage")
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+
+ ' Anfrage: Vertr„ge
+ ' ======================================================================
+ 
+ÿÿANFVertrag()
+ cuob%ÿCodeOB.anfrage
+ ÿÊÿË"Dokumentenverwaltung (Vertr„ge)"
+ ÿƒDOKUMENT("Vertr„ge",cuob%)
+ ÿÊÿË""
+ ÿ’ÿÿ
+ 
+ 
+ ' Anfrage: Protokoll
+ ' ======================================================================
+ 
+ÿÿANFProtokoll()
+ ÿÊÿË"Dokumentenverwaltung (Protokolle)"
+ cuob%ÿCodeOB.anfrage
+ ÿƒDOKUMENT("Protokolle",cuob%)
+ ÿÊÿË""
+ ÿ’ÿÿ
+ 
+ 
+ ' Anfrage: Formular
+ ' ======================================================================
+ 
+ÿÿANFGFormular()
+ ÿÊÿË"Dokumentenverwaltung (Formulare)"
+ cuob%ÿCodeOB.anfrage
+ ÿƒDOKUMENT("Formulare",cuob%)
+ ÿÊÿË""
+ ÿ’ÿÿ
+ 
+
+ ' ANFRAGE Nummer neu vergeben
+ ' ======================================================================
+ 
+ÿÿANFNummer()
+ ÿ¡codeob.anfrageÿ
+1ÿp
+codegr.anfrageÿ1
+codeku.anfrageÿknr%
+codeob.anfrageÿÿI("anfrage",1)
+ÿÉÿ¥codegr.anfrageÿ™"immogrup"ÿ£codegr.immogrup
+ÿÉÿ¥codeku.anfrageÿ™"adressen"ÿ£codeku.adressen
+ÿœ
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+
+ÿÿANFOrtsliste()
+ cuob%ÿCodeOB.ANFRAGE
+ ÿ¡ÿ°("ANFRAGE")ÿÿ("ANFRAGE")ÿpÿƒFStore("ANFRAGE")
+ ÿÉÿ¥cuob%ÿáÿ™"ANFRAGE"ÿ£CodeOB.ANFRAGE
+ ÿ‰ÿñ"OLISTE",0,0,246,150,"Ortsliste","MS Sans Serif",8
+ ÿ|ÿñ"OLISTE",9,4,4,20,21,4
+ ÿ|ÿñ"OLISTE",5,33,9,200,10,0,"Geben Sie alle gewnschten Orte ein:"
+ ÿ|ÿñ"OLISTE",6,33,27,207,94,68,2,Ortsliste.ANFRAGE,4000
+ ÿ|ÿñ"OLISTE",1,128,126,54,16,0,"&OK",1,1
+ ÿ|ÿñ"OLISTE",1,185,126,55,16,0,"&Abbrechen",0,0
+ ÿñ"OLISTE",req%
+ ÿ¾ÿñ"OLISTE"
+ ÿ¡req%ÿ1ÿpÿƒFStore("ANFRAGE")
+ ÿÉÿœÿ¥cuob%ÿ™"ANFRAGE"ÿ£CodeOB.ANFRAGE
+ ÿœ
+ ÿ’ÿÿ
+ 
+
+
+ ' Abgleich: passende Angebote zur Anfrage suchen
+ ' ======================================================================
+ ' 05.07.93/FA - erweiterter Abgleich als ANFAbgleich2() verfgbar
+ ' 11.07.93/FA - Auswahl zwischen eif. und erw. Abgleich eingefgt
+ ' 27.07.93/FA - nutzergebundene Abgleichdatei
+
+ÿÿANFAbgleich()
+ cuob%ÿCodeOB.anfrage
+ ÿÉÿ¥cuob%ÿáÿ™"anfrage"ÿ£codeob.anfrage
+ ÿ¡ABGNotiz.anfrageÿ""ÿnotiz.anfrageÿ""ÿpABGNotiz.anfrageÿnotiz.anfrage
+ ÿ¡ÿ°("ANFRAGE")ÿÿ("ANFRAGE")ÿpÿƒFStore("ANFRAGE")
+ cfile$ÿÿ™
+ cdir$ÿÿ
+ ÿ¡Bezeichnung.ANFRAGEÿ""ÿp
+ÿƒFehler("Bitte geben Sie erst alle Angaben der Anfrage komplett ein!")
+ ÿ^
+ÿÊÿË"Festlegung der Abgleichstrategie..."
+ÿÉÿ¥cuob%ÿáÿ™"ANFRAGE"ÿ£CodeOB.anfrage
+ÿ‰ÿñ"ANFAbgleich",0,0,206,237,"Abgleich","MS Sans Serif",8
+ÿ|ÿñ"ANFAbgleich",9,5,11,20,22,2
+ÿ|ÿñ"ANFAbgleich",5,30,12,123,8,0,"Auflistung aller passenden Angebote"
+ÿ|ÿñ"ANFAbgleich",5,30,28,147,8,0,"Bitte geben Sie an, welche Parameter in den"
+ÿ|ÿñ"ANFAbgleich",5,30,38,130,8,0,"Abgleich mit einbezogen werden sollen:"
+ÿ|ÿñ"ANFAbgleich",2,30,51,79,11,0,"a&llgemeine Angaben","j","n",ABGallgemein.ANFRAGE
+ÿ|ÿñ"ANFAbgleich",5,130,52,19,8,0,"Lage:"
+ÿ|ÿñ"ANFAbgleich",2,30,62,38,11,0,"&Branche","j","n",ABGBranche.ANFRAGE
+ÿ|ÿñ"ANFAbgleich",2,130,62,23,13,0,"&Ort","j","n",ABGOrt.ANFRAGE
+ÿ|ÿñ"ANFAbgleich",2,30,73,38,13,0,"&Fl„chen","j","n",ABGFl„chen.ANFRAGE
+ÿ|ÿñ"ANFAbgleich",2,130,75,36,11,0,"Orts&teil","j","n",ABGOrtsteil.ANFRAGE
+ÿ|ÿñ"ANFAbgleich",2,30,86,34,11,0,"&Preise","j","n",ABGPreise.ANFRAGE
+ÿ|ÿñ"ANFAbgleich",2,130,86,34,13,0,"&Straáe","j","n",ABGStraáe.ANFRAGE
+ÿ|ÿñ"ANFAbgleich",2,30,97,55,13,0,"&Erschlieáung","j","n",ABGErschlieáung.ANFRAGE
+ÿ|ÿñ"ANFAbgleich",2,130,99,40,13,0,"PLZ","j","n",ABGPLZ.anfrage
+ÿ|ÿñ"ANFAbgleich",2,130,118,51,11,0,"&Mietgesuch","j","n",ABGMietint.anfrage
+ÿ|ÿñ"ANFAbgleich",2,30,121,55,10,0,"&Kaufgesuch","j","n",ABGKaufint.anfrage
+ÿ|ÿñ"ANFAbgleich",4,27,135,174,76,0,"Stichwort(e)"
+ÿ|ÿñ"ANFAbgleich",5,132,139,66,8,1,"Verknpfung durch"
+ÿ|ÿñ"ANFAbgleich",2,30,149,92,13,0,"einbe&ziehen","j","n",ABGStichwort.ANFRAGE
+ÿ|ÿñ"ANFAbgleich",2,131,151,32,11,0,"UND","j","n",ABGStUND.anfrage
+ÿ|ÿñ"ANFAbgleich",2,165,152,31,11,0,"ODER","j","n",ABGStODER.anfrage
+ÿ|ÿñ"ANFAbgleich",6,30,164,166,42,4,0,ABGNotiz.ANFRAGE,500
+ÿ|ÿñ"ANFAbgleich",1,87,213,54,17,0,"&Weiter",1,1
+ÿ|ÿñ"ANFAbgleich",1,146,214,55,17,0,"&Abbruch",0,0
+ 
+ÿñ"ANFAbgleich",req%
+ÿ¾ÿñ"ANFAbgleich"
+ÿÊÿË""
+ÿ¡req%ÿ1ÿp
+ÿÂ"Soll zus„tzlich eine Mailingliste erzeugt werden?","",135,mailing%
+ÿßÿe
+stichwort$ÿABGnotiz.anfrage
+ÿƒFStore("ANFRAGE")
+ÿÊÿË"Ergebnisdatei wird vorbereitet..."
+ÿ¡ÿJ(_localpath$ÿ"ABGLEICH.SBF")ÿpÿ_localpath$ÿ"ABGLEICH.SB*"
+ÿ‰_localpath$ÿ"ABGLEICH"
+ÿ|"CodeOB;NUM;000000"
+ÿ|"TimeStamp;NUM;0000000000"
+ÿª"ABGLEICH"
+ÿ‰ÿ£ÿ³CodeOB
+ÿÉÿ¥cuob%ÿ™"ANFRAGE"ÿ£CodeOB.anfrage
+ÿÊÿË"Abgleich l„uft..."
+cuanf%ÿCodeOB.ANFRAGE
+ÿ™"OBJEKTE"
+ÿ£CodeOB.objekte
+ÿÉÿ`
+onefound%ÿ0
+ÿØÿOÿB("OBJEKTE")
+obok%ÿ1
+
+ÿ½ ---Stichwort Abgleich
+ÿ¡ABGStichwort.anfrageÿ"j"ÿp
+	k%ÿ0
+	ÿ¡stichwort$ÿ""ÿp
+j%ÿStichwortSel%(stichwort$)
+ÿ›i%ÿ1ÿqj%
+ÿ¡notiz.objekteÿ"*"ÿstichworte$(i%)ÿ"*"ÿpk%ÿk%ÿ1
+ÿ±i%
+ÿ¡ABGStODER.anfrageÿ"j"ÿp
+ÿ¡k%ÿ0ÿpobok%ÿ0
+ÿ’ÿ¡
+ÿ¡ABGStUND.anfrageÿ"j"ÿp
+ÿ¡j%ÿk%ÿpobok%ÿ0
+ÿ’ÿ¡
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+
+ÿ½ ---Objekt soll gekauft werden
+ÿ¡ABGKaufint.anfrageÿ"j"ÿABGMietint.anfrageÿ"j"ÿp
+
+ÿ¡AAKaufint.objekteÿ"j"ÿpobok%ÿ0
+ÿ’ÿ¡
+ÿ½ ---Objekt soll gemietet werden
+ÿ¡ABGMietint.anfrageÿ"j"ÿABGKaufint.anfrageÿ"j"ÿp
+
+ÿ¡AAMietint.objekteÿ"j"ÿpobok%ÿ0
+ÿ’ÿ¡
+ 
+
+ÿ½ -- allgemeine Angaben --
+
+ÿ¡ABGallgemein.ANFRAGEÿ"j"ÿp
+	ÿ¡Art.objekteÿArt.ANFRAGEÿpobok%ÿ0
+	ÿ¡Lage1.objekteÿLage1.anfrageÿpobok%ÿ0
+	ÿ¡Lage2.OBJEKTEÿLage2.ANFRAGEÿpobok%ÿ0
+ÿ’ÿ¡
+ 
+ÿ½ -- Branche --
+ 
+ÿ¡ABGBranche.ANFRAGEÿ"j"ÿp
+	ÿ¡Branche.OBJEKTEÿBranche.anfrageÿpobok%ÿ0
+ÿ’ÿ¡
+ 
+
+ÿ½ -- Fl„chenmaáe --
+
+ÿ¡ABGFl„chen.ANFRAGEÿ"j"ÿp
+	ÿ¡NutzFl„che.OBJEKTEÿ0ÿp
+
+ÿ¡NutzFl„che.OBJEKTEÿ
+minFl„che.ANFRAGEÿpobok%ÿ0
+	ÿ’ÿ¡
+	ÿ¡Nutzfl„che.objekteÿmaxFl„che.anfrageÿmaxFl„che.anfrageÿ0ÿpobok%ÿ0
+ÿ¡Grundfl„che.OBJEKTEÿ0ÿp
+
+ÿ¡Grundfl„che.OBJEKTEÿ
+mingrundstFl„ch.ANFRAGEÿpobok%ÿ0
+	ÿ’ÿ¡
+	ÿ¡Grundfl„che.objekteÿmaxGrundstFl„ch.anfrageÿmaxGrundstFl„ch.anfrageÿ0ÿpobok%ÿ0
+ÿ’ÿ¡
+
+ÿ½ -- Preisangaben --
+
+ÿ¡ABGPreise.ANFRAGEÿ"j"ÿp
+	ÿ¡Kaufpreis.OBJEKTEÿmaxKaufpreis.ANFRAGEÿmaxKaufpreis.ANFRAGEÿ0ÿpobok%ÿ0
+	
+	ÿ¡PreisMiete.OBJEKTEÿmaxMietpreis.ANFRAGEÿmaxMietpreis.ANFRAGEÿ0ÿpobok%ÿ0
+	ÿ¡Preism2Miete.OBJEKTEÿmaxMietpreism2.ANFRAGEÿmaxMietpreism2.ANFRAGEÿ0ÿpobok%ÿ0
+	ÿ¡Preism2Grundst.OBJEKTEÿmaxGrundstprm2.ANFRAGEÿmaxGrundstprm2.ANFRAGEÿ0ÿpobok%ÿ0
+	ÿ¡PreisGrundst.OBJEKTEÿmaxGrundstpreis.ANFRAGEÿmaxGrundstpreis.ANFRAGEÿ0ÿpobok%ÿ0
+	
+	ÿ¡Kaufpreis.OBJEKTEÿ0ÿp
+ÿ¡Kaufpreis.OBJEKTEÿ
+minKaufpreis.ANFRAGEÿminKaufpreis.ANFRAGEÿ0ÿpobok%ÿ0
+	ÿ’ÿ¡
+	ÿ¡PreisMiete.OBJEKTEÿ0ÿp
+ÿ¡PreisMiete.OBJEKTEÿ
+minMietpreis.ANFRAGEÿminMietpreis.ANFRAGEÿ0ÿpobok%ÿ0
+	ÿ’ÿ¡
+	ÿ¡Preism2Miete.OBJEKTEÿ0ÿp
+ÿ¡Preism2Miete.OBJEKTEÿ
+minMietpreism2.ANFRAGEÿminMietpreism2.ANFRAGEÿ0ÿpobok%ÿ0
+	ÿ’ÿ¡
+	ÿ¡Preism2Grundst.OBJEKTEÿ0ÿp
+ÿ¡Preism2Grundst.OBJEKTEÿ
+minGrundstprm2.ANFRAGEÿminGrundstprm2.ANFRAGEÿ0ÿpobok%ÿ0
+	ÿ’ÿ¡
+	ÿ¡PreisGrundst.OBJEKTEÿ0ÿp
+ÿ¡PreisGrundst.OBJEKTEÿ
+minGrundstpreis.ANFRAGEÿminGrundstpreis.ANFRAGEÿ0ÿpobok%ÿ0
+	ÿ’ÿ¡
+ÿ’ÿ¡
+
+ÿ½ -- Erschlieáung --
+
+ÿ¡ABGErschlieáung.ANFRAGEÿ"j"ÿp
+	ÿ¡Erschlieáung.OBJEKTEÿErschlieáung.ANFRAGEÿpobok%ÿ0
+ÿ’ÿ¡
+
+ÿ½ -- Lage --
+
+ÿ¡ABGOrt.ANFRAGEÿ"j"ÿp
+	ÿ¡ort.anfrageÿ"*"ÿOrt.OBJEKTEÿ"*"ÿortsliste.anfrageÿ"*"ÿOrt.OBJEKTEÿ"*"ÿp
+	ÿ^
+obok%ÿ0
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ABGOrtsteil.ANFRAGEÿ"j"ÿp
+	ÿ¡Ortsteil.OBJEKTEÿ"*"ÿortsteil.anfrageÿ"*"ÿp
+	ÿ^
+obok%ÿ0
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ABGStraáe.ANFRAGEÿ"j"ÿp
+	ÿ¡ÿ>(ÿåalpha(Straáe.OBJEKTE))ÿ"*"ÿÿ>(ÿåalpha(Straáe.anfrage))ÿ"*"ÿp
+	ÿ^
+obok%ÿ0
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ABGPLZ.ANFRAGEÿ"j"ÿp
+	plz$ÿÿånumeric(PLZ.anfrage)
+	ÿ¡ÿånumeric(PLZ.OBJEKTE)ÿplz$ÿp
+	ÿ^
+obok%ÿ0
+	ÿ’ÿ¡
+ÿ’ÿ¡
+
+ÿ½ -- bereits verkauf? --
+ÿ¡verkauft.anfrageÿ"j"ÿpobok%ÿ0
+
+ÿ¡obok%ÿ1ÿp
+	ÿÿ™"ABGLEICH"
+	CodeOB.ABGLEICHÿCodeOB.objekte
+	ÿƒFStore("ABGLEICH")
+	onefound%ÿ1
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"OBJEKTE"ÿ£CodeOB.objekte
+ÿÙ
+ÿ¡onefound%ÿ1ÿp
+
+ÿ¡mailing%ÿ1ÿp
+	ÿÊÿË"Erzeuge Mailingliste..."
+	cfile2$ÿÿ™
+	destfile$ÿÿ(CodeMA.supervis,"00000000")
+ 
+	ÿ™"adressen"
+	ÿ×openfiles$(40)
+	ÿÿopenfiles$,0
+	ÿ›a%ÿ0ÿq40
+ÿ¡ÿ>(openfiles$(a%))ÿÿ>(destfile$)ÿp
+ÿ†ÿ™destfile$
+ÿ’ÿ¡
+	ÿ±a%
+	ÿ¡ÿJ(destfile$ÿ".sbf")ÿpÿdestfile$ÿ".*"
+	prolog$ÿ"SELECT CodeKU,Anrede,Briefanrede,Nachname,Vorname,Geburtsname,Straáe,PLZ,Ort,Telefon1,Telefon2,Telefax REPORT WHERE "
+	epilog$ÿ" ORDER REPORT TO FILE destfile$"
+	befehl$ÿprolog$ÿ"CodeOB.abgleich=CodeOB.objekte and CodeKU.objekte=CodeKU.adressen"ÿepilog$
+	ÿ–befehl$
+	ÿ™cfile2$
+ÿ’ÿ¡
+
+ÿÊÿË"Berichtsausgabe..."
+ÿÁÿs"ABGLOB"
+Ueberschr$ÿ"Angebote fr: "ÿBezeichnung.anfrage
+ÿŸ
+	ÿÊÿÁÿí"H_PAGE"
+	ÿ¶ÿÁÿí
+ÿ’ÿŸ
+ÿ}ÿÉ
+	ÿÊÿÁÿí"F_SELECT"
+	ÿ¶ÿÁÿí
+ÿ’ÿÉ
+ÿÊÿiÿ³
+ÿÊÿiÿáÿe
+ÿÉ;
+	ÿĞCodeOB.ABGLEICHÿCodeOB.OBJEKTEÿCodeKU.OBJEKTEÿCodeKU.ADRESSEN
+	ÿµBezeichnung.OBJEKTE
+	ÿqÿ~
+ÿ^
+ÿƒFehler("Es konnten keinen passenden Objekte gefunden werden!","")
+ÿ’ÿ¡
+ÿ†ÿ™"ABGLEICH"
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿÉÿœÿ¥cuob%ÿ™"ANFRAGE"ÿ£CodeOB.anfrage
+ ÿœ
+ ÿ™cfile$
+ ÿcdir$
+ ÿ’ÿÿ
+
+
+ÿÿANFCLICK()
+ av$ÿReadINI$("CLICK","available")
+ ÿ¡ÿ>(av$)ÿ"TRUE"ÿp
+ÿƒCLICK(AppID%,2,CodeOB.objekte)
+ ÿ^
+ÿƒFehler("Die Bildverarbeitung steht auf Ihrem Rechner nicht zur Verfgung!","")
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+
+
+ ' aktuelle Anfrage l”schen
+ ' ======================================================================
+
+ÿÿANFLoeschen()
+ cuob%ÿCodeOB.anfrage
+ ÿÂ"Soll die aktuelle Anfrage wirklich gel”scht werden?","",135,req%
+ ÿ¡req%ÿ1ÿp
+ÿßÿe
+ÿÉÿ¥cuob%ÿáÿ™"anfrage"ÿ£CodeOB.anfrage
+ÿÉÿ¾
+ÿÉÿæobezug%
+ÿæ1
+ÿ½ Kundenbezogen
+ÿÉÿ¥knr%ÿ™"anfrage"ÿ£CodeKU.anfrage
+ÿ¡CodeKU.anfrageÿknr%ÿp
+ÿÂ"Keine weiteren Anfragen des Kunden vorhanden!","",0
+_formend%ÿ1
+ÿ’ÿ¡
+ÿæ2
+ÿ½ alle Anfragen
+ÿÉÿ±
+ÿ¡ÿB("anfragen")ÿp
+ÿÂ"Keine weiteren Anfragen vorhanden!","",0
+_formend%ÿ1
+ÿ’ÿ¡
+ÿ’ÿÉ
+ ÿ’ÿ¡
+ ÿßÿ³
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ '      ***************************************************************
+ '      ** Routinen fr Formular IMMOGRUP (Immobiliengruppenbildung) **
+ '      ***************************************************************
+ 
+ÿÿIMMOGRUP()
+ cuob%ÿcodeob.objekte
+ cugr%ÿcodegr.objekte
+ ÿ¡ÿ°("objekte")ÿÿ("objekte")ÿpÿƒFStore("objekte")
+ ÿ™"immogrup"
+ ÿ£CodeGR.immogrup
+ _formend%ÿ0
+ ÿØ_formend%ÿ0
+GRPsub%ÿ0
+ÿ¡ÿ>(ÿœ)ÿ"IMMOGRUP"ÿp
+ÿ´ÿœ"IMMOGRUP"ÿí1
+ÿÊÿŸtitle$ÿ" - Immobiliengruppenverwaltung"
+ÿ¡obezug%ÿ2ÿp
+ÿÊÿœÿeneu$
+ÿÊÿœÿesaveit$
+ÿÊÿœÿebearb$
+ÿ’ÿ¡
+ÿƒMNIMMOGRUP()
+ÿƒGRPIntro()
+ÿÊÿÿ³
+ÿ’ÿ¡
+ÿ¬ÿ³
+ÿßÿ³
+ÿÏÿßÿÿ¥ÿÿ¬
+ÿÉÿæGRPsub%
+ÿæ99
+ÿ”bezeichnung.immogrup,0
+ÿ’ÿÉ
+ ÿÙ
+ ÿ’ÿ¡
+ ÿ¡ÿ°("immogrup")ÿÿ("immogrup")ÿpÿƒFStore("immogrup")
+ _formend%ÿ0
+ ÿ’ÿÿ
+
+
+ ' Intro
+ ' ======================================================================
+
+ÿÿGRPIntro()
+ ÿÊÿŸtitle$ÿ" - Immobiliengruppen"
+ ÿ™"immogrup"
+ ÿÉÿ¥cugr%ÿ£CodeGR.immogrup
+ ÿÊÿ£bezeichnung.immogrup
+ ÿ£bezeichnung.immogrup
+ ÿœ
+ ÿ’ÿÿ
+
+
+ ' neue Gruppe anlegen 
+ ' ======================================================================
+
+ÿÿGRPNeu()
+ ÿ¡ÿ°("immogrup")ÿÿ("immogrup")ÿpÿƒFStore("immogrup")
+ ÿ
+ codegr.immogrupÿÿI("immogrup",1)
+ GRPsub%ÿ99
+ ÿœ
+ ÿ’ÿÿ
+ 
+
+ ' Gruppennummer neu vergeben
+ ' ======================================================================
+
+ÿÿGRPNummer()
+ ÿ¡bezeichnung.immogrupÿ""ÿp
+ÿ¡codegr.immogrupÿ
+1ÿp
+codegr.immogrupÿÿI("immogrup",1)
+ÿœ
+ÿ’ÿ¡
+ ÿ^
+ÿƒFehler("Bitte geben Sie erst eine Bezeichnung ein.","")
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+
+ ' Gruppe Suchen
+ ' ======================================================================
+
+ÿÿGRPSuchen()
+ cugr%ÿcodegr.immogrup
+ ÿ¡ÿ("immogrup")ÿÿ°("immogrup")ÿpÿƒFStore("immogrup")
+ suna$ÿ""
+ ÿÂ"Suche nach Bezeichnung:","",4,req%,suna$,30
+ ÿ¡req%ÿ1ÿp
+suna$ÿ"*"ÿsuna$ÿ"*"
+ÿÂ"hnliche Eintragungen:","",25,req%,cugr%,72,codegr.immogrup,bezeichnung.immogrupÿ£bezeichnung.immogrupÿĞbezeichnung.immogrupÿsuna$
+ÿ¡req%ÿ1ÿp
+ÿÉÿ¥cugr%ÿ™"IMMOGRUP"ÿ£CodeGR.immogrup
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿÊÿ£bezeichnung.immogrup
+ ÿ£bezeichnung.immogrup
+ ÿœ
+ ÿ’ÿÿ
+ 
+
+ ' Einzelimmobilie in die Gruppe aufnehmen 
+ ' ======================================================================
+
+ÿÿGRPAufnehmen()
+ cugr%ÿcodeGR.immogrup
+ ÿ™"objekte"
+ suna$ÿ""
+ ÿÂ"- Aufnahme von Einzelimmobilien -","Geben Sie die Suchbezeichnung an:",4,req%,suna$,30
+ ÿ¡req%ÿ1ÿp
+suna$ÿ"*"ÿsuna$ÿ"*"
+ÿÂ"W„hlen Sie eine Immobilie aus:","",25,req%,cuob%,72,codeOB.objekte,bezeichnung.objekte,ort.objekteÿ£bezeichnung.objekteÿĞbezeichnung.objekteÿsuna$
+ÿ¡req%ÿ1ÿp
+ÿÉÿ¥cuob%ÿáÿ™"objekte"ÿ£CodeOB.objekte
+w%ÿ180:h%ÿ120
+d$ÿ"IMGRAUFN"
+ÿ‰ÿñd$,0,0,w%,h%,"Aufnahme Einzelimmobilie:","MS Sans Serif",8
+ÿ|ÿñd$,5,4,12,w%,9,0,"Einzelimmobilie in aktuelle Gruppe aufnehmen?"
+ÿ|ÿñd$,5,4,32,w%,9,0,bezeichnung.objekte
+ÿ|ÿñd$,5,4,42,w%,9,0,straáe.objekte
+ÿ|ÿñd$,5,4,52,w%,9,0,ort.objekte
+ÿ|ÿñd$,5,4,62,w%,9,0,plz.objekte
+ÿ|ÿñd$,1,w%ÿ80,h%ÿ18,36,14,1,"&Ja",1,1
+ÿ|ÿñd$,1,w%ÿ40,h%ÿ18,36,14,0,"&Nein",2,0
+ÿñd$,a%
+ÿ¾ÿñd$
+ÿ¡a%ÿ1ÿp
+CodeGR.objekteÿcugr%
+ÿƒFStore("OBJEKTE")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ™"immogrup"
+ ÿ’ÿÿ
+
+
+ ' Stichworte fr Angebote und Anfragen vergeben
+ ' ======================================================================
+ 
+
+ÿÿANGStichNeu()
+ ÿƒDFile(2,"OFFICE\keywords"ÿ_fpw$)
+ cuob%ÿCodeOB.objekte
+ ÿ¡ÿ°("objekte")ÿÿ("objekte")ÿpÿƒFStore("objekte")
+ ÿÊÿË"Stichwortvergabe"
+ keyw1$ÿ""
+ ÿÂ"Welches Stichwort wollen Sie zuordnen?","W„hlen Sie ein Stichwort aus bzw. geben Sie ein neues ein.",25,req%,keyw1$,72,keyword.keywords
+ ÿ¡req%ÿ1ÿp
+keyw1$ÿÿ>(keyw1$)
+ÿÉÿ¥keyw1$ÿ™"keywords"ÿ£keyword
+ÿ¡ÿOÿC("keywords")ÿp
+ÿ™"keywords"
+ÿ
+keyword.keywordsÿkeyw1$
+ÿƒFStore(ÿ™)
+ÿ™"objekte"
+ÿ’ÿ¡
+ÿÉÿ¥cuob%ÿáÿ™"objekte"ÿ£Codeob.objekte
+ÿ¡notiz.objekteÿ""ÿp
+notiz.objekteÿnotiz.objekteÿ", "ÿkeyw1$
+ÿ^
+notiz.objekteÿkeyw1$
+ÿ’ÿ¡
+ÿƒFStore("objekte")
+ ÿ’ÿ¡
+ ÿÊÿË""
+ ÿßÿ³
+ ÿœ
+ ÿ’ÿÿ
+ 
+
+ÿÿANFStichNeu()
+ ÿƒDFile(2,"OFFICE\keywords"ÿ_fpw$)
+ cuob%ÿCodeOB.anfrage
+ ÿ¡ÿ°("anfrage")ÿÿ("anfrage")ÿpÿƒFStore("anfrage")
+ ÿÊÿË"Stichwortvergabe"
+ keyw1$ÿ""
+ ÿÂ"Welches Stichwort soll zugeordnet werden?","W„hlen Sie ein Stichwort aus bzw. geben Sie ein neues ein.",25,req%,keyw1$,72,keyword.keywords
+ ÿ¡req%ÿ1ÿp
+keyw1$ÿÿ>(keyw1$)
+ÿÉÿ¥keyw1$ÿ™"keywords"ÿ£keyword
+ÿ¡ÿOÿC("keywords")ÿp
+ÿ™"keywords"
+ÿ
+keyword.keywordsÿkeyw1$
+ÿƒFStore(ÿ™)
+ÿ™"anfrage"
+ÿ’ÿ¡
+ÿÉÿ¥cuob%ÿáÿ™"anfrage"ÿ£CodeOB.anfrage
+ÿ¡notiz.anfrageÿ""ÿp
+notiz.anfrageÿnotiz.anfrageÿ", "ÿkeyw1$
+ÿ^
+notiz.anfrageÿkeyw1$
+ÿ’ÿ¡
+ÿƒFStore("anfrage")
+ ÿ’ÿ¡
+ ÿÊÿË""
+ ÿßÿ³
+ ÿœ
+ ÿ’ÿÿ
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ '   Mailings durchfhren
+ '===============================
+ÿÿMAILING1()
+ ÿƒMAILING()
+ ÿƒMNANGEBOT()
+ ÿ’ÿÿ
+
+ÿÿMAILING2()
+ ÿƒMAILING()
+ ÿƒMNANFRAGE()
+ ÿ’ÿÿ
+
+ ' Aktionen erfassen
+ ' ================================
+ÿÿAKTION1()
+ ÿƒAKTIONEN()
+ ÿƒMNANGEBOT()
+ ÿ’ÿÿ
+
+ÿÿAKTION2()
+ ÿƒAKTIONEN()
+ ÿƒMNANFRAGE()
+ ÿ’ÿÿ
+
+
+ '      ***********************
+ '      ** Mendeklarationen **
+ '      ***********************
+
+ÿÿMNIMMAK()
+ ÿ¬ÿ…
+ ÿƒMNProgramm()
+ ÿ¬2,0,1,"Daten&bank","","Adreáverwaltung"
+ ÿ¬2,1,1,"&Adressen","ADRESSEN","Adreáverwaltung"
+ ÿ¬2,2,1,"An&gebote","ANGEBOT","allgemeine Angebotsverwaltung"
+ ÿ¬2,3,1,"An&fragen","ANFRAGE","allgemeine Anfragenverwaltung"
+ ÿ¬3,0,1,"Do&kumente"
+ ÿ¬3,1,1,"&Vertr„ge","VERTRAEGE","Vertragsverwaltung
+ ÿ¬3,2,1,"&Protokolle","PROTOKOLLE","Protokollverwaltung"
+ ÿ¬3,3,1,"&Expose","DOSSIERS","Exposeverwaltung"
+ ÿ¬3,4,1,"&Dokumentenverwaltung","DOKUMENTSRV",""
+ ÿ¬3,4,0,"&Dokumentenverwaltung"
+ ÿ¬4,0,1,"&Optionen"
+ ÿ¬4,1,1,"Kurz&berichte","BMKurzbericht","Erstellung von Kurzberichten"
+ ÿ¬4,2,1,"Akt&ionen","AKTIONEN","Aktionsverwaltung"
+ ÿ¬4,3,1,"Listen&druck","IMList","Ausgabe aller verfgbaren Listen"
+ ÿ¡ÿOMNdisabled%("SETUP")ÿp
+ÿ¬4,4,1,"Einste&llungen","SETUP","Systemeinstellungen"
+ ÿ^
+ÿ¬4,4,0,"Einste&llungen"
+ ÿ’ÿ¡
+ ÿ¬5,0,1,"šberg„nge"
+ ÿ¬5,1,0,"&1 PROVIS","CPROVIS","PROVIS starten"
+ ÿ¬5,2,1,"&2 Bro&manager","OFFICE","Bromanager starten"
+ ÿ¬5,3,0,"&3 DFš","CFRONTEND","Frontend der IMMO-Zentraldatenbank starten"
+ ÿƒMNHilfe(6)
+ ÿ’ÿÿ
+
+ÿÿLizInfo()
+ ÿƒFehler("Der gew„hlte Programmteil ist ohne erfolgte","Lizensierung nicht ausfhrbar!")
+ ÿ’ÿÿ
+
+
+ ' Formular ADRESSEN
+ ' ======================================================================
+ 
+ÿÿMNADRESSEN()
+ ÿ¬ÿ…
+ ÿƒMNProgramm()
+ ÿ¬1,1,1,"&Drucken...","ADRDrucken","Druckausgabe"
+ ÿ¬2,0,1,"&Daten","",""
+ ÿ¬2,1,1,"&Neu,F2","ADRNeu","einen neuen Datensatz erfassen"
+ ÿ¬2,2,1,"S&ichern,F4","MStore",""
+ ÿ¬2,3,1,"&Verwerfen,Alt+RckT","UNDO",""
+ ÿ¬2,4,1,"&Kopieren,F5","ADRKopieren",""
+ ÿ¡ÿOMNdisabled%("ADRLoeschen")ÿp
+ÿ¬2,5,1,"&L”schen","ADRLoeschen",""
+ ÿ^
+ÿ¬2,5,0,"&L”schen"
+ ÿ’ÿ¡
+ ÿ¬2,6,1,"S&uchen,F6","ADRSuchen",""
+ ÿ¬3,0,1,"&Bewegen","",""
+ ÿ¬3,1,1,"&N„chster,BildAb","ADRNext","n„chster Datensatz"
+ ÿ¬3,2,1,"&Vorheriger,BildAuf","ADRPrev",""
+ ÿ¬3,3,1,"&Erster","ADRFirst",""
+ ÿ¬3,4,1,"&Letzter","ADRLast",""
+ ÿ¬4,0,1,"&Optionen","",""
+ ÿ¬4,1,1,"&Akquise","AKQUISE2",""
+ ÿ¬4,2,1,"&Telefon/Fax","ADRTelefon",""
+ ÿ¬4,3,1,"Fil&ter...","",""
+ ÿ¬4,3;1,1,"normal","ADRFilter1",""
+ ÿ¬4,3;2,1,"erweitert","ADRFilter2",""
+ ÿ¬4,3;3,1,"alle Adressen","ADRFLT3"
+ ÿ¬4,3;4,1,"alle Kunden","ADRFLT4"
+ ÿ¬4,3;5,1,"alle Makler","ADRFLT5"
+ ÿ¬5,0,1,"Do&kumente"
+ a%ÿ0
+ ÿØDOKGruppen$(a%)ÿ""ÿa%ÿ
+19
+ÿ¡a%ÿ
+10ÿpmnline$ÿ"&"ÿ^mnline$ÿ""
+mnline$ÿmnline$ÿÿH(ÿ(a%,"999"))ÿ" "ÿDOKGruppen$(a%)
+ÿ¬5,a%ÿ1,1,mnline$,"ADRDOK"
+a%ÿa%ÿ1
+ ÿÙ
+ ÿƒMNHilfe(6)
+ ÿ’ÿÿ
+ 
+
+ÿÿADRFLT3():ÿ½ ADRFilter alle Adressen
+ ÿƒCLMNFILTER()
+ ÿ™"ADRESSEN"
+ ÿÉÿĞ
+ ÿÊÿ£nachname.ADRESSEN
+ ÿ£Nachname.ADRESSEN
+ ÿ¬4,3;3,2
+ ÿ’ÿÿ
+
+ÿÿADRFLT4():ÿ½ ADRFilter alle Kunden
+ ÿƒCLMNFILTER()
+ ÿ™"ADRESSEN"
+ ÿÉÿĞ
+ ÿÉÿĞAAKunde.ADRESSENÿ"j"
+ ÿÊÿ£nachname.ADRESSEN
+ ÿ£Nachname.ADRESSEN
+ ÿ¬4,3;4,2
+ ÿ’ÿÿ
+
+ÿÿADRFLT5():ÿ½ ADRFilter alle Makler
+ ÿƒCLMNFILTER()
+ ÿ™"ADRESSEN"
+ ÿÉÿĞ
+ ÿÉÿĞAAMakler.ADRESSENÿ"j"
+ ÿÊÿ£nachname.ADRESSEN
+ ÿ£Nachname.ADRESSEN
+ ÿ¬4,3;5,2
+ ÿ’ÿÿ
+ 
+ÿÿCLMNFILTER()
+ ÿ¬4,3;1,1
+ ÿ¬4,3;2,1
+ ÿ¬4,3;3,1
+ ÿ¬4,3;4,1
+ ÿ¬4,3;5,1
+ ÿ’ÿÿ
+ 
+
+ ' Formular "ANGEBOT"
+ ' ======================================================================
+
+ÿÿMNANGEBOT()
+ ÿ¬ÿ…
+ ÿƒMNProgramm()
+ ÿ¬2,0,1,"&Daten","",""
+ ÿ¬2,1,1,"&Neu,F2","OBNeu","einen neuen Datensatz erfassen"
+ ÿ¬2,2,1,"S&ichern,F4","MStore",""
+ ÿ¬2,3,1,"&Verwerfen,Alt+RckT","UNDO",""
+ ÿ¡ÿOMNdisabled%("OBLoeschen")ÿp
+ÿ¬2,4,1,"&L”schen","OBLoeschen"
+ ÿ^
+ÿ¬2,4,0,"&L”schen","OBLoeschen"
+ ÿ’ÿ¡
+ ÿ¬3,0,1,"Be&wegen","",""
+ ÿ¬3,1,1,"&N„chster,BildAb","OBNext","n„chster Datensatz"
+ ÿ¬3,2,1,"&Vorheriger,BildAuf","OBPrev",""
+ ÿ¬4,0,1,"&Extras"
+ ÿ¬4,1,1,"&Immobiliengruppen","IMMOGRUP","Aufruf der Immobiliengruppenverwaltung"
+ ÿ¬4,2,1,"&Bilddatenbank","LizInfo"
+ ÿ¬4,3,1,"&Termin erfassen","AQRegister"
+ ÿ¬5,0,1,"Do&kumente"
+ ÿ¬5,1,1,"&Vertr„ge","ANGVertrag"
+ ÿ¬5,2,1,"&Protokolle","ANGProtokoll"
+ ÿ¬5,3,1,"&Expose","ANGDossier"
+ ÿ¬5,4,1,"&Formulare","ANGFormular"
+ ÿ¬5,5,1,"&Rohexpose erstellen","Rohdossier"
+ ÿ¬5,6,1,"&Aktionen erfassen/anzeigen","AKTION1"
+ ÿ¬5,7,1,"&Mailings durchfhren","MAILING1"
+ ÿƒMNHilfe(6)
+ ÿ’ÿÿ
+
+
+
+
+ 
+ ' Formular "ANFRAGE"
+ ' ======================================================================
+ 
+ÿÿMNANFRAGE()
+ ÿ¬ÿ…
+ ÿƒMNProgramm()
+ ÿ¬2,0,1,"&Daten","",""
+ ÿ¬2,1,1,"&Neu,F2","ANFNeu","einen neuen Datensatz erfassen"
+ ÿ¬2,2,1,"S&ichern,F4","MStore",""
+ ÿ¬2,3,1,"&Verwerfen,Alt+RckT","UNDO",""
+ ÿ¡ÿOMNdisabled%("ANFLoeschen")ÿp
+ÿ¬2,4,1,"&L”schen","ANFLoeschen"
+ ÿ^
+ÿ¬2,4,0,"&L”schen","ANFLoeschen"
+ ÿ’ÿ¡
+ ÿ¬3,0,1,"Be&wegen","",""
+ ÿ¬3,1,1,"&N„chster,BildAb","ANFNext","n„chster Datensatz"
+ ÿ¬3,2,1,"&Vorheriger,BildAuf","ANFPrev",""
+ ÿ¬4,0,1,"Do&kumente"
+ ÿ¬4,1,1,"&Vertr„ge","ANFVertrag"
+ ÿ¬4,2,1,"&Protokolle","ANFProtokoll"
+ ÿ¬4,3,1,"&Formulare","ANFFormular"
+ ÿ¬4,4,1,"&Aktionen erfassen/anzeigen","AKTION2"
+ ÿ¬4,5,1,"&Mailings durchfhren","MAILING2"
+ ÿ¬4,6,1,"&Termin erfassen","AQRegister"
+ ÿƒMNHilfe(5)
+ ÿ’ÿÿ
+
+ 
+ ' Formular "IMMOGRUP"
+ ' ======================================================================
+ 
+ÿÿMNIMMOGRUP()
+ ÿ¬ÿ…
+ ÿƒMNProgramm()
+ ÿ¬2,0,1,"&Daten","",""
+ ÿ¬2,1,1,"&Neu,F2","GRPNeu","einen neuen Datensatz erfassen"
+ ÿ¬2,2,1,"S&ichern,F4","MStore",""
+ ÿ¬2,3,1,"&Verwerfen,Alt+RckT","UNDO",""
+ ÿ¡ÿOMNdisabled%("GRPLoeschen")ÿp
+ÿ¬2,4,1,"&L”schen","GRPLoeschen",""
+ ÿ^
+ÿ¬2,4,0,"&L”schen"
+ ÿ’ÿ¡
+ ÿ¬2,5,1,"S&uchen,F6","GRPSuchen",""
+ ÿ¬3,0,1,"&Bewegen","",""
+ ÿ¬3,1,1,"&N„chster,BildAb","SelectNext","n„chster Datensatz"
+ ÿ¬3,2,1,"&Vorheriger,BildAuf","SelectPrevious",""
+ ÿ¬3,3,1,"&Erster","PSelectFirst",""
+ ÿ¬3,4,1,"&Letzter","PSelectLast",""
+ ÿ¬4,0,1,"&Optionen"
+ ÿ¬4,1,1,"Einzelimmobilie &aufnehmen","GRPAufnehmen","Einzelimmobilie in aktuelle Gruppe aufnehmen"
+ ÿƒMNHilfe(5)
+ ÿ’ÿÿ
+ 
+
+

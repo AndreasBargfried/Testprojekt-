@@ -1,0 +1,47 @@
+FDP
+ÿÿmain()
+ ÿƒSUDRU5()
+ ÿ’ÿÿ
+
+ÿÿSUDRU5()
+ ÿÁÿs"SUDRU5"
+ ÿÁÿ³sAnzahl%ÿU"ssAnzahl%",sPunkte%ÿU"ssPunkte%",sBewertung%ÿU"ssBewertung%",sProvision%ÿU"ssProvision%",sSR%ÿU"ssSR%",sAnzStorno%ÿU"ssAnzStorno%",sPunkteSto%ÿU"ssPunkteSto%",sBWSto%ÿU"ssBWSto%"
+ ÿ€ÿÁ
+ÿÊÿÁÿí"H_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+
+ ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+
+ ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿŸ
+
+ ÿSPGruppe.SUFDRU,Anzahl.SUFDRUÿU"sAnzahl%",Punkte.SUFDRUÿU"sPunkte%",Bewertung.SUFDRUÿU"sBewertung%",Provision.SUFDRUÿU"sProvision%",SR.SUFDRUÿU"sSR%",AnzStorno.SUFDRUÿU"sAnzStorno%",PunkteSto.SUFDRUÿU"sPunkteSto%"
+ ÿSPGruppe.SUFDRU,BWSto.SUFDRUÿU"sBWSto%"
+ ÿ€ÿSPGruppe.SUFDRU
+ÿÊÿÁÿí"H_SPGruppe.S002"
+ÿ¶ÿÁÿí
+ ÿ’ÿ
+
+ ÿ}ÿSPGruppe.SUFDRU
+ÿÊÿÁÿí"F_SPGruppe.S002"
+ÿ¶ÿÁÿí
+ ÿ’ÿ
+
+ ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÉ
+
+ ÿÊÿiÿe
+ ÿÊÿiÿáÿe
+ ÿÉ;
+ÿqÿ~
+ ÿ’ÿÉ
+ ÿ’ÿÿ
+

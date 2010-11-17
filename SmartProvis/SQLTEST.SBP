@@ -1,0 +1,18 @@
+SBP
+
+ÿÿmain()
+ ÿƒMAKRO1()
+ ÿ’ÿÿ
+ 
+ÿÿMAKRO1():ÿ½                                        27.M„r.2006
+ ÿŽ"E:\0-SB-DEV\CODIE.C36"
+ ÿ½                                                    Menu:  SQLConnections
+ ÿð CONNECT OEM 1,shipshop,?,DSN=shipshop;UID=isman;PWD=isman;APP=Betriebssystem Microsoft® Windows®;WSID=JOE17;DATABASE=shipshop
+ ÿ´ÿ™"shipshop:dbo.Config":ÿÎ:ÿ½                     OpenSQLTable
+ ÿ´ÿ™"shipshop:dbo.CostCenter":ÿÎ
+ ÿ´ÿ™"shipshop:dbo.Ticker":ÿÎ
+ ÿÊÿn:ÿ½                                         Btn:   TableView
+ ÿÊÿj:ÿ½                                               RecordView
+ ÿ’ÿÿ
+ 
+

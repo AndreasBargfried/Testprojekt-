@@ -1,0 +1,2410 @@
+SBP
+ ' _EncryptString
+ ' ? STR$ ( ASC ("C") + 47,"000")
+ ' ? CHR$ ( ASC ("C") + 47)->r
+ '  ? CHR$ ( ASC ("s") - 47)->C
+ ' http://netzreport.googlepages.com/online_umwandler_rot_5_13_18_47.html
+ '  Provisionsabrechnungssystem
+ '  Copyright (c) 1992-2010 CODie software products e.K.
+ '  Version 2009 B-01  21.04.2009
+ '  ACHTUNG alle Optionen bei Tarife wieder einschalten, GPKCO$ fr Krll TRUE setzen
+ '  AgentDetail=TRUE setzen
+ '  Antragswiderruf
+ '  Policenwiderspruch
+ ' =============================================================================== 
+ ' ===============================================================================
+
+ÿÿmain()
+ ÿ½       õ319706bv
+ ÿ†ÿt
+ ÿ•
+ ÿ…
+ ÿ…ÿÿ
+ ÿ¡ÿOÿ÷("PROVCLIB")ÿpÿ¨"PROVCLIB.SBR",ÿ°
+ 
+ ÿ½ IF NOT PROGRAMFILE ("FPB") THEN LOAD "FPB.SBP", NEW 
+ ÿ½ CALL LIBInit("PROVIS","SmartPROVIS Agentur",1,43)' Agentur mit Euro 
+ ÿƒLIBInit("PROVIS","SmartPROVIS",1,61)' PROVISMakler
+ ÿ½ CALL LIBInit("PROVIS","SmartPROVIS Classic",1,62)' PROVISClassik+
+ ÿ½ CALL LIBInit("PROVIS","SmartPROVIS online.center ASP",1,80)' PROVISASP
+ 
+ ÿ¡GASP%ÿp
+ÿÊÿ0
+'J an neu: -----------------
+ÿÿjaPPCSPath$
+ÿ½ CALL Fehler(_netpath$,_remotepath$)
+ÿ½ jaPPCSPath$ = "c:\ppcsabgl\"
+jaPPCSPath$ÿ_netpath$
+'IF NOT PROGRAMFILE ("HIERA") THEN LOAD jaPPCSPath$ + "Hiera\hiera.sbp", NEW 
+ÿ¡ÿOÿ÷("ASPPROV")ÿpÿ¨jaPPCSPath$ÿ"ASPPROV.sbp",ÿ°
+ÿ¡ÿOÿ÷("ASPPARA")ÿpÿ¨jaPPCSPath$ÿ"ASPPARA.sbp",ÿ°
+'Jan ende -----------------  
+ ÿ’ÿ¡
+ _fpw$ÿ";paris"
+ _help%ÿ0
+ _debug%ÿ0
+ ÿ½ CALL Fehler("","")
+ ÿƒINIT()
+ ÿßÿe
+ ÿ›m%ÿ0ÿq11
+monate$(m%)ÿÿ4("1."ÿÿ(m%ÿ1,"00")ÿ".92")
+ ÿ±m%
+ ÿ¡test%ÿ0ÿpÿÊÿÂ134ÿ1824
+ ÿ½ -- automatische Erzeugung der Dokumentengruppen fr
+ ÿ½ -- SmartPROVIS zugefgt 13.09.95   
+ DOKKundFound%ÿ0
+ DOKGesFound%ÿ0
+ DOKMAFOUND %ÿ0
+ a%ÿ0
+ DOKGruppen$(0)ÿ"allgemeine Schreiben"
+ ÿØDOKGruppen$(a%)ÿ"leer"
+a%ÿa%ÿ1
+DOKGruppen$(a%)ÿÿåibm(ReadConfig$("Dokumentengruppen","Gruppe"ÿÿH(ÿ(a%,"999999"))))
+ÿ¡DOKGruppen$(a%)ÿ"Dokumente an Kunden*"ÿpDOKKundFound%ÿÿ1
+ÿ¡DOKGruppen$(a%)ÿ"Dokumente an Gesellschaften*"ÿpDOKGesFound%ÿÿ1
+ÿ¡DOKGruppen$(a%)ÿ"Dokumente an Mitarbeiter*"ÿpDOKMAFOUND%ÿÿ1
+ ÿÙ
+ 
+ ÿ½ CALL Fehler("Art","")
+ 
+ ÿ¡_projekt$ÿ"*provis*"ÿp
+net$ÿÿ,(_netpath$,3,ÿ/(_netpath$)ÿ2)
+ÿ¡ÿODOKKundFound%ÿp
+ÿƒWriteConfig("Dokumentengruppen","Gruppe"ÿÿH(ÿ(a%,"999")),"Dokumente an Kunden")
+ÿƒWriteConfig("Vorlagen","Dokumente an Kunden","VorlageK.doc")
+ÿƒWriteConfig("Dokumente","Dokumente an Kunden",net$ÿ"PROVIS\TEXT\")
+a%ÿa%ÿ1
+ÿ^
+lese$ÿÿåibm(ReadConfig$("Vorlagen","Dokumente an Kunden"))
+ÿ¡lese$ÿ"leer"ÿp
+ÿƒWriteConfig("Vorlagen","Dokumente an Kunden","VorlageK.doc")
+ÿ’ÿ¡
+lese$ÿÿåibm(ReadConfig$("Dokumente","Dokumente an Kunden"))
+ÿ¡lese$ÿ"leer"ÿp
+ÿƒWriteConfig("Dokumente","Dokumente an Kunden",net$ÿ"PROVIS\TEXT\")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ÿODOKGesFound%ÿp
+ÿƒWriteConfig("Dokumentengruppen","Gruppe"ÿÿH(ÿ(a%,"999")),"Dokumente an Gesellschaften")
+ÿƒWriteConfig("Vorlagen","Dokumente an Gesellschaften","VorlageG.doc")
+ÿƒWriteConfig("Dokumente","Dokumente an Gesellschaften",net$ÿ"PROVIS\TEXT\")
+a%ÿa%ÿ1
+ÿ^
+lese$ÿÿåibm(ReadConfig$("Vorlagen","Dokumente an Gesellschaften"))
+ÿ¡lese$ÿ"leer"ÿp
+ÿƒWriteConfig("Vorlagen","Dokumente an Gesellschaften","VorlageG.doc")
+ÿ’ÿ¡
+lese$ÿÿåibm(ReadConfig$("Dokumente","Dokumente an Gesellschaften"))
+ÿ¡lese$ÿ"leer"ÿp
+ÿƒWriteConfig("Dokumente","Dokumente an Gesellschaften",net$ÿ"PROVIS\TEXT\")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ÿODOKMAFOUND%ÿp
+ÿƒWriteConfig("Dokumentengruppen","Gruppe"ÿÿH(ÿ(a%,"999")),"Dokumente an Mitarbeiter")
+ÿƒWriteConfig("Vorlagen","Dokumente an Mitarbeiter","VorlageM.doc")
+ÿƒWriteConfig("Dokumente","Dokumente an Mitarbeiter",net$ÿ"PROVIS\TEXT\")
+a%ÿa%ÿ1
+ÿ^
+lese$ÿÿåibm(ReadConfig$("Vorlagen","Dokumente an Mitarbeiter"))
+ÿ¡lese$ÿ"leer"ÿp
+ÿƒWriteConfig("Vorlagen","Dokumente an Mitarbeiter","VorlageM.doc")
+ÿ’ÿ¡
+lese$ÿÿåibm(ReadConfig$("Dokumente","Dokumente an Mitarbeiter"))
+ÿ¡lese$ÿ"leer"ÿp
+ÿƒWriteConfig("Dokumente","Dokumente an Mitarbeiter",net$ÿ"PROVIS\TEXT\")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ ÿ’ÿ¡
+ DOKGruppen$(a%)ÿ""
+ ÿ½ CALL Fehler("xxx","")
+
+
+
+
+
+ a%ÿ0
+ DOKGruppenMA$(0)ÿ"Mitarbeiterdokument"
+ ÿØDOKGruppenMA$(a%)ÿ"leer"
+a%ÿa%ÿ1
+DOKGruppenMA$(a%)ÿÿåibm(ReadConfig$("DokumentengruppenMA","Gruppe"ÿÿH(ÿ(a%,"999999"))))
+ ÿÙ
+ DOKGruppenMA$(a%)ÿ""
+ 
+ 
+ 
+ a%ÿ0
+ ber$ÿ""
+ BERICHTE$(0)ÿ"adrlist"
+ BERNAME$(0)ÿ"Adreáliste ohne Notiz"
+ ÿØber$ÿ"leer"ÿa%ÿ
+120
+a%ÿa%ÿ1
+ber$ÿÿåibm(ReadConfig$("UserReport",ÿH(ÿ(a%,"999999"))))
+SlashPos%ÿÿ?(ber$,",")
+ÿ¡SlashPos%ÿ0ÿp
+BERICHTE$(a%)ÿÿ,(ber$,1,SlashPos%ÿ1)
+BERNAME$(a%)ÿÿ,(ber$,SlashPos%ÿ1)
+ÿ’ÿ¡
+ ÿÙ
+ BERICHTE$(a%)ÿ""
+ BERNAME$(a%)ÿ""
+ 
+ a%ÿ0
+ GAutoKArt1$(0)ÿ"FON"
+ ÿØGAutoKArt1$(a%)ÿ"leer"ÿGAutoKArt1$(a%)ÿ""
+a%ÿa%ÿ1
+m$ÿÿåibm(ReadConfig$("Telefonart1","Art"ÿÿH(ÿ(a%,"999999"))))
+ÿ¡m$ÿ"leer"ÿpGAutoKArt1$(a%)ÿm$
+ ÿÙ
+ 
+ a%ÿ0
+ GAutoKArt2$(0)ÿ"PRIVAT"
+ ÿØGAutoKArt2$(a%)ÿ"leer"ÿGAutoKArt2$(a%)ÿ""
+a%ÿa%ÿ1
+m$ÿÿåibm(ReadConfig$("Telefonart2","Art"ÿÿH(ÿ(a%,"999999"))))
+ÿ¡m$ÿ"leer"ÿpGAutoKArt2$(a%)ÿm$
+ ÿÙ
+ 
+
+ a%ÿ0
+ GSpartenart$(0)ÿ"<ohne Zurodnung>"
+ ÿØGSpartenart$(a%)ÿ"leer"ÿGSpartenart$(a%)ÿ""
+a%ÿa%ÿ1
+m$ÿÿåibm(ReadConfig$("Spartenart","Art"ÿÿH(ÿ(a%,"999999"))))
+ÿ¡m$ÿ"leer"ÿpGSpartenart$(a%)ÿÿ+(m$,30)
+ ÿÙ
+ 
+ a%ÿ0
+ 
+
+
+
+ ÿßÿ³
+ 
+ ÿ³ÿ_ÿwe29032005
+ GFdate$ÿÿ(fdate.stamm,"0d.mm.yyyy")
+e29032005: 
+ ÿ³ÿ_ÿwErrorHandler
+ ÿ¡DateOK%(GFDate$)ÿp
+ ÿ^
+GFdate$ÿ""
+ ÿ’ÿ¡
+ 
+ ÿ½ Festlegung wer die Detaildaten der Vermittler sehen darf
+ GAgentDetail$ÿÿ>(ReadConfig$("PROVIS","AgentDetail"))
+ GBVF$ÿÿ>(ReadConfig$("PROVIS","BVF"))
+ GBangel$ÿÿ>(ReadConfig$("PROVIS","Bangel"))
+ ÿ½ ** Maximale Anzahl Agenturen in FirstStep
+ ÿ½ fsmax% = 0
+ ÿ½ GDVVersion
+ ÿ½ GGDV$ = "TRUE"
+ ÿ½ ***Maklerversion##
+ ÿ½ MAKLER$ = "TRUE"
+ Hubert$ÿ"TRUE"
+ ÿ½ LPZ$ = "TRUE"
+ GKODAT$ÿ";TRUE"
+ GShowSpeziKond%ÿÿ1
+ ÿ½ keine Direktionsverwaltung in Stammdaten anzeigen
+ ÿ½ GNOAGDIR% = - 1
+ ÿ½ IF PrvVerfahr$ <> "ZAHLUNGSEINGANG" THEN GShowSpeziKond% = 0
+ Gbertarif%ÿÿ1
+ ÿ½ wenn fsmax = 0 dann unbegrenzte Anzahl von Agenturen
+ _formend%ÿ0
+ Upd$ÿReadConfig$(_projekt$,"UPDATE")
+ ÿ¡Upd$ÿ"TRUE"ÿp
+ÿ¡ÿOÿ÷("PROVUPD")ÿpÿ¨_netpath$ÿ"PROVUPD.SBR",ÿ°
+ÿ½ CALL DoUpdate()
+ÿ½ 261097
+ÿ½ IF PrvVerfahr$ LIKE "Zahlungseingang" THEN 
+ÿ½ t1$ = "Bitte drucken Sie diese Liste UNBEDINGT aus und befolgen Sie die dort gegebenen Hinweise!!!, Sie k”nnen den Listendruck ber den Button <Listen>/ -Abgleichsliste zur Umstellung auf...- aus der Hauptmaske wiederholen!"
+ÿ½ CALL Fehler("ACHTUNG Es wird jetzt eine Abgleichsliste zur Umstellung auf SmartPROVIS Plus Real Cash erstellt!",t1$)
+ÿ½ CALL VertrAbgleich()
+ÿ½ END IF 
+ ÿ’ÿ¡
+ CUpd$ÿReadConfig$(_projekt$,"CustomUpdate")
+ ÿ¡CUpd$ÿ"TRUE"ÿp
+ÿ¡ÿOÿ÷("CUPDATE")ÿpÿ¨_netpath$ÿ"CUPDATE.SBR",ÿ°
+ÿƒDoCUpdate()
+ ÿ’ÿ¡
+ ÿ³ÿ_ÿww010220061
+ GDisDokSchu$ÿDisDokSchu.supervis
+w010220061: 
+ ÿ³ÿ_ÿwErrorHandler
+ ÿ½ SET DISPLAY ON 
+ GAufrufproj$ÿ"PROVIS"
+ ÿØ_formend%ÿ0
+ÿ³ÿ_ÿwErrorHandler
+ÿƒPROVIS()
+ÿÂ"Programm wirklich beenden?","",130,req%
+ÿ¡req%ÿ1ÿp_formend%ÿ1
+ ÿÙ
+ ÿƒEXIT()
+ ÿ’ÿÿ
+ 
+ÿÿINIT()
+ ÿßÿe
+ ÿÿf ÿUform
+ ÿÿfc ÿUFormControl
+ ÿ½ *********fr IMMAK***********
+ ÿÿOBsub%,ANFsub%,GRPsub%,CLICKsub%,ESCHLIEsub%
+ ÿÿobezug%,cuob%,cugr%,anfragebuton$,angebotbuton$,Videokarte$
+ ÿÿOBArt$(500),OBLage1$(500),OBLage2$(500),OBErschl$(500),OBBranche$(500)
+ ÿÿCLAppID%,CLtopic%,CLLink%,bildnr%
+ ÿ½ ********** end immak **************
+ 
+ ÿÿcuvt%,cuivt%,cuko%,cuva%
+ ÿÿMADRsub%,VERTRsub%,GEKONDsub%,GEKONDMsub%,BUCHUNGsub%,GEADRsub%,SPARTEsub%,ZBsub%,ZEINsub%,ZEINKsub%
+ ÿÿgekondtr%,letzteProvi%,Anschluss%,Calcdate$,cdate%
+ ÿÿvertrprov%,vertrsr%,nextprovi%
+ ÿÿGEKOND$(80),BSatz$(1),fehlnach$
+ ÿÿRepType%
+ ÿÿKopfzeile$,Fuázeile$
+ ÿÿfsmax%,vform%
+ ÿÿgezPauschale%,gezPflege%,gezAbschluá%,eingab$,eingab2$,viab%
+ ÿÿvsumAP%,vsumC%,vsumPP%,vsumPausch%,GRSPARTEsub%,_codegrsp%,_codegrspnew%,_codegrspold%
+ ÿÿabbruch%,codevaProbe%,zbetragold%,_gesnew$,_spanew$,_spaold$,cuge%,cuge2%,VertragJN$
+ ÿÿCourtNachBeitr$,VertKokor%,dmeinh%,dmeinheu%,vtagentur$,vtcodema%
+ ÿÿs1B%,s1V%,s1Bei%,s1Vol%,anz1%
+ ÿÿs2B%,s2V%,s2Bei%,s2Vol%,anz2%
+ ÿÿs3B%,s3V%,s3Bei%,s3Vol%,anz3%
+ ÿÿs4B%,s4V%,s4Bei%,s4Vol%,anz4%
+ ÿÿs5B%,s5V%,s5Bei%,s5Vol%,anz5%
+ ÿÿs6B%,s6V%,s6Bei%,s6Vol%,anz6%
+ ÿÿs7B%,s7V%,s7Bei%,s7Vol%,anz7%
+ ÿÿs8B%,s8V%,s8Bei%,s8Vol%,anz8%
+ ÿÿs9B%,s9V%,s9Bei%,s9Vol%,anz9%,statistikmodul$
+ ÿÿRealListe$,PROVBU$,zweitwaehr$,euro%,AGAnzahl,nvtab%,BGEADRsub%,ZWCodew%
+ ÿÿvstatus%,vstatusnr%,vstatustxt$
+ ÿÿw97$,wXP$
+ ÿÿGCodeVStatus%,GCodeGE%,GCodeVA%,GCodeVP%
+ ÿÿMAKLER$,drfilt$,Hubert$,BUMON$,PRVCHECKLISTE$,kontoinf%,KLOTZ$,LPZ$,GGDV$
+ ÿÿKUVorgsub%,VQCodeGEVA$,_spartold$,vprodukt$(1),Agenturen$(1),Glfdnr%,ueb$,WinWordAnsi$,GSpezko$,GVonFirma$
+ ÿÿGAGvonFirma$(1),GAGvonAgentur$(1),GAGFrAgentur$(1,2),GBewertung%,GShowSpeziKond%,Gbertarif%,GKODAT$,GKondNoDattes$
+ ÿÿGvueb$,Gvuebs$,GBVF$,GNOAGDIR%,GBewertungOrig%
+ ÿÿGBuildno$,GBuilnolen%,GSerial$
+ ÿÿG_Volume%,G_Bewert%,G_MonAntrag$,G_JahrAntrag$,G_MonVertr$,G_JahrVertr$,G_VStatus%,G_Ma%,G_Antrag%,G_Vertrag%
+ ÿÿGCodeTarif%,GBkursTag%,GBAntPreisinW%,GBKursEuro%,GBKursUS%,GTarifname$
+ ÿÿGAgentDetail$,GKukto$(1)
+ ÿÿNachfolger%(1)
+ ÿÿVorg„nger%(1)
+ ÿÿmacount%,GPKCO$,Ganzdown%,Gnichtaktiv$,GRiese$,GFehl$,GVertrArt$
+ ÿÿGGebList%
+ ÿÿGBlz1$,GBLZ2$,GBLZ3$,GBank1$,GBank2$,GBank3$,GKonto1$,GKonto2$,GKonto3$,GKontoinh1$,GKontoinh2$,GKontoinh3$
+ ÿÿGSoll$,GBruttoBeitr%,GNettoBeitr%,GEinh%,AuswahlG$(1),GVersion$,GRelease$,GVariante$
+ ÿÿGcuvg%,GButtonBez$,GIgnoreMultiVT%,GBewEinm%,GRealStorno%,GgdvEnde%
+ ÿÿGBanMA%,GBanGE%
+ ÿÿGBanGesFil%,GCodeGE2%,GnoverZein%,G1Vertraege$(1),GMailIn%,agprompt$,GGDVistAN%
+ ÿÿGopt&%
+
+ GGDVistAN%ÿ0
+ 
+ GMailIn%ÿ0
+ GMailBetreff$ÿ""
+ GBanGesFil%ÿ0
+ GBanMA%ÿ0:GBanGE%ÿ0
+ GVersion$ÿReadConfig$(_projekt$,"Version")
+ GRelease$ÿReadConfig$(_projekt$,"Release")
+ GBVF$ÿÿ>(ReadConfig$("PROVIS","BVF"))
+ GNetzAPAkt%ÿÿåsys(17)ÿ1
+ ÿ¡ÿåsys(5)ÿ1ÿpGVariante$ÿ"Netzwerk mit "ÿÿH(ÿ(ÿåsys(5),"999"))ÿ" Pl„tzen"ÿ^GVariante$ÿ"Einzelplatz"
+ ÿ½ fr ASP
+ ÿßÿe
+ ÿƒprovmask()
+ ÿßÿe
+ ÿ_netpath$
+ 
+ ÿ¡ÿOÿ÷("PLIB")ÿpÿ¨"PLIB.SBR",ÿ°
+ ÿ¡ÿOÿ÷("PLIB1")ÿpÿ¨"PLIB1.SBR",ÿ°
+ ÿ¡ÿOÿ÷("PLIB2")ÿpÿ¨"PLIB2.SBR",ÿ°
+ ÿ¡ÿOÿ÷("PLIB3")ÿpÿ¨"PLIB3.SBR",ÿ°
+ ÿ¡ÿOÿ÷("PLIB4")ÿpÿ¨"PLIB4.SBR",ÿ°
+ ÿ¡ÿOÿ÷("PPROVI")ÿpÿ¨"PPROVI.SBR",ÿ°
+ ÿ¡ÿOÿ÷("PEMAILFU")ÿpÿ¨"PEMAILFU.SBR",ÿ°
+ ÿ½ IF NOT PROGRAMFILE ("WORD1") THEN LOAD "WORD1.SBR", NEW 
+ 
+ ÿ½ IF NOT PROGRAMFILE ("FANALYSE") THEN LOAD "FANALYSE.SBR", NEW 
+ ÿßÿe
+ GGebList%ÿ0
+ ÿ½ fr Einheiten
+ GEinh%ÿ0
+ ÿ³ÿ_ÿwe020820041
+ ÿ¡nurEinh.stammÿ"j"ÿp
+GEinh%ÿÿ1
+ ÿ’ÿ¡
+e020820041: 
+ ÿ³ÿ_ÿwErrorHandler
+ ÿ½ Vorausberechnungen fr Firma GPKCO$="TRUE"
+ GPKCO$ÿ"TRUE"
+ GBuildno$ÿ"CODie-A01-2008"
+ GBuilnolen%ÿ8
+ ÿ¡GASP%ÿp
+GBuildno$ÿ"CODie-A01-2008"
+GBuilnolen%ÿ8
+ ÿ’ÿ¡
+ '010300-kxq-yac-12-3xa
+ GSerial$ÿÿ>("-abc-def-09-05z")
+ GSerial$ÿ"010108"
+ ÿ¡GASP%ÿp
+GSerial$ÿ"020108"
+ ÿ’ÿ¡
+ ÿ¡ag$ÿ"j"ÿp
+GSerial$ÿ"030108"
+ ÿ’ÿ¡
+ GVonFirma$ÿ""
+ GSpezko$ÿ""
+ ÿ½ **** GDV ****
+ ÿÿgdvVarDek%
+ gdvVarDek%ÿ0
+ ÿ½ ***** Templeton-Import ****
+ ÿÿtempeltpath$,tTestLog%
+ ÿ½ ************* 
+ ÿ½ LPZ$ wird verwendet, um in der Spartenmaske bei Sparte Fonds den TempletonImport-Button anzuzeigen
+ BUMON$ÿ""
+ PROVBU$ÿ"FALSE"
+ ÿ½ KLOTZ$ wird verwendet, um alle Agenturen, die mit *** anfangen auszublenden
+ KLOTZ$ÿ"TRUE"
+ 
+ GIIMTemplate$ÿReadINI$("PROVIS","IIMTEMPL")
+ ÿ¡ÿH(GIIMTemplate$)ÿ""ÿÿH(GIIMTemplate$)ÿ"leer*"ÿp
+GIIMTemplate$ÿ"C:\Programme\Indatex\Templates"
+ ÿ’ÿ¡
+ ÿ½ CALL Fehler(GIIMTemplate$,"")
+ ÿ¡ÿ>(ReadConfig$("PROVIS","IMMAK"))ÿ"TRUE"ÿp
+ÿÿOBsub%,ANFsub%,GRPsub%,CLICKsub%,ESCHLIEsub%
+ÿÿobezug%,cuob%,cugr%,anfragebuton$,angebotbuton$,Videokarte$
+ÿÿOBArt$(500),OBLage1$(500),OBLage2$(500),OBErschl$(500),OBBranche$(500)
+ÿÿCLAppID%,CLtopic%,CLLink%,bildnr%
+ ÿ’ÿ¡
+ 
+ 
+ GBVF$ÿÿ>(ReadConfig$("PROVIS","BVF"))
+ GRiese$ÿÿ>(ReadConfig$("PROVIS","DRRIESE"))
+ nemany$ÿ""
+ VertKokor%ÿ0
+ GCodeVStatus%ÿ0
+ Gvueb$ÿÿ>(ReadConfig$("PROVIS","ANTRAGSDATUMFUERPROVISIONSUEBERGABE"))
+ Gvuebs$ÿÿ>(ReadConfig$("PROVIS","ANTRAGSDATUMFUERSOLLUEBERGABE"))
+ GKondNoDattes$ÿÿ>(ReadConfig$("PROVIS","KONDITIONSDATUMNICHTPRUEFEN"))
+ PrvVerfahr$ÿÿ>(ReadConfig$("PROVIS","PROVISVERFAHREN"))
+ RealListe$ÿÿ>(ReadConfig$("PROVIS","REALLISTE"))
+ ÿ½ zweitwaehr$ = UCASE$ (ReadConfig$("PROVIS","ZWEITWAEHRUNG"))
+ statistikmodul$ÿÿ>(ReadConfig$("PROVIS","STATISTIK"))
+ PRVCHECKLISTE$ÿÿ>(ReadConfig$("PROVIS","PRVCHECKLISTE"))
+ ÿ½ Bewirkt den A&W Modus
+ PRVCHECKLISTE$ÿ""
+ ÿ¡Geinh%ÿÿ1ÿp
+PrvVerfahr$ÿ";ZAHLUNGSEINGANG"
+ ÿ’ÿ¡
+ w97$ÿÿ>(ReadINI$("SYSTEM","WinWord97"))
+ wXP$ÿÿ>(ReadINI$("SYSTEM","WinWordXP"))
+ ÿ¡wxp$ÿ"TRUE"ÿpw97$ÿ""
+ WinWordAnsi$ÿÿ>(ReadINI$("SYSTEM","WinWordAnsi"))
+ ÿ¡PrvVerfahr$ÿ"Zahlungseingang"ÿp
+prv$ÿ"Real Cash"
+ÿ¡FirmaEinhTab.stammÿ"j"ÿp
+prv$ÿ"Real Cash(Einh.)"
+ÿ’ÿ¡
+ÿ¡GLundWrigg$ÿ"TRUE"ÿp
+prv$ÿ"Real Cash Lund & Wriggers"
+ÿ’ÿ¡
+ÿ¡GAFSK$ÿ"TRUE"ÿp
+prv$ÿ"Real Cash AFSK"
+ÿ’ÿ¡
+ ÿ^
+PrvVerfahr$ÿ"STANDARD"
+prv$ÿ"STANDARD"
+ÿ³ÿ_ÿww251020051
+ÿ¡nurEinh.stammÿ"j"ÿp
+prv$ÿ"STANDARD(Einheitensystem)"
+ÿ’ÿ¡
+ÿ¡GLundWrigg$ÿ"TRUE"ÿp
+prv$ÿ"STANDARD Lund & Wriggers"
+ÿ’ÿ¡
+ÿ¡GAFSK$ÿ"TRUE"ÿp
+prv$ÿ"STANDARD AFSK"
+ÿ’ÿ¡
+w251020051: 
+ ÿ’ÿ¡
+ ÿ³ÿ_ÿwErrorHandler
+
+ CourtNachBeitr$ÿÿ>(ReadConfig$("PROVIS","COURTNACHBEITRAG"))
+ abbruch%ÿ0
+ ÿ½ SET HELP FILE _netpath$ + _projekt$ + "\" + _projekt$ + ".HLP"
+ ÿÊÿÿÿ™_netpath$ÿ"DOC\"ÿ_projekt$ÿ".pdf"
+ ÿ¡ÿJ(_netpath$ÿ"PROVIS\LISTPRO2.SBV")ÿpRepType%ÿ1ÿ^RepType%ÿ0
+ ÿÊÿiÿ³
+ ÿ½ CALL provmask()
+ 
+ ÿ¡GASP%ÿp
+ÿ½ GOTO ancou140720053
+ÿ×userver$(1000)
+ÿÿuserver$,6,"000*"
+ncou%ÿ0
+i%ÿ0
+ÿ½ CALL Fehler("","")
+ÿØuserver$(i%)ÿ""
+datei1$ÿ_netpath$ÿuserver$(i%)ÿ"\adrtemp.sbf"
+datei0$ÿ_netpath$ÿuserver$(i%)ÿ"\adrtemp;paris"
+ÿ³ÿ_ÿwancou140720051
+ÿ¡ÿJ(datei1$)ÿp
+ÿ½ DELETE datei1$
+ÿ´ÿ™datei0$
+ÿ†ÿ™"ADRTEMP"
+ÿ’ÿ¡
+ÿwancou140720052
+ancou140720051: 
+ncou%ÿncou%ÿ1
+ancou140720052: 
+ÿ³ÿ_ÿwErrorHandler
+i%ÿi%ÿ1
+ÿÙ
+ncou%ÿncou%ÿ1
+ÿ¡ÿ>(GBVF$)ÿ"TRUE"ÿpÿƒFehler("Anzahl aktive User: "ÿÿH(ÿ(ncou%,"999999")),"maximal zul„ssige User: "ÿÿH(ÿ(ÿåsys(5),"999")))
+ancou140720053:
+ÿƒLOGIN1()
+ÿƒAbgleich()
+ ÿ’ÿ¡
+ 
+ ÿƒLOGIN()
+ ÿƒLPRGCo()
+ 
+ ÿƒDFile(22,"CONFIG"ÿ_fpw$)
+ÿ™"CONFIG"
+ liz%ÿ0
+ liz%ÿLizensOld%()
+ liz$ÿÿ(liz%,"999")
+ ÿ¡liz%ÿÿ1ÿp
+feldlen%ÿÿ0(ÿö("QWoNo.config",4))
+ÿ½ CALL Fehler( FIELDINFO$ ("QWoNo.config",4),"")
+ÿ¡feldlen%ÿ
+100ÿp
+ÿ³ÿ_ÿwer180320081
+ÿƒFldAdd1("QWoNo","TXT;100",0)
+ÿƒFldAdd1("MAName","TXT;100",0)
+ÿÅÿ™"CONFIG"
+ÿÉÿ`ÿáÿ™"config"
+qwoNo.configÿ""
+MAName.configÿ""
+MATimeStamp1.configÿ""
+ÿÌÿ™"config"
+ÿ’ÿ¡
+er180320081: 
+ÿ³ÿ_ÿwErrorHandler
+ ÿ’ÿ¡
+ prgv$ÿPRGVersion$ÿ"/ Module: "
+ ÿ¡gdv.configÿ"TRUE"ÿpprgv$ÿprgv$ÿ"/GDV"
+ ÿ¡soll.configÿ"j"ÿpprgv$ÿprgv$ÿ"/Soll"
+ title1$ÿtitle$ÿ" Version: "ÿÿ-(GBuildno$,GBuilnolen%)ÿ"-"ÿPRGV$ÿ"/"ÿÿH(ÿ(ÿåsys(5),"999"))ÿ" AP/ "ÿprv$
+ 
+
+ ÿ½ CALL 1Lizensierung()
+ ÿ½ CALL Fehler(title1$,liz$)
+ Vista$ÿÿ>(ReadINI$("SYSTEM","MSVista"))
+ ÿ¡vista$ÿ"LEER"ÿp
+ÿÂ"L„uft Ihr System mit MS Vista?","",130,req%
+ÿ¡req%ÿ1ÿp
+Vista$ÿ"TRUE"
+ÿ^
+Vista$ÿ"FALSE"
+ÿ’ÿ¡
+ÿƒWriteINI("SYSTEM","MSVista",Vista$)
+ ÿ’ÿ¡
+ ÿ¡liz%ÿÿ1ÿp
+ÿ½ war nach alter Version nicht freigeschaltet
+ÿ½ CALL LizenzNeu()
+ ÿ’ÿ¡
+ ÿ½ IF ag$ = "j" THEN CALL LizensAG()
+ ÿßÿe
+ ÿ’ÿÿ
+ 
+ 
+ '      ********************************************
+ '      ** Routinen Formular "PROVIS" - Hauptmen **
+ '      ********************************************
+ 
+ÿÿPROVSTAMM()
+ ÿœ2
+ ÿ’ÿÿ
+ 
+ÿÿPROVPROV()
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿPROVIS()
+ ÿ½ CALL DFile(3,"AUmsatz" + _fpw$)
+ ÿƒDFile(2,"OFFICE\adrstat"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\terflosk"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\adrgrup"ÿ_fpw$)
+GAdrDat$ÿ"ADRESSEN"
+GConDat$ÿ"CONNECT"
+GTelDat$ÿ"TELEFON"
+GAkquiDat$ÿ"AKQUISE"
+GDokDat$ÿ"DOKUMENT"
+GADRStat$ÿ"ADRSTAT"
+ ÿÉÿ`ÿ™"CONFIG"
+ ÿ³ÿ_ÿwPAnf180220021
+ GSoll$ÿSoll.config
+ provverf$ÿÿ>(ReadConfig$("PROVIS","PROVISVERFAHREN"))
+ ÿÉÿ`ÿáÿ™"STAMM"
+ IIM.stammÿ"n"
+ ÿÌÿ™"stamm"
+ ÿ¡VertrArt.stammÿ"j"ÿGeinh%ÿÿ1ÿp
+PrvVerfahr$ÿ";ZAHLUNGSEINGANG"
+ ÿ’ÿ¡
+ ÿ¡provverf$ÿ"Zahlungseingang"ÿp
+ ÿ^
+GSoll$ÿ"n"
+ ÿ’ÿ¡
+PAnf180220021: 
+ ÿ³ÿ_ÿwErrorHandler
+ ÿ½ ** Maximale Anzahl Agenturen in FirstStep
+ ÿ¡AnzAG.configÿ0ÿp
+fsmax%ÿAnzAG.configÿagzus.config
+Anzag%ÿAnzAG.config
+ ÿ^
+fsmax%ÿ0
+ ÿ’ÿ¡
+ ÿ½ CALL Fehler("","")
+ ÿ³ÿ_ÿwerrdelscan01
+ ÿGMACodeDir$ÿ"SCAN\*.*"
+errdelscan01: 
+ ÿ³ÿ_ÿwErrorHandler
+ ÿ½ GDVVersion
+ GGDV$ÿgdv.config
+ ÿ½ * * * Maklerversion##
+ MAKLER$ÿmakler.config
+ LPZ$ÿÿ>(TempletonImport.config)
+ ÿ½ GShowSpeziKond% = SpezKond.config
+ ÿ½ keine Direktionsverwaltung in Stammdaten anzeigen
+ ÿ¡Direktion.configÿÿ1ÿp
+GNOAGDIR%ÿ0
+ ÿ^
+GNOAGDIR%ÿÿ1
+ ÿ’ÿ¡
+ GNOAGDIR%ÿ0
+ ÿƒDFile(3,"WAEHRUNG"ÿ_fpw$)
+ ÿ™"waehrung"
+ ÿ£waehrung
+ ÿÉÿ`
+ ÿ²"z99999999.999999"
+ aa%ÿ1
+ _formend%ÿ0
+ fir%ÿ0
+ ÿ½ CALL Gauge(0,"")
+ ÿ¡ÿJ(_netpath$ÿ"office\adrold.sbf")ÿpÿ(_netpath$ÿ"office\adrold.*")
+ ÿ¡ÿJ(_netpath$ÿ"provis\kvold.sbf")ÿpÿ(_netpath$ÿ"provis\kvold.*")
+ ÿ¡statistikmodul$ÿ"TRUE"ÿp
+ÿ¡ÿOÿJ(_ppath$ÿ"ST.SBR")ÿpstatistikmodul$ÿ"False"
+ ÿ’ÿ¡
+ ss%ÿ1
+ maske$ÿ"PROVIS"
+ ÿ¡GProvisMaske$ÿ""ÿp
+maske$ÿGProvisMaske$
+ ÿ’ÿ¡
+ ÿ³ÿ_ÿwprvmask250901001
+ ÿ¡IntVerw.stammÿ"j"ÿag$ÿ"j"ÿpmaske$ÿ"PROVISI"
+ ÿ¡GASP%ÿp
+maske$ÿ"ASPPROV"
+ÿ¡IntVerw.stammÿ"j"ÿpmaske$ÿ"ASPPROVI"
+ ÿ’ÿ¡
+ ÿ¡GASP%ÿGBENE%ÿp
+ÿ½ maske$ = "BENEPROV"
+maske$ÿ"BENEPROI"
+ ÿ’ÿ¡
+ ÿ¡GFSC%ÿÿ1ÿp
+maske$ÿ"PROVFSC"
+ ÿ’ÿ¡
+ ÿ¡GBVF$ÿ"TRUE"ÿp
+maske$ÿ"ASPBVF"
+ ÿ’ÿ¡
+ ÿ¡GInvesthouse$ÿ"TRUE"ÿp
+maske$ÿ"INVESTH"
+ÿ¡IntVerw.stammÿ"j"ÿp
+maske$ÿ"INVESTHI"
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ GVertrArt$ÿVertrArt.stamm
+ ÿ½ CALL Fehler(GVertrArt$,maske$)
+prvmask250901001: 
+ ÿ³ÿ_ÿwErrorHandler
+ ÿØ_formend%ÿ0
+ÿ³ÿ_ÿwErrorHandler
+PROVISsub%ÿ0
+Upd$ÿÿ>(ReadConfig$(_projekt$,"UPDATE"))
+ÿ¡ÿœÿmaske$ÿp
+st3004981: 
+
+ÿÊÿŸtitle$ÿ" - Hauptbersicht"
+ÿ_ppath$
+ÿ½ OPEN FORM "PROVIS"
+ÿ¡ÿJ(GPrjForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGPrjForm$ÿ"\"ÿmaske$
+ÿ^
+ÿ´ÿœGPrjForm$ÿmaske$
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ss%ÿ1
+Version$ÿGVersion$ÿ" vom "ÿGRelease$
+ÿÉÿ`ÿ™"Config"
+b%ÿÿ?(PRGVersion.config,"-")
+ÿ½ CALL Fehler("","")
+ÿ¡AnzAG.configÿ
+1ÿp
+ÿ¡b%ÿ0ÿp
+	PRGVersion$ÿÿ,(PRGVersion.config,1,b%ÿ1)ÿ"+  "ÿÿ,(PRGVersion.config,b%ÿ1)
+ÿ^
+	PRGVersion$ÿPRGVersion.configÿ"+ "
+ÿ’ÿ¡
+ÿ^
+PRGVersion$ÿPRGVersion.config
+ÿ’ÿ¡
+ÿ¡Makler.configÿ"TRUE"ÿp
+makk$ÿPRGVersion$ÿ"+ Kundenbeitragsinkasso"
+PRGVersion$ÿmakk$
+ÿ’ÿ¡
+ÿ¡TempletonImport.configÿ"TRUE"ÿp
+PRGVersion$ÿPRGVersion$ÿ"-Templetonimport"
+ÿ’ÿ¡
+ÿ¡AnzAG.configÿ0ÿp
+PRGVersion$ÿPRGVersion$ÿ" - "ÿÿH(ÿ(Anzag.config,"999999"))ÿ" Agenturen"
+ÿ’ÿ¡
+ÿ¡GTerminal%ÿÿ1ÿp
+PRGVersion$ÿPRGVersion$ÿ" - online.center (MS Terminalserver)"
+ÿ’ÿ¡
+ÿ¡Makler.configÿ"TRUE"ÿp
+f.zeinku.visibleÿÿ1
+f.zeinku.enabledÿÿ1
+f.zeinkutxt.visibleÿÿ1
+f.zeinkutxt.enabledÿÿ1
+ 
+f.makbu.visibleÿÿ1
+f.makbu.enabledÿÿ1
+f.makbutext.visibleÿÿ1
+f.makbutext.enabledÿÿ1
+ 
+f.kuink.visibleÿÿ1
+f.kuink.enabledÿÿ1
+f.kuinktext.visibleÿÿ1
+f.kuinktext.enabledÿÿ1
+ÿ^
+f.zeinku.visibleÿ0
+f.zeinku.enabledÿ0
+f.zeinkutxt.visibleÿ0
+f.zeinkutxt.enabledÿ0
+f.makbu.visibleÿ0
+f.makbu.enabledÿ0
+f.makbutext.visibleÿ0
+f.makbutext.enabledÿ0
+f.kuink.visibleÿ0
+f.kuink.enabledÿ0
+f.kuinktext.visibleÿ0
+f.kuinktext.enabledÿ0
+ÿ’ÿ¡
+ÿ¡gdv.configÿ"TRUE"ÿp
+f.impgdv.visibleÿÿ1
+f.impgdv.enabledÿÿ1
+ÿ^
+f.impgdv.visibleÿÿ1
+f.impgdv.enabledÿ0
+ÿ’ÿ¡
+ÿÊÿÿ³
+ÿƒHideStartup()
+GAppName$ÿ_netpath$ÿ"DOC\provis.pdf"
+ÿÊÿË"Hauptauswahl: W„hlen Sie die gewnschte Funktion!"
+ÿ’ÿ¡
+ÿƒMNMAIN()
+ÿ¬ÿ³
+ÿ¡fsmax%ÿ0ÿpfsmaxag$ÿÿH(ÿ(AnzAG%,"99"))
+ÿ½ CALL Fehler("","")
+ÿ¡PrvVerfahr$ÿ"Zahlungseingang"ÿp
+prv$ÿ"Real Cash"
+ÿ¡FirmaEinhTab.stammÿ"j"ÿp
+prv$ÿ"Real Cash(Einh.)"
+ÿ’ÿ¡
+ÿ¡GLundWrigg$ÿ"TRUE"ÿp
+prv$ÿ"Real Cash Lund&Wriggers"
+ÿ’ÿ¡
+ÿ¡GAFSK$ÿ"TRUE"ÿp
+prv$ÿ"Real Cash AFSK"
+ÿ’ÿ¡
+ÿ¡GSoll$ÿ"j"ÿGAFSK$ÿ"TRUE"ÿp
+prv$ÿprv$ÿ" mit Sollstellung"
+ÿ’ÿ¡
+ÿ¡GBENE%ÿp
+f.sollst.visibleÿ0
+f.sollst.enabledÿ0
+f.sollsttxt.visibleÿ0
+ÿ^
+f.sollst.visibleÿÿ1
+f.sollst.enabledÿÿ1
+ÿ’ÿ¡
+ÿ¡GAFSK$ÿ"TRUE"ÿp
+f.sollst.visibleÿÿ1
+f.sollst.enabledÿÿ1
+sollst$ÿ"Sutor"
+f.sollsttxt.Captionÿ"Sutor Datens„tze gesamt"
+ÿ’ÿ¡
+
+ÿ^
+f.sollst.visibleÿ0
+f.sollst.enabledÿ0
+PrvVerfahr$ÿ"STANDARD"
+prv$ÿ"STANDARD"
+ÿ³ÿ_ÿww251020052
+ÿ¡nurEinh.stammÿ"j"ÿp
+prv$ÿ"STANDARD(Einheitensystem)"
+ÿ’ÿ¡
+ÿ¡GLundWrigg$ÿ"TRUE"ÿp
+prv$ÿ"STANDARD Lund&Wriggers"
+ÿ’ÿ¡
+ÿ¡GAFSK$ÿ"TRUE"ÿp
+prv$ÿ"STANDARD AFSK"
+ÿ’ÿ¡
+ÿ¡GBENE%ÿp
+prv$ÿ"STANDARD Benedict"
+ÿ’ÿ¡
+ÿ’ÿ¡
+w251020052: 
+ÿ³ÿ_ÿwErrorHandler
+ÿ¡GASP%ÿp
+prv$ÿprv$ÿ" - ASP"
+ÿ’ÿ¡
+ÿ¡PrvVerfahr$ÿ"ZAHLUNGSEINGANG"ÿpGShowSpeziKond%ÿ0
+ÿœss%
+ss%ÿÿí
+ÿ¬ÿ³
+ÿßÿ³
+
+ÿ¡GBVF$ÿ"TRUE"ÿp
+PRGVersion$ÿ"BVF - Managementsystem"
+ÿ’ÿ¡
+
+ÿƒClearKBDBuffer()
+ÿ¡MATagest$ÿ"TRUE"ÿfir%ÿ0ÿupd$ÿ"TRUE"ÿp
+ÿ½ REQUEST "M”chten Sie die Tagestermine des aktuellen ","Mitarbeiters angezeigt bekommen ?",130,req310898%
+ ter1anz%ÿ1
+ gnab$ÿ""
+ gnab0$ÿ"Sie erhalten hier die M”glichkeit sich eine šbersicht ber erledigte/nichterledigte/alle Termine eines oder aller Mitarbeiter in einem freiw„hlbaren Zeitraum fr"
+ gnab0$ÿgnab0$ÿ" einen oder fr alle Terminkalender (Aktionen) zu verschaffen. Weiterhin k”nnen Sie die Termine auch selektieren und als erledigt kennzeichnen!"
+ gnab0$ÿgnab0$ÿgnab$
+ ÿwProv040620001
+ÿ×dlg1 ÿUDialog
+ÿ×control1 ÿUDialogControl
+ 
+Superbase.Dialogs.Add("LHELP")
+ÿÊdlg1 ÿSuperbase.Dialogs.LHELP
+dlg1.Move(0,0,302,159)
+dlg1.Captionÿ"Hilfe"
+dlg1.FontNameÿ"MS Sans Serif"
+dlg1.FontSizeÿ8
+ 
+ÿÊcontrol1 ÿdlg1.Add("DialogFrame2","DialogFrame")
+control1.Move(0,3,301,135)
+control1.Captionÿ""
+ 
+ÿÊcontrol1 ÿdlg1.Add("DialogIcon1","DialogIcon")
+control1.Move(6,17,22,21)
+control1.Iconÿ2
+ 
+ÿÊcontrol1 ÿdlg1.Add("DialogLabel1","DialogLabel")
+control1.Move(6,41,291,92)
+control1.CaptionBindingÿ"gnab0$"
+ 
+ÿÊcontrol1 ÿdlg1.Add("DialogCommandButton3","DialogCommandButton")
+control1.Move(125,143,55,14)
+control1.Captionÿ"&OK"
+control1.ReturnValueÿ0
+
+ÿ×dlg ÿUDialog
+ÿ×control ÿUDialogControl
+ 
+Superbase.Dialogs.Add("TLISTE")
+ÿÊdlg ÿSuperbase.Dialogs.TLISTE
+dlg.Move(0,0,288,67)
+dlg.Captionÿ"Adressaktualisierungen"
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame2","DialogFrame")
+control.Move(0,2,286,46)
+control.Captionÿ""
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel1","DialogLabel")
+control.Move(30,16,255,23)
+control.Captionÿ"M”chten Sie die Tagestermine des aktuellen, Mitarbeiters angezeigt bekommen ?"
+ 
+ÿÊcontrol ÿdlg.Add("DialogIcon1","DialogIcon")
+control.Move(6,16,22,20)
+control.Iconÿ2
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(58,49,55,15)
+control.Defaultÿ1
+control.Captionÿ"&Weiter"
+control.ReturnValueÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton2","DialogCommandButton")
+control.Move(114,49,55,15)
+control.Captionÿ"&Abbrechen"
+control.ReturnValueÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton3","DialogCommandButton")
+control.Move(170,49,55,15)
+control.Captionÿ"&Hilfe"
+control.ReturnValueÿ0
+control.NestedDialogNameÿ"LHELP"
+ 
+ ÿñ"TLISTE",req310898%
+ ÿ¾ÿñÿt
+ ÿßÿ³
+ 
+ÿ¡req310898%ÿ1ÿpÿƒTagestMA()
+Prov040620001: 
+ÿƒTagestMA()
+fir%ÿ1
+ÿ’ÿ¡
+ÿ¡Upd$ÿ"TRUE"ÿp
+ÿ¡ÿOÿ÷("PROVUPD")ÿpÿ¨_netpath$ÿ"PROVUPD.SBR",ÿ°
+ÿƒDoUpdate()
+Upd$ÿÿ>(ReadConfig$(_projekt$,"UPDATE"))
+ÿ¡PrvVerfahr$ÿ"Zahlungseingang"ÿp
+ÿ¡RealListe$ÿ"TRUE"ÿp
+	t1$ÿ"Bitte drucken Sie diese Liste UNBEDINGT aus und befolgen Sie die dort gegebenen Hinweise!!!, Sie k”nnen den Listendruck ber den Button <Listen>/ -Abgleichsliste zur Umstellung auf...- aus der Hauptmaske wiederholen!"
+	ÿƒFehler("ACHTUNG Es wird jetzt eine Abgleichsliste zur Umstellung auf SmartPROVIS Plus Real Cash erstellt!",t1$)
+	ÿƒVertrAbgleich()
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ CALL DFile(3,"AUmsatz" + _fpw$)
+ÿƒDFile(3,"STAMM"ÿ_fpw$)
+ÿ½ CALL DFile(3,"MAADR" + _fpw$)
+ÿ½ CALL DFile(3,"MAVORG" + _fpw$)
+ÿƒDFile(2,"OPENFILE"ÿ_fpw$)
+ÿƒDFile(2,"ZERO"ÿ_fpw$)
+ÿƒDFile(22,"CONFIG"ÿ_fpw$)
+ÿƒDFile(2,"supervis"ÿ_fpw$)
+ÿÉÿ`ÿ™"stamm"
+ÿ¡codew.stammÿ0ÿp
+zweitwaehr$ÿwaehrung.stamm
+euro%ÿumrechnung.stamm
+ZWCodew%ÿcodew.stamm
+ÿ^
+ÿƒFehler("Es wurde fr diese Anwendung noch keine allgemeine Firmenw„hrung festgelegt(z.B. DM)!","W„hlen Sie nachfolgend eine Firmenw„hrung aus! Die Umrechnungskurse k”nnen Sie ber Stammdaten->Einstellungen->W„hrungstabelle festlegen!")
+ÿƒWaehrStamm()
+ÿ’ÿ¡
+ÿ¡iim.stammÿ"j"ÿp
+ÿ_netpath$
+ÿ¡ÿOÿ÷("INDATEX")ÿpÿ¨"INDATEX.SBR",ÿ°
+ÿ’ÿ¡
+ÿ½ CALL Fehler(GScandir$,"")
+ÿ¡GScandir$ÿ"leer"ÿp
+GScanDir$ÿ_netpath$
+ÿ’ÿ¡
+ÿÉÿ¥GMACodeMA%ÿ™"Supervis"ÿ£codema.supervis
+ÿ½ CALL Fehler("GEMAIL%","")
+GEMAIL%ÿEMAILJN.stamm
+ÿ½ IF GEMAILON$ LIKE "TRUE" THEN 
+ÿ½ ELSE 
+ÿ½ GEMAIL% = 0
+ÿ½ END IF 
+ÿ¡GEMAIL%ÿp
+tt%ÿEMAILJN.supervis
+GEMAIL%ÿEMAILJN.supervis
+GEMAILJNAuto%ÿEMAILJNAuto.stamm
+ÿ¡GEMAILJNAuto%ÿÿ1ÿp
+GEMAILJNAuto%ÿEMAILJNAuto.supervis
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ÿ>(ÿœ)ÿmaske$ÿpÿwst3004981 
+ÿ‹"0d.mm.yyyy"
+ÿ¬ÿ³
+ter1anz%ÿ0
+ÿ¡GLundWrigg$ÿ"TRUE"ÿp
+kuink$ÿ"F„lligkeitsliste"
+ÿ½ fael$ = "Abrechnungsliste"
+ÿ¡maske$ÿ"PROVISI"ÿp
+	f.fael.visibleÿ0
+	f.fael.enabledÿ0
+	ÿ³ÿ_ÿwfaeltext01
+	f.faeltext.visibleÿ0
+faeltext01: 
+	ÿ³ÿ_ÿwErrorHandler
+ÿ’ÿ¡
+makbu$ÿ"Abruf/DTAUS/Abrechnungsliste"
+f.makbu.visibleÿÿ1
+f.makbu.enabledÿÿ1
+
+f.makbutext.visibleÿ0
+f.kuinktext.visibleÿ0
+ÿ’ÿ¡
+ 
+GLizName$ÿÿƒ("AccessItemC",1,0,"")
+GLizFirma$ÿÿƒ("AccessItemC",2,0,"")
+ÿ½ CALL Fehler(GLizName$,GLizFirma$)
+ÿ¡GLizFirma$ÿ""ÿp
+liz$ÿ"Registrierung fr Firma "ÿGLizFirma$ÿ"/"ÿGlizName$
+ÿ^
+liz$ÿ"DEMO Version "
+ÿ’ÿ¡
+ÿ¡GAFSK$ÿ"TRUE"ÿp
+liz$ÿ"Registrierung fr Firma "ÿ"AFSK"
+ÿ’ÿ¡
+ÿ¡GBENE%ÿÿ1ÿp
+liz$ÿ"Registrierung fr Firma "ÿ"BENDICT"
+ÿ’ÿ¡
+gcopyright1$ÿ"Copyright ¸ 1990 - "ÿÿ(ÿ6(ÿQ),"0000")
+Release$ÿGVariante$
+ÿ¡Gpdemende$ÿ""ÿpliz$ÿliz$ÿ"   Programm l„uft noch bis zum "ÿGpdemende$
+ÿ½ Lizens$ = liz$
+ÿ¡prvVerfahr$ÿ"ZAHLUNGSEINGANG"ÿp
+ÿ¡Verwaltung.configÿÿ1ÿp
+ÿ¡GSoll$ÿ"j"ÿp
+	ÿ½ f.buchung.visible = 0
+	f.buchung.enabledÿ0
+	ÿ½ f.butext.visible = 0
+	f.butext.enabledÿ0
+ÿ^
+	f.buchung.visibleÿÿ1
+	f.buchung.enabledÿÿ1
+	f.butext.visibleÿÿ1
+	f.butext.enabledÿÿ1
+ÿ’ÿ¡
+f.provvonges.enabledÿ0
+ÿ^
+f.buchung.visibleÿÿ1
+f.buchung.enabledÿÿ1
+f.butext.visibleÿÿ1
+f.butext.enabledÿÿ1
+ÿ’ÿ¡
+ÿ^
+ÿ¡Verwaltung.configÿÿ1ÿag$ÿ"j"ÿp
+	ÿ½ f.buchung.visible = 0
+	f.buchung.enabledÿ0
+	ÿ½ f.butext.visible = 0
+	f.butext.enabledÿ0
+	f.provvonges.enabledÿ0
+ÿ’ÿ¡
+ÿ³ÿ_ÿwfa161220031
+ÿ¡GFAELLIG%ÿÿ1ÿp
+f.fael.visibleÿÿ1
+f.faeltext.visibleÿÿ1
+f.sollsttxt.visibleÿ0
+ÿ^
+f.fael.visibleÿ0
+f.faeltext.visibleÿ0
+ÿ’ÿ¡
+fa161220031: 
+ÿ³ÿ_ÿwErrorHandler
+ÿ’ÿ¡
+ÿ¡GBVF$ÿ"TRUE"ÿp
+ÿ¡workstation%ÿ0ÿp
+f.setup.enabledÿ0
+f.setup.visibleÿ0
+f.prov.visibleÿ0
+f.prov.enabledÿ0
+f.setuptxt.visibleÿ0
+
+f.provbvf.heightÿ2229
+f.provbvf.topÿ2032
+f.provbvf.leftÿ8032
+f.prov1txt.topÿ3782
+f.prov1txt.leftÿ8157
+ÿ^
+f.setup.enabledÿÿ1
+f.setup.visibleÿÿ1
+f.prov.visibleÿÿ1
+f.prov.enabledÿÿ1
+f.setuptxt.visibleÿÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÊÿË"Ihr tempor„res Verzeichnis befindet sich in: "ÿGMAcOdeDir$
+ÿœ
+GMFoAq%ÿ1
+ÿ¡GFPB%ÿÿ1ÿpGoldScanVerf$ÿ"TRUE"
+ÿ¡ÿJ(_netpath$ÿ"IMMAK\Anfrage.sbf")ÿp
+GIMMAK%ÿÿ1
+ÿ’ÿ¡
+
+ÿÏÿßÿÿ¥ÿÿ¬ÿ›600
+ÿk$
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp
+_formend%ÿ1
+ÿ’ÿ¡
+ÿ¡ÿíÿ1ÿp
+ÿœ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ss%ÿÿí
+ÿ¡ss%ÿ2ÿp
+ÿ¡disabled%("STAMMDATENHAUPTMASKE")ÿp
+ÿœ1
+ss%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ss%ÿ3ÿp
+ÿ¡disabled%("BUCHUNGENHAUPTMASKE")ÿp
+ÿœ1
+ss%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+ÿÉÿæPROVISsub%
+ÿæ1
+GMFoAq%ÿ0
+ÿ½ DELETE "c:\codie.fpv\00000240\superbas.net"
+GAdrDat$ÿ"ADRESSEN"
+GConDat$ÿ"CONNECT"
+GTelDat$ÿ"TELEFON"
+GAkquiDat$ÿ"AKQUISE"
+GDokDat$ÿ"DOKUMENT"
+GADRStat$ÿ"ADRSTAT"
+ÿƒADRESSEN()
+ÿæ2
+ÿ_ppath$
+ÿƒMAADR()
+ÿæ3
+ÿ_ppath$
+ÿƒGEADR()
+ÿæ4
+ÿ_ppath$
+ÿƒVERTRINFO()
+ÿæ5
+ÿ_ppath$
+ÿƒFRVERTR()
+ÿæ6
+ÿ½ cuva% = 0
+_codegrsp%ÿÿ1
+ÿ_ppath$
+ÿƒCODEVA()
+ÿæ7
+ÿ½ 210897
+ÿƒDFile(3,"VProdukt"ÿ_fpw$)
+ÿ_ppath$
+ÿ¡PrvVerfahr$ÿ"ZAHLUNGSEINGANG"ÿp
+ÿ¡ProvBuch$ÿ"TRUE"ÿp
+	ÿƒBUCHUNG()
+ÿ^
+	ÿƒFehler ("Sie haben eine Programmvariante erworben, die keine Provisionsberechnung untersttzt!!!","")
+ÿ’ÿ¡
+ÿ^
+ÿ¡ProvBuch$ÿ"TRUE"ÿp
+	ÿƒBUCHUNGZE()
+ÿ^
+	ÿƒFehler ("Sie haben eine Programmvariante erworben, die keine Provisionsberechnung untersttzt!!!","")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿæ8
+ÿƒDFile(3,"VProdukt"ÿ_fpw$)
+ÿ¡ag$ÿ"j"ÿp
+ÿ¡gasp%ÿp
+	ÿ¡workstation%ÿ0ÿp
+ÿƒBMKurzbericht()
+	ÿ^
+ÿƒFehler("Diese Funktion ist in SmartPROVIS fr externe Bros gesperrt!","")
+	ÿ’ÿ¡
+ÿ^
+	ÿƒBMKurzbericht()
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Diese Funktion ist in SmartPROVIS Agentur gesperrt!","")
+ÿ’ÿ¡
+ÿæ9
+ÿƒDFile(3,"VProdukt"ÿ_fpw$)
+ÿ_ppath$
+ÿ¡gasp%ÿworkstation%ÿ0ÿp
+ÿƒFehler("Sorry, diese Funktion ist fr externe Bros nicht verfgbar!!!!","")
+ÿ^
+ÿƒPROLIST()
+ÿ’ÿ¡
+ÿæ10
+ÿƒSETUP()
+ÿ½ maske$ = "PROVIS"
+ÿ½ IF IntVerw.stamm LIKE "j" THEN maske$ = "PROVISI"
+ÿ½ provverf$ = UCASE$ (ReadConfig$("PROVIS","PROVISVERFAHREN"))
+ÿ½ IF provverf$ = "ZAHLUNGSEINGANG" THEN 
+ÿ½ IF soll.config LIKE "j" THEN GSoll$ = "j"
+ÿ½ ELSE 
+ÿ½ GSoll$ = "n"
+ÿ½ END IF 
+ÿæ11
+ÿ¡ÿJ(_netpath$ÿ"IMMAK\Anfrage.sbf")ÿp
+ÿ¡ÿOdisabled%("IMMAK")ÿp
+	ÿ¡ÿOÿ÷("CLICKII")ÿpÿ¨_netpath$ÿ"CLICKII.SBR",ÿ°
+	ÿ¡_projekt$ÿ"PROV*"ÿ_projekt$ÿ"IMM*"ÿp
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\kvertrag.sbf")ÿpÿƒDFile(3,"KVERTRAG"ÿ_fpw$)
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\vermoeg.sbf")ÿpÿƒDFile(3,"VERMOEG"ÿ_fpw$)
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\vorgang.sbf")ÿpÿƒDFile(3,"VORGANG"ÿ_fpw$)
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\maadr.sbf")ÿpÿƒDFile(3,"MAADR"ÿ_fpw$)
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\kukto.sbf")ÿpÿƒDFile(3,"KUKTO"ÿ_fpw$)
+ÿ¡GAFSK$ÿ"TRUE"ÿp
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\afsksut.sbf")ÿpÿƒDFile(3,"AFSKSUT"ÿ_fpw$)
+ÿ’ÿ¡
+ÿ¡MAKLER$ÿ"TRUE"ÿ_projekt$ÿ"PROV*"ÿp
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\inkstamm.sbf")ÿpÿƒDFile(3,"INKSTAMM"ÿ_fpw$)
+ÿ’ÿ¡
+GPrjForm$ÿ_netpath$ÿ"IMMAK\"ÿÿH(ÿ(GBildschirm%,"9999"))ÿ".sbv\"
+ÿ½ GOFFForm$ = _netpath$ + "OFFICE\" + GScrWidth$
+ÿƒCIMMAK()
+GPrjForm$ÿ_netpath$ÿ"PROVIS\"ÿÿH(ÿ(GBildschirm%,"9999"))ÿ".sbv\"
+ÿ½ GOFFForm$ = _netpath$ + "OFFICE\" + GScrWidth$
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Sie mssen den Programmteil fr SmartIMMAK erst k„uflich erwerben, bevor Sie es aufrufen k”nnen!","")
+ÿ’ÿ¡
+ÿæ12
+ÿƒOFFICE()
+ÿæ13
+ÿƒXCHANGE()
+ÿæ14
+GAdrDat$ÿ"ADRE1"
+GConDat$ÿ"CONADR1"
+GTelDat$ÿ"TELADR1"
+GAkquiDat$ÿ"AKQUI1"
+GDokDat$ÿ"DOKADR1"
+ÿƒADRESSEN()
+ÿæ15
+ÿ½ 170897
+ÿ¡ag$ÿ"j"ÿp
+ÿƒDFile(3,"VProdukt"ÿ_fpw$)
+ÿ¡ÿ>(PrvVerfahr$)ÿ"ZAHLUNGSEINGANG"ÿp
+	ÿƒEINGANG(0)
+ÿ^
+	ÿƒEINGANG1(0)
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Diese Funktion steht unter der Agenturversion nicht zur Verfgung","")
+ÿ’ÿ¡
+ÿæ16
+ÿ¡ag$ÿ"j"ÿp
+ÿƒDFile(3,"VProdukt"ÿ_fpw$)
+ÿ_ppath$
+ÿƒGEKONDM()
+ÿ^
+ÿƒFehler("Diese Funktion steht unter der Agenturversion nicht zur Verfgung","")
+ÿ’ÿ¡
+ÿæ17
+ÿ¡ag$ÿ"j"ÿp
+ÿƒDFile(3,"VProdukt"ÿ_fpw$)
+ÿ_ppath$
+_codegrsp%ÿÿ1
+ÿƒSPGRUPPE()
+ÿ^
+ÿƒFehler("Diese Funktion steht unter der Agenturversion nicht zur Verfgung","")
+ÿ’ÿ¡
+ÿæ18
+ÿ¡gasp%ÿworkstation%ÿ0ÿp
+ÿƒFehler("Sorry, diese Funktion steht fr externe Bros an dieser Stelle nicht zur Verfgung!!!","Gehen Sie bitte in die Kundenmaske und nutzen Sie die Suchen-Funktion zur Erstellung von Serienbriefen!")
+ÿ^
+ÿƒMAILING()
+ÿ’ÿ¡
+ÿæ19
+ÿƒDOKallg()
+ÿæ20
+ÿ¡gasp%ÿworkstation%ÿ0ÿp
+ÿƒFehler("Sorry, diese Funktion steht fr externe Bros nicht zur Verfgung!!!","Gehen Sie bitte ber die Kundenmaske in die einzelnen Termine!")
+ÿ^
+termin%ÿ1
+ÿƒAKQUISE(1)
+ÿ’ÿ¡
+ÿæ21
+ÿƒAKTIONEN()
+ÿæ22
+ÿƒDOKUMENTSRV()
+ÿæ28
+ÿ½ 071197
+ÿ_netpath$
+ÿ¡ÿOÿ÷("PEXPAG")ÿpÿ¨"PEXPAG.SBR",ÿ°
+ÿ_ppath$
+ÿƒExportAG()
+ÿ½ > > Fr GDV < < 
+ÿæ30
+ÿ_ppath$
+ÿ¡disabled%("GDVIMPORT")ÿpÿwnoimp1304001
+ÿ½ * GDV - Programm laden"
+ÿ³ÿ_ÿwerr0202991tk
+ÿ¡ÿOÿ÷("PGDV")ÿpÿ¨_netpath$ÿ"PGDV.SBR",ÿ°
+ÿ½ IF NOT PROGRAMFILE ("GDVNEU") THEN LOAD _netpath$ + "GDVNEU.SBR", NEW 
+ÿwweit0202991tk
+err0202991tk: 
+ÿ³ÿ_ÿwErrorHandler
+ÿƒFehler("Dateifehler","Die Datei .SBR konnte nicht im Pfad "ÿ_netpath$ÿ"gefunden werden.")
+ÿwweit0202990tk
+weit0202991tk:
+ÿ³ÿ_ÿwErrorHandler
+ÿ½ * GDV - Form aufrufen * 
+test$ÿÿ
+ÿƒDFile(3,"GDVHEAD"ÿ_fpw$)
+ÿƒGDVImport()
+ÿtest$
+ÿ¡GgdvEnde%ÿÿ1ÿp
+ÿƒFehler("Das Programm wird jetzt beendet, um den durch den GDV-Import belegten Speicher freizugeben!","")
+ÿƒEXIT()
+ÿ’ÿ¡
+ ÿ½ > > Ende GDV < < 
+noimp1304001: 
+ÿæ31
+ÿ¡ag$ÿ"j"ÿp
+ÿƒDFile(3,"VProdukt"ÿ_fpw$)
+ÿƒEINGANGKU()
+ÿ^
+ÿƒFehler("Diese Funktion steht unter der Agenturversion nicht zur Verfgung","")
+ÿ’ÿ¡
+ÿæ32
+ÿƒDFile(3,"VProdukt"ÿ_fpw$)
+ÿƒDFile(3,"spgruppe"ÿ_fpw$)
+ÿ¡ÿOdisabled%("PRODUKTMASKE")ÿp
+ÿƒVProdukt1()
+ÿ’ÿ¡
+ÿæ33
+ÿƒDFile(3,"Tarif"ÿ_fpw$)
+ÿ¡ÿOdisabled%("TARIFMASKE")ÿp
+ÿƒTarife()
+ÿ’ÿ¡
+ÿæ34
+ÿ½ Maklerbuchungen
+ÿ¡ag$ÿ"j"ÿp
+ÿ¡ÿOdisabled%("BUCHUNG")ÿp
+	ÿ¡GLundWrigg$ÿ"TRUE"ÿp
+ÿ½ Abrechnungsliste
+ÿƒLundMaklerInk(0)
+	ÿ^
+ÿƒMaklerInk()
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Diese Funktion steht unter der Agenturversion nicht zur Verfgung","")
+ÿ’ÿ¡
+ÿæ35
+ÿ½ autom. Kundeninkasso
+ÿ¡ÿOdisabled%("BUCHUNG")ÿp
+ÿ¡GLundWrigg$ÿ"TRUE"ÿp
+	ÿ½ F„lligkeitsliste
+	ÿƒLundInkasso(0)
+ÿ^
+	ÿƒInkasso()
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿæ36
+GMFoAq%ÿ0
+ÿ½ BC-Kontakte
+GADRDat$ÿ"BCKONTAK"
+GConDat$ÿ"CONBCK"
+GTelDat$ÿ"TELBCK"
+GAkquiDat$ÿ"AKQUIBCK"
+GDokDat$ÿ"DOKBCK"
+ÿƒADRESSEN()
+GAdrDat$ÿ"ADRESSEN"
+GConDat$ÿ"CONNECT"
+GTelDat$ÿ"TELEFON"
+GAkquiDat$ÿ"AKQUISE"
+GDokDat$ÿ"DOKUMENT"
+GADRStat$ÿ"ADRSTAT"
+ÿæ37
+ÿ¡ag$ÿ"j"ÿGFAELLIG%ÿÿ1ÿp
+GAdrDat$ÿ"ADRESSEN"
+GConDat$ÿ"CONNECT"
+GTelDat$ÿ"TELEFON"
+GAkquiDat$ÿ"AKQUISE"
+GDokDat$ÿ"DOKUMENT"
+GADRStat$ÿ"ADRSTAT"
+ÿƒFaelvorsch()
+ÿ^
+ÿƒFehler("Diese Funktion wird nur in der Agenturvariante untersttzt!","")
+ÿ’ÿ¡
+ÿæ38
+ÿ½ Sollstellungen bearbeiten
+ÿƒDFile(3,"zeinvor"ÿ_fpw$)
+ÿ¡GAFSK$ÿ"TRUE"ÿp
+ÿ¡GSoll$ÿ"j"ÿp
+	ÿ¡ÿOdisabled%("SOLLSTELLUNG")ÿp
+ÿ¡workstation%ÿ0ÿp
+ÿ™"ZEINVOR"
+bef$ÿ"SELECT WHERE workstation.zeinvor = 83"
+ÿ–bef$
+ÿ^
+ÿ™"ZEINVOR"
+ÿÉÿĞ
+ÿ’ÿ¡
+ÿƒZEINVOR(0)
+ÿ™"ZEINVOR"
+ÿÉÿĞ
+	ÿ’ÿ¡
+ÿ^
+	ÿƒFehler("Diese Funktion k”nnen Sie erst nutzen, wenn Sie das Sollstellungsmodul erworben haben!","")
+ÿ’ÿ¡
+ÿ^
+ÿ½ CALL Fehler("Diese Funktion k”nnen Sie in Ihrer AFSK-Variante nicht verwenden!","")
+ÿƒSutor()
+ÿ’ÿ¡
+ÿæ39
+ÿ½ Anzeige des letzten Updatetextes
+dateilu$ÿÿ>(ReadConfig$("PROVIS","Textlastupd"))
+ÿ½ CALL (_netpath$+"DOC\" + dateilu$)
+updtxt$ÿ_netpath$ÿ"DOC\"ÿdateilu$
+ÿßÿe
+a%ÿÿƒ("ShellExecute",0,"open",updtxt$,"","",1)
+ÿßÿ³
+ÿæ40
+ÿ½ FSCImport
+ÿ¡ÿOÿ÷("FSC24")ÿpÿ¨_netpath$ÿ"FSC24.SBR",ÿ°
+ÿ_netpath$ÿ"0-Import"
+ÿƒFSCImport()
+ÿæ41
+ÿƒBUCHUNGZE()
+ÿæ42
+ÿ½ FSSOnline Import
+ÿ½ IDEAL Import
+ÿ¡GIdeal$ÿ"A1IIMTR"ÿGAleks%ÿÿ1ÿp
+GAdrDat$ÿ"ADRESSEN"
+GConDat$ÿ"CONNECT"
+GTelDat$ÿ"TELEFON"
+GAkquiDat$ÿ"AKQUISE"
+GDokDat$ÿ"DOKUMENT"
+GADRStat$ÿ"ADRSTAT"
+ÿ½ CALL FSSOnlineImp()
+ÿƒIDEALImp()
+ÿ^
+ÿƒFehler("Der IDEAL-Import wurde nicht aktiviert!","Bitte wenden Sie sich an die Firma CODie software products e.K.!")
+ÿ’ÿ¡
+ÿæ43
+ÿ½ Online-Beratungsprotokoll Export Adressen
+GAdrDat$ÿ"ADRESSEN"
+GConDat$ÿ"CONNECT"
+GTelDat$ÿ"TELEFON"
+GAkquiDat$ÿ"AKQUISE"
+GDokDat$ÿ"DOKUMENT"
+GADRStat$ÿ"ADRSTAT"
+ÿƒOnlBeratPrADR(0)
+ÿæ44
+ÿ½ alte Serienmails
+ÿƒEMAILform()
+ÿæ45
+ÿ½ Mail Vorlagen
+ÿƒWEMAILform()
+ÿ’ÿÉ
+ÿƒBMCheckMail()
+ÿ½ IF k$ = CHR$ (27) THEN _formend% = 1
+ ÿÙ
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ '      *************************
+ '      ** allgemeine Routinen **
+ '      *************************
+ 
+ 
+ ' Gesellschaftsdaten anzeigen
+ ' =======================================================================
+ 
+ProcShowGeadr: 
+ w%ÿ120:h%ÿ120:st%ÿÿR
+ d$ÿ"ShowCustoms"
+ ÿ‰ÿñd$,0,0,w%,h%,"Angaben zur Gesellschaft","MS Sans Serif",8
+ Ort$ÿPlz.geadrÿ" "ÿort.geadr
+ Anspr$ÿvorname.geadrÿ" "ÿnachname.geadr
+ ÿ|ÿñd$,5,4,20,90,9,0,gesellschaft.geadr
+ ÿ|ÿñd$,5,4,28,90,9,0,Anspr$
+ ÿ|ÿñd$,5,4,36,90,9,0,straáe.geadr
+ ÿ|ÿñd$,5,4,44,90,9,0,ort$
+ ÿ|ÿñd$,5,4,58,90,9,0,"Telefon 1"
+ ÿ|ÿñd$,5,40,58,90,9,0,telefon1.geadr
+ ÿ|ÿñd$,5,4,66,90,9,0,"Telefon 2"
+ ÿ|ÿñd$,5,40,66,90,9,0,telefon2.geadr
+ ÿ|ÿñd$,5,4,74,90,9,0,"Telefax"
+ ÿ|ÿñd$,5,40,74,90,9,0,telefax.geadr
+ ÿ|ÿñd$,5,4,82,90,9,0,"BTX"
+ ÿ|ÿñd$,5,40,82,90,9,0,btx.geadr
+ ÿ|ÿñd$,1,w%ÿ40,h%ÿ18,36,14,1,"OK",1,1
+ ÿñd$,a%
+ ÿ¾ÿñd$
+ ÿÃ
+ 
+ 
+ ' Agenturdaten anzeigen
+ ' =======================================================================
+ 
+ProcShowMaadr: 
+ w%ÿ120:h%ÿ120:st%ÿÿR
+ d$ÿ"ShowCustoms"
+ ÿ‰ÿñd$,0,0,w%,h%,"Angaben zur Agentur","MS Sans Serif",8
+ Mitarbeiter$ÿvorname.maadrÿ" "ÿnachname.maadr
+ Ort$ÿPlz.maadrÿ" "ÿort.maadr
+ ÿ|ÿñd$,5,4,20,90,9,0,anrede.maadr
+ ÿ|ÿñd$,5,4,28,90,9,0,Mitarbeiter$
+ ÿ|ÿñd$,5,4,36,90,9,0,straáe.maadr
+ ÿ|ÿñd$,5,4,44,90,9,0,ort$
+ ÿ|ÿñd$,5,4,58,90,9,0,"Telefon 1"
+ ÿ|ÿñd$,5,40,58,90,9,0,telefon1.maadr
+ ÿ|ÿñd$,5,4,66,90,9,0,"Telefon 2"
+ ÿ|ÿñd$,5,40,66,90,9,0,telefon2.maadr
+ ÿ|ÿñd$,5,4,74,90,9,0,"Telefax"
+ ÿ|ÿñd$,5,40,74,90,9,0,telefax.maadr
+ ÿ|ÿñd$,5,4,82,90,9,0,"BTX"
+ ÿ|ÿñd$,5,40,82,90,9,0,btx.maadr
+ ÿ|ÿñd$,1,w%ÿ40,h%ÿ18,36,14,1,"OK",1,1
+ ÿñd$,a%
+ ÿ¾ÿñd$
+ ÿÃ
+ 
+ 
+ '      *************************
+ '      ** allgemeine Routinen **
+ '      *************************
+
+
+
+ '      ***********************
+ '      ** Mendeklarationen **
+ '      ***********************
+ 
+ 
+ ' Hauptmen
+ ' =======================================================================
+ 
+ÿÿMNMAIN()
+ ÿ¬ÿ…
+ ÿƒMNProgramm()
+ ÿ½ GOTO mnmainend
+ ÿ¬2,0,1,"&Hauptsteuerung","",""
+ ÿ¬2,1,1,"Kunden,F2","ADRESSEN",""
+ ÿ¬2,2,1,"Vermittler,F3","MAADR",""
+ ÿ¬2,3,1,"Gesellschaften,F4","GEADR",""
+ ÿ¬2,4,1,"Sparten,F5","CODEVA",""
+ ÿ¬2,5,1,"Produkte,F6","VProd",""
+ ÿ¬2,6,1,"Tarife,F7","TARI",""
+ ÿ¬2,7,1,"Vertragssuche,F8","VERTRINFO",""
+ ÿ½ CALL Fehler("","")
+ ÿ¡gasp%ÿworkstation%ÿ0ÿp
+ÿ¬2,8,0,"Einstellungen,Alt+F10","SETUP",""
+ ÿ^
+ÿ¬2,8,1,"Einstellungen,Alt+F10","SETUP",""
+ ÿ’ÿ¡
+ ÿ¬2,9,1,"Dokumentenimport,F11","DOKUMENTSRV",""
+ ÿ¬3,0,1,"&Optionen","",""
+ ÿ½ MENU 3,1,1,"&Einstellungen","SETUP",""
+ ÿ¡gasp%ÿp
+ÿ¬3,1,0,"&Reorganisation-siehe Firmenstammdaten","",""
+ÿ¬3,2,0,"Registrierung SmartPROVIS","Lizensier1",""
+ÿ¬3,3,0,"Lokale Rechnereinstellungen","LokalSetup",""
+ ÿ^
+ÿ¡ÿOMNdisabled%("REORGANISATION")ÿp
+ÿ¬3,1,1,"&Reorganisationder Datenbanken","ReorgDB1",""
+ÿ^
+ÿ¬3,1,0,"&Reorganisation-siehe Firmenstammdaten","",""
+ÿ’ÿ¡
+ÿ½ MENU 3,2,1,"Registrierung SmartPROVIS","LizMussNeu",""
+ÿ½ MENU 3,2,1,"Registrierung SmartPROVIS","Lizensier1",""
+ÿ¡ÿOMNdisabled%("LOCALSTAMMEDIT")ÿp
+ÿ¬3,3,1,"Lokale Rechnereinstellungen","LokalSetup",""
+ÿ^
+ÿ¬3,3,0,"Lokale Rechnereinstellungen","LokalSetup",""
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ½ MENU 3,2,1,"Statistikwerte hochrechnen","StatistMen",""
+ ÿ½ MENU 3,3,0,"Dateien korrigieren","GEKONDUpdate",""
+ ÿ½ MENU 3,4,0,"&Konditionsanpassung","VKONDAkt",""
+ ÿ½ MENU 3,5,0,"&SR-Rckzahlung","SRZahlung"
+ ÿ¡ReadConfig$("PROVIS","Custom1")ÿ"TRUE"ÿp
+ÿ½ MENU 3,6,1,"Komplettfreigabe","BOSSERT","šbergabe aller provisionierbaren Vertr„ge"
+ ÿ^
+ÿ½ MENU 3,6,0,"Komplettfreigabe","BOSSERT","šbergabe aller provisionierbaren Vertr„ge"
+ ÿ’ÿ¡
+ ÿ¡ÿ>(ReadConfig$("PROVIS","IMMAK"))ÿ"TRUE"ÿp
+ÿ¬3,4,1,"SmartIMMAK","CIMMAK","Aufruf von SmartIMMAK"
+ ÿ^
+ÿ¬3,4,0,"SmartIMMAK","CIMMAK","Aufruf von SmartIMMAK"
+ ÿ’ÿ¡
+ ÿ¡gasp%ÿÿ1ÿp
+ÿ¡workstation%ÿ0ÿp
+ÿ¡ÿOMNdisabled%("VBUCHUNG")ÿp
+ÿ¡ÿ>(GBVF$)ÿ"TRUE"ÿGBuchauszug$ÿ"CBRTV"ÿpÿ¬3,5,1,"Buchauszug","Buchauszug",""
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ^
+ÿ¡ÿOMNdisabled%("VBUCHUNG")ÿp
+ÿ¡ÿ>(GBVF$)ÿ"TRUE"ÿGBuchauszug$ÿ"CBRTV"ÿpÿ¬3,5,1,"Buchauszug","Buchauszug",""
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ 
+ ÿƒMNHilfe(5)
+ 
+mnmainend: 
+ ÿ½ CALL MNHilfe(2)
+ ÿ’ÿÿ
+ 
+ 
+ÿÿCIMMAK()
+cdir$ÿÿ
+ÿ_netpath$
+ 
+ÿ¡ÿOÿJ("IMMAK.SBR")ÿp
+ÿƒFehler ("Das Immobilienmakler-System ist nicht in dieser Version implementiert!","Bei Interesse wenden Sie sich bitte an uns! (http://www.codie.com)")
+ÿcdir$
+ÿwendIMMAK3009001
+ÿ’ÿ¡
+ÿ¡ÿOÿ÷("IMMAK")ÿpÿ¨"IMMAK.SBR",ÿ°
+_projekt$ÿ"IMMAK"
+_ppath$ÿ_netpath$ÿ_projekt$ÿ"\"
+ÿ_ppath$
+ ÿÊÿÿÿ™_netpath$ÿ_projekt$ÿ"\"ÿ_projekt$ÿ".HLP"
+ ÿÊÿiÿ³
+ ÿßÿe
+ ÿƒDFile(3,"anfrage"ÿ_fpw$)
+ ÿƒDFile(3,"immogrup"ÿ_fpw$)
+ ÿƒDFile(3,"objekte"ÿ_fpw$)
+ 
+ 
+ ÿ½ -- Laden der Bilddatenbank --
+ 
+ Videokarte$ÿReadINI$("CLICK","available")
+ ÿ¡ÿ>(Videokarte$)ÿ"TRUE"ÿp
+VideoTreiber$ÿReadINI$("CLICK","driver")
+ÿ¡ÿOÿ÷(VideoTreiber$)ÿpÿ¨_netpath$ÿVideoTreiber$ÿ".SBR",ÿ°
+ ÿ’ÿ¡
+ 
+ ÿ½ -- Einlesen der Auswahlarrays
+ 
+ a%ÿ0
+ OBArt$(0)ÿ"<keine Zuordnung>"
+ ÿØOBArt$(a%)ÿ"leer"
+a%ÿa%ÿ1
+OBArt$(a%)ÿÿåibm(ReadConfig$("IMMAK_Art","Art"ÿÿH(ÿ(a%,"999999"))))
+ ÿÙ
+ OBArt$(a%)ÿ""
+ 
+ a%ÿ0
+ OBLage1$(0)ÿ"<keine Zuordnung>"
+ ÿØOBLage1$(a%)ÿ"leer"
+a%ÿa%ÿ1
+OBLage1$(a%)ÿÿåibm(ReadConfig$("IMMAK_Lage1","Lage"ÿÿH(ÿ(a%,"999999"))))
+ ÿÙ
+ OBLage1$(a%)ÿ""
+ 
+ a%ÿ0
+ OBLage2$(0)ÿ"<keine Zuordnung>"
+ ÿØOBLage2$(a%)ÿ"leer"
+a%ÿa%ÿ1
+OBLage2$(a%)ÿÿåibm(ReadConfig$("IMMAK_Lage2","Lage"ÿÿH(ÿ(a%,"999999"))))
+ ÿÙ
+ OBLage2$(a%)ÿ""
+ 
+ a%ÿ0
+ OBErschl$(0)ÿ"<keine Zuordnung>"
+ ÿØOBErschl$(a%)ÿ"leer"
+a%ÿa%ÿ1
+OBErschl$(a%)ÿÿåibm(ReadConfig$("IMMAK_Erschl","Erschl"ÿÿH(ÿ(a%,"999999"))))
+ ÿÙ
+ OBErschl$(a%)ÿ""
+
+ a%ÿ0
+ OBBranche$(0)ÿ"<keine Zuordnung>"
+ ÿØOBBranche$(a%)ÿ"leer"
+a%ÿa%ÿ1
+OBBranche$(a%)ÿÿåibm(ReadConfig$("IMMAK_Branche","Branche"ÿÿH(ÿ(a%,"999999"))))
+ ÿÙ
+ OBBranche$(a%)ÿ""
+ 
+ 
+ 
+ÿƒIMMAK()
+ÿ_netpath$
+ÿ†ÿ÷_netpath$ÿ"IMMAK.SBR"
+ÿ†ÿ÷_netpath$ÿ"CLICKII.SBR"
+endIMMAK3009001: 
+
+ÿcdir$
+_projekt$ÿ"PROVIS"
+_ppath$ÿ_netpath$ÿ_projekt$ÿ"\"
+ ÿ’ÿÿ
+
+ 
+
+ ÿ½ Anzeige Fehlerprotokoll - Konditionen
+ÿÿShowLog1()
+ ÿÊÿË"Anzeige des Fehlerprotokolls"
+ ÿ¡ÿJ(_netpath$ÿ"Kond.txt")ÿp
+ÿ½ LOAD TEXT _netpath$ + "Kond.txt"
+ÿ½ EDIT TEXT 
+kotxt$ÿ_netpath$ÿ"Kond.txt"
+a%ÿÿƒ("ShellExecute",0,"open",kotxt$,"","",1)
+ ÿ^
+ÿƒFehler("Es konnte kein Fehlerprotokoll gefunden werden!","")
+ ÿ’ÿ¡
+ ÿÊÿË"Bereit"
+ ÿ’ÿÿ
+ 
+ÿÿCreateLog1()
+ ÿ´_netpath$ÿ"Kond.txt"ÿ›ÿ¶
+ ÿ{"Datei "ÿÿ>(_netpath$ÿ_projekt$)ÿ"\Kond.txt erstellt am "ÿÿ(ÿQ,"0d.mm.yyyy")ÿ" / "ÿÿ7(ÿR,"hh:mm:ss")
+ ÿ{"-------------------------------------------------------------------------"
+ ÿ{
+ ÿ†ÿ¶
+ ÿ’ÿÿ
+ 
+ÿÿCloseLog1()
+ ÿ´_netpath$ÿ"Kond.txt"ÿ›ÿT
+ ÿ{
+ ÿ{"-------------------------------------------------------------------------"
+ ÿ{"Eintragung beendet am "ÿÿ(ÿQ,"0d.mm.yyyy")ÿ"/"ÿÿ7(ÿR,"hh:mm:ss")
+ ÿ†ÿ¶
+ ÿ‰ÿñ"PROT",0,0,244,154,title$,"MS Sans Serif",8
+ ÿ|ÿñ"PROT",4,0,0,244,130,0,""
+ ÿ|ÿñ"PROT",9,6,9,22,22,2
+ ÿ|ÿñ"PROT",5,35,13,194,10,0,"W„hrend der zuletzt durchgefhrten Aktion wurde eine"
+ ÿ|ÿñ"PROT",5,35,23,194,10,0,"Protokolldatei erstellt, in der eventuelle Fehler und Zusatz-"
+ ÿ|ÿñ"PROT",5,35,33,194,10,0,"information gespeichert wurden."
+ ÿ|ÿñ"PROT",5,35,53,194,10,0,"W„hlen Sie "ÿÿ(34)ÿ"Ja"ÿÿ(34)ÿ", wenn Sie das Protokoll einsehen und"
+ ÿ|ÿñ"PROT",5,35,63,194,10,0,"eventuell drucken wollen."
+ ÿ|ÿñ"PROT",5,35,83,194,10,0,"W„hlen Sie "ÿÿ(34)ÿ"Nein"ÿÿ(34)ÿ", wenn Sie das Protokoll nicht"
+ ÿ|ÿñ"PROT",5,35,93,194,10,0,"einsehen m”chten."
+ ÿ|ÿñ"PROT",5,35,113,194,10,0,"Wollen Sie das Protokoll einsehen?"
+ ÿ|ÿñ"PROT",1,118,134,55,15,0,"&Nein",0,0
+ ÿ|ÿñ"PROT",1,62,134,55,15,1,"&Ja",1,1
+ ÿñ"PROT",req%
+ ÿ¾ÿñ"PROT"
+ ÿ¡req%ÿ1ÿpÿƒShowLog1()
+ ÿ’ÿÿ
+ 
+ÿÿWriteLog1(logtext$)
+ ÿ´_netpath$ÿ"Kond.txt"ÿ›ÿT
+ ÿ{ÿåansi(logtext$)
+ ÿ†ÿ¶
+ ÿ’ÿÿ
+ 
+ÿÿDeleteLog1()
+ ÿ¡ÿJ(_netpath$ÿ"Kond.txt")ÿpÿ_netpath$ÿ"Kond.txt"
+ ÿ’ÿÿ
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ÿÿprovmask()
+ ÿƒDFile(22,"CONFIG"ÿ_fpw$)
+ ÿ™"config"
+ ÿ¡GASP%ÿp
+ÿ³ÿ_ÿwalogerr160420021
+so$ÿsoll.config
+ÿwalogerr160420021a 
+ ÿ^
+ÿ³ÿ_ÿwalogerr160420021
+so$ÿsoll.config
+ÿwalogerr160420021a
+alogerr160420021: 
+ÿƒFldAdd1("SOLL","TXT;1",0)
+alogerr160420021a: 
+ÿ³ÿ_ÿwalogerr160420022
+aas$ÿasp.config
+ÿwalogerr160420023
+alogerr160420022: 
+ÿƒFldAdd1("ASP","TXT;1",0)
+ÿ³ÿ_ÿwalogerr160420023
+ÿÅÿ™"config"
+alogerr160420023: 
+ ÿ’ÿ¡
+ÿ³ÿ_ÿwErrorHandler 
+ ÿƒDFile(3,"STAMM"ÿ_fpw$)
+ ÿ™"stamm"
+ ÿ³ÿ_ÿwfi080920051
+ ÿƒFldAdd1("FirmaEinhTab","TXT;1",0)
+ ÿÅÿ™"stamm"
+fi080920051: 
+ ÿ³ÿ_ÿwErrorHandler 
+
+
+
+GAdrDat$ÿ"ADRESSEN"
+GConDat$ÿ"CONNECT"
+GTelDat$ÿ"TELEFON"
+GAkquiDat$ÿ"AKQUISE"
+GDokDat$ÿ"DOKUMENT"
+ ÿÉÿ`ÿ™"CONFIG"
+ 
+ GSoll$ÿSoll.config
+ provverf$ÿÿ>(ReadConfig$("PROVIS","PROVISVERFAHREN"))
+ ÿ¡Geinh%ÿÿ1ÿp
+provverf$ÿ";Zahlungseingang"
+ ÿ’ÿ¡
+ ÿ¡provverf$ÿ"Zahlungseingang"ÿp
+ ÿ^
+GSoll$ÿ"n"
+ ÿ’ÿ¡
+ 
+ ÿ³ÿ_ÿwErrorHandler
+ ÿ½ ** Maximale Anzahl Agenturen in FirstStep
+ ÿ¡AnzAG.configÿ0ÿp
+fsmax%ÿAnzAG.configÿagzus.config
+Anzag%ÿAnzAG.config
+ ÿ^
+fsmax%ÿ0
+ ÿ’ÿ¡
+ 
+ 
+ ÿ½ GDVVersion
+ GGDV$ÿgdv.config
+ ÿ½ * * * Maklerversion##
+ MAKLER$ÿmakler.config
+ LPZ$ÿÿ>(TempletonImport.config)
+ ÿ½ GShowSpeziKond% = SpezKond.config
+ ÿ½ keine Direktionsverwaltung in Stammdaten anzeigen
+ ÿ¡Direktion.configÿÿ1ÿp
+GNOAGDIR%ÿ0
+ ÿ^
+GNOAGDIR%ÿÿ1
+ ÿ’ÿ¡
+ GNOAGDIR%ÿ0
+ ÿƒDFile(3,"WAEHRUNG"ÿ_fpw$)
+ ÿ™"waehrung"
+ ÿ£waehrung
+ ÿÉÿ`
+ ÿ²"z99999999.999999"
+ aa%ÿ1
+ _formend%ÿ0
+ fir%ÿ0
+ ÿ½ CALL Gauge(0,"")
+ ss%ÿ1
+ maske$ÿ"PROVIS"
+ ÿ¡GProvismaske$ÿ""ÿp
+maske$ÿGProvismaske$
+ ÿ’ÿ¡
+ ÿ³ÿ_ÿwaprvmask250901001
+ ÿ¡IntVerw.stammÿ"j"ÿpmaske$ÿ"PROVISI"
+ ÿ¡GASP%ÿp
+maske$ÿ"ASPPROV"
+ÿ¡IntVerw.stammÿ"j"ÿpmaske$ÿ"ASPPROVI"
+ ÿ’ÿ¡
+ ÿ¡GASP%ÿGBENE%ÿp
+ÿ½ maske$ = "BENEPROV"
+maske$ÿ"BENEPROI"
+ ÿ’ÿ¡
+ ÿ¡GFSC%ÿp
+maske$ÿ"PROVFSC"
+ ÿ’ÿ¡
+ ÿ¡GBVF$ÿ"TRUE"ÿp
+maske$ÿ"ASPBVF"
+ ÿ’ÿ¡
+ GVertrArt$ÿVertrArt.stamm
+aprvmask250901001: 
+ ÿ³ÿ_ÿwErrorHandler
+PROVISsub%ÿ0
+Upd$ÿÿ>(ReadConfig$(_projekt$,"UPDATE"))
+ÿ¡ÿœÿmaske$ÿp
+st3004981: 
+ÿƒMNMAIN()
+ÿÊÿŸtitle$ÿ" - Hauptbersicht"
+ÿ_ppath$
+ÿ½ OPEN FORM "PROVIS"
+
+ÿ¡ÿJ(GPrjForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGPrjForm$ÿ"\"ÿmaske$
+ÿ^
+ÿ´ÿœGPrjForm$ÿmaske$
+ÿ’ÿ¡
+provverf$ÿ""
+ÿÊf ÿSuperbase.Form
+ss%ÿ1
+Version$ÿGVersion$ÿ" vom "ÿGRelease$
+ÿ¡GLizFirma$ÿ""ÿp
+liz$ÿ"Registrierung fr Firma "ÿGLizFirma$ÿ"/"ÿGlizName$
+ÿ^
+liz$ÿ"DEMO Version "
+ÿ’ÿ¡
+Release$ÿGVariante$
+ÿÉÿ`ÿ™"Config"
+b%ÿÿ?(PRGVersion.config,"-")
+ÿ¡AnzAG.configÿ
+1ÿp
+ÿ¡b%ÿ0ÿp
+	PRGVersion$ÿÿ,(PRGVersion.config,1,b%ÿ1)ÿ"+  "ÿÿ,(PRGVersion.config,b%ÿ1)
+ÿ^
+	PRGVersion$ÿPRGVersion.configÿ"+ "
+ÿ’ÿ¡
+ÿ^
+PRGVersion$ÿPRGVersion.config
+ÿ’ÿ¡
+ÿ½ CALL Fehler("","")
+ÿ¡Makler.configÿ"TRUE"ÿp
+ÿ½ makk$ = "Vertrieb" + makk$ + "+ Kundenbeitragsinkasso"
+makk$ÿPRGVersion$ÿ"+ Kundenbeitragsinkasso"
+PRGVersion$ÿmakk$
+ÿ’ÿ¡
+ÿ¡TempletonImport.configÿ"TRUE"ÿp
+PRGVersion$ÿPRGVersion$ÿ"-Templetonimport"
+ÿ’ÿ¡
+ÿ¡AnzAG.configÿ0ÿp
+PRGVersion$ÿPRGVersion$ÿ" - "ÿÿH(ÿ(Anzag.config,"999999"))ÿ" Agenturen"
+ÿ’ÿ¡
+ÿ¡GTerminal%ÿÿ1ÿp
+PRGVersion$ÿPRGVersion$ÿ" - online.center (MS Terminalserver)"
+ÿ’ÿ¡
+ÿ¡Verwaltung.configÿÿ1ÿp
+f.buchung.visibleÿ0
+f.buchung.enabledÿ0
+f.butext.visibleÿ0
+f.butext.enabledÿ0
+ÿ^
+f.buchung.visibleÿÿ1
+f.buchung.enabledÿÿ1
+f.butext.visibleÿÿ1
+f.butext.enabledÿÿ1
+ÿ’ÿ¡
+ÿ¡Makler.configÿ"TRUE"ÿp
+f.zeinku.visibleÿÿ1
+f.zeinku.enabledÿÿ1
+f.zeinkutxt.visibleÿÿ1
+f.zeinkutxt.enabledÿÿ1
+ 
+f.makbu.visibleÿÿ1
+f.makbu.enabledÿÿ1
+f.makbutext.visibleÿÿ1
+f.makbutext.enabledÿÿ1
+ 
+f.kuink.visibleÿÿ1
+f.kuink.enabledÿÿ1
+f.kuinktext.visibleÿÿ1
+f.kuinktext.enabledÿÿ1
+ÿ^
+f.zeinku.visibleÿ0
+f.zeinku.enabledÿ0
+f.zeinkutxt.visibleÿ0
+f.zeinkutxt.enabledÿ0
+f.makbu.visibleÿ0
+f.makbu.enabledÿ0
+f.makbutext.visibleÿ0
+f.makbutext.enabledÿ0
+f.kuink.visibleÿ0
+f.kuink.enabledÿ0
+f.kuinktext.visibleÿ0
+f.kuinktext.enabledÿ0
+ÿ’ÿ¡
+ÿ¡gdv.configÿ"TRUE"ÿp
+f.impgdv.visibleÿÿ1
+f.impgdv.enabledÿÿ1
+ÿ^
+f.impgdv.visibleÿÿ1
+f.impgdv.enabledÿ0
+ÿ’ÿ¡
+ÿ½ CALL Fehler("","")
+ÿÊÿÿ³
+prv$ÿ""
+ÿœ
+ÿƒHideStartup()
+GAppName$ÿ_netpath$ÿ"DOC\provis.pdf"
+ÿÊÿË"Hauptauswahl: W„hlen Sie die gewnschte Funktion!"
+ÿ’ÿ¡
+ÿ¡fsmax%ÿ0ÿpfsmaxag$ÿÿH(ÿ(AnzAG%,"99"))
+ÿ¡PrvVerfahr$ÿ"Zahlungseingang"ÿp
+prv$ÿ"Real Cash"
+ÿ¡FirmaEinhTab.stammÿ"j"ÿp
+prv$ÿ"Real Cash(Einh.)"
+ÿ’ÿ¡
+ÿ¡GLundWrigg$ÿ"TRUE"ÿp
+prv$ÿ"Real Cash Lund&Wriggers"
+ÿ’ÿ¡
+ÿ¡GAFSK$ÿ"TRUE"ÿp
+prv$ÿ"Real Cash AFSK"
+ÿ’ÿ¡
+ÿ¡GSoll$ÿ"j"ÿGAFSK$ÿ"TRUE"ÿp
+prv$ÿprv$ÿ" mit Sollstellung"
+ÿ’ÿ¡
+ÿ¡GBENE%ÿp
+f.sollst.visibleÿ0
+f.sollst.enabledÿ0
+f.sollsttxt.visibleÿ0
+ÿ^
+f.sollst.visibleÿÿ1
+f.sollst.enabledÿÿ1
+ÿ’ÿ¡
+ÿ¡GAFSK$ÿ"TRUE"ÿp
+f.sollst.visibleÿÿ1
+f.sollst.enabledÿÿ1
+sollst$ÿ"Sutor"
+f.sollsttxt.Captionÿ"Sutor Datens„tze gesamt"
+ÿ’ÿ¡
+
+ÿ^
+f.sollst.visibleÿ0
+f.sollst.enabledÿ0
+PrvVerfahr$ÿ"STANDARD"
+prv$ÿ"STANDARD"
+ÿ¡nurEinh.stammÿ"j"ÿp
+prv$ÿ"STANDARD(Einheitensystem)"
+ÿ’ÿ¡
+ÿ¡GLundWrigg$ÿ"TRUE"ÿp
+prv$ÿ"STANDARD Lund&Wriggers"
+ÿ’ÿ¡
+ÿ¡GAFSK$ÿ"TRUE"ÿp
+prv$ÿ"STANDARD AFSK"
+ÿ’ÿ¡
+ÿ¡GBENE%ÿp
+prv$ÿ"STANDARD Benedict"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡GASP%ÿp
+prv$ÿprv$ÿ" - ASP"
+ÿ’ÿ¡
+ÿ¡PrvVerfahr$ÿ"ZAHLUNGSEINGANG"ÿpGShowSpeziKond%ÿ0
+GBVF$ÿÿ>(ReadConfig$("PROVIS","BVF"))
+ÿ¡GBVF$ÿ"TRUE"ÿp
+PRGVersion$ÿ"BVF - Managementsystem"
+ÿ’ÿ¡
+prv$ÿ""
+ÿœss%
+ss%ÿÿí
+ÿ¬ÿ³
+ÿßÿ³
+ ÿ’ÿÿ
+ 
+
+ÿÿTestMail()
+spath$ÿ_netpath$ÿ"emailsend.ini"
+ret%ÿÿƒ("_SendEMAILAuto",SPath$)
+ ÿ’ÿÿ
+ 
+ÿÿImpNeikron()
+GAdrDat$ÿ"ADRESSEN"
+GConDat$ÿ"CONNECT"
+GTelDat$ÿ"TELEFON"
+GAkquiDat$ÿ"AKQUISE"
+GDokDat$ÿ"DOKUMENT"
+GADRStat$ÿ"ADRSTAT"
+ 
+ ÿƒDFile(2,"NEICR"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\ADRESSEN"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\TELEFON"ÿ_fpw$)
+ ÿƒDFile(3,"VProdukt"ÿ_fpw$)
+ ÿƒDFile(3,"sparten"ÿ_fpw$)
+ ÿƒDFile(3,"geadr"ÿ_fpw$):ÿƒDFile(3,"geadr2"ÿ_fpw$)
+ ÿƒDFile(3,"Tarif"ÿ_fpw$)
+ ÿƒDFile(3,"maadr"ÿ_fpw$)
+ ÿƒDFile(3,"maadrgru"ÿ_fpw$)
+ ÿƒDFile(3,"kvertrag"ÿ_fpw$)
+ ÿƒDFile(3,"vorgang"ÿ_fpw$)
+ ÿƒDFile(3,"FONDS"ÿ_fpw$)
+ ÿƒDFile(3,"Kgeadr"ÿ_fpw$)
+ ÿƒDFile(3,"WAEHRUNG"ÿ_fpw$)
+ ÿƒDFile(3,"KUKTO"ÿ_fpw$)
+ ÿƒFehler("Dateien ge”ffnet","")
+ n$ÿ"neicr"
+ ÿ™"geadr"
+ ÿ£Gesellschaft.geadr
+ ÿ™n$
+ ÿ£name.n$
+ ÿÉÿ`ÿá
+ ÿ½ GOTO adr020620051
+ ÿØÿOÿB(n$)
+feld1%ÿfeld1.n$
+ÿ›i%ÿ0ÿq8
+fges$ÿ"ges"ÿÿ(i%,"9")ÿ".neicr"
+gese$ÿfges$$
+ÿ¡gese$ÿ"KRAVAG*"ÿpgese$ÿ"KRAVAG"
+ÿ¡gese$ÿ"Dialog*"ÿpgese$ÿ"Dialog Lebensvers. AG"
+ÿ¡gese$ÿ"DKV*"ÿpgese$ÿ"DKV Kranken"
+ÿ¡gese$ÿ"Europa Versicherung*"ÿpgese$ÿ"Europa Versicherungs AG"
+ 
+ÿ¡gese$ÿ"Geneali*"ÿgese$ÿ"Genrali*"ÿpgese$ÿ"Generali"
+ÿ¡gese$ÿ"R + V*"ÿgese$ÿ"R+ V*"ÿgese$ÿ"R+V*"ÿpgese$ÿ"R+V"
+ 
+ÿ¡gese$ÿ"Haftpf*"ÿgese$ÿ"*Darm*"ÿpgese$ÿ"Haftpflichtkasse Darmstadt"
+ÿ¡gese$ÿ"KS*"ÿgese$ÿ"*Rech*"ÿpgese$ÿ"KS Rechtsschutz"
+ÿ¡gese$ÿ"KS*"ÿgese$ÿ"*Vers*"ÿpgese$ÿ"KS Versicherungs AG"
+ÿ¡gese$ÿ"LVM*"ÿpgese$ÿ"LVM"
+ÿ¡gese$ÿ"Rechts*"ÿgese$ÿ"*Unio*"ÿpgese$ÿ"Rechtsschutz Union"
+ÿ¡gese$ÿ"Signal Id*"ÿgese$ÿ"*Pensi*"ÿpgese$ÿ"Signal Iduna Pensionskasse"
+ÿ¡gese$ÿ"Uniq*"ÿpgese$ÿ"Uniqa"
+ÿ¡gese$ÿ"Vikt*"ÿpgese$ÿ"Victoria Versicherung"
+ÿ¡gese$ÿ"Volkswohl*"ÿpgese$ÿ"Volkswohlbund"
+ÿ¡gese$ÿ"Zri*"ÿpgese$ÿ"Zrich Versicherung"
+ÿ¡gese$ÿ"Goth*"ÿpgese$ÿ"Gothaer Versicherung"
+ÿ¡gese$ÿ"Contin*"ÿpgese$ÿ"Continentale"
+ÿ¡gese$ÿ"Baden*"ÿpgese$ÿ"Baden Badener"
+ÿÉÿ`ÿ™"geadr"ÿ£Gesellschaft.geadr
+ÿÉÿ¥gese$ÿ™"geadr"ÿ£Gesellschaft.geadr
+L%ÿÿ/(gese$)
+ÿ¡gese$ÿ""ÿp
+
+ÿ¡ÿ+(Gesellschaft.geadr,L%)ÿgese$ÿp
+	codege%ÿcodege.geadr
+ÿ^
+	ÿÿ™"geadr"
+	codege%ÿÿI("geadr",1)
+	codege.geadrÿcodege%
+	Gesellschaft.geadrÿgese$
+	_gesold$ÿ""
+	ÿƒQuickStore("Geadr")
+ÿ’ÿ¡
+ÿÉÿ`ÿ™n$ÿ£feld1.n$
+ÿÉÿ¥feld1%ÿáÿ™n$ÿ£feld1.n$
+fcodege$ÿ"codege"ÿÿ(i%,"9")ÿ".neicr"
+fcodege$$ÿcodege%
+ÿÌÿ™"neicr"
+ÿ’ÿ¡
+ÿ±i%
+
+ÿÉÿ±ÿáÿ™n$
+ ÿÙ
+ ÿƒFehler("Gesellschaft fertig","")
+ ÿ™"sparten"
+ ÿ£sparte.sparten
+ ÿ™n$
+ ÿ£name.n$
+ ÿÉÿ`ÿá
+ 
+ ÿØÿOÿB(n$)
+feld1%ÿfeld1.n$
+ÿ›i%ÿ0ÿq8
+fges$ÿ"sparte"ÿÿ(i%,"9")ÿ".neicr"
+gese$ÿfges$$
+ÿ¡gese$ÿ"Rente *"ÿgese$ÿ"Rentenvers. *"ÿpgese$ÿ"Rente"
+
+ÿ¡gese$ÿ"KV*"ÿpgese$ÿ"Kranken"
+ÿ¡gese$ÿ"KV*"ÿpgese$ÿ"Kranken"
+ÿ¡gese$ÿ"LV*"ÿpgese$ÿ"Leben"
+ÿ¡gese$ÿ"Leben*"ÿpgese$ÿ"Leben"
+ÿ¡gese$ÿ"kfz*"ÿpgese$ÿ"KFZ"
+ÿ¡gese$ÿ"HV*"ÿpgese$ÿ"Haftpflicht"
+ÿ¡gese$ÿ"HR*"ÿpgese$ÿ"Hausrat"
+ÿ¡gese$ÿ"RS*"ÿpgese$ÿ"Rechtschutz"
+ÿ¡gese$ÿ"Recht*"ÿpgese$ÿ"Rechtschutz"
+ÿ¡gese$ÿ"Unfa*"ÿpgese$ÿ"Unfall"
+ÿ¡gese$ÿ"Bauleis*"ÿpgese$ÿ"Bauleistung"
+ÿ¡gese$ÿ"Betrieb-,Privat-u.Hundeh.*"ÿpgese$ÿ"Betriebs+PHV+Hund"
+ÿ¡gese$ÿ"Betriebsh.+PHV+Hund*"ÿpgese$ÿ"Betriebs+PHV+Hund"
+ÿ¡gese$ÿ"Betriebshaftpflichtvers.*"ÿpgese$ÿ"Betriebshaftpflicht"
+ÿ¡gese$ÿ"Betriebshaftpflichtv*"ÿpgese$ÿ"Betriebshaftpflicht"
+ÿ¡gese$ÿ"Betriebshaftpf. m.Privat-*"ÿpgese$ÿ"Betriebs+PHV"
+ÿ¡gese$ÿ"Betriebs-HV m. PHV*"ÿpgese$ÿ"Betriebs+PHV"
+ÿ¡gese$ÿ"Betriebs-Haftpflichtv.*"ÿpgese$ÿ"Betriebshaftpflicht"
+ÿ¡gese$ÿ"Betriebs- und Privat HV*"ÿpgese$ÿ"Betriebs+PHV"
+ÿ¡gese$ÿ"Betriebs- incl. Privat-HV*"ÿpgese$ÿ"Betriebs+PHV"
+ÿ¡gese$ÿ"BU*"ÿpgese$ÿ"BU"
+ÿ¡gese$ÿ"Elektronik*"ÿpgese$ÿ"Elektronik"
+ÿ¡gese$ÿ"Feuer+klein*"ÿpgese$ÿ"FeuerkleinBU"
+ 
+ÿ¡gese$ÿ"geb. Geb„ude-Vers.*"ÿpgese$ÿ"Geb„udeversicherung"
+ÿ¡gese$ÿ"Geb„udevers.*"ÿpgese$ÿ"Geb„udeversicherung"
+ 
+ÿ¡gese$ÿ"Gesch„ftsgeb„udevers.*"ÿpgese$ÿ"Gesch„ftsgeb„udevers."
+ÿ¡gese$ÿ"Gesch„fts-Geb„udevers.*"ÿpgese$ÿ"Gesch„ftsgeb„udevers."
+ 
+ÿ¡gese$ÿ"Gewerbliche Geb„udevers.*"ÿpgese$ÿ"Gewerbliche Geb„udevers."
+ÿ¡gese$ÿ"Gewerbl. Geb„udevers.*"ÿpgese$ÿ"Gewerbliche Geb„udevers."
+
+ÿ¡gese$ÿ"Haus*"ÿgese$ÿ"*Grundbes*"ÿpgese$ÿ"Haus- und Grundbesitzer HV"
+
+
+ÿÉÿ`ÿ™"sparten"ÿ£sparte.sparten
+ÿÉÿ¥gese$ÿ™"sparten"ÿ£sparte.sparten
+L%ÿÿ/(gese$)
+ÿ¡gese$ÿ""ÿp
+ÿ¡ÿ+(sparte.sparten,L%)ÿgese$ÿp
+	codeva%ÿcodeva.sparten
+ÿ^
+	ÿÿ™"sparten"
+	codeva%ÿÿI("sparten",1)
+	codeva.spartenÿcodeva%
+	sparte.spartenÿgese$
+	Vertragsart.spartenÿ"VERTR024"
+	Formular.spartenÿ"VERTR024"
+	ÿƒQuickStore("sparten")
+ÿ’ÿ¡
+ÿÉÿ`ÿ™n$ÿ£feld1.n$
+ÿÉÿ¥feld1%ÿáÿ™n$ÿ£feld1.n$
+fcodege$ÿ"codeva"ÿÿ(i%,"9")ÿ".neicr"
+fcodege$$ÿcodeva%
+ÿÌÿ™"neicr"
+ÿ’ÿ¡
+ÿ±i%
+
+ÿÉÿ±ÿáÿ™n$
+ ÿÙ
+ ÿƒFehler("Sparten fertig","")
+
+adr020620051: 
+
+ ÿ™n$
+ ÿ£name.n$
+ ÿÉÿ`ÿá
+ nameold$ÿ""
+ strold$ÿ""
+ ÿØÿOÿB(n$)
+name$ÿname.n$ÿvorname.n$
+ÿÊÿËname$ÿ" "ÿstraáe.n$
+stra$ÿstraáe.n$
+codeku%ÿcodeku.n$
+feld1%ÿfeld1.n$
+anf020620051: 
+ÿ½ CALL Fehler(name$,straáe.n$)
+ÿ¡name$ÿnameold$ÿp
+nameold$ÿname$
+strold$ÿstraáe.n$
+ÿ½ neue Adresse in der Neikron - datei, muss wohl neu aufgenommen werden
+ÿÿ™GAdrDat$
+ÿÊÿË"Datensatz neu angelegt..."
+CodeKU%ÿÿI(GAdrDat$,1)
+CodeKU.GAdrDat$ÿcodeku%
+EXPInternet.GADRDat$ÿ"j"
+ÿ¡GASP%ÿp
+Codema.GADRDat$ÿcodema%
+ÿ¡workstation.maadrÿ0ÿp
+	Workstation.GADRDat$ÿWorkstation.maadr
+	ÿÉÿ¥workstation.maadrÿ™"filiale"ÿ£filialnr.filiale
+	bueronr%ÿbronr.filiale
+ÿ^
+	Workstation.GADRDat$ÿzzz%
+	ÿÉÿ`ÿ™"filiale"ÿ£filialnr.filiale
+	ÿÉÿ¥zzz%ÿ™"filiale"ÿ£filialnr.filiale
+	bueronr%ÿbronr.filiale
+ÿ’ÿ¡
+ÿ’ÿ¡
+Erstkontakt.GADRDat$ÿÿQ
+ÿÌÿ™GAdrDat$
+ 
+ÿïÿYÿ™GAdrDat$
+ÿïÿ™GAdrDat$
+ÿÉÿ¥codeku%ÿáÿ™GAdrDat$ÿ£codeku.GAdrDat$
+ADRStatus.GAdrDat$ÿ"<OHNE ZUORDNUNG>"
+ADRGruppe.GAdrDat$ÿ"<OHNE ZUORDNUNG>"
+ÿÉÿ`ÿ™"Stamm"
+ÿßÿe
+anrede.GAdrDat$ÿanrede.n$
+nachname.GADRDat$ÿname.n$
+vorname.GAdrDat$ÿvorname.n$
+ort.GAdrDat$ÿWohnort.n$
+plz.GAdrDat$ÿÿH(plz.n$)
+straáe.GAdrDat$ÿstraáe.n$
+k1blz.GAdrDat$ÿblz.n$
+k1konto.GAdrDat$ÿÿ+(KTO_Nr_.n$,17)
+k2blz.GAdrDat$ÿblz_.n$
+k2konto.GAdrDat$ÿÿ+(KTONr_.n$,17)
+Geburtstag.GAdrDat$ÿgeboren.n$
+
+Kundennummer.GAdrDat$ÿÿH(ÿ(feld1.n$,"999999"))
+stichwort.GADRDat$ÿ"IMPORT"
+Debitorkto.GAdrDat$ÿÿH(ÿ(nnum%,"999999"))
+AAKunde.GAdrDat$ÿ"j"
+AAMakler.GAdrDat$ÿ"n"
+AAMitarbeiter.GAdrDat$ÿ"n"
+AAInteressent.GAdrDat$ÿ"n"
+AALieferant.GAdrDat$ÿ"n"
+FIPrivat.GAdrDat$ÿ"n"
+FIATEC.GAdrDat$ÿ"j"
+FIIMMAK.GAdrDat$ÿ"n"
+BerProtok.GADRDat$ÿ"n"
+zero.GAdrDat$ÿ0
+ÿ¡Bemerkung.n$ÿ""ÿpNotiz.Gadrdat$ÿBemerkung.n$
+ÿ½ Workstation.GAdrDat$ = Workstation%
+ÿ½ QWoNo.GAdrDat$ = STR$ (Workstation%,"000000") + STR$ (codeku.GAdrDat$,"000000")
+RecStatus.GAdrDat$ÿ"c"
+ÿƒQuickStore(GAdrDat$)
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku.telefonÿcodeku%
+Nummer.telefonÿTelefon.n$
+art.telefonÿ"Telefon"
+fonoderfax.telefonÿ"n"
+KART1.telefonÿ"FON"
+ÿƒQuickStore ("telefon")
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku.telefonÿcodeku%
+Nummer.telefonÿHandy.n$
+art.telefonÿ"Handy"
+fonoderfax.telefonÿ"n"
+KART1.telefonÿ"MOBIL"
+ÿƒQuickStore ("telefon")
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku.telefonÿcodeku%
+Nummer.telefonÿFax.n$
+art.telefonÿ"Fax"
+fonoderfax.telefonÿ"j"
+KART1.telefonÿ"FAX"
+ÿƒQuickStore ("telefon")
+ÿÿ™"telefon"
+codetel.telefonÿÿI(codetel.telefon,1)
+codeku.telefonÿcodeku%
+Nummer.telefonÿe_mail.n$
+art.telefonÿ"email"
+fonoderfax.telefonÿ"n"
+KART1.telefonÿ"EMAIL"
+ÿƒQuickStore ("telefon")
+ÿÉÿ`ÿ™n$ÿ£feld1.n$
+ÿÉÿ¥feld1%ÿáÿ™n$ÿ£feld1.n$
+codeku.n$ÿcodeku%
+ÿÌÿ™n$
+ÿ^
+ÿ¡straáe.n$ÿstrold$ÿp
+nameold$ÿ""
+ÿwanf020620051
+ÿ’ÿ¡
+ÿ½ Adresse schon in Neikron vorhanden
+ÿ¡codeku%ÿ
+1ÿp
+ÿÉÿ`ÿ™n$ÿ£feld1.n$
+ÿÉÿ¥feld1%ÿáÿ™n$ÿ£feld1.n$
+codeku.n$ÿcodeku%
+ÿÌÿ™n$
+ÿ’ÿ¡
+ÿ’ÿ¡
+knr%ÿcodeku%
+ÿ›i%ÿ0ÿq8
+feld1$ÿ"codevt"ÿÿ(i%,"9")ÿ".neicr"
+fge$ÿ"codege"ÿÿ(i%,"9")ÿ".neicr"
+fva$ÿ"codeva"ÿÿ(i%,"9")ÿ".neicr"
+
+codevt%ÿ0
+lfdnr%ÿ0
+ÿÊÿË(nachname.adressenÿ"   codege: "ÿÿ(fge$$,"000000")ÿ"/codeva:"ÿÿ(fva$$,"000000")ÿ"/I:"ÿÿ(i%,"9"))
+ÿ¡feld1$$ÿ
+1ÿp
+ÿ¡fge$$ÿ0ÿfva$$ÿ0ÿp
+ÿ½ Vertrag noch nicht vorhanden, muss neu aufgenommen werden
+ÿ½ *****************************************************************
+ÿÿ™"KVERTRAG"
+lfdnr%ÿÿI("KVERTRAG",1)
+codevt%ÿlfdnr%
+CreateVertrag%ÿlfdnr%
+fsparte$ÿ"sparte"ÿÿ(i%,"9")ÿ".neicr"
+fbegin$ÿ"Beginn"ÿÿ(i%,"9")ÿ".neicr"
+fablauf$ÿ"Ablauf"ÿÿ(i%,"9")ÿ".neicr"
+fstatus$ÿ"STATUS"ÿÿ(i%,"9")ÿ".neicr"
+fversnr$ÿ"vers_nr"ÿÿ(i%,"9")ÿ".neicr"
+fbeitrag$ÿ"beitrag"ÿÿ(i%,"9")ÿ".neicr"
+fzw$ÿ"zw"ÿÿ(i%,"9")ÿ".neicr"
+fsumme$ÿ"summe"ÿÿ(i%,"9")ÿ".neicr"
+fkz$ÿ"kz"ÿÿ(i%,"9")ÿ".neicr"
+Notiz.kvertragÿfsparte$$
+ 
+kennz$ÿfkz$$
+Kennzeichen.kvertragÿÿ+(fkz$$,15)
+VS_NR.kvertragÿfversnr$$
+VS_Beginn.kvertragÿfbegin$$
+Tarif.kvertragÿfsumme$$
+bitr%ÿfbeitrag$$
+Bewertungssumme.kvertragÿfbeitrag$$
+Beitrag.kvertragÿfbeitrag$$
+Kndigung.kvertragÿfablauf$$
+ErfasDatum.kvertragÿfbegin$$
+lfdnr.KVERTRAGÿlfdnr%
+lfdnrtotal.KVERTRAGÿlfdnr%ÿ10000
+ÿÉÿ`ÿ™"adressen"ÿ£codeku.adressen
+ÿÉÿ¥knr%ÿ™"adressen"ÿ£codeku.adressen
+codeku.KVERTRAGÿknr%
+VNehmer.kvertragÿÿ+(ÿH(ÿF(Nachname.adressen))ÿ","ÿÿH(ÿF(vorname.adressen))ÿ","ÿÿH(ÿF(Straáe.adressen))ÿ","ÿÿH(ÿF(PLZ.adressenÿ" "ÿOrt.adressen)),210)
+codevp.kvertragÿ0
+ANachname.kvertragÿnachname.GAdrDat$
+AVorname.kvertragÿvorname.GAdrDat$
+AStrasse.kvertragÿStraáe.GAdrDat$
+AOrt.kvertragÿOrt.GAdrDat$
+APLZ.kvertragÿPlz.GAdrDat$
+letzteBearb.kvertragÿ0
+CodeMV.KVERTRAGÿ0
+codeGE.KVERTRAGÿfge$$
+codeMA.KVERTRAGÿ0
+codeVA.KVERTRAGÿfva$$
+letzteBearb.KVERTRAGÿfbegin$$
+Zahlart.KVERTRAGÿ1
+Inkart.kvertragÿ2
+mwst.kvertragÿ0
+ÿ½ 141199
+codew.kvertragÿ3
+umrechnung.kvertragÿ1
+waehrung.kvertragÿ"EUR"
+ÿ½ WaehrungBezeich.kvertrag = WaehrungBezeich.waehrung
+ÿ½ REQUEST "Wollen Sie einen Fremdvertrag erfassen?","",135,req%
+ÿ¡fstatus$$ÿ"Antrag*"ÿp
+	CodeVStatus.kvertragÿ12
+	VStatusTxT.kvertragÿ"Antrag"
+ÿ’ÿ¡
+ÿ¡fstatus$$ÿ"lebend*"ÿp
+	CodeVStatus.kvertragÿ01
+	VStatusTxT.kvertragÿ"lebend"
+ÿ’ÿ¡
+ÿ¡fstatus$$ÿ"storno*"ÿfstatus$$ÿ"lebd.storno*"ÿp
+	CodeVStatus.kvertragÿ04
+	VStatusTxT.kvertragÿ"storniert"
+ÿ’ÿ¡
+ÿ¡fstatus$$ÿ"Ant.storno*"ÿp
+	CodeVStatus.kvertragÿ15
+	VStatusTxT.kvertragÿ"Antragswiderruf"
+ÿ’ÿ¡
+
+
+
+
+
+
+
+ZW.KVERTRAGÿ55
+ÿ¡fzw$$ÿ"1/1"ÿp
+	ZW.KVERTRAGÿ1
+ÿ’ÿ¡
+ÿ¡fzw$$ÿ"1/2"ÿp
+	ZW.KVERTRAGÿ2
+ÿ’ÿ¡
+ÿ¡fzw$$ÿ"1/4"ÿp
+	ZW.KVERTRAGÿ4
+ÿ’ÿ¡
+ÿ¡fzw$$ÿ"1/12"ÿp
+	ZW.KVERTRAGÿ12
+ÿ’ÿ¡
+ÿ¡fzw$$ÿ"einmalig"ÿp
+	ZW.KVERTRAGÿ0
+ÿ’ÿ¡
+cuvt%ÿlfdnr%
+spezProvAktiv.kvertragÿ"n"
+ÿƒQuickStore("KVERTRAG")
+ÿ½ *****************************************************************
+ÿ’ÿ¡
+ÿ^
+codevt%ÿfeld1$$
+ÿÉÿ`ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ¥codevt%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿ’ÿ¡
+ÿ¡codevt%ÿ0ÿp
+ÿÉÿ`ÿ™n$ÿ£feld1.n$
+ÿÉÿ¥feld1%ÿáÿ™n$ÿ£feld1.n$
+fcodege$ÿ"codevt"ÿÿ(i%,"9")ÿ".neicr"
+fcodege$$ÿcodevt%
+ÿÌÿ™"neicr"
+ÿ’ÿ¡
+ÿ±i%
+ÿ½ nameold$ = name$
+ÿÉÿ±ÿáÿ™n$ÿ£name.n$
+ ÿÙ
+ ÿ’ÿÿ
+
+ÿÿCODieCall()
+nr$ÿ"http://www.codie.com"
+nr$ÿÿåansi(nr$)
+ÿ¡ÿOÿJ(GMACodeDir$ÿ"openurl.exe")ÿpÿˆ_netpath$ÿ"local\openurl.exe"ÿqGMACodeDir$ÿ"openurl.exe"
+prg$ÿGMACodeDir$ÿ"openurl.exe"
+ÿ¡ÿJ(GMACodeDir$ÿ"opurl.bat")ÿpÿGMACodeDir$ÿ"opurl.bat"
+ÿ´GMACodeDir$ÿ"opurl.bat"ÿ›ÿT
+ÿ{"echo OFF"
+ÿ{prg$ÿ" "ÿÿ(34)ÿÿåoem(nr$)ÿÿ(34)
+ÿ†ÿ¶
+ÿˆÿanr$
+ÿ½ CALL Fehler("Bitte im ge”ffneten Browser in der Adress-Eingabezeile STRG+V und anschlieáend ENTER drcken, dann wird Ihnen in Google-Maps die geografische Position der Adresse angezeigt!","")
+ÿƒ(GMACodeDir$ÿ"opurl.bat"),0
+ ÿ’ÿÿ
+

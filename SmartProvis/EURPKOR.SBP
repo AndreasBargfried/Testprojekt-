@@ -1,0 +1,71 @@
+SBP
+ÿÿBuchKor1()
+ ÿƒDFile(3,"buchung1"ÿ_fpw$)
+ ÿƒDFile(3,"sparten"ÿ_fpw$)
+ ÿƒDFile(3,"geadr"ÿ_fpw$):ÿƒDFile(3,"geadr2"ÿ_fpw$)
+ ÿƒDFile(3,"gekond"ÿ_fpw$)
+ ÿƒDFile(3,"maadr"ÿ_fpw$)
+ ÿƒDFile(3,"maadrgru"ÿ_fpw$)
+ ÿƒDFile(3,"kvertrag"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\"ÿGADRDat$ÿ_fpw$)
+ ÿ™"kvertrag"
+ ÿ£lfdnr.kvertrag
+ ÿÉÿ`
+ ÿ™"buchung1"
+ ÿ£datum.buchung1
+ ÿÉÿ`
+ da%ÿÿ1("17.3.2007")
+ 
+ i%ÿ0
+ j%ÿ0
+ ÿƒFehler("Sie erhalten jetzt die M”glichkeit, die Bewertungssummen in der Buchungsdatei durch die Bewertungssummen aus der Vertragsdatei, fr Buchungss„tze mit dem Buchungsdatum ...von...bis..., zu ersetzen! ","")
+anf030520071: 
+ÿ‰ÿñ"Konto1",0,0,221,145,title$,"MS Sans Serif",8
+ÿ|ÿñ"Konto1",9,6,7,24,22,2
+ÿ|ÿñ"Konto1",5,34,8,170,9,0,"Buchungsdateikorrektur:"
+ÿ|ÿñ"Konto1",4,34,14,176,5,0,""
+ÿ|ÿñ"Konto1",5,34,22,175,16,0,"Bitte geben Sie ein, fr welchen Buchungszeitraum Sie die šbernahme wnschen."
+ÿ|ÿñ"Konto1",5,34,40,175,32,0,"Wenn Sie keine Angaben zum Buchungszeitraum eintragen, werden alle Buchungen angepasst."
+ÿ|ÿñ"Konto1",5,34,80,13,8,0,"vom"
+ÿ|ÿñ"Konto1",6,53,79,45,11,0,0,von$,10
+ÿ|ÿñ"Konto1",5,102,80,12,8,0,"bis"
+ÿ|ÿñ"Konto1",6,116,79,45,11,0,0,bis$,10
+ÿ½ ADD DIALOG "Konto1",2,34,97,148,11,0,"alle berechneten Provisionen einbeziehen","j","n",allProv$
+ÿ½ ADD DIALOG "Konto1",5,44,108,167,25,0,"(es werden auch die Provisionen angezeigt, die wegen fehlender Zahlungsbeitr„ge in der Mahnlist sind)"
+ÿ|ÿñ"Konto1",1,50,124,55,15,1,"&Weiter",1,1
+ÿ|ÿñ"Konto1",1,110,124,55,15,0,"&Abbruch",0,0
+ÿñ"Konto1",req%
+ÿ¾ÿñ"Konto1"
+ÿ¡req%ÿ1ÿpÿwend030520071
+ÿ¡ÿ0(von$)ÿ
+1ÿpvon$ÿ"01.01.1900"
+ÿ¡ÿ0(bis$)ÿ
+1ÿpbis$ÿ"01.01.2199"
+ÿ¡ÿODateOK%(von$)ÿpÿwanf030520071
+ÿ¡ÿODateOK%(bis$)ÿpÿwanf030520071
+von%ÿÿ1(von$)
+bis%ÿÿ1(bis$)
+
+ ÿÉÿ¥von%ÿáÿ™"buchung1"ÿ£datum.buchung1
+
+ ok%ÿÿ1
+ ÿØÿOÿB("buchung1) and ok%=-1
+ÿ¡datum.buchung1ÿvon%ÿdatum.buchung1ÿ	bis%ÿp
+i%ÿi%ÿ1
+codevt%ÿcodevt.buchung1
+ÿ¡ÿJ(codevt%,lfdnr.kvertrag)ÿp
+ÿÉÿ¥codevt%ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿ¡lfdnr.kvertragÿcodevt%ÿp
+	Bewertungssumme.BUCHUNG1ÿBewertungssumme.KVERTRAG
+	ÿÌÿ™"buchung1"
+	j%ÿj%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÊÿËÿ(i%,"999999")ÿ"/"ÿÿ(j%,"999999")
+ÿÉÿ±ÿáÿ™"buchung1"ÿ£datum.buchung1
+ÿ¡datum.buchung1ÿbis%ÿpok%ÿ0
+ ÿÙ
+end030520071: 
+ ÿ’ÿÿ
+

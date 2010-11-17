@@ -1,0 +1,689 @@
+SBP
+ ÿƒmain()
+
+ÿÿEUROFIMP()
+ÿ½ *******************************************************
+ÿ½ ***** Globale Variablen *******************************
+ÿ½ *******************************************************
+
+ 
+tempeltpath$ÿ_netpath$ÿ"0-Import"
+ 
+ÿ³ÿ_ÿwCrdir210420021
+ÿªÿtempeltpath$
+Crdir210420021:
+ÿ³ÿ_ÿwErrorHandler
+tempeltpath$ÿ_netpath$ÿ"0-Import\"
+ÿ½ *******************************************************
+ÿ½ ***** LOG -Datei erstellen ****************************
+ÿ½ *******************************************************
+ 
+ÿƒICreateALog()
+ 
+ 
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+ÿ½ ***** Routine fr Formular TEMPLIMP *********************
+ÿ½ *******************************************************
+ÿ½ ******************************************************* 
+ÿƒDFile(3,"GEADR"ÿ_fpw$)
+ÿƒDFile(3,"euikopf"ÿ_fpw$)
+ÿƒDFile(3,"KVERTRAG"ÿ_fpw$)
+ÿƒDFile(3,"KVFAEL"ÿ_fpw$)
+ÿƒDFile(3,"ZEINGAN1"ÿ_fpw$)
+ÿƒDFile(3,"KGEADR"ÿ_fpw$)
+ÿƒDFile(3,"GEADR"ÿ_fpw$)
+ÿƒDFile(3,"SPARTEN"ÿ_fpw$)
+ÿƒDFile(3,"VORGANG"ÿ_fpw$)
+ÿƒDFile(3,"MAADR"ÿ_fpw$)
+ÿƒDFile(3,"KUKTO"ÿ_fpw$)
+ÿƒDFile(3,"VPSPEZKO"ÿ_fpw$)
+ÿƒDFile(3,"STAMM"ÿ_fpw$)
+ÿƒDFile(3,"INKSTAMM"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\adressen"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\adrtemp"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\dokument"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\akquise"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\telefon"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\connect"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\banken"ÿ_fpw$)
+
+ÿƒDFile(3,"EUROFIMP"ÿ_fpw$)
+
+codeva%ÿcodeva.sparten
+ÿ´ÿœGPrjForm$ÿ"EUROFIMP"
+ÿƒMNProgramm()
+ÿ™"EUROFIMP"
+ÿ£kunde.EUROFIMP
+ÿÉÿœÿ`
+ÿœ
+_formend%ÿ0
+ÿƒClearKBDBuffer()
+ÿ¬ÿ³
+SPARTEsub%ÿ0
+ÿØ_formend%ÿ0
+	ÿÏÿßÿÿ¥
+	ÿk$
+	ÿ¡k$ÿÿ(27)ÿp_formend%ÿ1
+	ÿÉÿæSPARTEsub%
+	ÿæ1
+ÿ½ ImportDatei ausw„hlen
+ÿƒAuswImpDat()
+ÿ™"euikopf"
+ÿ£coderoimp.euikopf
+ÿÉÿœÿ`
+ÿœ
+ÿ™"EUROFIMP"
+ÿ£kunde.EUROFIMP
+ÿÉÿœÿ`
+ÿœ2
+ÿƒRolVerarb()
+ÿ™"EUROFIMP"
+ÿ£kunde.EUROFIMP
+ÿÉÿœÿ`
+ÿœ2
+ÿƒRolVerarb1()
+ÿ™"EUROFIMP"
+ÿ£kunde.EUROFIMP
+ÿÉÿœÿ`
+ÿœ2
+ÿƒICloseALog()
+SPARTEsub%ÿ0
+	ÿæ2
+ÿ½ Importdatei verarbeiten
+ÿƒRolVerarb()
+ÿ™"EUROFIMP"
+ÿ£kunde.EUROFIMP
+ÿÉÿœÿ`
+ÿœ
+SPARTEsub%ÿ0
+	ÿæ3
+ÿ½ ZE erzeugen aus Importdatei
+ÿƒRolVerarb1()
+ÿ™"EUROFIMP"
+ÿ£kunde.EUROFIMP
+ÿÉÿœÿ`
+ÿœ
+SPARTEsub%ÿ0
+	ÿæ4
+ÿ½ alles l”schen
+ÿÂ"Wollen Sie wirklich die Importdatei leeren?","",135,req%
+ÿ¡req%ÿ1ÿp
+ÿßÿe
+ÿ¾ÿaÿ™"EUROFIMP"
+ÿÀÿ™"EUROFIMP"ÿq_netpath$ÿ"PROVIS\EUROFIMP.SBF"
+ÿ´ÿœGPrjForm$ÿ"EUROFIMP"
+ÿƒMNProgramm()
+ÿ’ÿ¡
+ÿ™"EUROFIMP"
+ÿ£kunde.EUROFIMP
+ÿ½ SELECT FORM FIRST 
+ÿœ
+SPARTEsub%ÿ0
+	ÿæ5
+ÿœ2
+ÿ™"EUROFIMP"
+ÿ£kunde.EUROFIMP
+ÿÉÿœÿ`
+ÿœ
+SPARTEsub%ÿ0
+	ÿæ6
+ÿ½ Import rckg„ngig machen
+coderoimp%ÿcoderoimp.euikopf
+id$ÿÿ(DatumImp.euikopf,"0d.mm.yyyy")
+bud$ÿÿ(DatBu.euikopf,"0d.mm.yyyy")
+ÿƒFehler("Sie erhalten jetz die M”glichkeit den Import vom "ÿid$ÿ" mit Buchungsdatum vom "ÿbud$ÿ" (Notiz: "ÿnotizimp.euikopfÿ") rckg„ngig zu machen, wenn die zugeh”rigen Zahlungseing„nge noch nicht gebucht wurden!","")
+ÿÂ"Wollen Sie den Import rckg„ngig machen?","",135,req%
+ÿ¡req%ÿ1ÿp
+ÿƒICreateALog()
+
+ÿ™"zeingan1"
+ÿ£coderoimp.zeingan1
+ÿÉÿ`ÿ™"zeingan1"ÿ£coderoimp.zeingan1
+ÿÉÿ¥coderoimp%ÿáÿ™"zeingan1"ÿ£coderoimp.zeingan1
+ok%ÿÿ1
+i%ÿ0
+l%ÿ0
+v%ÿ0
+j%ÿÿA("zeingan1")
+
+ÿßÿe
+ÿØÿOÿB("zeingan1")ÿok%ÿÿ1
+i%ÿi%ÿ1
+ÿ¡coderoimp.zeingan1ÿcoderoimp%ÿp
+ÿ¡gebuchtJN.zeingan1ÿ"J"ÿp
+ÿÉÿ¾ÿ™"zeingan1"
+ÿÉÿ`ÿ™"zeingan1"ÿ£coderoimp.zeingan1
+ÿ¡ÿA("zeingan1")ÿ0ÿp
+ÿÉÿ¥coderoimp%ÿáÿ™"zeingan1"ÿ£coderoimp.zeingan1
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+l%ÿl%ÿ1
+ÿ^
+ÿÉÿ±ÿáÿ™"zeingan1"ÿ£coderoimp.zeingan1
+v%ÿv%ÿ1
+ÿ’ÿ¡
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+ÿÊÿËÿ(i%,",9999999")ÿ"/"ÿÿ(j%,",9999999")ÿ"/"ÿÿ(l%,",9999999")ÿ" gel”scht / "ÿÿ(v%,",9999999")ÿ" waren schon gebucht"
+ÿÙ
+ÿ¾ÿaÿ™"eurofimp"ÿĞcoderoimp.eurofimpÿcoderoimp%
+ÿÉÿ`ÿ™"euikopf"ÿ£coderoimp.euikopf
+ÿÉÿ¥coderoimp%ÿáÿ™"euikopf"ÿ£coderoimp.euikopf
+ notizimp.euikopfÿnotizimp.euikopfÿ"  RšCKGNGIG "ÿÿH(ÿ(i%,",9999999"))ÿ"/"ÿÿH(ÿ(j%,",9999999"))ÿ"/"ÿÿH(ÿ(l%,",9999999"))ÿ" ZE gel”scht / "ÿÿH(ÿ(v%,",9999999"))ÿ" waren schon gebucht"
+ÿÌÿ™"euikopf"
+ÿ½ REMOVE FROM FILE "euikopf" WHERE coderoimp.euikopf = coderoimp%
+
+ÿƒIWriteLogOk("RšCKGNGIG Buchungsdatum "ÿÿ(datbu.euikopf,"0d.mm.yyyy")ÿ"-"ÿnotizimp.euikopf)
+ÿ’ÿ¡
+eloe180420041: 
+ÿ³ÿ_ÿwErrorHandler
+ÿ™"euikopf"
+ÿÉÿœÿ`
+ÿœ
+ÿßÿ³
+	ÿ’ÿæ
+
+ÿÙ
+_formend%ÿ0
+ÿ’ÿ¡
+SPARTEsub%ÿ0
+ÿÉÿ¥codeva%ÿ™"Sparten"ÿ£codeva.sparten
+_formend%ÿ0
+ ÿ’ÿÿ
+
+
+ÿÿRolVerarb()
+ÿ™"euikopf"
+ÿ£coderoimp.euikopf
+ÿÉÿb
+coderoimp%ÿcoderoimp.euikopf
+ÿ™"EUROFIMP"
+ÿ£kunde.EUROFIMP
+ÿÉÿ`ÿá
+ÿ™"maadr"
+ÿ£QAgenturnr.maadr
+ÿ™"kvertrag"
+ÿ£QNumVSNR.kvertrag
+i%ÿ0
+j%ÿÿA("EUROFIMP")
+k%ÿ0
+fv%ÿ0
+fm%ÿ0
+z%ÿ0
+l%ÿ0
+ÿßÿe
+ÿØÿOÿB("EUROFIMP")
+i%ÿi%ÿ1
+ok%ÿÿ1
+masu$ÿVSNRPackNum$(MA_Nr.EUROFIMP)
+vtsu$ÿVSNRPackNum$(VS_Nr.EUROFIMP)
+ÿ¡ÿJ(masu$,QAgenturnr.maadr)ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£QAgenturnr.maadr
+ÿÉÿ¥masu$ÿáÿ™"maadr"ÿ£QAgenturnr.maadr
+PuchMakl.MAADRÿMAKLER.EUROFIMP
+ÿÌÿ™"maadr"
+codema.eurofimpÿcodema.maadr
+mafound.eurofimpÿ1
+ÿ^
+fm%ÿfm%ÿ1
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡ÿJ(vtsu$,QNumVSNR.kvertrag)ÿp
+ÿÉÿ`ÿ™"kvertrag"ÿ£QNumVSNR.kvertrag
+ÿÉÿ¥vtsu$ÿ™"kvertrag"ÿ£QNumVSNR.kvertrag
+vtfound.eurofimpÿ1
+ÿ¡proviab.kvertragÿ0ÿpvtaktiv.eurofimpÿ1
+codevt.eurofimpÿlfdnr.kvertrag
+ÿ^
+fv%ÿfv%ÿ1
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡coderol.eurofimpÿ
+1ÿp
+coderol%ÿÿI("Eurofimp",1)
+coderol.eurofimpÿcoderol%
+ÿ’ÿ¡
+ÿ¡coderoimp.eurofimpÿ
+1ÿp
+coderoimp.eurofimpÿcoderoimp%
+l%ÿl%ÿ1
+ÿ’ÿ¡
+ÿÌÿ™"EUROFIMP"
+ÿ™"EUROFIMP"
+ÿÉÿ±ÿáÿ™"EUROFIMP"
+ÿÊÿË"Daten prfen "ÿÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ" Fehler AG "ÿÿ(fm%,",99999999")ÿ"/ Fehler VT "ÿÿ(fv%,",99999999")
+ÿÙ
+ÿ½ CALL Fehler("Verarbeitung beendet:", STR$ (i%,",99999999") + "/" + STR$ (j%,",99999999") + "   / Fehler AG " + STR$ (fm%,",99999999") + "/Fehler VT " + STR$ (fv%,",99999999"))
+te1$ÿ"Verarbeitung beendet:"ÿÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ"   / Fehler AG "ÿÿ(fm%,",99999999")ÿ"/Fehler VT "ÿÿ(fv%,",99999999")
+ÿƒIWriteLogOk(te1$)
+ ÿ’ÿÿ
+
+
+ÿÿRolVerarb1()
+ÿ™"EUROFIMP"
+ÿ£coderol.EUROFIMP
+ÿ¡ÿA("EUROFIMP")ÿ0ÿpÿÉÿ`ÿá
+ÿ™"maadr"
+ÿ£codema.maadr
+ÿ™"kvertrag"
+ÿ£lfdnr.kvertrag
+i%ÿ0
+j%ÿÿA("EUROFIMP")
+k%ÿ0
+fv%ÿ0
+fm%ÿ0
+z%ÿ0
+ÿßÿe
+sumprov%ÿ0
+ÿØÿOÿB("EUROFIMP")
+i%ÿi%ÿ1
+ok%ÿÿ1
+codevt%ÿcodevt.eurofimp
+ÿ¡codevt.eurofimpÿ0ÿcodema.eurofimpÿ0ÿp
+ok%ÿÿ1
+ÿÉÿ`ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ¥codevt%ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+zweitze%ÿ0
+ÿ¡ok%ÿÿ1ÿp
+zefertig.eurofimpÿ1
+ÿÌÿ™"eurofimp"
+ÿ½ CALL Fehler(" Eintrag in die ZE Datei","")
+ÿÿ™"Zeingan1"
+ÿ½ SET STATUS "Datensatz neu angelegt..."
+CodeAZ%ÿÿI("zeingan1",1)
+CodeAZ.zeingan1ÿCodeAZ%
+coderoimp.zeingan1ÿcoderoimp.eurofimp
+gebuchtJN.zeingan1ÿ"N"
+gebuchtJNT.zeingan1ÿ"N"
+BuchungsDatum.zeingan1ÿÿ(ÿQ,"0d.mm.yyyy")
+Codew.zeingan1ÿcodew.kvertrag
+codege.zeingan1ÿcodege.kvertrag
+apbetrag%ÿÿ0(AP_Provision.EUROFIMP)ÿ100
+ÿ¡apbetrag%ÿ0ÿMakler.eurofimpÿ"M"ÿp
+	ÿ½ besondere Situation, wenn jetzt auch noch die IP<>0 ist, ist das schon die Pflege und wir brauchen 2 ZE
+	ipbetrag%ÿÿ0(IP_Provision.EUROFIMP)ÿ100
+	ÿ¡ipbetrag%ÿ0ÿp
+zweitze%ÿÿ1
+	ÿ’ÿ¡
+ÿ’ÿ¡
+
+
+betrag%ÿÿ0(IP_Provision.EUROFIMP)ÿ100
+ÿ¡betrag%ÿ0ÿp
+	Bewertung.zeingan1ÿÿ0(IP_Provision.EUROFIMP)ÿ100
+	ÿ¡Makler.eurofimpÿ"M"ÿp
+ÿ½ courtage=1
+kondart.zeingan1ÿ1
+Buchungstext.zeingan1ÿ"Courtage: "ÿVS_Nr.kvertrag
+	ÿ^
+ÿ½ Pflege=2/AP=0
+kondart.zeingan1ÿ2
+Buchungstext.zeingan1ÿ"Pflege: "ÿVS_Nr.kvertrag
+	ÿ’ÿ¡
+ÿ^
+	ÿ½ AP
+	ÿ¡zweitze%ÿ0ÿp
+Bewertung.zeingan1ÿÿ0(AP_Provision.EUROFIMP)ÿ100
+kondart.zeingan1ÿ0
+Buchungstext.zeingan1ÿ"AP: "ÿVS_Nr.kvertrag
+	ÿ’ÿ¡
+ÿ’ÿ¡
+betrag$ÿÿH(ÿ(Bewertung.zeingan1,",999999999.00"))
+betrag%ÿÿ0(betrag$)
+sumprov%ÿsumprov%ÿbetrag%
+gg$ÿÿ+(Buchdat.EUROFIMP,8)
+y$ÿÿ+(gg$,4)
+m$ÿÿ,(gg$,5,2)
+t$ÿÿ-(gg$,2)
+dd1$ÿt$ÿ"."ÿm$ÿ"."ÿy$
+BuchungsDatum.zeingan1ÿÿ1(dd1$)
+gg$ÿÿ+(Fael.EUROFIMP,6)
+y$ÿÿ+(gg$,4)
+m$ÿÿ-(gg$,2)
+t$ÿ"01"
+dd$ÿt$ÿ"."ÿm$ÿ"."ÿy$
+F„lligkeit.zeingan1ÿÿ1(dd$)
+VS_Nr.zeingan1ÿVS_Nr.kvertrag
+
+waehrung.zeingan1ÿwaehrung.kvertrag
+umrechnung.zeingan1ÿumrechnung.kvertrag
+codevt.zeingan1ÿlfdnr.kvertrag
+codevt%ÿlfdnr.kvertrag
+
+AntragsNr.zeingan1ÿAntragsNr.kvertrag
+workstation.zeingan1ÿworkstation.kvertrag
+ÿƒQuickStore("zeingan1")
+z%ÿz%ÿ1
+te1$ÿ"VS_NR: "ÿVS_Nr.kvertragÿ"/Buchungsdatum: "ÿdd1$ÿ"/Betrag: "ÿbetrag$
+ÿƒIWriteLogOk(te1$)
+
+ÿ¡zweitze%ÿÿ1ÿp
+	zweitze%ÿ0
+	ÿÿ™"Zeingan1"
+	ÿ½ SET STATUS "Datensatz neu angelegt..."
+	CodeAZ%ÿÿI("zeingan1",1)
+	CodeAZ.zeingan1ÿCodeAZ%
+	coderoimp.zeingan1ÿcoderoimp.eurofimp
+	gebuchtJN.zeingan1ÿ"N"
+	gebuchtJNT.zeingan1ÿ"N"
+	BuchungsDatum.zeingan1ÿÿ(ÿQ,"0d.mm.yyyy")
+	Codew.zeingan1ÿcodew.kvertrag
+	codege.zeingan1ÿcodege.kvertrag
+	Bewertung.zeingan1ÿÿ0(AP_Provision.EUROFIMP)ÿ100
+	kondart.zeingan1ÿ0
+	Buchungstext.zeingan1ÿ"AP: "ÿVS_Nr.kvertrag
+	betrag$ÿÿH(ÿ(Bewertung.zeingan1,",999999999.00"))
+	betrag%ÿÿ0(betrag$)
+	sumprov%ÿsumprov%ÿbetrag%
+	gg$ÿÿ+(Buchdat.EUROFIMP,8)
+	y$ÿÿ+(gg$,4)
+	m$ÿÿ,(gg$,5,2)
+	t$ÿÿ-(gg$,2)
+	dd1$ÿt$ÿ"."ÿm$ÿ"."ÿy$
+	BuchungsDatum.zeingan1ÿÿ1(dd1$)
+	gg$ÿÿ+(Fael.EUROFIMP,6)
+	y$ÿÿ+(gg$,4)
+	m$ÿÿ-(gg$,2)
+	t$ÿ"01"
+	dd$ÿt$ÿ"."ÿm$ÿ"."ÿy$
+	F„lligkeit.zeingan1ÿÿ1(dd$)
+	VS_Nr.zeingan1ÿVS_Nr.kvertrag
+	
+	waehrung.zeingan1ÿwaehrung.kvertrag
+	umrechnung.zeingan1ÿumrechnung.kvertrag
+	codevt.zeingan1ÿlfdnr.kvertrag
+	codevt%ÿlfdnr.kvertrag
+
+	AntragsNr.zeingan1ÿAntragsNr.kvertrag
+	workstation.zeingan1ÿworkstation.kvertrag
+	ÿƒQuickStore("zeingan1")
+	z%ÿz%ÿ1
+	te1$ÿ"(AP) VS_NR: "ÿVS_Nr.kvertragÿ"/Buchungsdatum: "ÿdd1$ÿ"/Betrag: "ÿbetrag$
+	ÿƒIWriteLogOk(te1$)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ™"EUROFIMP"
+ÿÉÿ±ÿáÿ™"EUROFIMP"
+ÿÊÿË"Zahlungseing„nge erzeugen "ÿÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ" / erzeugte ZE: "ÿÿ(z%,",99999999")
+ÿÙ
+sumprov$ÿÿH(ÿ(sumprov%,",999999999.00"))
+ÿƒFehler("Verarbeitung beendet:",ÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ" / erzeugte ZE: "ÿÿ(z%,",99999999")ÿ"  /  Summe der importierten ZE: "ÿsumprov$)
+ÿƒFehler("Bereinigung der Importdatei","")
+ÿßÿe
+ÿ™"EUROFIMP"
+ÿ¾ÿaÿ™"EUROFIMP"ÿĞzefertig.eurofimpÿ1
+ ÿ’ÿÿ
+ 
+
+
+
+
+ÿÿAuswImpDat()
+ 
+ ÿ½ ====== Button Dateiauswahl - Dialog ====== 
+ ÿ¡tTestLog%ÿ1ÿpÿƒIWriteLogOk("Dateiauswahl starten")
+ tempStartDir$ÿÿ
+ AFSKIMPDir$ÿ_netpath$ÿ"0-Import\"
+ ÿ_netpath$ÿ"0-Import\"
+ 
+ ÿ³ÿ_ÿwErrorHandler
+ ÿÂ"Roland-Importdatei ”ffnen ...","",26,tButton%,tAuswDat$
+ ÿtempStartDir$
+ 
+ ÿ¡tButton%ÿ0ÿp
+ÿÂ"Roland-Import abgebrochen (Es wurden keine Daten ge„ndert).","Es wurde kein Dateiname ausgew„hlt",0
+ÿƒIWriteLogOk("Es wurde keine Datei ausgew„hlt - Rolandimport abgebrochen")
+ÿ½ END 
+ÿwe130420041i
+ ÿ’ÿ¡
+ ÿƒICreateALog()
+ ÿƒIWriteLogOk("Importdatei: "ÿtAuswDat$ÿ" - Datum Import: "ÿÿ(ÿQ,"0d.mm.yyyy"))
+ 
+ ÿƒFehler("Bitte nicht ungeduldig werden, der Import dauert in Abh„ngigkeit von der Dateigr”áe einige Minuten!!","")
+ ÿßÿe
+ ÿÊÿË"Daten importieren von ..."ÿtAuswDat$
+ ÿÉÿĞÿ™"EUROFIMP"
+ ÿww240120071
+ Superbase.Converters.ASF.SourceFormatÿ"ASCII Fixed Length"
+ Superbase.Converters.ASF.SourceFileÿtAuswDat$
+ Superbase.Converters.ASF.Descendingÿ0
+ Superbase.Converters.ASF.Mergeÿÿ1
+ Superbase.Converters.ASF.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASF.FieldDelimiterÿ""
+ Superbase.Converters.ASF.ANSIConvertÿÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"EUROFIMP"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.ASF)
+ 
+w240120071: 
+ ZInhalt$ÿ""
+ iab%ÿ0
+ ÿ´tAuswDat$ÿ›ÿ¤
+ ÿØÿOÿB("*")
+ÿßÿe
+iab%ÿiab%ÿ1
+ÿ¤ÿcZInhalt$
+ÿÿ™"EUROFIMP"
+l1.EUROFIMPÿÿ,(ZInhalt$,1,3)
+VS_Nr.EUROFIMPÿÿ,(ZInhalt$,4,11)
+lz.EUROFIMPÿÿ,(ZInhalt$,15,2)
+fd.EUROFIMPÿÿ,(ZInhalt$,17,3)
+BD.EUROFIMPÿÿ,(ZInhalt$,20,3)
+MA_Nr.EUROFIMPÿÿ,(ZInhalt$,23,8)
+H_.EUROFIMPÿÿ,(ZInhalt$,31,15)
+Kunde.EUROFIMPÿÿ,(ZInhalt$,46,30)
+BuGru.EUROFIMPÿÿ,(ZInhalt$,76,2)
+L5.EUROFIMPÿÿ,(ZInhalt$,78,2)
+L6.EUROFIMPÿÿ,(ZInhalt$,80,1)
+Fael.EUROFIMPÿÿ,(ZInhalt$,81,6)
+LEV.EUROFIMPÿÿ,(ZInhalt$,87,1)
+Einloesung.EUROFIMPÿÿ,(ZInhalt$,88,10)
+Jahrb.EUROFIMPÿÿ,(ZInhalt$,98,10)
+L7.EUROFIMPÿÿ,(ZInhalt$,108,10)
+AP_Provision.EUROFIMPÿÿ,(ZInhalt$,118,10)
+IP_Provision.EUROFIMPÿÿ,(ZInhalt$,128,10)
+ProvspAP.EUROFIMPÿÿ,(ZInhalt$,138,10)
+ProvspIP.EUROFIMPÿÿ,(ZInhalt$,148,10)
+Buchdat.EUROFIMPÿÿ,(ZInhalt$,158,8)
+zw.EUROFIMPÿÿ,(ZInhalt$,166,1)
+Ablauf.EUROFIMPÿÿ,(ZInhalt$,167,2)
+L10.EUROFIMPÿÿ,(ZInhalt$,169,12)
+L11.EUROFIMPÿÿ,(ZInhalt$,181,23)
+
+ÿÌÿ™"EUROFIMP"
+ÿÊÿËÿ(iab%,"999999999")ÿ" Zeilen aus Importdatei gelesen!"
+
+ ÿÙ
+ ÿƒFehler("Daten wurden eingelesen und k”nnen verarbeitet werden!","")
+
+
+
+ ÿ™"EUROFIMP"
+ ÿ¾ÿaÿ™"EUROFIMP"ÿĞÿ0(MA_NR.EUROFIMP)ÿ
+1
+ÿ™"euikopf"
+ÿ£coderoimp.euikopf
+ÿÿ™"euikopf"
+coderoimp.euikopfÿÿI("euikopf",1)
+coderoimp%ÿcoderoimp.euikopf
+datumimp.euikopfÿÿQ
+ÿÌÿ™"euikopf"
+ÿ™"euikopf"
+ÿ£coderoimp.euikopf
+ÿÉÿb
+coderoimp%ÿcoderoimp.euikopf
+ÿ™"EUROFIMP"
+ÿ£kunde.EUROFIMP
+ÿÉÿ`ÿá
+ÿ™"maadr"
+ÿ£QAgenturnr.maadr
+ÿ™"kvertrag"
+ÿ£QNumVSNR.kvertrag
+i%ÿ0
+j%ÿÿA("EUROFIMP")
+k%ÿ0
+fv%ÿ0
+fm%ÿ0
+z%ÿ0
+l%ÿ0
+ÿßÿe
+sumprov%ÿ0
+ÿØÿOÿB("EUROFIMP")
+i%ÿi%ÿ1
+ok%ÿÿ1
+ÿ¡coderol.eurofimpÿ
+1ÿp
+coderol%ÿÿI("Eurofimp",1)
+coderol.eurofimpÿcoderol%
+sumprov%ÿsumprov%ÿÿ0(AP_Provision.eurofimp)ÿÿ0(IP_Provision.eurofimp)
+ÿ’ÿ¡
+ÿ¡coderoimp.eurofimpÿ
+1ÿp
+coderoimp.eurofimpÿcoderoimp%
+l%ÿl%ÿ1
+ÿ’ÿ¡
+ÿÌÿ™"EUROFIMP"
+ÿ™"EUROFIMP"
+ÿÉÿ±ÿáÿ™"EUROFIMP"
+ÿÊÿËÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")
+ÿÙ
+ÿ™"EUROFIMP"
+ÿ£coderoimp.EUROFIMP
+ÿÉÿ`ÿ™"EUROFIMP"ÿ£coderoimp.EUROFIMP
+ÿÉÿ¥coderoimp%ÿ™"EUROFIMP"ÿ£coderoimp.EUROFIMP
+gg$ÿÿ+(Buchdat.EUROFIMP,8)
+y$ÿÿ+(gg$,4)
+m$ÿÿ,(gg$,5,2)
+t$ÿÿ-(gg$,2)
+dd$ÿt$ÿ"."ÿm$ÿ"."ÿy$
+datbu$ÿdd$
+gg$ÿÿ+(Fael.EUROFIMP,6)
+y$ÿÿ+(gg$,4)
+m$ÿÿ-(gg$,2)
+t$ÿ"01"
+dd$ÿt$ÿ"."ÿm$ÿ"."ÿy$
+ÿ™"euikopf"
+ÿ£coderoimp.euikopf
+ÿÉÿbÿá
+ÿ¡datbu.euikopfÿ
+1ÿp
+	datbu.euikopfÿdatbu$
+	datfael.euikopfÿdd$
+	notizimp.euikopfÿÿ(l%,",99999999")ÿ" Datens„tze - Summe: "ÿÿH(ÿ(sumprov%ÿ100,",999999999.00"))
+	ÿÌÿ™"euikopf"
+ÿ’ÿ¡
+ÿ½ CALL Fehler( STR$ (l%,",99999999"),"Datens„tze wurden eingelesen")
+
+ÿƒIWriteLogOk(ÿH(ÿ(l%,",99999999"))ÿ" Datens„tze wurden eingelesen")
+
+
+
+ ÿßÿ³
+e130420041i: 
+ ÿ’ÿÿ
+
+
+
+
+ÿ½ *******************************************************  
+ÿ½ *******************************************************
+ÿ½ ***** Handling von LOG-Dateien ************************
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+
+ÿ½ =================================
+ÿ½ ====== LOG-Datei erstellen ======
+ÿ½ =================================
+ÿÿICreateALog()
+ÿ´_netpath$ÿ"0-Import\ImpLOG.txt"ÿ›ÿT
+ÿ{" "
+ÿ{"***********************************************************************************************************************************"
+ÿ{"Datei "ÿÿ>(tempeltpath$)ÿ"ImpLOG.txt erstellt am "ÿÿ(ÿQ,"0d.mm.yyyy")ÿ" / "ÿÿ7(ÿR,"hh:mm:ss")
+ÿ{"-------------------------------------------------------------------------"
+ÿ{
+ÿ†ÿ¶
+ ÿ’ÿÿ
+ 
+ÿ½ =================================
+ÿ½ ====== LOG-Datei schlieáen ======
+ÿ½ =================================
+ÿÿICloseALog()
+ÿ´_netpath$ÿ"0-Import\ImpLOG.txt"ÿ›ÿT
+ÿ{
+ÿ{"-------------------------------------------------------------------------"
+ÿ{"Eintragung beendet am "ÿÿ(ÿQ,"0d.mm.yyyy")ÿ"/"ÿÿ7(ÿR,"hh:mm:ss")
+ÿ{"***********************************************************************************************************************************"
+ÿ{" "
+ÿ†ÿ¶
+ÿ‰ÿñ"PROT",0,0,244,154,"0-IMPORT","MS Sans Serif",8
+ÿ|ÿñ"PROT",4,0,0,244,130,0,""
+ÿ|ÿñ"PROT",9,6,9,22,22,2
+ÿ|ÿñ"PROT",5,35,13,194,10,0,"W„hrend der zuletzt durchgefhrten Aktion wurde eine"
+ÿ|ÿñ"PROT",5,35,23,194,10,0,"Protokolldatei erstellt, in der eventuelle Fehler und Zusatz-"
+ÿ|ÿñ"PROT",5,35,33,194,10,0,"information gespeichert wurden."
+ÿ|ÿñ"PROT",5,35,53,194,10,0,"W„hlen Sie "ÿÿ(34)ÿ"Ja"ÿÿ(34)ÿ", wenn Sie das Protokoll einsehen und"
+ÿ|ÿñ"PROT",5,35,63,194,10,0,"eventuell Drucken wollen."
+ÿ|ÿñ"PROT",5,35,83,194,10,0,"W„hlen Sie "ÿÿ(34)ÿ"Nein"ÿÿ(34)ÿ", wenn Sie das Protokoll nicht"
+ÿ|ÿñ"PROT",5,35,93,194,10,0,"einsehen m”chten."
+ÿ|ÿñ"PROT",5,35,113,194,10,0,"Wollen Sie das Protokoll einsehen?"
+ÿ|ÿñ"PROT",1,118,134,55,15,0,"&Nein",0,0
+ÿ|ÿñ"PROT",1,62,134,55,15,1,"&Ja",1,1
+ÿñ"PROT",gdvBut%
+ÿ¾ÿñ"PROT"
+ÿ¡gdvBut%ÿ1ÿpÿƒIShowALog()
+ ÿ’ÿÿ
+ 
+ÿ½ ===========================================
+ÿ½ ====== Fehler in LOG-Datei schreiben ======
+ÿ½ ===========================================
+ÿÿIWriteLogFail(TLogText$)
+ÿ´_netpath$ÿ"0-Import\ImpLOG.txt"ÿ›ÿT
+ÿ{ÿåansi("**********  FEHLER **********")
+ÿ{ÿ7(ÿR,"hh:mm:ss")ÿ" "ÿÿåansi(TLogText$)
+ÿ{ÿåansi("*****************************")
+ÿ†ÿ¶
+ ÿ’ÿÿ
+
+ÿ½ =================================================
+ÿ½ ====== OKAY-Eintrag in LOG-Datei schreiben ======
+ÿ½ =================================================
+ÿÿIWriteLogOk(TLogText$)
+ÿ´_netpath$ÿ"0-Import\ImpLOG.txt"ÿ›ÿT
+ÿ{ÿ7(ÿR,"hh:mm:ss")ÿ" "ÿÿåansi(TLogText$)
+ÿ†ÿ¶
+ ÿ’ÿÿ
+ 
+ÿ½ ===============================
+ÿ½ ====== LOG-Datei l”schen ======
+ÿ½ ===============================
+ÿÿIDeleteALog()
+ÿ¡ÿJ(_netpath$ÿ"0-Import\ImpLOG.txt")ÿpÿ_netpath$ÿ"0-Import\ImpLOG.txt"
+ ÿ’ÿÿ
+ 
+ÿ½ ================================
+ÿ½ ====== LOG-Datei anzeigen ======
+ÿ½ ================================
+ÿÿIShowALog()
+ÿÊÿË"Anzeige des Fehlerprotokolls"
+ÿ¡ÿJ(_netpath$ÿ"0-Import\ImpLOG.txt")ÿp
+ÿ½ LOAD TEXT _netpath$ + "AFSK\AFSK.LOG"
+ÿ½ EDIT TEXT 
+atex$ÿ_netpath$ÿ"0-Import\ImpLOG.txt"
+a%ÿÿƒ("ShellExecute",0,"open",atex$,"","",1)
+ÿ^
+ÿƒFehler("Es konnte kein Fehlerprotokoll gefunden werden!","")
+ÿ’ÿ¡
+ÿÊÿË"Bereit"
+ ÿ’ÿÿ
+ 
+ 
+

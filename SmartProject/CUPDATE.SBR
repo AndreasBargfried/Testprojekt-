@@ -1,0 +1,145 @@
+SBP
+ ÿƒmain()
+ 
+ ' CustomUpdate
+ ' Copyright (c) 1992-1995 CoDIE Computer-Dienste
+ ' Stand   : 14.12.1995
+ ' Erg„nzung fehlender Adressen im Datenbestand INFORMA
+ ' =============================================================
+
+ 
+ÿÿDoCUpdate()
+ ÿƒHideStartup()
+ ÿÿChanges%,ChangesMax%
+ 
+ ÿ½ ****************************************************
+ ÿ½ ** ChangesMax% wird mit der Anzahl der            **
+ ÿ½ ** notwendigen nderungen in OFFICE initialisiert **
+ ÿ½ ****************************************************
+ 
+ ChangesMax%ÿ108
+ 
+ ÿ½ ****************************************************
+ ÿ½ ** Hinzufgen der notwendigen nderungen des      **
+ ÿ½ ** jeweilgen Projektes                            **
+ ÿ½ ****************************************************
+ 
+ ÿÉÿæÿ>(_projekt$)
+ ÿæ"IMMAK"
+ChangesMax%ÿChangesMax%ÿ82
+ ÿæ"FACTURA"
+ChangesMax%ÿChangesMax%ÿ37
+ ÿæ"PROVIS"
+ChangesMax%ÿChangesMax%ÿ274
+ ÿæ"VIDEO"
+ChangesMax%ÿChangesMax%ÿ9
+ ÿ’ÿÉ
+
+ Changes%ÿ0
+ 
+ ÿ‰ÿñ"UPDATE",0,0,278,121,"Update","MS Sans Serif",8
+ ÿ|ÿñ"UPDATE",4,0,0,278,97,0,""
+ ÿ|ÿñ"UPDATE",9,6,6,20,22,4
+ ÿ|ÿñ"UPDATE",5,38,9,203,10,0,"Ihr Datenbestand wird nachfolgend mit den noch fehlenden"
+ ÿ|ÿñ"UPDATE",5,38,19,76,9,0,"Daten erg„nzt."
+ ÿ|ÿñ"UPDATE",5,38,33,219,8,0,"Damit das Update fehlerfrei durchgefhrt werden kann, mssen Sie"
+ ÿ|ÿñ"UPDATE",5,38,43,232,9,0,"sicherstellen, daá kein weiterer Mitarbeiter im Programm angemeldet ist."
+ ÿ|ÿñ"UPDATE",5,38,60,232,8,0,"Wenn Sie das Update jetzt durchfhren lassen wollen, drcken Sie"
+ ÿ|ÿñ"UPDATE",5,38,70,232,8,0,"auf "ÿÿ(34)ÿ"Fortfahren"ÿÿ(34)ÿ", wenn Sie das Update zu einem sp„teren Zeitpunkt"
+ ÿ|ÿñ"UPDATE",5,38,80,219,8,0,"starten wollen, drcken Sie auf "ÿÿ(34)ÿ"Abbrechen"ÿÿ(34)ÿ"."
+ ÿ|ÿñ"UPDATE",1,82,100,55,15,1,"&Fortfahren",1,1
+ ÿ|ÿñ"UPDATE",1,140,100,55,15,0,"&Abbrechen",0,0
+ ÿñ"UPDATE",req%
+ ÿ¾ÿñ"UPDATE"
+ 
+ ÿ¡req%ÿ1ÿp
+ÿƒEXIT()
+ ÿ’ÿ¡
+ 
+ ÿ½ ** zus„tzlich angemeldete Nutzer erkennen **
+ 
+ ÿƒDFile(4,"supervis;paris")
+ ÿ¡_error%ÿ132ÿ_error%ÿ140ÿp
+msg$ÿ"Bitte stellen Sie sicher, daá kein weiterer Mitarbeiter angemeldet ist."
+ÿƒFehler("Es sind noch weitere Mitarbeiter im Programm angemeldet!",msg$)
+ÿƒEXIT()
+ ÿ’ÿ¡
+ 
+ 
+ ÿƒServer("LOADUPDATE","")
+ ÿƒServer("UPDFILE","")
+ ÿƒServer("UPDFIELD","")
+ ÿƒServer("UPDSTATUS","Update wird vorbereitet...")
+ ÿƒServer("UPDGAUGE","0")
+
+ ÿ½ ===========================
+ ÿ½ -- Anpassung Projekt PROVIS
+ ÿ½ -- Stand: 14.12.95
+ ÿ½ -- INFORMA GmbH
+ ÿ½ ===========================
+ 
+ ÿ¡_projekt$ÿ"PROVIS"ÿp
+ 
+ÿ½ -- Anpassung ADRESSEN.SBF --
+
+ÿƒDFile(2,"OFFICE\ADRESSEN"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\ADRTEMP"ÿ_fpw$)
+ÿƒServer("UPDFILE","Adressen")
+ 
+ÿ½ -- šbernahme fehlender Eintr„ge aus ADRTEMP.SBF --
+
+_pcmax%ÿÿA("ADRTEMP")
+_pccur%ÿ0
+ÿ™"ADRTEMP"
+ÿ£CodeKU.ADRTEMP
+ÿ½ -- Feldliste aufbauen --
+AdrFieldCount%ÿÿõ("ADRTEMP",1)
+ÿ×AdrFields$(AdrFieldCount%)
+ÿÿAdrFields$,1
+ÿÉÿ`
+ÿØÿOÿB("ADRTEMP")
+_pccur%ÿ_pccur%ÿ1
+_pcperc%ÿ100ÿ_pcmax%ÿ_pccur%
+ÿƒServer("UPDGAUGE",ÿH(ÿ(_pcperc%,"999999")))
+ÿƒServer("UPDSTATUS","Prfung der Datei...")
+ÿÉÿ¥CodeKU.ADRTEMPÿ™"ADRESSEN"ÿ£CodeKU.ADRESSEN
+ÿ¡CodeKU.ADRESSENÿCodeKU.ADRTEMPÿp
+ÿƒServer("UPDSTATUS","šbernahme "ÿNachname.ADRTEMPÿ"...")
+ÿÿ™"ADRESSEN"
+ÿ›a%ÿ0ÿqAdrFieldCount%ÿ1
+	Fieldname1$ÿAdrFields$(a%)ÿ".ADRTEMP"
+	Fieldname2$ÿAdrFields$(a%)ÿ".ADRESSEN"
+	FieldName2$$ÿFieldName1$$
+ÿ±a%
+ÿÌÿ™"ADRESSEN"
+ÿ½ -- Adresse bernehmen --
+ÿ½ ? CodeKU,Nachname,Vorname + CHR$ (13)
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"ADRTEMP"ÿ£CodeKU.ADRTEMP
+ÿÙ
+
+ÿ½ -- leere Datens„tze in KVERTRAG.SBF entfernen --
+
+ÿƒDFile(3,"KVERTRAG"ÿ_fpw$)
+ÿ™"KVERTRAG"
+ÿƒServer("UPDFILE","Vertr„ge")
+ÿƒServer("UPDSTATUS","fehlerhafte Daten entfernen...")
+ÿƒServer("UPDGAUGE","0")
+ÿ¾ÿaÿ™"KVERTRAG"ÿĞCodeGE.KVERTRAGÿ
+1
+ÿƒServer("UPDGAUGE","100")
+
+ ÿ’ÿ¡'Anpassungen INFORMA GmbH
+ 
+
+
+ ÿƒServer("UNLOADUPDATE","")
+ ÿƒWriteConfig(_projekt$,"CustomUpdate","FALSE")
+ ÿƒWriteConfig(_projekt$,"Update","TRUE")
+ ÿƒFehler("Die Daten wurden bernommen!","Fr ein abschlieáendes Update muá das Programm neu gestartet werden!")
+ ÿƒEXIT()
+ ÿ’ÿÿ
+ 
+ 
+
+

@@ -1,0 +1,67 @@
+SBP
+ ÿ‡
+ ÿÊÿfÿe
+ ÿ´ÿ™"i:\codie.dev\test1;paris"
+ ÿ´ÿ™"i:\codie.dev\test2;paris"
+ ÿƒXAbgleich("TEST2","TEST1","CodeKey")
+ ÿ’
+
+
+
+ ' Datenbank mit Austauschdatei abgleichen
+ ' ======================================================================
+ ' Parameter:   dfile$          lokale Zieldatenbank
+ '              sfile$          Austauschdatei
+ '              sindex$         Bezeichnung des Hauptindex
+ ' ======================================================================
+ ' 19.10.94/FA
+ 
+ÿÿXAbgleich(dfile$,sfile$,sindex$)
+ cfile$ÿÿ™
+ ÿ×FileFields$(ÿõ(sfile$,1))
+ ÿ™sfile$
+ ÿÿFileFields$,1
+ ÿ£sindex$$
+ ÿÉÿ`
+ ÿØÿOÿB(sfile$)
+ÿÊÿËÿ(sindex$$)
+dfindex$ÿsindex$ÿ"."ÿdfile$
+sfindex$ÿsindex$ÿ"."ÿsfile$
+ÿÉÿ¥sfindex$$ÿáÿ™dfile$ÿ£dfindex$$
+ÿ¡ÿOÿC(dfile$)ÿp
+ÿ½ ** neuen Datensatz bernehmen
+ÿÿ™dfile$
+a%ÿ0
+ÿ{"Datensatz angefgt: "ÿÿ(sindex$$,"000000")
+ÿØFileFields$(a%)ÿ""
+sfield$ÿFileFields$(a%)ÿ"."ÿsfile$
+dfield$ÿFileFields$(a%)ÿ"."ÿdfile$
+dfield$$ÿsfield$$
+a%ÿa%ÿ1
+ÿÙ
+dfindex$$ÿÿI(dfile$)
+ÿÌÿ™dfile$
+ÿ^
+ÿ½ ** bestehenden Datensatz updaten
+ÿÊÿË""
+stime$ÿ"TimeStamp."ÿsfile$
+dtime$ÿ"TimeStamp."ÿdfile$
+ÿ¡stime$$ÿdtime$$ÿp
+a%ÿ0
+ÿ{"Update"ÿÿ(sindex$$,"000000")
+ÿØFileFields$(a%)ÿ""
+	sfield$ÿFileFields$(a%)ÿ"."ÿsfile$
+	dfield$ÿFileFields$(a%)ÿ"."ÿdfile$
+	dfield$$ÿsfield$$
+	a%ÿa%ÿ1
+ÿÙ
+ÿÌÿ™dfile$
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿ™sfile$ÿ£sindex$$
+ ÿÙ
+ ÿ™cfile$
+ ÿ’ÿÿ
+ 
+ 
+

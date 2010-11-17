@@ -1,0 +1,190 @@
+SBP
+ ÿww140520064
+ ÿ™"adressen"
+ ÿ£codeku.adressen
+ ÿ™"connect"
+ ÿ£codeku
+ ÿÉÿ`
+ i%ÿ0
+ j%ÿÿA("connect")
+ k%ÿ0
+ ÿØÿOÿB("connect")
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%,",999999")ÿ"/"ÿÿ(j%,",999999")ÿ"/"ÿÿ(k%,",999999")
+ÿ¡nachname.connectÿ"SmartPROVIS Mitbewer*"ÿp
+k%ÿk%ÿ1
+codeku%ÿcodecon.connect
+ÿÉÿ`ÿ™"adressen"ÿ£codeku.adressen
+ÿÉÿ¥codeku%ÿáÿ™"adressen"ÿ£codeku.adressen
+ADRGruppe.adressenÿ"PROVIS MITBEWERBER"
+ÿÌÿ™"adressen
+ÿ’ÿ¡
+
+ÿÉÿ±ÿ™"connect"
+ ÿÙ
+ ÿ{ÿ(i%,",999999")ÿ"/"ÿÿ(j%,",999999")ÿ"/"ÿÿ(k%,",999999")
+w140520061: 
+
+ ÿ™"adressen"
+ ÿ£codeku.adressen
+ ÿÉÿ`ÿá
+ i%ÿ0
+ j%ÿÿA("Adressen")
+ k%ÿ0
+ s%ÿ0
+ ÿØÿOÿB("ADRESSEN")
+i%ÿi%ÿ1
+ok%ÿÿ1
+ÿ¡stichwort ÿ"*PROVIS"ÿstichwort ÿ"*PROVIS*"ÿstichwort ÿ"PROVIS*"ÿp
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡stichwort ÿ"*KONKURENT"ÿstichwort ÿ"*KONKURENT*"ÿstichwort ÿ"KONKURENT*"ÿp
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡adrgruppe ÿ"PROVIS Mit*"ÿp
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡adrstatus ÿ"PROVIS*"ÿok%ÿÿ1ÿp
+
+ÿ’ÿ¡
+
+ÿ¡ok%ÿÿ1ÿp
+k%ÿk%ÿ1
+adrselect ÿ"1"
+ÿ¡stichwort ÿ"*REGPROV"ÿstichwort ÿ"*REGPROV*"ÿstichwort ÿ"REGPROV*"ÿp
+s%ÿs%ÿ1
+adrselect ÿ"2"
+ÿ’ÿ¡
+ÿ^
+ÿ¡adrselect ÿ"3"ÿadrselect ÿ"4"ÿpadrselect ÿ"0"
+ÿ’ÿ¡
+ÿÌÿ™"adressen"
+ÿÊÿËÿ(i%,",999999")ÿ"/"ÿÿ(j%,",999999")ÿ"/"ÿÿ(k%,",999999")ÿ"/"ÿÿ(s%,",999999")
+
+ÿÉÿ±ÿá
+ ÿÙ
+ a$ÿÿ(i%,",999999")ÿ"/"ÿÿ(j%,",999999")ÿ"/"ÿÿ(k%,",999999")ÿ"/"ÿÿ(s%,",999999")
+ ÿÂa$,"",2
+ ÿ{a$
+ 
+ ÿ™"adressen"
+ ÿ£codeku.adressen
+ ÿ™"connect"
+ ÿ£codeku
+ ÿÉÿ`
+ i%ÿ0
+ j%ÿÿA("connect")
+ k%ÿ0
+ ÿØÿOÿB("connect")
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%,",999999")ÿ"/"ÿÿ(j%,",999999")ÿ"/"ÿÿ(k%,",999999")
+ÿ¡codeku.connectÿ9942ÿp
+k%ÿk%ÿ1
+codeku%ÿcodecon.connect
+ÿÉÿ`ÿ™"adressen"ÿ£codeku.adressen
+ÿÉÿ¥codeku%ÿáÿ™"adressen"ÿ£codeku.adressen
+adrselect ÿ"0"
+ÿÌÿ™"adressen
+ÿ’ÿ¡
+ 
+ÿÉÿ±ÿ™"connect"
+
+ ÿÙ
+
+ ÿ{ÿ(i%,",999999")ÿ"/"ÿÿ(j%,",999999")ÿ"/"ÿÿ(k%,",999999")
+
+w140520062: 
+ ÿ™"adressen"
+ ÿ£codeku.adressen
+ ÿÉÿ`ÿá
+ i%ÿ0
+ j%ÿÿA("Adressen")
+ k%ÿ0
+ s%ÿ0
+ ÿØÿOÿB("ADRESSEN")
+i%ÿi%ÿ1
+ok%ÿÿ1
+ÿ¡stichwort ÿ"*ISMAN"ÿstichwort ÿ"*ISMAN*"ÿstichwort ÿ"ISMAN*"ÿp
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡stichwort ÿ"*KONKURENT"ÿstichwort ÿ"*KONKURENT*"ÿstichwort ÿ"KONKURENT*"ÿp
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡adrgruppe ÿ"ISMAN Mit*"ÿp
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡adrstatus ÿ"PROVIS*"ÿok%ÿÿ1ÿp
+
+ÿ’ÿ¡
+ 
+ÿ¡ok%ÿÿ1ÿp
+k%ÿk%ÿ1
+adrselect ÿ"3"
+ÿ¡stichwort ÿ"*REGISM"ÿstichwort ÿ"*REGISM*"ÿstichwort ÿ"REGISM*"ÿp
+s%ÿs%ÿ1
+adrselect ÿ"4"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÌÿ™"adressen"
+ÿÊÿËÿ(i%,",999999")ÿ"/"ÿÿ(j%,",999999")ÿ"/"ÿÿ(k%,",999999")ÿ"/"ÿÿ(s%,",999999")
+ 
+ÿÉÿ±ÿá
+ ÿÙ
+ a$ÿÿ(i%,",999999")ÿ"/"ÿÿ(j%,",999999")ÿ"/"ÿÿ(k%,",999999")ÿ"/"ÿÿ(s%,",999999")
+ ÿÂa$,"",2
+ ÿ{a$
+ 
+
+
+w140520064: 
+
+
+
+ÿÉÿ`ÿ™"project"ÿ£Codepr.project
+ÿÉÿ¥189ÿáÿ™"project"ÿ£Codepr.project
+ ÿ™"adressen"
+ ÿ£codeku.adressen
+ ÿÉÿ`ÿá
+ i%ÿ0
+ j%ÿÿA("Adressen")
+ k%ÿ0
+ s%ÿ0
+ ÿØÿOÿB("ADRESSEN")
+i%ÿi%ÿ1
+knr%ÿcodeku.adressen
+ÿÊÿËÿ(i%,",999999")ÿ"/"ÿÿ(j%,",999999")ÿ"/"ÿÿ(k%,",999999")ÿ"/"ÿÿ(s%,",999999")
+ÿ¡adrselect.adressenÿ"1"ÿp
+k%ÿk%ÿ1
+nachfolger%ÿ189
+ÿÿ™"prconadr"
+codekey.prconadrÿÿI("prconadr",1)
+codeku.prconadrÿknr%
+codePR.prconadrÿnachfolger%
+ 
+Nachname.prconadrÿNachname.adressen
+vorname.prconadrÿvorname.adressen
+Ort.prconadrÿOrt.adressen
+Strasse.prconadrÿStraáe.adressen
+plz.prconadrÿplz.adressen
+Name1.prconadrÿName1.project
+Name2.prconadrÿName2.project
+Name3.prconadrÿName3.project
+Ortprj.prconadrÿOrt.project
+Strasseprj.prconadrÿStrasse.project
+Projektnummer.prconadrÿProjektnummer.project
+Typ.prconadrÿ"N"
+ 
+QuickPRKU.prconadrÿÿ(codepr.prconadr,"000000")ÿNachname.prconadr
+CodePRKU.prconadrÿÿ(codepr.prconadr,"000000")ÿÿ(codeku.prconadr,"000000")
+ 
+ÿÌÿ™"prconadr"
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"adressen"
+ ÿÙ
+ 
+ a$ÿÿ(i%,",999999")ÿ"/"ÿÿ(j%,",999999")ÿ"/"ÿÿ(k%,",999999")ÿ"/"ÿÿ(s%,",999999")
+ ÿÂa$,"",2
+ ÿ{a$
+

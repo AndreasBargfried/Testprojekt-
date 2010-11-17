@@ -1,0 +1,694 @@
+SBP
+ ÿƒmain()
+ÿÿTempletonImp()
+ÿ½ *******************************************************
+ÿ½ ***** Globale Variablen *******************************
+ÿ½ *******************************************************
+
+
+tempeltpath$ÿ_netpath$ÿ"TEMPLETO\"
+ÿ³ÿ_ÿwCrdir210420021
+ÿªÿtempeltpath$
+Crdir210420021: 
+ÿ³ÿ_ÿwErrorHandler
+ÿ½ *******************************************************
+ÿ½ ***** LOG -Datei erstellen ****************************
+ÿ½ *******************************************************
+ 
+ÿƒTCreateLog()
+
+
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+ÿ½ ***** Routine fr Formular TEMPLIMP *********************
+ÿ½ *******************************************************
+ÿ½ ******************************************************* 
+ÿƒDFile(3,"TEMPIMP"ÿ_fpw$)
+ÿƒDFile(3,"GEADR"ÿ_fpw$)
+ÿƒDFile(3,"KVERTRAG"ÿ_fpw$)
+ÿƒDFile(3,"FONDHEAD"ÿ_fpw$)
+ÿƒDFile(3,"FONDS"ÿ_fpw$)
+ÿƒDFile(3,"ZEINGAN1"ÿ_fpw$)
+ÿƒDFile(3,"KGEADR"ÿ_fpw$)
+ÿƒDFile(3,"GEADR"ÿ_fpw$)
+ÿƒDFile(3,"SPARTEN"ÿ_fpw$)
+ÿƒDFile(3,"VORGANG"ÿ_fpw$)
+ÿƒDFile(3,"MAADR"ÿ_fpw$)
+ÿƒDFile(3,"KUKTO"ÿ_fpw$)
+ÿ¡MAKLER$ÿ"TRUE"ÿp
+ÿƒDFile(3,"STAMM"ÿ_fpw$)
+ÿƒDFile(3,"INKSTAMM"ÿ_fpw$)
+ÿ’ÿ¡
+ÿƒDFile(2,"OFFICE\adressen"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\adrtemp"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\dokument"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\akquise"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\telefon"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\connect"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\banken"ÿ_fpw$)
+ÿ™"fondhead"
+ÿ£codeimp.fondhead
+
+tTestLog%ÿ1
+ÿ™"TEMPIMP"
+ÿ£codetmp
+ÿÉÿ`
+ÿÉÿœÿ`
+ _formend%ÿ0
+ ÿØ_formend%ÿ0
+
+ÿ¡ÿ>(ÿœ)ÿ"TEMPLIMP"ÿp
+
+ÿÊÿŸtitle$ÿ" - TEMPLETON - IMPORT"
+ÿ´ÿœGPrjForm$ÿ"TEMPLIMP"
+TIMPSUB1%ÿ0
+ÿÊf ÿSuperbase.Form
+seite%ÿ1
+ÿ¡seiteab%ÿ2ÿpseite%ÿ2
+ÿÊÿË"TEMPLETON - IMPORT"
+Superbase.DateFormatÿ"dd.mm.yyyy"
+ÿÉÿœÿ`ÿ™"fondhead"ÿ£codeimp.fondhead
+ÿœ
+ÿ½ f.CommandButton3.Enabled = 0
+GID$ÿ""
+gdvStand$ÿ""
+gdvAnzeige$ÿ""
+gdvBegrundung$ÿ""
+ÿ’ÿ¡
+
+ÿ¬ÿ³
+ÿßÿ³
+
+ÿƒClearKBDBuffer()
+ÿœseite%
+ÿÏÿ¥ÿÿ¬ÿÿß
+ÿ¡TIMPSUB1%ÿ1ÿp
+codeimp%ÿcodeimp.fondhead
+notiz$ÿnotiz.fondhead
+d$ÿÿ(DatumImport.fondhead)
+b$ÿ"Sie mssen gegebenenfalls eine Korrekturbuchung durchfhren, um bereits verarbeitete Zahlungseing„nge aus der Buchungsdatei zu entfernen!"
+c$ÿ"Hiebei werden die entsprechenden Datens„tze aus der Fondsdatei und der Zahlungseingangsdatei gel”scht!"
+ÿƒFehler("Sie erhalten jetzt die M”glichkeit den Import "ÿÿ(13)ÿ"> "ÿnotiz$ÿ" <"ÿ" vom "ÿd$ÿÿ(13)ÿ"rckg„ngig zu machen!",c$ÿb$)
+ÿÂ"Wollen Sie wirklich den Import rckg„ngig machen?","",130,req%
+ÿ¡req%ÿ1ÿp
+ÿßÿe
+ÿÊÿË"L”sche Zeilen in Datei Fonds....Bitte warten"
+ÿ™"fonds"
+ÿ£codeimp.fonds
+ÿÉÿ`
+ÿÉÿ¥codeimp%ÿáÿ™"fonds"ÿ£codeimp.fonds
+i%ÿ0
+j%ÿ0
+ÿØÿOÿB("Fonds")ÿcodeimp.fondsÿcodeimp%
+	i%ÿi%ÿ1
+	j%ÿj%ÿ1
+	codevt%ÿCodeVT.FONDS
+	ÿÊÿË"L”sche Zeilen in Datei Zahlungseingang....Bitte warten"
+	ÿÊÿËÿ(i%,"999999")ÿ" Datens„tze in Fonds gel”scht"
+	ÿÉÿ¾
+	ÿ½ CALL RechKvertrag(CodeVT%)
+	ÿÉÿ`
+	ÿÉÿ¥codeimp%ÿáÿ™"fonds"ÿ£codeimp.fonds
+ÿÙ
+ÿÊÿË"L”sche Zeilen in Datei Zahlungseingang....Bitte warten"
+ÿ™"zeingan1"
+ÿ£codeimp.zeingan1
+ÿ¾ÿaÿ™"zeingan1"ÿĞcodeimp.zeingan1ÿcodeimp%
+ÿÊÿË"L”sche Zeilen in Datei Fondshead....Bitte warten"
+ÿ™"fondhead"
+ÿ£codeimp.fondhead
+ÿ¾ÿaÿ™"fondhead"ÿĞcodeimp.fondheadÿcodeimp%
+ÿÉÿœÿ`ÿ™"fondhead"
+ÿœ
+ÿ¾ÿaÿ™"TEMPIMP"
+ÿƒFehler("Es wurde der Import erfolgreich rckg„ngig gemacht!","")
+ÿÊÿË""
+ÿßÿ³
+ÿ’ÿ¡
+seite%ÿ1
+ÿ’ÿ¡
+ÿ¡TIMPSUB1%ÿ2ÿp
+eingab$ÿshareholdaccno.TEMPIMP
+vs_nr$ÿeingab$
+nvt%ÿGetVertrag%(lfdnr.KVERTRAG)
+ÿ¡nvt%ÿ0ÿp
+cuvt%ÿnvt%
+ÿÉÿ¥cuvt%ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+knr%ÿCodeku.kvertrag
+ÿÉÿ¥knr%ÿ™"Adressen"ÿ£codeku.adressen
+lfdnr%ÿlfdnr.KVERTRAG
+ÿ½ CALL KVERTRAG()
+ÿƒKVERTRAGneu(lfdnr%)
+
+ÿ’ÿ¡
+
+seiteab%ÿ2
+ÿ’ÿ¡
+TIMPSUB1%ÿ0
+ ÿ¬ÿ³
+ ÿÙ
+ _formend%ÿ0
+ 
+ ÿ’ÿÿ
+
+
+
+ÿ½ *******************************************************
+ÿ½ ***** Datei ausw„hlen *********************************
+ÿ½ ******************************************************* 
+
+ÿÿTDateiAuswahl()
+ ÿ¡tTestLog%ÿ1ÿpÿƒTWriteLogOk("***** Routine : TDatAuswahl()")
+ 
+ ÿ½ ====== Button Dateiauswahl - Dialog ====== 
+ ÿ¡tTestLog%ÿ1ÿpÿƒTWriteLogOk("Dateiauswahl starten")
+tempStartDir$ÿÿ
+TempImpDir$ÿ_netpath$ÿ"Templeto\"
+ÿ_netpath$ÿ"Templeto\"
+ 
+ÿ³ÿ_ÿwErrorHandler
+ÿÂ"Templeton Importdatei ”ffnen ...","",26,tButton%,tAuswDat$
+ÿtempStartDir$
+ 
+ ÿ¡tButton%ÿ0ÿp
+ÿÂ"Templeton-Import abgebrochen (Es wurden keine Daten ge„ndert).","Es wurde kein Dateiname ausgew„hlt",0
+ÿ¡tTestLog%ÿ1ÿpÿƒTWriteLogOk("Es wurde keine Datei ausgew„hlt - Templeton abgebrochen")
+ÿ½ END 
+ÿwendab300899
+ ÿ’ÿ¡
+ ÿ½ *******************************************************
+ÿ½ ***** Datei einlesen **********************************
+ÿ½ *******************************************************
+ ÿ™"TEMPIMP"
+ ÿ¾ÿaÿ™"TEMPIMP"
+ ÿ´tAuswDat$ÿ›ÿ¤
+ ÿ¡tTestLog%ÿ1ÿpÿƒTWriteLogOk("Datei "ÿtAuswDat$ÿ" wurde ge”ffnet")
+ ÿ½ šberspringen der Kopfzeile
+ ÿ¤ÿctZeileInhalt$
+ tKopf$ÿtZeileInhalt$
+ iab%ÿ1
+ 
+ ÿØÿOÿB("*")
+ÿßÿe
+ÿ¤ÿctZeileInhalt$
+tRest$ÿtZeileInhalt$
+tInfo$ÿÿ(iab%,"999999999")ÿ" Zeilen aus Importdatei gelesen!"
+ÿÿ™"TEMPIMP"
+codetmp.TEMPIMPÿÿI("TEMPIMP",1)
+codetmp%ÿcodetmp.TEMPIMP
+verarbeitet.TEMPIMPÿ"N"
+repno.TEMPIMPÿÿ,(tZeileInhalt$,13,12)
+repname.TEMPIMPÿÿ,(tZeileInhalt$,28,25)
+cusipno.TEMPIMPÿÿ,(tZeileInhalt$,53,9)
+custname.TEMPIMPÿÿ,(tZeileInhalt$,62,15)
+cusipno.TEMPIMPÿÿ,(tZeileInhalt$,53,9)
+shareholdaccno.TEMPIMPÿÿ,(tZeileInhalt$,78,13)
+vsnr$ÿVSNRPack$(shareholdaccno.TEMPIMP)
+ÿ¡ÿ,(tZeileInhalt$,140,1)ÿ"0"ÿp
+pm.TEMPIMPÿ"j"
+fakt%ÿ1
+ÿ^
+pm.TEMPIMPÿ"n"
+fakt%ÿÿ1
+ÿ’ÿ¡
+jahr$ÿÿ,(tZeileInhalt$,141,4)
+monat$ÿÿ,(tZeileInhalt$,145,2)ÿ"."
+tag$ÿÿ,(tZeileInhalt$,147,2)ÿ"."
+AnlDat.TEMPIMPÿtag$ÿmonat$ÿjahr$
+jahr$ÿÿ,(tZeileInhalt$,149,4)
+monat$ÿÿ,(tZeileInhalt$,153,2)ÿ"."
+tag$ÿÿ,(tZeileInhalt$,155,2)ÿ"."
+BuchDat.TEMPIMPÿtag$ÿmonat$ÿjahr$
+test%ÿÿ0(ÿ,(tZeileInhalt$,158,15))ÿ100
+AnlageinUS.TEMPIMPÿÿF(ÿ(test%ÿfakt%,",+,9999999999.00"))
+test%ÿÿ0(ÿ,(tZeileInhalt$,173,15))ÿ1000
+FondAnteil.TEMPIMPÿÿF(ÿ(test%,",9999999999.000"))
+test%ÿÿ0(ÿ,(tZeileInhalt$,188,10))ÿ100000
+PreisproAnteil.TEMPIMPÿÿF(ÿ(test%,",9999999.00000"))
+USD.TEMPIMPÿÿ,(tZeileInhalt$,198,3)
+
+test%ÿÿ0(ÿ,(tZeileInhalt$,201,10))ÿ100000
+NewComRate.TEMPIMPÿÿF(ÿ(test%,",9999999.00000"))
+test%ÿÿ0(ÿ,(tZeileInhalt$,211,15))ÿ100
+EinzahlungDM.TEMPIMPÿÿF(ÿ(test%ÿfakt%,"+,9999999999.00"))
+DEM.TEMPIMPÿÿ,(tZeileInhalt$,226,3)
+test%ÿÿ0(ÿ,(tZeileInhalt$,229,10))ÿ100000
+UmrEuro.TEMPIMPÿÿF(ÿ(test%,",9999999.00000"))
+EUR.TEMPIMPÿÿ,(tZeileInhalt$,239,3)
+test%ÿÿ0(ÿ,(tZeileInhalt$,242,5))ÿ100
+AufgAufschlagGr.TEMPIMPÿÿF(ÿ(test%,",9999999.00"))
+test%ÿÿ0(ÿ,(tZeileInhalt$,247,5))ÿ100
+AufgAufschlagDe.TEMPIMPÿÿF(ÿ(test%,",9999999.00"))
+test%ÿÿ0(ÿ,(tZeileInhalt$,252,15))ÿ100
+AnlageinEuro.TEMPIMPÿÿF(ÿ(test%ÿfakt%,"+,9999999999.00"))
+test%ÿÿ0(ÿ,(tZeileInhalt$,267,15))ÿ100
+ProviInWaehr.TEMPIMPÿÿF(ÿ(test%ÿfakt%,"+,9999999999.00"))
+test%ÿÿ0(ÿ,(tZeileInhalt$,282,10))ÿ100000
+Umrechnung.TEMPIMPÿÿ(test%,",9999999.00000")
+Eur1.TEMPIMPÿÿ,(tZeileInhalt$,292,3)
+test%ÿÿ0(ÿ,(tZeileInhalt$,295,15))ÿ100
+ProviInEuro.TEMPIMPÿÿF(ÿ(test%ÿfakt%,"+,9999999999.00"))
+test%ÿÿ0(ÿ,(tZeileInhalt$,310,10))ÿ100000
+Umrech2.TEMPIMPÿÿF(ÿ(test%,",9999999.00000"))
+DEM2.TEMPIMPÿÿ,(tZeileInhalt$,320,3)
+test%ÿÿ0(ÿ,(tZeileInhalt$,323,15))ÿ100
+ProvisInDM.TEMPIMPÿÿF(ÿ(test%ÿfakt%,"+,9999999999.00"))
+vorhanden.tempimpÿ"N"
+verarbeitet.tempimpÿ"N"
+prov.tempimpÿ"N"
+ÿ¡ÿJ(vsnr$,QuickVSNR.KVERTRAG)ÿp
+vorhanden.tempimpÿ"J"
+ÿÉÿ¥vsnr$ÿ™"Kvertrag"ÿ£QuickVSNR.KVERTRAG
+ÿ¡proviab.kvertragÿ0ÿpprov.tempimpÿ"J"
+ÿ’ÿ¡
+QuickVP.tempimpÿ"NN"
+
+ÿÌÿ™"TEMPIMP"
+ÿ¡ÿF(repno)ÿ""ÿp
+ÿÉÿ¥codetmp%ÿáÿ™"TEMPIMP"ÿ£codetmp.tempimp
+ÿÉÿ¾
+ÿ’ÿ¡
+ÿœ
+ÿÊÿËÿ(iab%,"999999999")ÿ" Zeilen aus Importdatei gelesen!"
+iab%ÿiab%ÿ1
+ÿÙ
+ÿ†ÿ¤
+
+ÿ™"fondhead"
+ÿ£codeimp.fondhead
+ÿÿ™"fondhead"
+codeimp.fondheadÿÿI("fondhead",1)
+DatumImport.fondheadÿÿQ
+notiz.fondheadÿtkopf$
+Anzahl.fondheadÿiab%ÿ3
+ÿÌÿ™"Fondhead"
+ÿÉÿœÿ`ÿ™"fondhead"ÿ£codeimp.fondhead
+ÿœ
+ÿßÿ³
+seite%ÿ2
+ÿ½ CALL Fehler("","")
+endab300899: 
+ÿ™"TEMPIMP"
+ÿ£codetmp
+ÿÉÿ`
+ÿÉÿœÿ`
+ ÿ’ÿÿ
+
+
+
+ÿ½ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ÿ½ * * * * * * * * * * TEMPIMP verarbeiten * * * * * * * * * * * * * * * * * * * * * * * * 
+ÿ½ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ÿÿTempImpVer()
+ÿÂ"Haben alle anderen User das Programm verlassen?","",130,req%
+ÿ¡req%ÿ1ÿpÿ’ÿÿ
+ÿ™"fondhead"
+ÿ£codeimp.fondhead
+ÿÉÿb
+codeimp%ÿcodeimp.fondhead
+ÿƒDFile(3,"ZEINGAN1"ÿ_fpw$)
+a$ÿ"Wurde ein Vertrag gefunden, so werden in der Fonddatei die Daten durch die Importdatei erg„nzt!"
+ÿƒFehler("Es werden jetzt die Datens„tze der Importdatei verarbeitet! Dazu wird an Hand der Depotnummer versucht einen Vertrag in der Vertragsdatei mit entsprechnder Policenummer zu finden!",a$)
+ÿÂ"Wollen Sie jetzt die eingelesenen Daten verarbeiten lassen?","",130,req%
+ÿ¡req%ÿ1ÿpÿ’ÿÿ
+ÿ¡ÿJ(codeimp%,codeimp.fonds)ÿp
+t$ÿ"Alledings wird versucht die Daten in die Vertragsdatei und in die Zahlungseingangsdatei(RealCash) einzupflegen. Sie haben allerdings auch die M”glich keit den Import rckg„ngig zu machen und anschlieáend erneut durchzufhren!"
+ÿƒFehler("Die Daten wurden bereits verarbeitet und sind somit in der Fonds-Datei vorhanden! Sie haben nun die M”glichkeit die Daten erneut zu verarbeiten, wobei sie nicht erneut in der Fondsdatei aufgenommen werden.",t$)
+ÿÂ"Verarbeitung fortsetzen?","",130,req%
+ÿ¡req%ÿ1ÿpÿ’ÿÿ
+ÿ’ÿ¡
+
+ProvNOcalc$ÿ""
+ÿÂ"Sollen die importierten Werte in die Provisionsrechnung eingehen?","(in Zahlungseingang bei RealCash) sonst in Bewertungssumme bei Standard",130,req%
+ÿ¡req%ÿ1ÿp
+ProvNOcalc$ÿ"j"
+ÿ^
+ProvNOcalc$ÿ"n"
+ÿ’ÿ¡
+ÿ¡PrvVerfahr$ÿ"Zahlungseingang"ÿp
+ÿÂ"Sollen die importierten Einzahlungs-Werte in die Bewertungssumme ","des Vertrages aufgenommen werden? (Nur REAL CASH)",135,req1a%
+ÿ¡req1a%ÿ1ÿp
+bewert$ÿ"J"
+ÿ^
+bewert$ÿ"N"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÂ"Sollen die importierten Einzahlungs-Werte in das Beitragsfeld ","aufgenommen werden",135,req1b%
+ÿ¡req1a%ÿ1ÿp
+beitr$ÿ"J"
+ÿ^
+beitr$ÿ"N"
+ÿ’ÿ¡
+tdatum210601001: 
+CalcDate$ÿÿ(ÿQ,"0d.mm.yyyy")
+ÿ‰ÿñ"STICHTAG",0,0,222,114,"Buchungsdatum","MS Sans Serif",8
+ÿ|ÿñ"STICHTAG",4,0,0,222,91,0,""
+ÿ|ÿñ"STICHTAG",9,6,9,23,24,2
+ÿ|ÿñ"STICHTAG",5,31,15,183,10,0,"Bitte geben Sie an, zu welchem Buchungsdatum"
+ÿ|ÿñ"STICHTAG",5,31,25,183,10,0,"der Import durchgefhrt werden soll:"
+ÿ|ÿñ"STICHTAG",5,32,40,182,10,0,"(ohne nderung des Datums "
+ÿ|ÿñ"STICHTAG",5,31,50,182,10,0,"wird das angezeigte Datum verwendet)"
+ÿ|ÿñ"STICHTAG",6,94,72,42,12,0,0,CalcDate$,10
+ÿ|ÿñ"STICHTAG",5,30,74,58,10,0,"Buchungsdatum:"
+ÿ|ÿñ"STICHTAG",1,52,94,54,14,1,"&OK",1,1
+ÿ|ÿñ"STICHTAG",1,109,94,54,14,0,"&Abbrechen",0,0
+ÿñ"STICHTAG",req%
+ÿ¾ÿñ"STICHTAG"
+ÿ¡ÿODateOK%(CalcDate$)ÿpÿwtdatum210601001 
+ÿ™"tempimp"
+ÿ£codetmp.tempimp
+ÿ¡ÿA("tempimp")ÿ0ÿp
+ÿÉÿ`ÿá
+ÿ^
+ÿÉÿb
+ÿ’ÿ¡
+i%ÿ0
+j%ÿ0
+z%ÿ0
+ÿØÿOÿB("TEMPIMP")
+i%ÿi%ÿ1
+eingab$ÿshareholdaccno.TEMPIMP
+vs_nr$ÿeingab$
+nvt%ÿGetVertrag%(lfdnr.KVERTRAG)
+
+provi$ÿ"N"
+ver$ÿ"N"
+vorh$ÿ"N"
+codetmp%ÿcodetmp.tempimp
+ÿ¡nvt%ÿ0ÿp
+
+vorh$ÿ"J"
+
+cuvt%ÿnvt%
+eingab$ÿ""
+ÿÉÿ¥cuvt%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿ¡proviab.kvertragÿ0ÿp
+	provi$ÿ"J"
+ÿ^
+	provi$ÿ"N"
+ÿ’ÿ¡
+provi$ÿ"J"
+ÿ¡pm.tempimpÿ"j"ÿp
+	fakt%ÿ1
+ÿ^
+	ÿ½ fakt% = - 1
+	fakt%ÿ1
+ÿ’ÿ¡
+ÿ¡ProvNOcalc$ÿ"j"ÿÿ>(PrvVerfahr$)ÿ"ZAHLUNGSEINGANG"ÿp
+	bewertungssumme.kvertragÿÿ0(EinzahlungDM.tempimp)ÿfakt%
+	ÿ¡beitr$ÿ"J"ÿp
+beitrag.kvertragÿÿ0(EinzahlungDM.tempimp)ÿfakt%
+	ÿ’ÿ¡
+	ÿÌÿ™"kvertrag"
+	provi$ÿ"J"
+ÿ^
+	ÿ¡PrvVerfahr$ÿ"Zahlungseingang"ÿp
+ÿ¡bewert$ÿ"J"ÿp
+bewertungssumme.kvertragÿÿ0(EinzahlungDM.tempimp)ÿfakt%
+ÿ’ÿ¡
+ÿ¡beitr$ÿ"J"ÿp
+beitrag.kvertragÿÿ0(EinzahlungDM.tempimp)ÿfakt%
+ÿ’ÿ¡
+ÿ¡bewert$ÿ"J"ÿbeitr$ÿ"J"ÿpÿÌÿ™"kvertrag"
+	ÿ’ÿ¡
+ÿ’ÿ¡
+test$ÿÿ(codeimp%,"000000")ÿÿ(lfdnr.kvertrag,"000000")
+ÿ½ IF NOT EXISTS (test$,QuickVSIMP.fonds) THEN 
+	ÿ™"Fonds"
+	ÿÿ™"fonds"
+	codefo%ÿÿI("fonds",1)
+	codefo.fondsÿcodefo%
+	codevt.fondsÿlfdnr.kvertrag
+	datum.fondsÿÿ1(anldat.tempimp)
+	kauf.fondsÿpm.tempimp
+	ProzFirma.fondsÿ90
+	ÿ¡pm.tempimpÿ"j"ÿp
+fakt%ÿ1
+kauf.fondsÿ"j"
+	ÿ^
+ÿ½ fakt% = - 1
+kauf.fondsÿ"n"
+fakt%ÿ1
+	ÿ’ÿ¡
+	w„hrung.fondsÿdem.tempimp
+Preis.fondsÿÿ0(EinzahlungDM.tempimp)ÿfakt%
+PreisEuro.fondsÿÿ0(AnlageinEuro.tempimp)ÿfakt%
+PreisEuro%ÿÿ0(AnlageinEuro.tempimp)ÿfakt%
+PreisEuro$ÿAnlageinEuro.tempimp
+PreisDollar.fondsÿÿ0(AnlageinUS.tempimp)ÿfakt%
+Anteilspreis.fondsÿÿ0(PreisproAnteil.tempimp)
+Bewertungssumme.fondsÿÿ0(EinzahlungDM.tempimp)ÿfakt%
+	zero.fondsÿ0
+	ÿ½ kurs in dollar
+	ÿ½ kurs.fonds = 
+	ÿ½ kursEuro.fonds = 
+	ÿ¡kauf.fondsÿ"j"ÿp
+Anteile.fondsÿÿ0(FondAnteil.tempimp)ÿfakt%
+	ÿ^
+Anteile.fondsÿÿ0(FondAnteil.tempimp)ÿÿ1
+	ÿ’ÿ¡
+	ÿ½ Bestand.fonds = 
+	Ausgabenaufschl.fondsÿÿ0(AufgAufschlagGr.TEMPIMP)
+	AnteilspreisEur.fondsÿPreisEuro.fondsÿAnteile.fonds
+	ÿ½ AnteileEuro.fonds = 
+	ÿ½ BestandEuro.fonds = 
+	KursEuro.fondsÿÿ0(UmrEuro.tempimp)
+	
+	ÿ½ AnteilspreisEur.fonds
+	
+	ProvNOcalc.fondsÿProvNOcalc$
+	DatumImport.fondsÿÿQ
+	ProviDM.fondsÿÿ0(ProvisInDM.tempimp)
+	ProviEuro.fondsÿÿ0(ProviInEuro.tempimp)
+	ProviWaehr.fondsÿÿ0(ProviInWaehr.tempimp)
+	codeimp.fondsÿcodeimp%
+	z%ÿz%ÿ1
+	QuickVSIMP.fondsÿÿ(codeimp%,"000000")ÿÿ(codevt.fonds,"000000")
+	QuickVTBerDat.fondsÿÿ(codevt.fonds,"000000")ÿÿ(BKursTag.fonds,"yyyymm0d")ÿÿ+(ÿ7(BKursZeit.fonds,"hh:mm:ss"),2)ÿÿ,(ÿ7(BKursZeit.fonds,"hh:mm:ss"),4,2)ÿÿ-(ÿ7(BKursZeit.fonds,"hh:mm:ss"),2)
+	ÿÌÿ™"Fonds"
+	ÿïÿYÿ™"fonds"
+ÿ½ ELSE 
+	ÿ½ z% = z% + 1
+	ÿ½ SELECT KEY test$ FILE "fonds" INDEX QuickVSIMP.fonds
+ÿ½ END IF 
+ÿ¡provi$ÿ"J"ÿp
+	verarbeitet.tempimpÿ"J"
+	ver$ÿ"J"
+	j%ÿj%ÿ1
+ÿ^
+	verarbeitet.tempimpÿ"N"
+	ver$ÿ"N"
+ÿ’ÿ¡
+ÿ½ CALL RechKvertrag(codevt.fonds)
+ÿ™"tempImp"
+ÿÉÿ¥codetmp%ÿáÿ™"tempimp"ÿ£codetmp.tempimp
+vorhanden.tempimpÿvorh$
+prov.tempimpÿprovi$
+QuickVP.tempimpÿver$ÿprovi$
+ÿÌÿ™"tempImp"
+
+ÿ½ **************** Erzeugung Zahlungseingang ****************************
+ÿÉÿ¥codefo%ÿ™"Fonds"ÿ£codefo.fonds
+ProviDM%ÿProviDM.fonds
+
+ÿ¡ver$ÿ"J"ÿProvNOcalc$ÿ"j"ÿPrvVerfahr$ÿ"ZAHLUNGSEINGANG"ÿProviDM.fondsÿ0ÿp
+	ÿÉÿ¥cuvt%ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+	ÿÉÿ¥codefo%ÿ™"Fonds"ÿ£codefo.fonds
+	ÿ™"zeingan1"
+	ÿÿ™"zeingan1"
+	ÿÊÿË"Datensatz neu angelegt..."
+	CodeAZ%ÿÿI("zeingan1",1)
+	CodeAZ.zeingan1ÿCodeAZ%
+	gebuchtJN.zeingan1ÿ"N"
+	gebuchtJNT.zeingan1ÿ"N"
+	BuchungsDatum.zeingan1ÿCalcDate$
+	F„lligkeit.zeingan1ÿCalcDate$
+	codevt.zeingan1ÿcuvt%
+	codema.zeingan1ÿcodema.kvertrag
+	codege.zeingan1ÿcodege.kvertrag
+	
+	providmfo%ÿProviDM.fonds
+	ÿ½ CALL Fehler( STR$ (providmfo%,"99999.99"),"")
+	ÿ¡ProviDM.fondsÿ0ÿp
+ÿ¡kauf.fondsÿ"j"ÿp
+Buchungstext.zeingan1ÿÿ+("Courtage:"ÿvs_nr.kvertrag,70)
+ÿ^
+Buchungstext.zeingan1ÿÿ+("Courtage:"ÿvs_nr.kvertragÿ"(Storno/Verkauf)",70)
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	VS_nr.zeingan1ÿvs_nr.kvertrag
+	ÿ¡kauf.fondsÿ"n"ÿp
+ÿ½ CALL Fehler( STR$ (ProviDM.fonds,"+ ,999999.00"),"")
+	ÿ’ÿ¡
+	bewertung.zeingan1ÿProviDM.fonds
+	bewertungEU.zeingan1ÿProviEuro.fonds
+	Ausgabeauf.zeingan1ÿAusgabenaufschl.fonds
+	kondart.zeingan1ÿ1
+	ÿ½ 03042002
+	ÿ½ Codew.zeingan1 = 1
+	ÿ½ waehrung.zeingan1 = "DM"
+	Codew.zeingan1ÿcodew.kvertrag
+	waehrung.zeingan1ÿwaehrung.kvertrag
+	ÿ½ 03042002 was ist mit KursEuro.fonds, sollte jetzt eigentlich aus KVERTRAG genommen werden
+	umrechnung.zeingan1ÿKursEuro.fonds
+	umrechnung.zeingan1ÿumrechnung.kvertrag
+	codeimp.zeingan1ÿcodeimp%
+	KundEinzahlung.zeingan1ÿPreis.fonds
+	AnlageDatum.zeingan1ÿdatum.fonds
+	ÿƒQuickStore("zeingan1")
+	ÿÉÿ¥codefo%ÿáÿ™"fonds"ÿ£codefo.fonds
+	codeaz.fondsÿcodeaz%
+	ÿÌÿ™"fonds"
+ÿ’ÿ¡
+ÿ½ ***********************************************************************
+ÿ^
+vorhanden.tempimpÿvorh$
+verarbeitet.tempimpÿver$
+prov.tempimpÿprovi$
+QuickVP.tempimpÿver$ÿprovi$
+ÿÌÿ™"tempImp"
+ÿ’ÿ¡
+ÿ™"tempIMP"
+tKopf$ÿ"Verarbeite: "ÿeingab$ÿ" gesamt verarbeitet:"ÿÿH(ÿ(i%,",99999999"))ÿ" davon gefunden:"ÿÿH(ÿ(z%,",99999999"))ÿ"  davon in Zahlungseingang aufgenommen"ÿÿH(ÿ(j%,",99999999"))
+ÿ¡ProvNOcalc$ÿ"j"ÿÿ>(PrvVerfahr$)ÿ"ZAHLUNGSEINGANG"ÿp
+tKopf$ÿ"Verarbeite: "ÿeingab$ÿ" gesamt verarbeitet:"ÿÿH(ÿ(i%,",99999999"))ÿ" davon gefunden:"ÿÿH(ÿ(z%,",99999999"))
+ÿ^
+ÿ¡ÿ>(PrvVerfahr$)ÿ"ZAHLUNGSEINGANG"ÿp
+	tKopf$ÿ"Verarbeite: "ÿeingab$ÿ" gesamt verarbeitet:"ÿÿH(ÿ(i%,",99999999"))
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+ÿœ
+ 
+ÿÉÿ±ÿáÿ™"TEMPIMP"
+ÿÙ
+ÿ™"fondhead"
+ÿ£codeimp.fondhead
+ÿÉÿ`
+ÿÉÿ¥codeimp%ÿáÿ™"fondhead"ÿ£codeimp.fondhead
+AnzVerarb.fondheadÿAnzVerarb.fondheadÿj%
+ÿÌÿ™"fondhead"
+ÿ™"tempimp"
+ÿ£QuickVP.tempimp
+ÿÉÿ`
+ÿ¾ÿaÿ™"tempimp"ÿĞQuickVP.tempimpÿ"JJ"
+ÿ£codetmp.tempimp
+ÿÉÿœÿ`ÿ™"fondhead"
+ÿÉÿœÿ`ÿ™"tempimp"
+ÿœ
+
+ ÿ’ÿÿ
+
+
+
+ÿ½ *******************************************************  
+ÿ½ *******************************************************
+ÿ½ ***** Handling von LOG-Dateien ************************
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+
+ÿ½ =================================
+ÿ½ ====== LOG-Datei erstellen ======
+ÿ½ =================================
+ÿÿTCreateLog()
+ÿ´_netpath$ÿ"Templeto\Templeto.LOG"ÿ›ÿ¶
+ÿ{"Datei "ÿÿ>(tempeltpath$)ÿ"Templeto.LOG erstellt am "ÿÿ(ÿQ,"0d.mm.yyyy")ÿ" / "ÿÿ7(ÿR,"hh:mm:ss")
+ÿ{"-------------------------------------------------------------------------"
+ÿ{
+ÿ†ÿ¶
+ ÿ’ÿÿ
+ 
+ÿ½ =================================
+ÿ½ ====== LOG-Datei schlieáen ======
+ÿ½ =================================
+ÿÿTCloseLog()
+ÿ´_netpath$ÿ"Templeto\Templeto.LOG"ÿ›ÿT
+ÿ{
+ÿ{"-------------------------------------------------------------------------"
+ÿ{"  "ÿÿ(gdvFehler%,"9999")ÿ" Fehler aufgetreten !"
+ÿ{"-------------------------------------------------------------------------"
+ÿ{"Eintragung beendet am "ÿÿ(ÿQ,"0d.mm.yyyy")ÿ"/"ÿÿ7(ÿR,"hh:mm:ss")
+ÿ†ÿ¶
+ÿ‰ÿñ"PROT",0,0,244,154,"Templeton-IMPORT","MS Sans Serif",8
+ÿ|ÿñ"PROT",4,0,0,244,130,0,""
+ÿ|ÿñ"PROT",9,6,9,22,22,2
+ÿ|ÿñ"PROT",5,35,13,194,10,0,"W„hrend der zuletzt durchgefhrten Aktion wurde eine"
+ÿ|ÿñ"PROT",5,35,23,194,10,0,"Protokolldatei erstellt, in der eventuelle Fehler und Zusatz-"
+ÿ|ÿñ"PROT",5,35,33,194,10,0,"information gespeichert wurden."
+ÿ|ÿñ"PROT",5,35,53,194,10,0,"W„hlen Sie "ÿÿ(34)ÿ"Ja"ÿÿ(34)ÿ", wenn Sie das Protokoll einsehen und"
+ÿ|ÿñ"PROT",5,35,63,194,10,0,"eventuell Drucken wollen."
+ÿ|ÿñ"PROT",5,35,83,194,10,0,"W„hlen Sie "ÿÿ(34)ÿ"Nein"ÿÿ(34)ÿ", wenn Sie das Protokoll nicht"
+ÿ|ÿñ"PROT",5,35,93,194,10,0,"einsehen m”chten."
+ÿ|ÿñ"PROT",5,35,113,194,10,0,"Wollen Sie das Protokoll einsehen?"
+ÿ|ÿñ"PROT",1,118,134,55,15,0,"&Nein",0,0
+ÿ|ÿñ"PROT",1,62,134,55,15,1,"&Ja",1,1
+ÿñ"PROT",gdvBut%
+ÿ¾ÿñ"PROT"
+ÿ¡gdvBut%ÿ1ÿpÿƒTShowLog()
+ ÿ’ÿÿ
+ 
+ÿ½ ===========================================
+ÿ½ ====== Fehler in LOG-Datei schreiben ======
+ÿ½ ===========================================
+ÿÿTWriteLogFail(TLogText$)
+ÿ´_netpath$ÿ"Templeto\Templeto.LOG"ÿ›ÿT
+ÿ{ÿåansi("**********  FEHLER **********")
+ÿ{ÿ7(ÿR,"hh:mm:ss")ÿ" "ÿÿåansi(TLogText$)
+ÿ{ÿåansi("*****************************")
+ÿ†ÿ¶
+ ÿ’ÿÿ
+
+ÿ½ =================================================
+ÿ½ ====== OKAY-Eintrag in LOG-Datei schreiben ======
+ÿ½ =================================================
+ÿÿTWriteLogOk(TLogText$)
+ÿ´_netpath$ÿ"Templeto\Templeto.LOG"ÿ›ÿT
+ÿ{ÿ7(ÿR,"hh:mm:ss")ÿ" "ÿÿåansi(TLogText$)
+ÿ†ÿ¶
+ ÿ’ÿÿ
+ 
+ÿ½ ===============================
+ÿ½ ====== LOG-Datei l”schen ======
+ÿ½ ===============================
+ÿÿTDeleteLog()
+ÿ¡ÿJ(_netpath$ÿ"Templeto\Templeto.LOG")ÿpÿ_netpath$ÿ"Templeto\Templeto.LOG"
+ ÿ’ÿÿ
+ 
+ÿ½ ================================
+ÿ½ ====== LOG-Datei anzeigen ======
+ÿ½ ================================
+ÿÿTShowLog()
+ÿÊÿË"Anzeige des Fehlerprotokolls"
+ÿ¡ÿJ(_netpath$ÿ"Templeto\Templeto.LOG")ÿp
+ÿ¨ÿo_netpath$ÿ"Templeto\Templeto.LOG"
+ÿÿo
+ÿ^
+ÿƒFehler("Es konnte kein Fehlerprotokoll gefunden werden!","")
+ÿ’ÿ¡
+ÿÊÿË"Bereit"
+ ÿ’ÿÿ
+ 
+
+
+ÿÿTempEx()
+ ÿ³ÿ_ÿwErrorHandler
+ ÿ_ppath$
+ Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+ Superbase.Converters.SBF.SourceFileÿ"TEMPIMP"
+ Superbase.Converters.SBF.Descendingÿ0
+ Superbase.Converters.SBF.Mergeÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.XLS.DestFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.DestFileÿ"TEMPIMP.XLS"
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.UseLabelsÿÿ1
+ Superbase.Converters.XLS.Convert(Superbase.Converters.SBF)
+ AppName$ÿ_ppath$ÿ"\tempimp.xls"
+ a%ÿÿƒ("ShellExecute",0,"open",AppName$,"","",1)
+ ÿ’ÿÿ
+
+

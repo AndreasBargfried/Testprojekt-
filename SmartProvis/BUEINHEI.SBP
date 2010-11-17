@@ -1,0 +1,31 @@
+SBP
+ ÿ™"kvertrag"
+ ÿ£lfdnr.kvertrag
+ ÿÉÿ`
+ ÿ™"buchung1"
+ ÿ£codebu.buchung1
+ ÿÉÿ`ÿá
+ i%ÿ0
+ j%ÿÿA("buchung1")
+ ÿØÿOÿB("buchung1")
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")
+codevt%ÿcodevt.buchung1
+ÿ¡provision.buchung1ÿ"j"ÿÿJ(codevt%,lfdnr.kvertrag)ÿcodevt%ÿ0ÿp
+ÿ¡lfdnr.kvertragÿcodevt%ÿp
+ÿÉÿ`ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ¥codevt%ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿ’ÿ¡
+ÿ¡betrag.buchung1ÿ0ÿp
+Einheiten.buchung1ÿeinheiten.kvertrag
+EinheitenEU.buchung1ÿeinheiten.kvertragÿumrechnung.buchung1
+ÿ^
+Einheiten.buchung1ÿeinheiten.kvertragÿÿ1
+EinheitenEU.buchung1ÿ(einheiten.kvertragÿumrechnung.buchung1)ÿÿ1
+ÿ’ÿ¡
+ÿÌÿ™"buchung1"
+ÿ’ÿ¡
+ÿÉÿ±ÿáÿ™"buchung1"
+ ÿÙ
+
+

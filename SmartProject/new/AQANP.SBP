@@ -1,0 +1,26 @@
+SBP
+
+
+ ÿ™"Akquise"
+ ÿ£codeaq
+ ÿÉÿ`ÿá
+ i%ÿ1
+ ÿØÿOÿB("Akquise")
+ÿÊÿËÿ(i%,"99999999")
+i%ÿi%ÿ1
+QuickCodeMA.akquiseÿÿ(termin.akquise,"0dmmyyyy")ÿÿ(CodeMA.akquise,"000000")
+QuickCodeMAZ.akquiseÿÿ(termin.akquise,"0dmmyyyy")ÿÿ(CodeMA.akquise,"000000")ÿÿ7(Uhrzeit.akquise,"hhmm")
+QuickCodeKU.akquiseÿÿ(termin.akquise,"0dmmyyyy")ÿÿ(CodeKU.akquise,"000000")
+QuickCodeAK.akquiseÿÿ(termin.akquise,"0dmmyyyy")ÿÿ(CodeAK.akquise,"000000")
+QuickAKMA.akquiseÿÿ(termin.akquise,"0dmmyyyy")ÿÿ(codeak.akquise,"000000")ÿÿ(CodeMA.akquise,"000000")
+CodeAKMA.akquiseÿÿ(codeak.akquise,"000000")ÿÿ(CodeMA.akquise,"000000")
+QuickKUDat.akquiseÿÿ(CodeKU.akquise,"000000")ÿÿ>(erledigt_Termin.AKQUISE)ÿÿ(termin.akquise,"yyyymm0d")
+QuickMADat.akquiseÿÿ(CodeMA.akquise,"000000")ÿÿ>(erledigt_Termin.AKQUISE)ÿÿ(termin.akquise,"yyyymm0d")
+QuickAKDat.akquiseÿÿ(CodeAK.akquise,"000000")ÿÿ>(erledigt_Termin.AKQUISE)ÿÿ(termin.akquise,"yyyymm0d")
+QuickAKMADat.akquiseÿÿ(codeak.akquise,"000000")ÿÿ(CodeMA.akquise,"000000")ÿÿ>(erledigt_Termin.AKQUISE)ÿÿ(termin.akquise,"yyyymm0d")
+QuickKuDatDiff.akquiseÿcodeku.akquiseÿ1000000ÿ(1000000ÿÿ1(termin.akquise))
+QuickPRDatDiff.akquiseÿcodepr.akquiseÿ1000000ÿ(1000000ÿÿ1(termin.akquise))
+ÿÌÿ™"Akquise"
+ÿÉÿ±ÿá
+ ÿÙ
+

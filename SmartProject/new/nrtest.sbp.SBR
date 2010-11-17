@@ -1,0 +1,29 @@
+SBP
+ ÿ™"master"
+ ÿ£datum
+ ÿÉÿ`
+ dat%ÿÿ1("01.01.2004")
+ ÿÉÿ`ÿ™"master"
+ ÿÉÿ¥dat%ÿ™"master"
+ lief%ÿ0
+ rech%ÿ0
+ ang%ÿ0
+ auf%ÿ0
+ bes%ÿ0
+ gut%ÿ0
+ ÿØÿOÿB("master")
+ÿ¡art ÿ2ÿprech%ÿrech%ÿ1
+ÿ¡art ÿ3ÿplief%ÿlief%ÿ1
+ÿ¡art ÿ1ÿpang%ÿang%ÿ1
+ÿ¡art ÿ4ÿpauf%ÿauf%ÿ1
+ÿ¡art ÿ5ÿpbes%ÿbes%ÿ1
+ÿ¡art ÿ7ÿpgut%ÿgut%ÿ1
+ÿÉÿ±ÿ™"master"
+ ÿÙ
+ ÿ{"Rechnungen:    "ÿÿH(ÿ(rech%,"999999"))
+ ÿ{"Lieferscheine: "ÿÿH(ÿ(lief%,"999999"))
+ ÿ{"Angebote:      "ÿÿH(ÿ(ang%,"999999"))
+ ÿ{"Auftr„ge:      "ÿÿH(ÿ(auf%,"999999"))
+ ÿ{"Bestellungen:  "ÿÿH(ÿ(bes%,"999999"))
+ ÿ{"Gutschriften:  "ÿÿH(ÿ(gut%,"999999"))
+

@@ -1,0 +1,13 @@
+ SUB TMPSTR99()
+CALL FldAdd("zero","NUM;000000.",1)
+CALL FldAdd("TimeStamp","NUM;0000000000.",0)
+CALL FldAdd("Sperre","NUM;000000.",0)
+CALL FldAdd("Workstation","NUM;000000.",1)
+CALL FldAdd("QWoNo","TXT;12",0)
+CALL FldAdd("RecStatus","TXT;1",0)
+CALL FldAdd("MAName","TXT;50",1)
+CALL FldAdd("MACodeMA","NUM;000000.",1)
+CALL FldAdd("MATimeStamp","NUM;0000000000.",1)
+CALL FldAdd("MATimeStamp1","TXT;16",0)
+SAVE FILE "ZERO"
+END SUB

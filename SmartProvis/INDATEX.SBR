@@ -1,0 +1,1317 @@
+SBP
+ ÿƒmain()
+
+
+
+ÿÿXMLImport()
+ codeku%ÿcodeku.kvertrag
+ codevt%ÿlfdnr.kvertrag
+ ÿÉÿ¥codeku%ÿ™"Adressen"ÿ£codeku.adressen
+ ÿÉÿ¥codege.kvertragÿ™"GEADR"ÿ£codege.geadr
+ ÿÉÿ¥codeva.kvertragÿ™"SPARTEN"ÿ£codeva.SPARTEN
+ ÿÉÿ¥codevt%ÿáÿ™"KVERTRAG"ÿ£lfdnr.kvertrag
+ iimsupid.kvertragÿiimsupid.geadr
+ iimsparteid.kvertragÿiimsparteid.sparten
+ ÿÌÿ™"KVERTRAG"
+ ÿïÿYÿ™"KVERTRAG"
+ ÿ½ CALL Fehler("Starte den Export nach c:\IIMAgno.xml","")
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMAgno.xml")ÿp
+ÿGMACodeDir$ÿ"IIMAgno.xml"
+ ÿ’ÿ¡
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMdesti.txt")ÿp
+ÿGMACodeDir$ÿ"IIMdesti.txt"
+ ÿ’ÿ¡
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMready.txt")ÿp
+ÿGMACodeDir$ÿ"IIMready.txt"
+ ÿ’ÿ¡
+ 
+ ÿßÿe
+ ÿ½ Fehlertestung
+ fehl$ÿ""
+ okf%ÿÿ1
+ ÿ¡ÿH(IIM_CustomerID.stamm)ÿ""ÿp
+fehl$ÿfehl$ÿ"In den Firmenstammdaten wurde die CustomerID nicht definiert! "
+okf%ÿ0
+ ÿ’ÿ¡
+ ÿ¡ÿH(IIM_Server.stamm)ÿ""ÿp
+fehl$ÿfehl$ÿ"In den Firmenstammdaten wurde der Servername nicht definiert! "
+okf%ÿ0
+ ÿ’ÿ¡
+ ÿ¡ÿH(IIM_DB.stamm)ÿ""ÿp
+fehl$ÿfehl$ÿ"In den Firmenstammdaten wurde der Datenbankname nicht definiert! "
+okf%ÿ0
+ ÿ’ÿ¡
+ ÿ¡ÿH(IIM_login.stamm)ÿ""ÿp
+fehl$ÿfehl$ÿ"In den Firmenstammdaten wurde der Loginname nicht definiert! "
+okf%ÿ0
+ ÿ’ÿ¡
+ ÿ½ IF LTRIM$ (IIM_PWD.stamm) = "" THEN 
+ÿ½ fehl$ = fehl$ + "In den Firmenstammdaten wurde das Passwort nicht definiert! "
+ÿ½ okf% = 0
+ ÿ½ END IF 
+ ÿ¡ÿH(iimsupid.kvertrag)ÿ""ÿp
+fehl$ÿfehl$ÿ"In den Gesellschaftsdaten wurde dieser Gesellschaft keine IIM-Gesellschaft zugewiesen! "
+okf%ÿ0
+ ÿ’ÿ¡
+ ÿ¡ÿH(iimsparteid.kvertrag)ÿ""ÿp
+fehl$ÿfehl$ÿ"In den Spartendaten wurde dieser Sparte keine IIM-Sparte zugewiesen! "
+okf%ÿ0
+ ÿ’ÿ¡
+ ÿ¡okf%ÿ0ÿp
+ÿßÿ³
+ÿƒFehler(fehl$,"Der EXPORT zum IIM-System kann nicht durchgefhrt werden!")
+ÿwxmlend240120021
+ ÿ’ÿ¡
+ ÿ¡IIMSendDate.kvertragÿ""ÿp
+ ÿ^
+ÿ½ REQUEST "Der Vertrag wurde bereits exportiert!","Soll er erneut exportiert werden?",130,req%
+ÿ¡req%ÿ1ÿp
+ÿ½ GOTO xmlend240120021
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ´GMACodeDir$ÿ"IIMImp.xml"ÿ›ÿ¶
+ ÿ½ Anforderung der Agenturnummer 
+ ÿ{"<?xml version="ÿÿ(34)ÿ"1.0"ÿÿ(34)ÿ" encoding = "ÿÿ(34)ÿ"ISO-8859-1"ÿÿ(34)ÿ" ?>"
+ ÿ{
+ ÿ{"<PROVEXP>"
+ ÿ{"    <IIMCUSTOMERID>"ÿ"<![CDATA["ÿIIM_CustomerID.stammÿ"]]>"ÿ"</IIMCUSTOMERID>"
+ ÿ{"    <IIMSERVER>"ÿ"<![CDATA["ÿIIM_Server.stammÿ"]]>"ÿ"</IIMSERVER>"
+ ÿ{"    <IIMDB>"ÿ"<![CDATA["ÿIIM_DB.stammÿ"]]>"ÿ"</IIMDB>"
+ ÿ{"    <IIMLOGIN>"ÿ"<![CDATA["ÿIIM_login.stammÿ"]]>"ÿ"</IIMLOGIN>"
+ ÿ{"    <IIMPWD>"ÿ"<![CDATA["ÿIIM_PWD.stammÿ"]]>"ÿ"</IIMPWD>"
+ ÿ{"    <IIMDESTFILE>"ÿ"<![CDATA["ÿGMACodeDir$ÿ"IIMdesti.txt"ÿ"]]>"ÿ"</IIMDESTFILE>"
+ ÿ{"    <IIMREADYFILE>"ÿ"<![CDATA["ÿGMACodeDir$ÿ"IIMready.txt"ÿ"]]>"ÿ"</IIMREADYFILE>"
+ ÿ{"    <IIMTRANSID>"ÿ"<![CDATA["ÿIIMLastdok.kvertragÿ"]]>"ÿ"</IIMTRANSID>"
+ ÿ{"    <IIMDOCID>"ÿ"<![CDATA["ÿÿ(IIMdokid.kvertrag,"000000")ÿ"]]>"ÿ"</IIMDOCID>"
+ 
+ ÿ{"    <IIMACTION>"ÿ"<![CDATA["ÿ"IMPORT"ÿ"]]>"ÿ"</IIMACTION>"
+ 
+ ÿ{"    <IIMSUPID>"ÿ"<![CDATA["ÿiimsupid.kvertragÿ"]]>"ÿ"</IIMSUPID>"
+ ÿ{"    <IIMSPARTEID>"ÿ"<![CDATA["ÿiimsparteid.kvertragÿ"]]>"ÿ"</IIMSPARTEID>"
+ ÿ½ ? "    <IIMTEMPLATEPATH>" + "<![CDATA[" + GIIMTemplate$ + "]]>" + "</IIMTEMPLATEPATH>"
+ 
+ ÿ{"</PROVEXP>"
+ ÿ†ÿ¶
+ ÿ½ CALL Fehler("ENDE Export nach c:\IIMAgno.xml","")
+ 
+ test$ÿ_netpath$ÿ"IIMExP.exe"
+ ÿ½ test$ = "EXPLORER.EXE"
+ ÿ³ÿ_ÿwxmlexp1err
+ 
+ a%ÿÿƒ("ShellExecute",0,"open",test$,GMACodeDir$ÿ"IIMImp.xml","",1)
+ ÿ½ CALL Fehler("Aufruf IIMF.exe Import","")
+ ÿÏÿ›1
+ agz%ÿ0
+ ok%ÿ0
+ ÿØÿOÿJ(GMACodeDir$ÿ"IIMready.txt")ÿok%ÿ0
+ÿÏÿ›1
+agz%ÿagz%ÿ1
+ÿ¡agz%ÿ60ÿp
+ÿÂ"Es liegt noch kein zu importierendes Dokument fr diesen Vertrag vor!","Wollen Sie weitere 60 Sekunden warten?",130,req%
+ÿ¡req%ÿ1ÿp
+agz%ÿ0
+ÿ^
+ok%ÿÿ1
+ÿƒFehler("Das Dokument konnte nicht importiert werden!","Bitte prfen Sie, ob das IIM-System bereit ist!")
+ÿwxmlend240120021
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿÙ
+ ÿ½ MOUSE ON 
+ ÿ½ CALL Fehler("Aufruf IIMF.exe c:\IIMAgno.xml","")
+xmlexp1err: 
+ ÿ½ Auslesen der C:\IIMdesti.txt nach Agenturnummer
+ value1%ÿ55
+ desterr$ÿ""
+ wert1$ÿ""
+ wert2$ÿ""
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMdesti.txt")ÿp
+value1%ÿÿ0(ReadDesti$("IIM","OK",GMACodeDir$ÿ"IIMdesti.txt"))
+desterr$ÿÿ>(ReadDesti$("IIM","errormsg",GMACodeDir$ÿ"IIMdesti.txt"))
+wert1$ÿReadDesti$("IIM","Agentur",GMACodeDir$ÿ"IIMdesti.txt")
+wert2$ÿReadDesti$("IIM","AgenturID",GMACodeDir$ÿ"IIMdesti.txt")
+ ÿ^
+ÿƒFehler("Die Agenturnummer konnte nicht ausgelesen werden! Prfen Sie, ob das IIM-System betriebsbereit ist!","Der EXPORT zum IIM-System kann nicht durchgefhrt werden!")
+ÿwxmlend111120022
+ ÿ’ÿ¡
+ agnr1$ÿwert2$
+ 
+ ÿ¡value1%ÿ0ÿp
+ÿƒFehler("Das Dokument konnte nicht importiert werden! Prfen Sie, ob das IIM-System betriebsbereit ist!",desterr$)
+ÿwxmlend111120022
+ ÿ’ÿ¡
+xmlend111120022: 
+ ÿƒFehler("Import beendet!","")
+ ÿ’ÿÿ
+ 
+ 
+ÿÿVHVXMLImport()
+ codeku%ÿcodeku.kvertrag
+ codevt%ÿlfdnr.kvertrag
+ ÿÉÿ¥codeku%ÿ™"Adressen"ÿ£codeku.adressen
+ ÿÉÿ¥codege.kvertragÿ™"GEADR"ÿ£codege.geadr
+ ÿÉÿ¥codeva.kvertragÿ™"SPARTEN"ÿ£codeva.SPARTEN
+ ÿÉÿ¥codevt%ÿáÿ™"KVERTRAG"ÿ£lfdnr.kvertrag
+ iimsupid.kvertragÿiimsupid.geadr
+ iimsparteid.kvertragÿiimsparteid.sparten
+ ÿÌÿ™"KVERTRAG"
+ ÿïÿYÿ™"KVERTRAG"
+ ÿ½ CALL Fehler("Starte den Export nach c:\IIMAgno.xml","")
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMAgno.xml")ÿp
+ÿGMACodeDir$ÿ"IIMAgno.xml"
+ ÿ’ÿ¡
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMdesti.txt")ÿp
+ÿGMACodeDir$ÿ"IIMdesti.txt"
+ ÿ’ÿ¡
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMready.txt")ÿp
+ÿGMACodeDir$ÿ"IIMready.txt"
+ ÿ’ÿ¡
+ 
+ ÿßÿe
+ ÿ½ Fehlertestung
+ fehl$ÿ""
+ okf%ÿÿ1
+ ÿ¡ÿH(IIM_CustomerID.stamm)ÿ""ÿp
+fehl$ÿfehl$ÿ"In den Firmenstammdaten wurde die CustomerID nicht definiert! "
+okf%ÿ0
+ ÿ’ÿ¡
+ ÿ¡ÿH(IIM_Server.stamm)ÿ""ÿp
+fehl$ÿfehl$ÿ"In den Firmenstammdaten wurde der Servername nicht definiert! "
+okf%ÿ0
+ ÿ’ÿ¡
+ ÿ¡ÿH(IIM_DB.stamm)ÿ""ÿp
+fehl$ÿfehl$ÿ"In den Firmenstammdaten wurde der Datenbankname nicht definiert! "
+okf%ÿ0
+ ÿ’ÿ¡
+ ÿ¡ÿH(IIM_login.stamm)ÿ""ÿp
+fehl$ÿfehl$ÿ"In den Firmenstammdaten wurde der Loginname nicht definiert! "
+okf%ÿ0
+ ÿ’ÿ¡
+ ÿ½ IF LTRIM$ (IIM_PWD.stamm) = "" THEN 
+ÿ½ fehl$ = fehl$ + "In den Firmenstammdaten wurde das Passwort nicht definiert! "
+ÿ½ okf% = 0
+ ÿ½ END IF 
+ ÿ¡ÿH(iimsupid.kvertrag)ÿ""ÿp
+fehl$ÿfehl$ÿ"In den Gesellschaftsdaten wurde dieser Gesellschaft keine IIM-Gesellschaft zugewiesen! "
+okf%ÿ0
+ ÿ’ÿ¡
+ ÿ¡ÿH(iimsparteid.kvertrag)ÿ""ÿp
+fehl$ÿfehl$ÿ"In den Spartendaten wurde dieser Sparte keine IIM-Sparte zugewiesen! "
+okf%ÿ0
+ ÿ’ÿ¡
+ ÿ¡okf%ÿ0ÿp
+ÿßÿ³
+ÿƒFehler(fehl$,"Der EXPORT zum IIM-System kann nicht durchgefhrt werden!")
+ÿwxmlend240120021
+ ÿ’ÿ¡
+ ÿ¡IIMSendDate.kvertragÿ""ÿp
+ ÿ^
+ÿ½ REQUEST "Der Vertrag wurde bereits exportiert!","Soll er erneut exportiert werden?",130,req%
+ÿ¡req%ÿ1ÿp
+ÿ½ GOTO xmlend240120021
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ´GMACodeDir$ÿ"IIMImp.xml"ÿ›ÿ¶
+ ÿ½ Anforderung der Agenturnummer 
+ ÿ{"<?xml version="ÿÿ(34)ÿ"1.0"ÿÿ(34)ÿ" encoding = "ÿÿ(34)ÿ"ISO-8859-1"ÿÿ(34)ÿ" ?>"
+ ÿ{
+ ÿ{"<PROVEXP>"
+ ÿ{"    <IIMCUSTOMERID>"ÿ"<![CDATA["ÿIIM_CustomerID.stammÿ"]]>"ÿ"</IIMCUSTOMERID>"
+ ÿ{"    <IIMSERVER>"ÿ"<![CDATA["ÿIIM_Server.stammÿ"]]>"ÿ"</IIMSERVER>"
+ ÿ{"    <IIMDB>"ÿ"<![CDATA["ÿIIM_DB.stammÿ"]]>"ÿ"</IIMDB>"
+ ÿ{"    <IIMLOGIN>"ÿ"<![CDATA["ÿIIM_login.stammÿ"]]>"ÿ"</IIMLOGIN>"
+ ÿ{"    <IIMPWD>"ÿ"<![CDATA["ÿIIM_PWD.stammÿ"]]>"ÿ"</IIMPWD>"
+ ÿ{"    <IIMDESTFILE>"ÿ"<![CDATA["ÿGMACodeDir$ÿ"IIMdesti.txt"ÿ"]]>"ÿ"</IIMDESTFILE>"
+ ÿ{"    <IIMREADYFILE>"ÿ"<![CDATA["ÿGMACodeDir$ÿ"IIMready.txt"ÿ"]]>"ÿ"</IIMREADYFILE>"
+ ÿ{"    <IIMTRANSID>"ÿ"<![CDATA["ÿIIMLastdok.kvertragÿ"]]>"ÿ"</IIMTRANSID>"
+ ÿ{"    <IIMDOCID>"ÿ"<![CDATA["ÿ"000031"ÿ"]]>"ÿ"</IIMDOCID>"
+ 
+ ÿ½ ? "    <IIMACTION>" + "<![CDATA[" + "XIMPORT" + "]]>" + "</IIMACTION>"
+ ÿ{"    <IIMACTION>"ÿ"<![CDATA["ÿ"XIMPORTALL"ÿ"]]>"ÿ"</IIMACTION>"
+ 
+ ÿ{"    <IIMSUPID>"ÿ"<![CDATA["ÿiimsupid.kvertragÿ"]]>"ÿ"</IIMSUPID>"
+ ÿ{"    <IIMSPARTEID>"ÿ"<![CDATA["ÿiimsparteid.kvertragÿ"]]>"ÿ"</IIMSPARTEID>"
+ ÿ½ ? "    <IIMTEMPLATEPATH>" + "<![CDATA[" + GIIMTemplate$ + "]]>" + "</IIMTEMPLATEPATH>"
+ 
+ ÿ{"</PROVEXP>"
+ ÿ†ÿ¶
+ ÿ½ CALL Fehler("ENDE Export nach c:\IIMAgno.xml","")
+ 
+ test$ÿ_netpath$ÿ"IIMExP.exe"
+ ÿ½ test$ = "EXPLORER.EXE"
+ ÿ³ÿ_ÿwvxmlexp1err
+ 
+ a%ÿÿƒ("ShellExecute",0,"open",test$,GMACodeDir$ÿ"IIMImp.xml","",1)
+ ÿ½ CALL Fehler("Aufruf IIMF.exe c:\IIMAgno.xml","")
+ ÿÏÿ›1
+ agz%ÿ0
+ ok%ÿ0
+ ÿØÿOÿJ(GMACodeDir$ÿ"IIMready.txt")ÿok%ÿ0
+ÿÏÿ›1
+agz%ÿagz%ÿ1
+ÿ¡agz%ÿ60ÿp
+ÿÂ"Das IIM-System scheint nicht bereit zu sein!","Wollen Sie weitere 60 Sekunden warten?",130,req%
+ÿ¡req%ÿ1ÿp
+agz%ÿ0
+ÿ^
+ok%ÿÿ1
+ÿƒFehler("Das Dokument konnte nicht importiert werden!","Bitte prfen Sie, ob das IIM-System bereit ist!")
+ÿwxmlend240120021
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿÙ
+ ÿ½ MOUSE ON 
+ ÿ½ CALL Fehler("Aufruf IIMF.exe c:\IIMAgno.xml","")
+vxmlexp1err: 
+ ÿ½ Auslesen der C:\IIMdesti.txt nach Agenturnummer
+ value1%ÿ55
+ desterr$ÿ""
+ wert1$ÿ""
+ wert2$ÿ""
+ ÿ½ CALL Fehler("","")
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMdesti.txt")ÿp
+value1%ÿÿ0(ReadDesti$("IIM","OK",GMACodeDir$ÿ"IIMdesti.txt"))
+desterr$ÿÿ>(ReadDesti$("IIM","errormsg",GMACodeDir$ÿ"IIMdesti.txt"))
+ ÿ^
+ÿƒFehler("Das Dokument konnte nicht importiert werden! Prfen Sie, ob das IIM-System betriebsbereit ist!","")
+ÿwxmlend111120022
+ ÿ’ÿ¡
+ 
+ ÿ¡value1%ÿ0ÿp
+ÿƒFehler("Das Dokument konnte nicht importiert werden! Prfen Sie, ob das IIM-System betriebsbereit ist!",""ÿdesterr$)
+ÿwxmlend111120022
+ ÿ’ÿ¡
+ÿ½ tja ... jetzt irgendwie die Nummer irgendwo eintragen
+ÿÂ"Verarbeitung der importierten Daten!","",2
+doccount%ÿÿ0(ReadDesti$("IIM","DocCount",GMACodeDir$ÿ"IIMdesti.txt"))
+ÿ¡doccount%ÿ0ÿp
+ÿ™"KVERTRAG"
+ÿÉÿĞÿ™"kvertrag"
+j%ÿ0
+k%ÿ0
+ÿ›i%ÿ1ÿqdoccount%
+item$ÿ"Document"ÿÿH(ÿ(i%,"999999"))
+docid%ÿÿ0(ReadDesti$(item$,"CodeDoc",GMACodeDir$ÿ"IIMdesti.txt"))
+ÿ¡docid%ÿ0ÿp
+	ÿ¡ÿJ(docid%,iimdokid.kvertrag)ÿp
+ÿÉÿ`ÿ™"KVERTRAG"ÿ£iimdokid.kvertrag
+ÿÉÿ¥docid%ÿáÿ™"KVERTRAG"ÿ£iimdokid.kvertrag
+transid$ÿReadDesti$(item$,"TransID",GMACodeDir$ÿ"IIMdesti.txt")
+ÿ¡transid$ÿIIMLastdok.kvertragÿp
+k%ÿk%ÿ1
+ÿ’ÿ¡
+IIMLastdok.kvertragÿtransid$
+ÿÊÿË"Informationen fr "ÿÿH(ÿ(i%,"999999"))ÿ" Vertr„ge bernommen"
+j%ÿj%ÿ1
+ÿÌÿ™"Kvertrag"
+ÿïÿ™"kvertrag"
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ±i%
+ÿ’ÿ¡
+ÿÉÿ`ÿ™"KVERTRAG"ÿ£lfdnr.kvertrag
+ÿÉÿ¥codevt%ÿ™"KVERTRAG"ÿ£lfdnr.kvertrag
+ÿ¡j%ÿ1ÿp
+t2$ÿ"Durch das Interface zur verfgung gestellte Datens„tze: "ÿÿH(ÿ(doccount%,"999999"))ÿ" / davon wurde "ÿÿH(ÿ(j%,"999999"))ÿ" Datensatz in der Vertragsdatei gefunden, davon NEU "ÿÿH(ÿ(k%,"999999"))
+ÿ^
+t2$ÿ"Durch das Interface zur verfgung gestellte Datens„tze: "ÿÿH(ÿ(doccount%,"999999"))ÿ" / davon wurden "ÿÿH(ÿ(j%,"999999"))ÿ" Datens„tze in der Vertragsdatei gefunden, davon NEU "ÿÿH(ÿ(k%,"999999"))
+ÿ’ÿ¡
+ÿƒFehler("Import beendet",t2$)
+xmlend111120022: 
+ ÿ’ÿÿ
+ 
+ 
+ 
+ 
+ 
+ 
+ÿÿXMLExport()
+ codeku%ÿcodeku.kvertrag
+ codevt%ÿlfdnr.kvertrag
+ ÿÉÿ¥codeku%ÿ™"Adressen"ÿ£codeku.adressen
+ ÿÉÿ¥codege.kvertragÿ™"GEADR"ÿ£codege.geadr
+ ÿÉÿ¥codeva.kvertragÿ™"SPARTEN"ÿ£codeva.SPARTEN
+ ÿÉÿ¥codevt%ÿáÿ™"KVERTRAG"ÿ£lfdnr.kvertrag
+ iimsupid.kvertragÿiimsupid.geadr
+ iimsparteid.kvertragÿiimsparteid.sparten
+ ÿÌÿ™"KVERTRAG"
+ ÿïÿYÿ™"KVERTRAG"
+ ÿ½ CALL Fehler("Starte den Export nach c:\IIMAgno.xml","")
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMAgno.xml")ÿp
+ÿGMACodeDir$ÿ"IIMAgno.xml"
+ ÿ’ÿ¡
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMdesti.txt")ÿp
+ÿGMACodeDir$ÿ"IIMdesti.txt"
+ ÿ’ÿ¡
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMready.txt")ÿp
+ÿGMACodeDir$ÿ"IIMready.txt"
+ ÿ’ÿ¡
+ 
+ ÿßÿe
+ ÿ½ Fehlertestung
+ fehl$ÿ""
+ okf%ÿÿ1
+ ÿ¡ÿH(IIM_CustomerID.stamm)ÿ""ÿp
+fehl$ÿfehl$ÿ"In den Firmenstammdaten wurde die CustomerID nicht definiert! "
+okf%ÿ0
+ ÿ’ÿ¡
+ ÿ¡ÿH(IIM_Server.stamm)ÿ""ÿp
+fehl$ÿfehl$ÿ"In den Firmenstammdaten wurde der Servername nicht definiert! "
+okf%ÿ0
+ ÿ’ÿ¡
+ ÿ¡ÿH(IIM_DB.stamm)ÿ""ÿp
+fehl$ÿfehl$ÿ"In den Firmenstammdaten wurde der Datenbankname nicht definiert! "
+okf%ÿ0
+ ÿ’ÿ¡
+ ÿ¡ÿH(IIM_login.stamm)ÿ""ÿp
+fehl$ÿfehl$ÿ"In den Firmenstammdaten wurde der Loginname nicht definiert! "
+okf%ÿ0
+ ÿ’ÿ¡
+ ÿ½ IF LTRIM$ (IIM_PWD.stamm) = "" THEN 
+ÿ½ fehl$ = fehl$ + "In den Firmenstammdaten wurde das Passwort nicht definiert! "
+ÿ½ okf% = 0
+ ÿ½ END IF 
+ ÿ¡ÿH(iimsupid.kvertrag)ÿ""ÿp
+fehl$ÿfehl$ÿ"In den Gesellschaftsdaten wurde dieser Gesellschaft keine IIM-Gesellschaft zugewiesen! "
+okf%ÿ0
+ ÿ’ÿ¡
+ ÿ¡ÿH(iimsparteid.kvertrag)ÿ""ÿp
+fehl$ÿfehl$ÿ"In den Spartendaten wurde dieser Sparte keine IIM-Sparte zugewiesen! "
+okf%ÿ0
+ ÿ’ÿ¡
+ ÿ¡okf%ÿ0ÿp
+ÿßÿ³
+ÿƒFehler(fehl$,"Der EXPORT zum IIM-System kann nicht durchgefhrt werden!")
+ÿwxmlend240120021
+ ÿ’ÿ¡
+ ÿ¡IIMSendDate.kvertragÿ""ÿp
+ ÿ^
+ÿÂ"Der Vertrag wurde bereits exportiert!","Soll er erneut exportiert werden?",130,req%
+ÿ¡req%ÿ1ÿp
+ÿwxmlend240120021
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ´GMACodeDir$ÿ"IIMAgno.xml"ÿ›ÿ¶
+ ÿ½ Anforderung der Agenturnummer 
+ ÿ{"<?xml version="ÿÿ(34)ÿ"1.0"ÿÿ(34)ÿ" encoding = "ÿÿ(34)ÿ"ISO-8859-1"ÿÿ(34)ÿ" ?>"
+ ÿ{
+ ÿ{"<PROVEXP>"
+ ÿ{"    <IIMCUSTOMERID>"ÿ"<![CDATA["ÿIIM_CustomerID.stammÿ"]]>"ÿ"</IIMCUSTOMERID>"
+ ÿ{"    <IIMSERVER>"ÿ"<![CDATA["ÿIIM_Server.stammÿ"]]>"ÿ"</IIMSERVER>"
+ ÿ{"    <IIMDB>"ÿ"<![CDATA["ÿIIM_DB.stammÿ"]]>"ÿ"</IIMDB>"
+ ÿ{"    <IIMLOGIN>"ÿ"<![CDATA["ÿIIM_login.stammÿ"]]>"ÿ"</IIMLOGIN>"
+ ÿ{"    <IIMPWD>"ÿ"<![CDATA["ÿIIM_PWD.stammÿ"]]>"ÿ"</IIMPWD>"
+ ÿ{"    <IIMDESTFILE>"ÿ"<![CDATA["ÿGMACodeDir$ÿ"IIMdesti.txt"ÿ"]]>"ÿ"</IIMDESTFILE>"
+ ÿ{"    <IIMREADYFILE>"ÿ"<![CDATA["ÿGMACodeDir$ÿ"IIMready.txt"ÿ"]]>"ÿ"</IIMREADYFILE>"
+ ÿ{"    <IIMACTION>"ÿ"<![CDATA["ÿ"AGENTNO"ÿ"]]>"ÿ"</IIMACTION>"
+ ÿ{"    <IIMSUPID>"ÿ"<![CDATA["ÿiimsupid.kvertragÿ"]]>"ÿ"</IIMSUPID>"
+ ÿ{"    <IIMSPARTEID>"ÿ"<![CDATA["ÿiimsparteid.kvertragÿ"]]>"ÿ"</IIMSPARTEID>"
+ ÿ½ ? "    <IIMTEMPLATEPATH>" + "<![CDATA[" + GIIMTemplate$ + "]]>" + "</IIMTEMPLATEPATH>"
+ 
+ ÿ{"</PROVEXP>"
+ ÿ†ÿ¶
+ ÿ½ CALL Fehler("ENDE Export nach c:\IIMAgno.xml","")
+ 
+ test$ÿ_netpath$ÿ"IIMExP.exe"
+ ÿ½ test$ = "EXPLORER.EXE"
+ ÿ³ÿ_ÿwxmlexp1err
+ 
+ a%ÿÿƒ("ShellExecute",0,"open",test$,GMACodeDir$ÿ"IIMAgno.xml","",1)
+ ÿ½ CALL Fehler("Aufruf IIMF.exe c:\IIMAgno.xml","")
+ ÿÏÿ›1
+ agz%ÿ0
+ ok%ÿ0
+ ÿØÿOÿJ(GMACodeDir$ÿ"IIMready.txt")ÿok%ÿ0
+ÿÏÿ›1
+agz%ÿagz%ÿ1
+ÿ¡agz%ÿ60ÿp
+ÿÂ"Das IIM-System scheint nicht bereit zu sein!","Wollen Sie weitere 60 Sekunden warten?",130,req%
+ÿ¡req%ÿ1ÿp
+agz%ÿ0
+ÿ^
+ok%ÿÿ1
+ÿƒFehler("Die Agenturnummer konnte nicht ermittelt werden!","Bitte prfen Sie, ob das IIM-System bereit ist!")
+ÿwxmlend240120021
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿÙ
+ ÿ½ MOUSE ON 
+ ÿ½ CALL Fehler("Aufruf IIMF.exe c:\IIMAgno.xml","")
+xmlexp1err: 
+ ÿ½ Auslesen der C:\IIMdesti.txt nach Agenturnummer
+ value1%ÿ55
+ desterr$ÿ""
+ wert1$ÿ""
+ wert2$ÿ""
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMdesti.txt")ÿp
+value1%ÿÿ0(ReadDesti$("IIM","OK",GMACodeDir$ÿ"IIMdesti.txt"))
+desterr$ÿÿ>(ReadDesti$("IIM","errormsg",GMACodeDir$ÿ"IIMdesti.txt"))
+wert1$ÿReadDesti$("IIM","Agentur",GMACodeDir$ÿ"IIMdesti.txt")
+wert2$ÿReadDesti$("IIM","AgenturID",GMACodeDir$ÿ"IIMdesti.txt")
+ ÿ^
+ÿƒFehler("Die Agenturnummer konnte nicht ausgelesen werden! Prfen Sie, ob das IIM-System betriebsbereit ist!","Der EXPORT zum IIM-System kann nicht durchgefhrt werden!")
+ÿwxmlend240120021
+ ÿ’ÿ¡
+ agnr1$ÿwert2$
+ 
+ ÿ¡value1%ÿ0ÿÿH(agnr1$)ÿ""ÿp
+ÿƒFehler("Die Agenturnummer konnte nicht ausgelesen werden! Prfen Sie, ob das IIM-System betriebsbereit ist!","Der EXPORT zum IIM-System kann nicht durchgefhrt werden! Systemmeldung: "ÿdesterr$)
+ÿwxmlend240120021 
+ ÿ’ÿ¡
+ 
+dat$ÿ"DOKKV"
+newdocid%ÿÿI(dat$,1)
+ÿÉÿ¥codevt%ÿáÿ™"KVERTRAG"ÿ£lfdnr.kvertrag
+IIMdokid.kvertragÿnewdocid%
+ÿÌÿ™"KVERTRAG"
+ÿwweit2102200401
+ÿ¡IIMSendDate.kvertragÿ""ÿp
+dokname$ÿ"Antrag "ÿVS_NR.kvertragÿ" vom "ÿÿ(VS_Beginn.kvertrag,"0d.mm.yyyy")
+ÿ^
+dokname$ÿ"Antrags-/Vertrags„nderung "ÿVS_NR.kvertragÿ" vom "ÿÿ(VS_Beginn.kvertrag,"0d.mm.yyyy")
+ÿ’ÿ¡
+ÿ‰ÿñ"DOKNEU",0,0,250,147,title$,"MS Sans Serif",8
+ÿ|ÿñ"DOKNEU",5,28,10,205,9,0,"Bitte geben Sie fr das Dokument eine Bezeichnung ein."
+ÿ|ÿñ"DOKNEU",9,4,12,20,21,2
+ÿ|ÿñ"DOKNEU",5,28,19,134,9,0,"(diese kann bis zu 60 Zeichen enthalten)"
+ÿ½ ADD DIALOG "DOKNEU",5,28,34,214,10,0,"Bei Bedarf k”nnen Sie auch die Zuordnung zu einer Dokumenten-"
+ÿ½ ADD DIALOG "DOKNEU",5,28,44,53,10,0,"gruppe „ndern."
+ÿ|ÿñ"DOKNEU",5,28,93,79,9,0,"&Bezeichnung"
+ÿ|ÿñ"DOKNEU",6,28,103,208,12,0,0,dokname$,60
+ÿ½ ADD DIALOG "DOKNEU",5,28,62,65,8,0,"&Gruppe"
+ÿ½ ADD DIALOG "DOKNEU",8,28,72,140,48,259,2,Gruppe$,DOKGruppen$
+ÿ|ÿñ"DOKNEU",1,80,126,49,15,1,"&OK",1,1
+ÿ|ÿñ"DOKNEU",1,130,126,50,14,0,"&Abbrechen",0,0
+ÿñ"DOKNEU",req%
+ÿ¾ÿñ"DOKNEU"
+ÿ¡req%ÿ1ÿp
+ÿƒFehler("IIM-Export wurde abgebrochen","")
+ÿ’ÿÿ
+ÿ’ÿ¡
+ÿÿ™dat$
+CodeDOK.dat$ÿÿI(dat$,1)
+cudok%ÿCodeDOK.dat$
+erstellt_am.dat$ÿÿQ
+letzte_Bearbeit.dat$ÿÿQ
+CodeMA.dat$ÿvcodema%
+codeku.dat$ÿcodevt%
+dokument.dat$ÿdokname$
+ÿÉÿ¥codema.dat$ÿ™"supervis"ÿ£codema.supervis
+Bearbeiter.dat$ÿnachname.supervis
+Creator.dat$ÿnachname.supervis
+textdatei$ÿ"IIM"
+Dateiname.dat$ÿ"IIM"
+Gruppe.dat$ÿ"Antrags-/Vertragsdokument"
+link.dat$ÿ0
+ÿƒQuickStore(dat$)
+ ÿßÿe
+ 
+weit2102200401: 
+ newdocid%ÿIIMdokid.kvertrag
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMexp.xml")ÿp
+ÿGMACodeDir$ÿ"IIMexp.xml"
+ ÿ’ÿ¡
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMdesti.txt")ÿp
+ÿGMACodeDir$ÿ"IIMdesti.txt"
+ ÿ’ÿ¡
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMready.txt")ÿp
+ÿGMACodeDir$ÿ"IIMready.txt"
+ ÿ’ÿ¡
+ feldanz%ÿÿõ("Kvertrag",1)
+ ÿ×felder$(feldanz%)
+ ÿ×feldtyp$(feldanz%)
+ ÿÿfelder$,1
+ ÿ›i%ÿ0ÿqfeldanz%ÿ1
+feldtyp$(i%)ÿÿö(felder$(i%),0)
+ ÿ±i%
+ ÿ½ CALL Fehler("Starte den Export nach c:\IIMexp.xml","")
+ ÿ½ ? "    <CUSTOMERID>" + "<![CDATA[" + IIM_CustomerID.stamm + "]]>" + "</CUSTOMERID>"
+ ÿ´GMACodeDir$ÿ"IIMexp.xml"ÿ›ÿ¶
+ ÿ½ CLS 
+ ÿ½ docid% = cudok%
+ docid%ÿnewdocid%
+ ÿ{"<?xml version="ÿÿ(34)ÿ"1.0"ÿÿ(34)ÿ" encoding = "ÿÿ(34)ÿ"ISO-8859-1"ÿÿ(34)ÿ" ?>"
+ ÿ{
+ ÿ{"<PROVEXP>"
+ ÿ{"    <IIMCUSTOMERID>"ÿ"<![CDATA["ÿIIM_CustomerID.stammÿ"]]>"ÿ"</IIMCUSTOMERID>"
+ ÿ{"    <IIMSERVER>"ÿ"<![CDATA["ÿIIM_Server.stammÿ"]]>"ÿ"</IIMSERVER>"
+ ÿ{"    <IIMDB>"ÿ"<![CDATA["ÿIIM_DB.stammÿ"]]>"ÿ"</IIMDB>"
+ ÿ{"    <IIMLOGIN>"ÿ"<![CDATA["ÿIIM_login.stammÿ"]]>"ÿ"</IIMLOGIN>"
+ ÿ{"    <IIMPWD>"ÿ"<![CDATA["ÿIIM_PWD.stammÿ"]]>"ÿ"</IIMPWD>"
+ ÿ{"    <IIMDESTFILE>"ÿ"<![CDATA["ÿGMACodeDir$ÿ"IIMdesti.txt"ÿ"]]>"ÿ"</IIMDESTFILE>"
+ ÿ{"    <IIMREADYFILE>"ÿ"<![CDATA["ÿGMACodeDir$ÿ"IIMready.txt"ÿ"]]>"ÿ"</IIMREADYFILE>"
+ ÿ{"    <IIMAGENTNR>"ÿ"<![CDATA["ÿagnr1$ÿ"]]>"ÿ"</IIMAGENTNR>"
+ ÿ{"    <IIMACTION>"ÿ"<![CDATA["ÿ"EXPORT"ÿ"]]>"ÿ"</IIMACTION>"
+ 
+ 
+ ÿ{"    <IIMSTATUS>"ÿ"<![CDATA[NEW]]>"ÿ"</IIMSTATUS>"
+ 
+ 
+ ÿ{"    <CODEVT>"ÿ"<![CDATA["ÿÿ(lfdnr.kvertrag,"000000")ÿ"]]>"ÿ"</CODEVT>"
+ ÿ{"    <CODEKU>"ÿ"<![CDATA["ÿÿ(codeku.kvertrag,"000000")ÿ"]]>"ÿ"</CODEKU>"
+ ÿ{"    <IIMDOCID>"ÿ"<![CDATA["ÿÿ(docid%,"000000")ÿ"]]>"ÿ"</IIMDOCID>"
+ ÿ{"    <IIMSUPID>"ÿ"<![CDATA["ÿiimsupid.kvertragÿ"]]>"ÿ"</IIMSUPID>"
+ ÿ{"    <IIMSPARTEID>"ÿ"<![CDATA["ÿiimsparteid.kvertragÿ"]]>"ÿ"</IIMSPARTEID>"
+ ÿ½ ? "    <IIMTEMPLATEPATH>" + "<![CDATA[" + GIIMTemplate$ + "]]>" + "</IIMTEMPLATEPATH>"
+ ÿÂ"Umlaute konvertieren?","",130,requml%
+ ÿ¡requml%ÿ1ÿpWinWordAnsi$ÿ"ON"
+ ÿ¡WinWordAnsi$ÿ"ON"ÿp
+ÿ{"      "ÿ"<ARTNEU_AEND>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi("Neuvertrag")ÿ"]]>"
+ÿ{"      "ÿ"</ARTNEU_AEND>"
+ÿ{"      "ÿ"<VNANREDE>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(Anrede.adressen)ÿ"]]>"
+ÿ{"      "ÿ"</VNANREDE>"
+ÿ{"      "ÿ"<VNTITEL>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(Titel.adressen)ÿ"]]>"
+ÿ{"      "ÿ"</VNTITEL>"
+ÿ{"      "ÿ"<VNVORNAME>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(vorname.adressen)ÿ"]]>"
+ÿ{"      "ÿ"</VNVORNAME>"
+ÿ{"      "ÿ"<VNNACHNAME>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(nachname.adressen)ÿ"]]>"
+ÿ{"      "ÿ"</VNNACHNAME>"
+ÿ{"      "ÿ"<VNSTRASSE>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(straáe.adressen)ÿ"]]>"
+ÿ{"      "ÿ"</VNSTRASSE>"
+ÿ{"      "ÿ"<VNPLZ>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(plz.adressen)ÿ"]]>"
+ÿ{"      "ÿ"</VNPLZ>"
+ÿ{"      "ÿ"<VNORT>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(ort.adressen)ÿ"]]>"
+ÿ{"      "ÿ"</VNORT>"
+ÿ{"      "ÿ"<VNGEBURTSTAG>"
+ÿ{"           <![CDATA["ÿÿ(Geburtstag.adressen,"0d.mm.yyyy")ÿ"]]>"
+ÿ{"           </VNGEBURTSTAG>"
+ 
+ÿ{"      "ÿ"<VNBERUF>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(BERUF.adressen)ÿ"]]>"
+ÿ{"      "ÿ"</VNBERUF>"
+ 
+ÿ{"      "ÿ"<BEGINN>"
+ÿ{"      "ÿ"<![CDATA["ÿÿ(VS_Beginn.kvertrag,"0d.mm.yyyy")ÿ"]]>"
+ÿ{"      "ÿ"</BEGINN>"
+ 
+ÿ{"      "ÿ"<VS_BEGINN>"
+ÿ{"      "ÿ"<![CDATA["ÿÿ(VS_Beginn.kvertrag,"0d.mm.yyyy")ÿ"]]>"
+ÿ{"      "ÿ"</VS_BEGINN>"
+ 
+ÿ{"      "ÿ"<BEITRAG>"
+ÿ{"      "ÿ"<![CDATA["ÿÿH(ÿ(VS_Beginn.kvertrag,"9999999.00"))ÿ"]]>"
+ÿ{"      "ÿ"</BEITRAG>"
+ 
+ÿ{"      "ÿ"<NETTOBEITRAG>"
+ÿ{"      "ÿ"<![CDATA["ÿÿH(ÿ(NettoBeitrag.kvertrag,"9999999.00"))ÿ"]]>"
+ÿ{"      "ÿ"</NETTOBEITRAG>"
+ 
+ÿ{"      "ÿ"<VERSSTEUER>"
+ÿ{"      "ÿ"<![CDATA["ÿÿH(ÿ(MWST.kvertrag,"9999999.00"))ÿ"]]>"
+ÿ{"      "ÿ"</VERSSTEUER>"
+ 
+ 
+ÿ{"      "ÿ"<KTOINH>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(Kontoinh.kvertrag)ÿ"]]>"
+ÿ{"      "ÿ"</KTOINH>"
+ 
+ÿ{"      "ÿ"<VORNAME__1>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(zvP1vName.kvertrag)ÿ"]]>"
+ÿ{"      "ÿ"</VORNAME__1>"
+ 
+ÿ{"      "ÿ"<VORNAME__2>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(zvP2vName.kvertrag)ÿ"]]>"
+ÿ{"      "ÿ"</VORNAME__2>"
+ 
+ÿ{"      "ÿ"<VORNAME__3>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(zvP3vName.kvertrag)ÿ"]]>"
+ÿ{"      "ÿ"</VORNAME__3>"
+ 
+ÿ{"      "ÿ"<VORNAME__4>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(zvP4vName.kvertrag)ÿ"]]>"
+ÿ{"      "ÿ"</VORNAME__4>"
+ 
+ÿ{"      "ÿ"<VORNAME__5>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(zvP5vName.kvertrag)ÿ"]]>"
+ÿ{"      "ÿ"</VORNAME__5>"
+ 
+ÿ{"      "ÿ"<VORNAME__6>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(zvP6vName.kvertrag)ÿ"]]>"
+ÿ{"      "ÿ"</VORNAME__6>"
+ 
+ÿ{"      "ÿ"<NAME__1>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(zvP1Name.kvertrag)ÿ"]]>"
+ÿ{"      "ÿ"</NAME__1>"
+ 
+ÿ{"      "ÿ"<NAME__2>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(zvP2Name.kvertrag)ÿ"]]>"
+ÿ{"      "ÿ"</NAME__2>"
+ 
+ÿ{"      "ÿ"<NAME__3>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(zvP3Name.kvertrag)ÿ"]]>"
+ÿ{"      "ÿ"</NAME__3>"
+ 
+ÿ{"      "ÿ"<NAME__4>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(zvP4Name.kvertrag)ÿ"]]>"
+ÿ{"      "ÿ"</NAME__4>"
+ 
+ÿ{"      "ÿ"<NAME__5>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(zvP5Name.kvertrag)ÿ"]]>"
+ÿ{"      "ÿ"</NAME__5>"
+ 
+ÿ{"      "ÿ"<NAME__6>"
+ÿ{"      "ÿ"<![CDATA["ÿÿåansi(zvP6Name.kvertrag)ÿ"]]>"
+ÿ{"      "ÿ"</NAME__6>"
+
+ 
+ÿ{"      "ÿ"<GEBURTSTAG__1>"
+ÿ{"      "ÿ"<![CDATA["ÿÿ(zvP1Geb.kvertrag,"0d.mm.yyyy")ÿ"]]>"
+ÿ{"      "ÿ"</GEBURTSTAG__1>"
+ 
+ÿ{"      "ÿ"<GEBURTSTAG__2>"
+ÿ{"      "ÿ"<![CDATA["ÿÿ(zvP2Geb.kvertrag,"0d.mm.yyyy")ÿ"]]>"
+ÿ{"      "ÿ"</GEBURTSTAG__2>"
+ 
+ÿ{"      "ÿ"<GEBURTSTAG__3>"
+ÿ{"      "ÿ"<![CDATA["ÿÿ(zvP3Geb.kvertrag,"0d.mm.yyyy")ÿ"]]>"
+ÿ{"      "ÿ"</GEBURTSTAG__3>"
+ 
+ÿ{"      "ÿ"<GEBURTSTAG__4>"
+ÿ{"      "ÿ"<![CDATA["ÿÿ(zvP4Geb.kvertrag,"0d.mm.yyyy")ÿ"]]>"
+ÿ{"      "ÿ"</GEBURTSTAG__4>"
+ 
+ÿ{"      "ÿ"<GEBURTSTAG__5>"
+ÿ{"      "ÿ"<![CDATA["ÿÿ(zvP5Geb.kvertrag,"0d.mm.yyyy")ÿ"]]>"
+ÿ{"      "ÿ"</GEBURTSTAG__5>"
+ 
+ÿ{"      "ÿ"<GEBURTSTAG__6>"
+ÿ{"      "ÿ"<![CDATA["ÿÿ(zvP6Geb.kvertrag,"0d.mm.yyyy")ÿ"]]>"
+ÿ{"      "ÿ"</GEBURTSTAG__6>"
+ 
+ 
+ ÿ^
+ÿ{"      "ÿ"<ARTNEU_AEND>"
+ÿ{"      "ÿ"<![CDATA["ÿ"Neuvertrag"ÿ"]]>"
+ÿ{"      "ÿ"</ARTNEU_AEND>"
+ÿ{"      "ÿ"<VNANREDE>"
+ÿ{"      "ÿ"<![CDATA["ÿAnrede.adressenÿ"]]>"
+ÿ{"      "ÿ"</VNANREDE>"
+ÿ{"      "ÿ"<VNTITEL>"
+ÿ{"      "ÿ"<![CDATA["ÿTitel.adressenÿ"]]>"
+ÿ{"      "ÿ"</VNTITEL>"
+ÿ{"      "ÿ"<VNVORNAME>"
+ÿ{"      "ÿ"<![CDATA["ÿvorname.adressenÿ"]]>"
+ÿ{"      "ÿ"</VNVORNAME>"
+ÿ{"      "ÿ"<VNNACHNAME>"
+ÿ{"      "ÿ"<![CDATA["ÿnachname.adressenÿ"]]>"
+ÿ{"      "ÿ"</VNNACHNAME>"
+ÿ{"      "ÿ"<VNSTRASSE>"
+ÿ{"      "ÿ"<![CDATA["ÿstraáe.adressenÿ"]]>"
+ÿ{"      "ÿ"</VNSTRASSE>"
+ÿ{"      "ÿ"<VNPLZ>"
+ÿ{"      "ÿ"<![CDATA["ÿplz.adressenÿ"]]>"
+ÿ{"      "ÿ"</VNPLZ>"
+ÿ{"      "ÿ"<VNORT>"
+ÿ{"      "ÿ"<![CDATA["ÿort.adressenÿ"]]>"
+ÿ{"      "ÿ"</VNORT>"
+ÿ{"      "ÿ"<VNGEBURTSTAG>"ÿÿ(Geburtstag.adressen,"0d.mm.yyyy")ÿ"</VNGEBURTSTAG>"
+ÿ{"      "ÿ"<VNBERUF>"
+ÿ{"      "ÿ"<![CDATA["ÿBERUF.adressenÿ"]]>"
+ÿ{"      "ÿ"</VNBERUF>"
+ 
+ÿ{"      "ÿ"<BEGINN>"
+ÿ{"      "ÿ"<![CDATA["ÿÿ(VS_Beginn.kvertrag,"0d.mm.yyyy")ÿ"]]>"
+ÿ{"      "ÿ"</BEGINN>"
+ 
+ÿ{"      "ÿ"<VS_BEGINN>"
+ÿ{"      "ÿ"<![CDATA["ÿÿ(VS_Beginn.kvertrag,"0d.mm.yyyy")ÿ"]]>"
+ÿ{"      "ÿ"</VS_BEGINN>"
+ 
+ÿ{"      "ÿ"<BEITRAG>"
+ÿ{"      "ÿ"<![CDATA["ÿÿH(ÿ(VS_Beginn.kvertrag,"9999999.00"))ÿ"]]>"
+ÿ{"      "ÿ"</BEITRAG>"
+ 
+ÿ{"      "ÿ"<NETTOBEITRAG>"
+ÿ{"      "ÿ"<![CDATA["ÿÿH(ÿ(NettoBeitrag.kvertrag,"9999999.00"))ÿ"]]>"
+ÿ{"      "ÿ"</NETTOBEITRAG>"
+ 
+ÿ{"      "ÿ"<VERSSTEUER>"
+ÿ{"      "ÿ"<![CDATA["ÿÿH(ÿ(MWST.kvertrag,"9999999.00"))ÿ"]]>"
+ÿ{"      "ÿ"</VERSSTEUER>"
+ 
+ 
+ÿ{"      "ÿ"<KTOINH>"
+ÿ{"      "ÿ"<![CDATA["ÿKontoinh.kvertragÿ"]]>"
+ÿ{"      "ÿ"</KTOINH>"
+ 
+ÿ{"      "ÿ"<VORNAME__1>"
+ÿ{"      "ÿ"<![CDATA["ÿzvP1vName.kvertragÿ"]]>"
+ÿ{"      "ÿ"</VORNAME__1>"
+ 
+ÿ{"      "ÿ"<VORNAME__2>"
+ÿ{"      "ÿ"<![CDATA["ÿzvP2vName.kvertragÿ"]]>"
+ÿ{"      "ÿ"</VORNAME__2>"
+ 
+ÿ{"      "ÿ"<VORNAME__3>"
+ÿ{"      "ÿ"<![CDATA["ÿzvP3vName.kvertragÿ"]]>"
+ÿ{"      "ÿ"</VORNAME__3>"
+ 
+ÿ{"      "ÿ"<VORNAME__4>"
+ÿ{"      "ÿ"<![CDATA["ÿzvP4vName.kvertragÿ"]]>"
+ÿ{"      "ÿ"</VORNAME__4>"
+ 
+ÿ{"      "ÿ"<VORNAME__5>"
+ÿ{"      "ÿ"<![CDATA["ÿzvP5vName.kvertragÿ"]]>"
+ÿ{"      "ÿ"</VORNAME__5>"
+ 
+ÿ{"      "ÿ"<VORNAME__6>"
+ÿ{"      "ÿ"<![CDATA["ÿzvP6vName.kvertragÿ"]]>"
+ÿ{"      "ÿ"</VORNAME__6>"
+ 
+ÿ{"      "ÿ"<NAME__1>"
+ÿ{"      "ÿ"<![CDATA["ÿzvP1Name.kvertragÿ"]]>"
+ÿ{"      "ÿ"</NAME__1>"
+ 
+ÿ{"      "ÿ"<NAME__2>"
+ÿ{"      "ÿ"<![CDATA["ÿzvP2Name.kvertragÿ"]]>"
+ÿ{"      "ÿ"</NAME__2>"
+ 
+ÿ{"      "ÿ"<NAME__3>"
+ÿ{"      "ÿ"<![CDATA["ÿzvP3Name.kvertragÿ"]]>"
+ÿ{"      "ÿ"</NAME__3>"
+ 
+ÿ{"      "ÿ"<NAME__4>"
+ÿ{"      "ÿ"<![CDATA["ÿzvP4Name.kvertragÿ"]]>"
+ÿ{"      "ÿ"</NAME__4>"
+ 
+ÿ{"      "ÿ"<NAME__5>"
+ÿ{"      "ÿ"<![CDATA["ÿzvP5Name.kvertragÿ"]]>"
+ÿ{"      "ÿ"</NAME__5>"
+ 
+ÿ{"      "ÿ"<NAME__6>"
+ÿ{"      "ÿ"<![CDATA["ÿzvP6Name.kvertragÿ"]]>"
+ÿ{"      "ÿ"</NAME__6>"
+
+ÿ{"      "ÿ"<GEBURTSTAG__1>"
+ÿ{"      "ÿ"<![CDATA["ÿÿ(zvP1Geb.kvertrag,"0d.mm.yyyy")ÿ"]]>"
+ÿ{"      "ÿ"</GEBURTSTAG__1>"
+ 
+ÿ{"      "ÿ"<GEBURTSTAG__2>"
+ÿ{"      "ÿ"<![CDATA["ÿÿ(zvP2Geb.kvertrag,"0d.mm.yyyy")ÿ"]]>"
+ÿ{"      "ÿ"</GEBURTSTAG__2>"
+ 
+ÿ{"      "ÿ"<GEBURTSTAG__3>"
+ÿ{"      "ÿ"<![CDATA["ÿÿ(zvP3Geb.kvertrag,"0d.mm.yyyy")ÿ"]]>"
+ÿ{"      "ÿ"</GEBURTSTAG__3>"
+ 
+ÿ{"      "ÿ"<GEBURTSTAG__4>"
+ÿ{"      "ÿ"<![CDATA["ÿÿ(zvP4Geb.kvertrag,"0d.mm.yyyy")ÿ"]]>"
+ÿ{"      "ÿ"</GEBURTSTAG__4>"
+ 
+ÿ{"      "ÿ"<GEBURTSTAG__5>"
+ÿ{"      "ÿ"<![CDATA["ÿÿ(zvP5Geb.kvertrag,"0d.mm.yyyy")ÿ"]]>"
+ÿ{"      "ÿ"</GEBURTSTAG__5>"
+ 
+ÿ{"      "ÿ"<GEBURTSTAG__6>"
+ÿ{"      "ÿ"<![CDATA["ÿÿ(zvP6Geb.kvertrag,"0d.mm.yyyy")ÿ"]]>"
+ÿ{"      "ÿ"</GEBURTSTAG__6>"
+ 
+ 
+ ÿ’ÿ¡
+ ÿ½ CALL Fehler("Test","")
+ ÿ½ GOTO ZW111120021
+ ÿ›i%ÿ0ÿqfeldanz%ÿ1
+ÿ½ CALL Fehler("For next","")
+afeld$ÿfelder$(i%)
+ok%ÿÿ1
+ÿ¡afeld$ÿ"zvp1name*"ÿafeld$ÿ"zvp1vname*"ÿafeld$ÿ"zvp1ort*"ÿafeld$ÿ"zvp1geschlecht*"ÿpok%ÿ0
+ÿ¡afeld$ÿ"zvp1plz*"ÿafeld$ÿ"zvp1strasse*"ÿafeld$ÿ"zvp1geb"ÿpok%ÿ0
+ÿ¡afeld$ÿ"zvp2name*"ÿafeld$ÿ"zvp2vname*"ÿafeld$ÿ"zvp2ort*"ÿafeld$ÿ"zvp2geschlecht*"ÿpok%ÿ0
+ÿ¡afeld$ÿ"zvp2plz*"ÿafeld$ÿ"zvp2strasse*"ÿafeld$ÿ"zvp2geb"ÿpok%ÿ0
+ÿ¡afeld$ÿ"zvp3name*"ÿafeld$ÿ"zvp3vname*"ÿafeld$ÿ"zvp3ort*"ÿafeld$ÿ"zvp3geschlecht*"ÿpok%ÿ0
+ÿ¡afeld$ÿ"zvp3plz*"ÿafeld$ÿ"zvp3strasse*"ÿafeld$ÿ"zvp3geb"ÿpok%ÿ0
+ÿ¡afeld$ÿ"zvp4name*"ÿafeld$ÿ"zvp4vname*"ÿafeld$ÿ"zvp4ort*"ÿafeld$ÿ"zvp4geschlecht*"ÿpok%ÿ0
+ÿ¡afeld$ÿ"zvp4plz*"ÿafeld$ÿ"zvp4strasse*"ÿafeld$ÿ"zvp4geb"ÿpok%ÿ0
+ÿ¡afeld$ÿ"zvp5name*"ÿafeld$ÿ"zvp5vname*"ÿafeld$ÿ"zvp5ort*"ÿafeld$ÿ"zvp5geschlecht*"ÿpok%ÿ0
+ÿ¡afeld$ÿ"zvp5plz*"ÿafeld$ÿ"zvp5strasse*"ÿafeld$ÿ"zvp5geb"ÿpok%ÿ0
+ÿ¡afeld$ÿ"zvp6name*"ÿafeld$ÿ"zvp6vname*"ÿafeld$ÿ"zvp6ort*"ÿafeld$ÿ"zvp6geschlecht*"ÿpok%ÿ0
+ÿ¡afeld$ÿ"zvp6plz*"ÿafeld$ÿ"zvp6strasse*"ÿafeld$ÿ"zvp6geb"ÿpok%ÿ0
+ÿ¡afeld$ÿ"code*"ÿafeld$ÿ"quick*"ÿafeld$ÿ"IIM*"ÿpok%ÿ0
+ÿ¡ok%ÿ0ÿpÿwfeldnext190120021
+ ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"TXT"ÿp
+a%ÿÿ0(ÿö(felder$(i%),4))
+afeld$ÿfelder$(i%)
+awert$ÿÿH(afeld$$)
+ÿ½ IF LEN (awert$) > 0 THEN 
+ÿ¡WinWordAnsi$ÿ"ON"ÿp
+	ÿ{"      "ÿ"<"ÿÿåansi(ÿ>(felder$(i%)))ÿ">"
+	ÿ{"      "ÿ"<![CDATA["ÿÿåansi(ÿH(awert$))ÿ"]]>"
+	ÿ{"      "ÿ"</"ÿÿåansi(ÿ>(felder$(i%)))ÿ">"
+ÿ^
+	ÿ{"      "ÿ"<"ÿÿ>(felder$(i%))ÿ">"
+	ÿ{"      "ÿ"<![CDATA["ÿÿH(awert$)ÿ"]]>"
+	ÿ{"      "ÿ"</"ÿÿ>(felder$(i%))ÿ">"
+ÿ’ÿ¡
+ÿ½ END IF 
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"N*"ÿp
+typformat$ÿÿö(felder$(i%),4)
+ÿ¡ÿ-(typformat$,1)ÿ"."ÿp
+typformat$ÿÿ,(typformat$,1,ÿ/(typformat$)ÿ1)
+ÿ’ÿ¡
+afeld$ÿfelder$(i%)
+awert%ÿafeld$$
+bef$ÿ"wert$ = ltrim$(str$(awert%,~"
+bef$ÿbef$ÿtypformat$ÿ"~))"
+ÿ–bef$
+ÿ¡WinWordAnsi$ÿ"ON"ÿp
+ÿ{"      "ÿ"<"ÿÿåansi(ÿ>(felder$(i%)))ÿ">"
+ÿ{"               <![CDATA["ÿÿH(wert$)ÿ"]]>"
+ÿ{"       </"ÿÿåansi(ÿ>(felder$(i%)))ÿ">"
+ÿ^
+ÿ{"      "ÿ"<"ÿÿ>(felder$(i%))ÿ">"
+ÿ{"               <![CDATA["ÿÿH(wert$)ÿ"]]>"
+ÿ{"       </"ÿÿ>(felder$(i%))ÿ">"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"DAT"ÿp
+afeld$ÿfelder$(i%)
+awert$ÿÿ(afeld$$,"0d.mm.yyyy")
+ÿ¡WinWordAnsi$ÿ"ON"ÿp
+ÿ{"      "ÿ"<"ÿÿåansi(ÿ>(felder$(i%)))ÿ">"
+ÿ{"               <![CDATA["ÿÿH(awert$)ÿ"]]>"
+ÿ{"           </"ÿÿåansi(ÿ>(felder$(i%)))ÿ">"
+ÿ^
+ÿ{"      "ÿ"<"ÿÿ>(felder$(i%))ÿ">"
+ÿ{"               <![CDATA["ÿÿH(awert$)ÿ"]]>"
+ÿ{"           </"ÿÿ>(felder$(i%))ÿ">"
+ÿ’ÿ¡
+ÿ’ÿ¡
+feldnext190120021: 
+ ÿ±i%
+ 
+ kab%ÿ0
+zupa$ÿ"<ZUVERSPER>"
+zupe$ÿ"</ZUVERSPER>"
+ ÿ›kkab%ÿ1ÿq6
+n1$ÿ"zvp"ÿÿ(kkab%,"9")
+fname$ÿn1$ÿ"Name.kvertrag"
+fvname$ÿn1$ÿ"vName.kvertrag"
+fort$ÿn1$ÿ"ort.kvertrag"
+fplz$ÿn1$ÿ"plz.kvertrag"
+fstrasse$ÿn1$ÿ"strasse.kvertrag"
+fgeb$ÿn1$ÿ"geb.kvertrag"
+fbeitr$ÿn1$ÿ"Beitrag.kvertrag"
+ÿ¡fname$$ÿ""ÿfvName$$ÿ""ÿp
+ÿ¡WinWordAnsi$ÿ"ON"ÿp
+ÿ{"    "ÿzupa$
+ÿ{"      <NAME>"
+ÿ{"        <![CDATA["ÿÿH(ÿåansi(fName$$))ÿ"]]>"
+ÿ{"      </NAME>"
+ÿ{"      <VORNAME>"
+ÿ{"        <![CDATA["ÿÿH(ÿåansi(fvName$$))ÿ"]]>"
+ÿ{"      </VORNAME>"
+ÿ{"      <ORT>"
+ÿ{"        <![CDATA["ÿÿH(ÿåansi(fOrt$$))ÿ"]]>"
+ÿ{"       </ORT>"
+ÿ{"      <PLZ>"
+ÿ{"        <![CDATA["ÿÿH(ÿåansi(fPLZ$$))ÿ"]]>"
+ÿ{"       </PLZ>"
+ÿ{"      <STRASSE>"
+ÿ{"        <![CDATA["ÿÿH(ÿåansi(fstrasse$$))ÿ"]]>"
+ÿ{"      </STRASSE>"
+ÿ{"      <GEBURTSTAG>"ÿ"<![CDATA["ÿÿ(fgeb$$,"0d.mm.yyyy")ÿ"]]>"ÿ"</GEBURTSTAG>"
+ÿ{"      <ZVPBEITRAG>"ÿ"<![CDATA["ÿÿ(fbeitr$$,",99999999.00")ÿ"]]>"ÿ"</ZVPBEITRAG>"
+ÿ{"    "ÿzupe$
+ÿ^
+ÿ{"    "ÿzupa$
+ÿ{"      <NAME>"ÿ"<![CDATA["ÿÿH(fName$$)ÿ"]]>"ÿ"</NAME>"
+ÿ{"      <VORNAME>"ÿ"<![CDATA["ÿÿH(fvName$$)ÿ"]]>"ÿ"</VORNAME>"
+ÿ{"      <ORT>"ÿ"<![CDATA["ÿÿH(fOrt$$)ÿ"]]>"ÿ"</ORT>"
+ÿ{"      <PLZ>"ÿ"<![CDATA["ÿÿH(fPLZ$$)ÿ"]]>"ÿ"</PLZ>"
+ÿ{"      <STRASSE>"ÿ"<![CDATA["ÿÿH(fstrasse$$)ÿ"]]>"ÿ"</STRASSE>"
+ÿ{"      <GEBURTSTAG>"ÿ"<![CDATA["ÿÿ(fgeb$$,"0d.mm.yyyy")ÿ"]]>"ÿ"</GEBURTSTAG>"
+ÿ{"      <ZVPBEITRAG>"ÿ"<![CDATA["ÿÿ(fbeitr$$,",99999999.00")ÿ"]]>"ÿ"</ZVPBEITRAG>"
+ÿ{"    "ÿzupe$
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ±kkab%
+ZW111120021: 
+ ÿ{"</PROVEXP>"
+ ÿ†ÿ¶
+ ÿßÿe
+ a%ÿÿƒ("ShellExecute",0,"open",test$,GMACodeDir$ÿ"IIMexp.xml","",1)
+ ÿ½ CALL Fehler("Aufruf IIMexp.exe c:\IIMready.txt","")
+ ÿÏÿ›1
+ agz%ÿ0
+ ok%ÿ0
+ ÿØÿOÿJ(GMACodeDir$ÿ"IIMready.txt")ÿok%ÿ0
+ÿÏÿ›1
+agz%ÿagz%ÿ1
+ÿ¡agz%ÿ60ÿp
+ÿÂ"Das IIM-System scheint nicht bereit zu sein!","Wollen Sie weitere 60 Sekunden warten?",130,req%
+ÿ¡req%ÿ1ÿp
+agz%ÿ0
+ÿ^
+ok%ÿÿ1
+ÿƒFehler("Der Vertrag konnte nicht berermittelt werden!","Bitte prfen Sie, ob das IIM-System bereit ist!")
+ÿ¡ÿJ(cudok%,codedok.DOKKV)ÿp
+	ÿÉÿ¥cudok%ÿáÿ™"DOKKV"ÿ£codedok.dokkv
+	ÿÉÿ¾ÿ™"DOKKV"
+ÿ’ÿ¡
+ÿwxmlend240120021
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿÙ
+ ÿ½ CALL Fehler("ENDE XML-Export nach c:\pexport.xml","")
+ 
+ ÿ½ Auslesen der C:\IIMdesti.txt nach Agenturnummer
+ value1%ÿ55
+ desterr$ÿ""
+ wert1$ÿ""
+ wert2$ÿ""
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMdesti.txt")ÿp
+ÿ½ OPEN GMACodeDir$ + "IIMdesti.txt" FOR INPUT 
+ÿ½ INPUT value1%
+ÿ½ INPUT desterr$
+ÿ½ INPUT wert1$
+ÿ½ INPUT wert2$
+ÿ½ CLOSE INPUT 
+value1%ÿÿ0(ReadDesti$("IIM","OK",GMACodeDir$ÿ"IIMdesti.txt"))
+desterr$ÿÿ>(ReadDesti$("IIM","errormsg",GMACodeDir$ÿ"IIMdesti.txt"))
+ÿ½ wert1$ = ReadDesti$("IIM","Agentur",GMACodeDir$ + "IIMdesti.txt")
+wert2$ÿReadDesti$("IIM","TransID",GMACodeDir$ÿ"IIMdesti.txt")
+ ÿ^
+ÿƒFehler("Die IIM-Dokumentennummer konnte nicht ausgelesen werden! Prfen Sie, ob das IIM-System betriebsbereit ist!","Der EXPORT zum IIM-System kann nicht durchgefhrt werden!")
+ÿ¡ÿJ(cudok%,codedok.DOKKV)ÿp
+	ÿÉÿ¥cudok%ÿáÿ™"DOKKV"ÿ£codedok.dokkv
+	ÿÉÿ¾
+ÿ’ÿ¡
+ÿwxmlend240120021
+ ÿ’ÿ¡
+ agnr1$ÿwert2$
+ ÿ¡value1%ÿ0ÿÿH(agnr1$)ÿ""ÿp
+ÿƒFehler("Die IIM-Dokumentennummer konnte nicht ausgelesen werden! Prfen Sie, ob das IIM-System betriebsbereit ist!","Der EXPORT zum IIM-System kann nicht durchgefhrt werden! Systemmeldung: "ÿdesterr$)
+ÿ¡ÿJ(cudok%,codedok.DOKKV)ÿp
+	ÿÉÿ¥cudok%ÿáÿ™"DOKKV"ÿ£codedok.dokkv
+	ÿÉÿ¾ÿ™"DOKKV"
+ÿ’ÿ¡
+ÿwxmlend240120021 
+ ÿ^
+req%ÿÿ1
+ ÿ’ÿ¡
+ ÿ½ SELECT KEY codevt% LOCK FILE "KVERTRAG" INDEX lfdnr.kvertrag
+ 
+ 
+ 
+ ÿ½ ******    Hier jetzt die Routine zum Aufruf der Sende DLL starten***************************************
+ ÿ½ req% = - 1
+ 
+ 
+ ÿ¡req%ÿÿ1ÿp
+ÿÉÿ¥codevt%ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+IIMSendDate.kvertragÿÿ(ÿQ,"0d.mm.yyyy")ÿ" "ÿÿ7(ÿR,"hh:mm")
+IIMLastdok.kvertragÿwert2$
+ÿÉÿ¥_vcodema%ÿ™"supervis"ÿ£codema.supervis
+IIMSendMA.kvertragÿName.supervis
+ÿÌÿ™"kvertrag"
+ÿïÿYÿ™"kvertrag"
+ ÿ’ÿ¡
+ ÿ½ ********************************************************************************************************
+ 
+xmlend240120021: 
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+ÿÿXMLIDok()
+ ÿƒFehler("Diese Funktion wird aber der n„chsten Programmversion untersttzt.","")
+ ÿ’ÿÿ
+ 
+ 
+ÿÿXMLDok()
+ codevt%ÿlfdnr.kvertrag
+ ÿ¡ÿH(IIMLastdok.kvertrag)ÿ""ÿp
+ÿƒFehler("Es wurde noch kein IIM-Dokument erzeugt!","")
+ÿwxmlend240120024
+ ÿ’ÿ¡
+ ÿ½ CALL Fehler("IIM-DOCSHOW zuweisen","")
+ ÿÉÿ`ÿ™"stamm"
+ ÿßÿe
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMDok.xml")ÿp
+ÿGMACodeDir$ÿ"IIMDok.xml"
+ ÿ’ÿ¡
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMdesti.txt")ÿp
+ÿGMACodeDir$ÿ"IIMdesti.txt"
+ ÿ’ÿ¡
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMready.txt")ÿp
+ÿGMACodeDir$ÿ"IIMready.txt"
+ ÿ’ÿ¡
+ ÿ´GMACodeDir$ÿ"IIMDok.xml"ÿ›ÿ¶
+ ÿ½ CLS 
+ docid%ÿcudok%
+ lstdok$ÿIIMLastdok.kvertrag
+ ÿ{"<?xml version="ÿÿ(34)ÿ"1.0"ÿÿ(34)ÿ" encoding = "ÿÿ(34)ÿ"ISO-8859-1"ÿÿ(34)ÿ" ?>"
+ ÿ{
+ ÿ{"<PROVEXP>"
+ ÿ{"    <IIMCUSTOMERID>"ÿ"<![CDATA["ÿIIM_CustomerID.stammÿ"]]>"ÿ"</IIMCUSTOMERID>"
+ ÿ{"    <IIMSERVER>"ÿ"<![CDATA["ÿIIM_Server.stammÿ"]]>"ÿ"</IIMSERVER>"
+ ÿ{"    <IIMDB>"ÿ"<![CDATA["ÿIIM_DB.stammÿ"]]>"ÿ"</IIMDB>"
+ ÿ{"    <IIMLOGIN>"ÿ"<![CDATA["ÿIIM_login.stammÿ"]]>"ÿ"</IIMLOGIN>"
+ ÿ{"    <IIMPWD>"ÿ"<![CDATA["ÿIIM_PWD.stammÿ"]]>"ÿ"</IIMPWD>"
+ ÿ{"    <IIMDESTFILE>"ÿ"<![CDATA["ÿGMACodeDir$ÿ"IIMdesti.txt"ÿ"]]>"ÿ"</IIMDESTFILE>"
+ ÿ{"    <IIMREADYFILE>"ÿ"<![CDATA["ÿGMACodeDir$ÿ"IIMready.txt"ÿ"]]>"ÿ"</IIMREADYFILE>"
+ ÿ{"    <IIMTRANSID>"ÿ"<![CDATA["ÿIIMLastdok.kvertragÿ"]]>"ÿ"</IIMTRANSID>"
+ ÿ{"    <IIMACTION>"ÿ"<![CDATA["ÿ"DOCSHOW_EXPORT"ÿ"]]>"ÿ"</IIMACTION>"
+ ÿ½ ? "    <IIMTEMPLATEPATH>" + "<![CDATA[" + GIIMTemplate$ + "]]>" + "</IIMTEMPLATEPATH>"
+ ÿ{"</PROVEXP>"
+ ÿ†ÿ¶
+ ÿ½ CALL Fehler("IIM-DOCSHOW Ende","")
+ 
+ test$ÿ_netpath$ÿ"IIMExP.exe"
+ 
+ 
+ a%ÿÿƒ("ShellExecute",0,"open",test$,GMACodeDir$ÿ"IIMDok.xml","",1)
+ ÿ½ CALL Fehler("Aufruf IIMEXP.exe c:\IIMDok.xml","")
+ ÿÏÿ›1
+ agz%ÿ0
+ ok%ÿ0
+ ÿØÿOÿJ(GMACodeDir$ÿ"IIMready.txt")ÿok%ÿ0
+ÿÏÿ›1
+agz%ÿagz%ÿ1
+ÿ¡agz%ÿ60ÿp
+ÿÂ"Das IIM-System scheint nicht bereit zu sein!","Wollen Sie weitere 60 Sekunden warten?",130,req%
+ÿ¡req%ÿ1ÿp
+agz%ÿ0
+ÿ^
+ok%ÿÿ1
+ÿƒFehler("Das IIM-Dokument konnte nicht ermittelt werden!","Bitte prfen Sie, ob das IIM-System bereit ist!")
+ÿwxmlend240120024
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿÙ
+ ÿ½ CALL Fehler("Aufruf IIMEXP.exe c:\IIMDok.xml","")
+ 
+ ÿ½ Auslesen der C:\IIMdesti.txt nach Agenturnummer
+ value1%ÿ55
+ desterr$ÿ""
+ wert1$ÿ""
+ wert2$ÿ""
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMdesti.txt")ÿp
+ÿ½ OPEN GMACodeDir$ + "IIMdesti.txt" FOR INPUT 
+ÿ½ INPUT value1%
+ÿ½ INPUT desterr$
+ÿ½ INPUT wert1$
+ÿ½ INPUT wert2$
+ÿ½ CLOSE INPUT 
+value1%ÿÿ0(ReadDesti$("IIM","OK",GMACodeDir$ÿ"IIMdesti.txt"))
+desterr$ÿÿ>(ReadDesti$("IIM","errormsg",GMACodeDir$ÿ"IIMdesti.txt"))
+ÿ½ wert1$ = ReadDesti$("IIM","Agentur",GMACodeDir$ + "IIMdesti.txt")
+wert2$ÿReadDesti$("IIM","TransID",GMACodeDir$ÿ"IIMdesti.txt")
+ ÿ^
+ÿƒFehler("Das IIM-Dokument konnte nicht ausgelesen werden! Prfen Sie, ob das IIM-System betriebsbereit ist!","Die Anzeige des Dokumentes kann nicht durchgefhrt werden!")
+ÿwxmlend240120024
+ ÿ’ÿ¡
+ agnr1$ÿwert2$
+ ÿ¡value1%ÿ0ÿp
+ÿƒFehler("Das IIM-Dokument konnte nicht ausgelesen werden! Prfen Sie, ob das IIM-System betriebsbereit ist!","Die Anzeige des Dokumentes kann nicht durchgefhrt werden!")
+ÿwxmlend240120024 
+ ÿ’ÿ¡
+xmlend240120024: 
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ÿÿGetIIMSupID()
+ 
+ codege%ÿcodege.geadr
+ ÿ¡ag$ÿ"j"ÿp
+ÿƒFehler("Diese Funktion steht unter der Agenturversion nicht zur Verfgung","")
+ÿwxmlend240120022
+ ÿ’ÿ¡
+ ÿ½ CALL Fehler("IIM-SuplID zuweisen","")
+ ÿÉÿ`ÿ™"stamm"
+ ÿßÿe
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMSupID.xml")ÿp
+ÿGMACodeDir$ÿ"IIMSupID.xml"
+ ÿ’ÿ¡
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMdesti.txt")ÿp
+ÿGMACodeDir$ÿ"IIMdesti.txt"
+ ÿ’ÿ¡
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMready.txt")ÿp
+ÿGMACodeDir$ÿ"IIMready.txt"
+ ÿ’ÿ¡
+ ÿ´GMACodeDir$ÿ"IIMSupID.xml"ÿ›ÿ¶
+ ÿ½ CLS 
+ docid%ÿcudok%
+ ÿ{"<?xml version="ÿÿ(34)ÿ"1.0"ÿÿ(34)ÿ" encoding = "ÿÿ(34)ÿ"ISO-8859-1"ÿÿ(34)ÿ" ?>"
+ ÿ{
+ ÿ{"<PROVEXP>"
+ ÿ{"    <IIMCUSTOMERID>"ÿ"<![CDATA["ÿIIM_CustomerID.stammÿ"]]>"ÿ"</IIMCUSTOMERID>"
+ ÿ{"    <IIMSERVER>"ÿ"<![CDATA["ÿIIM_Server.stammÿ"]]>"ÿ"</IIMSERVER>"
+ ÿ{"    <IIMDB>"ÿ"<![CDATA["ÿIIM_DB.stammÿ"]]>"ÿ"</IIMDB>"
+ ÿ{"    <IIMLOGIN>"ÿ"<![CDATA["ÿIIM_login.stammÿ"]]>"ÿ"</IIMLOGIN>"
+ ÿ{"    <IIMPWD>"ÿ"<![CDATA["ÿIIM_PWD.stammÿ"]]>"ÿ"</IIMPWD>"
+ ÿ{"    <IIMDESTFILE>"ÿ"<![CDATA["ÿGMACodeDir$ÿ"IIMdesti.txt"ÿ"]]>"ÿ"</IIMDESTFILE>"
+ ÿ{"    <IIMREADYFILE>"ÿ"<![CDATA["ÿGMACodeDir$ÿ"IIMready.txt"ÿ"]]>"ÿ"</IIMREADYFILE>"
+ ÿ½ ? "    <IIMAGENTNR>" + "<![CDATA[" + IIMAgentnr.geadr + "]]>" + "</IIMAGENTNR>"
+ ÿ{"    <IIMACTION>"ÿ"<![CDATA["ÿ"SUP"ÿ"]]>"ÿ"</IIMACTION>"
+ ÿ½ ? "    <IIMTEMPLATEPATH>" + "<![CDATA[" + GIIMTemplate$ + "]]>" + "</IIMTEMPLATEPATH>"
+ ÿ{"</PROVEXP>"
+ ÿ†ÿ¶
+ ÿ½ CALL Fehler("IIM-SuplID Ende","")
+ 
+ test$ÿ_netpath$ÿ"IIMExP.exe"
+ 
+ 
+ a%ÿÿƒ("ShellExecute",0,"open",test$,GMACodeDir$ÿ"IIMSupID.xml","",1)
+ ÿ½ CALL Fehler("Aufruf IIMF.exe c:\IIMSupID.xml","")
+ ÿÏÿ›1
+ agz%ÿ0
+ ok%ÿ0
+ ÿØÿOÿJ(GMACodeDir$ÿ"IIMready.txt")ÿok%ÿ0
+ÿÏÿ›1
+agz%ÿagz%ÿ1
+ÿ¡agz%ÿ60ÿp
+ÿÂ"Das IIM-System scheint nicht bereit zu sein!","Wollen Sie weitere 60 Sekunden warten?",130,req%
+ÿ¡req%ÿ1ÿp
+agz%ÿ0
+ÿ^
+ok%ÿÿ1
+ÿƒFehler("Die IIM-Gesellschaftsnummer konnte nicht ermittelt werden!","Bitte prfen Sie, ob das IIM-System bereit ist!")
+ÿwxmlend240120022
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿÙ
+ ÿ½ CALL Fehler("Aufruf IIMEXP.exe c:\IIMSupID.xml","")
+ 
+ ÿ½ Auslesen der C:\IIMdesti.txt nach SuplID
+ value1%ÿ55
+ desterr$ÿ""
+ wert1$ÿ""
+ wert2$ÿ""
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMdesti.txt")ÿp
+ÿ½ OPEN GMACodeDir$ + "IIMdesti.txt" FOR INPUT 
+ÿ½ INPUT value1%
+ÿ½ INPUT desterr$
+ÿ½ INPUT wert1$
+ÿ½ INPUT wert2$
+ÿ½ CLOSE INPUT 
+value1%ÿÿ0(ReadDesti$("IIM","OK",GMACodeDir$ÿ"IIMdesti.txt"))
+desterr$ÿÿ>(ReadDesti$("IIM","errormsg",GMACodeDir$ÿ"IIMdesti.txt"))
+wert1$ÿReadDesti$("IIM","Gesellschaft",GMACodeDir$ÿ"IIMdesti.txt")
+wert2$ÿReadDesti$("IIM","GesellschaftID",GMACodeDir$ÿ"IIMdesti.txt")
+ ÿ^
+ÿƒFehler("Die IIM-Gesellschaftsnummer konnte nicht ausgelesen werden! Prfen Sie, ob das IIM-System betriebsbereit ist!","Der EXPORT zum IIM-System kann nicht durchgefhrt werden!")
+ÿwxmlend240120022
+ ÿ’ÿ¡
+ agnr1$ÿwert2$
+ ÿ¡value1%ÿ0ÿÿH(agnr1$)ÿ""ÿp
+ÿƒFehler("Die IIM-Gesellschaftsnummer konnte nicht ausgelesen werden! Prfen Sie, ob das IIM-System betriebsbereit ist!","Der EXPORT zum IIM-System kann nicht durchgefhrt werden! Systemmeldung: "ÿdesterr$)
+ÿwxmlend240120022 
+ ÿ’ÿ¡
+ ÿÉÿ¥codege%ÿáÿ™"GEADR"ÿ£codege.geadr
+ IIMsupid.geadrÿwert2$
+ IIMSupName.geadrÿwert1$
+ ÿÌÿ™"geadr"
+ ÿïÿYÿ™"geadr"
+xmlend240120022: 
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ÿÿGetIIMSparteID()
+ codeva%ÿcodeva.sparten
+ ÿ¡ag$ÿ"j"ÿp
+ÿƒFehler("Diese Funktion steht unter der Agenturversion nicht zur Verfgung","")
+ÿwxmlend240120023
+ ÿ’ÿ¡
+ ÿÉÿ`ÿ™"stamm"
+ ÿ½ CALL Fehler("IIM-Sparte zuweisen","")
+ ÿßÿe
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMSpaID.xml")ÿp
+ÿGMACodeDir$ÿ"IIMSpaID.xml"
+ ÿ’ÿ¡
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMdesti.txt")ÿp
+ÿGMACodeDir$ÿ"IIMdesti.txt"
+ ÿ’ÿ¡
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMready.txt")ÿp
+ÿGMACodeDir$ÿ"IIMready.txt"
+ ÿ’ÿ¡
+ ÿ´GMACodeDir$ÿ"IIMSpaID.xml"ÿ›ÿ¶
+ ÿ½ CLS 
+ docid%ÿcudok%
+ ÿ{"<?xml version="ÿÿ(34)ÿ"1.0"ÿÿ(34)ÿ" encoding = "ÿÿ(34)ÿ"ISO-8859-1"ÿÿ(34)ÿ" ?>"
+ ÿ{
+ ÿ{"<PROVEXP>"
+ ÿ{"    <IIMCUSTOMERID>"ÿ"<![CDATA["ÿIIM_CustomerID.stammÿ"]]>"ÿ"</IIMCUSTOMERID>"
+ ÿ{"    <IIMSERVER>"ÿ"<![CDATA["ÿIIM_Server.stammÿ"]]>"ÿ"</IIMSERVER>"
+ ÿ{"    <IIMDB>"ÿ"<![CDATA["ÿIIM_DB.stammÿ"]]>"ÿ"</IIMDB>"
+ ÿ{"    <IIMLOGIN>"ÿ"<![CDATA["ÿIIM_login.stammÿ"]]>"ÿ"</IIMLOGIN>"
+ ÿ{"    <IIMPWD>"ÿ"<![CDATA["ÿIIM_PWD.stammÿ"]]>"ÿ"</IIMPWD>"
+ ÿ{"    <IIMDESTFILE>"ÿ"<![CDATA["ÿGMACodeDir$ÿ"IIMdesti.txt"ÿ"]]>"ÿ"</IIMDESTFILE>"
+ ÿ{"    <IIMREADYFILE>"ÿ"<![CDATA["ÿGMACodeDir$ÿ"IIMready.txt"ÿ"]]>"ÿ"</IIMREADYFILE>"
+ ÿ½ ? "    <IIMAGENTNR>" + "<![CDATA[" + IIMAgentnr.geadr + "]]>" + "</IIMAGENTNR>"
+ ÿ{"    <IIMACTION>"ÿ"<![CDATA["ÿ"SPARTE"ÿ"]]>"ÿ"</IIMACTION>"
+ ÿ½ ? "    <IIMTEMPLATEPATH>" + "<![CDATA[" + GIIMTemplate$ + "]]>" + "</IIMTEMPLATEPATH>"
+ ÿ{"</PROVEXP>"
+ ÿ†ÿ¶
+ ÿ½ CALL Fehler("IIM-Sparte Ende","")
+test$ÿ_netpath$ÿ"IIMExP.exe"
+ 
+ 
+ a%ÿÿƒ("ShellExecute",0,"open",test$,GMACodeDir$ÿ"IIMSpaID.xml","",1)
+ ÿ½ CALL Fehler("Aufruf IIMEXP.exe c:\IIMSpaID.xml","")
+ ÿÏÿ›1
+ agz%ÿ0
+ ok%ÿ0
+ ÿØÿOÿJ(GMACodeDir$ÿ"IIMready.txt")ÿok%ÿ0
+ÿÏÿ›1
+agz%ÿagz%ÿ1
+ÿ¡agz%ÿ60ÿp
+ÿÂ"Das IIM-System scheint nicht bereit zu sein!","Wollen Sie weitere 60 Sekunden warten?",130,req%
+ÿ¡req%ÿ1ÿp
+agz%ÿ0
+ÿ^
+ok%ÿÿ1
+ÿƒFehler("Die IIM-Sparte konnte nicht ermittelt werden!","Bitte prfen Sie, ob das IIM-System bereit ist!")
+ÿwxmlend240120023
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿÙ
+ ÿ½ CALL Fehler("Aufruf IIMEXP.exe c:\IIMSpaID.xml","")
+ 
+ ÿ½ Auslesen der C:\IIMdesti.txt nach SparteID
+ value1%ÿ55
+ desterr$ÿ""
+ wert1$ÿ""
+ wert2$ÿ""
+ ÿ¡ÿJ(GMACodeDir$ÿ"IIMdesti.txt")ÿp
+ÿ½ OPEN GMACodeDir$ + "IIMdesti.txt" FOR INPUT 
+ÿ½ INPUT value1%
+ÿ½ INPUT desterr$
+ÿ½ INPUT wert1$
+ÿ½ INPUT wert2$
+ÿ½ CLOSE INPUT 
+value1%ÿÿ0(ReadDesti$("IIM","OK",GMACodeDir$ÿ"IIMdesti.txt"))
+desterr$ÿÿ>(ReadDesti$("IIM","errormsg",GMACodeDir$ÿ"IIMdesti.txt"))
+wert1$ÿReadDesti$("IIM","Sparte",GMACodeDir$ÿ"IIMdesti.txt")
+wert2$ÿReadDesti$("IIM","SparteID",GMACodeDir$ÿ"IIMdesti.txt")
+ ÿ^
+ÿƒFehler("Die IIM-Sparte konnte nicht ausgelesen werden! Prfen Sie, ob das IIM-System betriebsbereit ist!","Der EXPORT zum IIM-System kann nicht durchgefhrt werden!")
+ÿwxmlend240120023
+ ÿ’ÿ¡
+ agnr1$ÿwert2$
+ ÿ¡value1%ÿ0ÿÿH(agnr1$)ÿ""ÿp
+ÿƒFehler("Die IIM-Sparte konnte nicht ausgelesen werden! Prfen Sie, ob das IIM-System betriebsbereit ist!","Der EXPORT zum IIM-System kann nicht durchgefhrt werden! Systemmeldung: "ÿdesterr$)
+ÿwxmlend240120023
+ ÿ’ÿ¡
+ ÿÉÿ¥codeva%ÿáÿ™"SPARTEN"ÿ£codeva.SPARTEN
+ IIMSpartName.spartenÿwert1$
+ IIMsparteid.SPARTENÿwert2$
+ ÿÌÿ™"SPARTEN"
+ ÿïÿYÿ™"SPARTEN"
+xmlend240120023: 
+ ÿßÿ³
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+

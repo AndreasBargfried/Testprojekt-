@@ -1,0 +1,565 @@
+SBP
+ ÿ½ ** Ausgabe nach WinWord 6 **
+ 
+ ÿÉÿ¥codems%ÿ™"MASTER"ÿ£CodeMS.MASTER
+ ÿÊÿÿÿ³
+ art%ÿart.master
+ ÿ¡ÿJ("c:\m2.asc")ÿpÿ"c:\m2.asc"
+ ÿ´"c:\m2.asc"ÿ›ÿ¶
+ g$ÿÿ(34)
+ ÿ{"aktDokument$ = FensterName$()"
+ ÿ{"Aktivieren aktDokument$"
+ ÿ{"DokumentMaximieren - 1"
+ ÿ{"BeginnDokument"
+ ÿ{"EndeDokument 1"
+ ÿ{ÿåansi("BearbeitenL”schen")
+ ÿ{ÿåansi("Einfgen CHR$ (13) + CHR$ (13) + CHR$ (13) + CHR$ (13) + CHR$ (13) + CHR$ (13)")
+ ÿ{ÿåansi("Absatzsteuerung = 0")
+ 
+ Adresse$ÿAdresstext.master
+ ÿ{ÿåansi("Einfgen "ÿg$);
+ besch$ÿ""
+ b%ÿ0
+ ÿ›a%ÿ1ÿqÿ/(Adresse$)
+t$ÿÿ,(Adresse$,a%,1)
+ÿ¡ÿ.(t$)ÿ13ÿp
+besch$ÿbesch$ÿg$ÿ" + chr$(13) + "ÿg$
+ÿ^
+ÿ¡ÿ.(t$)ÿ34ÿp
+besch$ÿbesch$ÿg$ÿ" + chr$(34) + "ÿg$
+ÿ^
+ÿ¡ÿ.(t$)ÿ10ÿpbesch$ÿbesch$ÿt$
+ÿ’ÿ¡
+ÿ’ÿ¡
+b%ÿb%ÿ1
+ÿ¡b%ÿ255ÿp
+ÿ{ÿåansi(besch$ÿg$)
+ÿ{ÿåansi("Einfgen "ÿg$);
+besch$ÿ""
+b%ÿ0
+ÿ’ÿ¡
+ ÿ±a%
+ ÿ½ andi burzer ? FN ansi(besch$ + g$ + " +chr$(13) + chr$(13) + chr$(13)")
+ ÿ{ÿåansi(besch$ÿg$ÿ" +chr$(13)")
+ ÿ{"AbsatzRechts"
+ ÿ½ andi burzer ? FN ansi("Einfgen " + g$ + DATE$ (datum.MASTER,"dd. mmmm yyyy") + g$ + " + CHR$ (13) + CHR$ (13)")
+ ÿ{ÿåansi("Einfgen "ÿg$ÿÿ(datum.MASTER,"dd. mmmm yyyy")ÿg$ÿ" + CHR$ (13)")
+ ÿ½ andi burzer ? "FormatZeichen .Punkt = " + g$ + "20" + g$ + ",.Fett = 1,.Kursiv = 1"
+ ÿ{"FormatZeichen .Punkt = "ÿg$ÿ"12"ÿg$ÿ",.Fett = 1,.Kursiv = 1"
+ ÿ{ÿåansi("Einfgen "ÿg$ÿTitel.MASTERÿg$ÿ" + CHR$ (13)")
+ ÿ{"FormatZeichen .Punkt = "ÿg$ÿ"10"ÿg$ÿ",.Fett = 0,.Kursiv = 0"
+ ÿ{ÿåansi("Einfgen "ÿg$ÿ"Belegnummer: "ÿNummer.MASTERÿg$ÿ" + CHR$ (13)")
+ ÿ{ÿåansi("Einfgen "ÿg$ÿ"Kundennummer: "ÿKundennummer.MASTERÿg$ÿ" + CHR$ (13)")
+ ÿ{ÿåansi("AbsatzLinks :EinfgenAbsatz")
+ ÿ{ÿåansi("Schriftgrad 9")
+ ÿ{ÿåansi("Einfgen "ÿg$);
+ besch$ÿ""
+ b%ÿ0
+ ÿ›a%ÿ1ÿqÿ/(Prolog.MASTER)
+t$ÿÿ,(Prolog.MASTER,a%,1)
+ÿ¡ÿ.(t$)ÿ13ÿp
+besch$ÿbesch$ÿg$ÿ" + chr$(13) + "ÿg$
+ÿ^
+ÿ¡ÿ.(t$)ÿ34ÿp
+besch$ÿbesch$ÿg$ÿ" + chr$(34) + "ÿg$
+ÿ^
+ÿ¡ÿ.(t$)ÿ10ÿpbesch$ÿbesch$ÿt$
+ÿ’ÿ¡
+ÿ’ÿ¡
+b%ÿb%ÿ1
+ÿ¡b%ÿ255ÿp
+ÿ{ÿåansi(besch$ÿg$)
+ÿ{ÿåansi("Einfgen "ÿg$);
+besch$ÿ""
+b%ÿ0
+ÿ’ÿ¡
+ ÿ±a%
+ ÿ½ andi burzer ? FN ansi(besch$ + g$ + " + chr$(13) + chr$(13)")
+ ÿ{ÿåansi(besch$ÿg$ÿ" + chr$(13)")
+ ÿ{ÿåansi("TabelleTabelleEinfgen .AnzSpalten = "ÿg$ÿ"6"ÿg$ÿ",.AnzTabZeilen = "ÿg$ÿ"1"ÿg$)
+ ÿ{ÿåansi("TabelleSpaltenBreite .SpaltenBreite = "ÿg$ÿ"0,88 cm"ÿg$ÿ",.N„chsteSpalte")
+ ÿ{ÿåansi("TabelleSpaltenBreite .SpaltenBreite = "ÿg$ÿ"1,60 cm"ÿg$ÿ",.N„chsteSpalte")
+ ÿ{ÿåansi("TabelleSpaltenBreite .SpaltenBreite = "ÿg$ÿ"1,8 cm"ÿg$ÿ",.N„chsteSpalte")
+ ÿ{ÿåansi("TabelleSpaltenBreite .SpaltenBreite = "ÿg$ÿ"7,5 cm"ÿg$ÿ",.N„chsteSpalte")
+ ÿ{ÿåansi("TabelleSpaltenBreite .SpaltenBreite = "ÿg$ÿ"2,59 cm"ÿg$ÿ",.N„chsteSpalte")
+ ÿ{"TabelleSpaltenBreite .SpaltenBreite = "ÿg$ÿ"2,33 cm"ÿg$
+ ÿ{"ZeileUnten 1"
+ ÿ{ÿåansi("TabelleZeileEinfgen .AnzTabZeilen = "ÿg$ÿ"1"ÿg$)
+ ÿ{"ZeileOben 1"
+ ÿ{"TabelleZeileMarkieren"
+ ÿ{"FormatRahmenSchattierung .AnwendenAuf = 2,.schattiert = 0,.ObenRahmenlinie = 1,.LinksRahmenlinie = 1,.UntenRahmenlinie = 1,.RechtsRahmenlinie = 1"
+ ÿ{ÿåansi("Tabellešberschriften")
+ ÿ{ÿåansi("Einfgen "ÿg$ÿ"Pos."ÿg$ÿ":N„chsteZelle")
+ ÿ{ÿåansi("Einfgen "ÿg$ÿ"Anzahl"ÿg$ÿ":N„chsteZelle")
+ ÿ¡mwstcount%ÿ1ÿp
+ÿ{ÿåansi("Einfgen "ÿg$ÿ"ME/MwSt"ÿg$ÿ":N„chsteZelle")
+ ÿ^
+ÿ{ÿåansi("Einfgen "ÿg$ÿ"ME"ÿg$ÿ":N„chsteZelle")
+ ÿ’ÿ¡
+ ÿ{ÿåansi("Einfgen "ÿg$ÿ"Artikel / Leistung"ÿg$ÿ":N„chsteZelle")
+ ÿ{ÿåansi("AbsatzRechts :Einfgen "ÿg$ÿ"Einzelpreis"ÿg$ÿ":N„chsteZelle")
+ ÿ{ÿåansi("AbsatzRechts :Einfgen "ÿg$ÿ"Gesamtpreis"ÿg$ÿ":N„chsteZelle")
+ ÿ{"TabelleZeileMarkieren"
+ ÿ{ÿåansi("TabelleZeilenH”he .ZeilenTrennenZulassen = 0")
+ ÿ{ÿåansi("Schriftgrad 9")
+ ÿ{"Fett"
+ ÿ™"SCHEIN"
+ ÿ½ INDEX CodeMS.SCHEIN
+ ÿ£QuickCodePos.SCHEIN
+ ÿÉÿ`
+ quickmspos%ÿcodems%ÿ1000ÿ1
+ ÿ½ SELECT KEY codems% FILE "SCHEIN" INDEX CodeMS.SCHEIN
+ ÿÉÿ¥quickmspos%ÿ™"SCHEIN"ÿ£QuickCodepos.SCHEIN
+ ÿØCodeMS.SCHEINÿcodems%ÿÿOÿB("SCHEIN")
+ÿ¡textvorPosition.scheinÿ""ÿp
+ÿ{"ZeileUnten 1"
+ÿ{ÿåansi("TabelleZeileEinfgen .AnzTabZeilen = "ÿg$ÿ"1"ÿg$)
+ÿ{"ZeileOben 1"
+ÿ{ÿåansi("ZeichenRechts 6, 1")
+ÿ{ÿåansi("TabelleZellenVerbinden")
+ÿ{ÿåansi("AbsatzLinks")
+ÿ{ÿåansi("BeginnZeile")
+ÿ{ÿåansi("Einfgen "ÿg$);
+besch$ÿ""
+b%ÿ0
+ÿ›a%ÿ1ÿqÿ/(TextvorPosition.SCHEIN)
+t$ÿÿ,(TextvorPosition.schein,a%,1)
+ÿ¡ÿ.(t$)ÿ13ÿp
+	besch$ÿbesch$ÿg$ÿ" + chr$(11) + "ÿg$
+ÿ^
+	ÿ¡ÿ.(t$)ÿ34ÿp
+besch$ÿbesch$ÿg$ÿ" + chr$(34) + "ÿg$
+	ÿ^
+ÿ¡ÿ.(t$)ÿ10ÿpbesch$ÿbesch$ÿt$
+	ÿ’ÿ¡
+ÿ’ÿ¡
+b%ÿb%ÿ1
+ÿ¡b%ÿ255ÿp
+	ÿ{ÿåansi(besch$ÿg$)
+	ÿ{ÿåansi("Einfgen "ÿg$);
+	besch$ÿ""
+	b%ÿ0
+ÿ’ÿ¡
+ÿ±a%
+ÿ{ÿåansi(besch$ÿg$ÿ" + chr$(13)")
+ÿ{ÿåansi("N„chsteZelle")
+ÿ’ÿ¡
+ 
+ÿ{ÿåansi("Einfgen "ÿg$ÿÿH(ÿ(PosNr.SCHEIN,"9999"))ÿg$ÿ":N„chsteZelle")
+ÿ{ÿåansi("Fett 0")
+ÿ{ÿåansi("Schriftgrad 9")
+ 
+ÿ{ÿåansi("Einfgen "ÿg$ÿÿH(ÿ(Anzahl.SCHEIN,"999999.99"))ÿg$)
+ÿ{ÿåansi("Fett 1")
+ÿ{ÿåansi("N„chsteZelle")
+ÿ{ÿåansi("Schriftgrad 9")
+ÿ{ÿåansi("Einfgen "ÿg$ÿME_.SCHEINÿg$)
+ÿ{ÿåansi("Fett 0")
+ÿ{ÿåansi("Schriftgrad 9")
+ÿ¡mwstcount%ÿ1ÿp
+ÿ{ÿåansi("Einfgen  CHR$(13) + "ÿg$ÿÿH(ÿ(MWST.SCHEIN,"99.00"))ÿ"%"ÿg$)
+ÿ^
+ÿ½ ? FN ansi("Einfgen  CHR$(13) + " + g$ + "  " + g$)
+ÿ’ÿ¡
+ÿ½ Alternativpositionen
+ÿ¡art.scheinÿ1ÿp
+ÿ{ÿåansi("Einfgen  CHR$(13) + "ÿg$ÿ"alternativ"ÿg$)
+ÿ^
+ÿ½ ? FN ansi("Einfgen  CHR$(13) + " + g$ + "  " + g$)
+ÿ’ÿ¡
+ÿ{ÿåansi("Fett 1")
+ÿ{ÿåansi("N„chsteZelle")
+ÿ{ÿåansi("Schriftgrad 9")
+ÿ{ÿåansi("Einfgen "ÿg$);
+besch$ÿ""
+b%ÿ0
+ÿ¡artikelnummer.scheinÿ""ÿp
+bezeichnung$ÿArtikelnummer.scheinÿÿ(13)ÿbezeichnung.schein
+ÿ^
+bezeichnung$ÿbezeichnung.schein
+ÿ’ÿ¡
+ÿ›a%ÿ1ÿqÿ/(Bezeichnung$)
+t$ÿÿ,(Bezeichnung$,a%,1)
+ÿ¡ÿ.(t$)ÿ13ÿp
+besch$ÿbesch$ÿg$ÿ" + chr$(13) + "ÿg$
+ÿ^
+ÿ¡ÿ.(t$)ÿ34ÿp
+	besch$ÿbesch$ÿg$ÿ" + chr$(34) + "ÿg$
+ÿ^
+	ÿ¡ÿ.(t$)ÿ10ÿpbesch$ÿbesch$ÿt$
+ÿ’ÿ¡
+ÿ’ÿ¡
+b%ÿb%ÿ1
+ÿ¡b%ÿ1000ÿp
+ÿ{ÿåansi(besch$ÿg$)
+besch$ÿg$
+b%ÿ0
+ÿ’ÿ¡
+ÿ±a%
+ÿ{ÿåansi(besch$);
+ÿ{ÿåansi(g$ÿ" + CHR$ (11)")
+ÿ½ ? FN ansi("Absatzsteuerung = 1")
+ÿ{ÿåansi("Schriftgrad 9")
+ÿ{ÿåansi("Fett :Einfgen "ÿg$);
+besch$ÿ""
+b%ÿ0
+ÿ¡beschreibung.scheinÿ""ÿp
+ÿ›a%ÿ1ÿqÿ/(Beschreibung.SCHEIN)
+t$ÿÿ,(Beschreibung.schein,a%,1)
+ÿ¡ÿ.(t$)ÿ13ÿp
+	besch$ÿbesch$ÿg$ÿ" + chr$(11) + "ÿg$
+ÿ^
+	ÿ¡ÿ.(t$)ÿ34ÿp
+besch$ÿbesch$ÿg$ÿ" + chr$(34) + "ÿg$
+	ÿ^
+ÿ¡ÿ.(t$)ÿ10ÿpbesch$ÿbesch$ÿt$
+	ÿ’ÿ¡
+ÿ’ÿ¡
+b%ÿb%ÿ1
+ÿ¡b%ÿ255ÿp
+	ÿ{ÿåansi(besch$ÿg$)
+	ÿ{ÿåansi("Einfgen "ÿg$);
+	besch$ÿ""
+	b%ÿ0
+ÿ’ÿ¡
+ÿ±a%
+ÿ½ burz ? FN ansi(besch$ + g$ + " + chr$(13)")
+ÿ{ÿåansi(besch$ÿg$)
+ÿ’ÿ¡
+ÿ{ÿåansi("Fett :N„chsteZelle")
+ÿ{ÿåansi("Schriftgrad 9")
+ÿ¡KalkArt.Masterÿ0ÿp
+ÿ¡Rabatt.scheinÿ0ÿp
+ÿ¡art%ÿ3ÿp
+ÿ½ kein Lieferschein
+	vknetto$ÿExtDM$(VKNetto.scheinÿBezugsmenge.schein)
+	ÿ{ÿåansi("AbsatzRechts :Einfgen "ÿg$ÿVKnetto$ÿg$)
+	ÿ{ÿåansi("Fett")
+	ÿ{ÿåansi("Schriftgrad 9")
+	rab$ÿ"Rabatt: "ÿÿF(ÿ(RabattProz.schein,"999.999"))ÿ"%"
+	ÿ{ÿåansi("Einfgen  CHR$(13) + "ÿg$ÿrab$ÿg$ÿ":N„chsteZelle")
+	ÿ{ÿåansi("AbsatzRechts :Einfgen"ÿg$ÿÿ(GesamtNetto.SCHEIN,",99999999.00")ÿg$)
+	ÿ{ÿåansi("Fett")
+	ÿ{ÿåansi("Schriftgrad 9")
+	ÿ{ÿåansi("Einfgen CHR$(13) + "ÿg$ÿÿH(ÿ(Anzahl.SCHEINÿRabatt.SCHEIN,",9999999999.00"))ÿg$)
+ÿ^
+ÿ½ Lieferschein
+	ÿ{ÿåansi("AbsatzRechts :Einfgen "ÿg$ÿ" "ÿg$)
+	ÿ{ÿåansi("Fett")
+	ÿ{ÿåansi("Schriftgrad 9")
+	rab$ÿ"Rabatt: "ÿÿF(ÿ(RabattProz.schein,"999.999"))ÿ" %"
+	ÿ½ ? FN ansi("Einfgen  CHR$(13) + " + g$ + "Rabatt:" + g$ + ":N„chsteZelle")
+	ÿ{ÿåansi("Einfgen  CHR$(13) + "ÿg$ÿrab$ÿg$ÿ":N„chsteZelle")
+	ÿ{ÿåansi("AbsatzRechts :Einfgen"ÿg$ÿ" "ÿg$)
+	ÿ{ÿåansi("Fett")
+	ÿ{ÿåansi("Schriftgrad 9")
+	ÿ{ÿåansi("Einfgen CHR$(13) + "ÿg$ÿ" "ÿg$)
+ÿ’ÿ¡
+ÿ^
+vknetto$ÿExtDM$(VKNetto.scheinÿBezugsmenge.schein)
+ÿ¡art%ÿ3ÿp
+	ÿ{ÿåansi("AbsatzRechts :Einfgen "ÿg$ÿVKnetto$ÿg$ÿ":N„chsteZelle")
+	ÿ{ÿåansi("Schriftgrad 9")
+	ÿ{ÿåansi("AbsatzRechts :Einfgen "ÿg$ÿÿ(GesamtNetto.SCHEIN,",99999999.00")ÿg$)
+ÿ^
+	ÿ{ÿåansi("AbsatzRechts :Einfgen "ÿg$ÿ" "ÿg$ÿ":N„chsteZelle")
+	ÿ{ÿåansi("Schriftgrad 9")
+	ÿ{ÿåansi("AbsatzRechts :Einfgen "ÿg$ÿ" "ÿg$)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ^
+vkbrutto$ÿExtDM$(VKBrutto.scheinÿBezugsmenge.schein)
+ÿ¡rabatt.scheinÿ0ÿp
+ÿ¡art%ÿ3ÿp
+	ÿ{ÿåansi("AbsatzRechts :Einfgen "ÿg$ÿVKbrutto$ÿg$)
+	ÿ{ÿåansi("Fett")
+	ÿ{ÿåansi("Schriftgrad 9")
+	ÿ½ ? FN ansi("Einfgen  CHR$(13) + " + g$ + "Rabatt:" + g$ + ":N„chsteZelle")
+	rab$ÿ"Rabatt: "ÿÿF(ÿ(RabattProz.schein,"999.999"))ÿ"%"
+	ÿ{ÿåansi("Einfgen  CHR$(13) + "ÿg$ÿrab$ÿg$ÿ":N„chsteZelle")
+	ÿ{ÿåansi("AbsatzRechts :Einfgen "ÿg$ÿÿ(GesamtBrutto.SCHEIN,",99999999.00")ÿg$)
+	ÿ{ÿåansi("Fett")
+	ÿ{ÿåansi("Schriftgrad 9")
+	ÿ{ÿåansi("Einfgen CHR$(13) + "ÿg$ÿÿH(ÿ(Anzahl.SCHEINÿRabatt.SCHEIN,",9999999999.00"))ÿg$)
+ÿ^
+	ÿ{ÿåansi("AbsatzRechts :Einfgen "ÿg$ÿ" "ÿg$)
+	ÿ{ÿåansi("Fett")
+	ÿ{ÿåansi("Schriftgrad 9")
+	rab$ÿ"Rabatt: "ÿÿF(ÿ(RabattProz.schein,"999.999"))ÿ"%"
+	ÿ{ÿåansi("Einfgen  CHR$(13) + "ÿg$ÿrab$ÿg$ÿ":N„chsteZelle")
+	ÿ½ ? FN ansi("Einfgen  CHR$(13) + " + g$ + "Rabatt:" + g$ + ":N„chsteZelle")
+	ÿ{ÿåansi("AbsatzRechts :Einfgen "ÿg$ÿ" "ÿg$)
+	ÿ{ÿåansi("Fett")
+	ÿ{ÿåansi("Schriftgrad 9")
+	ÿ{ÿåansi("Einfgen CHR$(13) + "ÿg$ÿ" "ÿg$)
+ÿ’ÿ¡
+ÿ^
+ÿ¡art%ÿ3ÿp
+	ÿ{ÿåansi("AbsatzRechts :Einfgen "ÿg$ÿVKbrutto$ÿg$ÿ":N„chsteZelle")
+	ÿ{ÿåansi("Schriftgrad 9")
+	ÿ{ÿåansi("AbsatzRechts :Einfgen "ÿg$ÿÿ(GesamtBrutto.SCHEIN,",99999999.00")ÿg$)
+ÿ^
+	ÿ{ÿåansi("AbsatzRechts :Einfgen "ÿg$ÿ" "ÿg$ÿ":N„chsteZelle")
+	ÿ{ÿåansi("Schriftgrad 9")
+	ÿ{ÿåansi("AbsatzRechts :Einfgen "ÿg$ÿ" "ÿg$)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ SELECT NEXT FILE "SCHEIN" INDEX CodeMS.SCHEIN
+ÿÉÿ±ÿ™"SCHEIN"ÿ£QuickCodePos.SCHEIN
+ÿ¡CodeMS.SCHEINÿcodems%ÿÿOÿB("SCHEIN")ÿp
+ÿ{ÿåansi("N„chsteZelle")
+ÿ{ÿåansi("Schriftgrad 9")
+ÿ’ÿ¡
+ ÿÙ
+ ÿ{"TabelleZeileMarkieren"
+ ÿ{"RahmenlinieUnten 1"
+ ÿ{"ZeileUnten 1"
+ ÿ{"FormatTabulator .Position = "ÿg$ÿ"15,5 cm"ÿg$ÿ",.Ausrichten = 3,.Bestimmen"
+ 
+ ÿ¡art%ÿ3ÿp
+ ÿ½ wenn kein Lieferschein 
+ ÿ¡KalkArt.MASTERÿ0ÿp
+ ÿ½ Nettofakturierung
+ÿ¡rabatt.masterÿ0ÿp
+ÿ¡rabattart.masterÿ0ÿp
+ÿ½ Rabatt auf Netto
+ÿ½ Summe Netto:
+ÿ{ÿåansi("Einfgen "ÿg$ÿZeile1$ÿg$)
+ÿ{ÿåansi("Einfgen chr$(9) + "ÿg$ÿWertZeile1$ÿg$ÿ" + chr$(13)")
+ÿ{"ZeileOben 1"
+ÿ{"BeginnZeile"
+ÿ{"EndeZeile 1"
+ÿ½ burz? "FormatZeichen .Punkt = " + g$ + "10" + g$ + ",.Fett = 1,.Kursiv = 1 
+ÿ{"FormatZeichen .Punkt = "ÿg$ÿ"9"ÿg$ÿ",.Fett = 1,.Kursiv = 1 
+ÿ{"ZeileUnten 1"
+ÿ½ abzglich Rabatt von x %
+ÿ{ÿåansi("Einfgen "ÿg$ÿZeile2$ÿg$)
+ÿ{ÿåansi("Einfgen chr$(9) + "ÿg$ÿWertZeile2$ÿg$ÿ" + chr$(13)")
+ÿ½ Summe Netto abzglich Rabatt
+ÿ{ÿåansi("Einfgen "ÿg$ÿZeile3$ÿg$)
+ÿ{ÿåansi("Einfgen chr$(9) + "ÿg$ÿWertZeile3$ÿg$ÿ" + chr$(13)")
+ÿ{"ZeileOben 1"
+ÿ{"BeginnZeile"
+ÿ{"EndeZeile 1"
+ÿ½ burz ? "FormatZeichen .Punkt = " + g$ + "10" + g$ + ",.Fett = 1,.Kursiv = 1 
+ÿ{"FormatZeichen .Punkt = "ÿg$ÿ"9"ÿg$ÿ",.Fett = 1,.Kursiv = 1 
+ÿ{"ZeileUnten 1"
+ÿ½ Mehrwertsteuer
+ÿ›a%ÿ0ÿqMwStCount%ÿ1
+	ÿ{ÿåansi("Einfgen "ÿg$ÿMwStText2$(a%)ÿg$)
+	ÿ{ÿåansi("Einfgen chr$(9) + "ÿg$ÿMwStBetrag2$(a%)ÿg$)
+	ÿ{ÿåansi("EinfgenAbsatz")
+	ÿ{"ZeileOben 1"
+	ÿ{"BeginnZeile"
+	ÿ{"EndeZeile 1"
+	ÿ½ ? "RahmenlinieUnten 1"
+	ÿ½ ? "Unterstrichen"
+	ÿ{"ZeileUnten 1"
+ÿ±a%
+ÿ½ Gesamtsumme 
+ÿ{ÿåansi("Einfgen "ÿg$ÿZeile5$ÿg$)
+ÿ{ÿåansi("Einfgen CHR$ (9) + "ÿg$ÿWertZeile5$ÿg$)
+ÿ{ÿåansi("EinfgenAbsatz")
+ÿ{"ZeileOben 1"
+ÿ{"BeginnZeile"
+ÿ{"EndeZeile 1"
+ÿ{"FormatZeichen .Punkt = "ÿg$ÿ"10"ÿg$ÿ",.Fett = 1,.Kursiv = 1
+ÿ{"Unterstrichen"
+ÿ½ ? "RahmenlinieUnten 1"
+ÿ{"ZeileUnten 1"
+ÿ^
+ÿ½ Rabatt auf Brutto
+ÿ½ Summe Netto:
+ÿ{ÿåansi("Einfgen "ÿg$ÿZeile1$ÿg$)
+ÿ{ÿåansi("Einfgen chr$(9) + "ÿg$ÿWertZeile1$ÿg$ÿ" + chr$(13)")
+ÿ{"ZeileOben 1"
+ÿ{"BeginnZeile"
+ÿ{"EndeZeile 1"
+ÿ½ burz ? "FormatZeichen .Punkt = " + g$ + "10" + g$ + ",.Fett = 1,.Kursiv = 1 
+ÿ{"FormatZeichen .Punkt = "ÿg$ÿ"9"ÿg$ÿ",.Fett = 1,.Kursiv = 1 
+ÿ{"ZeileUnten 1"
+ÿ½ Mehrwertsteuer
+ÿ›a%ÿ0ÿqMwStCount%ÿ1
+	ÿ{ÿåansi("Einfgen "ÿg$ÿMwStText2$(a%)ÿg$)
+	ÿ{ÿåansi("Einfgen chr$(9) + "ÿg$ÿMwStBetrag2$(a%)ÿg$)
+	ÿ{ÿåansi("EinfgenAbsatz")
+	ÿ{"ZeileOben 1"
+	ÿ{"BeginnZeile"
+	ÿ{"EndeZeile 1"
+	ÿ½ ? "Unterstrichen"
+	ÿ½ ? "RahmenlinieUnten 1"
+	ÿ{"ZeileUnten 1"
+ÿ±a%
+ÿ½ Summe Brutto
+ÿ{ÿåansi("Einfgen "ÿg$ÿZeile3$ÿg$)
+ÿ{ÿåansi("Einfgen chr$(9) + "ÿg$ÿWertZeile3$ÿg$ÿ" + chr$(13)")
+ÿ{ÿåansi("EinfgenAbsatz")
+ÿ{"ZeileOben 1"
+ÿ{"BeginnZeile"
+ÿ{"EndeZeile 1"
+ÿ½ Burz ? "FormatZeichen .Punkt = " + g$ + "10" + g$ + ",.Fett = 1,.Kursiv = 1 
+ÿ{"FormatZeichen .Punkt = "ÿg$ÿ"9"ÿg$ÿ",.Fett = 1,.Kursiv = 1 
+ÿ½ ? "RahmenlinieUnten 1"
+ÿ{"Unterstrichen"
+ÿ{"ZeileUnten 1"
+ÿ½ Gesamtsumme 
+ÿ{ÿåansi("Einfgen "ÿg$ÿZeile5$ÿg$)
+ÿ{ÿåansi("Einfgen CHR$ (9) + "ÿg$ÿWertZeile5$ÿg$)
+ÿ{ÿåansi("EinfgenAbsatz")
+ÿ{"ZeileOben 1"
+ÿ{"BeginnZeile"
+ÿ{"EndeZeile 1"
+ÿ{"FormatZeichen .Punkt = "ÿg$ÿ"10"ÿg$ÿ",.Fett = 1,.Kursiv = 1
+ÿ½ ? "RahmenlinieUnten 1"
+ÿ{"Unterstrichen"
+ÿ{"ZeileUnten 1"
+ÿ½ Rabatt
+ÿ{ÿåansi("Einfgen "ÿg$ÿZeile4$ÿg$)
+ÿ{ÿåansi("Einfgen chr$(9) + "ÿg$ÿWertZeile4$ÿg$ÿ" + chr$(13)")
+ÿ{"ZeileUnten 1"
+ÿ’ÿ¡
+ÿ^
+ÿ½ kein Rabatt
+ÿ½ Summe Netto:
+ÿ{"ZeileUnten 1"
+ÿ{ÿåansi("Einfgen "ÿg$ÿZeile3$ÿg$)
+ÿ{ÿåansi("Einfgen chr$(9) + "ÿg$ÿWertZeile3$ÿg$ÿ" + chr$(13)")
+ÿ{"ZeileOben 1"
+ÿ{"BeginnZeile"
+ÿ{"EndeZeile 1"
+ÿ½ burz ? "FormatZeichen .Punkt = " + g$ + "10" + g$ + ",.Fett = 1,.Kursiv = 1 
+ÿ{"FormatZeichen .Punkt = "ÿg$ÿ"9"ÿg$ÿ",.Fett = 1,.Kursiv = 1 
+ÿ{"ZeileUnten 1"
+ÿ½ Mehrwertsteuer
+ÿ›a%ÿ0ÿqMwStCount%ÿ1
+ÿ{ÿåansi("Einfgen "ÿg$ÿMwStText2$(a%)ÿg$)
+ÿ{ÿåansi("Einfgen chr$(9) + "ÿg$ÿMwStBetrag2$(a%)ÿg$)
+ÿ{ÿåansi("EinfgenAbsatz")
+ÿ{"ZeileOben 1"
+ÿ{"BeginnZeile"
+ÿ{"EndeZeile 1"
+ÿ½ ? "RahmenlinieUnten 1"
+ÿ{"ZeileUnten 1"
+ÿ±a%
+ÿ½ Summe Brutto
+ÿ{ÿåansi("Einfgen "ÿg$ÿZeile5$ÿg$)
+ÿ{ÿåansi("Einfgen chr$(9) + "ÿg$ÿWertZeile5$ÿg$ÿ" + chr$(13)")
+ÿ{"ZeileOben 1"
+ÿ{"BeginnZeile"
+ÿ{"EndeZeile 1"
+ÿ{"FormatZeichen .Punkt = "ÿg$ÿ"10"ÿg$ÿ",.Fett = 1,.Kursiv = 1  
+ÿ½ ? "RahmenlinieUnten 1"
+ÿ{"Unterstrichen"
+ÿ{"ZeileUnten 1"
+ÿ{"ZeileUnten 1"
+ÿ’ÿ¡
+ ÿ^
+ ÿ½ Bruttofakturierung
+ÿ½ Summe Brutto
+ÿ{ÿåansi("Einfgen "ÿg$ÿzeile1$ÿg$)
+ÿ{ÿåansi("Einfgen chr$(9) + "ÿg$ÿWertZeile1$ÿg$ÿ" + chr$(13)")
+ÿ{"ZeileOben 1"
+ÿ{"BeginnZeile"
+ÿ{"EndeZeile 1"
+ÿ½ ? "FormatZeichen .Punkt = " + g$ + "10" + g$ + ",.Fett = 1,.Kursiv = 1 
+ÿ{"FormatZeichen .Punkt = "ÿg$ÿ"9"ÿg$ÿ",.Fett = 1,.Kursiv = 1 
+ÿ{"ZeileUnten 1"
+ÿ½ Rabatt
+ÿ{ÿåansi("Einfgen "ÿg$ÿzeile2$ÿg$)
+ÿ{ÿåansi("Einfgen chr$(9) + "ÿg$ÿWertZeile2$ÿg$ÿ" + chr$(13)")
+ÿ{"ZeileUnten 1"
+ÿ½ Gesamtsumme 
+ÿ{ÿåansi("Einfgen "ÿg$ÿZeile4$ÿg$)
+ÿ{ÿåansi("Einfgen CHR$ (9) + "ÿg$ÿWertZeile4$ÿg$)
+ÿ{ÿåansi("EinfgenAbsatz")
+ÿ{"ZeileOben 1"
+ÿ{"BeginnZeile"
+ÿ{"EndeZeile 1"
+ÿ{"FormatZeichen .Punkt = "ÿg$ÿ"10"ÿg$ÿ",.Fett = 1,.Kursiv = 1 
+ÿ½ ? "RahmenlinieUnten 1"
+ÿ{"Unterstrichen"
+ÿ{"ZeileUnten 1"
+ÿ{"ZeileUnten 1"
+ÿ½ ? FN ansi("EinfgenAbsatz")
+ÿ›a%ÿ0ÿqMwStCount%ÿ1
+ÿ{ÿåansi("Einfgen "ÿg$ÿMwStText2$(a%)ÿg$)
+ÿ{ÿåansi("Einfgen chr$(9) + "ÿg$ÿMwStBetrag2$(a%)ÿg$)
+ÿ{ÿåansi("EinfgenAbsatz")
+ÿ{"ZeileOben 1"
+ÿ{"BeginnZeile"
+ÿ{"EndeZeile 1"
+ÿ½ ? "RahmenlinieUnten 1"
+ÿ{"ZeileUnten 1"
+ÿ±a%
+ ÿ’ÿ¡
+ ÿ{"ZeileUnten 1"
+ 
+ ÿ¡skonto.MASTERÿ0ÿp
+ÿ{ÿåansi("EinfgenAbsatz")
+ÿ{ÿåansi("Fett")
+ÿ{ÿåansi("Schriftgrad 9")
+ÿ{ÿåansi("Einfgen"ÿg$);
+besch$ÿ""
+b%ÿ0
+ÿ›a%ÿ1ÿqÿ/(RabattText$)
+t$ÿÿ,(RabattText$,a%,1)
+ÿ¡ÿ.(t$)ÿ13ÿp
+besch$ÿbesch$ÿg$ÿ" + chr$(13) + "ÿg$
+ÿ^
+ÿ¡ÿ.(t$)ÿ34ÿp
+	besch$ÿbesch$ÿg$ÿ" + chr$(34) + "ÿg$
+ÿ^
+	ÿ¡ÿ.(t$)ÿ10ÿpbesch$ÿbesch$ÿt$
+ÿ’ÿ¡
+ÿ’ÿ¡
+b%ÿb%ÿ1
+ÿ¡b%ÿ255ÿp
+ÿ{ÿåansi(besch$ÿg$)
+ÿ{ÿåansi("Einfgen "ÿg$);
+besch$ÿ""
+b%ÿ0
+ÿ’ÿ¡
+ÿ±a%
+ÿ{ÿåansi(besch$ÿg$ÿ" + chr$(13)")
+ÿ½ ? FN ansi("Fett")
+ ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ½ von if art%<>3
+ 
+ ÿ¡Epilog.MASTERÿ""ÿp
+ÿ{ÿåansi("EinfgenAbsatz")
+ÿ{ÿåansi("Schriftgrad 9")
+ÿ{ÿåansi("Einfgen "ÿg$);
+besch$ÿ""
+b%ÿ0
+ÿ›a%ÿ1ÿqÿ/(Epilog.MASTER)
+t$ÿÿ,(Epilog.MASTER,a%,1)
+ÿ¡ÿ.(t$)ÿ13ÿp
+besch$ÿbesch$ÿg$ÿ" + chr$(13) + "ÿg$
+ÿ^
+ÿ¡ÿ.(t$)ÿ34ÿp
+	besch$ÿbesch$ÿg$ÿ" + chr$(34) + "ÿg$
+ÿ^
+	ÿ¡ÿ.(t$)ÿ10ÿpbesch$ÿbesch$ÿt$
+ÿ’ÿ¡
+ÿ’ÿ¡
+b%ÿb%ÿ1
+ÿ¡b%ÿ255ÿp
+ÿ{ÿåansi(besch$ÿg$)
+ÿ{ÿåansi("Einfgen "ÿg$);
+besch$ÿ""
+b%ÿ0
+ÿ’ÿ¡
+ÿ±a%
+ÿ{ÿåansi(besch$ÿg$ÿ" + chr$(13)")
+ ÿ’ÿ¡
+ ÿ†ÿ¶
+ ÿÿ
+"Microsoft Word"
+ ÿè5,"WINWORD","SYSTEM"
+ ÿé5,"[CALL DoMakro.MAIN "ÿg$ÿ"C:\M2.ASC"ÿg$ÿ"]"
+ ÿê5
+ ÿ’ÿÿ
+ 
+

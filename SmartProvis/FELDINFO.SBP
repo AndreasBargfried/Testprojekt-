@@ -1,0 +1,39 @@
+SBP
+ÿÿmain()
+ ÿƒKVStru("KVERTRAG")
+ ÿ’ÿÿ
+
+ÿÿStruDat(datei$)
+
+ÿ¡ÿ÷("TMPSTR99")ÿpÿ†ÿ÷"TMPSTR99"
+ÿ¡ÿJ("TMPSTR99.SBP")ÿpÿ"TMPSTR99.SBP"
+ÿ´"TMPSTR99.SBP"ÿ›ÿ¶
+ÿ{" SUB TMPSTR99()"
+ 
+ feldanz%ÿÿõ(datei$,1)
+ ÿ×felder$(feldanz%)
+ ÿ×feldtyp$(feldanz%)
+ ÿ×feldindex$(feldanz%)
+ ÿ×feldanzeig$(feldanz%)
+ ÿÿfelder$,1
+ ÿ›i%ÿ0ÿqfeldanz%ÿ1
+feldtyp$(i%)ÿÿö(felder$(i%),0)
+feldindex$(i%)ÿÿö(felder$(i%),3)
+feldanzeig$(i%)ÿÿö(felder$(i%),4)
+ÿ¡feldindex$(i%)ÿ"I*"ÿp
+ind$ÿ"1"
+ÿ^
+ind$ÿ"0"
+ÿ’ÿ¡
+befstring$ÿ"CALL FldAdd("ÿÿÿ(34)ÿfelder$(i%)ÿ","ÿÿ(34)ÿfeldtyp$(i%)ÿÿ(34)ÿ";"ÿfeldanzeig$(i%)ÿÿ(34)ÿ","ÿind$ÿ")"
+ÿ{befstring$
+ ÿ±i%
+ ÿ{"END SUB"
+ ÿ†ÿ¶
+ ÿ½ CALL Fehler("TMPSTR99","")
+ ÿ½ ? "AAAA"
+ ÿ¨"TMPSTR99.SBP",ÿ°
+ ÿƒTMPSTR99()
+ ÿ†ÿ÷"TMPSTR99"
+ ÿ’ÿÿ
+

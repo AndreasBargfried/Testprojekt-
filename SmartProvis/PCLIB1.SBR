@@ -1,0 +1,2276 @@
+SBP
+ ÿƒmain()
+ ÿ½ *****************************************************************************************************************
+ ÿ½                 EMAIL Form
+ ÿ½ *****************************************************************************************************************
+ 
+ÿÿEMAILform()
+ ÿ½ knr% = Codeku.adressen
+ ÿ½ IF disabled%("DOKUMENT") THEN END SUB 
+ ÿƒDFile(2,"OFFICE\dokument"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\email"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\akquise"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\adressen"ÿ_fpw$)
+ ÿ½ CALL DFile(2,"OFFICE\dokgrup" + _fpw$)
+ ÿ½ cudo% = CodeDOK.DOKUMENT
+ ÿ½ knr% = Codeku.adressen
+ _formend%ÿ0
+ ÿÊÿË"Bereit"
+ maske$ÿ"EMAIL"
+ ÿ¡ProjectJN$ÿ"TRUE"ÿpmaske$ÿ"EMAIL"
+ 
+ ÿ™"EMAIL"
+ ÿÉÿĞÿ™"EMAIL"
+ ÿ£codeku.EMAIL
+ ÿÉÿ`
+ ÿØ_formend%ÿ0
+AQsub%ÿ0
+ÿ¡ÿ>(ÿœ)ÿmaske$ÿp
+ÿ™"email"
+ÿ´ÿœGOFFForm$ÿmaske$
+ÿÊÿË"Emailenverwaltung"
+ÿƒMNEMAIL()
+ÿƒEMAILINT()
+ÿœ
+ÿÊÿÿ³
+GAppName$ÿ_netpath$ÿ"DOCP\dokument.pdf"
+ÿ’ÿ¡
+ÿ¬ÿ³
+ÿœ
+ÿßÿ³
+ÿœ
+ÿƒClearKBDBuffer()
+ÿÏÿßÿÿ¥ÿÿ¬
+ÿ½ ** Tastencodes
+ÿk$
+ÿ¡k$ÿÿ(27)ÿp_formend%ÿ1
+ 
+ÿÉÿæAQsub%
+ÿæ1
+ÿ½ Neu
+ÿÿ™"email"
+codekey.emailÿÿI("email",1)
+EMAILBETREFF.emailÿ"NEU "ÿÿ(ÿQ,"0d.mm.yyyy")
+ÿÌÿ™"email"
+ÿƒEMAILINT()
+ÿœ
+ÿæ2
+ÿ½ gehe zu einzelne email
+codekey%ÿcodekey.email
+ÿÉÿ`ÿ™"email"ÿ£codekey.email
+ÿÉÿ¥codekey%ÿáÿ™"email"ÿ£codekey.email
+ÿœ2
+ÿæ3
+codekey%ÿcodekey.email
+ÿ¡ÿ("email")ÿÿ°("email")ÿpÿÌÿ™"email"
+ÿÉÿ`ÿ™"email"ÿ£codekey.email
+ÿÉÿ¥codekey%ÿáÿ™"email"ÿ£codekey.email
+ÿƒEMAILSerSend(CodeKey%)
+ÿæ99
+ÿ”emailbetreff.email,0
+ÿ’ÿÉ
+ ÿÙ
+ _formend%ÿ0
+ ÿ½ IF FileChanged%("email") = 1 THEN CALL FStore("email")
+ ÿÉÿĞÿ™"email"
+ ÿ’ÿÿ
+ 
+ 
+ÿÿMNEMAIL()
+ ÿƒMNProgramm()
+ ÿ¬2,0,1,"&Option","",""
+ ÿ¬2,1,1,"aus Suchliste ausw„hlen,F7","DokKurzSuche",""
+ ÿƒMNHilfe(3)
+ ÿ’ÿÿ
+ 
+ÿÿEMAILINT()
+ ÿ½ SELECT FORM KEY knr% FILE "Adressen" INDEX codeku.adressen
+ ÿ½ SELECT FORM KEY knr% FILE "email" INDEX codeku.email
+ ÿÉÿœÿ`ÿ™"email"
+ ÿ’ÿÿ
+ 
+ 
+ 
+ÿÿEMAILATTE(nr%)
+ codekey%ÿcodekey.email
+ ÿ¡ÿ("email")ÿÿ°("email")ÿpÿÌÿ™"email"
+ ÿÉÿ`ÿ™"email"ÿ£codekey.email
+ ÿÉÿ¥codekey%ÿáÿ™"email"ÿ£codekey.email
+ ÿÂ"Datei ausw„hlen","",26,req%,textvorlage$
+ ÿ¡req%ÿ1ÿp
+ÿ¡ÿJ(textvorlage$)ÿp
+ÿÉÿ¥codekey%ÿáÿ™"EMAIL"ÿ£codekey.EMAIL
+feld$ÿ"EMAILATT"ÿÿH(ÿ(nr%,"99"))ÿ".EMAIL"
+feld$$ÿtextvorlage$
+ÿƒQuickStore("EMAIL")
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ 
+ÿÿEMAILSerSend(CodeKey%)
+ ÿ¡ÿ("email")ÿÿ°("email")ÿpÿÌÿ™"email"
+ ÿ¡GCODie%ÿÿ1ÿp
+ÿƒFehler("EMAIL - Versandt wurde nicht konfiguriert!","")
+ÿwae120520031
+ ÿ’ÿ¡
+ GAkquiDat$ÿ"AKQUISE"
+ GTELDAT$ÿ"Telefon"
+ÿƒDFile(2,"OFFICE\adressen"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\akquise"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\dokument"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\Telefon"ÿ_fpw$)
+
+ÿ³ÿ_ÿwc10032005
+zieldir$ÿ_netpath$ÿ"EMAIL\"
+userfileneu$ÿzieldir$ÿÿ(codekey%,"000000")ÿ".sbf"
+uneu$ÿzieldir$ÿÿ(codekey%,"000000")
+ÿ¡Dateiname.emailÿ""ÿÿOÿJ(userfileneu$)ÿp
+ÿƒFehler("Es l„át sich nicht mehr feststellen, mit welcher Adressauswahl diese Serienemail ursprnglich versandt wurde!","Falls Sie soeben eine neue Adressauswahl getroffen haben, kann diese benutzt werden!")
+ÿÂ"Neue Auswahl benutzen?","",135,req%
+ÿ¡req%ÿ1ÿp
+ÿ¡ÿJ(userfileneu$)ÿp
+
+ÿ(uneu$ÿ".*")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ^
+ÿ¡Dateiname.emailÿ""ÿÿJ(userfileneu$)ÿp
+ÿƒFehler("Diese Serienemail wurde ursprnglich versandt mit: "ÿuserfileneu$,"Falls Sie soeben eine neue Adressauswahl getroffen haben, kann diese benutzt werden!")
+ÿÂ"Neue Auswahl benutzen?","",135,req%
+ÿ¡req%ÿ1ÿp
+ÿ¡ÿJ(userfileneu$)ÿp
+
+ÿ(uneu$ÿ".*")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Diese Serienemail wurde ursprnglich versandt mit: "ÿDateiname.email,"Falls Sie soeben eine neue Adressauswahl getroffen haben, kann diese benutzt werden!")
+ÿÂ"Neue Auswahl benutzen?","",135,req%
+ÿ¡req%ÿ1ÿp
+ÿ¡ÿJ(userfileneu$)ÿp
+
+ÿ(uneu$ÿ".*")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+
+
+un$ÿÿ(codekey%,"000000")
+ÿªÿ_netpath$ÿ"EMAIL"
+c10032005: 
+ÿ³ÿ_ÿwErrorHandler
+ÿ½ CALL Fehler("alte userdatei " + userfile$,"neue Datei " + uneu$)
+ÿ¡ÿOÿJ(userfileneu$)ÿp
+ddd$ÿÿ™
+ÿ™userfile$
+ÿÀÿ™userfile$ÿquserfileneu$
+ÿ†ÿ™userfile$
+ÿ™ddd$
+ÿ’ÿ¡
+ÿƒDFile(2,"EMAIL\"ÿun$)
+ÿ™un$
+ÿ£codeku
+ÿÉÿ`
+ÿ™"email"
+ÿ½ FILE un$
+userfile$ÿun$
+ codemaold%ÿcodema.supervis
+ codema%ÿGMAcodema%
+ ÿ¡cudo%ÿ
+1ÿp
+ÿ¡codedok.emailÿ
+1ÿp
+cudo%ÿÿI("DOKUMENT",1)
+ÿ^
+cudo%ÿcodedok.email
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿÉÿ`ÿ™"Supervis"ÿ£codema.supervis
+ ÿÉÿ¥codema%ÿ™"Supervis"ÿ£codema.supervis
+ ÿ½ SELECT KEY codeku.GAkquiDat$ FILE GADRDat$ INDEX codeku.GADRDat$
+ ÿÉÿ`ÿ™"EMAIL"ÿ£codekey.EMAIL
+ ÿÉÿ¥codekey%ÿáÿ™"EMAIL"ÿ£codekey.EMAIL
+ codedok.emailÿcudo%
+ Dateiname.emailÿuserfileneu$
+ 
+ datei$ÿGMACodeDir$ÿ"codietes.ini"
+ ÿ¡ÿJ(datei$)ÿp
+ÿ³ÿ_ÿwamas070520031
+ÿdatei$
+ÿwamas070520032
+amas070520031: 
+ÿ¡schalter%ÿ0ÿpÿƒfehler("Es konnte die tempor„re Datei "ÿdatei$ÿ" nicht gel”scht werden, bitte prfen Sie, ob die Datei ge”ffnet ist und schlieáen Sie diese!,"")
+amas070520032: 
+ÿ³ÿ_ÿwErrorHandler
+ ÿ’ÿ¡
+ datei1$ÿGMACodeDir$ÿ"codietes.txt"
+ ÿ¡ÿJ(datei1$)ÿp
+ÿ³ÿ_ÿwamas070520035
+ÿdatei1$
+ÿwamas070520036
+amas070520035: 
+ÿ¡schalter%ÿ0ÿpÿƒfehler("Es konnte die tempor„re Datei "ÿdatei1$ÿ" nicht gel”scht werden, bitte prfen Sie, ob die Datei ge”ffnet ist und schlieáen Sie diese!,"")
+amas070520036: 
+ÿ³ÿ_ÿwErrorHandler
+ ÿ’ÿ¡
+ ÿ´datei$ÿ›ÿ¶
+ ÿ†ÿ¶
+ ÿ¡EmailShost.supervisÿ""ÿp
+UserID$ÿEMAILSUserID.supervis
+AFirma$ÿÿåansi(EMAILSAFirma.supervis)
+AName$ÿÿåansi(EMAILSAName.supervis)
+ANUmmer$ÿEMAILNummer.supervis
+ÿ½ BCC$ = EMAILSKopie.supervis
+Sen$ÿEMAILSKopie.supervis
+Hpop3$ÿ""
+HPPort$ÿ""
+PUID$ÿ""
+PJN$ÿEMAILPOP3JN.supervis
+ÿ¡EMAILPOP3JN.supervisÿ"TRUE"ÿp
+Hpop3$ÿEMAILPHost.supervis
+HPPort$ÿÿH(ÿ(EMAILPPort.supervis,"999999"))
+ÿ¡HPPort$ÿ""ÿpHPPort$ÿ"110"
+PUID$ÿEmailPUserID.supervis
+Ppassw$ÿEMAILPPasww.supervis
+ÿ’ÿ¡
+port$ÿÿH(ÿ(EMAILSPort.supervis,"999999"))
+ÿ¡port$ÿ""ÿpport$ÿ"25"
+ÿ¡EMAILSNummer.supervisÿ""ÿp
+Bersend$ÿEMAILSNummer.supervis
+ÿ^
+Bersend$ÿEMAILNummer.supervis
+ÿ’ÿ¡
+Bersend1$ÿEMAILSNummer1.supervis
+Text1$ÿÿåansi(EMAILText1.supervis)
+Text2$ÿÿåansi(EMAILText2.supervis)
+ÿ’ÿ¡
+BAnrede$ÿ""
+alltxt$ÿGMACodeDir$ÿ"codietes.ini"
+TOM$ÿEMAILTO.GAkquiDat$
+Betreff$ÿÿåansi(EMAILBETREFF.email)
+senber$ÿÿ>(EMAILSErg.supervis)
+Host$ÿEMAILShost.supervis
+ÿƒWriteINIDes("EMAILSERVER","HOST",EMAILShost.supervis,datei$)
+ÿƒWriteINIDes("EMAILSERVER","PORT",port$,datei$)
+ÿƒWriteINIDes("EMAILSERVER","USERID",UserID$,datei$)
+ÿƒWriteINIDes("EMAILSERVER","ABSFirma",AFirma$,datei$)
+ÿƒWriteINIDes("EMAILSERVER","ABSName",AName$,datei$)
+ÿƒWriteINIDes("EMAILSERVER","ABSEMAIL",ANummer$,datei$)
+ÿƒWriteINIDes("EMAILSERVER","KOPIEANABSENDER",Sen$,datei$)
+ÿƒWriteINIDes("EMAILSERVER","BerSendenummer",BerSend$,datei$)
+ÿƒWriteINIDes("EMAILSERVER","BerSendenummer1",BerSend1$,datei$)
+
+ÿƒWriteINIDes("EMAILSERVER","SENDEBERICHT",senber$,datei$)
+ÿƒWriteINIDes("EMAILSERVER","Betreff",Betreff$,datei$)
+ 
+Gbodytxt$ÿ_netpath$ÿÿ(GMACodema%,"000000")ÿ".txt"
+sendtxt$ÿ_netpath$ÿÿ(GMACodema%,"000000")ÿ"-1.txt"
+ÿ¡ÿJ(Gbodytxt$)ÿpÿGbodytxt$
+ÿ¡ÿJ(sendtxt$)ÿpÿsendtxt$
+ÿ½ CALL Fehler("EMAIL1","")
+ÿ½ X%% = MK_Init%%()
+X%%ÿMK_SendServer%%(Host$,port$,UserID$,Ppassw$,SendServer$)
+ÿ½ Absender
+X%%ÿMK_SendFrom%%(ANUmmer$,SendFrom$)
+ÿ½ antworten an
+X%%ÿMK_SendReply%%(ANUmmer$,SendReply$)
+ÿ½ 0=klein,1=groá
+X%%ÿMK_Priority%%(1,Priority$)
+TOMold$ÿ""
+ÿ¡TOM$ÿ""ÿp
+X%%ÿMK_SendTo%%(TOM$,SendTo$)
+ÿ’ÿ¡
+TOMold$ÿTOM$
+X%%ÿMK_XHeader%%("xxPower mailer",SendHeader$)
+ÿ½ GMailBetreff$ = FN ANSI(Betreff$)
+ÿ½ X%% = MK_Subject%%(GMailBetreff$,SendSubject$)
+ÿ½ emailtext$ = emailtext.email + emailtext1.email
+
+ 
+ÿ½ CALL WriteINIDes("EMAILSERVER","TO",TOM$,datei$)
+ÿ¡InternetupdJN.emailÿ"j"ÿp
+GMailBetreff$ÿÿåANSI(Betreff$)
+X%%ÿMK_Subject%%(GMailBetreff$,SendSubject$)
+ÿƒMK_WriteBodyN(emailtext.email)
+ÿƒMK_WriteBodyN(emailtext1.email)
+ÿ^
+GMailBetreff$ÿ"CODie-SmartPROVIS Update"
+t1t$ÿ"Sehr geehrte Damen und Herren,"ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"anbei bersenden wir Ihnen die Zugangsdaten fr Ihr Update des Programmes SmartPROVIS"ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Internetadresse: http://www.codie.com"ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Benutzername: "ÿInternetname.adressenÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Passwort: "ÿInternetpasswo.adressenÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Bitte denken an eine komplette Datensicherung des gesamten CODie-Ordners !!!!!!!!!"ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿEMAILText1.supervisÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿEMAILText2.supervis
+emailtext$ÿt1t$
+X%%ÿMK_Subject%%(GMailBetreff$,SendSubject$)
+ÿƒMK_WriteBodyN(emailtext$)
+ÿ½ OPEN datei1$ FOR OUTPUT 
+ÿ½ ? FN ansi( LEFT$ (emailtext.email,2000))
+ÿ½ ? FN ansi( MID$ (emailtext.email,2000))
+ÿ½ ? FN ansi( LEFT$ (emailtext1.email,2000))
+ÿ½ ? FN ansi( MID$ (emailtext1.email,2000))
+ÿ½ CLOSE OUTPUT 
+ÿ’ÿ¡
+
+ 
+schalter$ÿÿ(schalter%,"0")
+
+
+sen$ÿ"TRUE"
+bccx$ÿ""
+ÿ¡Sen$ÿ"TRUE"ÿp
+bccx$ÿANUmmer$ÿ","
+ÿ’ÿ¡
+ÿ´datei1$ÿ›ÿ¶
+ÿ{ÿåansi(emailtext.email)
+ÿ{ÿåansi(emailtext1.email)
+ÿ†ÿ¶
+ccx$ÿ""
+ÿ¡emailcc.GAkquiDat$ÿ""ÿp
+ccx$ÿemailcc.GAkquiDat$
+X%%ÿMK_SendCC%%(emailcc.GAkquiDat$,SendCC$)
+pos%ÿÿ?(emailcc.GAkquiDat$,":")
+ÿ¡pos%ÿ0ÿp
+laeng%ÿÿ/(emailcc.GAkquiDat$)
+j%ÿ0
+ÿ›i%ÿ1ÿqlaeng%
+	posold%ÿpos%
+	cc$ÿÿ,(emailcc.GAkquiDat$,i%,pos%ÿi%)
+	pos%ÿÿ?(posold%ÿ1,emailcc.GAkquiDat$,":")
+ 
+	ÿ¡pos%ÿ0ÿp
+i%ÿposold%
+	ÿ^
+i%ÿlaeng%ÿ1
+	ÿ’ÿ¡
+	ÿ½ CALL WriteINIDes("CC","Z" + LTRIM$ ( STR$ (j%,"999")), FN ansi(CC$),datei$)
+	
+	j%ÿj%ÿ1
+ÿ±i%
+ÿ^
+ÿƒWriteINIDes("CC","Z0",ÿåansi(emailcc.GAkquiDat$),datei$)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡emailbcc.GAkquiDat$ÿ""ÿbccx$ÿ""ÿp
+bccx$ÿbccx$ÿemailbcc.GAkquiDat$
+X%%ÿMK_SendBCC%%(bccx$,SendBCC$)
+pos%ÿÿ?(emailbcc.GAkquiDat$,":")
+ÿ¡pos%ÿ0ÿp
+laeng%ÿÿ/(emailbcc.GAkquiDat$)
+j%ÿ0
+ÿ›i%ÿ1ÿqlaeng%
+	posold%ÿpos%
+	cc$ÿÿ,(emailbcc.GAkquiDat$,i%,pos%ÿi%)
+	pos%ÿÿ?(posold%ÿ1,emailbcc.GAkquiDat$,":")
+ 
+	ÿ¡pos%ÿ0ÿp
+i%ÿposold%
+	ÿ^
+i%ÿlaeng%ÿ1
+	ÿ’ÿ¡
+	ÿƒWriteINIDes("BCC","Z"ÿÿH(ÿ(j%,"999")),ÿåansi(CC$),datei$)
+	j%ÿj%ÿ1
+ÿ±i%
+ÿ^
+ÿƒWriteINIDes("BCC","Z0",ÿåansi(emailbcc.GAkquiDat$),datei$)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ok%ÿÿ1
+attachges$ÿ""
+ÿ¡emailatt1.GAkquiDat$ÿ""ÿeatt1.GAkquiDat$ÿ""ÿp
+ÿ¡Gcodie%ÿÿ1ÿp
+iniPath$ÿemailatt1.GAkquiDat$
+ÿ¡eatt1.GAkquiDat$ÿ""ÿpiniPath$ÿeatt1.GAkquiDat$
+a%ÿÿƒ("_SBFileExists",iniPath$)
+ÿ¡a%ÿÿ1ÿp
+	ÿƒWriteINIDes("AT","Z0",ÿåansi(iniPath$),datei$)
+	X%%ÿMK_Attach%%(iniPath$,AttachString$)
+	at1$ÿiniPath$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 1 nicht gefunden "
+ÿ’ÿ¡
+ÿ^
+ÿ¡ÿJ(emailatt1.GAkquiDat$)ÿp
+	ÿƒWriteINIDes("AT","Z0",ÿåansi(emailatt1.GAkquiDat$),datei$)
+	X%%ÿMK_Attach%%(emailatt1.GAkquiDat$,AttachString$)
+	at1$ÿemailatt1.GAkquiDat$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 1 nicht gefunden "
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ 
+ÿ¡emailatt2.GAkquiDat$ÿ""ÿeatt2.GAkquiDat$ÿ""ÿp
+ÿ¡Gcodie%ÿÿ1ÿp
+iniPath$ÿemailatt2.GAkquiDat$
+ÿ¡eatt2.GAkquiDat$ÿ""ÿpiniPath$ÿeatt2.GAkquiDat$
+a%ÿÿƒ("_SBFileExists",iniPath$)
+ÿ¡a%ÿÿ1ÿp
+	ÿƒWriteINIDes("AT","Z1",ÿåansi(iniPath$),datei$)
+	X%%ÿMK_Attach%%(iniPath$,AttachString$)
+	at1$ÿiniPath$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 2 nicht gefunden "
+ÿ’ÿ¡
+ÿ^
+ÿ¡ÿJ(emailatt2.GAkquiDat$)ÿp
+	ÿƒWriteINIDes("AT","Z1",ÿåansi(emailatt2.GAkquiDat$),datei$)
+	X%%ÿMK_Attach%%(emailatt2.GAkquiDat$,AttachString$)
+	at1$ÿemailatt2.GAkquiDat$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 2 nicht gefunden "
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ 
+ÿ¡emailatt3.GAkquiDat$ÿ""ÿeatt3.GAkquiDat$ÿ""ÿp
+ÿ¡Gcodie%ÿÿ1ÿp
+iniPath$ÿemailatt3.GAkquiDat$
+ÿ¡eatt3.GAkquiDat$ÿ""ÿpiniPath$ÿeatt3.GAkquiDat$
+a%ÿÿƒ("_SBFileExists",iniPath$)
+ÿ¡a%ÿÿ1ÿp
+	ÿƒWriteINIDes("AT","Z2",ÿåansi(iniPath$),datei$)
+	X%%ÿMK_Attach%%(iniPath$,AttachString$)
+	at1$ÿiniPath$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 3 nicht gefunden "
+ÿ’ÿ¡
+ÿ^
+ÿ¡ÿJ(emailatt3.GAkquiDat$)ÿp
+	ÿƒWriteINIDes("AT","Z2",ÿåansi(emailatt3.GAkquiDat$),datei$)
+	X%%ÿMK_Attach%%(emailatt3.GAkquiDat$,AttachString$)
+	at1$ÿemailatt3.GAkquiDat$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 3 nicht gefunden "
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ 
+ÿ¡emailatt4.GAkquiDat$ÿ""ÿeatt4.GAkquiDat$ÿ""ÿp
+ÿ¡Gcodie%ÿÿ1ÿp
+iniPath$ÿemailatt4.GAkquiDat$
+ÿ¡eatt4.GAkquiDat$ÿ""ÿpiniPath$ÿeatt4.GAkquiDat$
+a%ÿÿƒ("_SBFileExists",iniPath$)
+ÿ¡a%ÿÿ1ÿp
+	ÿƒWriteINIDes("AT","Z3",ÿåansi(iniPath$),datei$)
+	X%%ÿMK_Attach%%(iniPath$,AttachString$)
+	at1$ÿiniPath$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 4 nicht gefunden "
+ÿ’ÿ¡
+ÿ^
+ÿ¡ÿJ(emailatt4.GAkquiDat$)ÿp
+	ÿƒWriteINIDes("AT","Z3",ÿåansi(emailatt4.GAkquiDat$),datei$)
+	X%%ÿMK_Attach%%(emailatt4.GAkquiDat$,AttachString$)
+	at1$ÿemailatt4.GAkquiDat$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 4 nicht gefunden "
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ 
+ÿ¡emailatt5.GAkquiDat$ÿ""ÿeatt5.GAkquiDat$ÿ""ÿp
+ÿ¡Gcodie%ÿÿ1ÿp
+iniPath$ÿemailatt5.GAkquiDat$
+ÿ¡eatt5.GAkquiDat$ÿ""ÿpiniPath$ÿeatt5.GAkquiDat$
+a%ÿÿƒ("_SBFileExists",iniPath$)
+ÿ¡a%ÿÿ1ÿp
+	ÿƒWriteINIDes("AT","Z4",ÿåansi(iniPath$),datei$)
+	X%%ÿMK_Attach%%(iniPath$,AttachString$)
+	at1$ÿiniPath$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 5 nicht gefunden "
+ÿ’ÿ¡
+ÿ^
+ÿ¡ÿJ(emailatt5.GAkquiDat$)ÿp
+	ÿƒWriteINIDes("AT","Z4",ÿåansi(emailatt5.GAkquiDat$),datei$)
+	X%%ÿMK_Attach%%(emailatt5.GAkquiDat$,AttachString$)
+	at1$ÿemailatt5.GAkquiDat$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 5 nicht gefunden "
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+
+
+
+ÿ½ CALL Fehler(datei$ + " " + datei1$ + " " + schalter$ + " " + adresse$ + " " + Hpop3$ + " " + PUID$ + " " + HPPort$ + " " + Ppassw$ + " " + PJN$,"")
+ÿ×ADR$(30000,1)
+ÿ×ADR1$(30000)
+i%ÿ0
+ÿ™GTelDat$
+ÿ£codeku.GTelDat$
+ÿ™userfile$
+ÿ£codeku.userfile$
+ÿ¡ok%ÿp
+ÿ½ anz% = RECCOUNT (userfile$)
+ÿÉÿ`ÿ™userfile$ÿ£codeku.userfile$
+ÿØÿOÿB(userfile$)
+codeku%ÿÿ0(codeku.userfile$)
+ÿÉÿ`ÿ™"ADRESSEN"ÿ£codeku.adressen
+ÿÉÿ¥codeku%ÿ™"ADRESSEN"ÿ£codeku.adressen
+ÿÉÿ`ÿ™GTelDat$ÿ£codeku.GTelDat$
+ÿÉÿ¥codeku%ÿ™GTelDat$ÿ£codeku.GTelDat$
+	ÿØÿOÿB(GTelDat$)ÿcodeku.GTelDat$ÿcodeku%
+ook%ÿ0
+ÿ½ CALL Fehler( FN ansi(nummer.GTelDat$), FN ansi(name1.userfile$ + "," + name2.userfile$ + "," + name3.userfile$))
+ÿ¡nummer.GTelDat$ÿ"*@*"ÿp
+ÿ¡GEMAILRAUS$ÿ"<kein Filter>"ÿGEMAILRAUS$ÿ""ÿp
+ook%ÿÿ1
+k%ÿk%ÿ1
+ÿ^
+ÿ¡KART2.GTELDAT$ÿGEMAILRAUS$ÿp
+ook%ÿÿ1
+k%ÿk%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ook%ÿÿ1ÿp
+i$ÿÿ(i%,"999999")ÿ" an "ÿÿåansi(nummer.GTelDat$)
+ÿ½ CALL Fehler(i$, FN ansi(name1.userfile$ + "," + name2.userfile$ + "," + name3.userfile$))
+ÿÊÿËÿ(i%,"999999")ÿ" an "ÿÿåansi(nummer.GTelDat$)ÿ" "ÿÿåansi(name1.userfile$ÿ","ÿname2.userfile$ÿ","ÿname3.userfile$)
+adr$(i%,0)ÿcodeku.userfile$
+adr$(i%,1)ÿÿåansi(nummer.GTelDat$)
+adr1$(i%)ÿÿåansi(name1.userfile$ÿ","ÿname2.userfile$ÿ","ÿname3.userfile$)
+i%ÿi%ÿ1
+ÿ½ CALL WriteINIDes("BCC","Z" + LTRIM$ ( STR$ (k% - 1,"99999")), FN ansi(nummer.GTelDat$),datei$)
+TOM$ÿÿåansi(nummer.GTelDat$)
+adresse$ÿÿåansi(name1.userfile$ÿ","ÿname2.userfile$ÿ","ÿname3.userfile$)
+ÿƒWriteINIDes("EMAILSERVER","TO",TOM$,datei$)
+ÿßÿe
+ÿ½ ret% = CALL ("_SendEMAILAuto",datei$,datei1$,schalter$,adresse$,Hpop3$,PUID$,HPPort$,Ppassw$,PJN$)
+ÿ¡TOMold$ÿ""ÿp
+X%%ÿMK_SendTo%%(TOM$,SendTo$)
+ÿ’ÿ¡
+X%%ÿMK_LogFile%%(GMACodeDir$ÿ"emailsen.log",LogDateiName$)
+X%%ÿMK_Html%%(0,Html$)
+ÿÊÿË"sende email"
+ÿßÿe
+X%%ÿMK_Init%%()
+X%%ÿMK_SendGo%%(RetVal%%,RetVal$,SendHeader$,SendTo$,SendFrom$,SendReply$,Priority$,SendCC$,SendBCC$,SendSubject$,LogDateiName$,SendServer$,AttachString$,Html$)
+X%%ÿMK_InitReset%%()
+Fehler$ÿ""
+ÿ¡RetVal%%ÿ0ÿp
+ret%ÿÿ1
+ÿ½ REQUEST RetVal$,"",2
+ÿ^
+ret%ÿ1
+Fehler$ÿRetVal$
+ÿ½ CALL Fehler(RetVal$,"")
+ÿ’ÿ¡
+ÿßÿ³
+ÿ’ÿ¡
+ÿÉÿ±ÿ™GTelDat$ÿ£codeku.GTelDat$
+	ÿÙ
+ÿÉÿ±ÿ™userfile$ÿ£codeku.userfile$
+ÿÙ
+ÿ^
+ret%ÿ4
+ÿ’ÿ¡
+ÿ¡ret%ÿÿ1ÿp
+emailraus.emailÿ"j"
+EMAILSendDat.emailÿÿQ
+EMAILSendZeit.emailÿÿR
+ÿÉÿ¥GMACodema%ÿ™"supervis"ÿ£codema.supervis
+text1$ÿÿ(EMAILSendDat.email,"0d.mm.yyyy")ÿ" "ÿÿ7(EMAILSendZeit.email,"hh:mm")ÿ" EMAIL wurde per Hand von "ÿname.supervisÿ" gesendet "
+text2$ÿ""
+ergebnis.emailÿÿ+(ergebnis.emailÿÿ(13)ÿÿ(10)ÿtext1$ÿtext2$,1500)
+ÿÌÿ™"email"
+ 
+ÿ½ CALL Fehler(ergebnis.email,"jetzt noch den Kram in Dokumente eintragen")
+ÿ½ jetzt fr alle angeschriebenen Adressen einen Eintrag in der Dokumentendatei erzeugen mit der Dokumentennumer
+ÿ½ cudo%
+cudo%ÿcodedok.email
+ÿ½ docpath$ = LEFT$ (_netpath$,2) + ReadConfig$("DOKUMENTE","allgemeine Schreiben")
+docpath$ÿGetDocPath$("allgemeine Schreiben")
+ÿ¡ÿ-(docpath$,1)ÿ"\"ÿpdocpath$ÿdocpath$ÿ"\"
+z$ÿ_netpath$ÿ"email\"ÿÿ(codedok.email,"000000")ÿ".txt"
+ÿˆgbodytxt$ÿqz$
+ÿ´z$ÿ›ÿT
+ÿ{""
+ÿ{"**********************************************************************************************************"
+ÿ{ÿåansi("*                                     EMPFNGER                                                          *")
+ÿ{"**********************************************************************************************************"
+ÿ{AFirma$ÿ"  "ÿAName$ÿ"  "ÿANummer$
+ÿ†ÿ¶
+ÿ´z$ÿ›ÿT
+ÿ{"  "
+ÿ{"BETREFF: "ÿÿåansi(Betreff$)
+ÿ{"  "
+ÿ{ÿåansi("Dateianh„nge:")
+ÿ{ÿåansi(attachges$)
+ÿ{"  "
+ÿ{"  "
+ÿ½ ? "Inhalt:
+ÿ½ ? FN ansi(emailtext$)
+ÿ{"   "
+ÿ{"  "
+ÿ½ ? text1$
+ÿ{"  "
+ÿ{"  "
+ÿ½ ? FN ansi("Empf„nger:")
+ÿ†ÿ¶
+ÿ½ SELECT FIRST FILE userfile$ INDEX codeku.userfile$
+ÿ½ WHILE NOT EOF (userfile$)
+ÿ¡cudo%ÿ0ÿp
+ÿ›a%ÿ0ÿqi%ÿ1
+ÿ´z$ÿ›ÿT
+ÿ{adr$(a%,1)ÿ"   "adr1$(a%)
+ÿ†ÿ¶
+codeku%ÿÿ0(adr$(a%,0))
+ÿÿ™"dokument"
+CodeDOK.dokumentÿcodedok.email
+ÿ½ codeErs.dokument = GMACodema%
+Creator.dokumentÿGMAName$
+cudok%ÿCodeDOK.dokument
+dokument.dokumentÿÿ+(emailbetreff.email,160)
+erstellt_am.dokumentÿÿQ
+letzte_Bearbeit.dokumentÿÿQ
+CodeMA.dokumentÿGcodema%
+ÿÉÿ¥codema.dokumentÿ™"supervis"ÿ£codema.supervis
+Bearbeiter.dokumentÿnachname.supervis
+textdatei$ÿz$
+docpath$ÿGetDocPath$("allgemeine Schreiben")
+ÿ¡ÿ-(docpath$,1)ÿ"\"ÿpdocpath$ÿdocpath$ÿ"\"
+textdatei$ÿ"\email\"ÿÿ(codedok.email,"000000")ÿ".txt"
+Dateiname.dokumentÿtextdatei$
+Gruppe.dokumentÿ"allgemeine Schreiben"
+codeku.dokumentÿcodeku%
+link.DOKUMENTÿCodeKU.DOKUMENT
+ÿƒQuickStore("DOKUMENT")
+ÿ½ SELECT NEXT FILE userfile$
+ÿ½ WEND 
+ÿ±a%
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ret%ÿ1ÿp
+text1$ÿÿ(ÿQ,"0d.mm.yyyy")ÿ" "ÿÿ7(ÿR,"hh:mm")ÿ" EMAIL sollte per Hand von <"ÿname.supervisÿ"> versandt, "
+text2$ÿ"werden, konnte aber nicht durchgefhrt werden, da die tempor„ren Dateien "ÿdatei$ÿ" oder/und "ÿdatei1$ÿ" nicht gefunden wurde/n"
+ergebnis.emailÿÿ+(ergebnis.emailÿÿ(13)ÿÿ(10)ÿtext1$ÿtext2$,1500)
+ÿÌÿ™"email"
+ÿƒFehler(text1$,text2$)
+ÿ’ÿ¡
+ÿ¡ret%ÿ2ÿp
+text1$ÿÿ(ÿQ,"0d.mm.yyyy")ÿ" "ÿÿ7(ÿR,"hh:mm")ÿ" EMAIL sollte per Hand von Miarbeiter <"ÿname.supervisÿ"> versandt, "
+text2$ÿ"werden, konnte aber nicht durchgefhrt werden, da ein Fehler in den Absendetaten durch den Server gemeldet wurde!"
+ergebnis.emailÿÿ+(ergebnis.emailÿÿ(13)ÿÿ(10)ÿtext1$ÿtext2$,1500)
+ÿÌÿ™"email"
+ÿƒFehler(text1$,text2$)
+ÿ’ÿ¡
+ÿ¡ret%ÿ3ÿp
+text1$ÿÿ(ÿQ,"0d.mm.yyyy")ÿ" "ÿÿ7(ÿR,"hh:mm")ÿ" EMAIL sollte per Hand von <"ÿname.supervisÿ"> versandt, "
+text2$ÿ"werden, konnte aber nicht durchgefhrt werden, da ein Fehler in den Absendetaten durch den Server gemeldet wurde!"
+ergebnis.emailÿÿ+(ergebnis.emailÿÿ(13)ÿÿ(10)ÿtext1$ÿtext2$,1500)
+ÿÌÿ™"email"
+ÿƒFehler(text1$,text2$)
+ÿ’ÿ¡
+ÿ¡ret%ÿ4ÿp
+text1$ÿÿ(ÿQ,"0d.mm.yyyy")ÿ" "ÿÿ7(ÿR,"hh:mm")ÿ" EMAIL sollte per Hand von <"ÿname.supervisÿ"> versandt, "
+text2$ÿ"werden, konnte aber nicht durchgefhrt werden, da ein oder mehrere Dateianh„nge nicht gefunden wurden!"
+ergebnis.emailÿÿ+(ergebnis.emailÿÿ(13)ÿÿ(10)ÿtext1$ÿtext2$,1500)
+ÿÌÿ™"email"
+ÿƒFehler(text1$,text2$)
+ 
+ÿ’ÿ¡
+ ÿ^
+ÿƒFehler("EMAIL kann nicht versandt werden, da fr den User "ÿName.supervisÿ" das Feld <Host> nicht ausgefllt wurde!","")
+ ÿ’ÿ¡
+ae120520031: 
+ ÿƒFehler("Serienemail beendet!","")
+ ÿ’ÿÿ
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ '      *****************************************
+ '      ** Formular "MAIL-Netzwerknachrichten" **
+ '      *****************************************
+ '
+
+ÿÿMAIL1a()
+ ÿ¡disabled%("NETMAIL")ÿpÿ’ÿÿ
+ ÿƒDFile(2,"OFFICE\dokument"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\adressen"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\aktionen"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\akquise"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\mail"ÿ_fpw$)
+ ÿßÿe
+ _formend%ÿ0
+ ÿÊÿË"Bereit"
+ AKsub%ÿ0
+ filtma%ÿGCodeMA%
+ ÿ™"mail"
+ ÿ£codema.mail
+ ÿÉÿĞÿ™"mail"
+ ÿØ_formend%ÿ0
+AKsub%ÿ0
+ÿ¡ÿœÿ"NETMAIL"ÿp
+ÿÊÿŸtitle$ÿ" - NETMAIL"
+ÿ´ÿœGOFFForm$ÿ"NETMAIL"
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"NETMAIL"
+ÿƒMNNETMAIL()
+ÿƒNETMAILIntro()
+ÿÊÿÿ³
+ÿ’ÿ¡
+ÿ¬ÿ³
+ÿßÿ³
+ÿ™"mail"
+ÿÊÿË"Bereit"
+GAppName$ÿ_netpath$ÿ"DOCP\project.pdf"
+ÿƒNETMAILUPDATE()
+ÿƒClearKBDBuffer()
+ÿÏÿßÿÿ¥ÿÿ¬
+ÿ½ ** Tastencodes
+ÿk$
+ÿ¡k$ÿÿ(27)ÿp_formend%ÿ1
+ 
+ÿÉÿæAKsub%
+ÿæ1
+ÿ½ -- Filter auf anderen Mitarbeiter
+ÿ™"Supervis"
+ÿÂ"Mitarbeiter ausw„hlen","",25,req%,filtma%,72,codema.Supervis,nachname.Supervis,vorname.Supervisÿ£nachname.supervis
+ÿ™"mail"
+ÿ¡filtma%ÿ0ÿreq%ÿ1ÿp
+ÿƒNETMAILIntro()
+ÿœ
+ÿ’ÿ¡
+ÿæ2
+ÿ½ -- Seite 2
+_codemail%ÿcodemail.mail
+ 
+ÿœ2
+ÿæ3
+ÿ½ -- alle Termine als erledigt kennzeichnen
+ÿæ4
+ÿ½ -- allgemeine Auswertung
+ÿæ5
+ÿ½ -- alle Dokumente auflisten
+ÿæ6
+ÿæ99
+ÿ¬ÿe
+ÿßÿ³
+ÿ”Nachricht.mail,0
+ÿ¬ÿ³
+ÿ’ÿÉ
+ ÿÙ
+ cuak%ÿ0
+ ÿ¡FileChanged%("mail")ÿ1ÿpÿƒFStore("mail")
+ _formend%ÿ0
+ filtma%ÿ0
+ ÿ’ÿÿ
+
+ 
+ ' Nachrichten-Intro
+ ' ======================================================================
+ 
+ÿÿNETMAILIntro()
+ ÿßÿe
+ ÿ™"mail"
+ ÿ¡filtma%ÿ0ÿp
+ÿÉÿ`ÿ™"supervis"ÿ£codema.supervis
+ÿÉÿ¥filtma%ÿ™"supervis"ÿ£codema.supervis
+filt$ÿvorname.supervisÿ" "ÿnachname.supervis
+ÿÉÿĞÿ™"mail"
+filt1$ÿ"Select where Codema.mail = filtma%"
+ÿ–filt1$
+ÿÉÿœÿ`
+ ÿ’ÿ¡
+ ÿ¡_codemail%ÿ0ÿp
+ÿÉÿ¥_codemail%ÿ™"mail"ÿ£codemail.mail
+ ÿ^
+ÿÉÿ`
+ ÿ’ÿ¡
+ ÿœ
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+ ' NachrichtEN Formular updaten
+ ' ======================================================================
+ 
+ÿÿNETMAILUPDATE()
+ _codemail%ÿCodemail.mail
+ ÿÉÿ¥_codemail%ÿ™"mail"ÿ£Codemail.mail
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ 
+ÿÿMNNETMAIL()
+ ÿƒMNProgramm()
+ ÿƒMNHilfe(2)
+ ÿ’ÿÿ
+
+ 
+ 
+
+
+
+ÿÿExpOutlGener(codeku%)
+ÿÂ"Sollen nur die Adressen und Termine eines","einzelnen Vermittlers exportiert werden?",130,req%
+ÿ¡req%ÿ1ÿp
+	datei1$ÿ"VERTRETE"
+	ÿƒDFile(3,datei1$ÿ_fpw$)
+	z%ÿÿA(datei1$)
+	ÿ¡z%ÿ
+ÿA(datei1$)ÿp
+z%ÿÿA(datei1$)
+	ÿ’ÿ¡
+	ÿ¡z%ÿ20000ÿpz%ÿ20000
+	ÿÿAdrFound$(z%)
+	
+	
+	ÿ™datei1$
+	ÿ£nachname.datei1$
+	ÿÉÿ`
+	a%ÿ0
+	ÿÉÿĞnachname.datei1$ÿ""
+	ÿÉÿ`
+	ÿØÿOÿB(datei1$)
+AdrFound$(a%)ÿÿH(nachname.datei1$)ÿ","ÿÿH(vorname.datei1$)ÿÿ'(120)ÿÿ(codema.datei1$,"000000")
+a%ÿa%ÿ1
+ÿÉÿ±
+	ÿÙ
+	AdrFound$(a%)ÿ""
+	LAuswahl$ÿAdrFound$(0)
+	LAuswahl1$(0)ÿLAuswahl$
+	ÿ‰ÿñ"ADRLISTE",0,0,340,197,title$,"MS Sans Serif",8
+	ÿ½ CREATE DIALOG "ADRLISTE",0,0,340,197,title$,"Courier New",8
+	ÿ|ÿñ"ADRLISTE",7,5,8,328,161,2,2,AdrFound$,Lauswahl1$,AdrFound$(0)
+	ÿ|ÿñ"ADRLISTE",1,74,174,56,16,1,"&OK",1,1
+	ÿ|ÿñ"ADRLISTE",1,134,174,56,16,0,"&Abbrechen",0,0
+	ÿñ"ADRLISTE",req5%
+	ÿßÿ³
+	ÿ¾ÿñ"ADRLISTE"
+	ÿ¡req5%ÿ1ÿp
+LAuswahl$ÿLAuswahl1$(0)
+codema%ÿÿ0(ÿ-(LAuswahl$,6))
+	ÿ^
+codema%ÿ0
+	ÿ’ÿ¡
+	ÿßÿe
+ÿ^
+	codema%ÿ0
+ÿ’ÿ¡
+ÿ¡ÿA(GAdrDat$)ÿ
+30000ÿp
+	ÿÿADRFound$(ÿA(GAdrDat$))
+ÿ^
+	ÿÿADRFound$(30000)
+ÿ’ÿ¡
+ÿ™GAdrDat$
+ÿ£fiimmak.GAdrDat$
+ÿÉÿ`
+ÿÉÿ¥"j"ÿ™GAdrDat$ÿ£fiimmak.GAdrDat$
+a%ÿ0
+ÿØÿOÿB(GAdrDat$)ÿfiimmak.GAdrDat$ÿ"j"
+	ÿ¡codema%ÿ0ÿp
+ÿ¡codema.GAdrDat$ÿcodema%ÿp
+ÿÊÿË"Exportiere "ÿnachname.GAdrDat$
+ADRFound$(a%)ÿÿ(codeku.GAdrDat$,"000000")
+a%ÿa%ÿ1
+ÿ’ÿ¡
+	ÿ^
+ÿÊÿË"Exportiere "ÿnachname.GAdrDat$
+ADRFound$(a%)ÿÿ(codeku.GAdrDat$,"000000")
+a%ÿa%ÿ1
+	ÿ’ÿ¡
+	ÿÊÿËÿ(a%)ÿ" Adressen gefunden"
+	ÿÉÿ±ÿ™GAdrDat$ÿ£fiimmak.GAdrDat$
+ÿÙ
+ADRFound$(a%)ÿ""
+ÿ½ CALL Fehler("","")
+ÿƒExpOutlook()
+ÿßÿ³
+ÿÊÿË""
+ ÿ’ÿÿ
+
+
+
+ÿÿExpOutlook()
+ dir$ÿÿ
+ Adressen$ÿ"ADRESSEN"
+ adrtemp$ÿ"OUTLADR1"
+ ÿƒDFile(2,"OFFICE\OUTLADR1"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\OUTKAL"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\aktionen"ÿ_fpw$)
+ ÿ¾ÿaÿ™"OUTLADR1"
+ ÿ¾ÿaÿ™"OUTKAL"
+ ÿ½ adressen$ = GAdrDat$
+ ansionoff$ÿÿ>(ReadINI$("SYSTEM","WinWordAnsi"))
+ 
+ 
+	a%ÿ0
+	ÿØAdrFound$(a%)ÿ""
+ÿ™Adressen$
+ÿÉÿ`
+
+
+ÿ¡adressen$ÿGAdrDat$ÿp
+codeku%ÿÿ0(ÿ-(AdrFound$(a%),6))
+ÿÉÿ¥codeku%ÿ™Adressen$ÿ£codeku.Adressen$
+ÿ’ÿ¡
+
+abz%ÿabz%ÿ1
+ÿÊÿË"Anzahl der verarbeiteten Adressen: "ÿÿ(abz%,"99999999")
+ÿ½ codeku% = codeku.GAdrDat$
+ÿ½ 200999
+	ÿ¡ASerJN ÿ"j"ÿreq%ÿ1ÿp
+	ÿ^
+ÿÿ™adrtemp$
+Anrede.adrtemp$ÿVSNRPack3$(Anrede.Adressen$)
+ÿ½ CALL Fehler("SER","")
+ÿ¡anrede.Adressen$ÿ"Herr*"ÿanrede.Adressen$ÿ"Fr*"ÿanrede.Adressen$ÿ"Fam*"ÿanrede.Adressen$ÿ"Ehe*"ÿanrede.Adressen$ÿ"Kind*"ÿp
+Nachname.adrtemp$ÿVSNRPack3$(Nachname.Adressen$)
+Vorname.adrtemp$ÿVSNRPack3$(Vorname.Adressen$)
+adr$ÿ"Adresse: "ÿVSNRPack3$(Vorname.Adressen$)ÿ", "ÿVSNRPack3$(Nachname.Adressen$)ÿÿ(10)ÿÿ(13)
+ÿ^
+Nachname.adrtemp$ÿVSNRPack3$(Nachname.Adressen$)
+Vorname.adrtemp$ÿVSNRPack3$(Vorname.Adressen$)
+WeitereVornamen.adrtemp$ÿVSNRPack3$(Geburtsname.Adressen$)
+adr$ÿ"Adresse: "ÿVSNRPack3$(Vorname.Adressen$)ÿ", "ÿVSNRPack3$(Nachname.Adressen$)ÿ", "ÿVSNRPack3$(Geburtsname.adressen$)ÿÿ(10)ÿÿ(13)
+ 
+ÿ’ÿ¡
+Strassegesch.adrtemp$ÿVSNRPack3$(Straáe.Adressen$)
+Postleitzahlges.adrtemp$ÿVSNRPack3$(PLZ.Adressen$)
+Ortgesch.adrtemp$ÿVSNRPack3$(Ort.Adressen$)
+adr$ÿadr$ÿVSNRPack3$(Straáe.Adressen$)ÿ", "ÿVSNRPack3$(PLZ.Adressen$)ÿ" "ÿVSNRPack3$(Ort.Adressen$)
+Landgesch.adrtemp$ÿVSNRPack3$(Land.Adressen$)
+Geburtstag.adrtemp$ÿÿ(Geburtstag.Adressen$,"0d.mm.yyyy")
+Konto.adrtemp$ÿVSNRPack3$(K1Konto.Adressen$)
+Notizen.adrtemp$ÿVSNRPack3$(Notiz.Adressen$)
+Stichworter.adrtemp$ÿVSNRPack3$(Stichwort.Adressen$)
+codema%ÿCodema.Adressen$
+ÿ½ 061196
+ÿ¡ÿJ(codeku%,codeku.GTelDat$)ÿp
+ÿ™GTelDat$
+ÿ£codeku.GTelDat$
+ÿÉÿ`
+ÿÉÿ¥codeku%ÿ™GTelDat$ÿ£codeku.GTelDat$
+abi%ÿ0
+note$ÿ""
+ÿØcodeku.GTelDat$ÿcodeku%ÿabi%ÿ
+20ÿÿOÿB(GTelDat$)
+abi%ÿabi%ÿ1
+
+ÿ¡fonoderfax.GTelDat$ÿ"j"ÿp
+ÿ¡Mobiltelefon.adrtemp$ÿ""ÿ(art.GTelDat$ÿ"mobi*"ÿart.GTelDat$ÿ"Funk*")ÿp
+Mobiltelefon.adrtemp$ÿVSNRPack3$(nummer.GTelDat$)
+ÿ’ÿ¡
+ÿ¡Webseite.adrtemp$ÿ""ÿ(art.GTelDat$ÿ"www*"ÿnummer.GTelDat$ÿ"www*"ÿart.GTelDat$ÿ"*www*"ÿnummer.GTelDat$ÿ"*www*")ÿp
+Webseite.adrtemp$ÿVSNRPack3$(nummer.GTelDat$)
+ÿ’ÿ¡
+ÿ¡emailadresse.adrtemp$ÿ""ÿ(art.GTelDat$ÿ"*@*"ÿnummer.GTelDat$ÿ"*@*")ÿp
+emailadresse.adrtemp$ÿVSNRPack3$(nummer.GTelDat$)
+emailangezeigte.adrtemp$ÿVSNRPack3$(nummer.GTelDat$)
+ÿ’ÿ¡
+ÿ¡Telefongesch.adrtemp$ÿ""ÿp
+Telefongesch.adrtemp$ÿVSNRPack3$(nummer.GTelDat$)
+ÿ’ÿ¡
+ÿ^
+ÿ¡faxgesch.adrtemp$ÿ""ÿp
+faxgesch.adrtemp$ÿVSNRPack3$(nummer.GTelDat$)
+ÿ’ÿ¡
+ 
+ÿ’ÿ¡
+ 
+note$ÿnote$ÿVSNRPack3$(art.GTelDat$ÿ"  "ÿnummer.GTelDat$)ÿÿ(10)ÿÿ(13)
+ÿÉÿ±ÿ™GTelDat$ÿ£codeku.GTelDat$
+ÿÙ
+notizen.adrtemp$ÿnote$ÿÿ(10)ÿÿ(13)ÿnotizen.adrtemp$
+adr$ÿadr$ÿÿ(10)ÿÿ(13)ÿnote$ÿÿ(10)ÿÿ(13)
+ÿ’ÿ¡
+ÿ™adrtemp$
+ÿÌÿ™adrtemp$
+	ÿ’ÿ¡
+	ÿ™adressen$
+	ÿ½ SELECT NEXT FILE GAdrDat$
+	ÿ½ IF nachname.adressen LIKE "klam*" THEN CALL Fehler("","")
+	ÿ¡ÿJ(codeku%,codeku.GAkquiDat$)ÿp
+cfile$ÿÿ™
+ÿ™GAkquiDat$
+ÿ£codeku.GAkquiDat$
+ÿÉÿ`
+ÿÉÿ¥codeku%ÿ™GAkquiDat$ÿ£codeku.GAkquiDat$
+ÿØÿOÿB(GAkquiDat$)ÿcodeku.GAkquiDat$ÿcodeku%
+ÿ¡erledigt_Termin.GAkquiDat$ÿ"j"ÿp
+ÿÉÿ¥codeak.GAkquiDat$ÿ™"Aktionen"ÿ£codeak.aktionen
+ÿÿ™"outkal"
+Betreff.outkalÿVSNRPack3$(notiz.GAkquiDat$)
+Beschreibung.outkalÿVSNRPack3$(ergebnis.GAkquiDat$)ÿÿ(10)ÿÿ(13)ÿadr$
+Beginntam.outkalÿÿ(termin.GAkquiDat$,"0d.mm.yyyy")
+ÿ¡uhrzeit.GAkquiDat$ÿ
+1ÿp
+Beginntum.outkalÿ"09:00"
+ÿ^
+Beginntum.outkalÿÿ7(uhrzeit.GAkquiDat$,"hh:mm")
+ÿ’ÿ¡
+ÿ¡erdatum.GAkquiDat$ÿ0ÿp
+Erinnerungam.outkalÿÿ(erdatum.GAkquiDat$,"0d.mm.yyyy")
+Erinnerungum.outkalÿÿ7(erzeit.GAkquiDat$,"hh:mm")
+ÿ^
+Erinnerungam.outkalÿBeginntam.outkal
+Erinnerungum.outkalÿBeginntum.outkal
+ÿ’ÿ¡
+Kategorien.outkalÿVSNRPack3$(Bezeichnung.aktionen)
+ÿÌÿ™"outkal"
+ÿ’ÿ¡
+ÿÉÿ±ÿ™GAkquiDat$ÿ£codeku.GAkquiDat$
+ÿÙ
+ÿ™cfile$
+	ÿ’ÿ¡
+	a%ÿa%ÿ1
+	ÿÙ
+ 
+ ÿ"C:\"
+ tf$ÿÿ™
+ ÿ™"OUTLADR1"
+ Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+ Superbase.Converters.SBF.SourceFileÿ"OUTLADR1"
+ Superbase.Converters.SBF.Descendingÿ0
+ Superbase.Converters.SBF.Mergeÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.CSV.DestFormatÿ"Comma-separated values"
+ Superbase.Converters.CSV.DestFileÿ"outadr.CSV"
+ Superbase.Converters.CSV.UseLabelsÿÿ1
+ Superbase.Converters.CSV.ANSIConvertÿÿ1
+ Superbase.Converters.CSV.Convert(Superbase.Converters.SBF)
+ 
+ 
+ ÿ™"OUTKAL"
+ Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+ Superbase.Converters.SBF.SourceFileÿ"OUTKAL"
+ Superbase.Converters.SBF.Descendingÿ0
+ Superbase.Converters.SBF.Mergeÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.CSV.DestFormatÿ"Comma-separated values"
+ Superbase.Converters.CSV.DestFileÿ"outkal.CSV"
+ Superbase.Converters.CSV.UseLabelsÿÿ1
+ Superbase.Converters.CSV.ANSIConvertÿÿ1
+ Superbase.Converters.CSV.Convert(Superbase.Converters.SBF)
+ 
+ ÿ™tf$
+ ÿdir$
+ ÿÂ"Export nach Outlook beendet!","",0
+ t1$ÿ"Es wurden 2 Exportdateien erstellt. Die erstellten Dateien heiáen C:\outadr.csv (Adressen) und c:\outkal.csv (Termine).   Sie k”nnen die Dateien in Outlook importieren, in dem Sie in Outlook im Men "
+ t2$ÿ"Datei/Importieren-Exportieren/Import aus anderen Programmen/Kommagetrennte Werte (Window) / Kontakte (fr die Adressen) oder Kalender (fr die Termine) w„hlen und dort dann per Feldzuortnung die Felder verbinden!"
+ ÿƒFehler(t1$,t2$)
+ ÿ’ÿÿ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ÿÿT1KL$(VSNR$)
+ T1KL$ÿ""
+ ÿ›a%ÿ1ÿqÿ/(VSNR$)
+tC$ÿÿ,(VSNR$,a%,1)
+	x$ÿÿ+(tC$,1)
+	ÿÉÿæx$
+ÿæ"<"
+tC$ÿ"{"
+ÿæ">"
+tC$ÿ"}"
+ÿæ"&"
+tc$ÿ"u."
+ÿ½ CASE "~"
+ÿ½ tC$ = "-"
+	ÿ’ÿÉ
+tVSNR$ÿtVSNR$ÿtC$
+ ÿ±a%
+ T1KL$ÿtVSNR$
+ ÿ’ÿÿ
+ 
+ 
+ ÿ½ Export der aktuellen Adresse und zugeh”riger lebender und Fremdvertr„ge in eine XML-Ausgabedatei
+ ÿ½ z.B. zur šbergabe an Rendite 2000
+ÿÿADRExpOutl(codeku%)
+GADRDat$ÿ"ADRESSEN"
+GTelDat$ÿ"TELEFON"
+GAkquiDat$ÿ"AKQUISE"
+kunr%ÿcodeku%
+knr%ÿcodeku%
+codeku1%ÿkunr%
+
+ÿ×Telart$(ÿA(GTelDat$))
+ÿ×TelNum$(ÿA(GTelDat$))
+
+ÿ½ IF codeku% = 0 THEN 
+ÿ¡codeku%ÿ0ÿp
+ÿƒFehler("Tr„gt aktuelle Adresse und zugeh”rige Telefonnummern in Outlook ein!","")
+ÿ’ÿ¡
+ÿ½ REQUEST "Soll der Export durchgefhrt werden?","",130,req%
+req%ÿ1
+ÿ¡req%ÿ1ÿp
+expodir$ÿGMACodeDir$ÿ"OUTLOOK"
+ÿ³ÿ_ÿwe270720051
+ÿªÿexpodir$
+ÿwe270720052
+e270720051: 
+f%ÿÿ1
+e270720052: 
+expodir$ÿGMACodeDir$ÿ"OUTLOOK\"
+ÿ³ÿ_ÿwErrorHandler 
+ 
+ 
+ÿ¡ÿJ(expodir$ÿ"outlook.xml")ÿp
+	ÿexpodir$ÿ"*.xml"
+ÿ’ÿ¡
+datexe$ÿGMACodeDir$ÿ"OUTLOOK\KontaktMaker.exe"
+a%ÿÿƒ("_SBFileExists",datexe$)
+ÿ¡a%ÿÿ1ÿp
+	von$ÿ_netpath$ÿ"outlook\KontaktMaker.exe"
+	nach$ÿGMACodeDir$ÿ"OUTLOOK\KontaktMaker.exe"
+	a%ÿÿƒ("_SBFileCopy",von$,nach$)
+ 
+	von$ÿ_netpath$ÿ"outlook\Interop.Microsoft.Office.Core.dll"
+	nach$ÿGMACodeDir$ÿ"OUTLOOK\Interop.Microsoft.Office.Core.dll"
+	a%ÿÿƒ("_SBFileCopy",von$,nach$)
+ 
+	von$ÿ_netpath$ÿ"outlook\Interop.Outlook.dll"
+	nach$ÿGMACodeDir$ÿ"OUTLOOK\Interop.Outlook.dll"
+	a%ÿÿƒ("_SBFileCopy",von$,nach$)
+ÿ’ÿ¡
+ÿÉÿ`ÿ™"supervis"ÿ£codema.supervis
+ÿÉÿ¥GMACodema%ÿ™"supervis"ÿ£codema.supervis
+benutz$ÿOutlookname.supervis
+benupw$ÿOutlookpw.supervis
+ 
+ÿ´expodir$ÿ"outlook.xml"ÿ›ÿ¶
+ÿ{"<?xml version="ÿÿ(34)ÿ"1.0"ÿÿ(34)ÿ" encoding="ÿÿ(34)ÿ"ISO-8859-1"ÿÿ(34)ÿ"?> "
+
+ÿ{"<export>"
+ÿ{"<MODUS>EXPORT</MODUS>"
+ÿ{"<benutzer>"
+	ÿ{"  <name>"ÿbenutz$ÿ"</name>"
+	ÿ{"  <pw>"ÿbenupw$ÿ"</pw>"
+ÿ{"</benutzer>"
+ok%ÿÿ1
+j%ÿÿA(GADRDat$)
+s%ÿ0
+g%ÿ0
+locktest%ÿMNdisabled%("DATALOCK")
+ÿ¡codeku%ÿ0ÿpÿØok%ÿÿ1
+ÿ¡codeku%ÿ0ÿpÿØÿOÿB(GADRDat$)
+sok%ÿÿ1
+codeku1%ÿcodeku.GADRDat$
+ÿ¡codeku%ÿ0ÿpfiimak$ÿ"j"
+ÿ¡codeku%ÿ0ÿp
+	fiimak$ÿfiimmak.GADRDat$
+	s%ÿs%ÿ1
+	ÿÊÿËÿ(s%,",999999")ÿ" von "ÿÿ(j%,",999999")ÿ" gefunden "ÿÿ(g%,",999999")
+ÿ’ÿ¡
+ÿ¡fiimak$ÿ"j"ÿp
+sok%ÿ0
+ÿ’ÿ¡
+ÿ¡locktest%ÿp
+ÿ¡Sperre.ADRESSENÿ0ÿSperre.ADRESSENÿvcodema%ÿpsok%ÿ0
+ÿ’ÿ¡
+ÿ¡sok%ÿÿ1ÿp
+g%ÿg%ÿ1
+ÿ{"  <adresse>"
+	ÿ{"    <customerid>"ÿÿ(codeku.GADRDat$,"000000")ÿ"</customerid>"
+	ÿ{"    <anrede>"ÿÿåansi(T1KL$(anrede.GADRDat$))ÿ"</anrede>"
+	ÿ{"    <firma>"ÿÿåansi(T1KL$(Geburtsname.GADRDat$))ÿ"</firma>"
+	ÿ{"    <vorname>"ÿÿåansi(T1KL$(vorname.GADRDat$))ÿ"</vorname>"
+	ÿ{"    <nachname>"ÿÿåansi(T1KL$(nachname.GADRDat$))ÿ"</nachname>"
+	ÿ{"    <Strasse>"ÿÿåansi(T1KL$(Straáe.GADRDat$))ÿ"</Strasse>"
+	ÿ{"    <plz>"ÿT1KL$(plz.GADRDat$)ÿ"</plz>"
+	ÿ{"    <ort>"ÿÿåansi(T1KL$(ort.GADRDat$))ÿ"</ort>"
+	ÿ{"    <land>"ÿÿåansi(T1KL$(land.GADRDat$))ÿ"</land>"
+	ÿ¡geburtstag.GADRDat$ÿ
+1ÿp
+ÿ{"    <geburtstag>"ÿ"</geburtstag>"
+	ÿ^
+ÿ{"    <geburtstag>"ÿÿ(geburtstag.GADRDat$,"0d.mm.yyyy")ÿ"</geburtstag>"
+	ÿ’ÿ¡
+	ÿ{"    <beruf></beruf>"
+	ÿ{"    <hobby></hobby>"
+	ÿ{"    <notiz>"ÿÿåansi(T1KL$(notiz.GADRDat$))ÿ"</notiz>"
+ 
+	ÿ¡ÿJ(codeku1%,codeku.telefon)ÿp
+ÿ™"telefon"
+ÿ£codeku.telefon
+ÿÉÿ`ÿ™"telefon"ÿ£codeku.telefon
+ÿÉÿ¥codeku1%ÿ™"telefon"ÿ£codeku.telefon
+fon%ÿ0
+fax%ÿ0
+mobil%ÿ0
+mail%ÿ0
+www%ÿ0
+ÿÿTelart$(ÿA(GTelDat$),1)
+ÿÿTelNum$(ÿA(GTelDat$),1)
+ÿÿTelart$(ÿA(GTelDat$))
+ÿÿTelNum$(ÿA(GTelDat$))
+a%ÿ0
+ÿØÿOÿB(GTelDat$)ÿcodeku.GTelDat$ÿcodeku1%
+Telart$(a%)ÿT1KL$(Art.GTelDat$)
+TelNum$(a%)ÿT1KL$(Nummer.GTelDat$)
+a%ÿa%ÿ1
+ÿÉÿ±ÿ™GTelDat$
+ÿÙ
+ÿ›i%ÿa%ÿ1ÿq0ÿkÿ1
+ÿ¡(Telart$(i%)ÿ"fon*"ÿTelart$(i%)ÿ"*fon*")ÿfon%ÿ0ÿp
+ÿ{"    <telefon>"ÿTelNum$(i%)ÿ"</telefon>"
+fon%ÿ1
+ÿ’ÿ¡
+ÿ¡(Telart$(i%)ÿ"fax*"ÿTelart$(i%)ÿ"*fax*")ÿfax%ÿ0ÿp
+ÿ{"    <fax>"ÿTelNum$(i%)ÿ"</fax>"
+fax%ÿ1
+ÿ’ÿ¡
+ÿ¡(Telart$(i%)ÿ"funk*"ÿTelart$(i%)ÿ"*funk*"ÿTelart$(i%)ÿ"hand*"ÿTelart$(i%)ÿ"*hand*"ÿTelart$(i%)ÿ"mobi*"ÿTelart$(i%)ÿ"*mobi*")ÿmobil%ÿ0ÿp
+ÿ{"    <mobil>"ÿTelNum$(i%)ÿ"</mobil>"
+mobil%ÿ1
+ÿ’ÿ¡
+ÿ¡(Telart$(i%)ÿ"mail*"ÿTelart$(i%)ÿ"*mail*")ÿmail%ÿ0ÿp
+ÿ{"    <email>"ÿTelNum$(i%)ÿ"</email>"
+mail%ÿ1
+ÿ’ÿ¡
+ÿ¡(Telart$(i%)ÿ"www*"ÿTelart$(i%)ÿ"*www*")ÿwww%ÿ0ÿp
+ÿ{"    <www>"ÿTelNum$(i%)ÿ"</www>"
+www%ÿ1
+ÿ’ÿ¡
+ÿ±i%
+ÿ¡fon%ÿ0ÿpÿ{"  <telefon>"ÿ"</telefon>"
+ÿ¡fax%ÿ0ÿpÿ{"  <fax>"ÿ"</fax>"
+ÿ¡mobil%ÿ0ÿpÿ{"  <mobil>"ÿ"</mobil>"
+ÿ¡mail%ÿ0ÿpÿ{"  <email>"ÿ"</email>"
+ÿ¡www%ÿ0ÿpÿ{" <www>"ÿ"</www>"
+ 
+ÿ{"<TelefonfuerNotiz>"
+ 
+ÿ™"telefon"
+ÿ£codeku.telefon
+ÿÉÿ`ÿ™"telefon"ÿ£codeku.telefon
+ÿÉÿ¥codeku1%ÿ™"telefon"ÿ£codeku.telefon
+ÿÿTelart$(ÿA(GTelDat$),1)
+ÿÿTelart$(ÿA(GTelDat$))
+ÿÿTelNum$(ÿA(GTelDat$),1)
+ÿÿTelNum$(ÿA(GTelDat$))
+a%ÿ0
+ÿØÿOÿB(GTelDat$)ÿcodeku.GTelDat$ÿcodeku1%
+Telart$(a%)ÿT1KL$(Art.GTelDat$)
+TelNum$(a%)ÿT1KL$(Nummer.GTelDat$ÿ"  ("ÿkart1.GTeldat$ÿ"/"ÿKart2.Gteldat$ÿ")")
+a%ÿa%ÿ1
+ÿÉÿ±ÿ™GTelDat$
+ÿÙ
+ÿ›i%ÿa%ÿ1ÿq0ÿkÿ1
+ÿ{ÿåansi(Telart$(i%)ÿ" / "ÿTelNum$(i%))
+ÿ±i%
+ÿ{"Adressstatus: "ÿÿ>(ÿåansi(T1KL$(ADRStatus.GADRDat$)))
+ÿ{"Adressgruppe: "ÿÿ>(ÿåansi(T1KL$(ADRGruppe.GADRDat$)))
+ÿ{"Stichworte: "ÿÿ>(ÿåansi(T1KL$(Stichwort.GADRDat$)))
+ 
+ÿ{"</TelefonfuerNotiz>"
+ 
+	ÿ^
+ÿ{"    <telefon>"ÿ"</telefon>"
+ÿ{"    <fax>"ÿ"</fax>"
+ÿ{"    <mobil>"ÿ"</mobil>"
+ÿ{"    <email>"ÿ"</email>"
+ÿ{"    <www>"ÿ"</www>"
+ÿ{"<TelefonfuerNotiz>"
+ÿ{"</TelefonfuerNotiz>"
+	ÿ’ÿ¡
+ 
+ÿ{"  </adresse>"
+ÿ’ÿ¡
+ÿ¡codeku%ÿ0ÿpok%ÿ0
+endaex290720051: 
+ÿÉÿ±ÿ™GADRDat$
+ÿÙ
+ÿ{"</export>"
+ÿ†ÿ¶
+ 
+inidat$ÿGMACodeDir$ÿ"OUTLOOK\ergebnis.ini"
+expodir$ÿGMACodeDir$ÿ"OUTLOOK"
+ÿexpodir$
+a%ÿÿƒ("ShellExecute",0,"open",datexe$,"","",1)
+
+i%ÿ0
+ok%ÿ0
+ÿØÿOÿJ(inidat$)ÿok%ÿ0
+	ÿÏÿ›1
+	ÿ¡ÿJ(inidat$)ÿpok%ÿ1
+	i%ÿi%ÿ1
+	ÿ¡i%ÿ10ÿp
+ÿÂ"Der Transfer wurde noch nicht abgeschlossen!","Weitere 10 Sekunden warten?",130,req%
+ÿ¡req%ÿ1ÿp
+i%ÿ0
+ÿ^
+ok%ÿÿ1
+ÿ’ÿ¡
+	ÿ’ÿ¡
+ÿÙ
+ÿ¡ÿJ(inidat$)ÿp
+	fehler$ÿReadDesti$("IMPORT","FEHLER",inidat$)
+	anz$ÿReadDesti$("IMPORT","Anzahl",inidat$)
+	ÿ¡Fehler$ÿ""ÿfehler$ÿ"leer"ÿp
+ÿ¡codeku1%ÿ0ÿpÿÂ"Export nach Outlook beendet!","",2
+ÿ¡codeku%ÿ0ÿp
+ÿ½ REQUEST "Sollen auch die zur Adresse geh”renden Termine exportiert werden?","",135,req%
+optemail%ÿ1
+ÿ×dlg1 ÿUDialog
+ÿ×control ÿUDialogControl 
+ 
+Superbase.Dialogs.Add("Dialogname")
+ÿÊdlg1 ÿSuperbase.Dialogs.Dialogname
+dlg1.Move(0,0,150,73)
+dlg1.Captionÿ"Termine exportieren?"
+dlg1.FontNameÿ"MS Sans Serif"
+dlg1.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg1.Add("DialogFrame1","DialogFrame")
+control.Move(2,8,149,44)
+control.Captionÿ" W„hlen Sie eine Option "
+ 
+ÿÊcontrol ÿdlg1.Add("DialogOptionButton1","DialogOptionButton")
+control.Move(6,20,114,10)
+control.Captionÿ"nur NICHT-erledigte Termine"
+control.Bind("optemail%")
+control.ValueOnÿ1
+ 
+ÿÊcontrol ÿdlg1.Add("DialogOptionButton2","DialogOptionButton")
+control.Move(6,32,114,9)
+control.Captionÿ"alle Termine"
+control.Bind("optemail%")
+control.ValueOnÿ0
+ 
+ 
+ 
+ÿÊcontrol ÿdlg1.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(39,54,43,16)
+control.Defaultÿ1
+control.Captionÿ"OK"
+control.ReturnValueÿ1
+ 
+ÿÊcontrol ÿdlg1.Add("DialogCommandButton2","DialogCommandButton")
+control.Move(85,54,42,16)
+control.Captionÿ"Abbruch"
+control.ReturnValueÿ0
+ 
+ÿñ"Dialogname",req%
+ÿ¾ÿñ"Dialogname"
+ÿ¡req%ÿ1ÿp
+ÿƒTerAExpOutl(codeku%,optemail%)
+ÿ’ÿ¡
+ÿ’ÿ¡
+	ÿ^
+ÿƒFehler ("Beim Export nach Outlook ist ein Fehler aufgetreten!","Fehlerkennung: "ÿfehler$)
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler ("Export wurde abgebrochen","")
+ÿ’ÿ¡
+ÿ_netpath$
+ ÿ’ÿÿ
+ 
+ ÿ½ Export des aktuellen Termins
+ ÿ½ z.B. zur šbergabe an Outlook
+ ÿ½ par% = 0 - alle Termine
+ ÿ½ par% = 1 - nur nichterledigte Termine
+
+ÿÿTerExpOutl(codeaq%,par%)
+GADRDat$ÿ"ADRESSEN"
+GTelDat$ÿ"TELEFON"
+GAkquiDat$ÿ"AKQUISE"
+codeku%ÿcodeku.GAkquiDat$
+codeku1%ÿcodeku%
+kunr%ÿcodeku%
+knr%ÿcodeku%
+codeku1%ÿkunr%
+ÿƒFehler("Tr„gt den aktuellen Termin in Outlook ein!","")
+ÿ½ REQUEST "Soll der Export durchgefhrt werden?","",130,req%
+req%ÿ1
+ÿ¡req%ÿ1ÿp
+expodir$ÿGMACodeDir$ÿ"OUTLOOK"
+ÿ³ÿ_ÿwt270720051
+ÿªÿexpodir$
+ÿwt270720052
+t270720051: 
+f%ÿÿ1
+t270720052: 
+expodir$ÿGMACodeDir$ÿ"OUTLOOK\"
+ÿ³ÿ_ÿwErrorHandler 
+ 
+ 
+ÿ¡ÿJ(expodir$ÿ"Termine.xml")ÿp
+	ÿexpodir$ÿ"*.xml"
+ÿ’ÿ¡
+datexe$ÿGMACodeDir$ÿ"OUTLOOK\TerminMaker.exe"
+a%ÿÿƒ("_SBFileExists",datexe$)
+ 
+nach$ÿGMACodeDir$ÿ"OUTLOOK\KontaktMaker.exe"
+b%ÿÿƒ("_SBFileExists",nach$)
+ 
+nach$ÿGMACodeDir$ÿ"OUTLOOK\Interop.Microsoft.Office.Core.dll"
+c%ÿÿƒ("_SBFileExists",nach$)
+ 
+nach$ÿGMACodeDir$ÿ"OUTLOOK\Interop.Outlook.dll"
+d%ÿÿƒ("_SBFileExists",nach$)
+
+ÿ¡a%ÿÿ1ÿb%ÿÿ1ÿc%ÿÿ1ÿd%ÿÿ1ÿp
+	ÿ³ÿ_ÿww010820052
+	ÿGMACodeDir$ÿ"OUTLOOK\*.*"
+w010820052: 
+	ÿ³ÿ_ÿwErrorHandler
+ 
+	von$ÿ_netpath$ÿ"outlook\KontaktMaker.exe"
+	nach$ÿGMACodeDir$ÿ"OUTLOOK\KontaktMaker.exe"
+	a%ÿÿƒ("_SBFileCopy",von$,nach$)
+ 
+	von$ÿ_netpath$ÿ"outlook\TerminMaker.exe"
+	nach$ÿGMACodeDir$ÿ"OUTLOOK\TerminMaker.exe"
+	a%ÿÿƒ("_SBFileCopy",von$,nach$)
+
+ 
+	von$ÿ_netpath$ÿ"outlook\Interop.Microsoft.Office.Core.dll"
+	nach$ÿGMACodeDir$ÿ"OUTLOOK\Interop.Microsoft.Office.Core.dll"
+	a%ÿÿƒ("_SBFileCopy",von$,nach$)
+ 
+	von$ÿ_netpath$ÿ"outlook\Interop.Outlook.dll"
+	nach$ÿGMACodeDir$ÿ"OUTLOOK\Interop.Outlook.dll"
+	a%ÿÿƒ("_SBFileCopy",von$,nach$)
+ÿ’ÿ¡
+
+
+ÿÉÿ`ÿ™"supervis"ÿ£codema.supervis
+ÿÉÿ¥GMACodema%ÿ™"supervis"ÿ£codema.supervis
+benutz$ÿOutlookname.supervis
+benupw$ÿOutlookpw.supervis
+ÿ×Telart$(ÿA(GTelDat$))
+ÿ×TelNum$(ÿA(GTelDat$))
+ÿ×Aktion$(ÿA("Aktionen")ÿ1)
+ÿ×Aktiongew$(ÿA("Aktionen")ÿ1)
+ÿ×Mitarb$(ÿA("Supervis")ÿ1)
+ÿ×Mitarbgew$(ÿA("Supervis")ÿ1)
+ÿßÿe
+cfile$ÿÿ™
+ÿ™"aktionen"
+ÿÉÿ`
+a%ÿ1
+Aktion$(0)ÿ"<alle Aktionen>"
+ÿØÿOÿB("Aktionen")
+	ÿ¡Bezeichnung.aktionenÿ""ÿp
+Aktion$(a%)ÿBezeichnung.aktionenÿÿ'(100)ÿÿ(codeak.aktionen,"000000")
+a%ÿa%ÿ1
+	ÿ’ÿ¡
+	ÿÉÿ±ÿ™"Aktionen"
+ÿÙ
+ÿ™"supervis"
+ÿÉÿ`
+mitarb$(0)ÿ"<alle Mitarbeiter>"
+a%ÿ1
+ÿØÿOÿB("supervis")
+	mitarb$(a%)ÿName.supervisÿÿ'(100)ÿÿ(codema.supervis,"000000")
+	a%ÿa%ÿ1
+	ÿÉÿ±ÿ™"supervis"
+ÿÙ
+ÿ™cfile$
+ÿ´expodir$ÿ"Termine.xml"ÿ›ÿ¶
+ÿ{"<?xml version="ÿÿ(34)ÿ"1.0"ÿÿ(34)ÿ" encoding="ÿÿ(34)ÿ"ISO-8859-1"ÿÿ(34)ÿ"?> "
+
+ÿ{"<export>"
+ÿ{"<MODUS>EXPORT</MODUS>"
+ÿ{"<benutzer>"
+	ÿ{"  <name>"ÿbenutz$ÿ"</name>"
+	ÿ{"  <pw>"ÿbenupw$ÿ"</pw>"
+ÿ{"</benutzer>"
+locktest%ÿMNdisabled%("DATALOCK")
+ÿ™GAKquiDat$
+ÿ¡codeaq%ÿ0ÿp
+ÿ£codeaq.GAKquiDat$
+ÿÉÿ`ÿ™GAKquiDat$
+ÿ’ÿ¡
+i%ÿ0
+j%ÿÿA(GAKquiDat$)
+g%ÿ0
+ÿ¡codeaq%ÿ0ÿp
+optemail%ÿ1
+ 
+
+ÿ×dlg ÿUDialog
+ÿ×control ÿUDialogControl
+ 
+Superbase.Dialogs.Add("Dialogname")
+ÿÊdlg ÿSuperbase.Dialogs.Dialogname
+dlg.Move(0,0,406,222)
+dlg.Captionÿ"Termine exportieren"
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel1","DialogLabel")
+control.Move(130,4,199,12)
+control.Captionÿ"Aktionen"
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame1","DialogFrame")
+control.Move(0,6,123,72)
+control.Captionÿ"W„hlen Sie eine Option"
+ 
+ÿÊcontrol ÿdlg.Add("DialogOptionButton1","DialogOptionButton")
+control.Move(5,24,108,11)
+control.Captionÿ"nur NICHT-erledigte Termine"
+control.Bind("optemail%")
+control.ValueOnÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogOptionButton2","DialogOptionButton")
+control.Move(5,44,67,13)
+control.Captionÿ"alle Termine"
+control.Bind("optemail%")
+control.ValueOnÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogListBox1","DialogListBox")
+control.Move(129,16,269,81)
+control.MultiSelectÿ1
+control.Sortedÿ1
+control.ScrollBarsÿ2
+control.Bind("Aktion$","Aktiongew$")
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel3","DialogLabel")
+control.Move(8,84,43,10)
+control.Captionÿ"ab Datum:"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox1","DialogTextBox")
+control.Move(7,97,61,11)
+control.MaxLengthÿ10
+control.TextBindingÿ"von$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel2","DialogLabel")
+control.Move(130,102,199,11)
+control.Captionÿ"Mitarbeiter"
+ 
+ÿÊcontrol ÿdlg.Add("DialogListBox2","DialogListBox")
+control.Move(129,113,269,74)
+control.MultiSelectÿ1
+control.Sortedÿ1
+control.ScrollBarsÿ2
+control.Bind("Mitarb$","Mitarbgew$")
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(122,201,55,15)
+control.Defaultÿ1
+control.Captionÿ"&OK"
+control.ReturnValueÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton2","DialogCommandButton")
+control.Move(178,201,56,15)
+control.Captionÿ"&Abbruch"
+control.ReturnValueÿ0
+
+ÿñ"Dialogname",req%
+ÿ¾ÿñ"Dialogname"
+
+ÿ’ÿ¡
+ÿ¡codeaq%ÿ0ÿpok%ÿÿ1
+ÿ¡codeaq%ÿ0ÿpÿØok%ÿÿ1
+ÿ¡codeaq%ÿ0ÿpÿØÿOÿB(GAKquiDat$)
+sok%ÿÿ1
+codeku%ÿcodeku.GAkquiDat$
+ÿÉÿ`ÿ™GADRDat$ÿ£codeku.GADRDat$
+ÿÉÿ¥codeku%ÿ™GADRDat$ÿ£codeku.GADRDat$
+codeku1%ÿcodeku%
+ÿ¡locktest%ÿp
+	ÿ¡Sperre.ADRESSENÿ0ÿSperre.ADRESSENÿvcodema%ÿpsok%ÿ0
+ÿ’ÿ¡
+ÿ¡codeaq%ÿ0ÿpfiimak$ÿ"j"
+ÿ¡codeaq%ÿ0ÿp
+	fiimak$ÿfiimmak.GADRDat$
+	i%ÿi%ÿ1
+	ÿÊÿËÿ(i%,",999999")ÿ" von "ÿÿ(j%,",999999")ÿ" gefunden "ÿÿ(g%,",999999")
+ÿ’ÿ¡
+ÿ¡fiimak$ÿ"j"ÿp
+sok%ÿ0
+ÿ’ÿ¡
+ÿ¡par%ÿ1ÿp
+ÿ¡erledigt_Termin.GAkquiDat$ÿ"j"ÿpsok%ÿ0
+ÿ’ÿ¡
+ÿ¡sok%ÿÿ1ÿp
+g%ÿg%ÿ1
+ÿ{"<termine>"
+ÿ{"<customerid>"ÿ(codeaq.GAkquiDat$,"000000")ÿ"</customerid>"
+ÿ¡datum.GAkquiDat$ÿ0ÿp
+	ÿ{"<datum>"ÿÿ(datum.GAkquiDat$,"0d.mm.yyyy")ÿ"</datum>"
+ÿ^
+	ÿ{"<datum></datum>"
+ÿ’ÿ¡
+ 
+ÿ¡termin.GAkquiDat$ÿ0ÿp
+	ÿ¡ErDatum.GAkquiDat$ÿ0ÿErDatum.GAkquiDat$ÿtermin.GAkquiDat$ÿp
+ÿ{"<termin>"ÿÿ(termin.GAkquiDat$,"0d.mm.yyyy")ÿ"</termin>"
+	ÿ^
+ÿ{"<termin>"ÿÿ(termin.GAkquiDat$,"0d.mm.yyyy")ÿ"</termin>"
+	ÿ’ÿ¡
+ÿ^
+	ÿ¡ErDatum.GAkquiDat$ÿ0ÿp
+ÿ{"<termin>"ÿÿ(ErDatum.GAkquiDat$,"0d.mm.yyyy")ÿ"</termin>"
+	ÿ^
+ÿ{"<termin></termin>"
+	ÿ’ÿ¡
+ÿ’ÿ¡
+
+ÿ¡uhrzeit.GAkquiDat$ÿ0ÿp
+	ÿ{"<uhrzeit>"ÿÿ7(uhrzeit.GAkquiDat$,"hh:mm")ÿ"</uhrzeit>"
+ÿ^
+	ÿ{"<uhrzeit>00:00</uhrzeit>"
+ÿ’ÿ¡
+ 
+ÿ¡ErDatum.GAkquiDat$ÿ0ÿp
+	ÿ¡ErDatum.GAkquiDat$ÿtermin.GAkquiDat$ÿp
+ÿ{"<awvdatum>"ÿÿ(termin.GAkquiDat$,"0d.mm.yyyy")ÿ"</awvdatum>"
+	ÿ^
+ÿ{"<awvdatum>"ÿÿ(ErDatum.GAkquiDat$,"0d.mm.yyyy")ÿ"</awvdatum>"
+	ÿ’ÿ¡
+ÿ^
+	ÿ{"<awvdatum></awvdatum>"
+ÿ’ÿ¡
+
+
+
+ÿ¡Erzeit.GAkquiDat$ÿ0ÿp
+	ÿ{"<awvzeit>"ÿÿ7(Erzeit.GAkquiDat$,"hh:mm")ÿ"</awvzeit>"
+ÿ^
+	ÿ{"<awvzeit>09:00</awvzeit>"
+ÿ’ÿ¡
+ 
+ÿ¡Dauer.GAkquiDat$ÿ0ÿp
+	ÿ{"<dauer>"ÿÿ7(dauer.GAkquiDat$,"hh:mm")ÿ"</dauer>"
+ÿ^
+	ÿ{"<dauer>00:00</dauer>"
+ÿ’ÿ¡
+ÿ{"<erledigt>"ÿerledigt_Termin.GAkquiDat$ÿ"</erledigt>"
+ÿ{"<notiz>"ÿÿåansi(T1KL$(Notiz.GAkquiDat$))ÿ"</notiz>"
+ÿ{"<ergebnis>"ÿÿåansi(T1KL$(ergebnis.GAkquiDat$))ÿ"</ergebnis>"
+ 
+ 
+ÿ{"  <adresse>"
+ 
+	ÿ{ÿåansi(T1KL$(anrede.GADRDat$))
+	ÿ{ÿåansi(T1KL$(Geburtsname.GADRDat$))
+	ÿ{ÿåansi(T1KL$(vorname.GADRDat$))
+	ÿ{ÿåansi(T1KL$(nachname.GADRDat$))
+	ÿ{ÿåansi(T1KL$(Straáe.GADRDat$))
+	ÿ{T1KL$(plz.GADRDat$)
+	ÿ{ÿåansi(T1KL$(ort.GADRDat$))
+	ÿ{ÿåansi(T1KL$(land.GADRDat$))
+	ÿ¡geburtstag.GADRDat$ÿ
+1ÿp
+	ÿ^
+ÿ{"Geburtstag:"ÿÿ(geburtstag.GADRDat$,"0d.mm.yyyy")
+	ÿ’ÿ¡
+	ÿ¡ÿJ(codeku1%,codeku.telefon)ÿp
+ 
+ÿ™"telefon"
+ÿ£codeku.telefon
+ÿÉÿ`ÿ™"telefon"ÿ£codeku.telefon
+ÿÉÿ¥codeku1%ÿ™"telefon"ÿ£codeku.telefon
+ÿÿTelart$(ÿA(GTelDat$),1)
+ÿÿTelart$(ÿA(GTelDat$))
+ÿÿTelNum$(ÿA(GTelDat$),1)
+ÿÿTelNum$(ÿA(GTelDat$))
+a%ÿ0
+ÿØÿOÿB(GTelDat$)ÿcodeku.GTelDat$ÿcodeku1%
+Telart$(a%)ÿT1KL$(Art.GTelDat$)
+TelNum$(a%)ÿT1KL$(Nummer.GTelDat$ÿ"  ("ÿkart1.GTeldat$ÿ"/"ÿKart2.Gteldat$ÿ")")
+a%ÿa%ÿ1
+ÿÉÿ±ÿ™GTelDat$
+ÿÙ
+ÿ›i%ÿa%ÿ1ÿq0ÿkÿ1
+ÿ{ÿåansi(Telart$(i%)ÿ" / "ÿTelNum$(i%))
+ÿ±i%
+	ÿ’ÿ¡
+ÿ{"  </adresse>"
+ÿ{"</termine>"
+ÿ{""
+ÿ’ÿ¡
+ÿ¡codeaq%ÿ0ÿpok%ÿ0
+ÿ™GAKquiDat$
+ÿÉÿ±ÿ™GAKquiDat$
+ÿÙ
+ÿ{"</export>"
+ÿ†ÿ¶
+ÿ½ CALL Fehler("Fertisch","Terminexport")
+ÿßÿe
+inidat$ÿGMACodeDir$ÿ"OUTLOOK\ergebnis.ini"
+expodir$ÿGMACodeDir$ÿ"OUTLOOK"
+ÿexpodir$
+a%ÿÿƒ("ShellExecute",0,"open",datexe$,"","",1)
+ÿÊÿË"Bitte warten, der/die Termine werden in Outlook eingetragen"
+i%ÿ0
+ok%ÿ0
+ÿØÿOÿJ(inidat$)ÿok%ÿ0
+	ÿÏÿ›1
+	ÿ¡ÿJ(inidat$)ÿpok%ÿ1
+	i%ÿi%ÿ1
+	ÿ¡i%ÿ10ÿp
+ÿÂ"Der Transfer wurde noch nicht abgeschlossen!","Weitere 10 Sekunden warten?",130,req%
+ÿ¡req%ÿ1ÿp
+i%ÿ0
+ÿ^
+ok%ÿÿ1
+ÿ’ÿ¡
+	ÿ’ÿ¡
+ÿÙ
+ÿ¡ÿJ(inidat$)ÿp
+	fehler$ÿReadDesti$("IMPORT","FEHLER",inidat$)
+	anz$ÿReadDesti$("IMPORT","Anzahl",inidat$)
+	ÿ¡Fehler$ÿ""ÿfehler$ÿ"leer"ÿp
+ÿÂ"Export nach Outlook beendet!","",2
+	ÿ^
+ÿƒFehler ("Beim Export nach Outlook ist ein Fehler aufgetreten!","Fehlerkennung: "ÿfehler$)
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler ("Export wurde abgebrochen","")
+ÿ’ÿ¡
+ÿ_netpath$
+ÿßÿ³
+ ÿ’ÿÿ
+ 
+ ÿ½ die zu einer Adresse geh”renden Termine exportieren
+ ÿ½ par% = 0 - alle Termine
+ ÿ½ par% = 1 - nur nichterledigte Termine 
+ÿÿTerAExpOutl(codeku%,par%)
+GADRDat$ÿ"ADRESSEN"
+GTelDat$ÿ"TELEFON"
+GAkquiDat$ÿ"AKQUISE"
+codeku1%ÿcodeku%
+kunr%ÿcodeku%
+knr%ÿcodeku%
+codeku1%ÿkunr%
+ÿÉÿ`ÿ™GADRDat$ÿ£codeku.GADRDat$
+ÿÉÿ¥codeku%ÿ™GADRDat$ÿ£codeku.GADRDat$
+ÿ½ CALL Fehler("Tr„gt den aktuellen Termin in Outlook ein!","")
+ÿ½ REQUEST "Soll der Export durchgefhrt werden?","",130,req%
+req%ÿ1
+ÿ¡req%ÿ1ÿp
+expodir$ÿGMACodeDir$ÿ"OUTLOOK"
+ÿ³ÿ_ÿwta270720051
+ÿªÿexpodir$
+ÿwta270720052
+ta270720051: 
+f%ÿÿ1
+ta270720052: 
+expodir$ÿGMACodeDir$ÿ"OUTLOOK\"
+ÿ³ÿ_ÿwErrorHandler 
+ 
+ 
+ÿ¡ÿJ(expodir$ÿ"Termine.xml")ÿp
+	ÿexpodir$ÿ"*.xml"
+ÿ’ÿ¡
+datexe$ÿGMACodeDir$ÿ"OUTLOOK\TerminMaker.exe"
+a%ÿÿƒ("_SBFileExists",datexe$)
+ 
+nach$ÿGMACodeDir$ÿ"OUTLOOK\KontaktMaker.exe"
+b%ÿÿƒ("_SBFileExists",nach$)
+ 
+nach$ÿGMACodeDir$ÿ"OUTLOOK\Interop.Microsoft.Office.Core.dll"
+c%ÿÿƒ("_SBFileExists",nach$)
+ 
+nach$ÿGMACodeDir$ÿ"OUTLOOK\Interop.Outlook.dll"
+d%ÿÿƒ("_SBFileExists",nach$)
+
+ÿ¡a%ÿÿ1ÿb%ÿÿ1ÿc%ÿÿ1ÿd%ÿÿ1ÿp
+	ÿ³ÿ_ÿww010820053
+	ÿGMACodeDir$ÿ"OUTLOOK\*.*"
+w010820053: 
+	ÿ³ÿ_ÿwErrorHandler
+ 
+	von$ÿ_netpath$ÿ"outlook\KontaktMaker.exe"
+	nach$ÿGMACodeDir$ÿ"OUTLOOK\KontaktMaker.exe"
+	a%ÿÿƒ("_SBFileCopy",von$,nach$)
+ 
+	von$ÿ_netpath$ÿ"outlook\TerminMaker.exe"
+	nach$ÿGMACodeDir$ÿ"OUTLOOK\TerminMaker.exe"
+	a%ÿÿƒ("_SBFileCopy",von$,nach$)
+
+ 
+	von$ÿ_netpath$ÿ"outlook\Interop.Microsoft.Office.Core.dll"
+	nach$ÿGMACodeDir$ÿ"OUTLOOK\Interop.Microsoft.Office.Core.dll"
+	a%ÿÿƒ("_SBFileCopy",von$,nach$)
+ 
+	von$ÿ_netpath$ÿ"outlook\Interop.Outlook.dll"
+	nach$ÿGMACodeDir$ÿ"OUTLOOK\Interop.Outlook.dll"
+	a%ÿÿƒ("_SBFileCopy",von$,nach$)
+ÿ’ÿ¡
+ 
+ 
+ÿÉÿ`ÿ™"supervis"ÿ£codema.supervis
+ÿÉÿ¥GMACodema%ÿ™"supervis"ÿ£codema.supervis
+benutz$ÿOutlookname.supervis
+benupw$ÿOutlookpw.supervis
+ÿ×Telart$(ÿA(GTelDat$))
+ÿ×TelNum$(ÿA(GTelDat$))
+ÿßÿe
+ÿ´expodir$ÿ"Termine.xml"ÿ›ÿ¶
+ÿ{"<?xml version="ÿÿ(34)ÿ"1.0"ÿÿ(34)ÿ" encoding="ÿÿ(34)ÿ"ISO-8859-1"ÿÿ(34)ÿ"?> "
+
+ÿ{"<export>"
+ÿ{"<MODUS>EXPORT</MODUS>"
+ÿ{"<benutzer>"
+	ÿ{"  <name>"ÿbenutz$ÿ"</name>"
+	ÿ{"  <pw>"ÿbenupw$ÿ"</pw>"
+ÿ{"</benutzer>"
+ÿ™GAKquiDat$
+ÿ£codeku.GAKquiDat$
+ÿÉÿ`ÿ™GAKquiDat$ÿ£codeku.GAKquiDat$
+ÿÉÿ¥codeku1%ÿ™GAKquiDat$ÿ£codeku.GAKquiDat$
+ÿØcodeku.GAKquiDat$ÿcodeku1%
+fiimak$ÿ"j"
+sok%ÿÿ1
+ÿ¡fiimak$ÿ"j"ÿp
+sok%ÿ0
+ÿ’ÿ¡
+ÿ¡par%ÿ1ÿp
+ÿ¡erledigt_Termin.GAkquiDat$ÿ"j"ÿpsok%ÿ0
+ÿ’ÿ¡
+ÿ¡sok%ÿÿ1ÿp
+ÿ{"<termine>"
+ÿ{"<customerid>"ÿ(codeaq.GAkquiDat$,"000000")ÿ"</customerid>"
+ÿ¡datum.GAkquiDat$ÿ0ÿp
+	ÿ{"<datum>"ÿÿ(datum.GAkquiDat$,"0d.mm.yyyy")ÿ"</datum>"
+ÿ^
+	ÿ{"<datum></datum>"
+ÿ’ÿ¡
+ 
+ÿ¡termin.GAkquiDat$ÿ0ÿp
+	ÿ¡ErDatum.GAkquiDat$ÿ0ÿErDatum.GAkquiDat$ÿtermin.GAkquiDat$ÿp
+ÿ{"<termin>"ÿÿ(termin.GAkquiDat$,"0d.mm.yyyy")ÿ"</termin>"
+	ÿ^
+ÿ{"<termin>"ÿÿ(termin.GAkquiDat$,"0d.mm.yyyy")ÿ"</termin>"
+	ÿ’ÿ¡
+ÿ^
+	ÿ¡ErDatum.GAkquiDat$ÿ0ÿp
+ÿ{"<termin>"ÿÿ(ErDatum.GAkquiDat$,"0d.mm.yyyy")ÿ"</termin>"
+	ÿ^
+ÿ{"<termin></termin>"
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ÿ¡uhrzeit.GAkquiDat$ÿ0ÿp
+	ÿ{"<uhrzeit>"ÿÿ7(uhrzeit.GAkquiDat$,"hh:mm")ÿ"</uhrzeit>"
+ÿ^
+	ÿ{"<uhrzeit>00:00</uhrzeit>"
+ÿ’ÿ¡
+ 
+ÿ¡ErDatum.GAkquiDat$ÿ0ÿp
+	ÿ¡ErDatum.GAkquiDat$ÿtermin.GAkquiDat$ÿp
+ÿ{"<awvdatum>"ÿÿ(termin.GAkquiDat$,"0d.mm.yyyy")ÿ"</awvdatum>"
+	ÿ^
+ÿ{"<awvdatum>"ÿÿ(ErDatum.GAkquiDat$,"0d.mm.yyyy")ÿ"</awvdatum>"
+	ÿ’ÿ¡
+ÿ^
+	ÿ{"<awvdatum></awvdatum>"
+ÿ’ÿ¡
+
+ÿ¡Erzeit.GAkquiDat$ÿ0ÿp
+	ÿ{"<awvzeit>"ÿÿ7(Erzeit.GAkquiDat$,"hh:mm")ÿ"</awvzeit>"
+ÿ^
+	ÿ{"<awvzeit>00:00</awvzeit>"
+ÿ’ÿ¡
+ 
+ÿ¡Dauer.GAkquiDat$ÿ0ÿp
+	ÿ{"<dauer>"ÿÿ7(dauer.GAkquiDat$,"hh:mm")ÿ"</dauer>"
+ÿ^
+	ÿ{"<dauer>00:00</dauer>"
+ÿ’ÿ¡
+ÿ{"<erledigt>"ÿerledigt_Termin.GAkquiDat$ÿ"</erledigt>"
+ÿ{"<notiz>"ÿÿåansi(T1KL$(Notiz.GAkquiDat$))ÿ"</notiz>"
+ÿ{"<ergebnis>"ÿÿåansi(T1KL$(ergebnis.GAkquiDat$))ÿ"</ergebnis>"
+ 
+ 
+ÿ{"  <adresse>"
+ 
+	ÿ{ÿåansi(T1KL$(anrede.GADRDat$))
+	ÿ{ÿåansi(T1KL$(Geburtsname.GADRDat$))
+	ÿ{ÿåansi(T1KL$(vorname.GADRDat$))
+	ÿ{ÿåansi(T1KL$(nachname.GADRDat$))
+	ÿ{ÿåansi(T1KL$(Straáe.GADRDat$))
+	ÿ{T1KL$(plz.GADRDat$)
+	ÿ{ÿåansi(T1KL$(ort.GADRDat$))
+	ÿ{ÿåansi(T1KL$(land.GADRDat$))
+	ÿ¡geburtstag.GADRDat$ÿ
+1ÿp
+	ÿ^
+ÿ{"Geburtstag:"ÿÿ(geburtstag.GADRDat$,"0d.mm.yyyy")
+	ÿ’ÿ¡
+	ÿ¡ÿJ(codeku1%,codeku.telefon)ÿp
+ 
+ÿ™"telefon"
+ÿ£codeku.telefon
+ÿÉÿ`ÿ™"telefon"ÿ£codeku.telefon
+ÿÉÿ¥codeku1%ÿ™"telefon"ÿ£codeku.telefon
+ÿÿTelart$(ÿA(GTelDat$),1)
+ÿÿTelart$(ÿA(GTelDat$))
+ÿÿTelNum$(ÿA(GTelDat$),1)
+ÿÿTelNum$(ÿA(GTelDat$))
+a%ÿ0
+ÿØÿOÿB(GTelDat$)ÿcodeku.GTelDat$ÿcodeku1%
+Telart$(a%)ÿT1KL$(Art.GTelDat$)
+TelNum$(a%)ÿT1KL$(Nummer.GTelDat$ÿ"  ("ÿkart1.GTeldat$ÿ"/"ÿKart2.Gteldat$ÿ")")
+a%ÿa%ÿ1
+ÿÉÿ±ÿ™GTelDat$
+ÿÙ
+ÿ›i%ÿa%ÿ1ÿq0ÿkÿ1
+ÿ{ÿåansi(Telart$(i%)ÿ" / "ÿTelNum$(i%))
+ÿ±i%
+	ÿ’ÿ¡
+ÿ{"  </adresse>"
+ÿ{"</termine>"
+ÿ{""
+ÿ’ÿ¡
+ÿ¡codeaq%ÿ0ÿpok%ÿ0
+ÿ™GAKquiDat$
+ÿÉÿ±ÿ™GAKquiDat$
+ÿÙ
+ÿ{"</export>"
+ÿ†ÿ¶
+ÿ½ CALL Fehler("Fertisch","Terminexport")
+ÿßÿe
+inidat$ÿGMACodeDir$ÿ"OUTLOOK\ergebnis.ini"
+expodir$ÿGMACodeDir$ÿ"OUTLOOK"
+ÿexpodir$
+a%ÿÿƒ("ShellExecute",0,"open",datexe$,"","",1)
+ÿÊÿË"Bitte warten, der/die Termine werden in Outlook eingetragen"
+i%ÿ0
+ok%ÿ0
+ÿØÿOÿJ(inidat$)ÿok%ÿ0
+	ÿÏÿ›1
+	ÿ¡ÿJ(inidat$)ÿpok%ÿ1
+	i%ÿi%ÿ1
+	ÿ¡i%ÿ10ÿp
+ÿÂ"Der Transfer wurde noch nicht abgeschlossen!","Weitere 10 Sekunden warten?",130,req%
+ÿ¡req%ÿ1ÿp
+i%ÿ0
+ÿ^
+ok%ÿÿ1
+ÿ’ÿ¡
+	ÿ’ÿ¡
+ÿÙ
+ÿ¡ÿJ(inidat$)ÿp
+	fehler$ÿReadDesti$("IMPORT","FEHLER",inidat$)
+	anz$ÿReadDesti$("IMPORT","Anzahl",inidat$)
+	ÿ¡Fehler$ÿ""ÿfehler$ÿ"leer"ÿp
+ÿÂ"Export nach Outlook beendet!","",2
+	ÿ^
+ÿƒFehler ("Beim Export nach Outlook ist ein Fehler aufgetreten!","Fehlerkennung: "ÿfehler$)
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler ("Export wurde abgebrochen","")
+ÿ’ÿ¡
+ÿ_netpath$
+ÿßÿ³
+ ÿ’ÿÿ
+ 
+
+ ÿ½ Benachrichtigungsemail fr Zugangsdaten 05.10.2005 noch nicht fertig
+ ÿ½ Felder InternetName, InternetPasswo und InternetEmail.adressen auslesen und bergeben
+ ÿ½ in ADRsub% = 200
+ÿÿSendEMAIL1_old(Nummer$,codeku%)
+ÿÉÿ`ÿ™"supervis"
+ÿÉÿ¥GMACodeMA%ÿ™"Supervis"ÿ£codema.supervis
+ÿÉÿ¥codeku%ÿ™"adressen"ÿ£codeku.adressen
+adresse$ÿNachname.adressenÿ"-"ÿVorname.adressen
+ret%ÿ0
+TO1$ÿNummer$
+Host$ÿEMAILSHost.supervis
+ÿ¡ÿH(Host$)ÿ""ÿp
+ÿƒFehler("EMAIL kann nicht versandt werden, da fr den User "ÿName.supervisÿ" das Feld <Host> nicht ausgefllt wurde!","")
+ÿwend070520031
+ÿ’ÿ¡
+UserID$ÿEMAILSUserID.supervis
+AFirma$ÿÿåansi(EMAILSAFirma.supervis)
+AName$ÿÿåansi(EMAILSAName.supervis)
+ANUmmer$ÿEMAILNummer.supervis
+BCC$ÿEMAILSKopie.supervis
+Sen$ÿEMAILSErg.supervis
+port$ÿÿH(ÿ(EMAILSPort.supervis,"999999"))
+ÿ¡port$ÿ""ÿpport$ÿ"25"
+ÿ¡EMAILSNummer.supervisÿ""ÿp
+Bersend$ÿEMAILSNummer.supervis
+ÿ^
+Bersend$ÿEMAILNummer.supervis
+ÿ’ÿ¡
+Bersend1$ÿEMAILSNummer1.supervis
+Text1$ÿÿåansi(EMAILText1.supervis)
+Text2$ÿÿåansi(EMAILText2.supervis)
+
+t1t$ÿ"anbei uebersenden wir Ihnen die Zugangsdaten fuer Ihr Update des Programmes SmartPROVIS"ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Internetadresse: http://www.codie.com"ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Benutzername: "ÿInternetname.adressenÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Passwort: "ÿInternetpasswo.adressenÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Bitte denken Sie daran eine komplette Datensicherung des gesamten CODie-Ordners zu erstellen!!!!!!!!!"
+
+Betreff$ÿ"CODie-SmartPROVIS Update"
+
+BAnrede$ÿÿåansi(Briefanrede.adressen)ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿt1t$
+Hpop3$ÿ""
+HPPort$ÿ""
+PUID$ÿ""
+PJN$ÿEMAILPOP3JN.supervis
+ÿ¡EMAILPOP3JN.supervisÿ"TRUE"ÿp
+Hpop3$ÿEMAILPHost.supervis
+HPPort$ÿÿH(ÿ(EMAILPPort.supervis,"999999"))
+ÿ¡HPPort$ÿ"0"ÿpHPPort$ÿ"110"
+PUID$ÿEmailPUserID.supervis
+Ppassw$ÿEMAILPPasww.supervis
+ÿ’ÿ¡
+ 
+alltxt$ÿGMACodeDir$ÿ"codietes.txt"
+ret%ÿÿƒ("_SendEMAILForm",TO1$,Host$,port$,UserID$,AFirma$,AName$,ANummer$,BCC$,Sen$,adresse$,Bersend$,alltxt$,Betreff$,Text1$,Text2$,BAnrede$,Bersend1$,Hpop3$,PUID$,HPPort$,Ppassw$,PJN$,att1$)
+ÿ½ a% = CALL ("ShellExecute",0,"open",alltxt$,"","",1)
+ÿ½ CALL Fehler(Bersend$,"")
+ÿ¡Bersend$ÿ""ÿret%ÿÿ1ÿp
+GMailBetreff$ÿBersend$
+GMailIn%ÿÿ1
+knr%ÿCodeKU%
+textdatei%ÿDOKNeu%(0,"allgemeine Schreiben",0)
+ÿ¡ÿJ(textdatei%,CodeDOK.dokument)ÿtextdatei%ÿ0ÿp
+ÿÉÿ¥textdatei%ÿ™"dokument"ÿ£CodeDOK.dokument
+datei1$ÿ_netpath$ÿDateiname.dokument
+ÿˆalltxt$ÿqdatei1$
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿwend070520031
+ÿ½ a% = VAL (ReadDesti$("COUNT","count",alltxt$))
+ÿ¡a%ÿ0ÿp
+GMailBetreff$ÿReadDesti$("Betreff","Betreff",alltxt$)
+GMailIn%ÿÿ1
+knr%ÿCodeKU%
+textdatei%ÿDOKNeu%(0,"allgemeine Schreiben",link%)
+ 
+ÿ¡ÿJ(textdatei%,CodeDOK.GDokDat$)ÿtextdatei%ÿ0ÿp
+ÿßÿe
+ÿÉÿ¥textdatei%ÿ™GDokDat$ÿ£CodeDOK.GDokDat$
+datei1$ÿ_netpath$ÿDateiname.GDokDat$
+ÿ´datei1$ÿ›ÿ¶
+ÿ›i%ÿ0ÿqa%ÿ1
+	z$ÿ"z"ÿÿH(ÿ(i%,"999999"))
+	zw$ÿReadDesti$("Memo",z$,alltxt$)
+	ÿ{zw$
+ÿ±i%
+ÿ†ÿ¶
+ÿ½ b% = CALL ("ShellExecute",0,"open","datei.txt","","",1)
+ÿ½ CALL ADRDokRegister(textdatei%)
+ÿ’ÿ¡
+ÿßÿ³
+ÿ’ÿ¡
+end070520031: 
+GMailBetreff$ÿ""
+GMailIn%ÿ0
+ ÿ’ÿÿ
+ 
+
+ ÿ½ Werbeemail fr Zugangsdaten 05.10.2005 noch nicht fertig
+ ÿ½ Felder InternetName, InternetPasswo und InternetEmail.adressen auslesen und bergeben
+ ÿ½ in ADRsub% = 200
+ÿÿSendEMAIL2_old(Nummer$,codeku%)
+ÿÉÿ`ÿ™"supervis"
+ÿÉÿ¥GMACodeMA%ÿ™"Supervis"ÿ£codema.supervis
+ÿÉÿ¥codeku%ÿ™"adressen"ÿ£codeku.adressen
+adresse$ÿNachname.adressenÿ"-"ÿVorname.adressen
+ret%ÿ0
+TO1$ÿNummer$
+Host$ÿEMAILSHost.supervis
+ÿ¡ÿH(Host$)ÿ""ÿp
+ÿƒFehler("EMAIL kann nicht versandt werden, da fr den User "ÿName.supervisÿ" das Feld <Host> nicht ausgefllt wurde!","")
+ÿwend070520031
+ÿ’ÿ¡
+UserID$ÿEMAILSUserID.supervis
+AFirma$ÿÿåansi(EMAILSAFirma.supervis)
+AName$ÿÿåansi(EMAILSAName.supervis)
+ANUmmer$ÿEMAILNummer.supervis
+BCC$ÿEMAILSKopie.supervis
+Sen$ÿEMAILSErg.supervis
+port$ÿÿH(ÿ(EMAILSPort.supervis,"999999"))
+ÿ¡port$ÿ""ÿpport$ÿ"25"
+ÿ¡EMAILSNummer.supervisÿ""ÿp
+Bersend$ÿEMAILSNummer.supervis
+ÿ^
+Bersend$ÿEMAILNummer.supervis
+ÿ’ÿ¡
+Bersend1$ÿEMAILSNummer1.supervis
+Text1$ÿÿåansi(EMAILText1.supervis)
+Text2$ÿÿåansi(EMAILText2.supervis)
+
+t1t$ÿÿåansi(Werbeemail.supervis)ÿÿ(13)ÿÿ(10)
+
+Betreff$ÿÿåansi(Werbebetreff.supervis)
+Att1$ÿÿåansi(emailatt1.supervis)
+BAnrede$ÿÿåansi(Briefanrede.adressen)ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿt1t$
+Hpop3$ÿ""
+HPPort$ÿ""
+PUID$ÿ""
+PJN$ÿEMAILPOP3JN.supervis
+ÿ¡EMAILPOP3JN.supervisÿ"TRUE"ÿp
+Hpop3$ÿEMAILPHost.supervis
+HPPort$ÿÿH(ÿ(EMAILPPort.supervis,"999999"))
+ÿ¡HPPort$ÿ"0"ÿpHPPort$ÿ"110"
+PUID$ÿEmailPUserID.supervis
+Ppassw$ÿEMAILPPasww.supervis
+ÿ’ÿ¡
+ 
+alltxt$ÿGMACodeDir$ÿ"codietes.txt"
+ret%ÿÿƒ("_SendEMAILForm",TO1$,Host$,port$,UserID$,AFirma$,AName$,ANummer$,BCC$,Sen$,adresse$,Bersend$,alltxt$,Betreff$,Text1$,Text2$,BAnrede$,Bersend1$,Hpop3$,PUID$,HPPort$,Ppassw$,PJN$,Att1$)
+ÿ½ a% = CALL ("ShellExecute",0,"open",alltxt$,"","",1)
+ÿ½ CALL Fehler(Bersend$,"")
+ÿ¡Bersend$ÿ""ÿret%ÿÿ1ÿp
+GMailBetreff$ÿBersend$
+GMailIn%ÿÿ1
+knr%ÿCodeKU%
+textdatei%ÿDOKNeu%(0,"allgemeine Schreiben",0)
+ÿ¡ÿJ(textdatei%,CodeDOK.dokument)ÿtextdatei%ÿ0ÿp
+ÿÉÿ¥textdatei%ÿ™"dokument"ÿ£CodeDOK.dokument
+datei1$ÿ_netpath$ÿDateiname.dokument
+ÿˆalltxt$ÿqdatei1$
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿwend070520031
+ÿ½ a% = VAL (ReadDesti$("COUNT","count",alltxt$))
+ÿ¡a%ÿ0ÿp
+GMailBetreff$ÿReadDesti$("Betreff","Betreff",alltxt$)
+GMailIn%ÿÿ1
+knr%ÿCodeKU%
+textdatei%ÿDOKNeu%(0,"allgemeine Schreiben",link%)
+ 
+ÿ¡ÿJ(textdatei%,CodeDOK.GDokDat$)ÿtextdatei%ÿ0ÿp
+ÿßÿe
+ÿÉÿ¥textdatei%ÿ™GDokDat$ÿ£CodeDOK.GDokDat$
+datei1$ÿ_netpath$ÿDateiname.GDokDat$
+ÿ´datei1$ÿ›ÿ¶
+ÿ›i%ÿ0ÿqa%ÿ1
+	z$ÿ"z"ÿÿH(ÿ(i%,"999999"))
+	zw$ÿReadDesti$("Memo",z$,alltxt$)
+	ÿ{zw$
+ÿ±i%
+ÿ†ÿ¶
+ÿ½ b% = CALL ("ShellExecute",0,"open","datei.txt","","",1)
+ÿ½ CALL ADRDokRegister(textdatei%)
+ÿ’ÿ¡
+ÿßÿ³
+ÿ’ÿ¡
+end070520031: 
+GMailBetreff$ÿ""
+GMailIn%ÿ0
+ ÿ’ÿÿ
+ 
+ ÿ½ liste der ungltigen email-no 
+ ÿ½ stichwort MAILDELIV2006Mai
+ ÿ½ den Eintrag in Telefondatei auch markieren MDL
+ÿÿUngMail()
+ ÿ³ÿ_ÿwErrorHandler
+ ÿƒFehler("Verarbeitung der Maildelivery-Eintr„ge in Datei ungmail","Kennzeichnung der Nummer mit MDL und Eintrag Stichwort MAILDELIV2006Mai")
+ ÿ™"adressen"
+ ÿ£codeku.adressen
+ ÿ™"Telefon"
+ ÿ£nummer.telefon
+ ÿƒDFile(2,"OFFICE\ungmail"ÿ_fpw$)
+ ÿ™"ungMail"
+ ÿÉÿ`ÿáÿ™"ungMail"
+ i%ÿ0
+ j%ÿÿA("ungMail")
+ f%ÿ0
+ g%ÿ0
+ ÿØÿOÿB("ungMail")
+ÿßÿe
+i%ÿi%ÿ1
+ÿ¡verarb.ungmailÿ
+1ÿp
+nummer$ÿNummer.ungmail
+ÿ¡ÿJ(nummer$,nummer.telefon)ÿp
+verarb.ungmailÿ1
+ÿÌÿ™"ungmail"
+ÿ™"Telefon"
+ÿÉÿ`ÿ™"telefon"ÿ£nummer.telefon
+ÿÉÿ¥nummer$ÿáÿ™"telefon"ÿ£nummer.telefon
+art.telefonÿ"MDL200605 - "ÿart.telefon
+Qart.telefonÿVSNRPack$(Qart.telefon)
+ÿÌÿ™"telefon"
+g%ÿg%ÿ1
+codeku%ÿcodeku.telefon
+ÿ¡ÿJ(codeku%,codeku.adressen)ÿp
+	ÿÉÿ`ÿ™"adressen"ÿ£codeku.adressen
+	ÿÉÿ¥codeku%ÿáÿ™"adressen"ÿ£codeku.adressen
+	stichwort.adressenÿstichwort.adressenÿ",MAILDELIV2006MAI"
+	ÿÌÿ™"ADRESSEN"
+ÿ’ÿ¡
+ÿ^
+verarb.ungmailÿ2
+ÿÌÿ™"ungmail"
+f%ÿf%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÊÿËÿ(i%,",9999999")ÿ"/"ÿÿ(j%,",9999999")ÿ"/ Fehler: "ÿÿ(F%,",9999999")ÿ"/ gut: "ÿÿ(g%,",9999999")
+ÿ™"ungmail"
+ÿÉÿ±ÿáÿ™"ungmail"
+ ÿÙ
+ ÿƒFehler("verarbeitung beendet",ÿ(i%,",9999999")ÿ"/"ÿÿ(j%,",9999999")ÿ"/ Fehler: "ÿÿ(F%,",9999999")ÿ"/ gut: "ÿÿ(g%,",9999999"))
+ ÿ†ÿ™"ungmail"
+ 
+ ÿ’ÿÿ
+ 
+
+
+
+ 
+

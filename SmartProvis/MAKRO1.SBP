@@ -1,0 +1,25 @@
+SBP
+
+ÿÿmain()
+ ÿƒMAKRO1()
+ ÿ’ÿÿ
+ 
+ÿÿMAKRO1():ÿ½                                        26.04.2008
+ ÿŽ"D:\0-SB-DEV\CODIE~1.CL_"
+ Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+ Superbase.Converters.SBF.SourceFileÿ"GESINFO"
+ Superbase.Converters.SBF.Descendingÿ0
+ Superbase.Converters.SBF.Mergeÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.XLS.DestFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.DestFileÿ"D:\0-SB-DEV\CODIE~1.CL_\XLS~1"
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.UseLabelsÿÿ1
+ Superbase.Converters.XLS.Convert(Superbase.Converters.SBF)
+ ÿ’ÿÿ
+ 
+

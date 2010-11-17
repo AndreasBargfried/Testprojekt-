@@ -1,0 +1,3193 @@
+SBP
+ 
+ '      *********************************************************************
+ '      ** Warenwirtschaft fr Kleinbetriebe (c)'93,'94 CODIE, Fred Ahrens **
+ '      ** ALPHA Version 2.1                                               **
+ '      ** Stand: 01.02.94                                                 ** 
+ '      *********************************************************************
+ 
+ÿÿmain()
+
+ ÿßÿe
+ ÿ½ DEBUG OFF 
+ ÿ†ÿt
+ ÿ¡ÿOÿ÷("CLIB")ÿpÿ¨"CLIB.SBR",ÿ°
+ ÿ¡ÿOÿ÷("EXTLIB")ÿpÿ¨"EXTLIB.SBR",ÿ°
+ ÿƒLIBInit("FACTURA","SmartFactura",1,5)
+ ÿ½ CALL LIBInit("FACTURA","SmartBusiness",0,6)
+ _help%ÿ0
+ ÿƒINIT()
+ _formend%ÿ0
+ Upd$ÿReadConfig$(_projekt$,"UPDATE")
+ ÿ¡Upd$ÿ"TRUE"ÿp
+ÿ¡ÿOÿ÷("UPDATE")ÿpÿ¨_netpath$ÿ"UPDATE.SBR",ÿ°
+ÿƒDoUpdate()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿƒFACTURA()
+ÿÊÿË"Programmende?"
+ÿÂ"Programm wirklich beenden?","",130,req%
+ÿ¡req%ÿ1ÿp_formend%ÿ1
+ ÿÙ
+ ÿƒEXIT()
+ ÿ’ÿÿ
+ 
+ 
+ '      *********************
+ '      ** INITIALISIERUNG **
+ '      *********************
+ 
+ ' Konstantendeklaration/Initialisierung
+ ' ======================================================================
+ 
+ÿÿINIT()
+ ÿßÿe
+ ÿÿGRUPPENsub%,ARTIKELsub%,MSsub%,SCHsub%,FLOSKELsub%,MSArt%,MSArt$
+ ÿÿcugrp%,cuart%,_mwst%,cums%,cupos%,cufl%,ProdGruppen$(100)
+ ÿÿRabatt$,RabattBetrag$
+ ÿÿAnsicht$(200),SFORM$
+ ÿÿMwStSchl%(20),MwStBetrag%(20)
+ ÿÿMwStText$,MwStBetrag$,RabattText$,asuchopt%,asuchglob%,Gruppenausw$,sunaglob$,artausw$
+ ÿÿkundennr$,leervorAdr$,Lieferant$(8000),AuswArtikel$(30000),AuswArtikel1$,neumaster$
+ ÿÿDebitorkto$,Bestandskto$,Warenausgkto$,cashpath$,stationsnr$
+ ÿÿGlervorAdr%,GlernachAdr%,GlerKopfSeite%,GlerFusSeite%
+ ÿÿDEFA$,Bestfhr$,ArtiAutoNum$,Bestrechnung$,_kalkart$,periode%,defaneu$
+ ÿÿvkonto%(10),perieing%
+ ÿÿNummernkreise$,TerminVorlage%,artsucheok%,frage%,ARTIKeyword$
+ ARTIKeyword$ÿÿ>(ReadINI$("FACTURA","AutoKeyword"))
+ artsucheok%ÿ0
+ cashpath$ÿReadINI$("CASH","NetDirectory")
+ _kalkart$ÿÿ>(ReadConfig$("FACTURA","Kalkulationsschema"))
+ Nummernkreise$ÿÿ>(ReadConfig$("FACTURA","Nummernkreise"))
+ Debitorkto$ÿReadConfig$("FACTURA","StandardDebitorKonto")
+ Bestandskto$ÿReadConfig$("FACTURA","StandardBestandsKonto")
+ Warenausgkto$ÿReadConfig$("FACTURA","StandardWarenausgKto")
+ Bestfhr$ÿÿ>(ReadConfig$("FACTURA","Bestandsfuehrung"))
+ ArtiAutoNum$ÿÿ>(ReadConfig$("FACTURA","ArtikelAutoNum"))
+ stationsnr$ÿReadConfig$("FACTURA","STATION")
+ GlervorAdr%ÿÿ0(ReadConfig$("FACTURA","LeerzeilenVorAdresse"))
+ GlernachAdr%ÿÿ0(ReadConfig$("FACTURA","LeerzeilenNachAdresse"))
+ TerminVorlage%ÿÿ0(ReadConfig$("FACTURA","TerminVorlage"))
+ ÿ¡TerminVorlage%ÿ0ÿpTerminVorlage%ÿ14
+ GlerKopfSeite%ÿÿ0(ReadConfig$("FACTURA","LeerzeilenSeitenKopf"))
+ ÿ½ GlerFusSeite% = VAL (ReadConfig$("FACTURA","LeerzeilenSeitenFuss"))
+ DEFA$ÿÿ>(ReadConfig$("FACTURA","DEFA"))
+ ÿ¡DEFA$ÿ"MEGA"ÿp
+ÿ¡stationsnr$ÿ"leer"ÿpÿƒFehler("Beim DEFA-Projekt muá in der \codie\codieapp.net","im Abschnitt [FACTURA] eine Stationsnummer angegeben werden!")
+ ÿ’ÿ¡
+ i%ÿ0
+ ÿ›i%ÿ0ÿq9
+v$ÿ"V"ÿÿ(i%,"0")
+vkonto%(i%)ÿÿ0(ReadConfig$("FACTURA",v$))
+ ÿ±i%
+ Bestrechnung$ÿÿ>(ReadConfig$("FACTURA","Bestandsrechnung"))
+ _mwst%ÿÿ0(ReadConfig$("FACTURA","MwSt"))
+ defaneu$ÿ"n"
+ 
+ neumaster$ÿ"n"
+ artausw$ÿ"n"
+ gruppenausw$ÿ""
+ asuchopt%ÿ1
+ asuchglob%ÿ4
+ ÿÊÿÿÿ™_netpath$ÿ_projekt$ÿ"\"ÿ_projekt$ÿ".HLP"
+ ÿÊÿiÿ³
+ ÿƒDFile(2,"supervis"ÿ_fpw$)
+ _vcodema%ÿvcodema%
+ bezug%ÿ2
+ vbezug$ÿ"Adresse"
+ ÿ¡test%ÿ0ÿpÿ³ÿ_ÿwErrorHandler
+ ÿ½ ON ERROR GOTO ErrorHandler
+ ÿƒLOGIN()
+ ÿƒLizensierung()
+ ÿƒDFile(3,"GRUPPEN"ÿ_fpw$)
+ ÿ™"gruppen"
+ ÿ£CodeGR.gruppen
+ ÿÉÿ`
+ ÿØÿOÿB("gruppen")
+ProdGruppen$(a%)ÿKurzbezeichnung.gruppen
+a%ÿa%ÿ1
+ÿÉÿ±
+ ÿÙ
+ ÿ’ÿÿ
+ 
+ 
+ '      ************************************
+ '      ** Formular "FACTURA" - Hauptmen **
+ '      ************************************
+ 
+ÿÿFACTURA()
+ ÿÊÿË"Hauptauswahl: W„hlen Sie die gewnschte Funktion!"
+ _formend%ÿ0
+ ÿØ_formend%ÿ0
+PRICEsub%ÿ0
+ÿ¡ÿœÿ"FACTURA"ÿp
+ÿƒMNFACTURA()
+ÿ´ÿœ"FACTURA"
+ÿÊÿŸtitle$ÿ" - Hauptbersicht"
+ÿÊÿË"Hauptbersicht"
+ÿÊÿÿ³
+ÿƒHideStartup()
+ÿ’ÿ¡
+ÿ¬ÿ³addon1%,addon2%
+ÿßÿ³
+ÿÏÿßÿÿ¥ÿÿ¬
+ÿƒServer("LISTBOXINIT","Auswahl")
+artausw$ÿ"n"
+ÿÉÿæPRICEsub%
+ÿæ1
+ÿƒADRESSEN()
+ÿæ2
+ÿƒGRUPPEN()
+ÿæ3
+ÿƒARTIKEL()
+ÿæ4
+ÿƒABZUGANG(0)
+ÿæ5
+ÿ½ CALL VERLUST()
+ÿƒABZUGANG(1)
+ÿæ6
+ÿ¡DEFA$ÿ"MEGA"ÿp
+ÿƒDFile(3,"ARTIKEL"ÿ_fpw$)
+ÿ½ CALL INVDEFA()
+ÿ²"99999999.00"
+ÿ¨ÿi"c:\codie\FACTURA\invarti.sbq"
+ÿ{ÿiÿqÿ~
+ÿ^
+ÿƒINVENTUR()
+ÿ’ÿ¡
+ÿæ7
+ÿƒUMSKUNDEN()
+ÿæ8
+ÿƒUMSARTIKEL()
+ÿæ9
+ÿƒUMSGRUPPE()
+ÿæ10
+ÿ½ CALL ORECHNUNGEN()
+ÿ½ CALL RechnungAllg()
+ÿƒOffeneVorg„nge(2)
+ÿæ11
+ÿ½ CALL OANGEBOTE()
+ÿƒOffeneVorg„nge(1)
+ÿæ12
+ÿ½ CALL OBESTELLUNGEN()
+ÿƒOffeneVorg„nge(5)
+ÿæ13
+ÿƒBESTELLV()
+ÿæ14
+ÿƒPREISLISTE()
+ÿæ15
+ÿƒFLOSKEL()
+ÿæ16
+ÿƒDFile(3,"ABZUGANG"ÿ_fpw$)
+ÿƒDFile(3,"MASTER"ÿ_fpw$)
+ÿƒDFile(3,"ARTIKEL"ÿ_fpw$)
+ÿƒDFile(3,"SCHEIN"ÿ_fpw$)
+ÿƒDFile(3,"FLOSKEL"ÿ_fpw$)
+ÿ¡DEFA$ÿ"MEGA"ÿp
+ÿƒDFile(3,"KSATZ"ÿ_fpw$)
+ÿƒDFile(3,"SSATZ"ÿ_fpw$)
+ÿ’ÿ¡
+ÿ²"$ ,9999999999.00"
+ÿƒBMKurzbericht()
+ÿæ17
+ÿƒOFFICE()
+ÿæ18
+ÿƒSETUP()
+ÿ’ÿÉ
+ ÿÙ
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿPeriodenPruef()
+ÿ¡DEFA$ÿ"MEGA"ÿp
+ÿƒDFile(3,"ABZUGANG"ÿ_fpw$)
+ÿ½ --- Abfragen, ob Periodenabschluá f„llig oder berschritten ist ----------
+ym%ÿÿ0(ÿ+(ÿ(ÿQ,"yymmdd"),4))
+yy%ÿÿ0(ÿ+(ÿ(ÿQ,"yymmdd"),2))
+mm%ÿÿ0(ÿ+(ÿ(ÿQ,"mmyydd"),2))
+ÿ¡mm%ÿ1ÿp
+mmvor%ÿ12
+yyvor%ÿyy%ÿ1
+ÿ^
+mmvor%ÿmm%ÿ1
+yyvor%ÿyy%
+ÿ’ÿ¡
+pabschlus%ÿyyvor%ÿ100ÿmmvor%
+pabschlus$ÿÿ(pabschlus%,"0000")
+ÿ™"abzugang"
+ÿ£PAbschlus.abzugang
+ÿ¡ÿOÿJ(pabschlus%,Pabschlus.abzugang)ÿp
+ÿ½ --- vorherige Periode wurde noch nicht abgeschlossen ---
+ÿÂ"Die Periode "ÿpabschlus$ÿ" ist noch nicht abgeschlossen","M”chten Sie trotzdem mit der Eingabe fortfahren?",130,reqp%
+ÿ¡reqp%ÿ1ÿp
+periode%ÿ0
+ÿ’ÿÿ
+ÿ^
+periode%ÿpabschlus%
+ÿ’ÿ¡
+ÿ^
+periode%ÿym%
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ÿÿPeriodenAb()
+ ÿ¡DEFA$ÿ"MEGA"ÿp
+ÿƒDFile(3,"ABZUGANG"ÿ_fpw$)
+ÿ½ --- Abfragen, ob Periodenabschluá f„llig oder berschritten ist ----------
+ym%ÿÿ0(ÿ+(ÿ(ÿQ,"yymmdd"),4))
+yy%ÿÿ0(ÿ+(ÿ(ÿQ,"yymmdd"),2))
+mm%ÿÿ0(ÿ+(ÿ(ÿQ,"mmyydd"),2))
+ÿ¡mm%ÿ1ÿp
+mmvor%ÿ12
+yyvor%ÿyy%ÿ1
+ÿ^
+mmvor%ÿmm%ÿ1
+yyvor%ÿyy%
+ÿ’ÿ¡
+pabschlus%ÿyyvor%ÿ100ÿmmvor%
+pabschlus$ÿÿ(pabschlus%,"0000")
+ÿ™"abzugang"
+ÿ£PAbschlus.abzugang
+ÿ¡ÿOÿJ(pabschlus%,Pabschlus.abzugang)ÿp
+ÿ½ --- vorherige Periode wurde noch nicht abgeschlossen ---
+ÿÂ"Die Periode "ÿpabschlus$ÿ" ist noch nicht abgeschlossen","Soll der Periodenabschluá durchgefhrt werden?",130,reqp%
+ÿ¡reqp%ÿ1ÿp
+periode%ÿ0
+ÿ’ÿÿ
+ÿ^
+periode%ÿpabschlus%
+ÿ£periode.abzugang
+ÿÉÿ`
+ÿÉÿ¥periode%ÿ™"abzugang"ÿ£periode.abzugang
+i%ÿ0
+ÿØperiode.abzugangÿperiode%ÿÿOÿB("abzugang")
+	PAbschlus.abzugangÿperiode%
+	i%ÿi%ÿ1
+	i$ÿÿ(i%,"9999999")
+	ÿÊÿË"                            Anzahl der S„tze: "ÿi$
+	ÿƒQuickStore("abzugang")
+ÿÉÿ±ÿá
+ÿÙ
+ÿƒDFile(3,"KSATZ"ÿ_fpw$)
+ÿƒDFile(3,"SSATZ"ÿ_fpw$)
+ÿ™"Ksatz"
+ÿ£periode.ksatz
+ÿÉÿ`
+ÿÉÿ¥periode%ÿ™"ksatz"ÿ£periode.ksatz
+i%ÿ0
+ÿØperiode.ksatzÿperiode%ÿÿOÿB("ksatz")
+	PAbschlus.ksatzÿperiode%
+	i%ÿi%ÿ1
+	i$ÿÿ(i%,"9999999")
+	ÿÊÿË"Anzahl der S„tze: "ÿi$
+	ÿƒQuickStore("ksatz")
+ÿÉÿ±ÿá
+ÿÙ
+ÿ™"ssatz"
+ÿ£periode.ssatz
+ÿÉÿ`
+ÿÉÿ¥periode%ÿ™"ssatz"ÿ£periode.ssatz
+i%ÿ0
+ÿØperiode.ssatzÿperiode%ÿÿOÿB("ssatz")
+	PAbschlus.ssatzÿperiode%
+	i%ÿi%ÿ1
+	i$ÿÿ(i%,"9999999")
+	ÿÊÿË"Anzahl der S„tze: "ÿi$
+	ÿƒQuickStore("ssatz")
+ÿÉÿ±ÿá
+ÿÙ
+ÿ½ Exportieren der S/K-S„tze  
+ÿƒSKExport()
+ÿ’ÿ¡
+ÿ^
+ÿÂ"Der Periode "ÿpabschlus$ÿ" ist bereits abgeschlossen worden !!!","Soll der Abschluá wiederholt werden?",130,reqw%
+ÿ¡reqw%ÿ1ÿp
+periode%ÿym%
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ÿÿSKExport()
+ÿƒDFile(3,"ABZUGANG"ÿ_fpw$)
+ÿƒDFile(3,"KSATZ"ÿ_fpw$)
+ÿƒDFile(3,"SSATZ"ÿ_fpw$)
+ym%ÿÿ0(ÿ+(ÿ(ÿQ,"yymmdd"),4))
+my%ÿÿ0(ÿ+(ÿ(ÿQ,"ddmmyy"),4))
+yy%ÿÿ0(ÿ+(ÿ(ÿQ,"yymmdd"),2))
+mm%ÿÿ0(ÿ+(ÿ(ÿQ,"mmyydd"),2))
+ÿ¡mm%ÿ1ÿp
+mmvor%ÿ12
+yyvor%ÿyy%ÿ1
+ÿ^
+mmvor%ÿmm%ÿ1
+yyvor%ÿyy%
+ÿ’ÿ¡
+pabschlus%ÿyyvor%ÿ100ÿmmvor%
+pabschlus$ÿÿ(pabschlus%,"0000")
+ÿ™"abzugang"
+ÿ£PAbschlus.abzugang
+ÿ¡ÿOÿJ(pabschlus%,Pabschlus.abzugang)ÿp
+ÿ½ --- vorherige Periode wurde noch nicht abgeschlossen ---
+ÿÂ"Die Periode "ÿpabschlus$ÿ" ist noch nicht abgeschlossen","Fhren Sie erst den Periodenabschluá durch?",2
+ÿ’ÿÿ
+ÿ’ÿ¡
+ÿÂ"Soll der Export der S/K-S„tze fr die Periode "ÿpabschlu$," durchgefhrt werden?",130,reqex%
+ÿ¡reqex%ÿ1ÿpÿ’ÿÿ
+ÿßÿe
+dateiname$ÿ"K"ÿÿ(my%,"0000")ÿ".asc"
+ÿÊÿË"Exportiere Datei nach "ÿdateiname$ÿ" ..."
+ÿ¡ÿJ(dateiname$)ÿpÿdateiname$
+ÿ™"KSATZ"
+ÿÊÿÿÿe
+ÿÉÿÐperiode.ksatzÿperiode%
+ÿÉÿ`
+ÿ´dateiname$ÿ›ÿ¶
+ÿ†ÿ¶
+ÿØÿOÿB("KSATZ")ÿperiode.ksatzÿperiode%
+ksatz$ÿ"k!"
+ÿ¡kostentr„ger.ksatzÿ""ÿp
+ksatz$ÿksatz$ÿkostentr„ger.ksatzÿ"!"
+ÿ^
+ksatz$ÿksatz$ÿ"949999999999999!"
+ÿ’ÿ¡
+ÿ¡kostenstelle.ksatzÿ0ÿp
+ksatz$ÿksatz$ÿÿ(kostenstelle.ksatz,"000000")ÿ"!"
+ÿ^
+ksatz$ÿksatz$ÿÿ+(kostentr„ger.ksatz,1)ÿ"3"ÿÿ,(kostentr„ger.ksatz,3,4)ÿ"!"
+ÿ’ÿ¡
+ÿÿ".,"
+ksatz$ÿksatz$ÿÿ(Nettobetrag.ksatz,"999999999999.00")ÿ"!"
+ÿÿ",."
+ksatz$ÿksatz$ÿ"Materialverbrauch"
+ÿÊÿËksatz$
+ÿ´dateiname$ÿ›ÿT
+ÿ{ÿåansi(ksatz$)
+ÿ†ÿ¶
+ÿÉÿ±
+ÿÙ
+ÿÊÿË"Ausgabe "ÿdateiname$ÿ" beendet!"
+ÿ™"SSATZ"
+dateiname$ÿ"S"ÿÿ(my%,"0000")ÿ".asc"
+ÿÊÿË"Exportiere Datei nach "ÿdateiname$ÿ" ..."
+ÿ¡ÿJ(dateiname$)ÿpÿdateiname$
+ÿÊÿÿÿe
+ÿÉÿÐperiode.ssatzÿperiode%
+ÿÉÿ`
+ÿ´dateiname$ÿ›ÿ¶
+ÿ†ÿ¶
+ÿØÿOÿB("SSATZ")ÿperiode.ssatzÿperiode%
+ssatz$ÿ"S!"
+ssatz$ÿssatz$ÿÿ(Verbrauchskonto.ssatz,"000000")ÿ"!"ÿÿ(Bestandskonto.ssatz,"000000")ÿ"!"
+ssatz$ÿssatz$ÿbelegnummer.ssatzÿ"!"
+ssatz$ÿssatz$ÿÿ(Belegdatum.ssatz,"ddmmyy")ÿ"!"
+ÿÿ".,"
+ssatz$ÿssatz$ÿÿH(ÿ(Nettobetrag.ssatz,"999999999999.00"))ÿ"!"
+ÿÿ",."
+ssatz$ÿssatz$ÿ"s!Materialverbrauch!01"
+ÿÊÿËssatz$
+ÿ´dateiname$ÿ›ÿT
+ÿ{ÿåansi(ssatz$)
+ÿ†ÿ¶
+ÿÉÿ±
+ÿÙ
+ÿÊÿË"Ausgabe "ÿdateiname$ÿ" beendet!"
+ÿßÿ³
+ ÿ’ÿÿ
+ 
+ÿÿCHKombi()
+ codear%ÿcodear.artikel
+ ÿƒQuickStore("artikel")
+ ÿ¡IsKombi%(CodeAR%)ÿ(KostenTransport ÿ0ÿKostenReparatur ÿ0ÿKostenSonstiges ÿ0)ÿp
+ÿÂ"Eingabe von Kosten bei Kombiartikeln nicht m”glich!","Kalkulieren Sie die Kosten bei den einzelnen Artikeln!",2
+ÿ™"artikel"
+ÿÉÿ¥codear%ÿáÿ™"artikel"ÿ£codear.artikel
+KostenTransport.artikelÿ0
+Kostenreparatur.artikelÿ0
+Kostensonstiges.artikelÿ0
+ÿƒQuickStore("artikel")
+ÿœ
+ÿ”Handelsspanne.artikel,0
+ ÿ’ÿ¡
+ frage%ÿ1
+ ÿƒCHVKNetto()
+ ÿ½ CALL CHHandelssp()
+ ÿƒCHMwSt()
+ ÿƒCHVKBrutto()
+ ÿƒCHKombiN()
+ ÿƒCHKombiB()
+ geseinkauf%ÿek.artikelÿKostenTransport.artikelÿKostenReparatur.artikelÿKostenSonstiges.artikel
+ HSpanneDM$ÿÿ(VKnetto.ARTIKELÿgeseinkauf%,",9999999999.00")
+ PrDif%ÿVKnetto.ARTIKELÿgeseinkauf%
+ Handelsspanne.ARTIKELÿ(100ÿgeseinkauf%)ÿPrDif%
+ ÿ½ CALL QuickStore("artikel")
+ frage%ÿ0
+ ÿœ
+ ÿ’ÿÿ
+ 
+
+ 
+ ' Rechnungsbersicht allgemein
+ ' =======================================================================
+ ' ! 
+ ' ! 
+ 
+ 
+ÿÿRechnungAllg()
+ 
+ ÿ’ÿÿ
+ 
+ 
+ ' Umsatzbersicht kundenbezogen
+ ' =======================================================================
+ ' ! beim Aufruf aus ADRESSEN heraus wird nur der aktuelle
+ ' ! Kunde ausgewertet
+ 
+ÿÿUMSKUNDEN()
+ von$ÿ""
+ bis$ÿ""
+ adrform$ÿ"ADRESSEN"
+ ÿ¡DEFA$ÿ"MEGA"ÿpadrform$ÿ"ADRDEFA"
+ ÿ¡ÿœÿadrform$ÿp
+ÿ¡AAKunde.ADRESSENÿ"j"ÿAALieferant.ADRESSENÿ"j"ÿp
+opt%ÿ1
+ÿ‰ÿñ"UMSADR",177,150,117,78,"","MS Sans Serif",8
+ÿ|ÿñ"UMSADR",4,0,0,117,56,0,""
+ÿ|ÿñ"UMSADR",9,5,9,20,21,2
+ÿ|ÿñ"UMSADR",5,33,12,72,10,0,"Umsatzbersicht fr"
+ÿ|ÿñ"UMSADR",3,33,25,37,11,0,"&Kunde",1,opt%
+ÿ|ÿñ"UMSADR",3,33,38,44,11,0,"&Lieferant",2,opt%
+ÿ|ÿñ"UMSADR",1,2,59,55,15,1,"&OK",1,1
+ÿ|ÿñ"UMSADR",1,58,59,55,15,0,"&Abbrechen",0,0
+ÿñ"UMSADR",req%
+ÿ¾ÿñ"UMSADR"
+ÿ¡req%ÿ0ÿpopt%ÿ0
+ÿ^
+ÿ¡AAKunde.ADRESSENÿ"j"ÿpopt%ÿ1
+ÿ¡AALieferant.ADRESSENÿ"j"ÿpopt%ÿ2
+ÿ’ÿ¡
+ ÿ^
+opt%ÿ3
+ ÿ’ÿ¡
+ ÿ¡opt%ÿ0ÿp
+buch$ÿ"n"
+ÿ‰ÿñ"UMSATZ",0,0,233,142,"","MS Sans Serif",8
+ÿ|ÿñ"UMSATZ",4,0,1,233,117,0,""
+ÿ|ÿñ"UMSATZ",9,6,12,20,21,2
+ÿ|ÿñ"UMSATZ",5,40,16,166,9,0,"Bitte geben Sie den Zeitraum ein, fr den Sie eine"
+ÿ|ÿñ"UMSATZ",5,40,25,93,10,0,"Umsatzbersicht wnschen."
+ÿ|ÿñ"UMSATZ",5,40,38,184,8,0,"Wenn Sie keinen Zeitraum bestimmen, werden s„mtliche"
+ÿ|ÿñ"UMSATZ",5,40,48,65,9,0,"Ums„tze angezeigt."
+ÿ|ÿñ"UMSATZ",2,40,70,180,16,0,"nur gebuchte Belege anzeigen","j","n",buch$
+ÿ|ÿñ"UMSATZ",6,62,97,35,13,0,0,von$,8
+ÿ|ÿñ"UMSATZ",6,153,97,35,13,0,0,bis$,8
+ÿ|ÿñ"UMSATZ",5,40,99,18,9,0,"von:"
+ÿ|ÿñ"UMSATZ",5,133,99,13,9,0,"bis:"
+ÿ|ÿñ"UMSATZ",1,57,124,55,15,1,"&OK",1,1
+ÿ|ÿñ"UMSATZ",1,114,124,55,15,0,"&Abbrechen",0,0
+ÿñ"UMSATZ",req%
+ÿ¾ÿñ"UMSATZ"
+ÿ¡req%ÿ1ÿp
+ÿ¡DateOK%(von$)ÿvon$ÿ""ÿp
+ÿ¡DateOK%(bis$)ÿbis$ÿ""ÿp
+	ÿßÿe
+	ÿƒDFile(3,"MASTER"ÿ_fpw$)
+	ÿƒDFile(2,"OFFICE\adressen"ÿ_fpw$)
+	ÿ¡von$ÿ""ÿpvondat$ÿ"1.1.80"ÿ^vondat$ÿvon$
+	ÿ¡bis$ÿ""ÿpbisdat$ÿÿ(ÿQ)ÿ^bisdat$ÿbis$
+	ÿÁÿs"UMSATZK"
+	ÿÁÿ³sumNetto%ÿU"gummnetto%",sumBrutto%ÿU"gumbrutto%",brabatt%ÿU"gesrabattb%",nrabatt%ÿU"gesrabattn%"
+	ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+	ÿ’ÿÁ
+ 
+	ÿÉÿæopt%
+	ÿæ1
+Header2$ÿ"Umsatz nach Kunde (Einzelkunde)
+	ÿæ2
+Header2$ÿ"Umsatz nach Lieferant"
+	ÿæ3
+Header2$ÿ"Umsatz nach Kunde (gesamt)"
+	ÿ’ÿÉ
+	Ueberschrift$ÿ"Zeitraum:"
+	ÿ¡von$ÿ""ÿbis$ÿ""ÿpUeberschrift$ÿUeberschrift$ÿ" bis "ÿÿ(ÿQ,"dd.mm.yy")
+	ÿ¡von$ÿ""ÿbis$ÿ""ÿpUeberschrift$ÿUeberschrift$ÿ" ab "ÿvon$
+	ÿ¡von$ÿ""ÿbis$ÿ""ÿpUeberschrift$ÿUeberschrift$ÿ" vom "ÿvon$ÿ" bis "ÿbis$
+	ÿ¡von$ÿ""ÿbis$ÿ""ÿpUeberschrift$ÿUeberschrift$ÿ" (Gesamtbersicht)"
+	ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+	ÿ’ÿŸ
+	ÿš1
+ÿÊÿÁÿí"F_PAGE"
+ÿ¶ÿÁÿí
+	ÿ’ÿš
+	ÿžCodeKU.ADRESSEN,sumNetto%ÿU"KundenUmsatzN%",sumBrutto%ÿU"KundenUmsatzB%",nrabatt%ÿU"sumrabattn%",brabatt%ÿU"sumrabattb%"
+	ÿ€ÿžCodeKU.ADRESSEN
+	ÿÊÿÁÿí"H_CodeKU.ADR002"
+ÿ¶ÿÁÿí
+	ÿ’ÿž
+	ÿ}ÿžCodeKU.ADRESSEN
+ÿÊÿÁÿí"F_CodeKU.ADR002"
+ÿ¶ÿÁÿí
+	ÿ’ÿž
+	ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+	ÿ’ÿÉ
+	ÿÊÿiÿe
+	ÿÊÿiÿáÿe
+	vondat%ÿÿ1(vondat$)
+	bisdat%ÿÿ1(bisdat$)
+	ÿ³ÿ_ÿwErrUMSK
+	ÿ¡opt%ÿ1ÿp
+_cuku%ÿCodeKU.ADRESSEN
+ÿ¡buch$ÿ"j"ÿp
+ÿÉ;
+ÿÐCodeKU.ADRESSENÿCodeKU.MASTERÿCodeKU.MASTERÿ_cuku%ÿStatusM.MASTERÿ"b"ÿ(Art.MASTERÿ2ÿArt.masterÿ7)ÿDatum.MASTERÿÿ1(vondat$)ÿDatum.MASTERÿ	ÿ1(bisdat$)
+ÿµNachname.ADRESSEN,Datum.MASTER
+ÿqÿ~
+ÿÉÿœÿ¥_cuku%ÿ™"ADRESSEN"ÿ£CodeKU.ADRESSEN
+ÿ^
+ÿÉ;
+ÿÐCodeKU.ADRESSENÿCodeKU.MASTERÿCodeKU.MASTERÿ_cuku%ÿ(Art.MASTERÿ2ÿArt.masterÿ7)ÿDatum.MASTERÿÿ1(vondat$)ÿDatum.MASTERÿ	ÿ1(bisdat$)
+ÿµNachname.ADRESSEN,Datum.MASTER
+ÿqÿ~
+ÿÉÿœÿ¥_cuku%ÿ™"ADRESSEN"ÿ£CodeKU.ADRESSEN
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	ÿ¡opt%ÿ2ÿp
+_cuku%ÿCodeKU.ADRESSEN
+ÿ¡buch$ÿ"j"ÿp
+ÿÉ;
+ÿÐCodeKU.ADRESSENÿCodeKU.MASTERÿCodeKU.MASTERÿ_cuku%ÿStatusM.MASTERÿ"b"ÿArt.MASTERÿ5ÿDatum.MASTERÿÿ1(vondat$)ÿDatum.MASTERÿ	ÿ1(bisdat$)
+ÿµNachname.ADRESSEN,Datum.MASTER
+ÿqÿ~
+ÿÉÿœÿ¥_cuku%ÿ™"ADRESSEN"ÿ£CodeKU.ADRESSEN
+ÿ^
+ÿÉ;
+ÿÐCodeKU.ADRESSENÿCodeKU.MASTERÿCodeKU.MASTERÿ_cuku%ÿArt.MASTERÿ5ÿDatum.MASTERÿÿ1(vondat$)ÿDatum.MASTERÿ	ÿ1(bisdat$)
+ÿµNachname.ADRESSEN,Datum.MASTER
+ÿqÿ~
+ÿÉÿœÿ¥_cuku%ÿ™"ADRESSEN"ÿ£CodeKU.ADRESSEN
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	ÿ¡opt%ÿ3ÿp
+ÿ¡buch$ÿ"j"ÿp
+ÿÉ;
+ÿÐCodeKU.ADRESSENÿCodeKU.MASTERÿStatusM.MASTERÿ"b"ÿ(Art.MASTERÿ2ÿArt.masterÿ7)ÿDatum.MASTERÿÿ1(vondat$)ÿDatum.MASTERÿ	ÿ1(bisdat$)
+ÿµNachname.ADRESSEN,Datum.MASTER
+ÿqÿ~
+ÿ^
+ÿÉ;
+ÿÐCodeKU.ADRESSENÿCodeKU.MASTERÿ(Art.MASTERÿ2ÿArt.masterÿ7)ÿDatum.MASTERÿÿ1(vondat$)ÿDatum.MASTERÿ	ÿ1(bisdat$)
+ÿµNachname.ADRESSEN,Datum.MASTER
+ÿqÿ~
+ÿ’ÿ¡
+ErrUMSK: 
+ÿ³ÿ_ÿwErrorHandler
+	ÿ’ÿ¡
+ÿ^
+	ÿƒFehler("Falsches Datum bei 'bis:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Falsches Datum bei 'von:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ adrform$ÿ"ADRESSEN"
+ ÿ¡DEFA$ÿ"MEGA"ÿpadrform$ÿ"ADRDEFA"
+ ÿ¡ÿœÿadrform$ÿpÿ™"ADRESSEN"
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+
+ 
+
+
+
+ÿÿListeAllg()
+ ÿƒDFile(3,"MASTER"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\adressen"ÿ_fpw$)
+ von$ÿ""
+ bis$ÿ""
+ adrform$ÿ"ADRESSEN"
+ ÿ¡DEFA$ÿ"MEGA"ÿpadrform$ÿ"ADRDEFA"
+ opt%ÿ2
+ kontrollfeld$ÿ"n"
+ ÿ‰ÿñ"ZUGART",0,0,134,139,"Tag","MS Sans Serif",8
+ ÿ|ÿñ"ZUGART",9,6,1,20,21,2
+ ÿ|ÿñ"ZUGART",9,6,1,20,21,2
+ ÿ|ÿñ"ZUGART",4,26,1,84,85,0,"šbersicht fr"
+ ÿ|ÿñ"ZUGART",3,33,16,60,10,0,"Angebote",1,opt%
+ ÿ|ÿñ"ZUGART",3,33,27,60,10,0,"Rechnungen",2,opt%
+ ÿ|ÿñ"ZUGART",3,33,38,60,10,0,"Lieferscheine",3,opt%
+ ÿ|ÿñ"ZUGART",3,33,49,60,10,0,"Auftr„ge",4,opt%
+ ÿ|ÿñ"ZUGART",3,33,60,60,10,0,"Bestellungen",5,opt%
+ ÿ|ÿñ"ZUGART",3,33,71,60,10,0,"Gutschriften",7,opt%
+ ÿ|ÿñ"ZUGART",2,28,94,85,10,0,"Export nach EXCEL","j","n",Kontrollfeld$
+ ÿ|ÿñ"ZUGART",1,11,118,55,14,1,"&OK",1,1
+ ÿ|ÿñ"ZUGART",1,67,118,55,14,0,"&Abbrechen",0,0
+ ÿñ"ZUGART",req%
+ ÿ¾ÿñ"ZUGART"
+ ÿ¡req%ÿ0ÿpopt%ÿ0
+ ÿ¡ÿœÿadrform$ÿp
+ausgart%ÿ1
+ ÿ^
+ausgart%ÿ2
+ ÿ’ÿ¡
+ ÿ¡opt%ÿ0ÿp
+ÿ‰ÿñ"UMSATZ",0,0,233,108,"","MS Sans Serif",8
+ÿ|ÿñ"UMSATZ",4,0,0,233,86,0,""
+ÿ|ÿñ"UMSATZ",9,6,12,20,21,2
+ÿ|ÿñ"UMSATZ",5,40,16,166,9,0,"Bitte geben Sie den Zeitraum ein, fr den Sie eine"
+ÿ|ÿñ"UMSATZ",5,40,26,93,9,0,"šbersicht wnschen."
+ÿ|ÿñ"UMSATZ",5,40,38,184,9,0,"Wenn Sie keinen Zeitraum bestimmen, werden s„mtliche"
+ÿ|ÿñ"UMSATZ",5,40,48,65,9,0,"Vorg„nge angezeigt."
+ÿ|ÿñ"UMSATZ",6,62,65,35,13,0,0,von$,8
+ÿ|ÿñ"UMSATZ",6,153,65,35,13,0,0,bis$,8
+ÿ|ÿñ"UMSATZ",5,40,67,18,9,0,"von:"
+ÿ|ÿñ"UMSATZ",5,133,67,13,10,0,"bis:"
+ÿ|ÿñ"UMSATZ",1,57,89,55,15,1,"&OK",1,1
+ÿ|ÿñ"UMSATZ",1,114,89,55,15,0,"&Abbrechen",0,0
+ÿñ"UMSATZ",req%
+ÿ¾ÿñ"UMSATZ"
+ÿ¡req%ÿ1ÿp
+ÿ¡DateOK%(von$)ÿvon$ÿ""ÿp
+ÿ¡DateOK%(bis$)ÿbis$ÿ""ÿp
+	ÿßÿe
+	ÿ¡von$ÿ""ÿpvondat$ÿ"1.1.80"ÿ^vondat$ÿvon$
+	ÿ¡bis$ÿ""ÿpbisdat$ÿÿ(ÿQ)ÿ^bisdat$ÿbis$
+	ÿ¡kontrollfeld$ÿ"n"ÿp
+ÿÁÿs"LISTEALG"
+ÿÉÿæopt%
+ÿæ1
+Header2$ÿ"Angebotsbersicht"
+ÿæ2
+Header2$ÿ"Rechnungsbersicht"
+ÿæ3
+Header2$ÿ"Lieferscheinbersicht"
+ÿæ4
+Header2$ÿ"Auftragsbersicht"
+ÿæ5
+Header2$ÿ"Bestellbersicht"
+ÿæ7
+Header2$ÿ"Gutschriftsbersicht"
+ÿ’ÿÉ
+ÿ¡ausgart%ÿ1ÿp
+ÿÉÿ¥codeku.adressenÿ™"adressen"ÿ£codeku.adressen
+nachname$ÿnachname.adressen
+header2$ÿHeader2$ÿ" fr Adresse: "ÿnachname.adressen
+ÿ™"master"
+ÿ’ÿ¡
+Ueberschrift$ÿ"Zeitraum:"
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpUeberschrift$ÿUeberschrift$ÿ" bis "ÿÿ(ÿQ,"dd.mm.yy")
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpUeberschrift$ÿUeberschrift$ÿ" ab "ÿvon$
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpUeberschrift$ÿUeberschrift$ÿ" vom "ÿvon$ÿ" bis "ÿbis$
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpUeberschrift$ÿUeberschrift$ÿ" (Gesamtbersicht)"
+ÿÁÿ³GesBrutto.MASTERÿU"summeges%"
+ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ÿ’ÿÁ
+
+ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ÿ’ÿŸ
+
+ÿš1
+ÿÊÿÁÿí"F_PAGE"
+ÿ¶ÿÁÿí
+ÿ’ÿš
+
+ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ÿ’ÿÉ
+
+ÿÊÿiÿ³
+ÿÊÿiÿáÿe
+vondat%ÿÿ1(vondat$)
+bisdat%ÿÿ1(bisdat$)
+ÿ³ÿ_ÿwErrUMSK
+ÿ¡ausgart%ÿ2ÿp
+ÿÉ;
+ÿÐDatum.MASTERÿÿ1(vondat$)ÿDatum.MASTERÿ	ÿ1(bisdat$)ÿart.masterÿopt%
+ÿµDatum.MASTER,nummer.master
+ÿqÿ~
+ÿ’ÿ¡
+ÿ¡ausgart%ÿ1ÿp
+_cuku%ÿCodeKU.ADRESSEN
+ÿÉ;
+ÿÐCodeKU.MASTERÿ_cuku%ÿDatum.MASTERÿÿ1(vondat$)ÿDatum.MASTERÿ	ÿ1(bisdat$)ÿart.masterÿopt%
+ÿµDatum.MASTER
+ÿqÿ~
+ÿÉÿœÿ¥_cuku%ÿ™"ADRESSEN"ÿ£CodeKU.ADRESSEN
+ErrUMSK: 
+ÿ³ÿ_ÿwErrorHandler
+ÿ’ÿ¡
+	ÿ^
+vondat%ÿÿ1(vondat$)
+bisdat%ÿÿ1(bisdat$)
+ÿƒMasterExport(vondat$,bisdat$,opt%)
+	ÿ’ÿ¡
+ÿ^
+	ÿƒFehler("Falsches Datum bei 'bis:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Falsches Datum bei 'von:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ adrform$ÿ"ADRESSEN"
+ ÿ¡DEFA$ÿ"MEGA"ÿpadrform$ÿ"ADRDEFA"
+ ÿ¡ÿœÿadrform$ÿpÿ™"ADRESSEN"
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ ' Umsatzbersicht artikelbezogen
+ ' =======================================================================
+ ' ! beim Aufruf aus ARTIKEL heraus wird nur der aktuelle
+ ' ! Artikel ausgewertet
+ 
+ÿÿUMSARTIKEL()
+ von$ÿ""
+ bis$ÿ""
+ buch$ÿ"n"
+ ÿ‰ÿñ"UMSATZ",0,0,233,142,"","MS Sans Serif",8
+ÿ|ÿñ"UMSATZ",4,0,1,233,117,0,""
+ÿ|ÿñ"UMSATZ",9,6,12,20,21,2
+ÿ|ÿñ"UMSATZ",5,40,16,166,9,0,"Bitte geben Sie den Zeitraum ein, fr den Sie eine"
+ÿ|ÿñ"UMSATZ",5,40,25,93,10,0,"Umsatzbersicht wnschen."
+ÿ|ÿñ"UMSATZ",5,40,38,184,8,0,"Wenn Sie keinen Zeitraum bestimmen, werden s„mtliche"
+ÿ|ÿñ"UMSATZ",5,40,48,65,9,0,"Ums„tze angezeigt."
+ÿ|ÿñ"UMSATZ",2,40,70,180,16,0,"nur gebuchte Belege anzeigen","j","n",buch$
+ÿ|ÿñ"UMSATZ",6,62,97,35,13,0,0,von$,8
+ÿ|ÿñ"UMSATZ",6,153,97,35,13,0,0,bis$,8
+ÿ|ÿñ"UMSATZ",5,40,99,18,9,0,"von:"
+ÿ|ÿñ"UMSATZ",5,133,99,13,9,0,"bis:"
+ÿ|ÿñ"UMSATZ",1,57,124,55,15,1,"&OK",1,1
+ÿ|ÿñ"UMSATZ",1,114,124,55,15,0,"&Abbrechen",0,0
+ ÿñ"UMSATZ",req%
+ ÿ¾ÿñ"UMSATZ"
+ ÿ¡req%ÿ1ÿp
+ÿ¡DateOK%(von$)ÿvon$ÿ""ÿp
+ÿ¡DateOK%(bis$)ÿbis$ÿ""ÿp
+ÿßÿe
+ÿƒDFile(3,"ARTIKEL"ÿ_fpw$)
+ÿƒDFile(3,"schein"ÿ_fpw$)
+ÿƒDFile(3,"master"ÿ_fpw$)
+ÿ¡von$ÿ""ÿpvondat$ÿ"1.1.80"ÿ^vondat$ÿvon$
+ÿ¡bis$ÿ""ÿpbisdat$ÿÿ(ÿQ)ÿ^bisdat$ÿbis$
+ÿÁÿs"UMSART"
+Ueberschrift$ÿ"Zeitraum:"
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpUeberschrift$ÿUeberschrift$ÿ" bis "ÿÿ(ÿQ,"dd.mm.yy")
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpUeberschrift$ÿUeberschrift$ÿ" ab "ÿvon$
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpUeberschrift$ÿUeberschrift$ÿ" vom "ÿvon$ÿ" bis "ÿbis$
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpUeberschrift$ÿUeberschrift$ÿ" (Gesamtbersicht)"
+vondat%ÿÿ1(vondat$)
+bisdat%ÿÿ1(bisdat$)
+ 
+ÿÁÿ³vknetto%ÿU"gsumnetto%",vkbrutto%ÿU"gsumbrutto%",rabattb%ÿU"bgesumrab%",rabattn%ÿU"ngesumrab%"
+ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ÿ’ÿÁ
+ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ÿ’ÿŸ
+ÿš1
+ÿÊÿÁÿí"F_PAGE"
+ÿ¶ÿÁÿí
+ÿ’ÿš
+ÿžBezeichnung.SCHEIN,vknetto%ÿU"sumnetto%",vkbrutto%ÿU"sumbrutto%",rabattb%ÿU"rabattgesb%",rabattn%ÿU"rabattgesn%",anzahl%ÿU"gesanz%"
+ÿ€ÿžBezeichnung.SCHEIN
+ÿÊÿÁÿí"H_Bezeichnun002"
+ÿ¶ÿÁÿí
+ÿ’ÿž
+ÿ}ÿžBezeichnung.SCHEIN
+ÿÊÿÁÿí"F_Bezeichnun002"
+ÿ¶ÿÁÿí
+ÿ’ÿž
+ 
+ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ÿ’ÿÉ
+
+
+ÿÊÿiÿe
+ÿÊÿiÿáÿe
+ÿ³ÿ_ÿwErrUMSART
+ÿ¡ÿœÿ"artikel"ÿp
+	_cuart%ÿCodeAR.ARTIKEL
+	ÿ¡buch$ÿ"j"ÿp
+ÿÉ;
+ÿÐCodeAR.scheinÿ_cuart%ÿStatusM.MASTERÿ"b"ÿCodeMS.SCHEINÿCodeMS.MASTERÿDatum.masterÿÿ1(vondat$)ÿDatum.masterÿ	ÿ1(bisdat$)ÿ(Art.MASTERÿ2ÿArt.MASTERÿ7)
+ÿµÿÁbezeichnung.schein
+ÿqÿ~
+ÿÉÿœÿ¥_cuart%ÿ™"ARTIKEL"ÿ£CodeAR.ARTIKEL
+	ÿ^
+ÿÉ;
+ÿÐCodeAR.scheinÿ_cuart%ÿCodeMS.SCHEINÿCodeMS.MASTERÿDatum.masterÿÿ1(vondat$)ÿDatum.masterÿ	ÿ1(bisdat$)ÿ(Art.MASTERÿ2ÿArt.MASTERÿ7)
+ÿµÿÁbezeichnung.schein
+ÿqÿ~
+ÿÉÿœÿ¥_cuart%ÿ™"ARTIKEL"ÿ£CodeAR.ARTIKEL
+	ÿ’ÿ¡
+ÿ^
+	ÿ¡buch$ÿ"j"ÿp
+ÿÉ;
+ÿÐCodeMS.SCHEINÿCodeMS.MASTERÿStatusM.MASTERÿ"b"ÿDatum.masterÿÿ1(vondat$)ÿDatum.masterÿ	ÿ1(bisdat$)ÿ(Art.MASTERÿ2ÿArt.MASTERÿ7)
+ÿµÿÁbezeichnung.schein
+ÿqÿ~
+	ÿ^
+ÿÉ;
+ÿÐCodeMS.SCHEINÿCodeMS.MASTERÿDatum.masterÿÿ1(vondat$)ÿDatum.masterÿ	ÿ1(bisdat$)ÿ(Art.MASTERÿ2ÿArt.MASTERÿ7)
+ÿµÿÁbezeichnung.schein
+ÿqÿ~
+	ÿ’ÿ¡
+ErrUMSART: 
+ÿ³ÿ_ÿwErrorHandler
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Falsches Datum bei 'bis:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Falsches Datum bei 'von:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡ÿœÿ"artikel"ÿpÿ™"ARTIKEL"
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+ ' Umsatzbersicht gruppenbezogen
+ ' =======================================================================
+ ' ! beim Aufruf aus GRUPPEN heraus wird nur der aktuelle
+ ' ! Produktgruppe ausgewertet
+ 
+ÿÿUMSGRUPPE()
+ von$ÿ""
+ bis$ÿ""
+ buch$ÿ"n"
+ ÿ‰ÿñ"UMSATZ",0,0,233,142,"","MS Sans Serif",8
+ÿ|ÿñ"UMSATZ",4,0,1,233,117,0,""
+ÿ|ÿñ"UMSATZ",9,6,12,20,21,2
+ÿ|ÿñ"UMSATZ",5,40,16,166,9,0,"Bitte geben Sie den Zeitraum ein, fr den Sie eine"
+ÿ|ÿñ"UMSATZ",5,40,25,93,10,0,"Umsatzbersicht wnschen."
+ÿ|ÿñ"UMSATZ",5,40,38,184,8,0,"Wenn Sie keinen Zeitraum bestimmen, werden s„mtliche"
+ÿ|ÿñ"UMSATZ",5,40,48,65,9,0,"Ums„tze angezeigt."
+ÿ|ÿñ"UMSATZ",2,40,70,180,16,0,"nur gebuchte Belege anzeigen","j","n",buch$
+ÿ|ÿñ"UMSATZ",6,62,97,35,13,0,0,von$,8
+ÿ|ÿñ"UMSATZ",6,153,97,35,13,0,0,bis$,8
+ÿ|ÿñ"UMSATZ",5,40,99,18,9,0,"von:"
+ÿ|ÿñ"UMSATZ",5,133,99,13,9,0,"bis:"
+ÿ|ÿñ"UMSATZ",1,57,124,55,15,1,"&OK",1,1
+ÿ|ÿñ"UMSATZ",1,114,124,55,15,0,"&Abbrechen",0,0
+ ÿñ"UMSATZ",req%
+ ÿ¾ÿñ"UMSATZ"
+ ÿ¡req%ÿ1ÿp
+ÿ¡DateOK%(von$)ÿvon$ÿ""ÿp
+ÿ¡DateOK%(bis$)ÿbis$ÿ""ÿp
+ÿßÿe
+ÿƒDFile(3,"master"ÿ_fpw$)
+ÿƒDFile(3,"schein"ÿ_fpw$)
+ÿƒDFile(3,"GRUPPEN"ÿ_fpw$)
+ÿ¡von$ÿ""ÿpvondat$ÿ"1.1.80"ÿ^vondat$ÿvon$
+ÿ¡bis$ÿ""ÿpbisdat$ÿÿ(ÿQ)ÿ^bisdat$ÿbis$
+ÿÁÿs"UMSATZG"
+Ueberschrift$ÿ"Zeitraum:"
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpUeberschrift$ÿUeberschrift$ÿ" bis "ÿÿ(ÿQ,"dd.mm.yy")
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpUeberschrift$ÿUeberschrift$ÿ" ab "ÿvon$
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpUeberschrift$ÿUeberschrift$ÿ" vom "ÿvon$ÿ" bis "ÿbis$
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpUeberschrift$ÿUeberschrift$ÿ" (Gesamtbersicht)"
+ÿÁÿ³vknetto%ÿU"gsumnetto%",vkbrutto%ÿU"gsumbrutto%",rabattb%ÿU"bgesumrab%",rabattn%ÿU"ngesumrab%"
+ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ÿ’ÿÁ
+ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ÿ’ÿŸ
+ÿš1
+ÿÊÿÁÿí"F_PAGE"
+ÿ¶ÿÁÿí
+ÿ’ÿš
+ 
+ÿžProduktgruppe.SCHEIN,vknetto%ÿU"sunnetto%",vkbrutto%ÿU"sumbrutto%",rabattb%ÿU"rabattgesb%",rabattn%ÿU"rabattgesn%",anzahl%ÿU"gesanz%"
+ÿ€ÿžProduktgruppe.SCHEIN
+ÿÊÿÁÿí"H_Produktgru002"
+ÿ¶ÿÁÿí
+ÿ’ÿž
+ÿ}ÿžProduktgruppe.SCHEIN
+ÿÊÿÁÿí"F_Produktgru002"
+ÿ¶ÿÁÿí
+ÿ’ÿž
+ 
+ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ÿ’ÿÉ
+
+vondat%ÿÿ1(vondat$)
+bisdat%ÿÿ1(bisdat$)
+ÿ³ÿ_ÿwErrUMSGRP
+ÿ¡ÿœÿ"gruppen"ÿp
+	_cugr%ÿCodeGR.GRUPPEN
+	ÿ¡buch$ÿ"j"ÿp
+ÿÉ;
+ÿÐCodeGR.scheinÿ_cugr%ÿCodeMS.SCHEINÿCodeMS.MASTERÿ(Art.MASTERÿ2ÿArt.MASTERÿ7)ÿStatusM.MASTERÿ"b"ÿDatum.masterÿÿ1(vondat$)ÿDatum.masterÿ	ÿ1(bisdat$)
+ÿµÿÁProduktgruppe.schein,Bezeichnung.schein,Datum.master
+ÿqÿ~
+ÿÉÿœÿ¥_cugr%ÿ™"GRUPPEN"ÿ£CodeGR.GRUPPEN
+	ÿ^
+ÿÉ;
+ÿÐCodeGR.scheinÿ_cugr%ÿCodeMS.scheinÿCodeMS.MASTERÿ(Art.MASTERÿ2ÿArt.MASTERÿ7)ÿDatum.masterÿÿ1(vondat$)ÿDatum.masterÿ	ÿ1(bisdat$)
+ÿµÿÁProduktgruppe.schein,Bezeichnung.schein,Datum.master
+ÿqÿ~
+ÿÉÿœÿ¥_cugr%ÿ™"GRUPPEN"ÿ£CodeGR.GRUPPEN
+	ÿ’ÿ¡
+ÿ^
+	ÿ¡buch$ÿ"j"ÿp
+ÿÉ;
+ÿÐCodeMS.SCHEINÿCodeMS.MASTERÿ(Art.MASTERÿ2ÿArt.MASTERÿ7)ÿStatusM.MASTERÿ"b"ÿDatum.masterÿÿ1(vondat$)ÿDatum.masterÿ	ÿ1(bisdat$)
+ÿµÿÁProduktgruppe.schein,Bezeichnung.schein,datum.master
+ÿqÿ~
+	ÿ^
+ÿÉ;
+ÿÐCodeMS.SCHEINÿCodeMS.MASTERÿ(Art.MASTERÿ2ÿArt.MASTERÿ7)ÿDatum.masterÿÿ1(vondat$)ÿDatum.masterÿ	ÿ1(bisdat$)
+ÿµÿÁProduktgruppe.schein,Bezeichnung.schein,datum.master
+ÿqÿ~
+	ÿ’ÿ¡
+ErrUMSGRP: 
+ÿ³ÿ_ÿwErrorHandler
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Falsches Datum bei 'bis:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Falsches Datum bei 'von:'!","Bitte geben Sie das Datum in der Form tt.mm.jj ein.")
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡ÿœÿ"GRUPPEN"ÿpÿ™"GRUPPEN"
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+
+ ' Produkte einer Gruppe bearbeiten
+ ' =======================================================================
+ 
+ÿÿGRPProduct()
+ cugrp%ÿCodeGR.gruppen
+ ÿƒARTIKEL()
+ ÿ’ÿÿ
+ 
+ 
+ '      ******************************************************
+ '      ** Routinen fr Formular "ARTIKEL" - Produktdetails **
+ '      ******************************************************
+ 
+ÿÿARTIKEL()
+ ÿƒDFile(3,"GRUPPEN"ÿ_fpw$)
+ ÿƒDFile(3,"ARTIKEL"ÿ_fpw$)
+ ÿƒDFile(3,"KOMBI"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\adressen"ÿ_fpw$)
+ _formend%ÿ0
+ ÿØ_formend%ÿ0
+ARTIKELsub%ÿ0
+artiform$ÿ"ARTIKEL"
+ÿ¡DEFA$ÿ"MEGA"ÿpartiform$ÿ"ARTIDEFA"
+ÿ¡ÿ>(ÿœ)ÿartiform$ÿp
+ÿƒMNARTIKEL()
+ÿ¬ÿ³
+ÿ´ÿœartiform$
+ÿÊÿŸtitle$ÿ" - Artikel"
+ÿÊÿË"Artikel"
+ÿƒARTIntro()
+ÿ’ÿ¡
+ÿƒARTUpdate()
+ÿßÿ³
+ÿÏÿßÿÿ¥ÿÿ¬
+ÿÉÿæARTIKELsub%
+ÿæ1
+ÿƒKOMBIntro()
+ÿæ98
+ÿ¡DEFA$ÿ"MEGA"ÿpÿ”Artikelnummer.artikel,0
+ÿ¡DEFA$ÿ"MEGA"ÿpÿ”Bezeichnung.artikel,0
+ÿæ99
+ÿ¡DEFA$ÿ"MEGA"ÿp
+ÿ¡ÿíÿ1ÿpÿ”Artikelnummer.artikel,0
+ÿ’ÿ¡
+ÿ¡ÿíÿ1ÿDEFA$ÿ"MEGA"ÿp
+ÿ¡ÿA("ARTIKEL")ÿ0ÿp
+	ÿƒARTNeu()
+ÿ^
+	ÿ”Bezeichnung.ARTIKEL,0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡DEFA$ÿ"MEGA"ÿp
+ÿ¡ÿíÿ3ÿpÿ”Dispomenge.artikel,0
+ÿ^
+ÿ¡ÿíÿ3ÿpÿ”Bestand.ARTIKEL,0
+ÿ’ÿ¡
+ÿ’ÿÉ
+ ÿÙ
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+
+
+ÿÿCHKombi()
+ codear%ÿcodear.artikel
+ ÿƒQuickStore("artikel")
+ ÿ¡IsKombi%(CodeAR%)ÿ(KostenTransport ÿ0ÿKostenReparatur ÿ0ÿKostenSonstiges ÿ0)ÿp
+ÿÂ"Eingabe von Kosten bei Kombiartikeln nicht m”glich!","Kalkulieren Sie die Kosten bei den einzelnen Artikeln!",2
+ÿ™"artikel"
+ÿÉÿ¥codear%ÿáÿ™"artikel"ÿ£codear.artikel
+KostenTransport.artikelÿ0
+Kostenreparatur.artikelÿ0
+Kostensonstiges.artikelÿ0
+ÿƒQuickStore("artikel")
+ÿœ
+ÿ”Handelsspanne.artikel,0
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+
+ ' ARTIKEL Update
+ ' =======================================================================
+ 
+ÿÿARTUpdate()
+ ÿÉÿ¥CodeGR.ARTIKELÿ™"GRUPPEN"ÿ£CodeGR.GRUPPEN
+ ÿ¡CodeGR.GRUPPENÿCodeGR.ARTIKELÿppgr$ÿKurzbezeichnung.GRUPPEN
+ ÿÉÿ¥Lieferant.ARTIKELÿ™"ADRESSEN"ÿ£CodeKU.ADRESSEN
+ ÿ¡Lieferant.ARTIKELÿCodeKU.ADRESSENÿplieferant$ÿNachname.ADRESSENÿ^lieferant$ÿ"<keine Zuordnung>"
+ ÿÉÿ¥Lieferant2.ARTIKELÿ™"ADRESSEN"ÿ£CodeKU.ADRESSEN
+ ÿ¡Lieferant2.ARTIKELÿCodeKU.ADRESSENÿplieferant2$ÿNachname.ADRESSENÿ^lieferant2$ÿ"<keine Zuordnung>"
+ ÿÉÿ¥Lieferant3.ARTIKELÿ™"ADRESSEN"ÿ£CodeKU.ADRESSEN
+ ÿ¡Lieferant3.ARTIKELÿCodeKU.ADRESSENÿplieferant3$ÿNachname.ADRESSENÿ^lieferant3$ÿ"<keine Zuordnung>"
+
+ ÿÉÿ¥CodeAR.ARTIKELÿ™"KOMBI"ÿ£CodeKO.KOMBI
+ ÿ¡ÿC("KOMBI")ÿpkombi$ÿ"Bestandteile erfassen ®"ÿ^kombi$ÿ"Bestandteile erfassen"
+ ÿ¡KombiNetto.ARTIKELÿ0ÿp
+geseinkauf%ÿek.artikelÿKostenTransport.artikelÿKostenReparatur.artikelÿKostenSonstiges.artikel
+KHSpanneP$ÿÿ((100ÿgeseinkauf%ÿKombiNetto.ARTIKEL)ÿ100,",9999999999.00")
+KHSpanneDM$ÿÿ(KombiNetto.ARTIKELÿgeseinkauf%,",9999999999.00")
+ ÿ^
+KHSpanneP$ÿ"- - -"
+KHSpanneDM$ÿ"- - -"
+ ÿ’ÿ¡
+ ÿ¡IsKombi%(CodeAR.ARTIKEL)ÿpÿ¬4,2,1,"Kombiartikel neu kalkulieren","ARTKALK","Kombiartikel neu kalkulieren"ÿ^ÿ¬4,2,0,"Kombiartikel neu kalkulieren"
+ ÿ¡Bestandsfhrung.ARTIKELÿ"j"ÿps2$ÿ"Bestands&fhrung ®"ÿ^s2$ÿ"Bestands&fhrung"
+ ÿƒCLMNARTIKEL()
+ ÿ¡ÿ£ÿ"Bezeichnung"ÿpÿ¬5,1,2
+ ÿ¡ÿ£ÿ"Artikelnummer"ÿpÿ¬5,2,2
+ ÿ¡ÿ£ÿ"CodeGR"ÿpÿ¬5,3,2
+ ÿ¡ÿ£ÿ"Lieferant"ÿpÿ¬5,4,2
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿARTKALK()
+ ÿƒKOMBRechnen(CodeAR.ARTIKEL)
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ 
+ ' ARTIKEL Intro 
+ ' =======================================================================
+ 
+ÿÿARTIntro()
+ ÿßÿe
+ ÿ™"ARTIKEL"
+ ÿ£Bezeichnung.ARTIKEL
+ ÿ¡cugrp%ÿ0ÿp
+ÿ¡cuart%ÿ0ÿp
+ÿÉÿ¥cuart%ÿ™"ARTIKEL"ÿ£CodeAR.ARTIKEL
+ÿ^
+ÿØCodeGR.ARTIKELÿcugrp%ÿÿOÿB("ARTIKEL")
+ÿÉÿ±ÿ™"ARTIKEL"
+ÿÉÿœÿY
+ÿÙ
+ÿ’ÿ¡
+ ÿ^
+ÿÉÿ`
+ÿ¡ÿB("")ÿp
+ÿ
+CodeAR.ARTIKELÿÿI("ARTIKEL",1)
+ARTIKELsub%ÿ99
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿœ
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+ ' Produktdetail Neu
+ ' =======================================================================
+ 
+ÿÿARTNeu()
+ _cugrp%ÿCodeGR.ARTIKEL
+ _cuku%ÿLieferant.ARTIKEL
+ _mwstt%ÿMwSt.ARTIKEL
+ ÿ¡DEFA$ÿ"MEGA"ÿp
+_cuart%ÿCodeAR.artikel
+ÿ£CodeAR.ARTIKEL
+ÿÉÿb
+bkonto%ÿBestandskonto.artikel
+me$ÿme.artikel
+ ÿ’ÿ¡
+ ÿ¡Bezeichnung.ARTIKELÿ""ÿpÿƒFStore("ARTIKEL")
+ ARTIKELsub%ÿ99
+ ÿÿœ
+ CodeAR.ARTIKELÿÿI("ARTIKEL",1)
+ CodeGR.ARTIKELÿ_cugrp%
+ Lieferant.ARTIKELÿ_cuku%
+ Bestandskonto.artikelÿbkonto%
+ me.artikelÿme$
+ 
+ ÿ¡Bestfhr$ÿ"TRUE"ÿpBestandsfhrung.artikelÿ"j"
+ ÿ¡ArtiAutoNum$ÿ"TRUE"ÿDEFA$ÿ"MEGA"ÿp
+artcodeneu%ÿartcsernum%("artikel")
+Artikelnummer.artikelÿÿH(ÿ(artcodeneu%,"99999999999999"))ÿ"-"ÿstationsnr$
+ ÿ’ÿ¡
+ ÿ¡ArtiAutoNum$ÿ"TRUE"ÿDEFA$ÿ"MEGA"ÿp
+nnum%ÿÿ0(ReadConfig$("FACTURA","LASTArtikelnummer"))ÿ1
+ÿƒWriteConfig("FACTURA","LASTArtikelnummer",ÿH(ÿ(nnum%,"99999999999999")))
+Artikelnummer.artikelÿÿH(ÿ(nnum%,"99999999999999"))
+ ÿ’ÿ¡
+ 
+ 
+ ÿ¡DEFA$ÿ"MEGA"ÿpBestandsfhrung.artikelÿ"j"
+ MwST.ARTIKELÿ_mwstt%
+ ARTIKELsub%ÿ98
+ ÿ¡cugrp%ÿ0ÿpÿÉÿ¥cugrp%ÿ™"gruppen"ÿ£CodeGR.gruppen
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿVKontoGener()
+ ÿ¡DEFA$ÿ"MEGA"ÿp
+ÿÂ"Wurde die Verbrauchskontonummer an die Artikelnummer","angehangen?",130,req%
+ÿ¡req%ÿ1ÿp
+nummer%ÿÿ0(ÿ-(Artikelnummer.artikel,1))
+Verbrauchskonto.artikelÿVKonto%(nummer%)
+ÿƒQuickStore("Artikel")
+ÿ”ME.artikel,0
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ ÿ½ ***********************************************************************
+ ÿ½ *                     Artikel kopieren                                *
+ ÿ½ ***********************************************************************
+ 
+ÿÿARTKopieren()
+ codearVorlage%ÿCodeAR.artikel
+ ÿÂ"Wollen Sie den Artikel kopieren ?","",130,req%
+ ÿ¡req%ÿ1ÿpÿ’ÿÿ
+ ÿ¡Bezeichnung.ARTIKELÿ""ÿpÿƒFStore("ARTIKEL")
+ ÿˆÿaCodeGR,EK,VKbrutto,VKnetto,Handelsspanne,MwST,ME,KombiNetto,KombiBrutto,CodeSYS,Bestellnummer,Lieferant,LieferEK
+ Beschreibung$ÿBeschreibung.artikel
+ ÿ¡DEFA$ÿ"MEGA"ÿp
+Vkonto%ÿVerbrauchskonto.artikel
+BKonto%ÿBestandskonto.artikel
+ ÿ’ÿ¡
+ artikelnr$ÿartikelnummer.artikel
+ bezeichnung$ÿ"(K) "ÿbezeichnung.artikel
+ ÿ
+ codearneu%ÿÿI("ARTIKEL",1)
+ CodeAR.ARTIKELÿcodearneu%
+ CodeGR.ARTIKELÿ_cugrp%
+ artikelnummer.artikelÿÿ+(artikelnr$,20)
+ ÿ¡ArtiAutoNum$ÿ"TRUE"ÿDEFA$ÿ"MEGA"ÿp
+nnum%ÿÿ0(ReadConfig$("FACTURA","LASTArtikelnummer"))ÿ1
+ÿƒWriteConfig("FACTURA","LASTArtikelnummer",ÿH(ÿ(nnum%,"99999999999999")))
+Artikelnummer.artikelÿ"K"ÿÿH(ÿ(nnum%,"99999999999999"))
+ ÿ’ÿ¡
+ ÿ¡ArtiAutoNum$ÿ"TRUE"ÿDEFA$ÿ"MEGA"ÿp
+artcodeneu%ÿartcsernum%("artikel")
+Artikelnummer.artikelÿÿH(ÿ(artcodeneu%,"99999999999999"))
+ ÿ’ÿ¡
+ Beschreibung.artikelÿBeschreibung$
+ bezeichnung.artikelÿÿ+(bezeichnung$,50)
+ ÿ¡Bestfhr$ÿ"TRUE"ÿpBestandsfhrung.artikelÿ"j"
+ ÿ¡DEFA$ÿ"MEGA"ÿp
+Verbrauchskonto.artikelÿVKonto%
+Bestandskonto.artikelÿBKonto%
+Bestandsfhrung.artikelÿ"j"
+ ÿ’ÿ¡
+ ÿ½ CALL QuickStore("Artikel")
+ ÿˆÿqCodeGR,EK,VKbrutto,VKnetto,Handelsspanne,MwST,ME,KombiNetto,KombiBrutto,CodeSYS,Bestellnummer,Lieferant,LieferEK
+ ÿƒQuickStore("Artikel")
+ ÿ¡IsKombi%(CodearVorlage%)ÿp
+ÿƒDFile(3,"KOMBI"ÿ_fpw$)
+ÿƒDFile(3,"KKOpIE"ÿ_fpw$)
+ÿ™"KOMBI"
+ÿÉÿ`ÿá
+ÿÉÿ¥CodearVorlage%ÿáÿ™"KOMBI"ÿ£CodeKO.KOMBI
+ÿØCodeKO.kombiÿCodearVorlage%ÿÿOÿB("KOMBI")
+codearkom%ÿCodeAR.Kombi
+codegrkom%ÿCodeGR.Kombi
+bez$ÿbezeichnung.kombi
+kombinetto%ÿKombiNetto.kombi
+kombibrutto%ÿkombibrutto.kombi
+anzahl%ÿanzahl.kombi
+me$ÿme.kombi
+ek%ÿek.kombi
+ÿ™"kkopie"
+ÿ
+CodeKO.Kkopieÿcodearneu%
+CodeAR.Kkopieÿcodearkom%
+CodeGR.Kkopieÿcodegrkom%
+bezeichnung.Kkopieÿbez$
+kombinetto.Kkopieÿkombinetto%
+kombibrutto.Kkopieÿkombibrutto%
+anzahl.kKopieÿanzahl%
+me.Kkopieÿme$
+ek.kkopieÿek%
+ÿƒQuickStore("KKopie")
+ÿ™"kombi"
+ÿÉÿ±ÿá
+ÿÙ
+ÿ¢"KKOPIE.sbf"ÿqÿ™"KOMBI"ÿÐCodeKO.kkopieÿcodearneu%
+ÿ™"KKopie"
+ÿ¾ÿaÿ™"KKOPIE"
+ ÿ’ÿ¡
+ ÿßÿ³
+ ÿ™"artikel"
+ ÿÉÿœÿ¥codearneu%ÿáÿ™"artikel"ÿ£codear.artikel
+ ÿœ
+ ÿ½ ENTER bezeichnung.artikel
+ ÿ’ÿÿ
+ 
+ 
+ 
+ 
+ ' auf doppelte Artikelnummern testen
+ ' =======================================================================
+ 
+ÿÿARTArtNummer()
+ _cuart%ÿCodeAR.ARTIKEL
+ ÿ¡Artikelnummer.ARTIKELÿ""ÿp
+_nummer$ÿArtikelnummer.ARTIKEL
+ÿ¡ÿ°("ARTIKEL")ÿÿ("ARTIKEL")ÿDEFA$ÿ"MEGA"ÿp
+ÿƒFStore("ARTIKEL")
+ÿ^
+ÿƒQuickStore("Artikel")
+_cuart%ÿCodeAR.artikel
+ÿ’ÿ¡
+ 
+ÿßÿe
+ÿÊÿË"Suche doppelte Artikelnummern..."
+_index$ÿÿ£
+ÿ™"ARTIKEL"
+ÿ£Artikelnummer.ARTIKEL
+ÿÉÿ`
+_found%ÿ0
+ÿÉÿ¥_nummer$ÿ™"ARTIKEL"ÿ£Artikelnummer.ARTIKEL
+ÿØArtikelnummer.ARTIKELÿ_nummer$ÿÿOÿB("ARTIKEL")
+ÿ¡CodeAR.ARTIKELÿ_cuart%ÿ_found%ÿ0ÿp
+ÿÂ"Es ist bereits ein Artikel mit dieser Nummer vorhanden!","",139
+_found%ÿ1
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"ARTIKEL"ÿ£Artikelnummer.ARTIKEL
+ÿÙ
+ÿÊÿ£_index$$
+ÿ£_index$$
+ÿÉÿ¥_cuart%ÿ™"ARTIKEL"ÿ£CodeAR.ARTIKEL
+ÿÊÿË""
+ ÿ’ÿ¡
+ ÿßÿ³
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+
+ ' Produkt Suchen
+ ' =======================================================================
+ 
+ÿÿARTSuchen()
+ ÿ™"ARTIKEL"
+ ÿÿAuswArtikel$(ÿA("Artikel"))
+ artiform$ÿ"ARTIKEL"
+ ÿ¡DEFA$ÿ"MEGA"ÿpartiform$ÿ"ARTIDEFA"
+ ÿ¡ÿ>(ÿœ)ÿartiform$ÿp
+cuart%ÿCodeAR.ARTIKEL
+_cugrp%ÿCodeGR.ARTIKEL
+ÿ¡ÿ°("ARTIKEL")ÿÿ("ARTIKEL")ÿpÿƒFStore("ARTIKEL")
+ ÿ^
+ÿ™"artikel"
+ÿÉÿb
+_cugrp%ÿCodeGR.ARTIKEL
+ ÿ’ÿ¡
+ artsucheok%ÿ0
+ ÿ™"gruppen"
+ ÿ£CodeGR.gruppen
+ ÿÉÿ`
+ a%ÿ0
+ 
+ ÿ½ WHILE NOT EOF ("gruppen")
+ ÿ½ ProdGruppen$(a%) = Kurzbezeichnung.gruppen
+ ÿ½   a% = a% + 1
+ ÿ½    SELECT NEXT 
+ ÿ½  WEND 
+ Auswahl$ÿProdGruppen$(0)
+ asuchopt%ÿ0
+ suna$ÿ""
+ req%ÿ1
+ ÿØsuna$ÿ""ÿasuchopt%ÿ
+4ÿreq%ÿ1
+suna$ÿsunaglob$
+ÿ¡asuchglob%ÿ
+1ÿp
+asuchopt%ÿ4
+ÿ¡_projekt$ÿ"WAWI"ÿpasuchopt%ÿ1
+ÿ^
+asuchopt%ÿasuchglob%
+ÿ’ÿ¡
+ÿ¡Gruppenausw$ÿ""ÿpAuswahl$ÿGruppenausw$
+ÿ‰ÿñ"SCHAuswahl",0,0,237,170,"","MS Sans Serif",8
+ÿ|ÿñ"SCHAuswahl",4,0,1,237,138,0,""
+ÿ|ÿñ"SCHAuswahl",9,4,12,20,23,2
+ÿ|ÿñ"SCHAuswahl",4,30,14,200,95,0," Suche ber... "
+ÿ|ÿñ"SCHAuswahl",3,38,25,60,12,0,"Artikel&nummer",1,asuchopt%
+ÿ|ÿñ"SCHAuswahl",3,38,36,60,12,0,"&Bestellnummer",2,asuchopt%
+ÿ|ÿñ"SCHAuswahl",3,38,49,79,12,0,"Artikelbe&zeichnung",3,asuchopt%
+ÿ|ÿñ"SCHAuswahl",3,38,60,79,12,0,"&Stichwort",5,asuchopt%
+ÿ¡_projekt$ÿ"WAWI"ÿp
+ÿ|ÿñ"SCHAuswahl",3,38,72,103,12,0,"Produkt&gruppen/Leistungen",4,asuchopt%
+ÿ|ÿñ"SCHAuswahl",8,48,86,169,66,259,2,Auswahl$,ProdGruppen$
+ÿ’ÿ¡
+ÿ|ÿñ"SCHAuswahl",5,30,112,147,8,0,"&Suchbezeichnung"
+ÿ|ÿñ"SCHAuswahl",6,30,121,200,12,0,0,suna$,20
+ÿ|ÿñ"SCHAuswahl",1,65,145,53,16,1,"&Weiter",1,1
+ÿ|ÿñ"SCHAuswahl",1,120,145,53,16,0,"&Abbruch",0,0
+ÿ¡artausw$ÿ"j"ÿpÿ|ÿñ"SCHAuswahl",1,176,145,54,16,0,"Auswahl&liste",2,0
+ÿñ"SCHAuswahl",req%
+ÿ¾ÿñ"SCHAuswahl"
+ÿ¡asuchopt%ÿ
+4ÿsuna$ÿ""ÿreq%ÿ1ÿpÿÂ"Bitte geben Sie einen Suchbegriff ein !!!","",139
+ ÿÙ
+ ÿ¡req%ÿ0ÿpartsucheok%ÿ0
+ ÿ¡req%ÿ0ÿp
+artsucheok%ÿ1
+ÿ¡artausw$ÿ"j"ÿasuchglob%ÿasuchopt%ÿp
+ÿƒServer("LISTBOXINIT","Artikelauswahl")
+ÿ’ÿ¡
+asuchglob%ÿasuchopt%
+ÿ¡req%ÿ2ÿp
+artiform$ÿ"ARTIKEL"
+ÿ¡DEFA$ÿ"MEGA"ÿpartiform$ÿ"ARTIDEFA"
+ÿ¡ÿ>(ÿœ)ÿartiform$ÿp
+ÿÊÿË"Bitte w„hlen Sie einen Artikel aus"
+ÿƒServer("LISTBOXSHOW","Bitte w„hlen Sie den gewnschten Artikel aus:")
+erg$ÿServerReply$()
+ÿ¡erg$ÿ""ÿp
+	cuart%ÿÿ0(ÿ,(erg$,ÿ/(erg$)ÿ6,6))
+ÿ’ÿ¡
+ÿwENDESuch1 
+ÿ^
+ÿwENDESuch2
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿæasuchopt%
+ÿæ1
+feld$ÿ"artikelnummer.artikel"
+ÿæ2
+feld$ÿ"bestellnummer.artikel"
+ÿæ3
+feld$ÿ"bezeichnung.artikel"
+ÿæ4
+feld$ÿ"bezeichnung.artikel"
+ÿ’ÿÉ
+ÿ¡asuchopt%ÿ5ÿp
+ÿ™"artikel"
+ÿÿAuswArtikel$(ÿA("artikel"))
+b%ÿÿA("artikel")
+ÿ›a%ÿ0ÿqb%:AuswArtikel$(a%)ÿ"":ÿ±
+feld$ÿ"stichwort.artikel"
+ÿ£stichwort.artikel
+ok%ÿ1
+ÿ½ IF req% = 1 THEN 
+ÿ½ IF feld$ LIKE "Stichwort.artikel" THEN 
+ÿƒDFile(3,"artikeys"ÿ_fpw$)
+ÿ™"artikeys"
+ÿ£keyword
+ÿÉÿ`
+a%ÿ0
+ÿÉÿÐkeyword ÿ""
+ÿÉÿ`
+ÿØÿOÿB("artikeys")
+	AuswArtikel$(a%)ÿÿH(keyword)
+	a%ÿa%ÿ1
+	ÿÉÿ±
+ÿÙ
+LAuswahl$ÿAuswArtikel$(0)
+LAuswahl1$(0)ÿLAuswahl$
+ÿ‰ÿñ"ADRSTICHW",0,0,194,202,"vorhandene Stichw”rter","MS Sans Serif",8
+ÿ|ÿñ"ADRSTICHW",7,5,6,183,168,2,2,AuswArtikel$,Lauswahl1$,AuswArtikel$(0)
+ÿ|ÿñ"ADRSTICHW",1,33,180,55,16,1,"&OK",1,1
+ÿ|ÿñ"ADRSTICHW",1,93,180,55,16,0,"&Abbrechen",0,0
+ÿñ"ADRSTICHW",req5%
+ÿßÿ³
+ÿ¾ÿñ"ADRSTICHW"
+ÿ¡req5%ÿ1ÿp
+	LAuswahl$ÿLAuswahl1$(0)
+	suna$ÿ"*"ÿÿ+(LAuswahl$)ÿ"*"
+ÿ^
+	ok%ÿ0
+	AdrSuche%ÿ0
+	ÿÿAuswArtikel$(ÿA("Artikel"))
+	ÿwEnde1
+ÿ’ÿ¡
+ÿßÿe
+ÿ›cl%ÿ0ÿqÿA("Artikel")
+	AuswArtikel$(cl%)ÿ""
+ÿ±cl%
+ÿ™"artikel"
+ÿ£feld$$
+a%ÿ0
+ÿÉÿ`
+ÿÉÿ¥suna$ÿ£feld$$
+adrmax%ÿÿA("artikel")
+cp%ÿ0
+lp%ÿ0
+pc%ÿ0
+ÿƒServer("LISTBOXINIT","Artikelauswahl")
+ÿØÿOÿB("artikel")
+	pc%ÿpc%ÿ1
+	cp%ÿÿ(100ÿadrmax%ÿpc%)
+	ÿ¡cp%ÿlp%ÿp
+ÿÊÿË"Verarbeitung: "ÿÿ(cp%,"999")ÿ"%"
+lp%ÿcp%
+	ÿ’ÿ¡
+	ÿ¡Stichwort.artikelÿsuna$ÿp
+sok%ÿÿ1
+ÿ¡MNdisabled%("DATALOCK")ÿp
+ÿ¡Sperre.artikelÿ0ÿSperre.artikelÿvcodema%ÿpsok%ÿ0
+ÿ’ÿ¡
+ÿ¡sok%ÿp
+artiform$ÿ"ARTIKEL"
+ÿ¡DEFA$ÿ"MEGA"ÿpartiform$ÿ"ARTIDEFA"
+ÿ¡ÿ>(ÿœ)ÿartiform$ÿp
+item$ÿArtikelnummer.ARTIKEL
+ÿ¡item$ÿ""ÿpitem$ÿitem$ÿ";"
+item$ÿitem$ÿBezeichnung.ARTIKELÿ", "ÿÿ+(Beschreibung.ARTIKEL,100)ÿ" ("ÿÿ(CodeAR.ARTIKEL,"000000")ÿ")"
+ÿƒServer("LISTBOXADD",item$)
+ÿ^
+ÿ¡KalkArt.MASTERÿ0ÿp
+item$ÿArtikelnummer.ARTIKEL
+ÿ¡item$ÿ""ÿpitem$ÿitem$ÿ";"
+item$ÿitem$ÿBezeichnung.ARTIKELÿ", "ÿÿ+(Beschreibung.ARTIKEL,100)ÿ", "ÿÿH(ÿ(VKnetto.ARTIKEL,",9999999999.00"))ÿ" ("ÿÿ(CodeAR.ARTIKEL,"000000")ÿ")"
+ÿ^
+item$ÿArtikelnummer.ARTIKEL
+ÿ¡item$ÿ""ÿpitem$ÿitem$ÿ";"
+item$ÿitem$ÿBezeichnung.ARTIKELÿ", "ÿÿ+(Beschreibung.ARTIKEL,100)ÿ", "ÿÿH(ÿ(VKbrutto.ARTIKEL,",9999999999.00"))ÿ" ("ÿÿ(CodeAR.ARTIKEL,"000000")ÿ")"
+ÿ’ÿ¡
+ÿ¡Bestandsfhrung.ARTIKELÿ"j"ÿp
+ÿƒServer("LISTBOXADD",item$)
+ÿ^
+ÿ¡MSArt%ÿ2ÿMSArt%ÿ3ÿp
+ÿƒServer("LISTBOXADD",item$)
+ÿ^
+ÿ¡Bestand.ARTIKELÿ0ÿpÿƒServer("LISTBOXADD",item$)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ AuswArtikel$(a%) = LTRIM$ (Bezeichnung) + ", " + LTRIM$ (Artikelnummer) + SPACE$ (120) + STR$ (codear,"000000")
+a%ÿa%ÿ1
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	ÿÉÿ±
+ÿÙ
+ÿÊÿË"Bereit"
+ÿ¡a%ÿ0ÿp
+	ÿƒFehler("Es wurde kein Artikel mit diesem Stichwort gefunden!","")
+	AdrSuche%ÿ0
+	ok%ÿ0
+ÿ’ÿ¡
+ÿ½ END IF 
+LAuswahl$ÿAuswArtikel$(0)
+LAuswahl1$(0)ÿLAuswahl$
+req3%ÿ0
+ÿ¡a%ÿ0ÿp
+artausw$ÿ"j"
+ÿ¬4,3,1,"Auswahl&liste,F7","ArtAusw","Artikel aus der Auswahlliste ausw„hlen"
+ÿ½ CREATE DIALOG "ADRLISTE",0,0,340,197,"gefundene Eintr„ge","MS Sans Serif",8
+ÿ½ ADD DIALOG "ADRLISTE",7,5,8,328,161,2,2,AuswArtikel$,Lauswahl1$,AuswArtikel$(0)
+ÿ½ ADD DIALOG "ADRLISTE",1,114,174,56,16,1,"&OK",1,1
+ÿ½ ADD DIALOG "ADRLISTE",1,174,174,56,16,0,"&Abbrechen",0,0
+ÿ½ DIALOG "ADRLISTE",req3%
+ÿßÿ³
+ÿ½ REMOVE DIALOG "ADRLISTE"
+ÿ½ IF req3% = 1 THEN 
+	ÿ½ LAuswahl$ = LAuswahl1$(0)
+	ÿ½ ArtiSuche% = VAL ( RIGHT$ (LAuswahl$,6))
+	ÿ½ artifound% = VAL ( RIGHT$ (LAuswahl$,6))
+	ÿ½ cuart% = artifound%
+	ÿ¡ÿ>(ÿœ)ÿartiform$ÿp
+ÿƒServer("LISTBOXSHOW","")
+ÿßÿ³
+erg$ÿServerReply$()
+ÿ¡erg$ÿ""ÿp
+cuart%ÿÿ0(ÿ,(erg$,ÿ/(erg$)ÿ6,6))
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	ok%ÿ0
+	ÿÊÿË"Artikel gefunden..."
+ÿ^
+	ArtiSuche%ÿ0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ ### ende asuchopt%=5 
+
+ÿ¡asuchopt%ÿ4ÿp
+ÿÉÿ¥Auswahl$ÿ™"gruppen"ÿ£Kurzbezeichnung.gruppen
+_cugrp%ÿCodeGR.gruppen
+Gruppenausw$ÿAuswahl$
+ÿ¡cugrp%ÿ0ÿpcugrp%ÿ_cugrp%
+ÿƒServer("LISTBOXINIT","Auswahl")
+ÿ™"ARTIKEL"
+ÿ£CodeGR.ARTIKEL
+ÿÉÿ`
+ÿÉÿ¥_cugrp%
+ÿØCodeGR.ARTIKELÿ_cugrp%ÿÿOÿB("ARTIKEL")
+artausw$ÿ"j"
+ÿßÿe
+ÿ¡Bezeichnung.ARTIKELÿ"*"ÿsuna$ÿ"*"ÿBeschreibung.ARTIKELÿ"*"ÿsuna$ÿ"*"ÿp
+	artiform$ÿ"ARTIKEL"
+	ÿ¡DEFA$ÿ"MEGA"ÿpartiform$ÿ"ARTIDEFA"
+	ÿ¡ÿ>(ÿœ)ÿartiform$ÿp
+item$ÿArtikelnummer.ARTIKEL
+ÿ¡item$ÿ""ÿpitem$ÿitem$ÿ";"
+item$ÿitem$ÿBezeichnung.ARTIKELÿ", "ÿÿ+(Beschreibung.ARTIKEL,100)ÿ" ("ÿÿ(CodeAR.ARTIKEL,"000000")ÿ")"
+ÿƒServer("LISTBOXADD",item$)
+	ÿ^
+ÿ¡KalkArt.MASTERÿ0ÿp
+item$ÿArtikelnummer.ARTIKEL
+ÿ¡item$ÿ""ÿpitem$ÿitem$ÿ";"
+item$ÿitem$ÿBezeichnung.ARTIKELÿ", "ÿÿ+(Beschreibung.ARTIKEL,100)ÿ", "ÿÿH(ÿ(VKnetto.ARTIKEL,",9999999999.00"))ÿ" ("ÿÿ(CodeAR.ARTIKEL,"000000")ÿ")"
+ÿ^
+item$ÿArtikelnummer.ARTIKEL
+ÿ¡item$ÿ""ÿpitem$ÿitem$ÿ";"
+item$ÿitem$ÿBezeichnung.ARTIKELÿ", "ÿÿ+(Beschreibung.ARTIKEL,100)ÿ", "ÿÿH(ÿ(VKbrutto.ARTIKEL,",9999999999.00"))ÿ" ("ÿÿ(CodeAR.ARTIKEL,"000000")ÿ")"
+ÿ’ÿ¡
+ÿ¡Bestandsfhrung.ARTIKELÿ"j"ÿp
+ÿƒServer("LISTBOXADD",item$)
+ÿ^
+ÿ¡MSArt%ÿ2ÿMSArt%ÿ3ÿp
+ÿƒServer("LISTBOXADD",item$)
+ÿ^
+ÿ¡Bestand.ARTIKELÿ0ÿpÿƒServer("LISTBOXADD",item$)
+ÿ’ÿ¡
+ÿ’ÿ¡
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"ARTIKEL"ÿ£CodeGR.ARTIKEL
+ÿÙ
+ÿßÿ³
+artiform$ÿ"ARTIKEL"
+ÿ¡DEFA$ÿ"MEGA"ÿpartiform$ÿ"ARTIDEFA"
+ÿ¡ÿ>(ÿœ)ÿartiform$ÿp
+ÿƒServer("LISTBOXSHOW","")
+ÿßÿ³
+erg$ÿServerReply$()
+ÿ¡erg$ÿ""ÿp
+	cuart%ÿÿ0(ÿ,(erg$,ÿ/(erg$)ÿ6,6))
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡asuchopt%ÿ
+4ÿp
+ÿ™"ARTIKEL"
+ÿ£feld$$
+ÿÊÿË"Suche Artikel..."
+ÿÉÿ¥suna$ÿ£feld$$
+suche%ÿ0
+artiform$ÿ"ARTIKEL"
+ÿ¡DEFA$ÿ"MEGA"ÿpartiform$ÿ"ARTIDEFA"
+wi%ÿ0
+ÿƒServer("LISTBOXINIT","Artikelauswahl")
+ÿ™"ARTIKEL"
+ÿ£feld$$
+ÿÉÿ`
+ÿÉÿ¥suna$ÿ£feld$$
+ÿßÿe
+ÿØÿ>(ÿ+(feld$$,ÿ/(suna$)))ÿÿ>(suna$)ÿÿOÿB("artikel")
+ÿßÿe
+artausw$ÿ"j"
+adrfound%ÿ0
+wi%ÿwi%ÿ1
+artiform$ÿ"ARTIKEL"
+ÿ¡DEFA$ÿ"MEGA"ÿpartiform$ÿ"ARTIDEFA"
+ÿ¡ÿ>(ÿœ)ÿartiform$ÿp
+	ÿ¡feld$ÿ"bestellnummer.artikel"ÿp
+item$ÿBestellnummer.ARTIKEL
+ÿ¡item$ÿ""ÿpitem$ÿitem$ÿ";"
+item$ÿitem$ÿBezeichnung.ARTIKELÿ", "ÿÿH(ÿ(EK.ARTIKEL,",9999999999.00"))ÿ", "ÿÿ+(Beschreibung.ARTIKEL,100)ÿ" ("ÿÿ(CodeAR.ARTIKEL,"000000")ÿ")"
+	ÿ^
+item$ÿArtikelnummer.ARTIKEL
+ÿ¡item$ÿ""ÿpitem$ÿitem$ÿ";"
+item$ÿitem$ÿBezeichnung.ARTIKELÿ", "ÿÿH(ÿ(VKnetto.ARTIKEL,",9999999999.00"))ÿ", "ÿÿ+(Beschreibung.ARTIKEL,100)ÿ" ("ÿÿ(CodeAR.ARTIKEL,"000000")ÿ")"
+	ÿ’ÿ¡
+	ÿƒServer("LISTBOXADD",item$)
+ÿ^
+	ÿ¡KalkArt.MASTERÿ0ÿp
+ÿ¡feld$ÿ"bestellnummer.artikel"ÿp
+item$ÿBestellnummer.ARTIKEL
+ÿ¡item$ÿ""ÿpitem$ÿitem$ÿ";"
+item$ÿitem$ÿBezeichnung.ARTIKELÿ", "ÿÿH(ÿ(EK.ARTIKEL,",9999999999.00"))ÿ", "ÿÿ+(Beschreibung.ARTIKEL,100)ÿ" ("ÿÿ(CodeAR.ARTIKEL,"000000")ÿ")"
+ÿ^
+item$ÿArtikelnummer.ARTIKEL
+ÿ¡item$ÿ""ÿpitem$ÿitem$ÿ";"
+item$ÿitem$ÿBezeichnung.ARTIKELÿ", "ÿÿH(ÿ(VKnetto.ARTIKEL,",9999999999.00"))ÿ", "ÿÿ+(Beschreibung.ARTIKEL,100)ÿ" ("ÿÿ(CodeAR.ARTIKEL,"000000")ÿ")"
+ÿ’ÿ¡
+	ÿ^
+ÿ¡feld$ÿ"bestellnummer.artikel"ÿp
+item$ÿBestellnummer.ARTIKEL
+ÿ¡item$ÿ""ÿpitem$ÿitem$ÿ";"
+item$ÿitem$ÿBezeichnung.ARTIKELÿ", "ÿÿH(ÿ(EK.ARTIKEL,",9999999999.00"))ÿ", "ÿÿ+(Beschreibung.ARTIKEL,100)ÿ" ("ÿÿ(CodeAR.ARTIKEL,"000000")ÿ")"
+ÿ^
+item$ÿArtikelnummer.ARTIKEL
+ÿ¡item$ÿ""ÿpitem$ÿitem$ÿ";"
+item$ÿitem$ÿBezeichnung.ARTIKELÿ", "ÿÿH(ÿ(VKBrutto.ARTIKEL,",9999999999.00"))ÿ", "ÿÿ+(Beschreibung.ARTIKEL,100)ÿ" ("ÿÿ(CodeAR.ARTIKEL,"000000")ÿ")"
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	ÿ¡Bestandsfhrung.ARTIKELÿ"j"ÿp
+ÿƒServer("LISTBOXADD",item$)
+	ÿ^
+ÿ¡MSArt%ÿ2ÿMSArt%ÿ3ÿp
+ÿƒServer("LISTBOXADD",item$)
+ÿ^
+ÿ¡Bestand.ARTIKELÿ0ÿpÿƒServer("LISTBOXADD",item$)
+ÿ’ÿ¡
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿƒServer("GaugeMessage","Artikeldatei wird durchsucht... "ÿÿF(ÿ(wi%,"9999"))ÿ" gefunden")
+ÿÉÿ±ÿ™"ARTIKEL"ÿ£feld$$
+ÿÙ
+ÿßÿ³
+ÿƒGauge(0,"")
+ÿÊÿË""
+artiform$ÿ"ARTIKEL"
+ÿ¡DEFA$ÿ"MEGA"ÿpartiform$ÿ"ARTIDEFA"
+ÿ¡ÿ>(ÿœ)ÿartiform$ÿp
+ÿ¡wi%ÿ0ÿp
+	ÿÊÿË"Bitte w„hlen Sie einen Artikel aus"
+	ÿ½ MENU 2,6,1,"aus Suchliste &w„hlen,F7","ADRWahl"
+	ÿƒServer("LISTBOXSHOW","Bitte w„hlen Sie den gewnschten Artikel aus:")
+	erg$ÿServerReply$()
+	ÿ¡erg$ÿ""ÿp
+cuart%ÿÿ0(ÿ,(erg$,ÿ/(erg$)ÿ6,6))
+	ÿ’ÿ¡
+ÿ^
+	ÿƒFehler("Keinen entsprechenden Artikel gefunden!","")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ENDESuch1: 
+ artiform$ÿ"ARTIKEL"
+ ÿ¡DEFA$ÿ"MEGA"ÿpartiform$ÿ"ARTIDEFA"
+ ÿ¡ÿ>(ÿœ)ÿartiform$ÿp
+ÿ™"ARTIKEL"
+ÿÉÿœÿ¥cuart%ÿ™"ARTIKEL"ÿ£CodeAR.ARTIKEL
+ÿÊÿ£Bezeichnung.artikel
+ÿ£Bezeichnung.artikel
+ÿßÿ³
+ÿœ
+ÿ¬4,3,1,"Auswahl&liste,F7","ArtAusw","Artikel aus der Auswahlliste ausw„hlen"
+ ÿ’ÿ¡
+ENDESuch2: 
+ ÿ’ÿÿ
+ 
+ÿÿArtAusw()
+ artiform$ÿ"ARTIKEL"
+ ÿ¡DEFA$ÿ"MEGA"ÿpartiform$ÿ"ARTIDEFA"
+ ÿ¡ÿ>(ÿœ)ÿartiform$ÿp
+ÿÊÿË"Bitte w„hlen Sie einen Artikel aus"
+ÿ½ MENU 2,6,1,"aus Suchliste &w„hlen,F7","ADRWahl"
+ÿƒServer("LISTBOXSHOW","Bitte w„hlen Sie den gewnschten Artikel aus:")
+erg$ÿServerReply$()
+ÿ¡erg$ÿ""ÿp
+cuart%ÿÿ0(ÿ,(erg$,ÿ/(erg$)ÿ6,6))
+ÿ’ÿ¡
+ÿ™"ARTIKEL"
+ÿÉÿœÿ¥cuart%ÿ™"ARTIKEL"ÿ£CodeAR.ARTIKEL
+ÿÊÿ£Bezeichnung.artikel
+ÿ£Bezeichnung.artikel
+ÿßÿ³
+ÿœ
+ÿ¬4,3,1,"Auswahl&liste,F7","ArtAusw","Artikel aus der Auswahlliste ausw„hlen"
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ' Produkt l”schen
+ ' =======================================================================
+ 
+ÿÿARTLoeschen()
+ ÿ¡disabled%("ARTLoeschen")ÿpÿ’ÿÿ
+ cuart%ÿCodeAR.ARTIKEL
+ ÿÂ"Datensatz l”schen?","",130,req%
+ ÿ¡req%ÿ1ÿp
+ÿßÿe
+ÿÊÿË"WARTEN: Datensatz wird gel”scht..."
+ÿÉÿ¥cuart%ÿáÿ™"ARTIKEL"ÿ£CodeAR.ARTIKEL
+ÿÉÿ¾
+ ÿ’ÿ¡
+ ÿ™"ARTIKEL"
+ ÿÊÿ£Bezeichnung.artikel
+ ÿ£Bezeichnung.artikel
+ ÿœ
+ ÿÊÿË""
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+ ' Produktgruppe zuordnen
+ ' =======================================================================
+ 
+ÿÿARTGruppe()
+ ÿ¡Bezeichnung.ARTIKELÿ""ÿp
+_cugrp%ÿCodeGR.ARTIKEL
+cuart%ÿCodeAR.ARTIKEL
+ÿ¡ÿ°("ARTIKEL")ÿÿ("ARTIKEL")ÿpÿƒFStore("ARTIKEL")
+ÿ™"gruppen"
+ÿ×Auswahl1$(1)
+ÿ£CodeGR.gruppen
+ÿÉÿ`
+a%ÿ0
+ÿØÿOÿB("gruppen")
+ProdGruppen$(a%)ÿKurzbezeichnung.gruppen
+a%ÿa%ÿ1
+ÿÉÿ±
+ÿÙ
+Auswahl$ÿProdGruppen$(0)
+Auswahl1$(0)ÿAuswahl$
+ÿ™"artikel"
+ÿ‰ÿñ"PREISLIS",0,0,150,164,"Auswahl Produktgruppe","MS Sans Serif",8
+ÿ|ÿñ"PREISLIS",4,0,0,149,137,0," Auswahl Produktgruppe"
+ÿ|ÿñ"PREISLIS",7,5,14,139,125,2,2,Prodgruppen$,Auswahl1$," "
+ÿ|ÿñ"PREISLIS",1,17,145,55,16,1,"&OK",1,1
+ÿ|ÿñ"PREISLIS",1,77,145,55,16,0,"&Abbrechen",0,0
+ÿñ"PREISLIS",req%
+ÿ¾ÿñ"PREISLIS"
+ÿ¡req%ÿ1ÿp
+Auswahl$ÿAuswahl1$(0)
+ÿÉÿ¥Auswahl$ÿ™"gruppen"ÿ£Kurzbezeichnung.gruppen
+_cugrp%ÿCodeGR.gruppen
+ÿ¡cugrp%ÿ0ÿpcugrp%ÿ_cugrp%
+ÿÉÿ¥_cugrp%ÿ™"gruppen"ÿ£CodeGR.gruppen
+ÿÉÿ¥cuart%ÿáÿ™"ARTIKEL"ÿ£CodeAR.ARTIKEL
+CodeGR.ARTIKELÿ_cugrp%
+ÿ¡Handelsspanne.ARTIKELÿ
+1ÿp
+
+Handelsspanne.ARTIKELÿHandelsspanne.gruppen
+ÿ’ÿ¡
+ÿƒFStore("ARTIKEL")
+ÿÉÿœÿ¥cuart%ÿ™"ARTIKEL"ÿ£CodeAR.ARTIKEL
+ÿÊÿ£bezeichnung.ARTIKEL
+ÿ£bezeichnung.ARTIKEL
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ pgr$ÿKurzbezeichnung.GRUPPEN
+ ÿßÿ³
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿARTNext()
+ ÿßÿe
+ cuart%ÿCodeAR.ARTIKEL
+ ÿ¡ÿ°("ARTIKEL")ÿÿ("ARTIKEL")ÿpÿƒFStore("ARTIKEL")
+ ÿÉÿœÿ±ÿ™"Artikel"ÿ£Bezeichnung.ARTIKEL
+ ÿ¡cugrp%ÿ0ÿp
+ÿ¡CodeGR.ARTIKELÿcugrp%ÿp
+ÿØCodeGR.ARTIKELÿcugrp%ÿÿOÿB("ARTIKEL")
+ÿÉÿœÿ±ÿ™"Artikel"ÿ£Bezeichnung.ARTIKEL
+ÿÙ
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡ÿB("ARTIKEL")ÿp
+ÿÂ"keine weiteren Eintragungen!","",2
+ÿÉÿœÿ¥cuart%ÿ™"Artikel"ÿ£CodeAR.ARTIKEL
+ÿÊÿ£Bezeichnung.ARTIKEL
+ÿ£Bezeichnung.ARTIKEL
+ ÿ’ÿ¡
+ ÿœ
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ÿÿARTPrev()
+ ÿßÿe
+ cuart%ÿCodeAR.ARTIKEL
+ ÿ¡ÿ°("ARTIKEL")ÿÿ("ARTIKEL")ÿpÿƒFStore("ARTIKEL")
+ ÿÉÿœÿgÿ™"Artikel"ÿ£Bezeichnung.ARTIKEL
+ ÿ¡cugrp%ÿ0ÿp
+ÿ¡CodeGR.ARTIKELÿcugrp%ÿp
+ÿØCodeGR.ARTIKELÿcugrp%ÿÿOÿB("ARTIKEL")
+ÿÉÿœÿgÿ™"Artikel"ÿ£Bezeichnung.ARTIKEL
+ÿÙ
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡ÿB("ARTIKEL")ÿp
+ÿÂ"keine weiteren Eintragungen!","",2
+ÿÉÿœÿ¥cuart%ÿ™"Artikel"ÿ£CodeAR.ARTIKEL
+ÿÊÿ£Bezeichnung.ARTIKEL
+ÿ£Bezeichnung.ARTIKEL
+ ÿ’ÿ¡
+ ÿœ
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+ ' Lieferant fr einen Artikel bestimmen
+ ' =======================================================================
+ 
+ÿÿARTLieferant(nr%)
+ cuart%ÿCodeAR.ARTIKEL
+ ÿßÿe
+ ÿ¡ÿ°("ARTIKEL")ÿÿ("ARTIKEL")ÿpÿƒFStore("ARTIKEL")
+ ÿ™"adressen"
+ ÿ×LAuswahl1$(1)
+ a%ÿ0
+ ÿ£AALieferant.adressen
+ ÿÉÿ`
+ ÿÉÿ¥"j"ÿ™"adressen"ÿ£aalieferant.adressen
+ ÿØaalieferant.adressenÿ"j"ÿÿOÿB("adressen")
+Lieferant$(a%)ÿnachname.adressenÿÿ'(120)ÿÿ(codeku.adressen,"000000")
+a%ÿa%ÿ1
+ÿÉÿ±
+ ÿÙ
+ LAuswahl$ÿLieferant$(0)
+ LAuswahl1$(0)ÿLAuswahl$
+ ÿ‰ÿñ"PREISLIS",0,0,155,148,"Ausgabe Preisliste","MS Sans Serif",8
+ÿ|ÿñ"PREISLIS",4,1,1,152,123,0," Auswahl des Lieferanten"
+ÿ|ÿñ"PREISLIS",7,4,14,146,114,2,2,Lieferant$,Lauswahl1$," "
+ÿ|ÿñ"PREISLIS",1,16,130,54,16,1,"&OK",1,1
+ÿ|ÿñ"PREISLIS",1,76,130,54,16,0,"&Abbrechen",0,0
+ ÿñ"PREISLIS",req%
+ ÿ¾ÿñ"PREISLIS"
+ ÿ¡req%ÿ1ÿp
+LAuswahl$ÿLAuswahl1$(0)
+ÿÉÿ¥ÿ0(ÿ-(LAuswahl$,6))ÿ™"adressen"ÿ£codeku.adressen
+codeku%ÿCodeKu.adressen
+ÿ™"Artikel"
+ÿÉÿ¥cuart%ÿáÿ™"ARTIKEL"ÿ£CodeAR.ARTIKEL
+ÿ¡nr%ÿ1ÿpLieferant.artikelÿcodeku%
+ÿ¡nr%ÿ2ÿpLieferant2.artikelÿcodeku%
+ÿ¡nr%ÿ3ÿpLieferant3.artikelÿcodeku%
+ÿƒFStore("ARTIKEL")
+ ÿ’ÿ¡
+ ÿœ
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+ ' Kombination Intro
+ ' =======================================================================
+ 
+ÿÿKOMBIntro()
+ cuart%ÿCodeAR.ARTIKEL
+ ÿœ2
+ ÿÉÿœÿ¥cuart%ÿ™"ARTIKEL"ÿ£CodeAR.ARTIKEL
+ ÿœ
+ ÿ’ÿÿ
+ 
+ ' Kombination neu
+ ' =======================================================================
+ 
+ÿÿKOMBNeu()
+ ÿ¡ÿ°("KOMBI")ÿÿ("KOMBI")ÿpÿƒFStore("KOMBI")
+ ÿÿ™"KOMBI"
+ CodeKO.KOMBIÿCodeAR.ARTIKEL
+ ÿƒFStore("KOMBI")
+ ÿÉÿœÿ¥cuart%ÿ™"ARTIKEL"ÿ£CodeAR.ARTIKEL
+ ÿƒKOMBAuswahl()
+ ÿ’ÿÿ
+ 
+ ' Kombination sichern
+ ' =======================================================================
+ 
+ÿÿKOMBSichern()
+ ÿ¡ÿ°("KOMBI")ÿÿ("KOMBI")ÿpÿƒFStore("KOMBI")
+ ÿƒKOMBRechnen(cuart%)
+ ÿ’ÿÿ
+ 
+ ' Kombi-Positionen in Hauptartikel bernehmen
+ ' =======================================================================
+ 
+ÿÿKOMBRechnen(Artikel%)
+ ÿßÿe
+ cfile$ÿÿ™
+ ÿÊÿË"Gesamtpreis wird kalkuliert..."
+ vknetto%ÿ0
+ vkbrutto%ÿ0
+ ek%ÿ0
+ ÿ™"KOMBI"
+ ÿ£CodeKO.KOMBI
+ ÿÉÿ`
+ ÿÉÿ¥Artikel%
+ ÿØCodeKO.KOMBIÿArtikel%ÿÿOÿB("KOMBI")
+ÿÉÿ¥CodeAR.KOMBIÿ™"ARTIKEL"ÿ£CodeAR.ARTIKEL
+ÿ¡KombiNetto.ARTIKELÿ0ÿpvknetto%ÿvknetto%ÿ(Anzahl.KOMBIÿKombiNetto.ARTIKEL)ÿ^vknetto%ÿvknetto%ÿ(Anzahl.KOMBIÿVKnetto.ARTIKEL)
+ÿ¡KombiBrutto.ARTIKELÿ0ÿpvkbrutto%ÿvkbrutto%ÿ(Anzahl.KOMBIÿKombiBrutto.ARTIKEL)ÿ^vkbrutto%ÿvkbrutto%ÿ(Anzahl.KOMBIÿVKbrutto.ARTIKEL)
+ÿ¡LieferEK.ARTIKELÿ0ÿpek%ÿek%ÿ(Anzahl.KOMBIÿLieferEK.ARTIKEL)ÿ^ek%ÿek%ÿ(Anzahl.KOMBIÿEK.ARTIKEL)
+mwst%ÿMwSt.ARTIKEL
+ÿÉÿ±ÿ™"KOMBI"ÿ£CodeKO.KOMBI
+ ÿÙ
+ ÿ™"ARTIKEL"
+ ÿÉÿœÿ¥Artikel%ÿáÿ™"ARTIKEL"ÿ£CodeAR.ARTIKEL
+ EK.ARTIKELÿek%
+ gesek%ÿek%ÿKostenTransport.artikelÿKostenReparatur.artikelÿKostenSonstiges.artikel
+ VKNetto.ARTIKELÿvknetto%
+ 
+ VKbrutto.ARTIKELÿVKnetto%ÿ((VKnetto%ÿ100)ÿmwst%)
+ ÿ½ VKbrutto.ARTIKEL = vkbrutto%
+ MwSt.ARTIKELÿmwst%
+ 
+ Handelsspanne.ARTIKELÿ(100ÿek%)ÿ(VKnetto.ARTIKELÿek%)
+ HSpanneDM$ÿÿ(VKnetto.ARTIKELÿek%,",9999999999.00")
+ ÿƒQuickStore("ARTIKEL")
+ ÿ™cfile$
+ ÿßÿ³
+ ÿÊÿË""
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ ' šberprfung, ob Artikel aus Kombiartikeln besteht
+ ' =======================================================================
+ 
+ÿÿIsKombi%(CodeAR%)
+ ÿÉÿ¥CodeAR%ÿ™"KOMBI"ÿ£CodeKO.KOMBI
+ ÿ¡ÿC("KOMBI")ÿpIsKombi%ÿÿ1ÿ^IsKombi%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ ' Kombi-Position l”schen
+ ' =======================================================================
+ 
+ÿÿKOMBLoeschen()
+ ÿ¡disabled%("KOMBLoeschen")ÿpÿ’ÿÿ
+ scode%ÿQuickCode.KOMBI
+ ÿ¡ÿ°("KOMBI")ÿÿ("KOMBI")ÿpÿƒFStore("KOMBI")
+ ÿÂ"Wollen Sie die aktuelle Position wirklich l”schen?","",135,req%
+ ÿ¡req%ÿ1ÿp
+ÿßÿe
+ÿ™"KOMBI"
+ÿÉÿ¥scode%ÿáÿ™"KOMBI"ÿ£QuickCode.KOMBI
+ÿÉÿ¾ÿ™"KOMBI"
+ÿÉÿœÿ¥cuart%ÿ™"ARTIKEL"ÿ£CodeAR.ARTIKEL
+ÿÉÿœÿYÿí
+ÿœ
+ÿßÿ³
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ 
+ ' KOMBI-Position ausw„hlen
+ ' =======================================================================
+ 
+ÿÿKOMBAuswahl()
+ scode%ÿQuickCode.KOMBI
+ ÿÉÿ¥scode%ÿáÿ™"KOMBI"ÿ£QuickCode.KOMBI
+ ÿ¡CodeGR.KOMBIÿ0ÿp
+_cugrp%ÿCodeGR.KOMBI
+ ÿ^
+_cugrp%ÿ0
+ ÿ’ÿ¡
+ ÿ™"gruppen"
+ ÿ£CodeGR
+ ÿÉÿ`
+ a%ÿ0
+ ÿØÿOÿB("gruppen")
+ProdGruppen$(a%)ÿKurzbezeichnung.gruppen
+a%ÿa%ÿ1
+ÿÉÿ±
+ ÿÙ
+ ÿÉÿ¥_cugrp%ÿ™"GRUPPEN"ÿ£CodeGR.GRUPPEN
+ Auswahl$ÿKurzbezeichnung.GRUPPEN
+ suna$ÿ""
+ ÿ‰ÿñ"KOMBAuswahl",0,0,186,84,"Auswahl","MS Sans Serif",8
+ ÿ|ÿñ"KOMBAuswahl",9,2,6,20,22,2
+ ÿ|ÿñ"KOMBAuswahl",5,34,8,86,8,0,"Produkt-/Leistungs&gruppe"
+ ÿ|ÿñ"KOMBAuswahl",8,34,18,148,53,259,2,Auswahl$,ProdGruppen$
+ ÿ|ÿñ"KOMBAuswahl",5,34,36,147,9,0,"&Such&bezeichnung"
+ ÿ|ÿñ"KOMBAuswahl",6,34,46,148,14,0,0,suna$,20
+ ÿ|ÿñ"KOMBAuswahl",1,54,64,50,14,1,"&Weiter",1,1
+ ÿ|ÿñ"KOMBAuswahl",1,106,64,50,14,0,"&Abbruch",0,0
+ ÿñ"KOMBAuswahl",req%
+ ÿ¾ÿñ"KOMBAuswahl"
+ ÿ¡req%ÿ1ÿp
+ÿßÿe
+ÿÉÿ¥Auswahl$ÿ™"gruppen"ÿ£Kurzbezeichnung.gruppen
+_cugrp%ÿCodeGR.GRUPPEN
+ÿƒServer("LISTBOXINIT","Auswahl")
+ÿ™"ARTIKEL"
+ÿ£CodeGR.ARTIKEL
+ÿÉÿ`
+ÿÉÿ¥_cugrp%
+ÿØCodeGR.ARTIKELÿ_cugrp%ÿÿOÿB("ARTIKEL")
+ÿ¡KombiNetto.ARTIKELÿ0ÿp
+nettopr$ÿÿH(ÿ(VKNetto.ARTIKEL,",9999999.00"))
+ÿ^
+nettopr$ÿÿH(ÿ(KombiNetto.ARTIKEL,",9999999.00"))
+ÿ’ÿ¡
+item$ÿBezeichnung.ARTIKELÿ", "ÿÿ+(Beschreibung.ARTIKEL,100)ÿ"; "ÿnettopr$ÿ" ("ÿÿ(CodeAR.ARTIKEL,"000000")ÿ")"
+ÿ¡Bezeichnung.ARTIKELÿ"*"ÿsuna$ÿ"*"ÿBeschreibung.ARTIKELÿ"*"ÿsuna$ÿ"*"ÿpÿƒServer("LISTBOXADD",item$)
+ÿÉÿ±ÿ™"ARTIKEL"ÿ£CodeGR.ARTIKEL
+ÿÙ
+ÿƒServer("LISTBOXSHOW","")
+ÿßÿ³
+erg$ÿServerReply$()
+ÿ¡erg$ÿ""ÿp
+_cuart%ÿÿ0(ÿ,(erg$,ÿ/(erg$)ÿ6,6))
+ÿÉÿ¥_cuart%ÿáÿ™"ARTIKEL"ÿ£CodeAR.ARTIKEL
+Anzahl%ÿ1
+ÿ¡KombiNetto.ARTIKELÿ0ÿpEinzelpreis%ÿVKnetto.ARTIKELÿ^Einzelpreis%ÿKombiNetto.ARTIKEL
+ÿ‰ÿñ"KOMBAuswahl",0,0,230,92,"Artikeldaten","MS Sans Serif",8
+ÿ|ÿñ"KOMBAuswahl",9,5,4,21,24,2
+ÿ|ÿñ"KOMBAuswahl",5,41,11,185,12,0,Bezeichnung.ARTIKEL
+ÿ|ÿñ"KOMBAuswahl",5,41,25,45,12,0,"Anzahl:"
+ÿ|ÿñ"KOMBAuswahl",6,84,25,40,12,0,0,Anzahl%,20
+ÿ|ÿñ"KOMBAuswahl",6,84,41,76,12,0,0,Einzelpreis%,20
+ÿ|ÿñ"KOMBAuswahl",5,41,43,42,18,0,"Einzelpreis (netto):"
+ÿ|ÿñ"KOMBAuswahl",1,53,68,55,15,0,"&Weiter",1,1
+ÿ|ÿñ"KOMBAuswahl",1,112,68,55,15,0,"&Abbrechen",0,0
+ÿñ"KOMBAuswahl",req%
+ÿ¾ÿñ"KOMBAuswahl"
+ÿ¡req%ÿ1ÿp
+CodeAR.KOMBIÿCodeAR.ARTIKEL
+Anzahl.KOMBIÿAnzahl%
+Bezeichnung.KOMBIÿBezeichnung.ARTIKEL
+ÿ½ EK.KOMBI = EK.ARTIKEL
+CodeGR.KOMBIÿCodeGR.ARTIKEL
+KombiNetto.ARTIKELÿEinzelpreis%
+KombiBrutto.ARTIKELÿKombiNetto.ARTIKELÿ(KombiNetto.ARTIKELÿ100ÿMwSt.ARTIKEL)
+ÿƒQuickStore("ARTIKEL")
+ME.KOMBIÿME.ARTIKEL
+ÿƒFStore("KOMBI")
+ÿƒKOMBRechnen(cuart%)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿÉÿœÿ¥cuart%ÿ™"ARTIKEL"ÿ£CodeAR.ARTIKEL
+ ÿÉÿ¥scode%ÿáÿ™"KOMBI"ÿ£QuickCode.KOMBI
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ ' Artikelbeschreibung generieren
+ ' =======================================================================
+ 
+ÿÿKOMBBeschr()
+ ÿÊÿË"Artikelbeschreibung wird erstellt..."
+ ÿßÿe
+ ÿ™"KOMBI"
+ ÿ£CodeKO.KOMBI
+ ÿÉÿ`
+ beschr$ÿ"bestehend aus:"
+ ÿÉÿ¥cuart%
+ ÿØcuart%ÿCodeKO.KOMBIÿÿOÿB("KOMBI")
+ÿÉÿ¥CodeAR.KOMBIÿ™"ARTIKEL"ÿ£CodeAR.ARTIKEL
+ÿ¡Anzahl.KOMBIÿ1ÿp
+beschr$ÿbeschr$ÿÿ(13)ÿÿ(10)ÿÿH(ÿ(Anzahl.KOMBI,",9999999999"))ÿ"x "ÿBezeichnung.ARTIKEL
+ÿ^
+beschr$ÿbeschr$ÿÿ(13)ÿÿ(10)ÿBezeichnung.ARTIKEL
+ÿ’ÿ¡
+ÿ¡Beschreibung.ARTIKELÿ""ÿpbeschr$ÿbeschr$ÿ"; "ÿBeschreibung.ARTIKEL
+ÿÉÿ±ÿ™"KOMBI"ÿ£CodeKO.KOMBI
+ ÿÙ
+ ÿ™"ARTIKEL"
+ ÿÉÿœÿ¥cuart%ÿáÿ™"ARTIKEL"ÿ£CodeAR.ARTIKEL
+ ÿ¡Beschreibung.ARTIKELÿ""ÿpbeschr$ÿBeschreibung.ARTIKELÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿbeschr$
+ ÿ‰ÿñ"KOMBBeschr",0,0,302,224,"Artikelbeschreibung","MS Sans Serif",8
+ ÿ|ÿñ"KOMBBeschr",9,5,8,20,20,2
+ ÿ|ÿñ"KOMBBeschr",5,32,12,66,10,0,"Artikelbezeichnung:"
+ ÿ|ÿñ"KOMBBeschr",5,100,12,180,10,0,Bezeichnung.artikel
+ ÿ|ÿñ"KOMBBeschr",5,100,22,153,11,0,Artikelnummer.ARTIKEL
+ ÿ|ÿñ"KOMBBeschr",5,32,24,49,11,0,"Artikelnummer:"
+ ÿ|ÿñ"KOMBBeschr",5,32,41,68,10,0,"Artikelbeschreibung:"
+ ÿ|ÿñ"KOMBBeschr",6,32,52,261,143,68,2,beschr$,4000
+ ÿ|ÿñ"KOMBBeschr",1,176,200,55,15,0,"&OK",1,1
+ ÿ|ÿñ"KOMBBeschr",1,235,200,55,15,0,"&Abbrechen",0,0
+ ÿñ"KOMBBeschr",req%
+ ÿ¾ÿñ"KOMBBeschr"
+ ÿ¡req%ÿ1ÿp
+Beschreibung.ARTIKELÿbeschr$
+ÿƒFStore("ARTIKEL")
+ ÿ’ÿ¡
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+ ÿ½ ----------------  Kostentr„ger und Kostenstellenprfung fr DEFA
+ 
+ÿÿKotraegerpruef()
+ ÿ¡kostentr„ger.adressenÿ""ÿkostenstelle.adressenÿ0ÿp
+ÿƒFehler("L”schen Sie erst den Eintrag im Feld Kostenstelle:","Beide Angaben gleichzeitig sind ungltig.")
+Kostenstelle.adressenÿ0
+ÿ”Kostenstelle.adressen,0
+ ÿ^
+ÿ”anrede.adressen,0
+ ÿ’ÿ¡
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿKostellepruef()
+ ÿ¡(kostentr„ger.adressenÿ""ÿkostenstelle.adressenÿ0)ÿ(kostentr„ger.adressenÿ""ÿkostenstelle.adressenÿ0)ÿp
+ÿƒFehler("Kostentr„ger oder Kostenstelle eingeben!","Beide Angaben gleichzeitig oder leer sind ungltig.")
+Kostentr„ger.adressenÿ""
+ÿ”Kostentr„ger.adressen,0
+ ÿ^
+ÿ”anrede.adressen,0
+ ÿ’ÿ¡
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ 
+ 
+ 
+ 
+ ' Kombination beenden
+ ' =======================================================================
+ 
+ÿÿKOMBEnde()
+ ÿœ1
+ ÿ’ÿÿ
+ 
+ 
+ 
+
+ ' Artikel/Leistungsverwaltung
+ ' =======================================================================
+ 
+ÿÿMNARTIKEL()
+ ÿ¬ÿ…
+ ÿƒMNProgramm()
+ ÿ¬2,0,1,"&Daten","",""
+ ÿ¬2,1,1,"&Neu,F2","ARTNeu","einen neuen Artikel erfassen"
+ ÿ¬2,2,1,"S&ichern,F4","MStore","Daten des aktuellen Artikels sichern"
+ ÿ¬2,3,1,"&Verwerfen,Strg+RckT","UNDO","letzte Žnderungen verwerfen"
+ ÿ¡ÿOMNdisabled%("ARTLoeschen")ÿp
+ÿ¬2,4,1,"&L”schen","ARTLoeschen","aktuellen Artikel l”schen"
+ ÿ^
+ÿ¬2,4,0,"&L”schen"
+ ÿ’ÿ¡
+ ÿ¬2,5,1,"&Kopieren,F5","ARTKopieren",""
+ ÿ¬2,6,1,"S&uchen,F6","ARTSuchen","Artikel suchen"
+ ÿ¬3,0,1,"&Bewegen","",""
+ ÿ¬3,1,1,"&N„chster,BildAb","ARTNext","n„chster Artikel"
+ ÿ¬3,2,1,"&Vorheriger,BildAuf","ARTPrev","vorheriger Artikel"
+ ÿ¬3,3,1,"&Erster","SelectFirst","erster Artikel"
+ ÿ¬3,4,1,"&Letzter","SelectLast","letzter Artikel"
+ ÿ¬4,0,1,"&Optionen"
+ ÿ¬4,1,1,"&Umsatzbersicht","UMSARTIKEL","Umsatzbersicht des Artikels anzeigen"
+ ÿ¡artausw$ÿ"j"ÿp
+ÿ¬4,3,1,"Auswahl&liste,F7","ArtAusw","Artikel aus der Auswahlliste ausw„hlen"
+ ÿ^
+ÿ¬4,3,0,"Auswahl&liste,F7","ArtAusw","Artikel aus der Auswahlliste ausw„hlen"
+ ÿ’ÿ¡
+ ÿ¬5,0,1,"Sor&tierung"
+ ÿ¬5,1,1,"Bezeichnung","SortBezeichnung","Sortierung nach Bezeichnung"
+ ÿ¬5,2,1,"Artikelnummer","SortNummer","Sortierung nach Artikelnummer"
+ ÿ¬5,3,1,"Produktgruppen","SortGruppe","Sortierung nach Produktgruppen"
+ ÿ¬5,4,1,"Lieferant","SortLiefer","Sortierung nach Lieferanten"
+ ÿƒMNHilfe(6)
+ ÿ’ÿÿ
+ 
+ÿÿCLMNARTIKEL()
+ ÿ¬5,1,1
+ ÿ¬5,2,1
+ ÿ¬5,3,1
+ ÿ¬5,4,1
+ ÿ’ÿÿ
+ 
+ÿÿSortBezeichnung()
+ ÿÊÿ£Bezeichnung.ARTIKEL
+ ÿ£Bezeichnung.ARTIKEL
+ ÿ’ÿÿ
+ 
+ÿÿSortNummer()
+ ÿÊÿ£Artikelnummer.ARTIKEL
+ ÿ£Artikelnummer.ARTIKEL
+ ÿ’ÿÿ
+ 
+ÿÿSortGruppe()
+ ÿÊÿ£CodeGR.ARTIKEL
+ ÿ£CodeGR.ARTIKEL
+ ÿ’ÿÿ
+ 
+ÿÿSortLiefer()
+ ÿÊÿ£Lieferant.ARTIKEL
+ ÿ£Lieferant.ARTIKEL
+ ÿ’ÿÿ
+ 
+ 
+ ' Hauptmen
+ ' ======================================================================
+ 
+ÿÿMNFACTURA()
+ ÿ¬ÿ…
+ ÿƒMNProgramm()
+ ÿ¬2,0,1,"Datenbanken"
+ ÿ¬2,1,1,"Adressen","ADRESSEN","Adreáverwaltung"
+ ÿ¬2,2,1,"Produktgruppen","GRUPPEN","Produktgruppenverwaltung"
+ ÿ¬2,3,1,"Artikel","ARTIKEL","Artikelverwaltung"
+ ÿ¬2,4,1,"Zug„nge","ABZUGANG","Erfassung von Artikelzug„ngen"
+ ÿ¬2,5,1,"Verlustbuchung","VERLUST","Verlustbuchung"
+ ÿ¬2,6,1,"Inventur","INVENTUR","Inventur"
+ ÿ¬3,0,1,"šbersichten"
+ ÿ¬3,1,1,"Umsatz Kunden","UMSKUNDEN","Umsatzbersicht nach Kunden"
+ ÿ¬3,2,1,"Umsatz Artikel","UMSARTIKEL","Umsatzbersicht nach Artikeln"
+ ÿ¬3,3,1,"Umsatz Produktgruppe","UMSGRUPPE","Umsatzbersicht nach Produktgruppen"
+ ÿ¬3,4,1,"offene Rechnungen","ORECHNUNGEN","šbersicht ber offene Rechnungen"
+ ÿ¬3,5,1,"offene Angebote","OANGEBOTE","šbersicht ber offene Angebote"
+ ÿ¬3,6,1,"offene Bestellungen","OBESTELLUNGEN","šbersicht ber offene Bestellungen"
+ ÿ¬3,7,3
+ ÿ¬3,8,1,"allg.šbersichten Ang./Rechn/Liefer...","ListeAllg","šbersicht berAng/Rechn/Liefersch/Auftr/Bestell/Gutschr"
+ ÿ¬4,0,1,"Sonstiges"
+ ÿ¬4,1,1,"Bestellvorschlag","BESTELLV","Bestellvorschlag"
+ ÿ¬4,2,1,"Preisliste","PREISLISTE","Preislistenausgabe"
+ ÿ¬4,3,1,"Floskeltexte","FLOSKEL","Floskeltextverwaltung"
+ ÿ¬4,4,1,"Kurzberichte","BMKurzbericht","Kurzberichte"
+ ÿ¬4,5,1,"Bromanager","OFFICE","Aufruf Bromanager/OFFICE"
+ ÿ¬4,6,3
+ ÿ¬4,7,1,"Programmeinstellungen","SETUP","Einstellungen/Mitarbeiterverwaltung"
+ ÿ¬4,8,3
+ ÿ¬4,9,1,"Reorganisation der Datenbank","ReorgDB","Reorganisiert alle Dateien, die zur Datenbank geh”ren"
+ ÿ¬5,0,1,"Optionen"
+ ÿ¬5,1,1,"Kombiartikel neu kalkulieren","KALKKOMBI","Kombiartikel neu kalkulieren"
+ ÿ¬5,2,1,"Akt&ionen","AKTIONEN","Aufruf der Aktionsverwaltung"
+ ÿ¡title$ÿ"*FACTURA*"ÿtitle$ÿ"*firststep*"ÿp
+ÿ¬5,3,0,"Termine","AKQUISE1()","Terminbersicht"
+ ÿ^
+ÿ¬5,3,1,"Termine","AKQUISE1()","Terminbersicht"
+ ÿ’ÿ¡
+ ÿ¬5,4,1,"Do&kumente","DOKallg","Dokumente erstellen, einsehen und bearbeiten"
+ ÿÉÿ¥vcodema%ÿ™"SUPERVIS"ÿ£CodeMA.supervis
+ ÿ¡ÿOMNdisabled%("DOKUMENTE")ÿp
+ÿ¬5,5,1,"&Dokumentenverwaltung","DOKUMENTSRV","erweiterte Dokumentenverwaltung"
+ ÿ^
+ÿ¬5,5,0,"&Dokumentenverwaltung"
+ ÿ’ÿ¡
+ ÿ¡defa$ÿ"MEGA"ÿp
+ÿ¬5,6,3
+ÿ¡ÿOMNdisabled%("SUPERVISOR")ÿp
+ÿ¬5,7,1,"Periodenabschluá erzeugen","PeriodenAb","Periodenabschlá erzeugen"
+ÿ^
+ÿ¬5,7,0,"Periodenabschluá erzeugen","PeriodenAb","Periodenabschlá erzeugen"
+ÿ’ÿ¡
+ÿ¬5,8,1,"Lagerbewegung monatlich","Lagerbewegung","Nachweis der monatlichen Lagerbewegungen"
+ÿ½ MENU 5,9,1,"1Verbrauchskontobersicht","Verbrauchskonto","Verbrauchskontenbersicht"
+ÿ¬5,9,1,"Verbrauchskontobersicht","VKONTO","Verbrauchskontenbersicht"
+ÿ½ MENU 5,11,1,"1Bestandskontobersicht","Bestandskto","Bestandskontenbersicht"
+ÿ¬5,10,1,"Bestandskontobersicht","BKONTO","Bestandskontenbersicht"
+ÿ½ MENU 5,11,1,"Vkontobersicht-Summe","SVkto","Verbrauchskontenbersicht-Summe"
+ÿ½ MENU 5,12,1,"Bestandskontobersicht-Summe","SBkto","Bestandskontenbersicht-Summe"
+ÿ½ MENU 5,11,1,"1Verbrauch fr Kostenstelle","VKostenstelle","Verbrauch fr Kostenstelle"
+ÿ¬5,11,1,"Verbrauch fr Kostenstelle","KOSTSTEL","Verbrauch fr Kostenstelle"
+ÿ½ MENU 5,13,1,"1Verbrauch fr Kostentr„ger","VKostentr„ger","Verbrauch fr Kostentr„ger"
+ÿ¬5,12,1,"Verbrauch fr Kostentr„ger","KOSTTRAE","Verbrauch fr Kostentr„ger"
+ÿ¬5,13,1,"Lagerbestandsliste","Lagerliste","Lagerbestandsliste"
+ÿ¬5,14,1,"Zug„nge ohne Rechnung","ZugangoRech","Zug„nge ohne Rechnung"
+ÿ¬5,15,3
+ÿ¬5,16,1,"Datenaustausch","XCHANGE","Datenaustausch"
+ÿ¬5,17,1,"Reorganisation KSatz und SSatz","KSreorg","Datenaustausch"
+ ÿ’ÿ¡
+ mnline$ÿReadINI$("AddOn","1")
+ ÿ¡mnline$ÿ"leer"ÿp
+a%ÿ0
+AddOn$(0)ÿ""
+ÿØAddOn$(a%)ÿ"leer"
+AddOn$(a%)ÿÿåibm(ReadINI$("AddOn",ÿH(ÿ(a%ÿ1,"999999"))))
+ÿ¡AddOn$(a%)ÿ"leer"ÿpa%ÿa%ÿ1
+ÿÙ
+AddOn$(a%)ÿ""
+ÿ¬6,0,1,"An&wendungen"
+a%ÿ0
+ÿØAddOn$(a%)ÿ""
+ÿ¡a%ÿ
+10ÿpmnline$ÿ"&"ÿ^mnline$ÿ""
+mnline$ÿmnline$ÿÿH(ÿ(a%,"999"))ÿ" "ÿAddOn$(a%)
+ÿ¬6,a%ÿ1,1,mnline$,"ADDON"
+a%ÿa%ÿ1
+ÿÙ
+ÿƒMNHilfe(7)
+ ÿ^
+ÿƒMNHilfe(6)
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ÿÿPERIEING()
+ ÿƒDFile(2,"OFFICE\adressen"ÿ_fpw$)
+ ÿƒDFile(3,"ABZUGANG"ÿ_fpw$)
+ ÿƒDFile(3,"master"ÿ_fpw$)
+ ÿƒDFile(3,"ssatz"ÿ_fpw$)
+ ÿƒDFile(3,"ksatz"ÿ_fpw$)
+ fehl%ÿ1
+ ÿØfehl%ÿ1
+ok%ÿ0
+ÿ‰ÿñ"PERIODE",0,0,112,67,"Eingabe der Periode","MS Sans Serif",8
+ÿ|ÿñ"PERIODE",4,0,1,112,40,0,"Bitte Periode eingeben"
+ÿ|ÿñ"PERIODE",6,37,18,43,13,0,0,perieing%,4
+ÿ|ÿñ"PERIODE",1,1,44,55,16,1,"&OK",1,1
+ÿ|ÿñ"PERIODE",1,57,44,54,16,0,"&Abbrechen",0,0
+ÿñ"PERIODE",reqper%
+ÿ¾ÿñ"PERIODE"
+ÿ¡reqper%ÿ0ÿp
+perieing%ÿÿ1
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡reqper%ÿ1ÿp
+ÿ¡perieing%ÿ
+9401ÿp
+ÿÂ"Periode muá > 9401 sein!","Eingabe korrigieren",2
+ok%ÿÿ1
+ÿ^
+ym%ÿÿ0(ÿ+(ÿ(ÿQ,"yymmdd"),4))
+ÿ¡perieing%ÿym%ÿp
+
+ÿÂ"Periode muá <= "ÿÿ(ym%,"9999"9ÿ" sein!","Eingabe korrigieren",2
+
+ok%ÿÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ok%ÿ0ÿpfehl%ÿ0
+ ÿÙ
+ ÿ’ÿÿ
+ 
+ÿÿZugangoRech()
+ ÿƒDFile(3,"ABZUGANG"ÿ_fpw$)
+ ÿÁÿs"ZUGORECH"
+ ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿŸ
+ 
+ ÿš1
+ÿÊÿÁÿí"F_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿš
+ 
+ ÿžBelegnummer.ABZUGANG
+ ÿ€ÿžBelegnummer.ABZUGANG
+ÿÊÿÁÿí"H_Belegnumme002"
+ÿ¶ÿÁÿí
+ ÿ’ÿž
+ 
+ ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÉ
+ 
+ ÿÊÿiÿe
+ ÿÊÿiÿáÿe
+ uebersch$ÿÿ(ÿQ,"dd.mm.yy")ÿ"  Zug„nge ohne Rechnung"
+ ÿÉ;
+ÿÐArtZugang.ABZUGANGÿ4ÿAbgleich.ABZUGANGÿ1
+ÿqÿ~
+ 
+ ÿ’ÿÿ
+ 
+ÿÿLagerliste()
+ ÿƒPERIEING()
+ ÿ¡perieing%ÿÿ1ÿpÿ’ÿÿ
+ ÿ’ÿÿ
+ 
+ÿÿKOSTTRAE()
+ ÿƒPERIEING()
+ ÿ¡perieing%ÿÿ1ÿpÿ’ÿÿ
+ ÿÁÿs"KOSTTRAE"
+ ÿÁÿ³Nettobetrag.KSATZÿU"sumges%"
+ ÿ€ÿÁ
+ÿÊÿÁÿí"H_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿžKostentr„ger.KSATZ,Nettobetrag.KSATZÿU"sum1%"
+ ÿ€ÿžKostentr„ger.KSATZ
+ÿÊÿÁÿí"H_Kostentr„g002"
+ÿ¶ÿÁÿí
+ ÿ’ÿž
+ 
+ ÿ}ÿžKostentr„ger.KSATZ
+ÿÊÿÁÿí"F_Kostentr„g002"
+ÿ¶ÿÁÿí
+ ÿ’ÿž
+ 
+ ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÉ
+ peri%ÿperieing%
+ ÿÊÿiÿe
+ ÿÊÿiÿáÿe
+ ÿÉ;
+ÿÐkostentr„ger.ksatzÿ""ÿkostenstelle.ksatzÿ0ÿperiode.ksatzÿperieing%
+ÿµÿÁKostentr„ger.KSATZ
+ÿqÿ~
+ ÿ’ÿÿ
+
+ÿÿKOSTSTEL()
+ ÿƒPERIEING()
+ ÿ¡perieing%ÿÿ1ÿpÿ’ÿÿ
+ ÿÁÿs"KOSTSTEL"
+ ÿÁÿ³Nettobetrag.KSATZÿU"sumges%"
+ ÿ€ÿÁ
+ÿÊÿÁÿí"H_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿžKostenstelle.KSATZ,Nettobetrag.KSATZÿU"sumko%"
+ ÿ€ÿžKostenstelle.KSATZ
+ÿÊÿÁÿí"H_Kostenstel002"
+ÿ¶ÿÁÿí
+ ÿ’ÿž
+ 
+ ÿ}ÿžKostenstelle.KSATZ
+ÿÊÿÁÿí"F_Kostenstel002"
+ÿ¶ÿÁÿí
+ ÿ’ÿž
+ 
+ ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÉ
+ peri%ÿperieing%
+ ÿÊÿiÿ³
+ ÿÊÿiÿáÿe
+ ÿÉ;
+ÿÐkostenstelle.ksatzÿ0ÿkostentr„ger.ksatzÿ""ÿperiode.ksatzÿperieing%
+ÿµÿÁKostentr„ger.KSATZ
+ÿqÿ~
+ ÿ’ÿÿ
+
+ 
+ÿÿVKostentr„ger()
+ ÿƒPERIEING()
+ ÿ¡perieing%ÿÿ1ÿpÿ’ÿÿ
+ 
+ ÿÁÿs"KOSTTR1"
+ ÿÁÿ³vkanz%ÿU"bsumm%"
+ ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿŸ
+ 
+ ÿš1
+ÿÊÿÁÿí"F_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿš
+ 
+ ÿžKostentr„ger.MASTER,ÿ¡(Art.ABZUGANGÿ7,0ÿberech%,berech%)ÿU"ksum%"
+ ÿ€ÿžKostentr„ger.MASTER
+ÿÊÿÁÿí"H_Kostentr„g002"
+ÿ¶ÿÁÿí
+ ÿ’ÿž
+ 
+ ÿ}ÿžKostentr„ger.MASTER
+ÿÊÿÁÿí"F_Kostentr„g002"
+ÿ¶ÿÁÿí
+ ÿ’ÿž
+ 
+ ÿžCodeKU.MASTER
+ ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÉ
+ 
+ ÿÊÿiÿe
+ ÿÊÿiÿáÿe
+ uebersch$ÿÿ(ÿQ,"dd.mm.yy")ÿ"  Verbrauch nach Kostentr„gern"
+ ÿÉ;
+ÿÐCodeKU.MASTERÿCodeKU.ABZUGANGÿCodeMS.masterÿCodems.abzugangÿKostentr„ger.MASTERÿ""ÿ(Art.MASTERÿ7ÿArt.MASTERÿ3)ÿ
+StatusM.MASTERÿ"b"ÿPeriode.ABZUGANGÿperieing%ÿbestandskonto.abzugangÿ0
+ÿµÿÁBestandskonto.abzugang,Belegdatum.abzugang
+ÿqÿ~
+ ÿ’ÿÿ
+ 
+ 
+ 
+ÿÿVKostenstelle()
+ ÿƒPERIEING()
+ ÿ¡perieing%ÿÿ1ÿpÿ’ÿÿ
+ ÿÁÿs"KOSTST1"
+ ÿÁÿ³vkanz%ÿU"bsumm%"
+ ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿŸ
+ 
+ ÿš1
+ÿÊÿÁÿí"F_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿš
+ 
+ ÿžKostenstelle.MASTER,vkanz%ÿU"ksum%"
+ ÿ€ÿžKostenstelle.MASTER
+ÿÊÿÁÿí"H_Kostenstel002"
+ÿ¶ÿÁÿí
+ ÿ’ÿž
+ 
+ ÿ}ÿžKostenstelle.MASTER
+ÿÊÿÁÿí"F_Kostenstel002"
+ÿ¶ÿÁÿí
+ ÿ’ÿž
+ 
+ ÿžCodeKU.MASTER
+ ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÉ
+ 
+ ÿÊÿiÿe
+ ÿÊÿiÿáÿe
+ uebersch$ÿÿ(ÿQ,"dd.mm.yy")ÿ"  Verbrauch nach Kostenstellen"
+ ÿÉ;
+ÿÐCodeku.masterÿCodeku.abzugangÿcodems.masterÿcodems.abzugangÿ
+Kostenstelle.MASTERÿ0ÿ(Art.MASTERÿ3ÿArt.MASTERÿ7)ÿstatusm.masterÿ"b"ÿBestandskonto.abzugangÿ0
+ÿµÿÁBestandskonto.abzugang,Belegdatum.abzugang
+ÿqÿ~
+ ÿ’ÿÿ
+ 
+ÿÿSBkto()
+ ÿƒPERIEING()
+ ÿ¡perieing%ÿÿ1ÿpÿ’ÿÿ
+ ÿÁÿs"SBKTO"
+ ÿÁÿ³zsumme%ÿU"bsum%"
+ ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿŸ
+ 
+ ÿš1
+ÿÊÿÁÿí"F_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿš
+ 
+ ÿžBestandskonto.ABZUGANG,zsumme%ÿU"gSumm%"
+ ÿ€ÿžBestandskonto.ABZUGANG
+ÿÊÿÁÿí"H_Bestandsko002"
+ÿ¶ÿÁÿí
+ ÿ’ÿž
+ 
+ ÿ}ÿžBestandskonto.ABZUGANG
+ÿÊÿÁÿí"F_Bestandsko002"
+ÿ¶ÿÁÿí
+ÿ‘ÿÁ
+ ÿ’ÿž
+ 
+ ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÉ
+ ÿÊÿiÿe
+ ÿÊÿiÿáÿe
+ uebersch$ÿÿ(ÿQ,"dd.mm.yy")ÿ"  Liste Bestandskonten"
+ ÿÉ;
+ÿÐPeriode.ABZUGANGÿperieing%ÿ(art.abzugangÿ3ÿart.abzugangÿ7)ÿ
+Bestandskonto.abzugangÿ0
+ÿµÿÁArtikelnummer.ABZUGANG
+ÿqÿ~
+ 
+ ÿ’ÿÿ
+ 
+ 
+ÿÿSVkto()
+ ÿƒPERIEING()
+ ÿ¡perieing%ÿÿ1ÿpÿ’ÿÿ
+ ÿÁÿs"SVKTO"
+ ÿÁÿ³zsumme%ÿU"bsum%"
+ ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿŸ
+ 
+ ÿš1
+ÿÊÿÁÿí"F_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿš
+ 
+ ÿžVerbrauchskonto.ABZUGANG,zsumme%ÿU"gsumme%"
+ ÿ€ÿžVerbrauchskonto.ABZUGANG
+ÿÊÿÁÿí"H_Verbrauchs002"
+ÿ¶ÿÁÿí
+ ÿ’ÿž
+ 
+ ÿ}ÿžVerbrauchskonto.ABZUGANG
+ÿÊÿÁÿí"F_Verbrauchs002"
+ÿ¶ÿÁÿí
+ÿ‘ÿÁ
+ ÿ’ÿž
+ 
+ ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÉ
+ ÿÊÿiÿe
+ ÿÊÿiÿáÿe
+ uebersch$ÿÿ(ÿQ,"dd.mm.yy")ÿ"  Summenliste Verbrauchskonten"
+ ÿÉ;
+ÿÐPeriode.ABZUGANGÿperieing%ÿ(art.abzugangÿ3ÿart.abzugangÿ7)ÿ
+Verbrauchskonto.ABZUGANGÿ0
+ÿµÿÁArtikelnummer.ABZUGANG
+ÿqÿ~
+ ÿ’ÿÿ
+
+ÿÿVKONTO()
+ ÿƒPERIEING()
+ ÿ¡perieing%ÿÿ1ÿpÿ’ÿÿ
+ ÿÁÿs"VKONTO"
+ ÿÁÿ³Nettobetrag.SSATZÿU"sumges%"
+ ÿ€ÿÁ
+ÿÊÿÁÿí"H_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿžVerbrauchskonto.SSATZ,Nettobetrag.SSATZÿU"sumvk%"
+ ÿ€ÿžVerbrauchskonto.SSATZ
+ÿÊÿÁÿí"H_Verbrauchs002"
+ÿ¶ÿÁÿí
+ ÿ’ÿž
+ 
+ ÿ}ÿžVerbrauchskonto.SSATZ
+ÿÊÿÁÿí"F_Verbrauchs002"
+ÿ¶ÿÁÿí
+ ÿ’ÿž
+ 
+ ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÉ
+ peri%ÿperieing%
+ ÿÊÿiÿe
+ ÿÊÿiÿáÿe
+ ÿÉ;
+ÿÐPeriode.ssatzÿperieing%
+ÿµÿÁVerbrauchskonto.SSATZ,Belegnummer.SSATZÿ~
+ÿqÿ~
+ ÿ’ÿÿ
+
+ÿÿBKONTO()
+ ÿƒPERIEING()
+ ÿ¡perieing%ÿÿ1ÿpÿ’ÿÿ
+ ÿÁÿs"BKONTO"
+ ÿÁÿ³Nettobetrag.SSATZÿU"sumges%"
+ ÿ€ÿÁ
+ÿÊÿÁÿí"H_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿžBestandskonto.SSATZ,Nettobetrag.SSATZÿU"sumbkto%"
+ ÿ€ÿžBestandskonto.SSATZ
+ÿÊÿÁÿí"H_Bestandsko002"
+ÿ¶ÿÁÿí
+ ÿ’ÿž
+ 
+ ÿ}ÿžBestandskonto.SSATZ
+ÿÊÿÁÿí"F_Bestandsko002"
+ÿ¶ÿÁÿí
+ ÿ’ÿž
+ 
+ ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÉ
+ peri%ÿperieing%
+ ÿÊÿiÿe
+ ÿÊÿiÿáÿe
+ ÿÉ;
+ÿÐperiode.ssatzÿperieing%
+ÿµÿÁBestandskonto.SSATZ,Belegnummer.SSATZÿ~
+ÿqÿ~
+ ÿ’ÿÿ
+ 
+
+ÿÿVerbrauchskonto()
+ ÿƒPERIEING()
+ ÿ¡perieing%ÿÿ1ÿpÿ’ÿÿ
+ ÿÁÿs"VKTO"
+ ÿÁÿ³zsumme%ÿU"bsum%"
+ ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿŸ
+ 
+ ÿš1
+ÿÊÿÁÿí"F_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿš
+ 
+ ÿžVerbrauchskonto.ABZUGANG,zsumme%ÿU"gsumme%"
+ ÿ€ÿžVerbrauchskonto.ABZUGANG
+ÿÊÿÁÿí"H_Verbrauchs002"
+ÿ¶ÿÁÿí
+ ÿ’ÿž
+ 
+ ÿ}ÿžVerbrauchskonto.ABZUGANG
+ÿÊÿÁÿí"F_Verbrauchs002"
+ÿ¶ÿÁÿí
+ÿ‘ÿÁ
+ ÿ’ÿž
+ 
+ ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÉ
+ ÿÊÿiÿe
+ ÿÊÿiÿáÿe
+ uebersch$ÿÿ(ÿQ,"dd.mm.yy")ÿ"  Liste Verbrauchskonten"
+ ÿÉ;
+ÿÐcodems.abzugangÿcodems.masterÿPeriode.ABZUGANGÿperieing%ÿ(art.abzugangÿ3ÿart.abzugangÿ7)ÿ
+((kostenstelle.masterÿ0ÿkostentr„ger.masterÿ"")ÿ(kostenstelle.masterÿ0ÿkostentr„ger.masterÿ""))ÿ
+Verbrauchskonto.ABZUGANGÿ0
+ÿµÿÁArtikelnummer.ABZUGANG
+ÿqÿ~
+ ÿ’ÿÿ
+ 
+ÿÿLagerbewegung()
+ ÿƒPERIEING()
+ ÿ¡perieing%ÿÿ1ÿpÿ’ÿÿ
+ ÿÁÿs"LBEWEG"
+ ÿÁÿ³zsumme%ÿU"bsum%"
+ ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿŸ
+ 
+ ÿš1
+ÿÊÿÁÿí"F_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿš
+ 
+ ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÉ
+ 
+ ÿÊÿiÿe
+ ÿÊÿiÿáÿe
+ ÿÉ;
+ÿÐPeriode.ABZUGANGÿperieing%
+ÿµÿÁTimeStamp.ABZUGANG
+ÿqÿ~
+ 
+ ÿ’ÿÿ
+ 
+ÿÿBestandskto()
+ ÿƒPERIEING()
+ ÿ¡perieing%ÿÿ1ÿpÿ’ÿÿ
+ ÿÁÿs"BKTO"
+ ÿÁÿ³zsumme%ÿU"bsum%"
+ ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿŸ
+ 
+ ÿš1
+ÿÊÿÁÿí"F_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿš
+ 
+ ÿžBestandskonto.ABZUGANG,zsumme%ÿU"gSumm%"
+ ÿ€ÿžBestandskonto.ABZUGANG
+ÿÊÿÁÿí"H_Bestandsko002"
+ÿ¶ÿÁÿí
+ ÿ’ÿž
+ 
+ ÿ}ÿžBestandskonto.ABZUGANG
+ÿÊÿÁÿí"F_Bestandsko002"
+ÿ¶ÿÁÿí
+ÿ‘ÿÁ
+ ÿ’ÿž
+ 
+ ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÉ
+ ÿÊÿiÿe
+ ÿÊÿiÿáÿe
+ uebersch$ÿÿ(ÿQ,"dd.mm.yy")ÿ"  Liste Bestandskonten"
+ ÿÉ;
+ÿÐPeriode.ABZUGANGÿperieing%ÿ(art.abzugangÿ3ÿart.abzugangÿ7)ÿ
+Bestandskonto.abzugangÿ0
+ÿµÿÁArtikelnummer.ABZUGANG
+ÿqÿ~
+ 
+ ÿ’ÿÿ
+ 
+ ' Umsetzungen fr Menaufrufe
+ ' =======================================================================
+ 
+ÿÿORECHNUNGEN()
+ ÿƒOffeneVorg„nge(2)
+ ÿ’ÿÿ
+ 
+ÿÿOANGEBOTE()
+ ÿƒOffeneVorg„nge(1)
+ ÿ’ÿÿ
+ 
+ÿÿOBESTELLUNGEN()
+ ÿƒOffeneVorg„nge(5)
+ ÿ’ÿÿ
+ 
+ 
+ÿÿKSreorg()
+ ÿƒDFile(3,"ABZUGANG"ÿ_fpw$)
+ ÿƒDFile(3,"master"ÿ_fpw$)
+ ÿƒDFile(3,"ssatz"ÿ_fpw$)
+ ÿƒDFile(3,"ksatz"ÿ_fpw$)
+ 
+ÿ¾ÿaÿ™"ksatz"
+ÿ™"abzugang"
+ÿ£codems.abzugang
+ÿ™"master"
+ÿ£codems
+ÿÉÿ`
+ÿ½ SELECT KEY cums% LOCK FILE "master" INDEX codems.master
+ÿØÿOÿB("master")
+ÿ¡statusm.masterÿ"b"ÿ(art.masterÿ3ÿart.masterÿ7)ÿ(kostenstelle.masterÿ0ÿKostentr„ger.masterÿ"")ÿp
+codems%ÿcodems.master
+ÿ™"abzugang"
+ÿÉÿ¥codems%ÿ™"abzugang"ÿ£codems.abzugang
+ÿ¡ÿC("abzugang")ÿp
+	periode%ÿperiode.abzugang
+	pabschl%ÿpabschlus.abzugang
+	ÿ™"KSatz"
+	ÿ
+	codeks.ksatzÿÿI("ksatz",1)
+	ÿÊÿË"                                          Datei KSATZ wird erstellt   "ÿÿ(codeks,"000000")
+	codems.ksatzÿcodems%
+	K.ksatzÿ"k"
+	pabschlus.ksatzÿpabschl%
+	Periode.ksatzÿperiode%
+	ÿ¡Kostentr„ger.masterÿ""ÿp
+Kostentr„ger.KSatzÿKostentr„ger.master
+kostenstelle.ksatzÿ0
+	ÿ^
+Kostenstelle.KSatzÿKostenstelle.master
+Kostentr„ger.ksatzÿ""
+	ÿ’ÿ¡
+	ÿ¡art.masterÿ3ÿp
+Nettobetrag.KSatzÿGesNetto.masterÿrabatt.master
+Buchungstext.KSatzÿ"Materialverbrauch"
+	ÿ’ÿ¡
+	ÿ¡art.masterÿ7ÿp
+Nettobetrag.KSatzÿGesNetto.masterÿÿ1
+Buchungstext.KSatzÿ"Gutschrift"
+	ÿ’ÿ¡
+ 
+	ÿƒQuickStore("KSATZ")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ™"master"
+ÿÉÿ±
+ÿÙ
+ÿ™"ssatz"
+ÿ¾ÿaÿ™"ssatz"
+ÿ™"abzugang"
+ÿ£codeaz
+ÿÉÿ`
+ ÿØÿOÿB("abzugang")
+ÿ¡art.abzugangÿ3ÿart.abzugangÿ7ÿp
+codems%ÿcodems.abzugang
+ÿÉÿ¥codems%ÿ™"master"ÿ£codems.master
+ÿ¡ÿC("master")ÿp
+ÿ¡kostenstelle.masterÿ0ÿkostentr„ger.masterÿ""ÿp
+	ÿ™"SSatz"
+	ÿ
+	codess.ssatzÿÿI("ssatz",1)
+	ÿÊÿË"                                Datei SSATZ wird erstellt   "ÿÿ(codess,"000000")
+	codeaz.ssatzÿcodeaz%
+	s.ssatzÿ"S"
+	Periode.ssatzÿperiode.abzugang
+	Verbrauchskonto.ssatzÿVerbrauchskonto.abzugang
+	Bestandskonto.ssatzÿBestandskonto.abzugang
+	Belegnummer.ssatzÿNummer.abzugang
+	Belegdatum.ssatzÿBelegdatum.abzugang
+	ÿ¡art.abzugangÿ3ÿp
+Nettobetrag.ssatzÿVKNetto.abzugangÿAnzahl.abzugang
+Buchungstext.ssatzÿ"Materialverbrauch"
+	ÿ’ÿ¡
+	ÿ¡art.abzugangÿ7ÿp
+Nettobetrag.ssatzÿVKNetto.abzugangÿÿ1ÿanzahl.abzugang
+Buchungstext.ssatzÿ"Gutschrift"
+	ÿ’ÿ¡
+	sh_Kennung.ssatzÿ"s"
+	Umsatzsteuercod.ssatzÿ01
+	pabschlus.ssatzÿpabschlus.abzugang
+	ÿƒQuickStore("SSATZ")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ™"abzugang"
+ÿÉÿ±
+ÿÙ
+ ÿ’ÿÿ
+ 
+ÿÿMasterExport(vondat$,bisdat$,opt%)
+ ÿ½ OPEN FIELDS Kundennummer,Anrede,Nachname,Vorname,Geburtsname,Straáe,Ort,Plz,Nummer,Datum,GesNetto,Rabatt,GesBrutto 
+ ÿ½                                                           ExportFile
+ ÿ½ EXPORT FILE "MASTER" INDEX CodeKU TO "C:\CODIE\FACTURA\TEST1.XLS" WHERE Nachname.MASTER LIKE "1&1*" USING LABELS 
+ ÿÂ"Wollen Sie die ausgew„hlten S„tze nach EXCEL exportieren?","",130,req%
+ ÿ¡req%ÿ1ÿp
+ÿßÿe
+ÿ™"master"
+ÿ£codems.master
+ÿ¡ausgart%ÿ1ÿp
+ÿÉÿÐCodeKU.MASTERÿ_cuku%ÿDatum.MASTERÿÿ1(vondat$)ÿDatum.MASTERÿ	ÿ1(bisdat$)ÿart.masterÿopt%
+ÿÉÿÐÿ~
+ÿ^
+ÿÉÿÐDatum.MASTERÿÿ1(vondat$)ÿDatum.MASTERÿ	ÿ1(bisdat$)ÿart.masterÿopt%
+ÿÉÿÐÿ~
+ÿ’ÿ¡
+bedingung$ÿÿÐ
+ÿÊÿÿÿe
+ÿ´ÿ˜Kundennummer,Anrede,Nachname,Vorname,Geburtsname,Straáe,Ort,Plz,Nummer,Datum,GesNetto,Rabatt,GesBrutto:ÿÎ
+ÿ´ÿ˜ÿ~
+cdir$ÿÿŽ
+ÿŽ_netpath$
+dateiname$ÿ"EXPMAST.XLS"
+ÿÂ"Export nach EXCEL..."," ",27,req%,dateiname$
+ÿ¡req%ÿ1ÿp
+befehl$ÿ"EXPORT FILE "ÿÿ(34)ÿ"MASTER"ÿÿ(34)ÿ" INDEX CODEKU TO "ÿÿ(34)ÿdateiname$ÿÿ(34)ÿ" where "ÿbedingung$ÿ" USING LABELS"
+ÿ½ EXPORT FILE "MASTER" INDEX CodeKU TO "C:\CODIE\EXPMAST.XLS" USING LABELS 
+ÿ–befehl$
+ÿÂ"Export nach EXCEL beendet!","",2
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ™"master"
+ ÿÉÿÐ
+ ÿ†ÿ˜
+ ÿŽcdir$
+ ÿßÿ³
+ ÿ’ÿÿ
+
+ÿÿMastADRCon()
+ ÿ¡ÿ("master")ÿpÿƒQuickStore("master")
+ codems%ÿcodems.master
+ ÿÉÿ¥codems%ÿáÿ™"master"ÿ£codems.master
+ ÿ×AdrListe$(ÿA("ADRESSEN"))
+ knr%ÿCodeKU.ADRESSEN
+ ÿ™"ADRESSEN"
+ ÿ£Vorg„nger.ADRESSEN
+ ÿÉÿ`
+ ÿÉÿ¥knr%
+ prompt$ÿ"ZZZZZZZZ"
+ a%ÿ0
+ ÿØVorg„nger.ADRESSENÿknr%ÿÿOÿB("ADRESSEN")
+AdrListe$(a%)ÿNachname ÿ", "ÿVorname ÿ", "ÿOrt ÿÿ'(120)ÿÿ(CodeKU,"000000")
+ÿ¡Nachname ÿ
+prompt$ÿpprompt$ÿAdrListe$(a%)
+ÿÉÿ±
+a%ÿa%ÿ1
+ ÿÙ
+ ÿÉÿ¥knr%ÿ™"ADRESSEN"ÿ£CodeKU.ADRESSEN
+ ÿ‰ÿñ"ADRCON1",0,0,241,182,"Verknpfung","MS Sans Serif",8
+ ÿ|ÿñ"ADRCON1",4,0,0,241,158,0,""
+ ÿ|ÿñ"ADRCON1",9,5,9,20,21,2
+ ÿ|ÿñ"ADRCON1",5,30,10,206,28,0,"Bitte w„hlen Sie eine der untergeordneten Adressen aus oder w„hlen Sie 'Neu' um eine neue Adresse in die Gruppe aufzunehmen."
+ ÿ|ÿñ"ADRCON1",5,30,40,205,20,0,"Mit 'L”schen' k”nnen Sie die Verknpfung zur angew„hlten Adresse l”schen."
+ ÿ|ÿñ"ADRCON1",7,30,64,204,89,2,2,AdrListe$,Auswahl$,prompt$
+ ÿ|ÿñ"ADRCON1",1,3,162,55,15,1,"&W„hlen",1,1
+ ÿ|ÿñ"ADRCON1",1,63,162,55,15,0,"&Neu",2,1
+ ÿ|ÿñ"ADRCON1",1,123,162,55,15,0,"&L”schen",3,1
+ ÿ|ÿñ"ADRCON1",1,183,162,55,15,0,"&Abbrechen",0,0
+ ÿñ"ADRCON1",req%
+ ÿ¾ÿñ"ADRCON1"
+ ÿßÿe
+ nknr%ÿÿ0(ÿ-(Auswahl$(0),6))
+ ÿÉÿæreq%
+ ÿæ1
+ÿ¡nknr%ÿ0ÿpÿÉÿ¥nknr%ÿ™"ADRESSEN"ÿ£CodeKU.ADRESSEN
+ ÿæ2
+nachfolger%ÿADRSuche%()
+ÿ¡nachfolger%ÿ0ÿp
+ÿÉÿ¥nachfolger%ÿáÿ™"ADRESSEN"ÿ£CodeKU.ADRESSEN
+ok%ÿÿ1
+ÿ¡Vorg„nger.ADRESSENÿ0ÿVorg„nger.ADRESSENÿknr%ÿp
+ÿÂ"Die gew„hlte Adresse geh”rt bereits zu einer anderen Gruppe!","Trotzdem bernehmen?",134,req2%
+ÿ¡req2%ÿ1ÿpok%ÿ0
+ÿ’ÿ¡
+ÿ¡ok%ÿpVorg„nger.ADRESSENÿknr%
+ÿƒQuickStore("ADRESSEN")
+ÿ’ÿ¡
+ÿÉÿ¥knr%ÿ™"ADRESSEN"ÿ£CodeKU.ADRESSEN
+ ÿæ3
+ÿ¡nknr%ÿ0ÿp
+ÿÉÿ¥nknr%ÿáÿ™"ADRESSEN"ÿ£CodeKU.ADRESSEN
+Vorg„nger.ADRESSENÿ0
+ÿƒQuickStore("ADRESSEN")
+ÿ’ÿ¡
+ÿÉÿ¥knr%ÿ™"ADRESSEN"ÿ£CodeKU.ADRESSEN
+ ÿ’ÿÉ
+ ÿÊÿ£Nachname.ADRESSEN
+ ÿ£Nachname.ADRESSEN
+ 
+ ÿ½ šbernahme der gew„hlten Adresse in Masterdatei
+ ÿÂ"M”chten Sie die gew„hlte Adresse bernehmen?","",130,req%
+ ÿ¡req%ÿ1ÿp
+ÿ™"master"
+ÿ½ CodeKU.MASTER = codeku.adressen
+Anrede.MASTERÿAnrede.adressen
+Nachname.MasterÿNachname.adressen
+Vorname.masterÿVorname.adressen
+Geburtsname.masterÿGeburtsname.adressen
+Straáe.masterÿStraáe.adressen
+PLZ.masterÿPLZ.adressen
+Ort.MasterÿOrt.Adressen
+Adresse$ÿMakeAdr$(CodeKU.ADRESSEN,ÿ1,0,0)
+adresstext.masterÿadresse$
+ÿ¡MSArt%ÿ5ÿp
+ÿ½ Kundennummer.Master = Kundennummer.adressen
+ÿ¡DEFA$ÿ"MEGA"ÿKostentr„ger.adressenÿ""ÿp
+ÿ½ Kostentr„ger.master = Kostentr„ger.adressen
+ÿ^
+ÿ½ Kostenstelle.master = Kostenstelle.adressen
+ÿ’ÿ¡
+ÿ^
+ÿ½ Kundennummer.Master = eigKunr.Adressen
+ÿ’ÿ¡
+ÿƒQuickStore("master")
+ ÿ’ÿ¡
+ ÿ™"master"
+ knr%ÿcodeku.master
+ ÿƒMSUpdate()
+ ÿßÿ³
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿMastADRVorg()
+ ÿ¡ÿ("master")ÿpÿƒQuickStore("master")
+ codems%ÿcodems.master
+ codeku%ÿcodeku.master
+ ÿÉÿ¥codems%ÿáÿ™"master"ÿ£codems.master
+ ÿ™"adressen"
+ ÿÉÿ¥codeku%ÿ™"adressen"ÿ£codeku.adressen
+ ÿÂ"M”chten Sie wieder die Originaladresse eintragen?","",130,req%
+ ÿ¡req%ÿ1ÿp
+ÿ™"master"
+ÿ½ CodeKU.MASTER = codeku.adressen
+Anrede.MASTERÿAnrede.adressen
+Nachname.MasterÿNachname.adressen
+Vorname.masterÿVorname.adressen
+Geburtsname.masterÿGeburtsname.adressen
+Straáe.masterÿStraáe.adressen
+PLZ.masterÿPLZ.adressen
+Ort.MasterÿOrt.Adressen
+Adresse$ÿMakeAdr$(CodeKU.ADRESSEN,ÿ1,0,0)
+adresstext.masterÿadresse$
+ÿ¡MSArt%ÿ5ÿp
+ÿ½ Kundennummer.Master = Kundennummer.adressen
+ÿ¡DEFA$ÿ"MEGA"ÿKostentr„ger.adressenÿ""ÿp
+ÿ½ Kostentr„ger.master = Kostentr„ger.adressen
+ÿ^
+ÿ½ Kostenstelle.master = Kostenstelle.adressen
+ÿ’ÿ¡
+ÿ^
+ÿ½ Kundennummer.Master = eigKunr.Adressen
+ÿ’ÿ¡
+ÿƒQuickStore("master")
+ ÿ’ÿ¡
+ 
+ ÿ™"master"
+ knr%ÿcodeku.master
+ ÿƒMSUpdate()
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+

@@ -1,0 +1,51 @@
+SBP
+ ÿƒmain()
+ÿÿPTest11()
+ ÿ™"Buchung"
+ ÿ£codevt.buchung
+ ÿ™"kvertrag"
+ ÿ£lfdnr.kvertrag
+ ÿÉÿ`ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ i%ÿ0
+ j%ÿÿA("KVERTRAG")
+ f%ÿ0
+ ÿ´"test.txt"ÿ›ÿT
+ ÿ{"Start   :"ÿÿ(ÿQ,"0d.mm.yyyy")ÿ"   Zeit    "ÿÿ7(ÿR,"hh:mm:ss")
+ ÿØÿOÿB("kvertrag")
+i%ÿi%ÿ1
+ÿ¡proviab.kvertragÿ0ÿp
+ÿ¡gez_Abschluá.kvertragÿ"j"ÿp
+ÿ¡ÿJ(lfdnr.kvertrag,codevt.buchung)ÿp
+	ÿÉÿ`ÿ™"buchung"ÿ£codevt.buchung
+	ÿÉÿ¥lfdnr.kvertragÿ™"buchung"ÿ£codevt.buchung
+	ok%ÿÿ1
+	ÿØÿOÿB("buchung")ÿcodevt.buchungÿlfdnr.kvertragÿok%ÿÿ1
+ÿ¡codevt.buchungÿlfdnr.kvertragÿp
+ÿ¡(buchungstext.buchungÿ"abschlu*"ÿbuchungstext.buchungÿ"AP*")ÿProvision.buchungÿ"j"ÿp
+f%ÿf%ÿ1
+ÿ{vs_nr.kvertragÿ"/"ÿGesellschaft ÿ"-"ÿsparte.kvertragÿ"/                 "ÿbuchungstext.buchung
+
+gez_Abschluá.kvertragÿ"j"
+ÿÌÿ™"kvertrag"
+ok%ÿ0
+ÿ’ÿ¡
+ÿ^
+ÿÉÿbÿ™"buchung"ÿ£codevt.buchung
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"buchung"ÿ£codevt.buchung
+	ÿÙ
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÊÿËÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ"/"ÿÿ(f%,",99999999")
+ÿÉÿ±ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ ÿÙ
+ ÿƒFehler(ÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ"/"ÿÿ(f%,",99999999"),"")
+ ÿ{
+ ÿ{
+ ÿ{"Ende   :"ÿÿ(ÿQ,"0d.mm.yyyy")ÿ"   Zeit    "ÿÿ7(ÿR,"hh:mm:ss")
+ ÿ{ÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ"/"ÿÿ(f%,",99999999")
+ ÿ†ÿ¶
+ a%ÿÿƒ("ShellExecute",0,"open","test.txt","","",1)
+ ÿ’ÿÿ
+

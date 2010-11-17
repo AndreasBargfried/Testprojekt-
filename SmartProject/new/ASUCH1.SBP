@@ -1,0 +1,253 @@
+SBP
+ÿÿASUCH1()
+ÿ×dlg ÿUDialog
+ÿ×control ÿUDialogControl
+ 
+Superbase.Dialogs.Add("ADRCON1")
+ÿÊdlg ÿSuperbase.Dialogs.ADRCON1
+dlg.Move(0,0,360,236)
+dlg.Captionÿ"Projektsuche"
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame1","DialogFrame")
+control.Move(0,0,360,212)
+control.Captionÿ""
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel1","DialogLabel")
+control.Move(2,11,240,11)
+control.Captionÿ"Tragen Sie hier die einzelnen Suchbegriffe in die zugeh”rigen Felder ein!"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel2","DialogLabel")
+control.Move(2,22,60,11)
+control.Captionÿ"Kundennummer"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox1","DialogTextBox")
+control.Move(77,22,136,11)
+control.ScrollEnableÿ2
+control.MaxLengthÿ20
+control.TextBindingÿ"Projektnummer$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel3","DialogLabel")
+control.Move(2,35,60,11)
+control.Captionÿ"Nachname/FIRMA"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox2","DialogTextBox")
+control.Move(77,35,136,11)
+control.ScrollEnableÿ2
+control.MaxLengthÿ50
+control.TextBindingÿ"name1$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel4","DialogLabel")
+control.Move(2,46,60,11)
+control.Captionÿ"Vorname/ZUSATZ"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox3","DialogTextBox")
+control.Move(77,46,136,11)
+control.ScrollEnableÿ2
+control.MaxLengthÿ50
+control.TextBindingÿ"name2$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel5","DialogLabel")
+control.Move(2,59,60,11)
+control.Captionÿ"Geburtsname/z.H."
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox4","DialogTextBox")
+control.Move(77,59,136,11)
+control.ScrollEnableÿ2
+control.MaxLengthÿ50
+control.TextBindingÿ"name3$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel6","DialogLabel")
+control.Move(2,70,50,11)
+control.Captionÿ"Straáe"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox5","DialogTextBox")
+control.Move(77,70,136,11)
+control.ScrollEnableÿ2
+control.MaxLengthÿ50
+control.TextBindingÿ"Strasse$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox6","DialogTextBox")
+control.Move(77,83,136,11)
+control.ScrollEnableÿ2
+control.MaxLengthÿ8
+control.TextBindingÿ"PLZ$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel7","DialogLabel")
+control.Move(2,84,50,10)
+control.Captionÿ"PLZ"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox7","DialogTextBox")
+control.Move(77,94,136,11)
+control.ScrollEnableÿ2
+control.MaxLengthÿ50
+control.TextBindingÿ"Ort$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel8","DialogLabel")
+control.Move(2,97,50,11)
+control.Captionÿ"Ort"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox8","DialogTextBox")
+control.Move(77,107,136,11)
+control.ScrollEnableÿ2
+control.MaxLengthÿ50
+control.TextBindingÿ"Land$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel9","DialogLabel")
+control.Move(2,108,48,10)
+control.Captionÿ"Land"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel10","DialogLabel")
+control.Move(2,118,48,11)
+control.Captionÿ"Stadtteil"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox9","DialogTextBox")
+control.Move(77,118,136,11)
+control.ScrollEnableÿ2
+control.MaxLengthÿ50
+control.TextBindingÿ"Stadtteil$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel11","DialogLabel")
+control.Move(2,132,59,10)
+control.Captionÿ"Kunde seit von"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox10","DialogTextBox")
+control.Move(77,132,40,10)
+control.MaxLengthÿ10
+control.TextBindingÿ"Projektstart$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox11","DialogTextBox")
+control.Move(146,132,40,10)
+control.MaxLengthÿ10
+control.TextBindingÿ"Projektstart2$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel12","DialogLabel")
+control.Move(126,134,20,11)
+control.Captionÿ"bis"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel13","DialogLabel")
+control.Move(2,147,59,11)
+control.Captionÿ"Notiz"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox12","DialogTextBox")
+control.Move(77,147,57,11)
+control.ScrollEnableÿ2
+control.MaxLengthÿ40
+control.TextBindingÿ"Notiz1$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox1","DialogCheckBox")
+control.Move(137,147,47,11)
+control.Captionÿ"Und/Oder"
+control.Bind("noder0%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox15","DialogTextBox")
+control.Move(186,147,58,11)
+control.ScrollEnableÿ2
+control.MaxLengthÿ40
+control.TextBindingÿ"Notiz2$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox2","DialogCheckBox")
+control.Move(250,147,46,11)
+control.Captionÿ"Und/Oder"
+control.Bind("noder1%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox16","DialogTextBox")
+control.Move(298,147,56,13)
+control.ScrollEnableÿ2
+control.MaxLengthÿ40
+control.TextBindingÿ"Notiz3$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel14","DialogLabel")
+control.Move(2,161,59,11)
+control.Captionÿ"Stichwort"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox13","DialogTextBox")
+control.Move(77,161,57,11)
+control.ScrollEnableÿ2
+control.MaxLengthÿ40
+control.TextBindingÿ"Stichwort1$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox3","DialogCheckBox")
+control.Move(137,161,47,11)
+control.Captionÿ"Und/Oder"
+control.Bind("sticho0%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox17","DialogTextBox")
+control.Move(186,161,56,11)
+control.ScrollEnableÿ2
+control.MaxLengthÿ40
+control.TextBindingÿ"Stichwort2$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox4","DialogCheckBox")
+control.Move(250,161,46,11)
+control.Captionÿ"Und/Oder"
+control.Bind("sticho1%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox18","DialogTextBox")
+control.Move(298,161,56,11)
+control.ScrollEnableÿ2
+control.MaxLengthÿ40
+control.TextBindingÿ"Stichwort3$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox14","DialogTextBox")
+control.Move(77,174,57,11)
+control.ScrollEnableÿ2
+control.MaxLengthÿ40
+control.TextBindingÿ"ADRStatus$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox19","DialogTextBox")
+control.Move(186,174,56,11)
+control.ScrollEnableÿ2
+control.MaxLengthÿ40
+control.TextBindingÿ"ADRStatus2$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox20","DialogTextBox")
+control.Move(298,174,56,11)
+control.ScrollEnableÿ2
+control.MaxLengthÿ40
+control.TextBindingÿ"ADRStatus3$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox5","DialogCheckBox")
+control.Move(137,176,47,11)
+control.Captionÿ"Und/Oder"
+control.Bind("adro0%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox6","DialogCheckBox")
+control.Move(250,176,46,11)
+control.Captionÿ"Und/Oder"
+control.Bind("adro1%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel15","DialogLabel")
+control.Move(2,177,59,11)
+control.Captionÿ"Adress-Status"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel16","DialogLabel")
+control.Move(93,190,233,11)
+control.Captionÿ"ein Kreuz in der Checkbox bedeutet UND, kein Kreuz ODER"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(106,220,56,15)
+control.Defaultÿ1
+control.Captionÿ"&OK"
+control.ReturnValueÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton2","DialogCommandButton")
+control.Move(165,220,53,15)
+control.Captionÿ"&Abbrechen"
+control.ReturnValueÿ0
+control.Cancelÿ1
+ 
+ ÿ’ÿÿ

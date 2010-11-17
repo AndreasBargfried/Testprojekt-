@@ -1,0 +1,4354 @@
+SBP
+ ÿƒmain()'                           ; Library Funktionen 
+
+
+ÿÿFSCImport()
+
+GAdrDat$ÿ"ADRESSEN"
+GConDat$ÿ"CONNECT"
+GTelDat$ÿ"TELEFON"
+GAkquiDat$ÿ"AKQUISE"
+GDokDat$ÿ"DOKUMENT"
+GADRStat$ÿ"ADRSTAT"
+
+ÿ×dlg ÿUDialog
+ÿ×control ÿUDialogControl
+ 
+
+ ÿ¡PrvVerfahr$ÿ"ZAHLUNGSEINGANG"ÿp
+ÿƒDFile(3,"Buchung1"ÿ_fpw$)
+ÿÉÿĞÿ™"Buchung1"
+ ÿ^
+ÿƒDFile(3,"Buchung"ÿ_fpw$)
+ÿÉÿĞÿ™"Buchung"
+ ÿ’ÿ¡
+ ÿƒDFile(3,"fs24imp"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\adrstat"ÿ_fpw$)
+ ÿÉÿĞÿ™"adrstat"
+ ÿƒDFile(2,"OFFICE\adrgrup"ÿ_fpw$)
+ ÿÉÿĞÿ™"adrgrup"
+ ÿƒDFile(3,"Kgeadr"ÿ_fpw$)
+ ÿƒDFile(3,"sparten"ÿ_fpw$)
+ ÿÉÿĞÿ™"Sparten"
+ ÿƒDFile(3,"geadr"ÿ_fpw$):ÿƒDFile(3,"geadr2"ÿ_fpw$)
+ ÿÉÿĞÿ™"geadr"
+ ÿƒDFile(3,"tarif"ÿ_fpw$)
+ ÿÉÿĞÿ™"tarif"
+ ÿƒDFile(3,"maadr"ÿ_fpw$)
+ ÿÉÿĞÿ™"maadr"
+ ÿƒDFile(3,"maadrgru"ÿ_fpw$)
+ ÿƒDFile(3,"mavorg"ÿ_fpw$)
+ ÿÉÿĞÿ™"maadrgru"
+ ÿƒDFile(3,"kvertrag"ÿ_fpw$)
+ ÿÉÿĞÿ™"kvertrag"
+ ÿƒDFile(3,"vprodukt"ÿ_fpw$)
+ ÿÉÿĞÿ™"vprodukt"
+ ÿƒDFile(3,"tarif"ÿ_fpw$)
+ ÿÉÿĞÿ™"tarif"
+ ÿƒDFile(3,"vorgang"ÿ_fpw$)
+ ÿÉÿĞÿ™"vorgang"
+ ÿƒDFile(3,"vkond"ÿ_fpw$)
+ ÿÉÿĞÿ™"vkond"
+ ÿƒDFile(3,"formular"ÿ_fpw$)
+ ÿÉÿĞÿ™"formular"
+ ÿƒDFile(3,"spgruppe"ÿ_fpw$)
+ ÿÉÿĞÿ™"spgruppe"
+ ÿƒDFile(3,"agdir"ÿ_fpw$)
+ 
+ ÿƒDFile(3,"KVEXEXP"ÿ_fpw$)
+ 
+ ÿƒDFile(2,"OFFICE\"ÿGADRDat$ÿ_fpw$)
+ ÿÉÿĞÿ™GAdrDat$
+ ÿƒDFile(2,"OFFICE\"ÿGAkquiDat$ÿ_fpw$)
+ ÿÉÿĞÿ™GAkquiDat$
+ ÿƒDFile(2,"OFFICE\aktionen"ÿ_fpw$)
+ ÿÉÿĞÿ™"aktionen"
+ ÿƒDFile(2,"OFFICE\"ÿGTelDat$ÿ_fpw$)
+ ÿÉÿĞÿ™GTelDat$
+ ÿƒDFile(2,"OFFICE\"ÿGDokDat$ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\"ÿGConDat$ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\banken"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\tvorlage"ÿ_fpw$)
+
+ ÿ³ÿ_ÿwErrorHandler
+ gesdatei$ÿ"nicht ausgew„hlt"
+ gesxls%ÿ0
+ sgesxls%ÿ0
+ madatei$ÿ"nicht ausgew„hlt"
+ maxls%ÿ0
+ smaxls%ÿ0
+ kvdatei$ÿ"nicht ausgew„hlt"
+ kvxls%ÿ0
+ skvxls%ÿ0
+ lvdatei$ÿ"nicht ausgew„hlt"
+ lvxls%ÿ0
+ slvxls%ÿ0
+ cashdatei$ÿ"nicht ausgew„hlt"
+ cxls%ÿ0
+ scxls%ÿ0
+
+
+ gesdatei$ÿÿåibm(ReadConfig$("FS24","Gesellschaftsimportdatei"))
+ madatei$ÿÿåibm(ReadConfig$("FS24","Vermittlerimportdatei"))
+ kvdatei$ÿÿåibm(ReadConfig$("FS24","KVimportdatei"))
+ lvdatei$ÿÿåibm(ReadConfig$("FS24","LVimportdatei"))
+ cashdatei$ÿÿåibm(ReadConfig$("FS24","CASHimportdatei"))
+ ÿ¡gesdatei$ÿ"leer"ÿpgesdatei$ÿ"nicht ausgew„hlt"
+ ÿ¡madatei$ÿ"leer"ÿpmadatei$ÿ"nicht ausgew„hlt"
+ ÿ¡kvdatei$ÿ"leer"ÿpkvdatei$ÿ"nicht ausgew„hlt"
+ ÿ¡lvdatei$ÿ"leer"ÿplvdatei$ÿ"nicht ausgew„hlt"
+ ÿ¡cashdatei$ÿ"leer"ÿpcashdatei$ÿ"nicht ausgew„hlt"
+a190620041: 
+Superbase.Dialogs.Add("Dialogname")
+ÿÊdlg ÿSuperbase.Dialogs.Dialogname
+dlg.Move(0,0,470,198)
+dlg.Captionÿ"Import FS24"
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame1","DialogFrame")
+control.Move(5,5,448,163)
+control.Captionÿ"Parameter fr den Import"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel1","DialogLabel")
+control.Move(9,33,117,10)
+control.Captionÿ"Import - Datei- Auswahl"
+ 
+
+ÿÊcontrol ÿdlg.Add("DialogCommandButton199","DialogCommandButton")
+control.Move(120,33,247,10)
+ÿ½ control.Default = 1
+control.Captionÿ"Prfung Vertr„ge auf Vorg„ngeragentur und ggf. Berichtigung"
+control.ReturnValueÿ90
+
+
+ÿÊcontrol ÿdlg.Add("DialogLabel7","DialogLabel")
+control.Move(62,50,198,13)
+control.CaptionBindingÿ"gesdatei$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox5","DialogCheckBox")
+control.Move(360,50,86,11)
+control.Captionÿ"Struktur->Gesellschaft"
+control.Bind("sgesxls%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(263,50,19,11)
+control.Captionÿ"..."
+control.ReturnValueÿ2
+control.Cancelÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox1","DialogCheckBox")
+control.Move(286,50,67,11)
+control.Captionÿ"XLS->Struktur"
+control.Bind("gesxls%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel2","DialogLabel")
+control.Move(8,50,50,9)
+control.Captionÿ"Gesellschaften"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton2","DialogCommandButton")
+control.Move(263,72,19,11)
+control.Captionÿ"..."
+control.ReturnValueÿ3
+control.Cancelÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel3","DialogLabel")
+control.Move(8,72,34,10)
+control.Captionÿ"Vermittler"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel8","DialogLabel")
+control.Move(62,73,198,13)
+control.CaptionBindingÿ"madatei$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox2","DialogCheckBox")
+control.Move(286,72,67,11)
+control.Captionÿ"XLS->Struktur"
+control.Bind("maxls%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox6","DialogCheckBox")
+control.Move(360,72,86,11)
+control.Captionÿ"Struktur->Vermittler"
+control.Bind("smaxls%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel9","DialogLabel")
+control.Move(62,94,198,13)
+control.CaptionBindingÿ"kvdatei$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton3","DialogCommandButton")
+control.Move(263,94,19,11)
+control.Captionÿ"..."
+control.ReturnValueÿ4
+control.Cancelÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel4","DialogLabel")
+control.Move(8,94,50,9)
+control.Captionÿ"KV-Datei"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox3","DialogCheckBox")
+control.Move(285,94,67,11)
+control.Captionÿ"XLS->Struktur"
+control.Bind("kvxls%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox7","DialogCheckBox")
+control.Move(360,94,88,11)
+control.Captionÿ"Struktur->KV"
+control.Bind("skvxls%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton5","DialogCommandButton")
+control.Move(263,116,19,11)
+control.Captionÿ"..."
+control.ReturnValueÿ5
+control.Cancelÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel10","DialogLabel")
+control.Move(62,116,198,13)
+control.CaptionBindingÿ"lvdatei$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox4","DialogCheckBox")
+control.Move(285,116,67,11)
+control.Captionÿ"XLS->Struktur"
+control.Bind("lvxls%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox8","DialogCheckBox")
+control.Move(360,116,88,11)
+control.Captionÿ"Struktur->LV"
+control.Bind("slvxls%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel5","DialogLabel")
+control.Move(8,116,34,10)
+control.Captionÿ"LV-Datei"
+ 
+
+
+ÿÊcontrol ÿdlg.Add("DialogCommandButton50","DialogCommandButton")
+control.Move(263,138,19,11)
+control.Captionÿ"..."
+control.ReturnValueÿ6
+control.Cancelÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel101","DialogLabel")
+control.Move(62,138,198,13)
+control.CaptionBindingÿ"cashdatei$"
+ 
+ÿ½ SET control = dlg.Add("DialogCheckBox41","DialogCheckBox")
+ÿ½ control.Move(285,138,67,11)
+ÿ½ control.Caption = "XLS->Struktur"
+ÿ½ control.Bind("cxls%")
+ÿ½ control.ValueOn = 1
+ÿ½ control.ValueOff = 0
+ 
+ÿ½ SET control = dlg.Add("DialogCheckBox81","DialogCheckBox")
+ÿ½ control.Move(360,138,88,11)
+ÿ½ control.Caption = "Struktur->Cash"
+ÿ½ control.Bind("scxls%")
+ÿ½ control.ValueOn = 1
+ÿ½ control.ValueOff = 0
+
+
+ÿÊcontrol ÿdlg.Add("DialogCommandButton55","DialogCommandButton")
+control.Move(300,134,120,16)
+control.Captionÿ"Verarbeitung-Kontrolle"
+control.ReturnValueÿ16
+control.Cancelÿ1
+
+
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel51","DialogLabel")
+control.Move(8,138,38,10)
+control.Captionÿ"Cash-Datei"
+ 
+
+
+
+
+
+
+ÿÊcontrol ÿdlg.Add("DialogCommandButton7","DialogCommandButton")
+control.Move(172,176,53,16)
+control.Defaultÿ1
+control.Captionÿ"OK"
+control.ReturnValueÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton8","DialogCommandButton")
+control.Move(228,176,53,16)
+control.Captionÿ"Abbruch"
+control.ReturnValueÿ0
+control.Cancelÿ1
+
+ÿÊcontrol ÿdlg.Add("DialogCommandButton9","DialogCommandButton")
+control.Move(285,176,53,16)
+ÿ½ control.Default = 1
+control.Captionÿ"Protokolldatei"
+control.ReturnValueÿ10
+
+
+ÿÊcontrol ÿdlg.Add("DialogCommandButton99","DialogCommandButton")
+control.Move(10,176,153,16)
+ÿ½ control.Default = 1
+control.Captionÿ"SAP - Export - Listen"
+control.ReturnValueÿ20
+ 
+
+
+ÿñ"Dialogname",req%
+ÿ¾ÿñÿt
+
+ÿ¡req%ÿ0ÿp
+ÿwend1906200101
+ÿ’ÿ¡
+ÿ¡req%ÿ20ÿp
+ÿ½ Export SAP Liste
+ÿƒSAPExport()
+ÿ’ÿ¡
+ 
+ÿ¡req%ÿ10ÿp
+gesxls%ÿ0
+sgesxls%ÿ0
+maxls%ÿ0
+smaxls%ÿ0
+kvxls%ÿ0
+skvxls%ÿ0
+lvxls%ÿ0
+slvxls%ÿ0
+ÿƒIShowALog()
+ÿwa190620041
+ÿ’ÿ¡
+
+
+ÿ¡req%ÿ90ÿp
+gesxls%ÿ0
+sgesxls%ÿ0
+maxls%ÿ0
+smaxls%ÿ0
+kvxls%ÿ0
+skvxls%ÿ0
+lvxls%ÿ0
+slvxls%ÿ0
+ÿƒVertrMATest()
+ÿwa190620041
+ÿ’ÿ¡
+
+
+ÿ¡req%ÿ1ÿp
+ÿ½ Verarbeitung starten
+ÿ’ÿ¡
+ ÿƒWriteConfig("FS24","Gesellschaftsimportdatei",gesdatei$)
+ ÿƒWriteConfig("FS24","Vermittlerimportdatei",madatei$)
+ ÿƒWriteConfig("FS24","KVimportdatei",kvdatei$)
+ ÿƒWriteConfig("FS24","LVimportdatei",lvdatei$)
+ ÿƒWriteConfig("FS24","CASHimportdatei",cashdatei$)
+ 
+ ÿ½ Start Gesellschaftsimport
+ ÿ¡req%ÿ2ÿp
+gesdatei$ÿ"*.xls"
+ÿÂ"Auswahl der zu importierenden Gesellschaftsdatei im EXCEl 4.0 Format... "," ",26,req%,gesdatei$
+ÿwa190620041
+ ÿ’ÿ¡
+ ÿ¡req%ÿ3ÿp
+madatei$ÿ"*.xls"
+ÿÂ"Auswahl der zu importierenden Vermittlerdatei im EXCEl 4.0 Format... "," ",26,req%,madatei$
+ÿwa190620041
+ ÿ’ÿ¡
+ ÿ¡req%ÿ4ÿp
+kvdatei$ÿ"*.xls"
+ÿÂ"Auswahl der zu importierenden KV-Datei im EXCEl 4.0 Format... "," ",26,req%,kvdatei$
+ÿwa190620041
+ ÿ’ÿ¡
+ ÿ¡req%ÿ5ÿp
+lvdatei$ÿ"*.xls"
+ÿÂ"Auswahl der zu importierenden LV-Datei im EXCEl 4.0 Format... "," ",26,req%,lvdatei$
+ÿwa190620041
+ ÿ’ÿ¡
+ ÿ¡req%ÿ6ÿp
+cashdatei$ÿ"*.txt"
+ÿÂ"Auswahl der zu importierenden CASH-Datei im CSV Format... "," ",26,req%,cashdatei$
+ÿwa190620041
+ ÿ’ÿ¡
+ 
+ ÿ¡req%ÿ16ÿp
+ÿƒCashVerarb(cashdatei$)
+ÿwa190620041
+ ÿ’ÿ¡
+ ÿƒICreateALog()
+
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\CASHIMP.SBF"
+ ÿ¡cxls%ÿ1ÿp
+ÿ¡cashdatei$ÿ"nicht ausgew„hlt"ÿp
+ÿ¡ÿJ(cashdatei$)ÿp
+ÿƒCashImp(cashdatei$)
+ÿ^
+ÿƒFehler("Kann Datei "ÿcashdatei$ÿ" nicht finden!","Bitte w„hlen Sie die Datei neu aus!")
+ÿwa190620041
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Sie mssen erst eine Datei ausw„hlen, bevor Sie diese importieren k”nnen!,"")
+ÿwa190620041
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡scxls%ÿ1ÿp
+ÿ½ Start Cashabgleich
+ÿ¡ÿA("CASHIMP")ÿ0ÿp
+ÿƒCashAbgleich()
+ÿ^
+ÿƒFehler("In der Cash-Importdatei CASHIMP sind keine Datens„tze vorhanden!","Bitte starten Sie den Import neu!")
+ÿwa190620041
+ÿ’ÿ¡
+ ÿ’ÿ¡
+
+
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\GIMP.SBF"
+ ÿ¡gesxls%ÿ1ÿp
+ÿ¡gesdatei$ÿ"nicht ausgew„hlt"ÿp
+ÿ¡ÿJ(gesdatei$)ÿp
+ÿƒGImp(gesdatei$)
+ÿ^
+ÿƒFehler("Kann Datei "ÿgesdatei$ÿ" nicht finden!","Bitte w„hlen Sie die Datei neu aus!")
+ÿwa190620041
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Sie mssen erst eine Datei ausw„hlen, bevor Sie diese importieren k”nnen!,"")
+ÿwa190620041
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡sgesxls%ÿ1ÿp
+ÿ½ Start Gesellschaftsabgleich
+ÿ¡ÿA("GIMP")ÿ0ÿp
+ÿƒGAbgleich()
+ÿ^
+ÿƒFehler("In der Gesellschaften-Importdatei GIMP sind keine Datens„tze vorhanden!","Bitte starten Sie den Import neu!")
+ÿwa190620041
+ÿ’ÿ¡
+ ÿ’ÿ¡
+
+ ÿ½ Start Vermittlerabgleich
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\VERIMP.SBF"
+ ÿÊÿË"Vermittlerimport..."
+ ÿ¡maxls%ÿ1ÿp
+ÿ¡madatei$ÿ"nicht ausgew„hlt"ÿp
+ÿ¡ÿJ(madatei$)ÿp
+ÿƒVermImport(madatei$)
+ÿ^
+ÿƒFehler("Kann Datei "ÿmadatei$ÿ" nicht finden!","Bitte w„hlen Sie die Datei neu aus!")
+ÿwa190620041 
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Sie mssen erst eine Datei ausw„hlen, bevor Sie diese importieren k”nnen!,"")
+ÿwa190620041 
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡smaxls%ÿ1ÿp
+ÿ¡ÿA("VERIMP")ÿ0ÿp
+ÿƒVermAbgleich()
+ÿ^
+ÿƒFehler("In der Vermittler-Importdatei VERIMP sind keine Datens„tze vorhanden!","Bitte starten Sie den Import neu!")
+ÿwa190620041 
+ÿ’ÿ¡
+ ÿ’ÿ¡
+
+
+
+ ÿ½ Start KVbgleich
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\KVIMP.SBF"
+ ÿÊÿË"KVimport..."
+ ÿ¡kvxls%ÿ1ÿp
+ÿ¡kvdatei$ÿ"nicht ausgew„hlt"ÿp
+ÿ¡ÿJ(kvdatei$)ÿp
+ÿƒKVImp(kvdatei$)
+ÿ^
+ÿƒFehler("Kann Datei "ÿkvdatei$ÿ" nicht finden!","Bitte w„hlen Sie die Datei neu aus!")
+ÿwa190620041 
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Sie mssen erst eine Datei ausw„hlen, bevor Sie diese importieren k”nnen!,"")
+ÿwa190620041 
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡skvxls%ÿ1ÿp
+ÿ¡ÿA("KVIMP")ÿ0ÿp
+ÿƒKVAbgleich()
+ÿ^
+ÿƒFehler("In der KV-Importdatei KVIMP sind keine Datens„tze vorhanden!","Bitte starten Sie den Import neu!")
+ÿwa190620041 
+ÿ’ÿ¡
+ ÿ’ÿ¡
+
+
+
+ ÿ½ Start LVgleich
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\LVIMP.SBF"
+ ÿÊÿË"LVimport..."
+ ÿ¡lvxls%ÿ1ÿp
+ÿ¡lvdatei$ÿ"nicht ausgew„hlt"ÿp
+ÿ¡ÿJ(lvdatei$)ÿp
+ÿƒLVImp(lvdatei$)
+ÿ^
+ÿƒFehler("Kann Datei "ÿlvdatei$ÿ" nicht finden!","Bitte w„hlen Sie die Datei neu aus!")
+ÿwa190620041 
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Sie mssen erst eine Datei ausw„hlen, bevor Sie diese importieren k”nnen!,"")
+ÿwa190620041 
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡slvxls%ÿ1ÿp
+ÿ¡ÿA("LVIMP")ÿ0ÿp
+ÿƒLVAbgleich()
+ÿ^
+ÿƒFehler("In der LV-Importdatei KVIMP sind keine Datens„tze vorhanden!","Bitte starten Sie den Import neu!")
+ÿwa190620041 
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ 
+
+ ÿƒFehler("Import/Export beendet!","")
+ ÿwa190620041
+
+end1906200101: 
+ ÿ’ÿÿ
+
+
+
+ÿÿCashVerarb(cashdatei$)
+ ÿƒDFile(3,"euikopf"ÿ_fpw$)
+ ÿƒDFile(3,"zeingan1"ÿ_fpw$)
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\CASHIMP.SBF"
+ ÿƒICreateALog()
+ 
+ 
+ 
+ÿ´ÿœGPrjForm$ÿ"FS24ZEIM"
+ÿƒMNProgramm()
+ÿ™"euikopf"
+ÿ£coderoimp.euikopf
+cashfile$ÿcashdatei$
+ÿœ
+_formend%ÿ0
+ÿƒClearKBDBuffer()
+ÿ¬ÿ³
+SPARTEsub%ÿ0
+ÿØ_formend%ÿ0
+	ÿÏÿßÿÿ¥
+	ÿk$
+	ÿ¡k$ÿÿ(27)ÿp_formend%ÿ1
+	ÿÉÿæSPARTEsub%
+	ÿæ1
+ÿ½ Importdatei ausw„hlen
+ÿ_netpath$ÿ"0-Import"
+cashdatei$ÿ"*.txt"
+ÿÂ"Auswahl der zu importierenden CASH-Datei TXT Format... "," ",26,req%,cashdatei$
+cashfile$ÿcashdatei$
+SPARTEsub%ÿ0
+	ÿæ2
+ÿƒCashImp(cashdatei$)
+ÿÉÿ`ÿ™"cashimp"ÿ£referenz.cashimp
+ÿÉÿœÿ`ÿ™"cashimp"
+ÿÉÿ`ÿ™"euikopf"
+ÿÉÿœÿ`ÿ™"euikopf"
+ÿœ
+SPARTEsub%ÿ0
+	ÿæ3
+ÿ½ Verarbeitung
+ÿƒCashAbgleich()
+ÿÉÿ`ÿ™"cashimp"ÿ£referenz.cashimp
+ÿÉÿœÿ`ÿ™"cashimp"
+ÿÉÿ`ÿ™"euikopf"
+ÿÉÿœÿ`ÿ™"euikopf"
+ÿœ
+SPARTEsub%ÿ0
+	ÿæ4
+ÿ½ alles l”schen
+ÿÂ"Wollen Sie wirklich die Importdatei leeren?","",135,req%
+ÿ¡req%ÿ1ÿp
+ÿßÿe
+ÿ¾ÿaÿ™"CASHIMP"
+ÿÀÿ™"CASHIMP"ÿq_netpath$ÿ"0-Import\CASHIMP.SBF"
+ÿ´ÿœGPrjForm$ÿ"FS24ZEIM"
+ÿƒMNProgramm()
+ÿ’ÿ¡
+ÿ™"CASHIMP"
+ÿ£referenz.CASHIMP
+ÿ½ SELECT FORM FIRST 
+ÿœ
+SPARTEsub%ÿ0
+	ÿæ5
+ÿœ2
+ÿ™"CASHIMP"
+ÿ£referenz.CASHIMP
+ÿÉÿœÿ`
+ÿœ
+SPARTEsub%ÿ0
+	ÿæ6
+ÿ½ Import rckg„ngig machen
+coderoimp%ÿcoderoimp.euikopf
+id$ÿÿ(DatumImp.euikopf,"0d.mm.yyyy")
+bud$ÿÿ(DatBu.euikopf,"0d.mm.yyyy")
+ÿƒFehler("Sie erhalten jetz die M”glichkeit den Import vom "ÿid$ÿ" mit Buchungsdatum vom "ÿbud$ÿ" (Notiz: "ÿnotizimp.euikopfÿ") rckg„ngig zu machen, wenn die zugeh”rigen Zahlungseing„nge noch nicht gebucht wurden!","")
+ÿÂ"Wollen Sie den Import rckg„ngig machen?","",135,req%
+ÿ¡req%ÿ1ÿp
+ÿƒICreateALog()
+
+ÿ™"zeingan1"
+ÿ£coderoimp.zeingan1
+ok%ÿÿ1
+ÿÉÿ`ÿ™"zeingan1"ÿ£coderoimp.zeingan1
+ÿ¡ÿJ(coderoimp%,coderoimp.zeingan1)ÿp
+ÿÉÿ¥coderoimp%ÿáÿ™"zeingan1"ÿ£coderoimp.zeingan1
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+
+i%ÿ0
+l%ÿ0
+v%ÿ0
+j%ÿÿA("zeingan1")
+ 
+ÿßÿe
+ÿØÿOÿB("zeingan1")ÿok%ÿÿ1
+i%ÿi%ÿ1
+ÿ¡coderoimp.zeingan1ÿcoderoimp%ÿp
+ÿ¡gebuchtJN.zeingan1ÿ"J"ÿp
+ÿÉÿ¾ÿ™"zeingan1"
+ÿÉÿ`ÿ™"zeingan1"ÿ£coderoimp.zeingan1
+ÿ¡ÿA("zeingan1")ÿ0ÿp
+ÿÉÿ¥coderoimp%ÿáÿ™"zeingan1"ÿ£coderoimp.zeingan1
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+l%ÿl%ÿ1
+ÿ^
+ÿÉÿ±ÿáÿ™"zeingan1"ÿ£coderoimp.zeingan1
+v%ÿv%ÿ1
+ÿ’ÿ¡
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+ÿÊÿËÿ(i%,",9999999")ÿ"/"ÿÿ(j%,",9999999")ÿ"/"ÿÿ(l%,",9999999")ÿ" gel”scht / "ÿÿ(v%,",9999999")ÿ" waren schon gebucht"
+ÿÙ
+ÿ¾ÿaÿ™"cashimp"ÿĞcoderoimp.cashimpÿcoderoimp%
+ÿÉÿ`ÿ™"euikopf"ÿ£coderoimp.euikopf
+ÿÉÿ¥coderoimp%ÿáÿ™"euikopf"ÿ£coderoimp.euikopf
+ notizimp.euikopfÿnotizimp.euikopfÿ"  RšCKGNGIG "ÿÿH(ÿ(i%,",9999999"))ÿ"/"ÿÿH(ÿ(j%,",9999999"))ÿ"/"ÿÿH(ÿ(l%,",9999999"))ÿ" ZE gel”scht / "ÿÿH(ÿ(v%,",9999999"))ÿ" waren schon gebucht"
+ÿÌÿ™"euikopf"
+ÿ½ REMOVE FROM FILE "euikopf" WHERE coderoimp.euikopf = coderoimp%
+
+ÿƒIWriteLogOk("RšCKGNGIG Buchungsdatum "ÿÿ(datbu.euikopf,"0d.mm.yyyy")ÿ"-"ÿnotizimp.euikopf)
+ÿ’ÿ¡
+eloe180420041: 
+ÿ³ÿ_ÿwErrorHandler
+ÿ™"euikopf"
+ÿÉÿœÿ`
+ÿœ
+ÿßÿ³
+SPARTEsub%ÿ0
+	ÿæ7
+ÿ½ diejenigen aus cashimp l”schen, zu denen ein ZE erzeugt wurde
+ÿƒFehler("Sie erhalten jetzt die M”glichkeit, diejenigen Datens„tze aus der cashimp zu l”schen, zu denen ein Vertrag gefunden wurde und zu denen auf jeden Fall ein ZE erzeugt wurde","")
+ÿÂ"Wollen Sie diese Datens„tze l”schen?","",135,req%
+ÿ¡req%ÿ1ÿp
+ÿ¾ÿaÿ™"Cashimp"ÿĞvorhandenjn.cashimpÿ1
+ÿÉÿ`ÿ™"cashimp"
+ÿÉÿœÿ`ÿ™"cashimp"
+ÿœ
+ÿ’ÿ¡
+SPARTEsub%ÿ0
+	ÿæ8
+ÿ½ zum Vertrag springen
+cuvt%ÿcodevt.cashimp
+ÿ¡cuvt%ÿ0ÿp
+ÿƒDFile(3,"FOERKOND"ÿ_fpw$)
+lfdnr%ÿcodevt.cashimp
+ÿƒKVERTRAGneu(lfdnr%)
+ÿ´ÿœGPrjForm$ÿ"FS24ZEIM"
+ÿƒMNProgramm()
+ÿœ2
+ÿ^
+ÿƒFehler("Leider wurde zu diesem Datensatz kein Eintrag in der Vertragsdatei gefunden!","")
+ÿ’ÿ¡
+SPARTEsub%ÿ0
+	ÿæ9
+ÿ½ zum ZE springen
+cuvt%ÿcodevt.cashimp
+ÿ¡cuvt%ÿ0ÿp
+ÿƒDFile(3,"FOERKOND"ÿ_fpw$)
+lfdnr%ÿcodevt.cashimp
+ÿÉÿ`ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ¥cuvt%ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿƒKZeingang(lfdnr%)
+ÿ´ÿœGPrjForm$ÿ"FS24ZEIM"
+ÿƒMNProgramm()
+ÿœ2
+ÿ^
+ÿƒFehler("Leider wurde zu diesem Datensatz kein Eintrag in der Vertragsdatei gefunden und somit auch kein ZE erzeugt!","")
+ÿ’ÿ¡
+SPARTEsub%ÿ0
+	ÿ’ÿæ
+ 
+ÿÙ
+_formend%ÿ0
+ÿ’ÿ¡
+SPARTEsub%ÿ0
+_formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ ÿ’ÿÿ
+
+
+ÿÿCashAbgleich()
+ ÿ™"CASHIMP"
+ ÿ£Referenz.CASHimp
+ ÿ¡ÿA("CASHimp")ÿ0ÿp
+ÿÉÿ`ÿáÿ™"CASHimp"
+ ÿ’ÿ¡
+ ÿßÿe
+ i%ÿ0
+ j%ÿÿA("CASHimp")
+ vneu%ÿ0
+ vold%ÿ0
+ kneu%ÿ0
+ kold%ÿ0
+ fehlneu%ÿ0
+ 
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("Start Erzeugung ZEdatei aus Cashimp")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ z%ÿ0
+ ÿØÿOÿB("CASHIMP")ÿÿA("CASHimp")ÿ0
+ok%ÿ0
+i%ÿi%ÿ1
+ffehl$ÿ""
+fehljn%ÿ0
+vorhandenjn%ÿ0
+aktivjn%ÿ0
+codevt%ÿ0
+referenz$ÿ""
+ÿ½ CALL Fehler(referenz.cashimp,FS24Satz_ID2.kvertrag)
+ÿÊÿËÿ(i%,",9999999")ÿ" von "ÿÿ(j%,",9999999")
+ÿwneu0107200401
+ÿ¡ÿ/(referenz.cashimp)ÿ14ÿp
+id$ÿreferenz.cashimp
+ÿ¡ÿJ(id$,FS24Satz_ID.kvertrag)ÿp
+ÿ½ Zahlungseingang aufnehmen
+ÿÉÿ`ÿ™"KVERTRAG"ÿ£FS24Satz_ID.kvertrag
+ÿÉÿ¥id$ÿ™"KVERTRAG"ÿ£FS24Satz_ID.kvertrag
+codevt%ÿlfdnr.kvertrag
+ok%ÿÿ1
+referenz$ÿid$
+ÿ^
+ÿƒIWriteLogOk("+++Fehler: Vertrag nicht gefunden, Referenzno: "ÿid$)
+fehljn%ÿ1
+ffehl$ÿffehl$ÿ" Vertrag nicht gefunden"
+fehlneu%ÿfehlneu%ÿ1
+ÿ’ÿ¡
+ÿ^
+ÿ½ dann ist er 17 lang -> PPv,PKV
+id2$ÿreferenz.cashimp
+ÿ¡ÿJ(id2$,FS24Satz_ID2.kvertrag)ÿp
+ÿ½ Zahlungseingang aufnehmen
+ÿÉÿ`ÿ™"KVERTRAG"ÿ£FS24Satz_ID2.kvertrag
+ÿÉÿ¥id2$ÿ™"KVERTRAG"ÿ£FS24Satz_ID2.kvertrag
+codevt%ÿlfdnr.kvertrag
+ok%ÿÿ1
+referenz$ÿid2$
+ÿ^
+ÿƒIWriteLogOk("+++Fehler: Vertrag nicht gefunden, Referenzno: "ÿid$)
+fehljn%ÿ1
+ffehl$ÿffehl$ÿ" Vertrag nicht gefunden"
+fehlneu%ÿfehlneu%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+neu0107200401:
+id%ÿÿ0(referenz.cashimp)
+pf$ÿ""
+ÿ¡ÿ>(ÿ-(referenz.cashimp,1))ÿ"V"ÿp
+pf$ÿÿ>(ÿ-(referenz.cashimp,3))
+ÿ’ÿ¡
+id$ÿÿH(ÿ(id%,"999999999999"))
+id2$ÿid$ÿpf$
+id0$ÿFS24Satz_ID.kvertrag
+ÿ½ wenn id2$ dann steht dort Zahl +PPV oder PKV, also der rechteste Buchstabe ist ein V
+ÿ¡ÿ>(ÿ-(id$,1))ÿ"V"ÿp
+ÿ¡ÿJ(id$,FS24Satz_ID.kvertrag)ÿp
+ÿ½ Zahlungseingang aufnehmen
+ÿÉÿ`ÿ™"KVERTRAG"ÿ£FS24Satz_ID.kvertrag
+ÿÉÿ¥id$ÿ™"KVERTRAG"ÿ£FS24Satz_ID.kvertrag
+codevt%ÿlfdnr.kvertrag
+ok%ÿÿ1
+referenz$ÿid$
+ÿ^
+ÿƒIWriteLogOk("+++Fehler: Vertrag nicht gefunden, Referenzno: "ÿid$)
+fehljn%ÿ1
+ffehl$ÿffehl$ÿ" Vertrag nicht gefunden"
+fehlneu%ÿfehlneu%ÿ1
+ÿ’ÿ¡
+ÿ^
+ÿ¡ÿJ(id2$,FS24Satz_ID2.kvertrag)ÿp
+ÿ½ Zahlungseingang aufnehmen
+ÿÉÿ`ÿ™"KVERTRAG"ÿ£FS24Satz_ID2.kvertrag
+ÿÉÿ¥id2$ÿ™"KVERTRAG"ÿ£FS24Satz_ID2.kvertrag
+codevt%ÿlfdnr.kvertrag
+ok%ÿÿ1
+referenz$ÿid2$
+ÿ^
+ÿƒIWriteLogOk("+++Fehler: Vertrag nicht gefunden, Referenzno: "ÿid$)
+fehljn%ÿ1
+ffehl$ÿffehl$ÿ" Vertrag nicht gefunden"
+fehlneu%ÿfehlneu%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ok%ÿÿ1ÿcodeaz.cashimpÿ0ÿp
+ok%ÿ0
+ffehl$ÿffehl$ÿ"   ZE wurde schon erzeugt"
+ÿƒIWriteLogOk("+++Fehler: ZE wurde schon erzeugt, Referenzno: "ÿid$)
+ÿ’ÿ¡
+ÿ¡ok%ÿÿ1ÿp
+ÿ½ Zahlungseingang aufnehmen
+z%ÿz%ÿ1
+vorhandenjn%ÿ1
+ÿ½ 19082004
+ÿ¡proviab.kvertragÿ0ÿcodeko.kvertragÿ0ÿp
+aktivjn%ÿ1
+ÿ^
+ÿ½ CALL Fehler("šbergabe an die Provabrechnung","")
+cuvt%ÿlfdnr.kvertrag
+ÿƒAFSKPROV(codevt%,ÿQ,fehljn%,ffehl$)
+ÿ’ÿ¡
+ÿ¡proviab.kvertragÿ0ÿcodeko.kvertragÿ0ÿp
+aktivjn%ÿ1
+ÿ^
+fehljn%ÿ1
+ffehl$ÿffehl$ÿfehlnach$
+fehlnach$ÿ""
+ÿ’ÿ¡
+ 
+ÿÿ™"Zeingan1"
+ÿ½ SET STATUS "Datensatz neu angelegt..."
+CodeAZ%ÿÿI("zeingan1",1)
+CodeAZ.zeingan1ÿCodeAZ%
+coderoimp.zeingan1ÿcoderoimp.cashimp
+gebuchtJN.zeingan1ÿ"N"
+gebuchtJNT.zeingan1ÿ"N"
+BuchungsDatum.zeingan1ÿÿ(ÿQ,"0d.mm.yyyy")
+Codew.zeingan1ÿcodew.kvertrag
+FS24Satz_ID.zeingan1ÿreferenz.cashimp
+codege.zeingan1ÿcodege.kvertrag
+Bewertung.zeingan1ÿBetrag.cashimp
+betrag$ÿÿ(Betrag.cashimp,",99999999.00")
+ÿ¡prov_Art.cashimpÿ"BP"ÿprov_Art.cashimpÿ"AP"ÿp
+summe%ÿsumme%ÿBetrag.cashimp
+ÿ^
+ÿ¡prov_Art.cashimpÿ"ST"ÿp
+	summe%ÿsumme%ÿBetrag.cashimp
+	betrag$ÿ"-"ÿÿ(Betrag.cashimp,",99999999.00")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡prov_Art.cashimpÿ"BP"ÿp
+ÿ½ Pflege=2/AP=0
+kondart.zeingan1ÿ2
+Buchungstext.zeingan1ÿ"Pflege: "ÿVS_Nr.kvertrag
+ÿ’ÿ¡
+ÿ¡prov_Art.cashimpÿ"AP"ÿp
+kondart.zeingan1ÿ0
+Buchungstext.zeingan1ÿ"AP: "ÿVS_Nr.kvertrag
+ÿ’ÿ¡
+ÿ¡prov_Art.cashimpÿ"ST"ÿp
+kondart.zeingan1ÿ0
+Buchungstext.zeingan1ÿ"AP: "ÿVS_Nr.kvertrag
+Bewertung.zeingan1ÿBetrag.cashimpÿ(ÿ1)
+ÿ’ÿ¡
+F„lligkeit.zeingan1ÿÿ1(Datum_ze.cashimp)
+dd1$ÿÿ(Datum_ze.cashimp,"0d.mm.yyyy")
+VS_Nr.zeingan1ÿVS_Nr.kvertrag
+
+waehrung.zeingan1ÿwaehrung.kvertrag
+umrechnung.zeingan1ÿumrechnung.kvertrag
+codevt.zeingan1ÿlfdnr.kvertrag
+codevt%ÿlfdnr.kvertrag
+
+AntragsNr.zeingan1ÿAntragsNr.kvertrag
+workstation.zeingan1ÿworkstation.kvertrag
+ÿƒQuickStore("zeingan1")
+z%ÿz%ÿ1
+te1$ÿ"VS_NR: "ÿVS_Nr.kvertragÿ"/Buchungsdatum: "ÿdd1$ÿ"/Betrag: "ÿbetrag$
+fehltxt$ÿ"ZE erzeugt"
+ÿƒIWriteLogOk(te1$)
+ÿ’ÿ¡
+
+ÿ™"CASHIMP"
+ÿÉÿYÿá
+vorhandenjn.cashimpÿvorhandenjn%
+aktivjn.cashimpÿaktivjn%
+fehljn.cashimpÿfehljn%
+fehltxt.cashimpÿffehl$
+codevt.cashimpÿcodevt%
+codeaz.cashimpÿcodeaz%
+ÿÌÿ™"cashimp"
+ÿÊÿËÿ(z%,",9999999")ÿ" Datens„tze aus Cashimp nach Zalungseingang berfhrt, Fehler: "ÿÿ(fehlneu%,",9999999")
+ÿÉÿ±ÿ™"CASHIMP"
+ ÿÙ
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk(ÿ(z%,",9999999")ÿ" Datens„tze aus Cashimp nach Zalungseingang berfhrt, Fehler: "ÿÿ(fehlneu%,",9999999"))
+ ÿƒIWriteLogOk("Ende Erzeugung ZEdatei aus Cashimp")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿ’ÿÿ
+
+
+
+ÿÿCashImp(cashdatei$)
+ ÿƒDFile(3,"euikopf"ÿ_fpw$)
+ ÿ_netpath$ÿ"0-Import"
+ ÿßÿe
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("Start Import Cash-Datei "ÿcashdatei$ÿ" in Zwischenstruktur")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿÂ"Bitte nicht ungeduldig werden,","es werden jetzt die cash-werte importiert!",2
+ ÿ¡ÿA("cashimp")ÿ0ÿp
+ÿƒFehler("Es befinden sich noch Datens„tze  in der Cashimp-Datei!","Die jetzt zu importierenden S„tze werden hinzugefgt!")
+ÿÂ"Wollen Sie mit dem Import fortfahren?","",130,req%
+ÿ¡req%ÿ1ÿpÿwer2006200402
+ ÿ’ÿ¡
+ ÿ½ REMOVE FROM FILE "CASHIMP":REM                           Menu:  RemoveAll
+ ÿÉÿĞÿ™"CASHIMP":ÿ½                                 ImportFile
+ ÿ³ÿ_ÿwer2106200401
+ ÿ½ Superbase.Converters.XLS.SourceFormat = "Microsoft Excel"
+ ÿ½ Superbase.Converters.XLS.SourceFile = cashdatei$
+ ÿ½ Superbase.Converters.XLS.Descending = 0
+ ÿ½ Superbase.Converters.XLS.Merge = - 1
+ ÿ½ Superbase.Converters.XLS.StartRow = 2
+ ÿ½ Superbase.Converters.XLS.StartCol = 1
+ ÿ½ Superbase.Converters.XLS.EndRow = - 1
+ ÿ½ Superbase.Converters.XLS.EndCol = - 1
+ ÿ½ Superbase.Converters.XLS.LabelRow = 1
+ ÿ½ Superbase.Converters.SBF.DestFormat = "Superbase"
+ ÿ½ Superbase.Converters.SBF.DestFile = "CASHIMP.SBF"
+ ÿ½ Superbase.Converters.SBF.IndexSkip = 0
+ ÿ½ Superbase.Converters.SBF.LogErrors = 0
+ ÿ½ Superbase.Converters.SBF.MultiResponse = 0
+ ÿ½ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+
+
+
+ ÿ½ Superbase.Converters.DBF.SourceFormat = "dBase II / III+ / IV"
+ ÿ½ Superbase.Converters.DBF.SourceFile = cashdatei$
+ ÿ½ Superbase.Converters.DBF.Descending = 0
+ ÿ½ Superbase.Converters.DBF.Merge = - 1
+ ÿ½ Superbase.Converters.SBF.DestFormat = "Superbase"
+ ÿ½ Superbase.Converters.SBF.DestFile = "CASHIMP.SBF"
+ ÿ½ Superbase.Converters.SBF.IndexSkip = 0
+ ÿ½ Superbase.Converters.SBF.LogErrors = 0
+ ÿ½ Superbase.Converters.SBF.MultiResponse = 0
+ ÿ½ Superbase.Converters.SBF.Convert(Superbase.Converters.DBF)
+
+ Superbase.Converters.ASD.SourceFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.SourceFileÿcashdatei$
+ Superbase.Converters.ASD.Descendingÿ0
+ Superbase.Converters.ASD.Mergeÿÿ1
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ""ÿÿ(9)ÿ""
+ Superbase.Converters.ASD.FieldDelimiterÿ""
+ Superbase.Converters.ASD.ANSIConvertÿÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"CASHIMP.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.ASD)
+ 
+
+
+
+ ÿßÿe
+ ÿ¾ÿaÿ™"CASHIMP"ÿĞ(ÿ0(Referenz.CASHIMP)ÿ
+1)
+ ÿÂ"Cash-Werte wurden in Zwischenstruktur importiert...","",2
+ ÿßÿ³
+ ÿ³ÿ_ÿwErrorHandler
+ÿ™"euikopf"
+ÿ£coderoimp.euikopf
+ÿÿ™"euikopf"
+coderoimp%ÿÿI("euikopf",1)
+coderoimp.euikopfÿcoderoimp%
+datumimp.euikopfÿÿQ
+ÿÌÿ™"euikopf"
+ÿ™"cashimp"
+ÿ£referenz.cashimp
+i%ÿ0
+j%ÿÿA("cashimp")
+ÿ¡j%ÿ0ÿp
+ÿÉÿ`ÿáÿ™"cashimp"
+ÿ^
+ÿÉÿbÿ™"cashimp"
+ÿ’ÿ¡
+ÿØÿOÿB("cashimp")
+ÿ¡coderoimp.cashimpÿ
+1ÿp
+i%ÿi%ÿ1
+coderoimp.cashimpÿcoderoimp%
+SUMme%ÿSUMme%ÿbetrag.cashimp
+ÿ’ÿ¡
+ÿÌÿ™"cashimp"
+ÿÉÿ±ÿáÿ™"cashimp"
+ÿÙ
+ÿÉÿ¥coderoimp%ÿáÿ™"euikopf"ÿ£coderoimp.euikopf
+Notizimp.euikopfÿÿ(i%,",9999999")ÿ" Datens„tze - Summme: "ÿÿ(summe%,",99999999.00")
+ÿÌÿ™"euikopf"
+
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("Ende Import CASH-Datei "ÿcashdatei$ÿ" in Zwischenstruktur")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿwer2106200402
+er2106200401: 
+ÿƒIWriteLogOk("***********************************************************************************************")
+ÿƒIWriteLogOk("***** FEHLER beim Import cash-Datei "ÿcashdatei$ÿ" in Zwischenstruktur")
+ÿƒIWriteLogOk("***********************************************************************************************")
+ÿƒFehler("Beim Import der Datei: "ÿcashdatei$ÿ" ist ein Fehler aufgetreten, die Datei ist m”glicherweise in EXCEL ge”ffnet.","Bitte beenden Sie das Programm (ggf. im Taskmanager auch den Prozess ntvdm.exe beenden)")
+er2106200402: 
+ ÿ³ÿ_ÿwErrorHandler 
+ ÿ’ÿÿ
+
+
+ÿÿKVImp(KVdatei$)
+ ÿ_netpath$ÿ"0-Import"
+ ÿßÿe
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("Start Import KV-Datei "ÿKVdatei$ÿ" in Zwischenstruktur")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿÂ"Bitte nicht ungeduldig werden,","es werden jetzt die KV-Vertr„ge importiert!",2
+ 
+ ÿ¾ÿaÿ™"KVIMP":ÿ½                           Menu:  RemoveAll
+ ÿÉÿĞÿ™"KVIMP":ÿ½                                 ImportFile
+ ÿ³ÿ_ÿwer2006200401
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿKVdatei$
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"KVIMP.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ ÿÂ"KV-Vertr„ge wurden in Zwischenstruktur importiert...","",2
+ ÿßÿ³
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("Ende Import KV-Datei "ÿKVdatei$ÿ" in Zwischenstruktur")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿ³ÿ_ÿwErrorHandler
+ dat$ÿ"KVIMP"
+ ÿ¡ÿA(dat$)ÿ0ÿp
+i%ÿ0
+j%ÿÿA(dat$)
+ÿÊÿË"Nachbearbeitung der importierten S„tze "ÿÿ(i%,",9999999")ÿ" von "ÿÿ(j%,",9999999")
+ÿÉÿ`ÿá
+ÿØÿOÿB(dat$)
+i%ÿi%ÿ1
+ÿ½ Jahreskorrekturvon 19... auf 20... „ndern
+ÿ¡ÿH(Zahlungseingang.dat$)ÿ""ÿp
+jahr$ÿÿ-(Zahlungseingang.dat$,4)
+jahr%ÿÿ0(jahr$)
+ÿ¡jahr%ÿ
+2000ÿp
+	tm$ÿÿ+(Zahlungseingang.dat$,6)ÿ"20"ÿÿ-(jahr$,2)
+	xa$ÿZahlungseingang.dat$
+	Zahlungseingang.dat$ÿtm$
+	ÿÌÿ™dat$
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÊÿË"Nachbearbeitung der importierten S„tze "ÿÿ(i%,",9999999")ÿ" von "ÿÿ(j%,",9999999")
+ÿÉÿ±ÿá
+ÿÙ
+ ÿ’ÿ¡
+ ÿwer2006200402
+er2006200401: 
+ÿƒIWriteLogOk("***********************************************************************************************")
+ÿƒIWriteLogOk("***** FEHLER beim Import KV-Datei "ÿKVdatei$ÿ" in Zwischenstruktur")
+ÿƒIWriteLogOk("***********************************************************************************************")
+ÿƒFehler("Beim Import der Datei: "ÿKVdatei$ÿ" ist ein Fehler aufgetreten, die Datei ist m”glicherweise in EXCEL ge”ffnet.","Bitte beenden Sie das Programm (ggf. im Taskmanager auch den Prozess ntvdm.exe beenden)")
+er2006200402: 
+ ÿ³ÿ_ÿwErrorHandler
+ ÿ’ÿÿ
+ 
+ 
+ÿÿKVAbgleich()
+ x%ÿ0
+ ÿ×echtfehl$(30000)
+ echtfehl%ÿ0
+ ÿ™"KVIMP"
+ ÿ£Satz_ID.KVimp
+ ÿ¡ÿA("KVimp")ÿ0ÿp
+ÿÉÿ`ÿáÿ™"KVimp"
+ ÿ’ÿ¡
+ ÿßÿe
+ i%ÿ0
+ j%ÿÿA("KVimp")
+ vneu%ÿ0
+ vold%ÿ0
+ kneu%ÿ0
+ kold%ÿ0
+ fehlneu%ÿ0
+ 
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("Start Import KVIMP  in Vertragsdatei")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿ½ CALL Fehler("","")
+ ÿØÿOÿB("KVIMP")ÿÿA("KVimp")ÿ0
+ok%ÿ0
+i%ÿi%ÿ1
+ffehl$ÿ""
+fehljn%ÿ0
+ÿÊÿËÿ(i%,",9999999")ÿ" von "ÿÿ(j%,",9999999")ÿ"aus KVIMP verarbeitet"
+ÿßÿe
+codeva%ÿÿ0(Sparte.KVimp)
+ÿ¡ÿOÿJ(codeva%,codeva.sparten)ÿcodeva%ÿ0ÿp
+fehljn%ÿ1
+ffehl$ÿ"Sparte "ÿSparte.KVimpÿ"/"ÿSparte_Text.KVimpÿ" existierte nicht"ÿÿ(13)ÿÿ(10)
+ÿÿ™"Sparten"
+codeva.spartenÿcodeva%
+Sparte.spartenÿSparte_Text.KVimp
+formular.spartenÿ"VERTR000"
+Vertragsart.spartenÿ"VERTR000"
+codegrsp.spartenÿ0
+Workstation.spartenÿWorkstation%
+QWoNo.spartenÿÿ(Workstation%,"000000")ÿÿ(codeva.sparten,"000000")
+RecStatus.spartenÿ"c"
+ÿÌÿ™"sparten"
+ÿÊÿËÿ(i%,",9999999")ÿ" von "ÿÿ(j%,",9999999")ÿ" Sparte importiert:"ÿsparte.sparten
+ÿ™"Sparten"
+ÿ£CodeVA.Sparten
+ÿÉÿb
+ÿØCodeVA.SpartenÿÿI("SPARTEN",1)
+ÿÙ
+ÿ^
+ÿ¡codeva%ÿ0ÿp
+ÿÉÿ`ÿ™"Sparten"ÿ£codeva.sparten
+ÿÉÿ¥codeva%ÿ™"Sparten"ÿ£codeva.sparten
+ÿ^
+fehljn%ÿ1
+ffehl$ÿ"Spartennummer ist 0 "ÿSparte.KVimpÿ"/"ÿSparte_Text.KVimpÿ" VS_NR: "ÿVer_Scheinnumme.KVimpÿÿ(13)ÿÿ(10)
+ÿwnext190720041
+ÿ’ÿ¡
+ÿ’ÿ¡
+codeku%ÿÿ0(Kundennum_.KVimp)
+ÿ¡ÿOÿJ(codeku%,codeku.adressen)ÿcodeku%ÿ0ÿp
+kneu%ÿkneu%ÿ1
+ffehl$ÿffehl$ÿ"Kunde "ÿKundennum_.KVimpÿ"/"ÿKundenname.KVimpÿ" existierte nicht"ÿÿ(13)ÿÿ(10)
+ÿÿ™"ADRESSEN"
+codeku.adressenÿcodeku%
+Kundennummer.adressenÿÿH(Kundennum_.KVimp)
+Nachname.adressenÿKundenname.KVimp
+Vorname.adressenÿKundenvorname.KVimp
+plz.adressenÿKunden_PLZ.KVimp
+Ort.adressenÿKundenort.KVimp
+ÿ¡DateOK%(geb.KVimp)ÿp
+Geburtstag.adressenÿÿ1(geb.KVimp)
+ÿ’ÿ¡
+ÿ¡Geschlecht.KVimpÿ"m"ÿp
+Anrede.Adressenÿ"Herr"
+Geschlecht.adressenÿ"j"
+ÿ’ÿ¡
+ÿ¡Geschlecht.KVimpÿ"w"ÿp
+Anrede.Adressenÿ"Frau"
+Geschlecht.adressenÿ"n"
+ÿ’ÿ¡
+ÿƒQuickStore("ADRESSEN")
+ÿÊÿËÿ(i%,",9999999")ÿ" von "ÿÿ(j%,",9999999")ÿ" Kunde importiert: "ÿnachname.adressen
+ÿ™"ADRESSEN"
+ÿ£CodeKU.ADRESSEN
+ÿÉÿb
+ÿØCodeKU.ADRESSENÿÿI("ADRESSEN",1)
+ÿÙ
+ÿ^
+ÿ¡codeku%ÿ0ÿp
+kold%ÿkold%ÿ1
+ÿÉÿ`ÿ™"Adressen"ÿ£codeku.adressen
+ÿÉÿ¥codeku%ÿ™"Adressen"ÿ£codeku.adressen
+ÿ^
+fehljn%ÿ1
+ffehl$ÿ"Kundennummer ist 0 "ÿSparte.KVimpÿ"/"ÿSparte_Text.KVimpÿ" VS_NR: "ÿVer_Scheinnumme.KVimpÿÿ(13)ÿÿ(10)
+ÿwnext190720041 
+ÿ’ÿ¡
+ÿ’ÿ¡
+codema%ÿÿ0(Vermittler.KVimp)
+ÿ¡ÿOÿJ(codema%,codema.maadr)ÿcodema%ÿ0ÿp
+ffehl$ÿffehl$ÿ"Mitarbeiter "ÿVermittler.KVimpÿ" existierte nicht"ÿÿ(13)ÿÿ(10)
+fehljn%ÿ1
+ÿÿ™"MAADR"
+codema.maadrÿcodema%
+nachname.maadrÿVermittler.KVimp
+Agenturnr.maadrÿVermittler.KVimp
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ÿH(Kostenstelle.maadr)ÿ""ÿp
+ÿ¡ag$ÿ"5"ÿp
+	Kostenstelle.maadrÿ"30105"
+ÿ^
+	Kostenstelle.maadrÿ"30100"
+ÿ’ÿ¡
+ÿ’ÿ¡
+QNameCodema.maadrÿÿH(NAchnaME.maadr)ÿÿ(codema.maadr,"000000")
+ÿÌÿ™"maadr"
+ÿÊÿËÿ(i%,",9999999")ÿ" von "ÿÿ(j%,",9999999")ÿ" Vermittler importiert: "ÿnachname.maadr
+ÿ™"maadr"
+ÿ£CodeMA.maadr
+ÿÉÿb
+ÿ½ WHILE CodeMA.maadr > SER ("maadr",1)
+ÿ½ WEND 
+ÿ^
+ÿ¡codema%ÿ0ÿp
+ÿÉÿ`ÿ™"MAADR"ÿ£codema.maadr
+ÿÉÿ¥codema%ÿ™"maadr"ÿ£codema.maadr
+ÿ^
+fehljn%ÿ1
+ffehl$ÿ"Mitarbeiternummer ist 0 "ÿSparte.KVimpÿ"/"ÿSparte_Text.KVimpÿ" VS_NR: "ÿVer_Scheinnumme.KVimpÿÿ(13)ÿÿ(10)
+ÿwnext190720041 
+ÿ’ÿ¡
+ÿ’ÿ¡
+codege%ÿÿ0(Ges_nr_.KVimp)
+ÿ¡ÿOÿJ(codege%,codege.geadr)ÿcodege%ÿ0ÿp
+ffehl$ÿffehl$ÿ"Gesellschaft "ÿGes_nr_.KVimpÿ"/"ÿGesellsch.KVimpÿ" existierte nicht"ÿÿ(13)ÿÿ(10)
+fehljn%ÿ1
+ÿÿ™"GEADR"
+codege.geadrÿcodege%
+Gesellschaft.geadrÿÿ+(ÿH(Gesellsch.KVimp),30)
+gesges.geadrÿÿH(Gesellsch.KVimp)
+FS24Nr.geadrÿÿH(Ges_nr_.KVimp)
+ÿÌÿ™"geadr"
+ÿÊÿËÿ(i%,",9999999")ÿ" von "ÿÿ(j%,",9999999")ÿ" Gesellschaft importiert: "ÿgesellschaft.geadr
+ÿ™"geadr"
+ÿ£Codege.geadr
+ÿÉÿb
+ÿØCodege.geadrÿÿI("GEADR",1)
+ÿÙ
+ÿ^
+ÿ¡codege%ÿ0ÿp
+ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+ÿÉÿ¥codege%ÿ™"geadr"ÿ£codege.geadr
+ÿ^
+fehljn%ÿ1
+ffehl$ÿ"Gesellschaftsnummer ist 0 "ÿGesellsch.KVimpÿ"/"ÿSparte_Text.KVimpÿ" VS_NR: "ÿVer_Scheinnumme.KVimpÿÿ(13)ÿÿ(10)
+ÿwnext190720041 
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ÿ¡ÿH(Satz_ID.KVimp)ÿ""ÿp
+ÿ¡Bewertungsza_01.kvimpÿ0ÿp
+ÿ¡ÿOÿJ(Satz_ID.KVimp,FS24Satz_ID.kvertrag)ÿp
+	vneu%ÿvneu%ÿ1
+	ffehl$ÿffehl$ÿ"Vertrag "ÿSatz_ID.KVimpÿ"/"ÿVer_Scheinnumme.KVimpÿ" existierte nicht"ÿÿ(13)ÿÿ(10)
+	ÿÿ™"KVERTRAG"
+	lfdnr%ÿÿI("KVERTRAG",1)
+	lfdnr.kvertragÿlfdnr%
+	FS24Satz_ID.kvertragÿSatz_ID.KVimp
+	FS24Satz_ID2.kvertragÿ""
+	ÿ½ FS24Satz_ID2.kvertrag = FS24Satz_ID.kvertrag + LTRIM$ ( LEFT$ (Sparte_text.kvimp,3))
+	ok%ÿÿ1
+ÿ^
+	vold%ÿvold%ÿ1
+	ÿÉÿ`ÿ™"KVERTRAG"ÿ£FS24Satz_ID.kvertrag
+	ÿÉÿ¥Satz_ID.KVimpÿáÿ™"KVERTRAG"ÿ£FS24Satz_ID.kvertrag
+	lfdnr%ÿlfdnr.kvertrag
+	ok%ÿÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿÿ1ÿp
+	codeku.Kvertragÿcodeku%
+	codema.kvertragÿcodema%
+	codeva.kvertragÿcodeva%
+	codege.kvertragÿcodege%
+	ÿ¡kzv.kvertragÿ""ÿpkzv.kvertragÿ"j"
+	VS_Nr.kvertragÿVer_Scheinnumme.KVimp
+	ÿ¡DateOK%(Vers_Beginn.KVimp)ÿpVS_Beginn.kvertragÿÿ1(Vers_Beginn.KVimp)
+	ÿ¡DateOK%(Policendatum.KVimp)ÿpPolicedatum.KVERTRAGÿÿ1(Policendatum.KVimp)
+	ÿ¡DateOK%(Antragseingang.KVimp)ÿpAntragsdatum.kvertragÿÿ1(Antragseingang.KVimp)
+
+	ÿ½ Neu 06122004
+	ÿ¡Antragsdatum.kvertragÿ0ÿcodema%ÿ0ÿp
+codemaneu%ÿNeuemaFS%(codema%,Antragsdatum.kvertrag)
+ÿ¡codemaneu%ÿ0ÿp
+codema.kvertragÿcodemaneu%
+codema%ÿcodemaneu%
+ÿ’ÿ¡
+	ÿ^
+x%ÿx%ÿ1
+	ÿ’ÿ¡
+
+	ÿ¡ÿ1(Storno_Datum.KVimp)ÿ0ÿp
+Kndigung.kvertragÿStorno_Datum.KVimp
+TatsKuenDat.kvertragÿStorno_Datum.KVimp
+	ÿ’ÿ¡
+	Bewertungssumme.kvertragÿBewertungszahl_.KVimp
+	zw.kvertragÿ12
+	Zahlart.kvertragÿ1
+	codew.kvertragÿ3
+	umrechnung.kvertragÿ1
+	Waehrung.kvertragÿ"EUR"
+	inkart.kvertragÿ2
+	ÿ¡status_.KVimpÿ"A"ÿp
+codevstatus.kvertragÿ1
+vstatustxt.kvertragÿ"lebend"
+	ÿ^
+codevstatus.kvertragÿ4
+vstatustxt.kvertragÿ"storniert"
+ÿ¡ÿ1(Storno_Datum.kvimp)ÿ0ÿp
+Kndigung.kvertragÿStorno_Datum.kvimp
+TatsKuenDat.kvertragÿStorno_Datum.kvimp
+vorzeitig.kvertragÿ"j"
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	ÿ¡DateOK%(Zahlungseingang.kvimp)ÿpFS24ZEDat.kvertragÿÿ1(Zahlungseingang.kvimp)
+	ÿ¡FS24MaklProv.kvertragÿ0ÿpFS24MaklProv.kvertragÿMakler_Prov_.kvimp
+	ÿ¡FS24GesCourt.kvertragÿ0ÿpFS24GesCourt.kvertragÿGesamtcourt_.kvimp
+	beitrag.kvertragÿFS24GesCourt.kvertrag
+	Nettobeitrag.kvertragÿFS24GesCourt.kvertrag
+	ÿ¡ÿ1(Datum_Vorschuss.kvimp)ÿ0ÿFS24DatVors.kvertragÿ
+1ÿpFS24DatVors.kvertragÿDatum_Vorschuss.kvimp
+	ÿ¡FS24Vors.kvertragÿ0ÿpFS24Vors.kvertragÿWert_Vorschuss.kvimp
+	ÿƒQuickStore("KVERTRAG")
+	ÿÿ™"FS24IMP"
+	a%ÿCopyRecord%("KVIMP","FS24IMP")
+	codekey.fs24impÿÿI("FS24IMP",1)
+	codevt.fs24impÿlfdnr%
+	timestamp$ÿÿ(ÿQ,"yymmdd")ÿÿ(ÿ9(ÿR)ÿ100ÿÿ:(ÿR),"0000")
+	timestamp%ÿÿ0(timestamp$)
+	Timestamp.fs24impÿtimestamp%
+	ÿÌÿ™"FS24IMP"
+ÿ’ÿ¡
+ÿ^
+ÿ½ Bewertungsza_01.kvimp <> 0 , d.h. aus 1 Vertrag mach 2 (der 2. ist PPV)
+id$ÿSatz_ID.KVimpÿ"PKV"
+id2$ÿSatz_ID.KVimpÿ"PPV"
+ok%ÿ0
+ÿ¡ÿOÿJ(id$,FS24Satz_ID2.kvertrag)ÿp
+	vneu%ÿvneu%ÿ1
+	ffehl$ÿffehl$ÿ"Vertrag "ÿSatz_ID.KVimpÿ"/"ÿVer_Scheinnumme.KVimpÿ" existierte nicht"ÿÿ(13)ÿÿ(10)
+	ÿÿ™"KVERTRAG"
+	lfdnr%ÿÿI("KVERTRAG",1)
+	lfdnr.kvertragÿlfdnr%
+	FS24Satz_ID.kvertragÿSatz_ID.KVimp
+	FS24Satz_ID2.kvertragÿFS24Satz_ID.kvertragÿ"PKV"
+	ok%ÿÿ1
+ÿ^
+	vold%ÿvold%ÿ1
+	ÿÉÿ`ÿ™"KVERTRAG"ÿ£FS24Satz_ID.kvertrag
+	ÿÉÿ¥id2$ÿáÿ™"KVERTRAG"ÿ£FS24Satz_ID2.kvertrag
+	lfdnr%ÿlfdnr.kvertrag
+	ok%ÿÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿÿ1ÿp
+	codeku.Kvertragÿcodeku%
+	codema.kvertragÿcodema%
+	codeva.kvertragÿcodeva%
+	codege.kvertragÿcodege%
+	ÿ¡kzv.kvertragÿ""ÿpkzv.kvertragÿ"j"
+	VS_Nr.kvertragÿÿH(ÿ+(Sparte_text.kvimp,3))ÿ" "ÿVer_Scheinnumme.KVimp
+	ÿ¡DateOK%(Vers_Beginn.KVimp)ÿpVS_Beginn.kvertragÿÿ1(Vers_Beginn.KVimp)
+	ÿ¡DateOK%(Policendatum.KVimp)ÿpPolicedatum.KVERTRAGÿÿ1(Policendatum.KVimp)
+	ÿ¡DateOK%(Antragseingang.KVimp)ÿpAntragsdatum.kvertragÿÿ1(Antragseingang.KVimp)
+	ÿ¡ÿ1(Storno_Datum.KVimp)ÿ0ÿp
+ÿ¡ÿ1(Storno_Datum.KVimp)ÿ0ÿp
+Kndigung.kvertragÿStorno_Datum.KVimp
+TatsKuenDat.kvertragÿStorno_Datum.KVimp
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	Bewertungssumme.kvertragÿBewertungszahl_.KVimp
+	zw.kvertragÿ12
+	Zahlart.kvertragÿ1
+	codew.kvertragÿ3
+	umrechnung.kvertragÿ1
+	Waehrung.kvertragÿ"EUR"
+	inkart.kvertragÿ2
+	ÿ¡status_.KVimpÿ"A"ÿp
+codevstatus.kvertragÿ1
+vstatustxt.kvertragÿ"lebend"
+	ÿ^
+codevstatus.kvertragÿ4
+vstatustxt.kvertragÿ"storniert"
+ÿ¡ÿ1(Storno_Datum.kvimp)ÿ0ÿp
+Kndigung.kvertragÿStorno_Datum.kvimp
+TatsKuenDat.kvertragÿStorno_Datum.kvimp
+vorzeitig.kvertragÿ"j"
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	ÿ¡DateOK%(Zahlungseingang.kvimp)ÿpFS24ZEDat.kvertragÿZahlungseingang.kvimp
+	ÿ¡FS24MaklProv.kvertragÿ0ÿpFS24MaklProv.kvertragÿMakler_Prov_.kvimp
+	ÿ¡FS24GesCourt.kvertragÿ0ÿpFS24GesCourt.kvertragÿGesamtcourt_.kvimp
+	beitrag.kvertragÿFS24GesCourt.kvertrag
+	Nettobeitrag.kvertragÿFS24GesCourt.kvertrag
+	ÿ¡ÿ1(Datum_Vorschuss.kvimp)ÿ0ÿFS24DatVors.kvertragÿ
+1ÿpFS24DatVors.kvertragÿDatum_Vorschuss.kvimp
+	ÿ¡FS24Vors.kvertragÿ0ÿpFS24Vors.kvertragÿWert_Vorschuss.kvimp
+	ÿƒQuickStore("KVERTRAG")
+	ÿÿ™"FS24IMP"
+	a%ÿCopyRecord%("KVIMP","FS24IMP")
+	codekey.fs24impÿÿI("FS24IMP",1)
+	codevt.fs24impÿlfdnr%
+	timestamp$ÿÿ(ÿQ,"yymmdd")ÿÿ(ÿ9(ÿR)ÿ100ÿÿ:(ÿR),"0000")
+	timestamp%ÿÿ0(timestamp$)
+	Timestamp.fs24impÿtimestamp%
+	ÿÌÿ™"FS24IMP"
+ÿ’ÿ¡
+ok%ÿ0
+ÿ¡ÿOÿJ(id2$,FS24Satz_ID2.kvertrag)ÿp
+	vneu%ÿvneu%ÿ1
+	ffehl$ÿffehl$ÿ"Vertrag "ÿSatz_ID.KVimpÿ"/"ÿVer_Scheinnumme.KVimpÿ" existierte nicht"ÿÿ(13)ÿÿ(10)
+	ÿÿ™"KVERTRAG"
+	lfdnr%ÿÿI("KVERTRAG",1)
+	lfdnr.kvertragÿlfdnr%
+	FS24Satz_ID.kvertragÿSatz_ID.KVimp
+	FS24Satz_ID2.kvertragÿFS24Satz_ID.kvertragÿ"PPV"
+	codeva.kvertragÿ001
+	ok%ÿÿ1
+ÿ^
+	vold%ÿvold%ÿ1
+	ÿÉÿ`ÿ™"KVERTRAG"ÿ£FS24Satz_ID.kvertrag
+	ÿÉÿ¥id2$ÿáÿ™"KVERTRAG"ÿ£FS24Satz_ID2.kvertrag
+	lfdnr%ÿlfdnr.kvertrag
+	ok%ÿÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿÿ1ÿp
+	codeku.Kvertragÿcodeku%
+	codema.kvertragÿcodema%
+	codeva.kvertragÿ001
+	codege.kvertragÿcodege%
+	VS_Nr.kvertragÿ"PPV "ÿVer_Scheinnumme.KVimp
+	ÿ½ dieser Teile des Vertrages darf nicht bevorschusst werden (festlegung)
+	ÿ½ d.h  das sind die Vertr„ge die auch die ausgefllte FS24Satz_ID2.kvertrag haben
+	ÿ½ jedenfalls wird bei den SAP Auswertungen auch immer Bezug auf kzv="1" genommen
+	kzv.kvertragÿ"1"
+	ÿ¡DateOK%(Vers_Beginn.KVimp)ÿpVS_Beginn.kvertragÿÿ1(Vers_Beginn.KVimp)
+	ÿ¡DateOK%(Policendatum.KVimp)ÿpPolicedatum.KVERTRAGÿÿ1(Policendatum.KVimp)
+	ÿ¡DateOK%(Antragseingang.KVimp)ÿpAntragsdatum.kvertragÿÿ1(Antragseingang.KVimp)
+ÿ¡ÿ1(Storno_Datum.KVimp)ÿ0ÿp
+Kndigung.kvertragÿStorno_Datum.KVimp
+TatsKuenDat.kvertragÿStorno_Datum.KVimp
+ÿ’ÿ¡
+	Bewertungssumme.kvertragÿBewertungsza_01.KVimp
+	zw.kvertragÿ12
+	Zahlart.kvertragÿ1
+	codew.kvertragÿ3
+	umrechnung.kvertragÿ1
+	Waehrung.kvertragÿ"EUR"
+	inkart.kvertragÿ2
+	ÿ¡status_.KVimpÿ"A"ÿp
+codevstatus.kvertragÿ1
+vstatustxt.kvertragÿ"lebend"
+	ÿ^
+codevstatus.kvertragÿ4
+vstatustxt.kvertragÿ"storniert"
+ÿ¡ÿ1(Storno_Datum.kvimp)ÿ0ÿp
+Kndigung.kvertragÿStorno_Datum.kvimp
+TatsKuenDat.kvertragÿStorno_Datum.kvimp
+vorzeitig.kvertragÿ"j"
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	ÿ¡DateOK%(Zahlungseingang.kvimp)ÿpFS24ZEDat.kvertragÿZahlungseingang.kvimp
+	ÿ¡FS24MaklProv.kvertragÿ0ÿpFS24MaklProv.kvertragÿMakler_Prov_.kvimp
+	ÿ¡FS24GesCourt.kvertragÿ0ÿpFS24GesCourt.kvertragÿGesamtcourt_.kvimp
+	beitrag.kvertragÿFS24GesCourt.kvertrag
+	Nettobeitrag.kvertragÿFS24GesCourt.kvertrag
+	ÿ¡ÿ1(Datum_Vorschuss.kvimp)ÿ0ÿFS24DatVors.kvertragÿ
+1ÿpFS24DatVors.kvertragÿDatum_Vorschuss.kvimp
+	ÿ¡FS24Vors.kvertragÿ0ÿpFS24Vors.kvertragÿWert_Vorschuss.kvimp
+	ÿƒQuickStore("KVERTRAG")
+	ÿÿ™"FS24IMP"
+	a%ÿCopyRecord%("KVIMP","FS24IMP")
+	codekey.fs24impÿÿI("FS24IMP",1)
+	codevt.fs24impÿlfdnr%
+	timestamp$ÿÿ(ÿQ,"yymmdd")ÿÿ(ÿ9(ÿR)ÿ100ÿÿ:(ÿR),"0000")
+	timestamp%ÿÿ0(timestamp$)
+	Timestamp.fs24impÿtimestamp%
+	ÿÌÿ™"FS24IMP"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+next190720041:
+ÿ™"KVIMP"
+ÿÉÿYÿá
+fehlerTXT.KVimpÿffehl$
+Fehlerjn.KVimpÿfehljn%
+ÿ¡fehljn%ÿ1ÿp
+fehlneu%ÿfehlneu%ÿ1
+echtfehl$(echtfehl%)ÿ"SatzID: "ÿsatz_ID.kvimpÿ" VS_NR: "ÿVer_Scheinnumme.kvimpÿ" Kundennr: "ÿKundennum_.kvimpÿ" Vermittler: "ÿVermittler.kvimpÿ"    Fehlertext: "ÿffehl$
+echtfehl%ÿechtfehl%ÿ1
+ÿ’ÿ¡
+ÿÌÿ™"KVIMP"
+ÿ¡ffehl$ÿ""ÿp
+ÿƒIWriteLogOk("Datensatz "ÿÿH(ÿ(i%,",9999999"))ÿ" "ÿffehl$)
+ÿ’ÿ¡
+ 
+ÿÉÿ±ÿáÿ™"KVIMP"
+ ÿÙ
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("Import KVIMP beendet")
+ ÿƒIWriteLogOk("Datens„tze gesamt "ÿÿH(ÿ(i%,",9999999")))
+ ÿƒIWriteLogOk("Anzahl noch nicht vorhandener Kunden: "ÿÿH(ÿ(kneu%,",9999999")))
+ ÿƒIWriteLogOk("Anzahl bereits vorhandener Kunden: "ÿÿH(ÿ(kold%,",9999999")))
+ ÿƒIWriteLogOk("Anzahl noch nicht vorhandener Vertr„ge: "ÿÿH(ÿ(vneu%,",9999999")))
+ ÿƒIWriteLogOk("Anzahl bereits vorhandener Vertr„ge: "ÿÿH(ÿ(vold%,",9999999")))
+ ÿƒIWriteLogOk("Anzahl Fehler: "ÿÿH(ÿ(fehlneu%,",9999999")))
+ ÿƒIWriteLogOk(" F E H L E R ")
+ ÿ›i%ÿ0ÿqechtfehl%ÿ1
+ÿƒIWriteLogOk(echtfehl$(i%))
+ ÿ±i%
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿ’ÿÿ
+ 
+ÿÿNeuemaFS%(agnr%,datum%)
+ NeuemaFS%ÿ0
+ ÿÉÿ`ÿ™"maadr"ÿ£agenturnr.maadr
+ vermnr$ÿÿ(agnr%,"0000")
+ ÿ½ IF verm$ = "9999" THEN GOTO endnFS061220041
+ ÿÉÿ¥vermnr$ÿ™"maadr"ÿ£agenturnr.maadr
+ okfs%ÿÿ1
+ ÿØÿOÿB("maadr")ÿÿ+(Agenturnr.maadr,4)ÿvermnr$ÿokfs%ÿÿ1
+codema1%ÿcodema.maadr
+ok%ÿÿ1
+ÿ¡ÿOÿ´("mavorg")ÿpÿƒDFile(3,"mavorg"ÿ_fpw$)
+ÿ¡ÿJ(codema1%,codema.mavorg)ÿp
+ÿÉÿ`ÿ™"mavorg"ÿ£codema.mavorg
+ÿÉÿ¥codema1%ÿ™"mavorg"ÿ£codema.mavorg
+NeuemaFS%ÿcodema1%
+okin%ÿÿ1
+ÿØÿOÿB("mavorg")ÿcodema.mavorgÿcodema1%ÿokin%ÿÿ1
+ÿ¡bis.mavorgÿ0ÿp
+	ÿ¡bis.mavorgÿ	datum%ÿpok%ÿ0
+ÿ’ÿ¡
+ÿ¡von.mavorgÿ0ÿp
+	ÿ¡von.mavorgÿdatum%ÿp
+ok%ÿ0
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ok%ÿÿ1ÿp
+	ÿÉÿbÿ™"mavorg"ÿ£codema.mavorg
+	okin%ÿ0
+ÿ^
+	ÿÉÿ±ÿ™"mavorg"ÿ£codema.mavorg
+ÿ’ÿ¡
+ÿÙ
+ÿ¡ok%ÿ0ÿp
+NeuemaFS%ÿ0
+ÿ’ÿ¡
+ÿ¡ok%ÿÿ1ÿp
+ÿÉÿbÿ™"maadr"ÿ£agenturnr.maadr
+okfs%ÿ0
+ÿ^
+ÿÉÿ±ÿ™"maadr"ÿ£agenturnr.maadr
+ÿ’ÿ¡
+ÿ^
+NeuemaFS%ÿ0
+ok%ÿ0
+ÿÉÿbÿ™"maadr"ÿ£agenturnr.maadr
+okfs%ÿ0
+ÿ’ÿ¡
+ ÿÙ
+endnFS061220041: 
+ ÿ¡NeuemaFS%ÿ0ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥NeuemaFS1%ÿ™"maadr"ÿ£codema.maadr
+ ÿ^
+ÿÉÿ`ÿ™"maadr"ÿ£agenturnr.maadr
+vermnr$ÿÿ(agnr%,"0000")
+ÿÉÿ¥vermnr$ÿ™"maadr"ÿ£agenturnr.maadr
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+
+ÿÿNeuemaFS1%(codemaold%,datum1%)
+ NeuemaFS1%ÿ0
+ ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ ÿÉÿ¥codemaold%ÿ™"maadr"ÿ£codema.maadr
+ vermnr$ÿÿ+(Agenturnr.maadr,4)
+ ÿ½ IF verm$ = "9999" THEN GOTO endnFS061220042
+ ÿÉÿ`ÿ™"maadr"ÿ£agenturnr.maadr
+ ÿÉÿ¥vermnr$ÿ™"maadr"ÿ£agenturnr.maadr
+ okfs%ÿÿ1
+ ÿØÿOÿB("maadr")ÿÿ+(Agenturnr.maadr,4)ÿvermnr$ÿokfs%ÿÿ1
+codema1%ÿcodema.maadr
+ok%ÿÿ1
+ÿ¡ÿOÿ´("mavorg")ÿpÿƒDFile(3,"mavorg"ÿ_fpw$)
+ÿ¡ÿJ(codema1%,codema.mavorg)ÿp
+ÿÉÿ`ÿ™"mavorg"ÿ£codema.mavorg
+ÿÉÿ¥codema1%ÿ™"mavorg"ÿ£codema.mavorg
+NeuemaFS1%ÿcodema1%
+okin%ÿÿ1
+ÿØÿOÿB("mavorg")ÿcodema.mavorgÿcodema1%ÿokin%ÿÿ1
+ÿ¡bis.mavorgÿ0ÿp
+	ÿ¡bis.mavorgÿ	datum1%ÿpok%ÿ0
+ÿ’ÿ¡
+ÿ¡von.mavorgÿ0ÿp
+	ÿ¡ÿ1(von.mavorg)ÿdatum1%ÿp
+ddq%ÿvon.mavorg
+ddz%ÿdatum1%
+ddq$ÿÿ(von.mavorg,"0d.mm.yyyy")
+ddz$ÿÿ(datum1%,"0d.mm.yyyy")
+ok%ÿ0
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ok%ÿÿ1ÿp
+	ÿÉÿbÿ™"mavorg"ÿ£codema.mavorg
+	okin%ÿ0
+ÿ^
+	ÿÉÿ±ÿ™"mavorg"ÿ£codema.mavorg
+ÿ’ÿ¡
+ÿÙ
+ÿ¡ok%ÿ0ÿp
+NeuemaFS1%ÿ0
+ÿ’ÿ¡
+ÿ¡ok%ÿÿ1ÿp
+ÿÉÿbÿ™"maadr"ÿ£agenturnr.maadr
+okfs%ÿ0
+ÿ^
+ÿÉÿ±ÿ™"maadr"ÿ£agenturnr.maadr
+ÿ’ÿ¡
+ÿ^
+NeuemaFS1%ÿ0
+ok%ÿ0
+ÿÉÿbÿ™"maadr"ÿ£agenturnr.maadr
+okfs%ÿ0
+ÿ’ÿ¡
+ ÿÙ
+endnFS061220042: 
+ ÿ¡NeuemaFS1%ÿ0ÿNeuemaFS1%ÿcodemaold%ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥NeuemaFS1%ÿ™"maadr"ÿ£codema.maadr
+ ÿ^
+ÿÉÿ`ÿ™"maadr"ÿ£agenturnr.maadr
+ÿÉÿ¥vermnr$ÿ™"maadr"ÿ£agenturnr.maadr
+NeuemaFS1%ÿ0
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+
+
+
+ÿÿVertrMATest()
+ ÿ¡ÿOÿ´("mavorg")ÿpÿƒDFile(3,"mavorg"ÿ_fpw$)
+ ÿ¡ÿOÿ´("maadr")ÿpÿƒDFile(3,"maadr"ÿ_fpw$)
+ ÿ¡ÿOÿ´("kvertrag")ÿpÿƒDFile(3,"kvertrag"ÿ_fpw$)
+ ÿ¡ÿOÿ´("geadr")ÿpÿƒDFile(3,"geadr"ÿ_fpw$)
+ ÿ¡ÿOÿ´("sparten")ÿpÿƒDFile(3,"sparten"ÿ_fpw$)
+ ÿ¡ÿOÿ´("vprodukt")ÿpÿƒDFile(3,"vprodukt"ÿ_fpw$)
+ ÿÉÿ`ÿáÿ™"KVERTRAG"ÿ£lfdnr.kvertrag
+ i%ÿ0
+ j%ÿÿA("kvertrag")
+ x%ÿ0
+ ÿØÿOÿB("KVERTRAG")
+ ÿßÿe
+i%ÿi%ÿ1
+ÿ¡Antragsdatum.kvertragÿ0ÿcodema.kvertragÿ0ÿproviab.kvertragÿ
+1ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema.kvertragÿ™"maadr"ÿ£codema.maadr
+nameold$ÿAgenturnr.maadrÿ" "ÿnachname.maadr
+ÿ½ agnr% = TRIM$ (Agenturnr.maadr)
+ÿ¡vs_nr.kvertragÿ"PPV 111376952"ÿpÿƒFehler(VS_NR.kvertragÿ"  Alt "ÿnameold$ÿ"    "ÿÿ(codema.kvertrag,"000000"),"")
+codemaneu%ÿNeuemaFS1%(codema.kvertrag,Antragsdatum.kvertrag)
+ÿ¡codemaneu%ÿ0ÿp
+x%ÿx%ÿ1
+nameneu$ÿAgenturnr.maadrÿ" "ÿnachname.maadr
+ÿ½ CALL Fehler(VS_NR.kvertrag + "  Alt " + nameold$ + "    " + STR$ (codema.kvertrag,"000000"),"Neu " + nameneu$ + "    " + STR$ (codemaneu%,"000000"))
+codema.kvertragÿcodemaneu%
+ÿƒQuickStore("KVERTRAG")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿáÿ™"KVERTRAG"ÿ£lfdnr.kvertrag
+ÿÊÿËÿ(i%,",999999")ÿ" von "ÿÿ(j%,",999999")ÿ" ge„ndert: "ÿÿ(x%,",999999")
+ ÿÙ
+ ÿƒFehler(ÿ(i%,",999999")ÿ" von "ÿÿ(j%,",999999")ÿ" ge„ndert: "ÿÿ(x%,",999999"),"")
+ ÿ’ÿÿ
+
+
+
+ÿÿLVImp(lvdatei$)
+ ÿ_netpath$ÿ"0-Import"
+ ÿßÿe
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("Start Import LV-Datei "ÿlvdatei$ÿ" in Zwischenstruktur")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿÂ"Bitte nicht ungeduldig werden,","es werden jetzt die LV-Vertr„ge importiert!",2
+ 
+ ÿ¾ÿaÿ™"LVIMP":ÿ½                           Menu:  RemoveAll
+ ÿÉÿĞÿ™"LVIMP":ÿ½                                 ImportFile
+ ÿ³ÿ_ÿwer2006200401
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿlvdatei$
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"LVIMP.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ ÿÂ"LV-Vertr„ge wurden in Zwischenstruktur importiert...","",2
+ ÿßÿ³
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("Ende Import LV-Datei "ÿlvdatei$ÿ" in Zwischenstruktur")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿ³ÿ_ÿwErrorHandler
+ dat$ÿ"LVIMP"
+ ÿ¡ÿA(dat$)ÿ0ÿp
+i%ÿ0
+j%ÿÿA(dat$)
+ÿÊÿË"Nachbearbeitung der importierten S„tze "ÿÿ(i%,",9999999")ÿ" von "ÿÿ(j%,",9999999")
+ÿÉÿ`ÿá
+ÿØÿOÿB(dat$)
+ÿ¡ÿH(Zahlungseingang.dat$)ÿ""ÿp
+ÿ½ Jahreskorrekturvon 19... auf 20... „ndern
+jahr$ÿÿ-(Zahlungseingang.dat$,4)
+jahr%ÿÿ0(jahr$)
+ÿ¡jahr%ÿ
+2000ÿp
+	tm$ÿÿ+(Zahlungseingang.dat$,6)ÿ"20"ÿÿ-(jahr$,2)
+	Zahlungseingang.dat$ÿtm$
+	ÿÌÿ™dat$
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÊÿË"Nachbearbeitung der importierten S„tze "ÿÿ(i%,",9999999")ÿ" von "ÿÿ(j%,",9999999")
+ÿÉÿ±ÿá
+ÿÙ
+ ÿ’ÿ¡
+ ÿwer2006200402
+er2006200401: 
+ÿƒIWriteLogOk("***********************************************************************************************")
+ÿƒIWriteLogOk("***** FEHLER beim Import LV-Datei "ÿlvdatei$ÿ" in Zwischenstruktur")
+ÿƒIWriteLogOk("***********************************************************************************************")
+ÿƒFehler("Beim Import der Datei: "ÿlvdatei$ÿ" ist ein Fehler aufgetreten, die Datei ist m”glicherweise in EXCEL ge”ffnet.","Bitte beenden Sie das Programm (ggf. im Taskmanager auch den Prozess ntvdm.exe beenden)")
+er2006200402: 
+ ÿ³ÿ_ÿwErrorHandler
+ ÿ’ÿÿ
+
+
+ÿÿLVAbgleich()
+ x%ÿ0
+ ÿ×echtfehl$(30000)
+ echtfehl%ÿ0
+ ÿ™"LVIMP"
+ ÿ£Satz_ID.lvimp
+ ÿ¡ÿA("lvimp")ÿ0ÿp
+ÿÉÿ`ÿáÿ™"lvimp"
+ ÿ’ÿ¡
+ ÿßÿe
+ i%ÿ0
+ j%ÿÿA("lvimp")
+ vneu%ÿ0
+ vold%ÿ0
+ kneu%ÿ0
+ kold%ÿ0
+ fehlneu%ÿ0
+ ÿƒIWriteLogOk("")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("Start Import LVIMP  in Vertragsdatei")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("")
+ ÿØÿOÿB("lvIMP")ÿÿA("lvimp")ÿ0
+ok%ÿ0
+i%ÿi%ÿ1
+ffehl$ÿ""
+fehljn%ÿ0
+ÿÊÿËÿ(i%,",9999999")ÿ" von "ÿÿ(j%,",9999999")
+ÿßÿe
+codeva%ÿÿ0(Sparte.lvimp)
+ÿ¡ÿOÿJ(codeva%,codeva.sparten)ÿcodeva%ÿ0ÿp
+fehljn%ÿ1
+ffehl$ÿ"Sparte "ÿSparte.lvimpÿ"/"ÿSparte_Text.lvimpÿ" existierte nicht"ÿÿ(13)ÿÿ(10)
+ÿÿ™"Sparten"
+codeva.spartenÿcodeva%
+Sparte.spartenÿSparte_Text.lvimp
+formular.spartenÿ"VERTR000"
+Vertragsart.spartenÿ"VERTR000"
+codegrsp.spartenÿ0
+Workstation.spartenÿWorkstation%
+QWoNo.spartenÿÿ(Workstation%,"000000")ÿÿ(codeva.sparten,"000000")
+RecStatus.spartenÿ"c"
+ÿÌÿ™"sparten"
+ÿÊÿËÿ(i%,",9999999")ÿ" von "ÿÿ(j%,",9999999")ÿ" Sparte importiert:"ÿsparte.sparten
+ÿ™"Sparten"
+ÿ£CodeVA.Sparten
+ÿÉÿb
+ÿØCodeVA.SpartenÿÿI("SPARTEN",1)
+ÿÙ
+ÿ^
+ÿ¡codeva%ÿ0ÿp
+ÿÉÿ`ÿ™"Sparten"ÿ£codeva.sparten
+ÿÉÿ¥codeva%ÿ™"Sparten"ÿ£codeva.sparten
+ÿ^
+fehljn%ÿ1
+ffehl$ÿ"Spartennummer ist 0 "ÿSparte.KVimpÿ"/"ÿSparte_Text.KVimpÿ" VS_NR: "ÿVer_Scheinnumme.KVimpÿÿ(13)ÿÿ(10)
+ÿwnext190720042
+ÿ’ÿ¡
+ÿ’ÿ¡
+codeku%ÿÿ0(Kundennum_.lvimp)
+ÿ¡ÿOÿJ(codeku%,codeku.adressen)ÿcodeku%ÿ0ÿp
+kneu%ÿkneu%ÿ1
+ffehl$ÿffehl$ÿ"Kunde "ÿKundennum_.lvimpÿ"/"ÿKundenname.lvimpÿ" existierte nicht"ÿÿ(13)ÿÿ(10)
+ÿÿ™"ADRESSEN"
+codeku.adressenÿcodeku%
+Kundennummer.adressenÿÿH(Kundennum_.lvimp)
+Nachname.adressenÿKundenname.lvimp
+Vorname.adressenÿKundenvorname.lvimp
+plz.adressenÿKunden_PLZ.lvimp
+Ort.adressenÿKundenort.lvimp
+ÿ¡DateOK%(geb.lvimp)ÿp
+Geburtstag.adressenÿÿ1(geb.lvimp)
+ÿ’ÿ¡
+ÿ¡Geschlecht.lvimpÿ"m"ÿp
+Anrede.Adressenÿ"Herr"
+Geschlecht.adressenÿ"j"
+ÿ’ÿ¡
+ÿ¡Geschlecht.lvimpÿ"w"ÿp
+Anrede.Adressenÿ"Frau"
+Geschlecht.adressenÿ"n"
+ÿ’ÿ¡
+ÿƒQuickStore("ADRESSEN")
+ÿÊÿËÿ(i%,",9999999")ÿ" von "ÿÿ(j%,",9999999")ÿ" Kunde importiert: "ÿnachname.adressen
+ÿ™"ADRESSEN"
+ÿ£CodeKU.ADRESSEN
+ÿÉÿb
+ÿØCodeKU.ADRESSENÿÿI("ADRESSEN",1)
+ÿÙ
+ÿ^
+ÿ¡codeku%ÿ0ÿp
+kold%ÿkold%ÿ1
+ÿÉÿ`ÿ™"Adressen"ÿ£codeku.adressen
+ÿÉÿ¥codeku%ÿ™"Adressen"ÿ£codeku.adressen
+ÿ^
+fehljn%ÿ1
+ffehl$ÿ"Kundennummer ist 0 "ÿSparte.KVimpÿ"/"ÿSparte_Text.KVimpÿ" VS_NR: "ÿVer_Scheinnumme.KVimpÿÿ(13)ÿÿ(10)
+ÿwnext190720042 
+ÿ’ÿ¡
+ÿ’ÿ¡
+codema%ÿÿ0(Vermittler.lvimp)
+ÿ¡ÿOÿJ(codema%,codema.maadr)ÿcodema%ÿ0ÿp
+ffehl$ÿffehl$ÿ"Mitarbeiter "ÿVermittler.lvimpÿ" existierte nicht"ÿÿ(13)ÿÿ(10)
+fehljn%ÿ1
+ÿÿ™"MAADR"
+codema.maadrÿcodema%
+nachname.maadrÿVermittler.lvimp
+Agenturnr.maadrÿVermittler.lvimp
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ÿH(Kostenstelle.maadr)ÿ""ÿp
+ÿ¡ag$ÿ"5"ÿp
+	Kostenstelle.maadrÿ"30105"
+ÿ^
+	Kostenstelle.maadrÿ"30100"
+ÿ’ÿ¡
+ÿ’ÿ¡
+QNameCodema.maadrÿÿH(NAchnaME.maadr)ÿÿ(codema.maadr,"000000")
+ÿÌÿ™"maadr"
+ÿÊÿËÿ(i%,",9999999")ÿ" von "ÿÿ(j%,",9999999")ÿ" Vermittler importiert: "ÿnachname.maadr
+ÿ™"maadr"
+ÿ£CodeMA.maadr
+ÿÉÿb
+ÿ½ WHILE CodeMA.maadr > SER ("maadr",1)
+ÿ½ WEND 
+ÿ^
+ÿ¡codema%ÿ0ÿp
+ÿÉÿ`ÿ™"MAADR"ÿ£codema.maadr
+ÿÉÿ¥codema%ÿ™"maadr"ÿ£codema.maadr
+ÿ^
+fehljn%ÿ1
+ffehl$ÿ"Mitarbeiternummer ist 0 "ÿSparte.KVimpÿ"/"ÿSparte_Text.KVimpÿ" VS_NR: "ÿVer_Scheinnumme.KVimpÿÿ(13)ÿÿ(10)
+ÿwnext190720042 
+ÿ’ÿ¡
+ÿ’ÿ¡
+codege%ÿÿ0(Ges_nr_.lvimp)
+ÿ¡ÿOÿJ(codege%,codege.geadr)ÿcodege%ÿ0ÿp
+ffehl$ÿffehl$ÿ"Gesellschaft "ÿGes_nr_.lvimpÿ"/"ÿGesellsch.lvimpÿ" existierte nicht"ÿÿ(13)ÿÿ(10)
+fehljn%ÿ1
+ÿÿ™"GEADR"
+codege.geadrÿcodege%
+Gesellschaft.geadrÿÿ+(ÿH(Gesellsch.lvimp),30)
+gesges.geadrÿÿH(Gesellsch.lvimp)
+FS24Nr.geadrÿÿH(Ges_nr_.lvimp)
+ÿÌÿ™"geadr"
+ÿÊÿËÿ(i%,",9999999")ÿ" von "ÿÿ(j%,",9999999")ÿ" Gesellschaft importiert: "ÿgesellschaft.geadr
+ÿ™"geadr"
+ÿ£Codege.geadr
+ÿÉÿb
+ÿØCodege.geadrÿÿI("GEADR",1)
+ÿÙ
+ÿ^
+ÿ¡codege%ÿ0ÿp
+ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+ÿÉÿ¥codege%ÿ™"geadr"ÿ£codege.geadr
+ÿ^
+fehljn%ÿ1
+ffehl$ÿ"Gesellschaftsnummer ist 0 "ÿSparte.KVimpÿ"/"ÿSparte_Text.KVimpÿ" VS_NR: "ÿVer_Scheinnumme.KVimpÿÿ(13)ÿÿ(10)
+ÿwnext190720042 
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+ÿ¡ÿH(Satz_ID.lvimp)ÿ""ÿp
+ÿ¡ÿOÿJ(Satz_ID.lvimp,FS24Satz_ID.kvertrag)ÿp
+vneu%ÿvneu%ÿ1
+ffehl$ÿffehl$ÿ"Vertrag "ÿSatz_ID.lvimpÿ"/"ÿVer_Scheinnumme.lvimpÿ" existierte nicht"ÿÿ(13)ÿÿ(10)
+ÿÿ™"KVERTRAG"
+lfdnr%ÿÿI("KVERTRAG",1)
+lfdnr.kvertragÿlfdnr%
+FS24Satz_ID.kvertragÿSatz_ID.lvimp
+ok%ÿÿ1
+ÿ^
+vold%ÿvold%ÿ1
+ÿÉÿ`ÿ™"KVERTRAG"ÿ£FS24Satz_ID.kvertrag
+ÿÉÿ¥Satz_ID.lvimpÿáÿ™"KVERTRAG"ÿ£FS24Satz_ID.kvertrag
+lfdnr%ÿlfdnr.kvertrag
+ok%ÿÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿÿ1ÿp
+codeku.Kvertragÿcodeku%
+codema.kvertragÿcodema%
+codeva.kvertragÿcodeva%
+codege.kvertragÿcodege%
+ÿ¡kzv.kvertragÿ""ÿpkzv.kvertragÿ"j"
+VS_Nr.kvertragÿVer_Scheinnumme.lvimp
+ÿ¡DateOK%(Vers_Beginn.lvimp)ÿpVS_Beginn.kvertragÿÿ1(Vers_Beginn.lvimp)
+ÿ¡DateOK%(Policendatum.KVimp)ÿpPolicedatum.KVERTRAGÿÿ1(Policendatum.KVimp)
+ÿ¡DateOK%(Antragseingang.lvimp)ÿpAntragsdatum.kvertragÿÿ1(Antragseingang.lvimp)
+ÿ¡ÿ1(Storno_Datum.lvimp)ÿ0ÿp
+	Kndigung.kvertragÿStorno_Datum.lvimp
+	TatsKuenDat.kvertragÿStorno_Datum.lvimp
+ÿ’ÿ¡
+	ÿ½ Neu 06122004
+	ÿ¡Antragsdatum.kvertragÿ0ÿcodema%ÿ0ÿp
+codemaneu%ÿNeuemaFS%(codema%,Antragsdatum.kvertrag)
+ÿ¡codemaneu%ÿ0ÿp
+codema.kvertragÿcodemaneu%
+codema%ÿcodemaneu%
+ÿ’ÿ¡
+	ÿ^
+x%ÿx%ÿ1
+	ÿ’ÿ¡
+Bewertungssumme.kvertragÿBewertungszahl_.lvimp
+zw.kvertragÿ12
+Zahlart.kvertragÿ1
+codew.kvertragÿ3
+umrechnung.kvertragÿ1
+Waehrung.kvertragÿ"EUR"
+inkart.kvertragÿ2
+ÿ¡status_.lvimpÿ"A"ÿp
+	codevstatus.kvertragÿ1
+	vstatustxt.kvertragÿ"lebend"
+ÿ^
+	codevstatus.kvertragÿ4
+	vstatustxt.kvertragÿ"storniert"
+	ÿ¡ÿ1(Storno_Datum.lvimp)ÿ0ÿp
+Kndigung.kvertragÿStorno_Datum.lvimp
+TatsKuenDat.kvertragÿStorno_Datum.lvimp
+vorzeitig.kvertragÿ"j"
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡DateOK%(Zahlungseingang.lvimp)ÿpFS24ZEDat.kvertragÿÿ1(Zahlungseingang.lvimp)
+ÿ¡FS24MaklProv.kvertragÿ0ÿpFS24MaklProv.kvertragÿMakler_Prov_.lvimp
+ÿ¡FS24GesCourt.kvertragÿ0ÿpFS24GesCourt.kvertragÿGesamtcourt_.lvimp
+	beitrag.kvertragÿFS24GesCourt.kvertrag
+	Nettobeitrag.kvertragÿFS24GesCourt.kvertrag
+	ÿ¡ÿ1(Datum_Vorschuss.kvimp)ÿ0ÿFS24DatVors.kvertragÿ
+1ÿpFS24DatVors.kvertragÿDatum_Vorschuss.lvimp
+	ÿ¡FS24Vors.kvertragÿ0ÿpFS24Vors.kvertragÿWert_Vorschuss.lvimp
+ÿƒQuickStore("KVERTRAG")
+ÿ’ÿ¡
+ÿ’ÿ¡
+next190720042: 
+ÿ™"LVIMP"
+ÿÉÿYÿá
+fehlerTXT.lvimpÿffehl$
+Fehlerjn.lvimpÿfehljn%
+ÿ¡fehljn%ÿ1ÿp
+fehlneu%ÿfehlneu%ÿ1
+echtfehl$(echtfehl%)ÿ"SatzID: "ÿsatz_ID.lvimpÿ" VS_NR: "ÿVer_Scheinnumme.lvimpÿ" Kundennr: "ÿKundennum_.lvimpÿ" Vermittler: "ÿVermittler.lvimpÿ"    Fehlertext: "ÿffehl$
+echtfehl%ÿechtfehl%ÿ1
+ÿ’ÿ¡
+ÿÌÿ™"LVIMP"
+ÿ¡ffehl$ÿ""ÿp
+ÿƒIWriteLogOk("Datensatz "ÿÿH(ÿ(i%,",9999999"))ÿ" "ÿffehl$)
+ÿ’ÿ¡
+ÿÿ™"FS24IMP"
+a%ÿCopyRecord%("LVIMP","FS24IMP")
+codekey.fs24impÿÿI("FS24IMP",1)
+codevt.fs24impÿlfdnr%
+timestamp$ÿÿ(ÿQ,"yymmdd")ÿÿ(ÿ9(ÿR)ÿ100ÿÿ:(ÿR),"0000")
+timestamp%ÿÿ0(timestamp$)
+Timestamp.fs24impÿtimestamp%
+ÿÌÿ™"FS24IMP"
+ÿÉÿ±ÿáÿ™"LVIMP"
+ ÿÙ
+ ÿƒIWriteLogOk("")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("Import LVIMP beendet")
+ ÿƒIWriteLogOk("Datens„tze gesamt "ÿÿH(ÿ(i%,",9999999")))
+ ÿƒIWriteLogOk("Anzahl noch nicht vorhandener Kunden: "ÿÿH(ÿ(kneu%,",9999999")))
+ ÿƒIWriteLogOk("Anzahl bereits vorhandener Kunden: "ÿÿH(ÿ(kold%,",9999999")))
+ ÿƒIWriteLogOk("Anzahl noch nicht vorhandener Vertr„ge: "ÿÿH(ÿ(vneu%,",9999999")))
+ ÿƒIWriteLogOk("Anzahl bereits vorhandener Vertr„ge: "ÿÿH(ÿ(vold%,",9999999")))
+ ÿƒIWriteLogOk("Anzahl Fehler: "ÿÿH(ÿ(fehlneu%,",9999999")))
+ ÿƒIWriteLogOk(" F E H L E R ")
+ ÿ›i%ÿ0ÿqechtfehl%ÿ1
+ÿƒIWriteLogOk(echtfehl$(i%))
+ ÿ±i%
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("")
+ ÿ’ÿÿ
+
+
+
+
+ÿÿVermAbgleich()
+ ÿ½ 06122004
+ ÿ™"VERIMP"
+ ÿ£VERMITTLER_NR.verimp
+ ÿÉÿ`ÿ™"verimp"
+ ÿßÿe
+ i%ÿ0
+ j%ÿÿA("verimp")
+ ÿƒIWriteLogOk("")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("Start Vermittlerbernahme")
+ vneu%ÿ0
+ vold%ÿ0
+ fneu%ÿ0
+ ÿØÿOÿB("VERIMP")
+ok%ÿ0
+i%ÿi%ÿ1
+vermnr$ÿÿ(VERMITTLER_NR.verimp,"0000")
+ÿ½ IF vermnr$ = "5109" THEN CALL Fehler("5109","")
+ÿ¡VERMITTLER_NR.verimpÿ0ÿVERMITTLER_NR.verimpÿ
+10000ÿp
+ÿ¡ÿOÿJ(VERMITTLER_NR.verimp,codema.maadr)ÿp
+vneu%ÿvneu%ÿ1
+region$ÿregion.verimp
+ÿ¡region$ÿ""ÿÿOÿJ(region$,direktion.agdir)ÿp
+	ÿÿ™"AGDIR"
+	codeagdir%ÿÿI("AGDIR",1)
+	codeagdir.agdirÿcodeagdir%
+	Direktion.agdirÿregion$
+	ÿƒQuickStore("AGDIR")
+ÿ^
+	ÿÉÿ`ÿ™"AGDIR"ÿ£direktion.agdir
+	ÿÉÿ¥region$ÿ™"AGDIR"ÿ£direktion.agdir
+	codeagdir%ÿcodeagdir.agdir
+ÿ’ÿ¡
+ok%ÿÿ1
+ÿÿ™"maadr"
+codema.maadrÿVERMITTLER_NR.verimp
+ÿ¡ok%ÿÿ1ÿp
+	nachname.maadrÿÿH(ANSPRECHPARTNER.verimp)
+	vorname.maadrÿÿH(Vorname.verimp)
+	Steuernummer.maadrÿÿ+(srnr.verimp,30)
+	anrede.maadrÿÿ+(anrede.verimp,20)
+	FirmaName.maadrÿFirma_01.verimp
+	Agenturnr.maadrÿÿH(ÿ(codema.maadr,"999999"))
+	straáe.maadrÿÿH(strasse.verimp)
+	ort.maadrÿÿH(ort.verimp)
+	plz%ÿÿ0(plz.verimp)
+	plz.maadrÿÿH(ÿ(plz%,"99999999"))
+	codeagdir.maadrÿcodeagdir%
+	Direktion.maadrÿregion$
+	K1konto.maadrÿÿH(ÿ(Kontonummer.verimp,"99999999999999"))
+	K1BLZ.maadrÿÿH(ÿ(Bankleitzahl.verimp,"99999999999999"))
+	Telefon1.maadrÿÿH(Telefon.verimp)
+	Telefon2.maadrÿÿH(Mobil_Telefon.verimp)
+	Telefax.maadrÿÿH(Fax.verimp)
+	email.maadrÿÿH(email.verimp)
+	Kontoinhaber.maadrÿÿH(Kontoinhaber.verimp)
+	ÿ¡anrede.verimpÿ""ÿp
+Postanschrift.maadrÿAnrede.verimpÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	ÿ¡Firma_01.verimpÿ""ÿp
+Postanschrift.maadrÿPostanschrift.maadrÿFirma_01.verimpÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	ÿ¡Ansprechpartner.verimpÿ""ÿp
+Postanschrift.maadrÿPostanschrift.maadrÿ"z.H. "ÿAnsprechpartner.verimpÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	Postanschrift.maadrÿPostanschrift.maadrÿStrasse.verimpÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+	Postanschrift.maadrÿPostanschrift.maadrÿplz.maadrÿ" "ÿort.maadr
+	ÿ¡nachname.maadrÿ""ÿpnachname.maadrÿFirmaName.maadr
+	ÿ¡nachname.maadrÿ""ÿpnachname.maadrÿAgenturnr.maadr
+	ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+	ÿ¡ÿH(Kostenstelle.maadr)ÿ""ÿp
+ÿ¡ag$ÿ"5"ÿp
+Kostenstelle.maadrÿ"30105"
+ÿ^
+Kostenstelle.maadrÿ"30100"
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	QNameCodema.maadrÿÿH(NAchnaME.maadr)ÿÿ(codema.maadr,"000000")
+	ÿÌÿ™"maadr"
+ÿ’ÿ¡
+ÿwnex061220041
+ÿ^
+vold%ÿvold%ÿ1
+ok%ÿ0
+ÿ’ÿ¡
+ÿÉÿ`ÿ™"maadr"ÿ£Agenturnr.maadr
+ÿÉÿ¥vermnr$ÿáÿ™"maadr"ÿ£Agenturnr.maadr
+ÿØÿOÿB("maadr")ÿÿ+(Agenturnr.maadr,4)ÿvermnr$
+ÿ¡ANSPRECHPARTNER.verimpÿ""ÿp
+	ÿ¡nachname.maadrÿÿH(ANSPRECHPARTNER.verimp)ÿpok%ÿÿ1
+ÿ’ÿ¡
+ÿ¡vorname.maadrÿÿH(Vorname.verimp)ÿpok%ÿÿ1
+ÿ¡Steuernummer.maadrÿÿ+(srnr.verimp,30)ÿpok%ÿÿ1
+ÿ¡anrede.maadrÿÿ+(anrede.verimp,20)ÿpok%ÿÿ1
+ÿ¡FirmaName.maadrÿFirma_01.verimpÿpok%ÿÿ1
+ÿ¡Agenturnr.maadrÿÿH(ÿ(codema.maadr,"999999"))ÿpok%ÿÿ1
+ÿ¡straáe.maadrÿÿH(strasse.verimp)ÿpok%ÿÿ1
+ÿ¡ort.maadrÿÿH(ort.verimp)ÿpok%ÿÿ1
+ÿ¡plz.maadrÿÿH(ÿ+(plz.verimp,8))ÿpok%ÿÿ1
+ÿ¡Direktion.maadrÿregion$ÿpok%ÿÿ1
+ÿ¡K1konto.maadrÿÿH(ÿ(Kontonummer.verimp,"99999999999999"))ÿpok%ÿÿ1
+ÿ¡K1BLZ.maadrÿÿH(ÿ(Bankleitzahl.verimp,"99999999999999"))ÿpok%ÿÿ1
+ÿ¡Telefon1.maadrÿÿH(Telefon.verimp)ÿpok%ÿÿ1
+ÿ¡Telefon2.maadrÿÿH(Mobil_Telefon.verimp)ÿpok%ÿÿ1
+ÿ¡Telefax.maadrÿÿH(Fax.verimp)ÿpok%ÿÿ1
+ÿ¡email.maadrÿÿH(email.verimp)ÿpok%ÿÿ1
+ÿ¡Kontoinhaber.maadrÿÿH(Kontoinhaber.verimp)ÿpok%ÿÿ1
+vorname.maadrÿ""
+Steuernummer.maadrÿ""
+nachname.maadrÿ""
+anrede.maadrÿ""
+FirmaName.maadrÿ""
+Agenturnr.maadrÿ""
+straáe.maadrÿ""
+ort.maadrÿ""
+plz.maadrÿ""
+K1konto.maadrÿ""
+K1BLZ.maadrÿ""
+Telefon1.maadrÿ""
+Telefon2.maadrÿ""
+Telefax.maadrÿ""
+email.maadrÿ""
+Kontoinhaber.maadrÿ""
+Postanschrift.maadrÿ""
+ÿ¡ok%ÿÿ1ÿp
+	nachname.maadrÿÿH(ANSPRECHPARTNER.verimp)
+	vorname.maadrÿÿH(Vorname.verimp)
+	Steuernummer.maadrÿÿ+(srnr.verimp,30)
+	anrede.maadrÿÿ+(anrede.verimp,20)
+	FirmaName.maadrÿFirma_01.verimp
+	Agenturnr.maadrÿÿH(ÿ(codema.maadr,"999999"))
+	straáe.maadrÿÿH(strasse.verimp)
+	ort.maadrÿÿH(ort.verimp)
+	plz%ÿÿ0(plz.verimp)
+	plz.maadrÿÿH(ÿ(plz%,"99999999"))
+	codeagdir.maadrÿcodeagdir%
+	Direktion.maadrÿregion$
+	K1konto.maadrÿÿH(ÿ(Kontonummer.verimp,"99999999999999"))
+	K1BLZ.maadrÿÿH(ÿ(Bankleitzahl.verimp,"99999999999999"))
+	Telefon1.maadrÿÿH(Telefon.verimp)
+	Telefon2.maadrÿÿH(Mobil_Telefon.verimp)
+	Telefax.maadrÿÿH(Fax.verimp)
+	email.maadrÿÿH(email.verimp)
+	Kontoinhaber.maadrÿÿH(Kontoinhaber.verimp)
+	ÿ¡anrede.verimpÿ""ÿp
+Postanschrift.maadrÿAnrede.verimpÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	ÿ¡Firma_01.verimpÿ""ÿp
+Postanschrift.maadrÿPostanschrift.maadrÿFirma_01.verimpÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	ÿ¡Ansprechpartner.verimpÿ""ÿp
+Postanschrift.maadrÿPostanschrift.maadrÿ"z.H. "ÿAnsprechpartner.verimpÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	Postanschrift.maadrÿPostanschrift.maadrÿStrasse.verimpÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+	Postanschrift.maadrÿPostanschrift.maadrÿplz.maadrÿ" "ÿort.maadr
+	ÿ¡nachname.maadrÿ""ÿpnachname.maadrÿFirmaName.maadr
+	ÿ¡nachname.maadrÿ""ÿpnachname.maadrÿAgenturnr.maadr
+	ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+	ÿ¡ÿH(Kostenstelle.maadr)ÿ""ÿp
+ÿ¡ag$ÿ"5"ÿp
+Kostenstelle.maadrÿ"30105"
+ÿ^
+Kostenstelle.maadrÿ"30100"
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	QNameCodema.maadrÿÿH(NAchnaME.maadr)ÿÿ(codema.maadr,"000000")
+	ÿÌÿ™"maadr"
+ÿ’ÿ¡
+ÿÉÿ±ÿáÿ™"maadr"ÿ£agenturnr.maadr
+ÿÙ
+ÿ^
+fneu%ÿfneu%ÿ1
+ÿƒIWriteLogOk("Fehler VERMITTLER_NR.verimp < 1 oder > 9999 "ÿFirma_01.verimpÿ" "ÿANSPRECHPARTNER.verimp)
+ÿ’ÿ¡
+nex061220041: 
+ÿÊÿËÿ(i%,",9999999")ÿ" von "ÿÿ(j%,",999999")ÿ" Vermittler abgeglichen"
+ÿÉÿ±ÿ™"VERIMP"
+ ÿÙ
+ ÿƒIWriteLogOk("")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("Ende Vermittlerabgleich")
+ ÿƒIWriteLogOk("Datens„tze gesamt "ÿÿH(ÿ(i%,",9999999")))
+ ÿƒIWriteLogOk("Anzahl Fehler "ÿÿH(ÿ(fneu%,",9999999")))
+ ÿƒIWriteLogOk("Anzahl noch nicht vorhandener Vermittler: "ÿÿH(ÿ(vneu%,",9999999")))
+ ÿƒIWriteLogOk("Anzahl bereits vorhandener Vermittler: "ÿÿH(ÿ(vold%,",9999999")))
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿ™"MAADR"
+ ÿ£CodeMA.MAADR
+ ÿÉÿb
+ ÿ½ WHILE CodeMA.MAADR > SER ("MAADR",1)
+ ÿ½ WEND 
+ ÿÊÿË"Vermittlerabgleich beendet!"
+ ÿßÿ³
+ ÿÂ"Vermittlerabgleich fertig","",2
+ ÿ’ÿÿ
+
+
+ÿÿVermImport(madatei$)
+ ÿ_netpath$ÿ"0-Import"
+ ÿßÿe
+ ÿÂ"Bitte nicht ungeduldig werden,","es werden jetzt die Vermittler importiert!",2
+ 
+ ÿ¾ÿaÿ™"VERIMP"
+ ÿÉÿĞÿ™"VERIMP"
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("Start Import Vermittler-Datei "ÿmadatei$ÿ" in Zwischenstruktur")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿ³ÿ_ÿwer2006200405 
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿmadatei$
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"VERIMP.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ ÿÂ"Vermittler wurden in Zwischenstruktur importiert...","",2
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("Ende Import Vermittler-Datei "ÿmadatei$ÿ" in Zwischenstruktur")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿwer2006200406
+er2006200405: 
+ÿƒIWriteLogOk("***********************************************************************************************")
+ÿƒIWriteLogOk("***** FEHLER beim Import Vermittler-Datei "ÿmadatei$ÿ"in Zwischenstruktur")
+ÿƒIWriteLogOk("***********************************************************************************************")
+ta$ÿ"Beim Import der Datei: "ÿmadatei$ÿ" ist ein Fehler aufgetreten, die Datei ist m”glicherweise in EXCEL ge”ffnet oder die Datei wurde nicht im Format EXCEL 2.1 gespeichert (Datei speichern unter ... Dateityp Microsoft Excel 2.1-Tabelle)"
+ÿƒFehler(ta$,"Bitte „ndern Sie das Format auf EXCEL 2.1 oder/und beenden Sie das Programm (ggf. im Taskmanager auch den Prozess ntvdm.exe beenden)")
+er2006200406: 
+ ÿ³ÿ_ÿwErrorHandler 
+ ÿßÿ³
+ ÿ’ÿÿ
+
+ÿÿGAbgleich()
+ ÿ™"gimp"
+ ÿ£GESELLSCHAFT_NR.gimp
+ ÿÉÿ`
+ ÿ½ SELECT KEY 0 FILE "gimp" INDEX GESELLSCHAFT_NR.gimp
+ i%ÿ0
+ j%ÿÿA("GIMP")
+ fneu%ÿ0
+ vneu%ÿ0
+ vold%ÿ0
+ ÿßÿe
+ ÿƒIWriteLogOk("")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("Start Gesellschaftenabgleich")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿØÿOÿB("GIMP")
+i%ÿi%ÿ1
+ok%ÿ0
+codege%ÿÿ0(GESELLSCHAFT_NR.gimp)
+ÿ¡codege%ÿ0ÿp
+ÿ¡ÿOÿJ(codege%,codege.geadr)ÿp
+vneu%ÿvneu%ÿ1
+ÿÿ™"geadr"
+codege.geadrÿcodege%
+gesges.geadrÿÿH(GESELLSCHAFT.gimp)
+gesges$ÿÿH(GESELLSCHAFT.gimp)
+ges$ÿÿ+(ÿH(GESELLSCHAFT.gimp),30)
+Gesellschaft.geadrÿges$
+Gesellschaft2.geadrÿÿ,(gesges$,31,29)
+Straáe.geadrÿÿ+(ÿH(Strasse.gimp),30)
+Ort.geadrÿÿ+(ÿH(Ort.gimp),30)
+plz.geadrÿÿ+(ÿH(ÿ(plz.gimp,"99999999")),8)
+ok%ÿÿ1
+ÿ^
+vold%ÿvold%ÿ1
+ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+ÿÉÿ¥codege%ÿáÿ™"geadr"ÿ£codege.geadr
+ÿ¡gesges.geadrÿÿH(GESELLSCHAFT.gimp)ÿpok%ÿÿ1
+ÿ¡Straáe.geadrÿÿ+(ÿH(Strasse.gimp),30)ÿpok%ÿÿ1
+ÿ¡Ort.geadrÿÿ+(ÿH(Ort.gimp),30)ÿpok%ÿÿ1
+ÿ¡plz.geadrÿÿ+(ÿH(ÿ(plz.gimp,"99999999")),8)ÿpok%ÿÿ1
+gesges.geadrÿÿH(GESELLSCHAFT.gimp)
+gesges$ÿÿH(GESELLSCHAFT.gimp)
+ges$ÿÿ+(ÿH(GESELLSCHAFT.gimp),30)
+Gesellschaft.geadrÿges$
+Gesellschaft2.geadrÿÿ,(gesges$,31,29)
+Straáe.geadrÿÿ+(ÿH(Strasse.gimp),30)
+Ort.geadrÿÿ+(ÿH(Ort.gimp),30)
+ÿ½ plz% = VAL (plz.gimp)
+plz.geadrÿÿH(ÿ(plz.gimp,"99999999"))
+ÿ’ÿ¡
+ÿ¡ok%ÿÿ1ÿp
+	p$ÿ""
+	p$ÿp$ÿÿH(gesges.geadr)ÿÿ(13)ÿÿ(10)
+	p$ÿp$ÿStraáe.geadrÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿplz.geadrÿ" "ÿOrt.geadrÿÿ(13)ÿÿ(10)
+	Postanschrift.geadrÿp$
+	FS24Nr.geadrÿÿH(ÿ(codege.geadr,"999999"))
+	ÿÌÿ™"geadr"
+ÿ’ÿ¡
+ÿ^
+fneu%ÿfneu%ÿ1
+ÿƒIWriteLogOk("Fehler: GESELLSCHAFT_NR.gimp<1 "ÿGESELLSCHAFT.gimp)
+ÿ’ÿ¡
+ÿÊÿËÿ(i%,",9999999")ÿ" von "ÿÿ(j%,",999999")ÿ" gesellschaften abgeglichen"
+ÿÉÿ±ÿ™"gimp"
+ ÿÙ
+ ÿƒIWriteLogOk("")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("Ende Gesellschaftenabgleich")
+ ÿƒIWriteLogOk("Datens„tze gesamt "ÿÿH(ÿ(i%,",9999999")))
+ ÿƒIWriteLogOk("Anzahl Fehler "ÿÿH(ÿ(fneu%,",9999999")))
+ ÿƒIWriteLogOk("Anzahl noch nicht vorhandener Gesellschaften: "ÿÿH(ÿ(vneu%,",9999999")))
+ ÿƒIWriteLogOk("Anzahl bereits vorhandener Gesellschaften: "ÿÿH(ÿ(vold%,",9999999")))
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿ™"GEADR"
+ ÿ£CodeGE.GEADR
+ ÿÉÿb
+ ÿØCodeGE.GEADRÿÿI("GEADR",1)
+ ÿÙ
+ ÿÊÿË"Gesellschaftsabgleich beendet!"
+ ÿßÿ³
+ ÿÂ"Gesellschaften fertig","",2
+ ÿ’ÿÿ
+
+
+ÿÿGImp(gesdatei$)
+ ÿÊÿË"Auswahl der zu importierenden Gesellschaftsdatei..."
+ 
+ ÿ_netpath$ÿ"0-Import"
+ ÿßÿe
+ ÿÂ"Bitte nicht ungeduldig werden,","es werden jetzt die Gesellschaften importiert!",2
+ ÿ´ÿ™ÿà_netpath$ÿ"0-IMPORT\GIMP.SBF"
+ ÿ¾ÿaÿ™"GIMP"
+ ÿÉÿĞÿ™"GIMP":ÿ½     
+ ÿƒIWriteLogOk("")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("Start Import Gesellschaftsdatei "ÿgesdatei$ÿ" in Zwischenstruktur")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿ³ÿ_ÿwer2006200408
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿgesdatei$
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"GIMP.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ ÿÂ"Gesellschaften wurden in Zwischenstruktur importiert...","",2
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿƒIWriteLogOk("Ende Import Gesellschaftsdatei "ÿgesdatei$ÿ"in Zwischenstruktur")
+ ÿƒIWriteLogOk("***********************************************************************************************")
+ ÿwer2006200409
+er2006200408: 
+ÿƒIWriteLogOk("***********************************************************************************************")
+ÿƒIWriteLogOk("***** FEHLER beim Import Gesellschaftsdatei "ÿgesdatei$ÿ"in Zwischenstruktur")
+ÿƒIWriteLogOk("***********************************************************************************************")
+ÿƒFehler("Beim Import der Datei: "ÿgesdatei$ÿ" ist ein Fehler aufgetreten, die Datei ist m”glicherweise in EXCEL ge”ffnet.","Bitte beenden Sie das Programm (ggf. im Taskmanager auch den Prozess ntvdm.exe beenden)")
+er2006200409: 
+ ÿ³ÿ_ÿwErrorHandler 
+ ÿßÿ³
+ ÿ½ CALL Fehler("Abgleich mit der Gesellschaftsdatei","")
+ ÿ’ÿÿ
+
+
+ 
+
+
+
+
+ÿ½ *******************************************************  
+ÿ½ *******************************************************
+ÿ½ ***** Handling von LOG-Dateien ************************
+ÿ½ *******************************************************
+ÿ½ *******************************************************
+
+ÿ½ =================================
+ÿ½ ====== LOG-Datei erstellen ======
+ÿ½ =================================
+ÿÿICreateALog()
+ÿ´_netpath$ÿ"0-Import\ImpLOG.txt"ÿ›ÿT
+ÿ{" "
+ÿ{"***********************************************************************************************************************************"
+ÿ{"Datei "ÿÿ>(tempeltpath$)ÿ"ImpLOG.txt erstellt am "ÿÿ(ÿQ,"0d.mm.yyyy")ÿ" / "ÿÿ7(ÿR,"hh:mm:ss")
+ÿ{"-------------------------------------------------------------------------"
+ÿ{
+ÿ†ÿ¶
+ ÿ’ÿÿ
+ 
+ÿ½ =================================
+ÿ½ ====== LOG-Datei schlieáen ======
+ÿ½ =================================
+ÿÿICloseALog()
+ÿ´_netpath$ÿ"0-Import\ImpLOG.txt"ÿ›ÿT
+ÿ{
+ÿ{"-------------------------------------------------------------------------"
+ÿ{"Eintragung beendet am "ÿÿ(ÿQ,"0d.mm.yyyy")ÿ"/"ÿÿ7(ÿR,"hh:mm:ss")
+ÿ{"***********************************************************************************************************************************"
+ÿ{" "
+ÿ†ÿ¶
+ÿ‰ÿñ"PROT",0,0,244,154,"0-IMPORT","MS Sans Serif",8
+ÿ|ÿñ"PROT",4,0,0,244,130,0,""
+ÿ|ÿñ"PROT",9,6,9,22,22,2
+ÿ|ÿñ"PROT",5,35,13,194,10,0,"W„hrend der zuletzt durchgefhrten Aktion wurde eine"
+ÿ|ÿñ"PROT",5,35,23,194,10,0,"Protokolldatei erstellt, in der eventuelle Fehler und Zusatz-"
+ÿ|ÿñ"PROT",5,35,33,194,10,0,"information gespeichert wurden."
+ÿ|ÿñ"PROT",5,35,53,194,10,0,"W„hlen Sie "ÿÿ(34)ÿ"Ja"ÿÿ(34)ÿ", wenn Sie das Protokoll einsehen und"
+ÿ|ÿñ"PROT",5,35,63,194,10,0,"eventuell Drucken wollen."
+ÿ|ÿñ"PROT",5,35,83,194,10,0,"W„hlen Sie "ÿÿ(34)ÿ"Nein"ÿÿ(34)ÿ", wenn Sie das Protokoll nicht"
+ÿ|ÿñ"PROT",5,35,93,194,10,0,"einsehen m”chten."
+ÿ|ÿñ"PROT",5,35,113,194,10,0,"Wollen Sie das Protokoll einsehen?"
+ÿ|ÿñ"PROT",1,118,134,55,15,0,"&Nein",0,0
+ÿ|ÿñ"PROT",1,62,134,55,15,1,"&Ja",1,1
+ÿñ"PROT",gdvBut%
+ÿ¾ÿñ"PROT"
+ÿ¡gdvBut%ÿ1ÿpÿƒIShowALog()
+ ÿ’ÿÿ
+ 
+ÿ½ ===========================================
+ÿ½ ====== Fehler in LOG-Datei schreiben ======
+ÿ½ ===========================================
+ÿÿIWriteLogFail(TLogText$)
+ÿ´_netpath$ÿ"0-Import\ImpLOG.txt"ÿ›ÿT
+ÿ{ÿåansi("**********  FEHLER **********")
+ÿ{ÿ7(ÿR,"hh:mm:ss")ÿ" "ÿÿåansi(TLogText$)
+ÿ{ÿåansi("*****************************")
+ÿ†ÿ¶
+ ÿ’ÿÿ
+
+ÿ½ =================================================
+ÿ½ ====== OKAY-Eintrag in LOG-Datei schreiben ======
+ÿ½ =================================================
+ÿÿIWriteLogOk(TLogText$)
+ÿ´_netpath$ÿ"0-Import\ImpLOG.txt"ÿ›ÿT
+ÿ{ÿ(ÿQ,"0d.mm.yyyy")ÿ" "ÿÿ7(ÿR,"hh:mm:ss")ÿ" "ÿÿåansi(TLogText$)
+ÿ†ÿ¶
+ ÿ’ÿÿ
+ 
+ÿ½ ===============================
+ÿ½ ====== LOG-Datei l”schen ======
+ÿ½ ===============================
+ÿÿIDeleteALog()
+ÿ¡ÿJ(_netpath$ÿ"0-Import\ImpLOG.txt")ÿpÿ_netpath$ÿ"0-Import\ImpLOG.txt"
+ ÿ’ÿÿ
+ 
+ÿ½ ================================
+ÿ½ ====== LOG-Datei anzeigen ======
+ÿ½ ================================
+ÿÿIShowALog()
+ÿÊÿË"Anzeige des Fehlerprotokolls"
+ÿ¡ÿJ(_netpath$ÿ"0-Import\ImpLOG.txt")ÿp
+ÿ½ LOAD TEXT _netpath$ + "AFSK\AFSK.LOG"
+ÿ½ EDIT TEXT 
+atex$ÿ_netpath$ÿ"0-Import\ImpLOG.txt"
+a%ÿÿƒ("ShellExecute",0,"open",atex$,"","",1)
+ÿ^
+ÿƒFehler("Es konnte kein Fehlerprotokoll gefunden werden!","")
+ÿ’ÿ¡
+ÿÊÿË"Bereit"
+ ÿ’ÿÿ
+ 
+ÿÿFS24Vorg()
+codema.mavorgÿ200704
+codevmaÿ00001
+Namevmaÿÿ
+Financescoutÿ
+vonÿ1.1.1990
+aktiviertÿ"j"
+codekey.mavorgÿ988090
+ ÿ’ÿÿ
+ 
+
+
+
+ÿÿSAPExport()
+GAdrDat$ÿ"ADRESSEN"
+GConDat$ÿ"CONNECT"
+GTelDat$ÿ"TELEFON"
+GAkquiDat$ÿ"AKQUISE"
+GDokDat$ÿ"DOKUMENT"
+GADRStat$ÿ"ADRSTAT"
+Gdirneu%ÿ1
+ÿ×dlg ÿUDialog
+ÿ×control ÿUDialogControl 
+ 
+ ÿ¡PrvVerfahr$ÿ"ZAHLUNGSEINGANG"ÿp
+ÿƒDFile(3,"Buchung1"ÿ_fpw$)
+ÿÉÿĞÿ™"Buchung1"
+ ÿ^
+ÿƒDFile(3,"Buchung"ÿ_fpw$)
+ÿÉÿĞÿ™"Buchung"
+ ÿ’ÿ¡
+ ÿƒDFile(3,"fs24imp"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\adrstat"ÿ_fpw$)
+ ÿÉÿĞÿ™"adrstat"
+ ÿƒDFile(2,"OFFICE\adrgrup"ÿ_fpw$)
+ ÿÉÿĞÿ™"adrgrup"
+ ÿƒDFile(3,"Kgeadr"ÿ_fpw$)
+ ÿƒDFile(3,"sparten"ÿ_fpw$)
+ ÿÉÿĞÿ™"Sparten"
+ ÿƒDFile(3,"geadr"ÿ_fpw$):ÿƒDFile(3,"geadr2"ÿ_fpw$)
+ ÿÉÿĞÿ™"geadr"
+ ÿƒDFile(3,"tarif"ÿ_fpw$)
+ ÿÉÿĞÿ™"tarif"
+ ÿƒDFile(3,"maadr"ÿ_fpw$)
+ ÿÉÿĞÿ™"maadr"
+ ÿƒDFile(3,"maadrgru"ÿ_fpw$)
+ ÿƒDFile(3,"mavorg"ÿ_fpw$)
+ ÿÉÿĞÿ™"maadrgru"
+ ÿƒDFile(3,"kvertrag"ÿ_fpw$)
+ ÿÉÿĞÿ™"kvertrag"
+ ÿƒDFile(3,"vprodukt"ÿ_fpw$)
+ ÿÉÿĞÿ™"vprodukt"
+ ÿƒDFile(3,"tarif"ÿ_fpw$)
+ ÿÉÿĞÿ™"tarif"
+ ÿƒDFile(3,"vorgang"ÿ_fpw$)
+ ÿÉÿĞÿ™"vorgang"
+ ÿƒDFile(3,"vkond"ÿ_fpw$)
+ ÿÉÿĞÿ™"vkond"
+ ÿƒDFile(3,"formular"ÿ_fpw$)
+ ÿÉÿĞÿ™"formular"
+ ÿƒDFile(3,"spgruppe"ÿ_fpw$)
+ ÿÉÿĞÿ™"spgruppe"
+ ÿƒDFile(3,"agdir"ÿ_fpw$)
+ 
+ ÿƒDFile(3,"KVEXEXP"ÿ_fpw$)
+ ÿƒDFile(3,"ZEINGAN1"ÿ_fpw$)
+
+ ÿƒDFile(3,"SAP1XLS"ÿ_fpw$)
+ 
+ ÿƒDFile(2,"OFFICE\"ÿGADRDat$ÿ_fpw$)
+ ÿÉÿĞÿ™GAdrDat$
+ ÿƒDFile(2,"OFFICE\"ÿGAkquiDat$ÿ_fpw$)
+ ÿÉÿĞÿ™GAkquiDat$
+ ÿƒDFile(2,"OFFICE\aktionen"ÿ_fpw$)
+ ÿÉÿĞÿ™"aktionen"
+ ÿƒDFile(2,"OFFICE\"ÿGTelDat$ÿ_fpw$)
+ ÿÉÿĞÿ™GTelDat$
+ ÿƒDFile(2,"OFFICE\"ÿGDokDat$ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\"ÿGConDat$ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\banken"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\tvorlage"ÿ_fpw$)
+ 
+anf2306200431: 
+calcaDate$ÿÿQ
+ÿ‰ÿñ"STICHTAG",0,0,222,114,"Buchungsdatum","MS Sans Serif",8
+ÿ|ÿñ"STICHTAG",4,0,0,222,91,0,""
+ÿ|ÿñ"STICHTAG",9,6,9,23,24,2
+ÿ|ÿñ"STICHTAG",5,31,15,183,10,0,"Bitte geben Sie an, fr welchen Monat"
+ÿ|ÿñ"STICHTAG",5,31,25,183,10,0,"die Daten generiert werden  sollen:dd.mm.yyyy"
+ÿ|ÿñ"STICHTAG",6,94,72,42,12,0,0,calcdate$,10
+ÿ|ÿñ"STICHTAG",5,30,74,58,10,0,"Datum:"
+ÿ|ÿñ"STICHTAG",1,52,94,54,14,1,"&OK",1,1
+ÿ|ÿñ"STICHTAG",1,109,94,54,14,0,"&Abbrechen",0,0
+ÿñ"STICHTAG",req%
+ÿ¾ÿñ"STICHTAG"
+ÿ¡req%ÿ1ÿpÿwend2306200432
+ÿ¡DateOK%(CalcDate$)ÿp
+neudat$ÿ"01."ÿÿ(ÿ5(CalcDate$),"00")ÿ"."ÿÿ(ÿ6(CalcDate$),"0000")
+kalkvon%ÿÿ1(neudat$)
+mo%ÿÿ5(CalcDate$)
+mo%ÿmo%ÿ1
+jahr%ÿÿ6(CalcDate$)
+ÿ¡mo%ÿ13ÿp
+	mo%ÿ1
+	jahr%ÿÿ6(CalcDate$)ÿ1
+ÿ’ÿ¡
+kalkbis$ÿ"01."ÿÿ(mo%,"00")ÿ"."ÿÿ(jahr%,"0000")
+kalkbis%ÿÿ1(kalkbis$)
+ÿ^
+ÿƒFehler("Datum ist ungltig!","")
+ÿwanf2306200431
+ÿ’ÿ¡
+
+opt1%ÿ0
+Superbase.Dialogs.Add("Dialogname")
+ÿÊdlg ÿSuperbase.Dialogs.Dialogname
+dlg.Move(0,0,532,284)
+dlg.Captionÿ"Dialogfeld-Titel"
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox1","DialogCheckBox")
+control.Move(6,24,399,14)
+control.Captionÿ"126-1-1 VBeginn=Monat oder VBeginn<Monat+ Antragsdatum=Monat+ZE im akt Monat - Betrag ZE"
+control.Bind("opt1%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox2","DialogCheckBox")
+control.Move(6,41,399,15)
+control.Captionÿ"126-1-2 VBeginn<Monat+Antragsdatum<Monat+ZE im akt Monat - Betrag ZE"
+control.Bind("opt2%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox3","DialogCheckBox")
+control.Move(6,59,399,14)
+control.Captionÿ"125-1-1 VBeginn<Monat+Antragsdatum<Monat -in 2003(125) oder 2004(128) + ZE im akt Monat - Betrag Gesamtcourtage FS24"
+control.Bind("opt3%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox5","DialogCheckBox")
+control.Move(6,97,399,13)
+control.Captionÿ"296-1-1 VBeginn=Monat - Betrag Provision(CODie)"
+control.Bind("opt5%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox6","DialogCheckBox")
+control.Move(6,111,399,13)
+control.Captionÿ"297-1-1 VBeginn=Monat - Betrag SR(CODie) "
+control.Bind("opt6%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox7","DialogCheckBox")
+control.Move(6,127,339,13)
+control.Captionÿ"2423 VBeginn=Monat - Betrag VSV(CODie)"
+control.Bind("opt7%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox8","DialogCheckBox")
+control.Move(6,147,339,13)
+control.Captionÿ"298-1-1 VBeginn=Monat - Betrag Maklerprovision FS24"
+control.Bind("opt8%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox9","DialogCheckBox")
+control.Move(6,161,399,13)
+control.Captionÿ"128-2-1 VBeginn<=Monat+ohne Geldeingang+Antragsdatum=Monat - Betrag Gesamtcourtage FS24"
+control.Bind("opt9%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox10","DialogCheckBox")
+control.Move(6,174,399,14)
+control.Captionÿ"298-2-1 VBeginn<=Monat+ohne Geldeingang+Antragsdatum=Monat - Betrag Maklerprovision FS24"
+control.Bind("opt10%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox11","DialogCheckBox")
+control.Move(6,198,399,14)
+control.Captionÿ"128-3-1 Storno=Monat+Antragsdatum<Monat und VBeginn<Monat+ohne Geldeingang - Betrag Gesamtcourtage FS24"
+control.Bind("opt11%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox12","DialogCheckBox")
+control.Move(6,214,399,14)
+control.Captionÿ"298-3-1 Storno=Monat+Antragsdatum<Monat und VBeginn<Monat+ohne Geldeingang - Betrag Maklerprovision FS24"
+control.Bind("opt12%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox13","DialogCheckBox")
+control.Move(6,230,399,14)
+control.Captionÿ"126-4-1 Storno=Monat+Antragsdatum<Monat und VBeginn<Monat+mit Geldeingang - Betrag ZE"
+control.Bind("opt13%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+
+
+ÿÊcontrol ÿdlg.Add("DialogCheckBox43","DialogCheckBox")
+control.Move(6,246,399,14)
+control.Captionÿ"296-4-1 Storno=Monat+Antragsdatum<Monat und VBeginn<Monat+mit Geldeingang - Betrag Provision(CODie)"
+control.Bind("opt14%")
+control.ValueOnÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(153,260,60,16)
+control.Defaultÿ1
+control.Captionÿ"OK"
+control.ReturnValueÿ1
+
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton2","DialogCommandButton")
+control.Move(218,260,60,16)
+control.Captionÿ"Abbruch"
+control.ReturnValueÿ0
+control.Cancelÿ1
+ÿñ"Dialogname",req%
+ÿ¾ÿñÿt
+ÿ¡req%ÿ1ÿpÿwend2306200432
+ÿ¾ÿaÿ™"sap1xls"
+ÿ¡opt1%ÿ1ÿp
+ÿ½ 126-1-1 VBeginn=Monat oder VBeginn<Monat+ Antragsdatum=Monat+ZE im akt Monat - Betrag ZE
+ÿ¾ÿaÿ™"sap1xls"
+ÿƒS12611(kalkvon%,kalkbis%)
+ÿ’ÿ¡
+ÿ¡opt2%ÿ1ÿp
+ÿ½ 126-1-2 VBeginn<Monat+Antragsdatum<Monat+ZE im akt Monat - Betrag ZE
+ÿ¾ÿaÿ™"sap1xls"
+ÿƒS12612(kalkvon%,kalkbis%)
+ÿ’ÿ¡
+ÿ¡opt3%ÿ1ÿp
+ÿ½ 125-1-1 VBeginn<Monat+Antragsdatum<Monat -in 2003(125) oder 2004(128) + ZE im akt Monat - Betrag Gesamtcourtage FS24
+ÿ¾ÿaÿ™"sap1xls"
+ÿƒS12511(kalkvon%,kalkbis%)
+ÿ’ÿ¡
+ÿ¡opt5%ÿ1ÿp
+ÿ½ 296-1-1 VBeginn=Monat - Betrag Provision(CODie)
+ÿ¾ÿaÿ™"sap1xls"
+ÿƒS29611(kalkvon%,kalkbis%)
+ÿ’ÿ¡
+ÿ¡opt6%ÿ1ÿp
+ÿ½ 297-1-1 VBeginn=Monat - Betrag SR(CODie)
+ÿ¾ÿaÿ™"sap1xls"
+ÿƒS29711(kalkvon%,kalkbis%)
+ÿ’ÿ¡
+ÿ¡opt7%ÿ1ÿp
+ÿ½ 2423 VBeginn=Monat - Betrag VSV(CODie)
+ÿ¾ÿaÿ™"sap1xls"
+ÿƒS2423(kalkvon%,kalkbis%)
+ÿ’ÿ¡
+ÿ¡opt8%ÿ1ÿp
+ÿ½ 298-1-1 VBeginn=Monat - Betrag Maklerprovision FS24
+ÿ¾ÿaÿ™"sap1xls"
+ÿƒS29811(kalkvon%,kalkbis%)
+ÿ’ÿ¡
+ÿ¡opt9%ÿ1ÿp
+ÿ½ 128-2-1 VBeginn<=Monat+ohne Geldeingang+Antragsdatum=Monat - Betrag Gesamtcourtage FS24
+ÿ¾ÿaÿ™"sap1xls"
+ÿƒS12821(kalkvon%,kalkbis%)
+ÿ’ÿ¡
+ÿ¡opt10%ÿ1ÿp
+ÿ½ 298-2-1 VBeginn<=Monat+ohne Geldeingang+Antragsdatum=Monat - Betrag Maklerprovision FS24
+ÿ¾ÿaÿ™"sap1xls"
+ÿƒS29821(kalkvon%,kalkbis%)
+ÿ’ÿ¡
+
+ÿ¡opt11%ÿ1ÿp
+ÿ½ 128-3-1 Storno=Monat+Antragsdatum<Monat und VBeginn<Monat+ohne Geldeingang - Betrag Gesamtcourtage FS24
+ÿ¾ÿaÿ™"sap1xls"
+ÿƒS12831(kalkvon%,kalkbis%)
+ÿ’ÿ¡
+ÿ¡opt12%ÿ1ÿp
+ÿ½ 298-3-1 Storno=Monat+Antragsdatum<Monat und VBeginn<Monat+ohne Geldeingang - Betrag Maklerprovision FS24
+ÿ¾ÿaÿ™"sap1xls"
+ÿƒS29831(kalkvon%,kalkbis%)
+ÿ’ÿ¡
+
+ÿ¡opt13%ÿ1ÿp
+ÿ½ 126-4-1 Storno=Monat+Antragsdatum<Monat und VBeginn<Monat+mit Geldeingang - Betrag ZE
+ÿ¾ÿaÿ™"sap1xls"
+ÿƒS12641(kalkvon%,kalkbis%)
+ÿ’ÿ¡
+ÿ¡opt14%ÿ1ÿp
+ÿ½ 296-4-1 Storno=Monat+Antragsdatum<Monat und VBeginn<Monat+mit Geldeingang - Betrag Provision
+ÿ¾ÿaÿ™"sap1xls"
+ÿƒS29641(kalkvon%,kalkbis%)
+ÿ’ÿ¡
+
+end2306200432: 
+ ÿ’ÿÿ
+
+
+ ÿ½ 296-4-1 Storno=Monat+Antragsdatum<Monat und VBeginn<Monat+mit Geldeingang - Betrag Provision(CODie)
+ÿÿS29641(kalkvon%,kalkbis%)
+ÿ™"kvertrag"
+ÿ£codevstatus.kvertrag
+ÿÉÿ`ÿ™"kvertrag"ÿ£codevstatus.kvertrag
+ÿÉÿ¥4ÿ™"kvertrag"ÿ£codevstatus.kvertrag
+ÿØÿOÿB("KVERTRAG")ÿcodevstatus.kvertragÿ4
+ÿ¡Kndigung.kvertragÿkalkvon%ÿKndigung.kvertragÿ	kalkbis%ÿAntragsdatum.kvertragÿ
+kalkvon%ÿVS_Beginn ÿ
+kalkvon%ÿcodema.maadrÿ1ÿp
+ÿ¡ÿJ(lfdnr.kvertrag,codevt.buchung1)ÿcodema.kvertragÿ1ÿvorschujn.buchung1ÿ0ÿp
+ÿÉÿ`ÿ™"buchung1"ÿ£codevt.buchung1
+ÿÉÿ¥lfdnr.kvertragÿ™"buchung1"ÿ£codevt.buchung1
+ÿØÿOÿB("buchung1")ÿcodevt.buchung1ÿlfdnr.kvertrag
+
+ÿ¡datum.buchung1ÿkalkvon%ÿdatum.zeingan1ÿ	kalkbis%ÿp
+ÿ¡codema.buchung1ÿ1ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema.kvertragÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ`ÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ¥codeva.kvertragÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+ÿÉÿ¥codege.kvertragÿ™"geadr"ÿ£codege.geadr
+ÿ¡kzv.kvertragÿ"1"ÿp
+referenz$ÿfs24Satz_ID2.kvertrag
+ÿ^
+referenz$ÿfs24Satz_ID.kvertrag
+ÿ’ÿ¡
+ÿÿ™"SAP1XLS"
+referenz.sap1xlsÿreferenz$
+xxxx.sap1xlsÿ"296"ÿÿH(KreditorKto.maadr)
+
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ag$ÿ"5"ÿp
+ÿ^
+ÿ’ÿ¡
+Konto.sap1xlsÿ"31121501"
+Kostenstelle.sap1xlsÿKostenstelle.maadr
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ÿH(Kostenstelle.maadr)ÿ""ÿp
+ÿ¡ag$ÿ"5"ÿp
+Kostenstelle.sap1xlsÿ"30105"
+ÿ^
+Kostenstelle.sap1xlsÿ"30100"
+ÿ’ÿ¡
+ÿ’ÿ¡
+Kostentr„ger.sap1xlsÿKostentraeger.sparten
+ÿ¡ÿH(Kostentr„ger.sap1xls)ÿ""ÿpKostentr„ger.sap1xlsÿ"1100"
+betrag.sap1xlsÿÿH(ÿ(betrag.buchung1,"999999999.00"))
+ÿÌÿ™"SAP1XLS"
+ÿ’ÿ¡
+
+ÿ’ÿ¡
+
+ÿÉÿ±ÿ™"buchung1"ÿ£codevt.buchung1
+ÿÙ
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"kvertrag"ÿ£codevstatus.kvertrag
+ÿÙ
+ ÿ™"SAP1XLS"
+ ÿƒExpSAP_XLS("SAP1XLS","296-4-1.xls","SAPEXP")
+
+ ÿ’ÿÿ
+
+ ÿ½ 126-4-1 Storno=Monat+Antragsdatum<Monat und VBeginn<Monat+mit Geldeingang - Betrag ZE
+ÿÿS12641(kalkvon%,kalkbis%)
+ÿ™"kvertrag"
+ÿ£codevstatus.kvertrag
+ÿÉÿ`ÿ™"kvertrag"ÿ£codevstatus.kvertrag
+ÿÉÿ¥4ÿ™"kvertrag"ÿ£codevstatus.kvertrag
+ÿØÿOÿB("KVERTRAG")ÿcodevstatus.kvertragÿ4
+ÿ¡Kndigung.kvertragÿkalkvon%ÿKndigung.kvertragÿ	kalkbis%ÿAntragsdatum.kvertragÿ
+kalkvon%ÿVS_Beginn ÿ
+kalkvon%ÿcodema.maadrÿ1ÿp
+ÿ¡ÿJ(lfdnr.kvertrag,codevt.zeingan1)ÿp
+ÿÉÿ`ÿ™"zeingan1"ÿ£codevt.zeingan1
+ÿÉÿ¥lfdnr.kvertragÿ™"zeingan1"ÿ£codevt.zeingan1
+ÿØÿOÿB("zeingan1")ÿcodevt.zeingan1ÿlfdnr.kvertrag
+
+ÿ¡f„lligkeit.zeingan1ÿkalkvon%ÿf„lligkeit.zeingan1ÿ	kalkbis%ÿp
+ÿ½ CALL Fehler("","")
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema.kvertragÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ`ÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ¥codeva.kvertragÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+ÿÉÿ¥codege.kvertragÿ™"geadr"ÿ£codege.geadr
+ÿ¡kzv.kvertragÿ"1"ÿp
+referenz$ÿfs24Satz_ID2.kvertrag
+ÿ^
+referenz$ÿfs24Satz_ID.kvertrag
+ÿ’ÿ¡
+ÿÿ™"SAP1XLS"
+referenz.sap1xlsÿreferenz$
+xxxx.sap1xlsÿ"126"ÿÿH(DebitorKto.geadr)
+
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ag$ÿ"5"ÿp
+ÿ^
+ÿ’ÿ¡
+Konto.sap1xlsÿ"30129501"
+
+Kostenstelle.sap1xlsÿKostenstelle.maadr
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ÿH(Kostenstelle.maadr)ÿ""ÿp
+ÿ¡ag$ÿ"5"ÿp
+Kostenstelle.sap1xlsÿ"30105"
+ÿ^
+Kostenstelle.sap1xlsÿ"30100"
+ÿ’ÿ¡
+ÿ’ÿ¡
+Kostentr„ger.sap1xlsÿKostentraeger.sparten
+ÿ¡ÿH(Kostentr„ger.sap1xls)ÿ""ÿpKostentr„ger.sap1xlsÿ"1100"
+betrag.sap1xlsÿÿH(ÿ(bewertung.zeingan1,"999999999.00"))
+ÿÌÿ™"SAP1XLS"
+
+ÿ’ÿ¡
+
+ÿÉÿ±ÿ™"zeingan1"ÿ£codevt.zeingan1
+ÿÙ
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"kvertrag"ÿ£codevstatus.kvertrag
+ÿÙ
+ ÿ™"SAP1XLS"
+ ÿƒExpSAP_XLS("SAP1XLS","126-4-1.xls","SAPEXP")
+ 
+ ÿ’ÿÿ
+
+
+ ÿ½ 298-3-1 Storno=Monat+Antragsdatum<Monat und VBeginn<Monat - Betrag Maklerprovision FS24
+ÿÿS29831(kalkvon%,kalkbis%)
+ÿ™"kvertrag"
+ÿ£codevstatus.kvertrag
+ÿÉÿ`ÿ™"kvertrag"ÿ£codevstatus.kvertrag
+ÿÉÿ¥4ÿ™"kvertrag"ÿ£codevstatus.kvertrag
+ÿØÿOÿB("KVERTRAG")ÿcodevstatus.kvertragÿ4
+ÿ¡Kndigung.kvertragÿkalkvon%ÿKndigung.kvertragÿ	kalkbis%ÿAntragsdatum.kvertragÿ
+kalkvon%ÿVS_Beginn ÿ
+kalkvon%ÿcodema.maadrÿ1ÿp
+ÿ¡ÿOÿJ(lfdnr.kvertrag,codevt.zeingan1)ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema.kvertragÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ`ÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ¥codeva.kvertragÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+ÿÉÿ¥codege.kvertragÿ™"geadr"ÿ£codege.geadr
+referenz$ÿfs24Satz_ID.kvertrag
+ÿ¡kzv.kvertragÿ"1"ÿp
+ÿÿ™"SAP1XLS"
+referenz.sap1xlsÿreferenz$
+xxxx.sap1xlsÿ"298"ÿÿH(KreditorKto.maadr)
+
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ag$ÿ"5"ÿp
+ÿ^
+ÿ’ÿ¡
+Konto.sap1xlsÿ"31129501"
+
+Kostenstelle.sap1xlsÿKostenstelle.maadr
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ÿH(Kostenstelle.maadr)ÿ""ÿp
+ÿ¡ag$ÿ"5"ÿp
+Kostenstelle.sap1xlsÿ"30105"
+ÿ^
+Kostenstelle.sap1xlsÿ"30100"
+ÿ’ÿ¡
+ÿ’ÿ¡
+Kostentr„ger.sap1xlsÿKostentraeger.sparten
+ÿ¡ÿH(Kostentr„ger.sap1xls)ÿ""ÿpKostentr„ger.sap1xlsÿ"1100"
+betrag.sap1xlsÿÿH(ÿ(FS24MaklProv.kvertrag,"999999999.00"))
+ÿÌÿ™"SAP1XLS"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"kvertrag"ÿ£codevstatus.kvertrag
+ÿÙ
+ ÿ™"SAP1XLS"
+ ÿƒExpSAP_XLS("SAP1XLS","298-3-1.xls","SAPEXP")
+ ÿ’ÿÿ
+
+
+ ÿ½ 128-3-1 Storno=Monat+Antragsdatum<Monat und VBeginn<Monat - Betrag Gesamtcourtage FS24
+ÿÿS12831(kalkvon%,kalkbis%)
+ÿ™"kvertrag"
+ÿ£codevstatus.kvertrag
+ÿÉÿ`ÿ™"kvertrag"ÿ£codevstatus.kvertrag
+ÿÉÿ¥4ÿ™"kvertrag"ÿ£codevstatus.kvertrag
+ÿØÿOÿB("KVERTRAG")ÿcodevstatus.kvertragÿ4
+ÿ¡Kndigung.kvertragÿkalkvon%ÿKndigung.kvertragÿ	kalkbis%ÿAntragsdatum.kvertragÿ
+kalkvon%ÿVS_Beginn ÿ
+kalkvon%ÿcodema.maadrÿ1ÿp
+ÿ¡ÿOÿJ(lfdnr.kvertrag,codevt.zeingan1)ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema.kvertragÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ`ÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ¥codeva.kvertragÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+ÿÉÿ¥codege.kvertragÿ™"geadr"ÿ£codege.geadr
+referenz$ÿfs24Satz_ID.kvertrag
+ÿ¡referenz$ÿ"83551"ÿp
+ÿ½ CALL Fehler(referenz$,kzv.kvertrag)
+ÿ’ÿ¡
+ÿ¡kzv.kvertragÿ"1"ÿp
+ÿÿ™"SAP1XLS"
+referenz.sap1xlsÿreferenz$
+xxxx.sap1xlsÿ"128"ÿÿH(DebitorKto.geadr)
+
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ag$ÿ"5"ÿp
+ÿ^
+ÿ’ÿ¡
+Konto.sap1xlsÿ"30129501"
+
+Kostenstelle.sap1xlsÿKostenstelle.maadr
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ÿH(Kostenstelle.maadr)ÿ""ÿp
+ÿ¡ag$ÿ"5"ÿp
+Kostenstelle.sap1xlsÿ"30105"
+ÿ^
+Kostenstelle.sap1xlsÿ"30100"
+ÿ’ÿ¡
+ÿ’ÿ¡
+Kostentr„ger.sap1xlsÿKostentraeger.sparten
+ÿ¡ÿH(Kostentr„ger.sap1xls)ÿ""ÿpKostentr„ger.sap1xlsÿ"1100"
+betrag.sap1xlsÿÿH(ÿ(FS24GesCourt.kvertrag,"999999999.00"))
+ÿÌÿ™"SAP1XLS"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"kvertrag"ÿ£codevstatus.kvertrag
+ÿÙ
+ ÿ™"SAP1XLS"
+ ÿƒExpSAP_XLS("SAP1XLS","128-3-1.xls","SAPEXP")
+ ÿ’ÿÿ
+
+
+ ÿ½ 298-2-1 VBeginn<=Monat+ohne Geldeingang+Antragsdatum=Monat - Betrag Maklerprovision FS24
+ÿÿS29821(kalkvon%,kalkbis%)
+ ÿ™"KVERTRAG"
+ ÿ£Antragsdatum.kvertrag
+ ÿÉÿ`ÿ™"kvertrag"ÿ£Antragsdatum.kvertrag
+ ÿÉÿ¥kalkvon%ÿ™"kvertrag"ÿ£Antragsdatum.kvertrag
+ ÿØÿOÿB("KVERTRAG")ÿAntragsdatum.kvertragÿ
+kalkbis%
+codevt%ÿlfdnr.kvertrag
+ÿ¡VS_Beginn.kvertragÿ	kalkvon%ÿp
+ÿ¡ÿOÿJ(lfdnr.kvertrag,codevt.zeingan1)ÿcodema.kvertragÿ1ÿcodevstatus.kvertragÿ1ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema.kvertragÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ`ÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ¥codeva.kvertragÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+ÿÉÿ¥codege.kvertragÿ™"geadr"ÿ£codege.geadr
+referenz$ÿfs24Satz_ID.kvertrag
+ÿ¡kzv.kvertragÿ"1"ÿp
+ÿÿ™"SAP1XLS"
+referenz.sap1xlsÿreferenz$
+xxxx.sap1xlsÿ"298"ÿÿH(KreditorKto.maadr)
+
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ag$ÿ"5"ÿp
+Konto.sap1xlsÿ"31121510"
+ÿ^
+Konto.sap1xlsÿ"31121520"
+ÿ’ÿ¡
+
+Kostenstelle.sap1xlsÿKostenstelle.maadr
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ÿH(Kostenstelle.maadr)ÿ""ÿp
+ÿ¡ag$ÿ"5"ÿp
+Kostenstelle.sap1xlsÿ"30105"
+ÿ^
+Kostenstelle.sap1xlsÿ"30100"
+ÿ’ÿ¡
+ÿ’ÿ¡
+Kostentr„ger.sap1xlsÿKostentraeger.sparten
+ÿ¡ÿH(Kostentr„ger.sap1xls)ÿ""ÿpKostentr„ger.sap1xlsÿ"1100"
+betrag.sap1xlsÿÿH(ÿ(FS24MaklProv.kvertrag,"999999999.00"))
+ÿÌÿ™"SAP1XLS"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"kvertrag"ÿ£Antragsdatum.kvertrag
+ ÿÙ
+ ÿ™"SAP1XLS"
+ ÿƒExpSAP_XLS("SAP1XLS","298-2-1.xls","SAPEXP")
+ ÿ’ÿÿ
+
+ ÿ½ 128-2-1 VBeginn<=Monat+ohne Geldeingang+Antragsdatum=Monat - Betrag Gesamtcourtage FS24
+ÿÿS12821(kalkvon%,kalkbis%)
+ ÿ™"KVERTRAG"
+ ÿ£Antragsdatum.kvertrag
+ ÿÉÿ`ÿ™"kvertrag"ÿ£Antragsdatum.kvertrag
+ ÿÉÿ¥kalkvon%ÿ™"kvertrag"ÿ£Antragsdatum.kvertrag
+ ÿØÿOÿB("KVERTRAG")ÿAntragsdatum.kvertragÿ
+kalkbis%
+codevt%ÿlfdnr.kvertrag
+ÿ¡VS_Beginn.kvertragÿ	kalkvon%ÿp
+ÿ¡ÿOÿJ(lfdnr.kvertrag,codevt.zeingan1)ÿcodema.kvertragÿ1ÿcodevstatus.kvertragÿ1ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema.kvertragÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ`ÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ¥codeva.kvertragÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+ÿÉÿ¥codege.kvertragÿ™"geadr"ÿ£codege.geadr
+referenz$ÿfs24Satz_ID.kvertrag
+ÿ¡kzv.kvertragÿ"1"ÿp
+ÿÿ™"SAP1XLS"
+referenz.sap1xlsÿreferenz$
+xxxx.sap1xlsÿ"128"ÿÿH(DebitorKto.geadr)
+
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ag$ÿ"5"ÿp
+ÿ^
+ÿ’ÿ¡
+Konto.sap1xlsÿ"30125004"
+Kostenstelle.sap1xlsÿKostenstelle.maadr
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ÿH(Kostenstelle.maadr)ÿ""ÿp
+ÿ¡ag$ÿ"5"ÿp
+Kostenstelle.sap1xlsÿ"30105"
+ÿ^
+Kostenstelle.sap1xlsÿ"30100"
+ÿ’ÿ¡
+ÿ’ÿ¡
+Kostentr„ger.sap1xlsÿKostentraeger.sparten
+ÿ¡ÿH(Kostentr„ger.sap1xls)ÿ""ÿpKostentr„ger.sap1xlsÿ"1100"
+betrag.sap1xlsÿÿH(ÿ(FS24GesCourt.kvertrag,"999999999.00"))
+ÿÌÿ™"SAP1XLS"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"kvertrag"ÿ£Antragsdatum.kvertrag
+ ÿÙ
+ ÿ™"SAP1XLS"
+ ÿƒExpSAP_XLS("SAP1XLS","128-2-1.xls","SAPEXP")
+ ÿ’ÿÿ
+
+
+
+ ÿ½ 298-1-1 VBeginn=Monat - Betrag Maklerprovision FS24
+ÿÿS29811(kalkvon%,kalkbis%)
+ ÿ¾ÿaÿ™"SAP1XLS"
+ ÿ™"KVERTRAG"
+ ÿ£vs_Beginn.kvertrag
+ ÿÉÿ`ÿ™"kvertrag"ÿ£vs_Beginn.kvertrag
+ ÿÉÿ¥kalkvon%ÿ™"kvertrag"ÿ£vs_Beginn.kvertrag
+ ÿØÿOÿB("KVERTRAG")ÿvs_beginn.kvertragÿ
+kalkbis%
+codevt%ÿlfdnr.kvertrag
+ÿ¡codevstatus.kvertragÿ1ÿcodema.kvertragÿ1ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema.kvertragÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ`ÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ¥codeva.kvertragÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+ÿÉÿ¥codege.kvertragÿ™"geadr"ÿ£codege.geadr
+referenz$ÿfs24Satz_ID.kvertrag
+ÿ¡kzv.kvertragÿ"1"ÿp
+ÿÿ™"SAP1XLS"
+referenz.sap1xlsÿreferenz$
+xxxx.sap1xlsÿ"298"ÿÿH(KreditorKto.maadr)
+
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ag$ÿ"5"ÿp
+Konto.sap1xlsÿ"31121510"
+ÿ^
+Konto.sap1xlsÿ"31121520"
+ÿ’ÿ¡
+
+Kostenstelle.sap1xlsÿKostenstelle.maadr
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ÿH(Kostenstelle.maadr)ÿ""ÿp
+ÿ¡ag$ÿ"5"ÿp
+Kostenstelle.sap1xlsÿ"30105"
+ÿ^
+Kostenstelle.sap1xlsÿ"30100"
+ÿ’ÿ¡
+ÿ’ÿ¡
+Kostentr„ger.sap1xlsÿKostentraeger.sparten
+ÿ¡ÿH(Kostentr„ger.sap1xls)ÿ""ÿpKostentr„ger.sap1xlsÿ"1100"
+betrag.sap1xlsÿÿH(ÿ(FS24MaklProv.kvertrag,"999999999.00"))
+ÿÌÿ™"SAP1XLS"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÊÿËvs_nr.kvertragÿ"  "ÿÿ(lfdnr.kvertrag,"000000")
+ÿßÿe
+ÿÉÿ±ÿ™"kvertrag"ÿ£vs_Beginn.kvertrag
+ ÿÙ
+ ÿ™"SAP1XLS"
+ ÿƒExpSAP_XLS("SAP1XLS","298-1-1.xls","SAPEXP")
+ 
+ 
+ ÿ’ÿÿ
+
+ ÿ½ 2423 VBeginn=Monat - Betrag VSV(CODie)
+ÿÿS2423(kalkvon%,kalkbis%)
+ ÿ¾ÿaÿ™"SAP1XLS"
+ ÿ™"KVERTRAG"
+ ÿ£vs_Beginn.kvertrag
+ ÿÉÿ`ÿ™"kvertrag"ÿ£vs_Beginn.kvertrag
+ ÿÉÿ¥kalkvon%ÿ™"kvertrag"ÿ£vs_Beginn.kvertrag
+ ÿØÿOÿB("KVERTRAG")ÿvs_beginn.kvertragÿ
+kalkbis%
+codevt%ÿlfdnr.kvertrag
+ÿ¡ÿJ(lfdnr.kvertrag,codevt.buchung1)ÿcodevstatus.kvertragÿ1ÿp
+ÿÉÿ`ÿ™"buchung1"ÿ£codevt.buchung1
+ÿÉÿ¥codevt%ÿ™"buchung1"ÿ£codevt.buchung1
+ÿØÿOÿB("buchung1")ÿcodevt.buchung1ÿcodevt%
+	ÿ¡codema.buchung1ÿ1ÿp
+ÿ¡datum.buchung1ÿkalkvon%ÿdatum.buchung1ÿ
+kalkbis%ÿp
+ÿ¡vorschujn.buchung1ÿ1ÿprovision.buchung1ÿ"j"ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema.buchung1ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ`ÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ¥codeva.kvertragÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+ÿÉÿ¥codege.kvertragÿ™"geadr"ÿ£codege.geadr
+ÿ¡kzv.kvertragÿ"1"ÿp
+referenz$ÿfs24Satz_ID2.kvertrag
+ÿ^
+referenz$ÿfs24Satz_ID.kvertrag
+ÿ’ÿ¡
+ÿÿ™"SAP1XLS"
+referenz.sap1xlsÿreferenz$
+xxxx.sap1xlsÿ"2423100"
+
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ag$ÿ"5"ÿp
+ÿ^
+ÿ’ÿ¡
+Konto.sap1xlsÿ"32213010"
+Kostenstelle.sap1xlsÿKostenstelle.maadr
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ÿH(Kostenstelle.maadr)ÿ""ÿp
+ÿ¡ag$ÿ"5"ÿp
+Kostenstelle.sap1xlsÿ"30105"
+ÿ^
+Kostenstelle.sap1xlsÿ"30100"
+ÿ’ÿ¡
+ÿ’ÿ¡
+Kostentr„ger.sap1xlsÿKostentraeger.sparten
+ÿ¡ÿH(Kostentr„ger.sap1xls)ÿ""ÿpKostentr„ger.sap1xlsÿ"1100"
+betrag.sap1xlsÿÿH(ÿ(VSV.buchung1,"999999999.00"))
+ÿÌÿ™"SAP1XLS"
+ÿ’ÿ¡
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	ÿÉÿ±ÿ™"buchung1"ÿ£codevt.buchung1
+ÿÙ
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"kvertrag"ÿ£vs_Beginn.kvertrag
+ ÿÙ
+ ÿ™"SAP1XLS"
+ ÿƒExpSAP_XLS("SAP1XLS","2423.xls","SAPEXP")
+
+ ÿ’ÿÿ
+
+
+ÿ½ 297-1-1 VBeginn=Monat - Betrag SR(CODie)
+ÿÿS29711(kalkvon%,kalkbis%)
+ ÿ¾ÿaÿ™"SAP1XLS"
+ ÿ™"KVERTRAG"
+ ÿ£vs_Beginn.kvertrag
+ ÿÉÿ`ÿ™"kvertrag"ÿ£vs_Beginn.kvertrag
+ ÿÉÿ¥kalkvon%ÿ™"kvertrag"ÿ£vs_Beginn.kvertrag
+ ÿØÿOÿB("KVERTRAG")ÿvs_beginn.kvertragÿ
+kalkbis%
+codevt%ÿlfdnr.kvertrag
+ÿ¡ÿJ(lfdnr.kvertrag,codevt.buchung1)ÿcodevstatus.kvertragÿ1ÿp
+ÿÉÿ`ÿ™"buchung1"ÿ£codevt.buchung1
+ÿÉÿ¥codevt%ÿ™"buchung1"ÿ£codevt.buchung1
+ÿØÿOÿB("buchung1")ÿcodevt.buchung1ÿcodevt%
+	ÿ¡codema.buchung1ÿ1ÿp
+ÿ¡datum.buchung1ÿkalkvon%ÿdatum.buchung1ÿ
+kalkbis%ÿp
+ÿ¡vorschujn.buchung1ÿ1ÿprovision.buchung1ÿ"j"ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema.buchung1ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ`ÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ¥codeva.kvertragÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+ÿÉÿ¥codege.kvertragÿ™"geadr"ÿ£codege.geadr
+ÿ¡kzv.kvertragÿ"1"ÿp
+referenz$ÿfs24Satz_ID2.kvertrag
+ÿ^
+referenz$ÿfs24Satz_ID.kvertrag
+ÿ’ÿ¡
+ÿÿ™"SAP1XLS"
+referenz.sap1xlsÿreferenz$
+xxxx.sap1xlsÿ"297"ÿÿH(KreditorKto.maadr)
+
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ag$ÿ"5"ÿp
+ÿ^
+ÿ’ÿ¡
+Konto.sap1xlsÿ"31121506"
+Kostenstelle.sap1xlsÿKostenstelle.maadr
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ÿH(Kostenstelle.maadr)ÿ""ÿp
+ÿ¡ag$ÿ"5"ÿp
+Kostenstelle.sap1xlsÿ"30105"
+ÿ^
+Kostenstelle.sap1xlsÿ"30100"
+ÿ’ÿ¡
+ÿ’ÿ¡
+Kostentr„ger.sap1xlsÿKostentraeger.sparten
+ÿ¡ÿH(Kostentr„ger.sap1xls)ÿ""ÿpKostentr„ger.sap1xlsÿ"1100"
+betrag.sap1xlsÿÿH(ÿ(SR.buchung1,"999999999.00"))
+ÿÌÿ™"SAP1XLS"
+ÿ’ÿ¡
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	ÿÉÿ±ÿ™"buchung1"ÿ£codevt.buchung1
+ÿÙ
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"kvertrag"ÿ£vs_Beginn.kvertrag
+ ÿÙ
+ ÿ™"SAP1XLS"
+ ÿƒExpSAP_XLS("SAP1XLS","297-1-1.xls","SAPEXP")
+ ÿ’ÿÿ
+
+ÿ½ 296-1-1 VBeginn=Monat - Betrag Provision(CODie)
+ÿÿS29611(kalkvon%,kalkbis%)
+ ÿ¾ÿaÿ™"SAP1XLS"
+ ÿ™"KVERTRAG"
+ ÿ£vs_Beginn.kvertrag
+ ÿÉÿ`ÿ™"kvertrag"ÿ£vs_Beginn.kvertrag
+ ÿÉÿ¥kalkvon%ÿ™"kvertrag"ÿ£vs_Beginn.kvertrag
+ ÿØÿOÿB("KVERTRAG")ÿvs_beginn.kvertragÿ
+kalkbis%
+codevt%ÿlfdnr.kvertrag
+ÿ¡ÿJ(lfdnr.kvertrag,codevt.buchung1)ÿcodevstatus.kvertragÿ1ÿp
+ÿÉÿ`ÿ™"buchung1"ÿ£codevt.buchung1
+ÿÉÿ¥codevt%ÿ™"buchung1"ÿ£codevt.buchung1
+ÿØÿOÿB("buchung1")ÿcodevt.buchung1ÿcodevt%
+	ÿ¡codema.buchung1ÿ1ÿp
+ÿ¡datum.buchung1ÿkalkvon%ÿdatum.buchung1ÿ
+kalkbis%ÿp
+ÿ¡vorschujn.buchung1ÿ1ÿprovision.buchung1ÿ"j"ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema.buchung1ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ`ÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ¥codeva.kvertragÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+ÿÉÿ¥codege.kvertragÿ™"geadr"ÿ£codege.geadr
+ÿ¡kzv.kvertragÿ"1"ÿp
+referenz$ÿfs24Satz_ID2.kvertrag
+ÿ^
+referenz$ÿfs24Satz_ID.kvertrag
+ÿ’ÿ¡
+ÿÿ™"SAP1XLS"
+referenz.sap1xlsÿreferenz$
+xxxx.sap1xlsÿ"296"ÿÿH(KreditorKto.maadr)
+
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ag$ÿ"5"ÿp
+Konto.sap1xlsÿ"31121510"
+ÿ^
+Konto.sap1xlsÿ"31121520"
+ÿ’ÿ¡
+Kostenstelle.sap1xlsÿKostenstelle.maadr
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ÿH(Kostenstelle.maadr)ÿ""ÿp
+ÿ¡ag$ÿ"5"ÿp
+Kostenstelle.sap1xlsÿ"30105"
+ÿ^
+Kostenstelle.sap1xlsÿ"30100"
+ÿ’ÿ¡
+ÿ’ÿ¡
+Kostentr„ger.sap1xlsÿKostentraeger.sparten
+ÿ¡ÿH(Kostentr„ger.sap1xls)ÿ""ÿpKostentr„ger.sap1xlsÿ"1100"
+betrag.sap1xlsÿÿH(ÿ(Betrag.buchung1,"999999999.00"))
+ÿÌÿ™"SAP1XLS"
+ÿ’ÿ¡
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	ÿÉÿ±ÿ™"buchung1"ÿ£codevt.buchung1
+ÿÙ
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"kvertrag"ÿ£vs_Beginn.kvertrag
+ ÿÙ
+ ÿ™"SAP1XLS"
+ ÿƒExpSAP_XLS("SAP1XLS","296-1-1.xls","SAPEXP")
+ ÿ’ÿÿ
+
+ ÿ½ 125-1-1 VBeginn<Monat+Antragsdatum<Monat -in 2003(125) oder 2004(128) + ZE im akt Monat - Betrag Gesamtcourtage FS24
+ÿÿS12511(kalkvon%,kalkbis%)
+ ÿ™"Zeingan1"
+ ÿ£F„lligkeit.zeingan1
+ ÿ¾ÿaÿ™"SAP1XLS"
+ ÿÉÿ`ÿ™"zeingan1"ÿ£F„lligkeit.zeingan1
+ ÿÉÿ¥kalkvon%ÿ™"zeingan1"ÿ£F„lligkeit.zeingan1
+ ÿØÿOÿB("zeingan1")ÿF„lligkeit.zeingan1ÿ
+kalkbis%
+codevt%ÿcodevt.zeingan1
+ÿÉÿ`ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ¥codevt%ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿ¡codema.kvertragÿ1ÿcodevstatus.kvertragÿ1ÿp
+ÿ¡vs_Beginn.kvertragÿ
+kalkvon%ÿAntragsdatum.kvertragÿ
+kalkvon%ÿp
+	ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+	ÿÉÿ¥codema.kvertragÿ™"maadr"ÿ£codema.maadr
+	ÿÉÿ`ÿ™"sparten"ÿ£codeva.sparten
+	ÿÉÿ¥codeva.kvertragÿ™"sparten"ÿ£codeva.sparten
+	ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+	ÿÉÿ¥codege.kvertragÿ™"geadr"ÿ£codege.geadr
+referenz$ÿfs24Satz_ID.kvertrag
+	ÿ¡kzv.kvertragÿ"1"ÿp
+ÿÿ™"SAP1XLS"
+referenz.sap1xlsÿreferenz$
+ÿ¡ÿ6(Antragsdatum.kvertrag)ÿ2003ÿp
+xxxx.sap1xlsÿ"125"ÿDebitorKto.geadr
+ÿ^
+xxxx.sap1xlsÿ"128"ÿDebitorKto.geadr
+ÿ’ÿ¡
+Konto.sap1xlsÿ"30125004"
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ag$ÿ"1"ÿp
+ÿ^
+ÿ’ÿ¡
+Kostenstelle.sap1xlsÿKostenstelle.maadr
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ÿH(Kostenstelle.maadr)ÿ""ÿp
+ÿ¡ag$ÿ"5"ÿp
+Kostenstelle.sap1xlsÿ"30105"
+ÿ^
+Kostenstelle.sap1xlsÿ"30100"
+ÿ’ÿ¡
+ÿ’ÿ¡
+Kostentr„ger.sap1xlsÿKostentraeger.sparten
+ÿ¡ÿH(Kostentr„ger.sap1xls)ÿ""ÿpKostentr„ger.sap1xlsÿ"1100"
+betrag.sap1xlsÿÿH(ÿ(FS24GesCourt.kvertrag,"999999999.00"))
+ÿÌÿ™"SAP1XLS"
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"zeingan1"ÿ£F„lligkeit.zeingan1
+ ÿÙ
+ 
+ ÿ™"SAP1XLS"
+ ÿƒExpSAP_XLS("SAP1XLS","125-1-1.xls","SAPEXP")
+
+ ÿ’ÿÿ
+
+ ÿ½ 126-1-2 VBeginn<Monat+Antragsdatum<Monat+ZE im akt Monat - Betrag ZE
+ÿÿS12612(kalkvon%,kalkbis%)
+ ÿ™"Zeingan1"
+ ÿ£F„lligkeit.zeingan1
+ ÿ¾ÿaÿ™"SAP1XLS"
+ ÿÉÿ`ÿ™"zeingan1"ÿ£F„lligkeit.zeingan1
+ ÿÉÿ¥kalkvon%ÿ™"zeingan1"ÿ£F„lligkeit.zeingan1
+ ÿØÿOÿB("zeingan1")ÿF„lligkeit.zeingan1ÿ
+kalkbis%
+codevt%ÿcodevt.zeingan1
+ÿÉÿ`ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ¥codevt%ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿ¡codema.kvertragÿ1ÿcodevstatus.kvertragÿ1ÿp
+ÿ¡vs_Beginn.kvertragÿ
+kalkvon%ÿAntragsdatum.kvertragÿ
+kalkvon%ÿp
+	ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+	ÿÉÿ¥codema.kvertragÿ™"maadr"ÿ£codema.maadr
+	ÿÉÿ`ÿ™"sparten"ÿ£codeva.sparten
+	ÿÉÿ¥codeva.kvertragÿ™"sparten"ÿ£codeva.sparten
+	ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+	ÿÉÿ¥codege.kvertragÿ™"geadr"ÿ£codege.geadr
+	ÿ¡kzv.kvertragÿ"1"ÿp
+referenz$ÿfs24Satz_ID2.kvertrag
+	ÿ^
+referenz$ÿfs24Satz_ID.kvertrag
+	ÿ’ÿ¡
+	ÿÿ™"SAP1XLS"
+	referenz.sap1xlsÿreferenz$
+	xxxx.sap1xlsÿ"126"ÿDebitorKto.geadr
+	Konto.sap1xlsÿ"30125004"
+	ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+	ÿ¡ag$ÿ"1"ÿp
+	ÿ^
+	ÿ’ÿ¡
+	Kostenstelle.sap1xlsÿKostenstelle.maadr
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ÿH(Kostenstelle.maadr)ÿ""ÿp
+ÿ¡ag$ÿ"5"ÿp
+Kostenstelle.sap1xlsÿ"30105"
+ÿ^
+Kostenstelle.sap1xlsÿ"30100"
+ÿ’ÿ¡
+ÿ’ÿ¡
+	Kostentr„ger.sap1xlsÿKostentraeger.sparten
+	ÿ¡ÿH(Kostentr„ger.sap1xls)ÿ""ÿpKostentr„ger.sap1xlsÿ"1100"
+	betrag.sap1xlsÿÿH(ÿ(Bewertung.zeingan1,"999999999.00"))
+	ÿÌÿ™"SAP1XLS"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"zeingan1"ÿ£F„lligkeit.zeingan1
+ ÿÙ
+
+ ÿ™"SAP1XLS"
+ ÿƒExpSAP_XLS("SAP1XLS","126-1-2.xls","SAPEXP")
+ ÿ’ÿÿ
+
+
+ ÿ½ 126-1-1 VBeginn=Monat oder VBeginn<Monat+ Antragsdatum=Monat+ZE im akt Monat - Betrag ZE
+ÿÿS12611(kalkvon%,kalkbis%)
+ ÿ½ 126-1-1 VBeginn=Monat+ZE im akt Monat - Betrag ZE
+ ÿƒFehler("126-1-1 VBeginn=Monat oder VBeginn<Monat+ Antragsdatum=Monat+ZE im akt Monat - Betrag ZE",ÿ(kalkvon%,"0d.mm.yyyy")ÿ" -"ÿÿ(kalkbis%,"0d.mm.yyyy"))
+ ÿ¾ÿaÿ™"SAP1XLS"
+ ÿ™"KVERTRAG"
+ ÿ£Antragsdatum.kvertrag
+ ÿÉÿ`ÿ™"kvertrag"ÿ£Antragsdatum.kvertrag
+ ÿÉÿ¥kalkvon%ÿ™"kvertrag"ÿ£Antragsdatum.kvertrag
+ ÿØÿOÿB("KVERTRAG")ÿAntragsdatum.kvertragÿ
+kalkbis%
+codevt%ÿlfdnr.kvertrag
+ÿ¡VS_Beginn.kvertragÿ
+kalkvon%ÿp
+ÿ¡ÿJ(lfdnr.kvertrag,codevt.zeingan1)ÿp
+ÿÉÿ`ÿ™"zeingan1"ÿ£codevt.zeingan1
+ÿÉÿ¥codevt%ÿ™"zeingan1"ÿ£codevt.zeingan1
+ÿØÿOÿB("zeingan1")ÿcodevt.zeingan1ÿcodevt%
+	ÿ¡F„lligkeit.zeingan1ÿkalkvon%ÿF„lligkeit.zeingan1ÿ
+kalkbis%ÿcodema.kvertragÿ1ÿcodevstatus.kvertragÿ1ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema.kvertragÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ`ÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ¥codeva.kvertragÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+ÿÉÿ¥codege.kvertragÿ™"geadr"ÿ£codege.geadr
+ÿ¡kzv.kvertragÿ"1"ÿp
+referenz$ÿfs24Satz_ID2.kvertrag
+ÿ^
+referenz$ÿfs24Satz_ID.kvertrag
+ÿ’ÿ¡
+ÿ½ EXPORT 
+ÿÿ™"SAP1XLS"
+referenz.sap1xlsÿreferenz$
+xxxx.sap1xlsÿ"126"ÿDebitorKto.geadr
+Konto.sap1xlsÿ"30125004"
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ag$ÿ"1"ÿp
+ÿ^
+ÿ’ÿ¡
+Kostenstelle.sap1xlsÿKostenstelle.maadr
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ÿH(Kostenstelle.maadr)ÿ""ÿp
+ÿ¡ag$ÿ"5"ÿp
+Kostenstelle.sap1xlsÿ"30105"
+ÿ^
+Kostenstelle.sap1xlsÿ"30100"
+ÿ’ÿ¡
+ÿ’ÿ¡
+Kostentr„ger.sap1xlsÿKostentraeger.sparten
+ÿ¡ÿH(Kostentr„ger.sap1xls)ÿ""ÿpKostentr„ger.sap1xlsÿ"1100"
+betrag.sap1xlsÿÿH(ÿ(Bewertung.zeingan1,"999999999.00"))
+ÿÌÿ™"SAP1XLS"
+	ÿ’ÿ¡
+	ÿÉÿ±ÿ™"zeingan1"ÿ£codevt.zeingan1
+ÿÙ
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÊÿËvs_nr.kvertrag
+ÿÉÿ±ÿ™"kvertrag"ÿ£vs_Beginn.kvertrag
+ ÿÙ
+
+ ÿÉÿ`ÿ™"kvertrag"ÿ£vs_Beginn.kvertrag
+ ÿÉÿ¥kalkvon%ÿ™"kvertrag"ÿ£vs_Beginn.kvertrag
+ ÿØÿOÿB("KVERTRAG")ÿvs_beginn.kvertragÿ
+kalkbis%
+codevt%ÿlfdnr.kvertrag
+ÿ¡ÿJ(lfdnr.kvertrag,codevt.zeingan1)ÿp
+ÿÉÿ`ÿ™"zeingan1"ÿ£codevt.zeingan1
+ÿÉÿ¥codevt%ÿ™"zeingan1"ÿ£codevt.zeingan1
+ÿØÿOÿB("zeingan1")ÿcodevt.zeingan1ÿcodevt%
+ÿ¡F„lligkeit.zeingan1ÿkalkvon%ÿF„lligkeit.zeingan1ÿ
+kalkbis%ÿcodema.kvertragÿ1ÿcodevstatus.kvertragÿ1ÿp
+	ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+	ÿÉÿ¥codema.kvertragÿ™"maadr"ÿ£codema.maadr
+	ÿÉÿ`ÿ™"sparten"ÿ£codeva.sparten
+	ÿÉÿ¥codeva.kvertragÿ™"sparten"ÿ£codeva.sparten
+	ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+	ÿÉÿ¥codege.kvertragÿ™"geadr"ÿ£codege.geadr
+	ÿ¡kzv.kvertragÿ"1"ÿp
+referenz$ÿfs24Satz_ID2.kvertrag
+	ÿ^
+referenz$ÿfs24Satz_ID.kvertrag
+	ÿ’ÿ¡
+	ÿ½ EXPORT 
+	ÿÿ™"SAP1XLS"
+	referenz.sap1xlsÿreferenz$
+	xxxx.sap1xlsÿ"126"ÿDebitorKto.geadr
+	Konto.sap1xlsÿ"30125004"
+	ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+	ÿ¡ag$ÿ"1"ÿp
+	ÿ^
+	ÿ’ÿ¡
+	Kostenstelle.sap1xlsÿKostenstelle.maadr
+ag$ÿÿ+(ÿH(agenturnr.maadr),1)
+ÿ¡ÿH(Kostenstelle.maadr)ÿ""ÿp
+ÿ¡ag$ÿ"5"ÿp
+Kostenstelle.sap1xlsÿ"30105"
+ÿ^
+Kostenstelle.sap1xlsÿ"30100"
+ÿ’ÿ¡
+ÿ’ÿ¡
+	Kostentr„ger.sap1xlsÿKostentraeger.sparten
+	ÿ¡ÿH(Kostentr„ger.sap1xls)ÿ""ÿpKostentr„ger.sap1xlsÿ"1100"
+	betrag.sap1xlsÿÿH(ÿ(Bewertung.zeingan1,"999999999.00"))
+	ÿÌÿ™"SAP1XLS"
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"zeingan1"ÿ£codevt.zeingan1
+ÿÙ
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"kvertrag"ÿ£vs_Beginn.kvertrag
+ ÿÙ
+
+ ÿƒFehler("ENDE 126-1-1 VBeginn=Monat oder VBeginn<Monat+ Antragsdatum=Monat+ZE im akt Monat - Betrag ZE",ÿ(kalkvon%,"0d.mm.yyyy")ÿ" -"ÿÿ(kalkbis%,"0d.mm.yyyy"))
+ ÿ™"SAP1XLS"
+ ÿƒExpSAP_XLS("SAP1XLS","126-1-1.xls","SAPEXP")
+ ÿ’ÿÿ
+
+
+
+ÿÿExpSAP_XLS(nsbf$,nxls$,basisdir$)
+ ÿ³ÿ_ÿwe2406200401
+ ÿªÿ_netpath$ÿ"0-Export\"ÿbasisdir$
+e2406200401: 
+ ÿ³ÿ_ÿwErrorHandler
+dpfad$ÿ_netpath$ÿ"0-Export\"ÿbasisdir$ÿ"\"ÿÿ(ÿQ,"yymm0d")
+datnr$ÿÿ(ÿQ,"yymm0d")
+i%ÿ0
+ok%ÿ0
+ÿØok%ÿ0ÿGdirneu%ÿ1
+i%ÿi%ÿ1
+ÿ¡i%ÿ99ÿp
+	ÿ³ÿ_ÿwarb24060402
+	ÿ¾ÿdpfad$ÿ"01"
+arb24060402: 
+	i%ÿ1
+ÿ’ÿ¡
+ÿ³ÿ_ÿwarb24060403
+tpfad$ÿdpfad$ÿÿ(i%,"00")
+ÿªÿdpfad$ÿÿ(i%,"00")
+dpfad$ÿdpfad$ÿÿ(i%,"00")
+ok%ÿÿ1
+arb24060403: 
+ÿ³ÿ_ÿwErrorHandler
+ÿÙ
+ÿ¡Gdirneu%ÿ1ÿpGdirneu%ÿ0
+textdo1$ÿtpfad$
+GExpSAPPfad$ÿtpfad$
+
+ÿ™nsbf$
+ÿtextdo1$
+ÿ½ OPEN FIELDS Datum,Buchungstext,Betrag,SR,VSV,Nachname,Vorname,VS_Beginn,Gesellschaft,Bewertungssumme,Gesamtbetrag,Einheiten,VTAgentur,F„lligkeit,Waehrung:
+ÿ½ agenturnr$ = VSNRPack$( TRIM$ ( LTRIM$ ( RIGHT$ (Agenturnr.maadr,8))))
+ÿ½ IF LTRIM$ (agenturnr$) = "" THEN agenturnr$ = STR$ (codema.maadr,"000000")
+datneu$ÿGExpSAPPfad$ÿ"\"ÿnxls$
+ÿ¡ÿJ(datneu$)ÿpÿdatneu$
+Superbase.Converters.SBF.SourceFormatÿ"Superbase"
+Superbase.Converters.SBF.SourceFileÿnsbf$
+Superbase.Converters.SBF.Descendingÿ0
+Superbase.Converters.SBF.Mergeÿÿ1
+Superbase.Converters.SBF.LogErrorsÿ0
+Superbase.Converters.SBF.MultiResponseÿ0
+Superbase.Converters.XLS.DestFormatÿ"Microsoft Excel"
+Superbase.Converters.XLS.DestFileÿdatneu$
+Superbase.Converters.XLS.StartRowÿ2
+Superbase.Converters.XLS.StartColÿ1
+Superbase.Converters.XLS.EndRowÿÿ1
+Superbase.Converters.XLS.EndColÿÿ1
+Superbase.Converters.XLS.UseLabelsÿÿ1
+Superbase.Converters.XLS.Convert(Superbase.Converters.SBF)
+ÿ½ CALL Fehler("EXPORT " + nachname.maadr,datneu$)
+ÿ_netpath$
+ÿÂdatneu$,"wurde erstellt",2
+ ÿ’ÿÿ
+
+
+
+
+ ' Vertrag in Verprovisionierung aufnehmen
+ ' ========================================================================
+ 
+ÿÿAFSKPROV(codevt%,ccdat%,fehljn%,ffehl$)
+ cfile$ÿÿ™
+ cuvt%ÿcodevt%
+ ÿ×KVKond$(100)
+ ok%ÿ2
+ ÿ½ CALL Fehler("AFSK Provisionsbergabe","")
+ Haftvertrag%ÿSRHaftung.kvertrag
+ ÿ½ IF MOD ("KVERTRAG") OR NEW ("KVERTRAG") THEN CALL FStore("KVERTRAG")
+ fehl%ÿ0
+ ÿ¡ProviAb.kvertragÿ0ÿFremdvertrag.KVERTRAGÿ"j"ÿAltvertrag.KVERTRAGÿ"j"ÿp
+ÿÉÿ¥cuvt%ÿáÿ™"KVERTRAG"ÿ£lfdnr.KVERTRAG
+ÿ¡CodeVStatus.kvertragÿ1ÿCodeVStatus.kvertragÿ2ÿpvstatus%ÿ0
+ÿ¡Fremdvertrag.KVERTRAGÿ"j"ÿAltvertrag.KVERTRAGÿ"j"ÿp
+fehljn%ÿ1
+ffehl$ÿVS_NR.kvertragÿ" Vertag ist Fremd- oder Altvertrag"
+ÿ’ÿ¡
+ÿ½ CALL VStat()
+ok%ÿ0
+ ÿ^
+ÿ¡ÿOÿ´("gekond")ÿpÿƒDFile(3,"gekond"ÿ_fpw$)
+ÿ¡ÿOÿ´("vpgekond")ÿpÿƒDFile(3,"vpgekond"ÿ_fpw$)
+ÿ¡ÿOÿ´("vkond")ÿpÿƒDFile(3,"vkond"ÿ_fpw$)
+ÿ¡ÿOÿ´("kvfael")ÿpÿƒDFile(3,"kvfael"ÿ_fpw$)
+ok%ÿ1
+ÿ½ 030697
+ÿ¡zw.kvertragÿ55ÿp
+ok%ÿ0
+fehljn%ÿ1
+ffehl$ÿVS_NR.kvertragÿ"- Referenz1: "ÿfs24Satz_ID.kvertragÿ"- Referenz2: "ÿfs24Satz_ID2.kvertragÿ" Bitte geben Sie erst die Zahlweise ein."
+ÿ½ CALL Fehler("Vertrag kann noch nicht verprovisioniert werden!","Bitte geben Sie erst die Zahlweise ein.")
+ÿ’ÿ¡
+ 
+ÿ’ÿ¡
+ÿ¡Beitrag.KVERTRAGÿ0ÿp
+ÿ½ CALL Fehler("Vertrag kann noch nicht verprovisioniert werden!","Bitte geben Sie den Beitrag ein.")
+fehljn%ÿ1
+ffehl$ÿVS_NR.kvertragÿ"- Referenz1: "ÿfs24Satz_ID.kvertragÿ"- Referenz2: "ÿfs24Satz_ID2.kvertragÿ" Bitte geben Sie den Beitrag ein."
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡CodeGE.KVERTRAGÿ0ÿp
+ÿ½ CALL Fehler("Vertrag kann noch nicht verprovisioniert werden!","Bitte w„hlen Sie eine Gesellschaft aus.")
+fehljn%ÿ1
+ffehl$ÿVS_NR.kvertragÿ"- Referenz1: "ÿfs24Satz_ID.kvertragÿ"- Referenz2: "ÿfs24Satz_ID2.kvertragÿ" Bitte w„hlen Sie eine Gesellschaft aus."
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡CodeMA.KVERTRAGÿ0ÿp
+ÿ½ CALL Fehler("Vertrag kann noch nicht verprovisioniert werden!","Bitte w„hlen Sie eine Agentur aus.")
+fehljn%ÿ1
+ffehl$ÿVS_NR.kvertragÿ"- Referenz1: "ÿfs24Satz_ID.kvertragÿ"- Referenz2: "ÿfs24Satz_ID2.kvertragÿ" Bitte w„hlen Sie eine Agentur aus."
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡CodeVA.KVERTRAGÿ0ÿp
+ÿ½ CALL Fehler("Vertrag kann noch nicht verprovisioniert werden!","Bitte w„hlen Sie eine Sparte aus.")
+fehljn%ÿ1
+ffehl$ÿVS_NR.kvertragÿ"- Referenz1: "ÿfs24Satz_ID.kvertragÿ"- Referenz2: "ÿfs24Satz_ID2.kvertragÿ" Bitte w„hlen Sie eine Sparte aus."
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡ÿ1(VS_Beginn.KVERTRAG)ÿ0ÿp
+ÿ½ ok% = 0
+ÿ½ fehljn% = 1
+ÿ½ ffehl$ = VS_NR.kvertrag + "- Referenz1: " + fs24Satz_ID.kvertrag + "- Referenz2: " + fs24Satz_ID2.kvertrag + 
+ÿ½ CALL Fehler("Vertrag kann noch nicht verprovisioniert werden!","Bitte geben Sie den Vertragsbeginn an.")
+ÿ’ÿ¡
+ÿ¡ok%ÿ1ÿp
+ÿ½ REQUEST "Vertrag in monatliche Abrechnung bernehmen?","",130,erg%
+erg%ÿ1
+ÿ¡erg%ÿ1ÿp
+ProviAb$ÿÿ(ccdat%)
+ÿ½ 160996 ProviAb$ = DATE$ ( TODAY ,"dd.mm.yy")
+ÿ¡Gvueb$ÿ"TRUE"ÿp
+	ÿ½ 16102002 ProviAb$ = DATE$ (Antragsdatum.KVERTRAG,"0d.mm.yyyy")
+ÿ^
+	ÿ½ 16102002 ProviAb$ = DATE$ (VS_Beginn.KVERTRAG,"0d.mm.yyyy")
+ÿ’ÿ¡
+ZahlungJN$ÿ"n"
+afswied101299001: 
+ÿ¡PrvVerfahr$ÿ"ZAHLUNGSEINGANG"ÿpZahlungJN$ÿ"j"
+req%ÿ1
+ÿ¡req%ÿ1ÿp
+	bwbezug$ÿReadConfig$("PROVIS","Bewertungszeitraum")
+	tt$ÿÿ+(ProviAb$,2)
+	jj$ÿÿ-(ProviAb$,4)
+	mm$ÿÿ,(ProviAb$,4,2)
+	tt%ÿÿ0(tt$)
+	ÿ¡tt%ÿ28ÿp
+texttmp$ÿ"Dies wird bei Vertr„gen, die abrechnungstechnisch in dem Monat Februar vorkommen zu Problemen fhren, da der Februar teilweise nur 28 Tage hat. Bitte „ndern Sie das Datum!"
+ÿ½ CALL Fehler("Sie wollen den Vertrag an die Provisionsabrecnung bergeben, allerdings haben Sie im Datum bei der Tagesangabe einen Wert gr”áer 28 angegeben",texttmp$)
+ÿ½ GOTO afswied101299001
+ProviAb$ÿ"27."ÿmm$ÿ"."ÿjj$
+	ÿ’ÿ¡
+	ÿ½ IF bwbezug$ LIKE "leer" OR bwbezug$ LIKE "Provisionierungsbeginn" THEN 
+ÿ½ BWStart$ = ProviAb$
+ÿ½ BWStart$ = DATE$ (VS_Beginn.KVERTRAG,"0d.mm.yyyy")
+	ÿ½ ELSE 
+ÿ½ BWStart$ = DATE$ (VS_Beginn.KVERTRAG,"0d.mm.yyyy")
+	ÿ½ END IF 
+	ÿ½ 07102002
+	BWStart$ÿProviAb$
+	ÿ¡DateOK%(BWStart$)ÿp
+kond%ÿGetKondFS%(cuvt%,ÿ1(BWStart$),0,fehljn%,ffehl$)
+ÿ¡kond%ÿ0ÿp
+ÿ¡ÿJ(cuvt%,CodeVT.VKOND)ÿpÿ¾ÿaÿ™"VKOND"ÿĞCodeVT.VKONDÿcuvt%
+ÿ½ CALL Fehler(fehlnach$,"")
+ÿÉÿ¥cuvt%ÿáÿ™"KVERTRAG"ÿ£lfdnr.KVERTRAG
+ProviAb.kvertragÿ0
+CodeKO.KVERTRAGÿ0
+ÿ½ kondition.KVERTRAG = SelKond%
+ÿƒFStore("KVERTRAG")
+ 
+ÿ½ ### ToDo: Fehlerliste anzeigen
+ÿ^
+ÿ½ CALL Fehler("Test doprov%","")
+doprov%ÿEditKondAFS%(kond%,0,fehljn%,ffehl$)
+ÿ¡doprov%ÿ1ÿp
+ÿÉÿ¥cuvt%ÿáÿ™"KVERTRAG"ÿ£lfdnr.KVERTRAG
+ProviAb.kvertragÿÿ1(ProviAb$)
+Check.KVERTRAGÿZahlungJN$
+CodeKO.KVERTRAGÿkond%
+ÿ½ kondition.KVERTRAG = SelKond%
+ÿ½ 201299
+CodeVStatus.kvertragÿ1
+VStatusTxT.kvertragÿ"lebend (verprovisioniert)"
+ÿ¡ProviAb.kvertragÿ0ÿProviAb.kvertragÿ	ÿQÿp
+ÿ¡Kndigung.kvertragÿ0ÿp
+ÿ¡Kndigung.kvertragÿÿQÿp
+VertragAktiv.kvertragÿ"j"
+ÿ^
+VertragAktiv.kvertragÿ"n"
+ÿ’ÿ¡
+ÿ^
+VertragAktiv.kvertragÿ"j"
+ÿ’ÿ¡
+ÿ^
+VertragAktiv.kvertragÿ"n"
+ÿ’ÿ¡
+ÿ¡TatsKuenDat.kvertragÿ0ÿp
+ÿ¡TatsKuenDat.kvertragÿÿQÿp
+VertragAktiv.kvertragÿ"j"
+ÿ^
+VertragAktiv.kvertragÿ"n"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ REQUEST "Vertrag wird ab sofort in die Provisionierung","mit einbezogen!",2
+ÿƒFStore("KVERTRAG")
+ÿ¡GAFSK$ÿ"TRUE"ÿÿJ(codevp.kvertrag,codevp.vpgekond)ÿp
+ÿÉÿ¥lfdnr.kvertragÿáÿ™"KVFAEL"ÿ£codevt.kvfael
+codevt1%ÿlfdnr.kvertrag
+f„lligam.kvfaelÿProviAB.kvertrag
+ÿ¡erwProvAnz.kvfaelÿ0ÿp
+erwProvAnz.kvfaelÿ4
+ÿ’ÿ¡
+ÿ¡VMProv.kvfaelÿ0ÿp
+ÿ¡ÿJ(codevp.kvertrag,codevp.vpgekond)ÿp
+ÿ½ ************ Auswahl der VPKonditionen fr AFSK *******************************************
+ 
+ÿ½ CALL Fehler("Sie erhalten jetzt die M”glichkeit eine AFSK-Produktkondition auszuw„hlen,","an Hand derer die AFSK-Sollstellung fr den Vertrag berechnet werden kann!")
+ÿ½ REQUEST "Wollen Sie den Vertrag an die AFSK-Sollstellung bergeben ? ","",130,req1ab%
+req1ab%ÿ1
+ÿ™"VPGEKOND"
+ÿ£codevp.VPGEKOND
+ÿÉÿ`
+ÿÉÿ¥codevp.kvertragÿ™"VPGEKOND"ÿ£codevp.VPGEKOND
+ÿ¡codew.kvertragÿ1ÿreq1ab%ÿ1ÿp
+ÿ¡codew.kvertragÿ1ÿp
+ÿ½ CALL Fehler("Der Vertrag kann nicht an die AFSK-Sollstellung bergeben werden, da er noch in der W„hrung DM gefhrt wird!","")
+ÿ’ÿ¡
+ÿwafsendpr23082003
+ÿ’ÿ¡
+a%ÿ0
+gefunden%ÿ0
+ÿØÿOÿB("VPGEKOND")ÿcodevp.VPGEKONDÿcodevp.kvertrag
+ok%ÿÿ1
+gefunden%ÿgefunden%ÿ1
+ÿ¡bwvon.VPGEKONDÿ0ÿp
+ÿ¡VS_Beginn.kvertragÿ
+bwvon.VPGEKONDÿp
+ok%ÿ0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡bwbis.VPGEKONDÿ0ÿp
+ÿ¡VS_Beginn.kvertragÿbwbis.VPGEKONDÿp
+ok%ÿ0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ok%ÿ0ÿp
+fehl%ÿfehl%ÿ1
+ÿwafsnextko23082002
+ÿ’ÿ¡
+ÿ¡ok%ÿp
+KVKond$(a%)ÿ"BWVon:"ÿÿ(bwvon.VPGEKOND,"0d.mm.yyyy")ÿ" "
+ÿ¡bwbis.VPGEKONDÿ0ÿp
+KVKond$(a%)ÿKVKond$(a%)ÿ"BWBis:"ÿÿ(bwbis.VPGEKOND,"0d.mm.yyyy")ÿ" "
+ÿ’ÿ¡
+ 
+ÿ¡courtagejn.VPGEKONDÿ"j"ÿCoAnzBeitr.VPGEKONDÿ0ÿp
+KVKond$(a%)ÿKVKond$(a%)ÿ"Cortage Anzahl Beitr„ge:"ÿÿH(ÿ(CoAnzBeitr.VPGEKOND,"9999.00"))ÿ" "
+ÿ’ÿ¡
+KVKond$(a%)ÿKVKond$(a%)ÿÿ'(100)ÿÿ(codekey.VPGEKOND,"000000")
+ÿ¡bwstart%ÿbwvon.vpgekondÿp
+ÿ¡bwbis.vpgekondÿ0ÿp
+ÿ¡bwstart%ÿ	bwbis.vpgekondÿpprompt$ÿKVKond$(a%)
+ÿ^
+prompt$ÿKVKond$(a%)
+ÿ’ÿ¡
+ÿ’ÿ¡
+a%ÿa%ÿ1
+ÿ’ÿ¡
+afsnextko23082002:
+ÿÉÿ±ÿ™"VPGEKOND"ÿ£codevp.VPGEKOND
+ÿÙ
+ÿ¡a%ÿ0ÿfehl%ÿ0ÿp
+req%ÿ0
+ÿ½ text1$ = "es wurden insgesamt " + LTRIM$ ( STR$ ("gefunden")) + "Konditionen gefunden,davon enth„lt keine Kondition in den Feldern BWVON und/oder BWBIS einen Eintrag der mit"
+ÿ½ CALL Fehler(text1$,"dem Provisionierungsbeginn des Vertrages harmonisiert")
+ÿ^
+KVKond$(a%)ÿ""
+prompt$ÿKVKond$(0)
+ÿ½ CREATE DIALOG "MASUCH",0,0,358,288,"Sollstellungskonditionen","MS Sans Serif",8
+ÿ½ ADD DIALOG "MASUCH",4,0,0,358,263,0,""
+ÿ½ ADD DIALOG "MASUCH",9,9,11,21,21,2
+ÿ½ ADD DIALOG "MASUCH",5,37,11,151,10,0,"Bitte w„hlen Sie aus der folgenden Liste aus:"
+ÿ½ ADD DIALOG "MASUCH",7,7,27,348,229,2,2,KVKond$,Auswahl$,prompt$
+ÿ½ ADD DIALOG "MASUCH",1,100,268,55,15,1,"&OK",1,1
+ÿ½ ADD DIALOG "MASUCH",1,160,268,55,15,0,"&Abbrechen",0,0
+ÿ½ MOUSE ON 
+ÿ½ DIALOG "MASUCH",req%
+ÿ½ REMOVE DIALOG "MASUCH"
+req%ÿ1
+ÿ’ÿ¡
+codekey%ÿ0
+ÿ¡req%ÿ1ÿp
+CodeKey%ÿÿ0(ÿ-(prompt$,6))
+ÿ’ÿ¡
+ 
+ÿ½ *******************************************************************************************
+ÿÉÿ`ÿ™"vpgekond"ÿ£CodeKey.vpgekond
+ÿÉÿ¥CodeKey%ÿ™"vpgekond"ÿ£CodeKey.vpgekond
+ÿ¡CoAnzBvB.vpgekondÿ"j"ÿp
+erwProvAnz.kvfaelÿCoAnzBeitr.vpgekond
+VMProv.kvfaelÿCoAnzBeitr.vpgekondÿBeitrag.kvertrag
+VMProvEu.kvfaelÿÿ0(ÿ(VMProv.kvfaelÿumrechnung.kvertrag,"999999999.00"))
+ÿ^
+CoAnzBeitr%ÿCoAnzBeitr.vpgekond
+erwProvAnz.kvfaelÿCoAnzBeitr.vpgekond
+VMProv.kvfaelÿCoAnzBeitr.vpgekondÿNettoBeitrag.kvertrag
+VMProvEu.kvfaelÿÿ0(ÿ(VMProv.kvfaelÿumrechnung.kvertrag,"999999999.00"))
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÌÿ™"KVFAEL"
+ÿïÿYÿ™"KVFAEL"
+ÿÉÿ¥codevt1%ÿáÿ™"KVERTRAG"ÿ£lfdnr.KVERTRAG
+ÿ¡AFSKPAUJN.vpgekondÿ"j"ÿp
+AFSKPAUJN.kvertragÿ"j"
+AFSKPAUEUR.kvertragÿAFSKPAUEUR.vpgekond
+ÿ½ QAFSKPAUDAT.kvertrag = "j" + DATE$ (AFSKPAUDAT.kvertrag,"yyyymm0d")
+ÿ¡AFSKPAUDAT.kvertragÿ
+1ÿp
+QAFSKPAUDAT.kvertragÿ"j"ÿ"00000000"
+ÿ^
+QAFSKPAUDAT.kvertragÿ"j"ÿÿ(AFSKPAUDAT.kvertrag,"yyyymm0d")
+ÿ’ÿ¡
+ÿÌÿ™"KVERTRAG"
+ÿïÿYÿ™"KVERTRAG"
+ÿ’ÿ¡
+
+ÿ^
+ÿÉÿ¥lfdnr.kvertragÿáÿ™"KVFAEL"ÿ£codevt.kvfael
+erledigt.kvfaelÿ"j"
+ÿÌÿ™"KVFAEL"
+ÿïÿYÿ™"KVFAEL"
+ÿ’ÿ¡
+ 
+afsendpr23082003: 
+ÿ½ ***********************Ende Produktkonditionen ******************************************** 
+ 
+ÿ^
+ÿÉÿ¥cuvt%ÿáÿ™"KVERTRAG"ÿ£lfdnr.KVERTRAG
+ProviAb.kvertragÿ0
+CodeKO.KVERTRAGÿ0
+ÿ¡ÿJ(cuvt%,CodeVT.VKOND)ÿpÿ¾ÿaÿ™"VKOND"ÿĞCodeVT.VKONDÿcuvt%
+ÿ½ kondition.KVERTRAG = SelKond%
+ÿƒFStore("KVERTRAG")
+ÿ½ CALL Fehler("Auswahl abgebrochen!","")
+ÿ’ÿ¡
+ÿ’ÿ¡
+	ÿ^
+ok%ÿ0:ÿ½ CALL Fehler("Datum im falschen Format!","Bitte geben Sie das Datum in der Form 'tt.mm.jjjj' ein.")
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ¡ok%ÿ0ÿp
+ÿ½ 270799
+ÿ¡vstatus%ÿ2ÿp
+ÿ½ d.h., die Routine wurde ber den Button Status aufgerufen, bei Abbruch mssen die alten
+ÿ½ Statuseintragungen wieder vorgenommen werden
+ÿÉÿ¥cuvt%ÿáÿ™"KVERTRAG"ÿ£lfdnr.KVERTRAG
+VStatusTxT.kvertragÿvstatustxt$
+CodeVStatus.kvertragÿvstatusnr%
+ÿƒQuickStore("Kvertrag")
+vstatus%ÿ0
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ™cfile$
+ ÿ½ CALL VERTRUpdate()
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+ 
+ 
+ÿÿEditKondAFS%(kond%,onlyshow%,fehljn%,ffehl$)
+ _kond%ÿkond%
+ HaftVertrag%ÿSRHaftung.kvertrag
+ ÿƒDFile(3,"gekond"ÿ_fpw$)
+ ÿƒDFile(3,"vkond"ÿ_fpw$)
+ ÿ×Auswahl$(1)
+ ÿ×KondList$(100,1)
+ 
+ changing%ÿ1
+ 
+ ÿØchanging%ÿ1
+ok%ÿ1
+ÿÿKondList$(100,1)
+ÿÿKondList$(100)
+ÿ½ FOR a% = 0 TO 100
+ÿ½ Kondlist$(a%) = ""
+ÿ½ NEXT a%
+
+a%ÿ0
+ 
+ÿØok%ÿ1
+ÿÉÿ¥_kond%ÿ™"VKOND"ÿ£CodeVK.VKOND
+ÿÉÿ¥CodeKO.VKONDÿ™"GEKOND"ÿ£lfdnr.GEKOND
+ÿÉÿ¥CodeMA.GEKONDÿ™"MAADR"ÿ£CodeMA.MAADR
+ListItem$ÿ""
+notiz$ÿ""
+ÿ¡notiz.gekondÿ""ÿpnotiz$ÿ" - "ÿnotiz.gekond
+ÿ¡APjn.gekondÿ"j"ÿpListItem$ÿListItem$ÿ"; Abschluáprovision "ÿÿ(AP.GEKOND,",999.000")
+ÿ¡CourtageJN.gekondÿ"j"ÿpListItem$ÿListItem$ÿ"; Courtage "ÿÿ(Courtage.GEKOND,",999.000")
+ÿ¡PflegeJN.gekondÿ"j"ÿpListItem$ÿListItem$ÿ"; Pflege "ÿÿ(PflegeProvi.GEKOND,",999.000")
+ÿ¡VDjn.gekondÿ"j"ÿpListItem$ÿListItem$ÿ"; Abschluá (LZ)"
+ÿ¡TZjn.gekondÿ"j"ÿpListItem$ÿListItem$ÿ"; Teilzahlung"
+ÿ¡PauschaleJN.gekondÿ"j"ÿpListItem$ÿListItem$ÿ"; Pauschale "ÿÿ(Pauschale.GEKOND,",99999.000")
+ÿ½ 201299
+ÿ¡srjn.gekondÿ"j"ÿsr.gekondÿ0ÿp
+ListItem$ÿListItem$ÿ"; Storno "ÿÿ(sr.GEKOND,"999.000")
+ÿ¡HaftVertrag%ÿ0ÿp
+	ÿ¡HaftVertrag%ÿÿ1ÿp
+ListItem$ÿListItem$ÿ"; Haftung "ÿÿ(HaftVertrag%,"999.")ÿ" Monate"
+	ÿ^
+ListItem$ÿListItem$ÿ"; Haftung unbegrenzt"
+	ÿ’ÿ¡
+ÿ^
+	ÿ¡haftung.gekondÿÿ1ÿp
+ListItem$ÿListItem$ÿ"; Haftung "ÿÿ(haftung.GEKOND,"999.")ÿ" Monate"
+	ÿ^
+ListItem$ÿListItem$ÿ"; Haftung unbegrenzt"
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+listitem$ÿlistitem$ÿ"/BWVON:"ÿÿ(bwvon.gekond,"0d.mm.yyyy")
+ÿ¡bwbis.gekondÿ0ÿplistitem$ÿlistitem$ÿ"/BWBIS:"ÿÿ(bwbis.gekond,"0d.mm.yyyy")
+ÿ¡agenturnr.maadrÿ""ÿp
+KondList$(a%)ÿÿ(a%ÿ1,"999")ÿ". "ÿÿH(Nachname.MAADR)ÿ", "ÿÿH(Vorname.MAADR)ÿ", "ÿÿF(Agenturnr.maadr)ÿListItem$ÿnotiz$ÿÿ'(120)ÿÿ(CodeVK.VKOND,"000000")
+ÿ^
+KondList$(a%)ÿÿ(a%ÿ1,"999")ÿ". "ÿÿH(Nachname.MAADR)ÿ", "ÿÿH(Vorname.MAADR)ÿListItem$ÿnotiz$ÿÿ'(120)ÿÿ(CodeVK.VKOND,"000000")
+ÿ’ÿ¡
+ÿ¡n„chsteKond.VKONDÿ0ÿp
+_kond%ÿn„chsteKond.VKOND
+a%ÿa%ÿ1
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+ÿÙ
+ÿ½ FOR a% = 1 TO 10
+ÿ½   KondList$(a%) = STR$ (a%,"999") + ". " + KondList$(0)
+ÿ½ NEXT a%
+prompt$ÿKondList$(0)
+ÿ½ CREATE DIALOG "KONDLIST",0,0,450,320,"Konditionsbersicht","Arial",8
+ÿ½ ADD DIALOG "KONDLIST",4,0,0,449,337,0,""
+ÿ½ ADD DIALOG "KONDLIST",9,9,11,21,21,2
+ÿ½ ADD DIALOG "KONDLIST",5,44,15,150,10,0,"Konditionsbersicht fr den aktuellen Vertrag:"
+ÿ½ ADD DIALOG "KONDLIST",5,44,29,262,18,0,"Best„tigen Sie mit " + CHR$ (34) + "OK" + CHR$ (34) + " die Richtigkeit der gefundenen Konditonen oder w„hlen Sie die richtigen Konditionen aus."
+ÿ½ ADD DIALOG "KONDLIST",5,44,49,256,23,0,"Um eine der angezeigten Konditionen zu „ndern, w„hlen Sie mit der Maus eine Kondition aus und klicken anschlieáend auf die Schaltfl„che " + CHR$ (34) + "ndern" + CHR$ (34) + "."
+ÿ½ ADD DIALOG "KONDLIST",7,4,78,448,219,2,2,KondList$,Auswahl$,prompt$
+ÿ½ IF onlyshow% = 0 THEN 
+ÿ½   ADD DIALOG "KONDLIST",1,101,302,55,15,0,"&ndern",2,1
+ÿ½   ADD DIALOG "KONDLIST",1,159,302,55,15,1,"&OK",1,1
+ÿ½ END IF 
+ÿ½ ADD DIALOG "KONDLIST",1,237,302,55,15,0,"&Abbrechen",0,0
+ÿ½ DIALOG "KONDLIST",req%
+ÿ½ REMOVE DIALOG "KONDLIST"
+req%ÿ1
+ÿ¡req%ÿ1ÿp
+EditKondAFS%ÿ1
+changing%ÿ0
+ÿ’ÿ¡
+ÿ¡req%ÿ0ÿp
+EditKondAFS%ÿ0
+changing%ÿ0
+ÿ’ÿ¡
+ÿ¡req%ÿ2ÿpÿƒChangeKond(ÿ0(ÿ-(Auswahl$(0),6)))
+_kond%ÿkond%
+ ÿÙ
+ ÿ’ÿÿ
+ 
+
+
+
+ ' Aktualisierung der VKOND mit aktuellen Konditionen
+ ' =======================================================================
+ 
+ÿÿGetKondFS%(vt%,ProviAb%,logging%,fehljn%,ffehl$)
+ cfile$ÿÿ™
+ ÿÉÿ`ÿ™"KVERTRAG"ÿ£lfdnr.KVERTRAG
+ ÿÉÿ¥vt%ÿ™"KVERTRAG"ÿ£lfdnr.KVERTRAG
+ ÿ¡ProviAb%ÿ0ÿp
+bwbezug$ÿReadConfig$("PROVIS","Bewertungszeitraum")
+ÿ¡bwbezug$ÿ"leer"ÿbwbezug$ÿ"Provisionierungsbeginn"ÿp
+BWStart%ÿÿ1(ProviAb.KVERTRAG)
+ÿ^
+BWStart%ÿÿ1(VS_Beginn.KVERTRAG)
+ÿ’ÿ¡
+ ÿ^
+BWStart%ÿProviAb%
+ ÿ’ÿ¡
+ ÿ™"GEKOND"
+ 
+ ÿ½ ### Andi Anfang
+ ÿÉÿĞ
+ ÿ£QuickCode.gekond
+ ÿÉÿ`
+ ÿ½ ### Andi Ende
+ codema%ÿCodeMA.kvertrag
+ codege%ÿCodeGE.kvertrag
+ codeva%ÿCodeVA.kvertrag
+ ÿ½ ###andi anfang
+ ÿ™"maadr"
+ ÿ£Codema.maadr
+ ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ ÿÉÿ¥codema%ÿ™"maadr"ÿ£codema.maadr
+ nameorig$ÿnachname.maadrÿ" "ÿVorname.maadrÿ" "ÿAgenturnr.maadr
+ ma$ÿÿH(nachname.maadr)
+ ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ ÿ™"geadr"
+ ÿ£CodeGE.geadr
+ ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+ ÿÉÿ¥codege%ÿ™"geadr"ÿ£codege.geadr
+ ge$ÿÿH(Gesellschaft.geadr)
+ ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+ ÿ™"sparten"
+ ÿ£CodeVA.sparten
+ ÿÉÿ`
+ ÿÉÿ¥Codeva%ÿ™"Sparten"ÿ£codeva.sparten
+ sparte$ÿÿH(sparte.sparten)
+ ÿÉÿ`ÿ™"Sparten"ÿ£codeva.sparten
+ ÿ™"GEKOND"
+ beschreibung$ÿma$ÿ","ÿge$ÿ","ÿsparte$
+ ÿ½ ### andi ende
+ FirstKond%ÿ0
+ LastKond%ÿ0
+ ok%ÿ1
+ 
+ 
+cfile$ÿÿ™
+ÿƒDFile(3,"mavorg"ÿ_fpw$)
+ÿ™"mavorg"
+ÿ£codema.mavorg
+ÿÉÿ`ÿ™"mavorg"ÿ£codema.mavorg
+ÿÉÿ¥codema%ÿ™"mavorg"ÿ£codema.mavorg
+i%ÿ0
+ÿØÿOÿB("mavorg")ÿcodema.mavorgÿcodema%
+ÿ¡BWStart%ÿvon.mavorgÿp
+i%ÿi%ÿ1
+ÿ’ÿ¡
+fehlbis%ÿ0
+ÿ¡bis.mavorgÿ1ÿp
+testbis$ÿÿ(bis.mavorg,"0d.mm.yyyy")
+teststart$ÿÿ(bwstart%,"0d.mm.yyyy")
+ÿ½ CALL Fehler("bwstart " + teststart$,"bis.mavorg " + testbis$)
+ÿ¡BWStart%ÿbis.mavorgÿp
+
+i%ÿi%ÿ1
+
+fehlbis%ÿÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"mavorg"ÿ£codema.mavorg
+ÿÙ
+ÿ¡i%ÿ0ÿp
+ok%ÿ0
+GetKondFS%ÿ0
+ÿ¡fehlbis%ÿ0ÿp
+fehlnach$ÿ"Das Datum des Provisionierungsbeginn des Vertrages "ÿteststart$ÿ" liegt vor dem Datum BWVon des Vermittlers ("ÿÿ(von.mavorg,"0d.mm.yyyy")ÿ" in der Maske VORGNGER)"
+ÿ^
+fehlnach$ÿ"Das Datum des Provisionierungsbeginn des Vertrages "ÿteststart$ÿ" liegt nach dem Datum BWBIS des Vermittlers ("ÿtestbis$ÿ" in der Maske VORGNGER)"
+ÿ’ÿ¡
+GFehl$ÿfehlnach$
+ÿ½ CALL Fehler(t$," liegt vor dem Datum BWVon des Vermittlers (" + DATE$ (von.mavorg,"0d.mm.yyyy") + ")")
+ÿ’ÿ¡
+ÿ™cfile$
+ 
+
+ 
+ ff%ÿ0
+ ÿØCodeMA%ÿ0ÿok%ÿ1
+nameorig$ÿnachname.maadrÿ" "ÿVorname.maadrÿ" "ÿAgenturnr.maadr
+ÿ™"GEKOND"
+ÿ£QuickCode.gekond
+ÿÉÿ`
+SCode$ÿÿ(CodeMA%,"000000")ÿÿ(CodeGE%,"000000")ÿÿ(CodeVA%,"000000")
+kondfound%ÿ1
+ÿÉÿ¥codema%ÿ™"maadr"ÿ£CodeMA.MAADR
+ÿÉÿ¥SCode$ÿ™"gekond"ÿ£QuickCode.gekond
+ÿ¡ÿC("GEKOND")ÿp
+notfound%ÿ1
+ÿØnotfound%ÿ1ÿQuickCode.GEKONDÿSCode$ÿÿOÿB("GEKOND")
+ 
+ÿ½ -------------------------------
+ÿ½ -- Bewertungszeitraum ermitteln
+ÿ½ -------------------------------
+ 
+ÿ¡ÿ1(BWvon.GEKOND)ÿ
+1ÿpBWvon%ÿÿ1("1.1.1980")ÿ^BWvon%ÿÿ1(BWvon.GEKOND)
+ÿ¡ÿ1(BWbis.GEKOND)ÿ
+1ÿpBWbis%ÿÿ1("31.12.2300")ÿ^BWbis%ÿÿ1(BWbis.GEKOND)
+ÿ½ 130597
+ÿ¡BWStart%ÿBWvon%ÿBWStart%ÿ	BWbis%ÿp
+	notfound%ÿ0
+ÿ^
+	ÿÉÿ±ÿ™"gekond"ÿ£QuickCode.GEKOND
+ÿ’ÿ¡
+ÿÙ
+ÿ¡notfound%ÿ1ÿp
+tag$ÿÿ(BWStart%)
+fehlnach$ÿ"Es wurden keine Konditionen fr "ÿbeschreibung$ÿ" im Zeitraum "ÿtag$ÿ"/ fr die Agentur oder Vorg„nger: "ÿnachname.maadrÿ" definiert"
+ÿ¡logging%ÿp
+	tag$ÿÿ(BWStart%)
+	ÿƒWriteLog("!"ÿfehlnach$)
+	ÿƒAddLogInfo()
+ÿ’ÿ¡
+ok%ÿ0
+kondfound%ÿ0
+ÿ’ÿ¡
+ÿ^
+fehlnach$ÿ"Es wurden keine Konditionen fr "ÿbeschreibung$ÿ"/ fr die Agentur oder Vorg„nger: "ÿnachname.maadrÿ" definiert"
+ÿ¡GAFSK$ÿ"TRUE"ÿp
+ÿƒTWriteLogOk(Nachname.adressenÿ" "ÿVorname.adressenÿ" / VS_NR "ÿVS_NR.KVERTRAGÿ" "ÿfehlnach$)
+ÿ’ÿ¡
+kondfound%ÿ0
+ÿ¡logging%ÿp
+ÿƒWriteLog("!"ÿfehlnach$)
+ÿƒAddLogInfo()
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡kondfound%ÿ1ÿp
+ÿ½ ** Eintrag in VKOND erstellen
+ÿÿ™"VKOND"
+CodeVK.VKONDÿÿI("VKOND",1)
+CodeKO.VKONDÿlfdnr.GEKOND
+ÿ¡FirstKond%ÿ0ÿp
+FirstKond%ÿCodeVK.VKOND
+ÿ’ÿ¡
+CodeVT.VKONDÿvt%
+CodeMA.VKONDÿcodema%
+n„chsteKond.VKONDÿ0
+n1$ÿnachname.maadr
+_vk%ÿCodeVK.VKOND
+ÿƒQuickStore("VKOND")
+ÿ¡LastKond%ÿ0ÿp
+ÿÉÿ¥LastKond%ÿáÿ™"VKOND"ÿ£CodeVK.VKOND
+n„chsteKond.VKONDÿ_vk%
+ÿƒQuickStore("VKOND")
+ÿ’ÿ¡
+LastKond%ÿ_vk%
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+ÿÉÿ¥codema%ÿ™"maadr"ÿ£CodeMA.MAADR
+ 
+ÿ½ *********  Vorg„ngerfindung ALT *********************************************************
+'IF Vorg„nger.MAADR = 0 OR Vorg„nger.MAADR = CodeMA.MAADR THEN 
+'  CodeMA% = 0
+'ELSE 
+'  CodeMA% = Vorg„nger.MAADR
+'END IF 
+ÿ½ *********  Vorg„ngerfindung ALT Ende **************************************************** 
+ 
+ 
+ÿ½ *********  Vorg„ngerfindung NEU Anfang ************************************************** 
+cfile$ÿÿ™
+ÿ™"mavorg"
+ÿ£codema.mavorg
+ÿÉÿ`ÿ™"mavorg"ÿ£codema.mavorg
+ÿÉÿ¥codema%ÿ™"mavorg"ÿ£codema.mavorg
+name$ÿnachname.maadrÿ" "ÿVorname.maadrÿ" "ÿAgenturnr.maadr
+ÿØÿOÿB("mavorg")ÿcodema.mavorgÿcodema%
+ÿ¡BWStart%ÿvon.mavorgÿp
+ÿ¡bis.mavorgÿ0ÿp
+
+ÿ¡bwstart%ÿ	bis.mavorgÿp
+ff%ÿ0
+codema%ÿcodevma.mavorg
+ÿ¡codema.maadrÿcodevma.mavorgÿpcodema%ÿ0
+ÿÉÿbÿ™"mavorg"ÿ£codema.mavorg
+
+ÿ^
+ff%ÿff%ÿ1
+codemaolold%ÿcodema%
+ÿ½ CALL Fehler("vermutlich Fehler","")
+bis%ÿbis.mavorg
+nameorig$ÿNameVMA.mavorg
+
+ÿ’ÿ¡
+ÿ^
+
+ff%ÿ0
+
+codema%ÿcodevma.mavorg
+
+ÿ¡codema.maadrÿcodevma.mavorgÿpcodema%ÿ0
+
+ÿÉÿbÿ™"mavorg"ÿ£codema.mavorg
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"mavorg"ÿ£codema.mavorg
+ÿÙ
+ÿ™cfile$
+ÿ¡ff%ÿ0ÿp
+ÿ¡codemaolold%ÿcodema%ÿp
+a1$ÿÿ(bwstart%,"0d.mm.yyyy")
+a2$ÿÿ(bis%,"0d.mm.yyyy")
+ff1$ÿ"FEHLER aufgetreten! Vermutlich ist in der Mitarbeiter - Vorg„nger-Datei ein Datum im Feld BWBis eingetragen ("ÿa2$ÿ"), das vor dem Provisionierungsbeginn-Datum "ÿa1$ÿ" (Antrags - oder Vertragsbeginn - Datum)des Vertrages liegt!"
+ff2$ÿ" Prfen Sie beim Mitarbeiter "ÿnameorig$ÿ" die Eintragungen, die in der Vorg„ngerdatei bei dem Vorg„nger "ÿname$ÿ" stehen! Vergleichen Sie die Eintr„ge in der Vorg„ngerdatei aller an dem Vertrag beteiligten Mitarbeiter!"
+ÿ½ CALL Fehler(ff1$,ff2$)
+fehlnach$ÿff1$ÿff2$
+ok%ÿ0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ *********  Vorg„ngerfindung NEU Ende **************************************************** 
+ 
+ ÿÙ
+ ÿ¡ok%ÿ1ÿp
+GetKondFS%ÿFirstKond%
+ ÿ^
+ÿ½ Eintr„ge wieder l”schen
+ÿ¡FirstKond%ÿ0ÿp
+ok%ÿ1
+ÿØok%ÿ1
+ÿ¡ÿJ(FirstKond%,CodeVK.VKOND)ÿp
+	ÿÉÿ¥FirstKond%ÿáÿ™"VKOND"ÿ£CodeVK.VKOND
+ÿ^
+	ÿÉÿb
+ÿ’ÿ¡
+ÿ¡ÿJ(FirstKond%,CodeVK.VKOND)ÿp
+	ÿÊÿË"Korrektur"
+	_nkond%ÿn„chsteKond.VKOND
+	ÿÉÿ¾ÿ™"VKOND"
+	FirstKond%ÿ_nkond%
+	ÿÊÿË"Bereit"
+ÿ^
+	ok%ÿ0
+ÿ’ÿ¡
+ÿÙ
+ÿ’ÿ¡
+GetKondFS%ÿ0
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+

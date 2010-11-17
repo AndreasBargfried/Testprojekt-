@@ -1,0 +1,27 @@
+SBP
+ ÿ™"master"
+ ÿ£codeku
+ ÿÉÿ`
+ ÿ™"adressen"
+ ÿ£codeku
+ ÿÉÿ`
+ j%ÿ0
+ i%ÿ0
+ ÿ™"master"
+ ÿØÿOÿB("master")
+codeku%ÿcodeku.master
+i%ÿi%ÿ1
+ÿÊÿË"DS :"ÿÿ(i%,"99999")ÿÿ"DS gel”scht:"ÿÿ(j%,"9999999")
+ÿ¡ÿOÿJ(codeku%,codeku.adressen)ÿp
+ÿ½ REMOVE FROM FILE "master" WHERE codeku.master = codeku%
+ÿ½ SELECT KEY codekuold% FILE "master" INDEX codeku
+j%ÿj%ÿ1
+ÿ½ I% = 0
+ÿ{ÿ(codeku%,"999999")
+ÿÊÿË"DS :"ÿÿ(i%,"99999")ÿ"DS gel”scht:"ÿÿ(j%,"9999999")
+ÿ^
+codekuold%ÿcodeku%
+ÿ’ÿ¡
+ ÿÉÿ±
+ ÿÙ
+

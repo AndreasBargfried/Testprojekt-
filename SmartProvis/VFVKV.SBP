@@ -1,0 +1,75 @@
+SBP
+ÿÿmain()
+ÿ´ÿ™ÿà,0"K:\sich\KVERTRAG.SBF;paris"
+ÿ½ 770 32 ----"
+i%ÿ0
+j%ÿÿA("KVERTRAG")
+ÿ™"kvertrag"
+ÿ£QuickVSNR.KVERTRAG
+ÿÉÿ`ÿáÿ™"kvertrag"ÿ£QuickVSNR.KVERTRAG
+ÿÉÿ¥"77032"ÿáÿ™"kvertrag"ÿ£QuickVSNR.KVERTRAG
+ÿØÿOÿB("kvertrag")
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ"/ gesamt: "ÿÿ(j%)ÿ"/ge„ndert: "ÿÿ(g%)
+ÿ¡vs_nr.kvertragÿ"770 32*"ÿp
+g%ÿg%ÿ1
+lenge%ÿÿ/(vs_nr.kvertrag)
+vso$ÿvs_nr.kvertrag
+vsneu$ÿÿ-(vs_nr.kvertrag,lenge%ÿ4)
+vs_nr.kvertragÿvsneu$
+QuickVSNR.KVERTRAGÿVSNRPack$(VS_Nr.KVERTRAG)
+QNumVSNR.kvertragÿVSNRPackNum$(VS_NR.kvertrag)
+ÿÌÿ™"kvertrag"
+ÿÉÿ`ÿáÿ™"kvertrag"ÿ£QuickVSNR.KVERTRAG
+ÿÉÿ¥"77032"ÿáÿ™"kvertrag"ÿ£QuickVSNR.KVERTRAG
+ÿ^
+ÿÉÿ±ÿáÿ™"kvertrag"ÿ£QuickVSNR.KVERTRAG
+ÿ’ÿ¡
+ÿÙ
+ ÿ’ÿÿ
+
+
+ÿÿVSNRPack$(VSNR$)
+ tVSNR$ÿ""
+ ÿ›a%ÿ1ÿqÿ/(VSNR$)
+tC$ÿÿ>(ÿ,(VSNR$,a%,1))
+	x%ÿÿ.(ÿ+(ÿ>(tC$),1))
+	ÿÉÿæx%
+ÿæ142
+tC$ÿ"AE"
+ÿæ153
+tC$ÿ"OE"
+ÿæ154
+tC$ÿ"UE"
+	ÿ’ÿÉ
+	ÿ¡tc$ÿ"á"ÿptc$ÿ"SS"
+ÿÉÿætC$
+ÿæ"A"ÿq"Z","0"ÿq"9"
+tVSNR$ÿtVSNR$ÿtC$
+ÿ’ÿÉ
+ ÿ±a%
+ VSNRPack$ÿtVSNR$
+ ÿ’ÿÿ
+
+ÿÿVSNRPackNum$(VSNR$)
+ tVSNR$ÿ""
+ null%ÿÿ1
+ ÿ›a%ÿ1ÿqÿ/(VSNR$)
+tC$ÿÿ>(ÿ,(VSNR$,a%,1))
+ÿÉÿætC$
+ÿæ"0"
+ÿ¡null%ÿÿ1ÿp
+	tVSNR$ÿtVSNR$ÿtC$
+ÿ’ÿ¡
+ÿæ"1"ÿq"9"
+null%ÿ0
+tVSNR$ÿtVSNR$ÿtC$
+ÿæ"a"ÿq"z","A"ÿq"Z"
+ÿ¡null%ÿÿ1ÿp
+	tVSNR$ÿtVSNR$ÿtC$
+ÿ’ÿ¡
+ÿ’ÿÉ
+ ÿ±a%
+ VSNRPackNum$ÿtVSNR$
+ ÿ’ÿÿ
+

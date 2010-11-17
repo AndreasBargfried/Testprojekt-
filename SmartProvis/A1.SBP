@@ -1,0 +1,55 @@
+SBP
+ÿÿListe()
+ ÿ‰ÿñ"MAIL2",0,0,257,136,title$,"MS Sans Serif",8
+ Superbase.Dialogs.Add("MAIL2")
+ÿÊdlg ÿSuperbase.Dialogs.MAIL2
+dlg.Move(0,0,425,330)
+dlg.Captionÿ"Dialog Title":dlg.FontNameÿ"MS Sans Serif":dlg.FontSizeÿ8
+dlg.OnActivateÿ"MLFillList1"
+ÿÊc ÿdlg.Add("DialogIcon1","DialogIcon"):c.Move(6,11,22,23):c.Iconÿ2
+ÿÊc ÿdlg.Add("DialogLabel1","DialogLabel"):c.Move(33,11,184,9):c.Captionÿ"Mailing - Schritt 3 (Adreáliste bearbeiten)"
+ÿÊc ÿdlg.Add("DialogFrame1","DialogFrame"):c.Move(33,19,183,5):c.Captionÿ""
+ÿÊc ÿdlg.Add("DialogLabel3","DialogLabel"):c.Move(33,28,183,21):c.Captionÿ"Bitte entfernen Sie in der nachfolgenden Liste die Eintr„ge, die nicht im Mailing erscheinen sollen."
+ÿÊc ÿdlg.Add("adrList","DialogListBox"):c.Move(33,52,320,268):c.Sortedÿ1:c.ScrollBarsÿ2
+c.OnDblClickÿ"MListDel1"
+ÿÊc ÿdlg.Add("cmDelete","DialogCommandButton"):c.Move(360,83,55,14):c.Captionÿ"&Entfernen":c.ReturnValueÿ0:c.Cancelÿ1:c.OnClickÿ"MListDel1"
+ÿÊc ÿdlg.Add("cmOK","DialogCommandButton"):c.Move(360,181,55,15):c.Defaultÿ1:c.Captionÿ"&Weiter":c.ReturnValueÿ1
+ÿÊc ÿdlg.Add("cmCancel","DialogCommandButton"):c.Move(360,200,55,15):c.Captionÿ"&Abbrechen":c.ReturnValueÿ0:c.Cancelÿ1
+ÿñ"MAIL2",req%
+ÿ¾ÿñ"MAIL2"
+ ÿ’ÿÿ
+
+
+
+
+ÿÿMLFillList1()
+ ÿßÿe
+ ÿ™userfile$
+ ÿ£NAME2.userfile$
+ ÿÉÿ`ÿ™userfile$ÿ£NAME2.userfile$
+ ÿØÿOÿB(userfile$)
+ÿ¡name1.userfile$ÿ""ÿp
+dlg.adrList.AddItem(Name2.userfile$ÿ", "ÿName1.userfile$ÿ", "ÿplz.userfile$ÿ" "ÿOrt.userfile$ÿ", "ÿStrasse.userfile$ÿÿ'(160)ÿCodeKU.userfile$)
+ÿ½ dlg.adrList.AddItem(Name2.userfile$ + SPACE$ (160) + CodeKU.userfile$)
+ÿ^
+dlg.adrList.AddItem(Name2.userfile$ÿ", "ÿplz.userfile$ÿ" "ÿOrt.userfile$ÿ", "ÿStrasse.userfile$ÿÿ'(160)ÿCodeKU.userfile$)
+ÿ’ÿ¡
+ÿÉÿ±ÿ™userfile$ÿ£NAME2.userfile$
+ ÿÙ
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ÿÿMListDel1()
+ lidx%ÿdlg.AdrList.ListIndex
+ ÿ¡lidx%ÿ0ÿp
+item$ÿdlg.adrList.List(lidx%)
+ÿÉÿ¥ÿ-(item$,6)ÿáÿ™userfile$ÿ£CodeKU
+ÿÂName1.userfile$ÿ", "ÿName2.userfile$,"Eintrag l”schen?",130,req%
+ÿ¡req%ÿ0ÿp
+dlg.adrList.RemoveItem(lidx%)
+ÿÉÿ¾ÿ™userfile$
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+

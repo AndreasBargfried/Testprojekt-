@@ -1,0 +1,4675 @@
+SBP
+ ' Warenwirtschaftssystem   (c)'92 CODIE, Andreas Bargfried
+ ' Version 2.0 10.9.94 / 17.54
+ '
+ '      letzte nderungen:
+ '      - logische Felder auf von Y/N auf j/n ge„ndert
+ '      - allgemeine Programminitialisierung in CLIB bernommen
+ '      - Anpassung Dokumentenverwaltung
+ '      - nderung Mendefinitionen
+ 
+ÿÿmain()
+ ÿ½ DEBUG OFF 
+ ÿ†ÿt
+ ÿ¡ÿOÿ÷("CLIB")ÿpÿ¨"CLIB.SBR",ÿ°
+ ÿ¡ÿOÿ÷("EXTLIB")ÿpÿ¨"EXTLIB.SBR",ÿ°
+ ÿ¡ÿOÿ÷("PRICEIT")ÿpÿ¨"PRICEIT.SBR",ÿ°
+ ÿƒLIBInit("WAWI","WAWI",13,1)
+ ÿ½   CALL MNWAWI()
+ _fpw$ÿ";paris"
+ _help%ÿ0
+ ÿƒINIT()
+ _formend%ÿ0
+Upd$ÿReadConfig$(_projekt$,"UPDATE")
+ ÿ¡Upd$ÿ"TRUE"ÿp
+ÿ¡ÿOÿ÷("UPDATE")ÿpÿ¨_netpath$ÿ"UPDATE.SBR",ÿ°
+ÿƒDoUpdate()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿƒWAWI()
+ÿÂ"Programm wirklich beenden?","",130,req%
+ÿ¡req%ÿ1ÿp_formend%ÿ1
+ ÿÙ
+ ÿƒEXIT()
+ ÿ’ÿÿ
+ 
+ 
+ '      *********************
+ '      ** INITIALISIERUNG **
+ '      *********************
+ 
+ ' Konstantendeklaration/Initialisierung
+ ' ======================================================================
+ ' 0001 04.11.92/FA: variabler Projektpfad eingefhrt
+ ' 0002 10.01.93/FA: in SUB umgewandelt
+ ' 0003 04.03.93/FA: SUB DECLARE(), INIT() und OpenFile() zusammengefaát
+ ' ======================================================================
+ 
+ÿÿINIT()
+ ÿÿARTIKELsub%,artneu1$,artzug1$,artbearb$,artneunr$,lieferer$,lastnum%
+ ÿÿvwarengr%,liefdatum%,ganzzahl%,rest%,artcod%,artcodeneu%,vwgbezeich$,vLieferant%
+ ÿÿvliefname1$,_mengeinh$,mengeinh$,_mwst%,mwst%,_w„hrung$,w„hrung$,artbezlief1$
+ ÿÿ_lager$,_KalkLiefGH%,_KalkLiefEH%,_KalkLiefMin%,_KalkLiefAbsch%,_Frachtx%,_Warenumschlag%
+ ÿÿwi%,feld$,cuart%,tmpZeile$,msg$
+ ÿÿ_verteiler1%,_verteiler2%,_verteiler3%,_verteiler4%,_verteiler5%
+ ÿÿ_verteiler6%,_verteiler7%,_verteiler8%,_verteiler9%
+ ÿÿ_HKassenanz%,_HKasseDir$(99),_HKasseAust$,_HXBericht$,_HZBericht$
+ ÿÿ_HDFšBeginn$,_HDFšVerarb$
+ ÿÿAnsicht$(200),filial1%,vdate$,listenr%,LAUSPREIsub%,LLSCHEINsub%,KASSEsub%
+ ÿÿday1%,dateidatum$,dateizeit$,dateisenden$,automatisch$
+ ÿÿmaske1$,kunr%,suna1$,opt%,opt1%,artz%,artz1%
+
+ ÿÿGRUPPENsub%,MSsub%,SCHsub%,FLOSKELsub%,MSArt%,MSArt$
+ ÿÿcugrp%,cums%,cupos%,cufl%,ProdGruppen$(100)
+ ÿÿRabatt$,RabattBetrag$
+ ÿÿSFORM$,wawispezi$
+ ÿÿMwStSchl%(20),MwStBetrag%(20)
+ ÿÿMwStText$,MwStBetrag$,RabattText$,asuchopt%,asuchglob%,Gruppenausw$,sunaglob$,artausw$
+ ÿÿkundennr$,leervorAdr$,Lieferant$(1000),Artikel$(8000),neumaster$,AuswArtikel$(30000),AuswArtikel1$
+ ÿÿDebitorkto$,Bestandskto$,Warenausgkto$,cashpath$,stationsnr$
+ ÿÿGlervorAdr%,GlernachAdr%,GlerKopfSeite%,GlerFusSeite%
+ ÿÿDEFA$,Bestfhr$,ArtiAutoNum$,Bestrechnung$,_kalkart$,periode%,defaneu$
+ ÿÿvkonto%(10),perieing%
+ cashpath$ÿReadINI$("CASH","NetDirectory")
+ Debitorkto$ÿReadConfig$("PRICEIT","StandardDebitorKonto")
+ Bestandskto$ÿReadConfig$("PRICEIT","StandardBestandsKonto")
+ Warenausgkto$ÿReadConfig$("PRICEIT","StandardWarenausgKto")
+ Bestfhr$ÿÿ>(ReadConfig$("PRICEIT","Bestandsfuehrung"))
+ ArtiAutoNum$ÿÿ>(ReadConfig$("PRICEIT","ArtikelAutoNum"))
+ stationsnr$ÿReadConfig$("PRICEIT","STATION")
+ GlervorAdr%ÿÿ0(ReadConfig$("PRiCEiT","LeerzeilenVorAdresse"))
+ GlernachAdr%ÿÿ0(ReadConfig$("PRiCEiT","LeerzeilenNachAdresse"))
+ GlerKopfSeite%ÿÿ0(ReadConfig$("PRiCEiT","LeerzeilenSeitenKopf"))
+ ÿ½ GlerFusSeite% = VAL (ReadConfig$("PRiCEiT","LeerzeilenSeitenFuss"))
+
+ neumaster$ÿ"n"
+ artausw$ÿ"n"
+ gruppenausw$ÿ""
+ asuchopt%ÿ1
+ asuchglob%ÿ1
+ 
+ 
+ ÿÊÿÿÿ™_netpath$ÿ_projekt$ÿ"\"ÿ_projekt$ÿ".HLP"
+ ÿÊÿiÿ³
+ ÿƒDFile(2,"supervis"ÿ_fpw$)
+ ÿ¡test%ÿ0ÿpÿ³ÿ_ÿwErrorHandler
+ ÿƒLOGIN()
+ ÿƒGauge(1,"")
+ ÿƒDFile(2,"OFFICE\sernum"ÿ_fpw$)
+ ÿƒDFile(3,"ZBericht"ÿ_fpw$)
+ ÿƒGauge(2,"")
+ ÿƒDFile(3,"schein"ÿ_fpw$)
+ ÿƒGauge(53,"")
+ ÿƒDFile(3,"lager"ÿ_fpw$)
+ ÿƒGauge(55,"")
+ ÿƒDFile(3,"ZBERART"ÿ_fpw$)
+ ÿƒGauge(57,"")
+ ÿƒDFile(3,"LBUCH"ÿ_fpw$)
+ ÿƒGauge(60,"")
+ ÿƒDFile(3,"artikel"ÿ_fpw$)
+ ÿƒGauge(63,"")
+ ÿƒDFile(3,"auspreis"ÿ_fpw$)
+ ÿƒGauge(65,"")
+ ÿƒDFile(3,"lschein"ÿ_fpw$)
+ ÿƒGauge(69,"")
+ ÿƒDFile(3,"llschein"ÿ_fpw$)
+ ÿƒGauge(70,"")
+ ÿƒDFile(3,"gruppen"ÿ_fpw$)
+ ÿƒGauge(73,"")
+ ÿƒDFile(3,"zlschein"ÿ_fpw$)
+ ÿƒGauge(73,"")
+ ÿƒDFile(3,"bestellv"ÿ_fpw$)
+ ÿƒGauge(75,"")
+ ÿƒDFile(3,"master"ÿ_fpw$)
+ ÿƒGauge(78,"")
+ ÿƒDFile(3,"senden"ÿ_fpw$)
+ ÿƒGauge(80,"")
+ ÿƒDFile(3,"FLOSKEL"ÿ_fpw$)
+ ÿƒGauge(80,"")
+ ÿƒDFile(3,"LAUSPREI"ÿ_fpw$)
+ ÿƒGauge(90,"")
+ ÿƒDFile(3,"einheit"ÿ_fpw$)
+ ÿƒGauge(92,"")
+ ÿƒDFile(3,"waehrumr")
+ ÿƒGauge(95,"")
+ ÿƒDFile(3,"kalks"ÿ_fpw$)
+ ÿƒGauge(98,"")
+ ÿƒDFile(3,"mehrwert"ÿ_fpw$)
+ ÿƒGauge(99,"")
+ ÿƒDFile(3,"zlsdruck"ÿ_fpw$)
+ ÿƒGauge(0,"")
+ ÿßÿ³
+ _mwst%ÿÿ0(ReadConfig$("WAWI","MwSt"))
+ _mengeinh$ÿÿåibm(ReadConfig$("WAWI","Mengeneinheit"))
+ _lager$ÿÿåibm(ReadConfig$("WAWI","Lager"))
+ _w„hrung$ÿÿåibm(ReadConfig$("WAWI","Waehrung"))
+ _Verteiler1%ÿÿ0(ReadConfig$("WAWI","Verteiler1"))
+ _Verteiler2%ÿÿ0(ReadConfig$("WAWI","Verteiler2"))
+ _Verteiler3%ÿÿ0(ReadConfig$("WAWI","Verteiler3"))
+ _Verteiler4%ÿÿ0(ReadConfig$("WAWI","Verteiler4"))
+ _Verteiler5%ÿÿ0(ReadConfig$("WAWI","Verteiler5"))
+ _Verteiler6%ÿÿ0(ReadConfig$("WAWI","Verteiler6"))
+ _Verteiler7%ÿÿ0(ReadConfig$("WAWI","Verteiler7"))
+ _Verteiler8%ÿÿ0(ReadConfig$("WAWI","Verteiler8"))
+ _Verteiler9%ÿÿ0(ReadConfig$("WAWI","Verteiler9"))
+ ÿ²"00000000.00"
+ _KalkLiefGH%ÿÿ0(ReadConfig$("WAWI","KalkLiefGH"))
+ _KalkLiefEH%ÿÿ0(ReadConfig$("WAWI","KalkLiefEH"))
+ _KalkLiefMin%ÿÿ0(ReadConfig$("WAWI","KalkLiefMin"))
+ _KalkLiefAbsch%ÿÿ0(ReadConfig$("WAWI","KalkLiefAbschl"))
+ _Frachtx%ÿÿ0(ReadConfig$("WAWI","Frachtx"))
+ _Warenumschlag%ÿÿ0(ReadConfig$("WAWI","Warenumschlag"))
+ 
+ _HKassenanz%ÿÿ0(ReadConfig$("WAWI","HOSAIKassenanzahl"))
+ ÿ›i%ÿ1ÿq_HKassenanz%
+Hdir$ÿ"HOSAIDirectoryKasse"ÿÿ(i%,"00")
+_HKasseDir$(i%)ÿÿåibm(ReadConfig$("WAWI",Hdir$))
+ ÿ±
+ _HKasseAust$ÿÿåibm(ReadConfig$("WAWI","HOSAIAustauschdatei"))
+ _HXBericht$ÿÿåibm(ReadConfig$("WAWI","HOSAIXBericht"))
+ _HZBericht$ÿÿåibm(ReadConfig$("WAWI","HOSAIZBericht"))
+ _HDFšBeginn$ÿÿåibm(ReadConfig$("WAWI","HOSAIBeginn"))
+ _HDFšVerarb$ÿÿåibm(ReadConfig$("WAWI","HOSAIVerarbeitung"))
+ automatisch$ÿ"n"
+
+ _mwst%ÿÿ0(ReadConfig$("PRiCEiT","MwSt"))
+ ÿƒDFile(3,"GRUPPEN"ÿ_fpw$)
+ ÿ™"gruppen"
+ ÿ£CodeGR.gruppen
+ ÿÉÿ`
+ ÿØÿOÿB("gruppen")
+ProdGruppen$(a%)ÿKurzbezeichnung.gruppen
+a%ÿa%ÿ1
+ÿÉÿ±
+ ÿÙ
+ ÿ’ÿÿ
+
+
+
+
+ '      ***********************************
+ '      ** Formular "WAWI" - Hauptmen   **
+ '      ***********************************
+ 
+ÿÿWAWI()
+ ÿÊÿŸtitle$ÿ" - Hauptbersicht"
+ ÿÊÿË"Hauptauswahl: W„hlen Sie die gewnschte Funktion!"
+ _formend%ÿ0
+ ÿƒGauge(0,"")
+ ÿØ_formend%ÿ0
+WAWIsub%ÿ0
+ÿ¡ÿœÿ"WAWI"ÿp
+ÿƒMNWAWI()
+ÿ´ÿœ"WAWI"
+ÿƒDFile(2,"OFFICE\Adressen"ÿ_fpw$)
+ÿÉÿĞÿ™"adressen"
+ÿÉÿĞÿ™"artikel"
+ÿ¡_help%ÿ1ÿpÿƒDemoInfo(3)
+ÿÊÿÿ³
+ÿƒHideStartup()
+ÿ’ÿ¡
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥
+ÿÉÿæWAWIsub%
+ÿæ1
+ÿƒADRESSEN()
+ÿæ2
+ÿƒARTIKEL()
+ÿæ3
+ÿƒCreateAUSPR()
+ÿ½ CALL AUSPREIS()
+ÿÉÿĞÿ™"artikel"
+ÿÉÿĞÿ™"adressen"
+ÿæ4
+ÿƒOFFICE()
+ÿæ5
+ÿƒSETUP()
+ÿæ6
+ÿƒAZUGANG()
+ÿæ7
+ÿƒGRUPPEN()
+ÿæ8
+ÿƒCreateLiefvor()
+ÿæ9
+ÿ½ CALL FLOSKEL()
+ÿæ10
+ÿƒInventur()
+ÿ½ CALL ZBericht()
+ÿæ11
+ÿƒLagermen()
+ÿæ12
+ÿ½ CALL Lagerliste()
+ÿæ13
+ÿƒBestellvmen()
+ÿæ14
+ÿƒPREISLISTE()
+ÿæ15
+ÿƒOffeneVorg„nge(2)
+ÿæ16
+ÿƒOffeneVorg„nge(1)
+ÿæ17
+ÿƒOffeneVorg„nge(5)
+ ÿ’ÿÉ
+ ÿÙ
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ '      **********************
+ '      ** Artikel Routinen **
+ '      **********************
+
+ ÿ½ Knopf Artikel aus dem Hauptmen
+ÿÿARTIKEL()
+ ÿÊÿÿÉÿ³
+ _formend%ÿ0
+ ARTIKELsub%ÿ0
+ ÿÊÿË""
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿ"ARTIKEL"ÿp
+ÿ´ÿœ"ARTIKEL"ÿí1
+ÿƒMNARTIKEL()
+ÿƒARTIKELIntro()
+ÿ’ÿ¡
+ÿ¬ÿ³
+ÿßÿ³
+ÿÏÿßÿÿ¥
+ÿÉÿæARTIKELsub%
+ÿæ1
+ÿÊÿÿÉÿ³
+artneu1$ÿ""
+artbearb$ÿ"j"
+ÿ”Bestellnummer.artikel,0
+ÿæ2
+ÿÊÿÿÉÿ³
+ÿ”wgbezeich.artikel,0
+ÿæ3
+ÿÊÿÿÉÿ³
+ÿ”w„hrung.artikel,0
+ÿæ4
+ÿÊÿÿÉÿ³
+ÿ”mengeneinh.artikel,0
+ÿæ5
+ÿÊÿÿÉÿ³
+ÿ”ekw„hrung.artikel,0
+ÿæ6
+ÿÊÿÿÉÿ³
+ÿ”vkeh.artikel,0
+ÿæ7
+ÿÊÿÿÉÿ³
+ÿ”vkmin.artikel,0
+ÿæ91
+ÿÊÿÿÉÿ³
+artneu1$ÿ"artikelneu"
+ÿƒARTIKELNeu()
+ÿ”Bestellnummer.artikel,0
+ÿæ92
+ÿƒFStore("artikel")
+ÿÂ"Datensatz gesichert","",2
+ÿæ93
+ÿƒARTIKELSuchen()
+ÿæ94
+ÿƒARTIKELLoesch()
+ÿæ95
+ÿƒSelectPrevious()
+ÿæ96
+ÿƒSelectNext1()
+ÿ’ÿÉ
+ARTIKELsub%ÿ0
+ ÿÙ
+ knr%ÿ0
+ _formend%ÿ0
+ ÿÊÿÿÉÿe
+ ÿƒARTIKELEnde()
+ ÿ’ÿÿ
+
+
+ ' Knopf Artikel Abgang/Zugang aus dem Hauptmen
+ ' =======================================================================
+
+ÿÿAZUGANG()
+ ÿÊÿÿÉÿ³
+ _formend%ÿ0
+ ARTIKELsub%ÿ0
+ ÿÊÿË""
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿ"AZUGANG"ÿp
+ÿ´ÿœ"AZUGANG"ÿí1
+ÿƒMNARTIKEL()
+ÿƒAZUGANGIntro()
+ÿ’ÿ¡
+ÿ¬ÿ³
+ÿßÿ³
+ÿÏÿßÿÿ¥
+ÿÉÿæARTIKELsub%
+ÿæ1
+artzug1$ÿ"j"
+artbearb$ÿ"j"
+ÿ”Bestellnummer.artikel,0
+ÿæ2
+ÿ”wgbezeich.artikel,0
+ÿæ3
+ÿ”w„hrung.artikel,0
+ÿæ4
+ÿ”mengeneinh.artikel,0
+ÿæ5
+ÿ”ekw„hrung.artikel,0
+ÿæ6
+ÿ”vkeh.artikel,0
+ÿæ7
+ÿ”vkmin.artikel,0
+ÿæ91
+artneu1$ÿ"artikelneu"
+artzug1$ÿ"j"
+ÿƒARTIKELNeu()
+ÿ”Bestellnummer.artikel,0
+ÿæ92
+ÿƒFStore("artikel")
+ÿÂ"Datensatz gesichert","",2
+ÿæ93
+ÿƒARTIKELSuchen()
+ÿæ94
+ÿƒARTIKELLoesch()
+ÿæ95
+ÿƒSelectPrevious()
+ÿæ96
+ÿƒSelectNext()
+ÿ’ÿÉ
+ARTIKELsub%ÿ0
+artneu1$ÿ""
+ ÿÙ
+ knr%ÿ0
+ _formend%ÿ0
+ ÿÊÿÿÉÿe
+ ÿƒARTIKELEnde()
+ artzug1$ÿ""
+ artbearb$ÿ""
+ artneu1$ÿ""
+ ÿ’ÿÿ
+ 
+
+ ÿ½ *** Bestandsberechnung nach Artikelzugang ***
+ 
+ÿÿBestandberech()
+ ÿ½ bestand.artikel = bestand.artikel + ZugAbg.artikel - ZugBruch.artikel
+ Bestand.artikelÿlagerbestand.artikelÿbestand01.artikelÿbestand02.artikelÿbestand03.artikelÿbestand04.artikelÿbestand05.artikelÿbestand06.artikelÿbestand07.artikelÿbestand08.artikelÿbestand09.artikel
+ BruchGes.artikelÿBruchGes.artikelÿZugBruch.artikel
+ ÿ’ÿÿ
+
+
+
+ ÿ½ *** Suche, ob Artikel bereits vorhanden
+
+ÿÿQuickSuche()
+ cuart%ÿCodeAR.artikel
+ ÿ¡artneu1$ÿ"artikelneu"ÿp
+quickcode$ÿBestellnummer.artikelÿÿ(Lieferant.artikel,"000000")
+ÿÉÿ¥quickcode$ÿ£QuickCodeArt.artikel
+ÿ¡quickcode$ÿquickcodeart.artikelÿp
+ÿÂ"Artikel bereits vorhanden !","Bitte Artikelnr. des Lieferanten „ndern ?",2
+ÿ’ÿ¡
+ ÿÉÿ¥cuart%ÿ™"artikel"ÿ£CodeAR.artikel
+ ÿœ
+ ÿ^
+artneunr$ÿBestellnummer.artikel
+quickcode$ÿBestellnummer.artikelÿÿ(Lieferant.artikel,"000000")
+ÿÉÿ¥quickcode$ÿ£QuickCodeArt.artikel
+ÿ¡quickcode$ÿquickcodeart.artikelÿp
+ÿÂ"Artikel nicht gefunden !","Soll er neu erfaát werden ?",130,req%
+ÿ¡req%ÿ1ÿp
+artzug1$ÿ"j"
+artbearb$ÿ"j"
+ÿÉÿ¥cuart%ÿ£CodeAR.artikel
+mengeneinh$ÿme.artikel
+artbezlief1$ÿartbezlief.artikel
+liefdatum%ÿletzteLieferung.artikel
+vwarengr%ÿCodeGR.artikel
+vwgbezeich$ÿProduktgruppe.artikel
+vLieferant%ÿLieferant.artikel
+vliefname1$ÿliefname1.artikel
+w„hrung$ÿw„hrung.artikel
+mwst%ÿmwst.artikel
+ÿƒARTIKELNeu()
+ÿ^
+ÿÉÿ¥cuart%ÿ£CodeAR.artikel
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+
+
+
+ ' Artikelzugangs - Intro
+ ' =======================================================================
+ 
+ÿÿAZUGANGIntro()
+ vwarengr%ÿ0
+ vLieferant%ÿ0
+ vliefname1$ÿ""
+ datei$ÿ"artikel"
+ artneu1$ÿ""
+ artbearb$ÿ""
+ artzug1$ÿ""
+ ÿÊÿŸtitle$ÿ" - Artikelzugang/-abgang"
+ ÿÉÿœÿbÿ™"artikel"ÿ£CodeAR.artikel
+ vartcolief$ÿBestellnummer.artikel
+ vwarengr%ÿCodeGR.artikel
+ vwgbezeich$ÿProduktgruppe.artikel
+ vLieferant%ÿLieferant.artikel
+ vliefname1$ÿliefname1.artikel
+ mengeinh$ÿ_mengeinh$
+ w„hrung$ÿ_w„hrung$
+ mwst%ÿ_mwst%
+ ÿ½ artcodeneu% = artcsernum%("artikel")
+ ÿ½ FILE "artikel"
+ ÿÊÿ£ÿt
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ ' ARTIKEL - Intro
+ ' =======================================================================
+ 
+ÿÿARTIKELIntro()
+ vwarengr%ÿ0
+ vLieferant%ÿ0
+ vliefname1$ÿ""
+ datei$ÿ"artikel"
+ artneu1$ÿ""
+ ÿÊÿŸtitle$ÿ" - Artikelverwaltung"
+
+ ÿ½ INDEX Bezeichnung.artikel
+ ÿ½ IF <> 0 then
+ ÿ½   SELECT FORM KEY artnr% FILE "artikel" INDEX CodeAR.artikel
+ ÿ½   INDEX Bezeichnung.artikel
+ ÿ½ ELSE 
+ ÿ¡maske1$ÿ"GRUPPEN1"ÿp
+ÿÉÿbÿ™"artikel"ÿ£CodeAR.artikel
+ ÿ^
+ÿÉÿ¥cuart%ÿ™"artikel"ÿ£CodeAR.artikel
+ ÿ’ÿ¡
+ vartcolief$ÿBestellnummer.artikel
+ vwarengr%ÿCodeGR.artikel
+ vwgbezeich$ÿProduktgruppe.artikel
+ vLieferant%ÿLieferant.artikel
+ vliefname1$ÿliefname1.artikel
+ mengeinh$ÿ_mengeinh$
+ w„hrung$ÿ_w„hrung$
+ mwst%ÿ_mwst%
+ ÿÊÿ£ÿt
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ ' ArtikelNeu
+ ' =======================================================================
+ 
+ÿÿARTIKELNeu()
+ ÿ¡disabled%("ARTIKENeu")ÿpÿ’ÿÿ
+ÿÉÿbÿ™"artikel"ÿ£Artikelcode.artikel
+artcodelast%ÿArtikelcode.artikel
+ ÿ¡artzug1$ÿ"j"ÿp
+ÿ¡ÿ°("artikel")ÿÿ("artikel")ÿpÿƒFStore("artikel")
+ÿÉÿbÿ™"artikel"ÿ£CodeAR.artikel
+vartcolief$ÿBestellnummer.artikel
+vwarengr%ÿCodeGR.artikel
+liefdatum%ÿletzteLieferung.artikel
+ÿ½ artcodeneu% = artcsernum%("artikel")
+ÿ™"artikel"
+vwgbezeich$ÿProduktgruppe.artikel
+vLieferant%ÿLieferant.artikel
+vliefname1$ÿliefname1.artikel
+mengeinh$ÿ_mengeinh$
+w„hrung$ÿ_w„hrung$
+mwst%ÿ_mwst%
+ ÿ’ÿ¡
+artcodeneu%ÿartcsernum%("artikel")
+datei$ÿ"artikel"
+ÿÂ"Bitte Artikelcode best„tigen oder „ndern:","",4,req%,artcodeneu%
+ÿ¡req%ÿ0ÿp
+ÿÉÿ¥artcodeneu%ÿ£Artikelcode.artikel
+ok%ÿ1
+ÿØok%ÿ1ÿartcodeneu%ÿArtikelcode.artikel
+artcodeneu%ÿartcodelast%ÿ1
+ÿÂ"Artikelcode war bereits vorhanden, bitte neuen Artikelcode best„tigen:","",4,req%,artcodeneu%
+ÿ¡req%ÿ0ÿpok%ÿ0
+ÿÉÿ¥artcodeneu%ÿ£Artikelcode.artikel
+ÿÙ
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡ok%ÿ1ÿp
+ÿÉÿ¥datei$ÿáÿ™"sernum"ÿ£datei.sernum
+lastartintern.sernumÿartcodeneu%
+ÿÌÿ™"sernum"
+ÿ
+CodeAR.artikelÿsernum%("artikel")
+artbearb$ÿ""
+Artikelcode.artikelÿartcodeneu%
+Bestellnummer.artikelÿvartcolief$
+me.artikelÿmengeinh$
+letzteLieferung.artikelÿliefdatum%
+CodeGR.artikelÿvwarengr%
+Produktgruppe.artikelÿvwgbezeich$
+Lieferant.artikelÿvLieferant%
+liefname1.artikelÿvliefname1$
+w„hrung.artikelÿw„hrung$
+mwst.artikelÿmwst%
+Material_Leist.artikelÿ"Material"
+warenumschlag.artikelÿ_warenumschlag%
+Lagerort.artikelÿ_lager$
+ÿ½ artbearb$ = ""
+Erfassungsdatum.artikelÿÿQ
+artbezlief.artikelÿartbezlief1$
+ÿƒFStore("artikel")
+ÿœ
+ÿ^
+ÿÉÿ¥cuart%ÿ™"artikel"ÿ£CodeAR.artikel
+ÿ’ÿ¡
+
+ ÿ½ ARTIKELsub% = 1
+ ÿ½ INDEX Artikelcode.artikel
+ ÿ’ÿÿ
+ 
+
+ ' ARTIKEL Ende
+ ' =======================================================================
+ 
+ÿÿARTIKELEnde()
+ ÿ¡ÿ°("artikel")ÿÿ("artikel")ÿpÿƒFStore("artikel")
+ artnr%ÿ0
+ _formend%%ÿ1
+ ÿ’ÿÿ
+ 
+ 
+ ' ARTIKEL l”schen
+ ' =======================================================================
+
+ÿÿARTIKELLoesch()
+ ÿ¡disabled%("ARTIKELoesch")ÿpÿ’ÿÿ
+ cuartnr%ÿCodeAR.artikel
+ ÿÉÿ¥vcodema%ÿ™"supervis"ÿ£codema.supervis
+ l”schauto$ÿ"n"
+ ÿÂ"Soll der Artikel wirklich gel”scht werden ?","",130,req%
+ ÿ¡req%ÿ1ÿp
+ÿÉÿ¥cuartnr%ÿáÿ™"artikel"ÿ£CodeAR.artikel
+ÿÉÿ¾
+ÿÉÿ±
+ÿÂ"Artikel wurde gel”scht!","",2
+ ÿ’ÿ¡
+ ÿœ
+ ÿ’ÿÿ
+ 
+
+ ' ARTIKEL suchen
+ ' =======================================================================
+
+ÿÿARTIKELSuchen()
+ ÿÊÿË"Artikel suchen..."
+ ÿ™"artikel"
+ cuart%ÿCodeAR.artikel
+ ÿ¡(ÿ("artikel")ÿÿ°("artikel"))ÿpÿƒFStore("artikel")
+ ÿ¡opt%ÿ0ÿpopt%ÿ2
+ caption$ÿ"Artikel suchen nach"
+ ÿ‰ÿñ"SArt",0,0,128,127,caption$,"MS Sans Serif",8
+ ÿ|ÿñ"SArt",4,4,4,120,101,0," Suchen nach "
+ ÿ|ÿñ"SArt",6,6,89,114,13,0,0,suna$,30
+ ÿ|ÿñ"SArt",3,6,14,114,11,0,"Artikelcode &intern",2,opt%
+ ÿ|ÿñ"SArt",3,6,26,114,11,0,"Lie&ferant",1,opt%
+ ÿ|ÿñ"SArt",3,6,38,114,11,0,"Artikelbezeichnung &Lieferant",3,opt%
+ ÿ|ÿñ"SArt",3,6,50,114,11,0,"Artikel&code Lieferant",4,opt%
+ ÿ|ÿñ"SArt",3,6,62,114,11,0,"&Artikelbezeichnung intern",5,opt%
+ ÿ|ÿñ"SArt",5,6,78,62,10,0,"Such&bezeichnung"
+ ÿ|ÿñ"SArt",1,13,107,50,15,1,"&Suchen",1,1
+ ÿ|ÿñ"SArt",1,65,107,50,15,0,"&Abbruch",0,0
+ ÿñ"SArt",req%
+ ÿ¾ÿñÿt
+ ÿßÿe
+ ÿÉÿæopt%
+ ÿæ1
+feld$ÿ"liefname1.artikel"
+feld1$ÿ"QuickLiefArtc.artikel"
+ ÿæ2
+feld$ÿ"Artikelcode.artikel"
+ ÿæ3
+feld$ÿ"artbezlief.artikel"
+ ÿæ4
+feld$ÿ"Bestellnummer.artikel"
+ ÿæ5
+feld$ÿ"Bezeichnung.artikel"
+ ÿ’ÿÉ
+ ÿ¡req%ÿ0ÿp
+ÿ£feld$$
+ÿ½ SET STATUS "Suche Artikel..."
+ÿ¡opt%ÿ4ÿp
+ÿ×LAuswahl1$(1)
+a%ÿ0
+ÿÉÿ`
+ÿÉÿ¥suna$ÿ£feld$$
+ÿ¡suna1$ÿsuna$ÿopt%ÿopt1%ÿp
+ÿØartz%ÿ0
+	Artikel$(artz%)ÿ""
+	artz%ÿartz%ÿ1
+ÿÙ
+suna1$ÿÿ>(suna$)
+suna$ÿsuna1$
+ÿØÿ>(ÿ+(feld$$,ÿ/(suna$)))ÿÿ>(suna$)ÿÿOÿB("artikel")
+	best$ÿÿ+(Bestellnummer.artikel)
+	ÿ›i%ÿÿ/(Bestellnummer)ÿq20
+best$ÿbest$ÿ" "
+	ÿ±i%
+	art$ÿÿ+(ÿ(Artikelcode.artikel,"999999999"))
+	ÿ›i%ÿÿ/(art$)ÿq9
+art$ÿart$ÿ" "
+	ÿ±i%
+	Artikel$(a%)ÿart$ÿ", "ÿbest$ÿ"  "ÿBezeichnung.artikelÿ", "ÿÿ(vkeh.artikel,"999999.00")ÿÿ'(120)ÿÿ(codear.artikel,"000000000")
+	a%ÿa%ÿ1
+	ÿÉÿ±
+ÿÙ
+artz%ÿa%
+opt1%ÿopt%
+suna1$ÿsuna$
+LAuswahl$ÿLieferant$(0)
+LAuswahl1$(0)ÿLAuswahl$
+ÿ’ÿ¡
+ÿ‰ÿñ"PREISLIS",0,0,308,225,"Auswahl","MS Sans Serif",8
+ÿ|ÿñ"PREISLIS",4,2,6,306,197,0," Auswahl des Artikel"
+ÿ|ÿñ"PREISLIS",7,5,17,303,185,2,2,Artikel$,Lauswahl1$," "
+ÿ|ÿñ"PREISLIS",1,85,209,55,16,1,"&OK",1,1
+ÿ|ÿñ"PREISLIS",1,145,209,55,16,0,"&Abbrechen",0,0
+ÿñ"PREISLIS",req%
+ÿ¾ÿñ"PREISLIS"
+ÿ¡req%ÿ1ÿp
+LAuswahl$ÿLAuswahl1$(0)
+cuart%ÿÿ0(ÿ-(LAuswahl$,9))
+ÿ’ÿ¡
+ÿßÿ³
+ÿ½ WHILE a% >= 0
+ÿ½ Artikel$(a%) = ""
+ÿ½ a% = a% - 1
+ÿ½ WEND 
+ÿwEnde1
+ÿ’ÿ¡
+ÿ¡opt%ÿ2ÿp
+ÿÉÿ¥ÿ0(suna$)ÿ£feld$$
+ÿ¡ÿC("artikel")ÿpcuart%ÿCodeAR.artikel
+ÿ¡ÿOÿC("artikel")ÿp
+ÿ½ REQUEST "Keine Artikel gefunden!!","",113
+ÿ×LAuswahl1$(1)
+a%ÿ0
+ÿ£artikelnummer.artikel
+ÿÉÿ`
+ÿÉÿ¥suna$ÿ£Artikelnummer.artikel
+ÿ¡suna1$ÿsuna$ÿopt%ÿopt1%ÿp
+	ÿØartz%ÿ0
+Artikel$(artz%)ÿ""
+artz%ÿartz%ÿ1
+	ÿÙ
+ 
+	ÿØÿ>(ÿ+(artikelnummer.artikel,ÿ/(suna$)))ÿÿ>(suna$)ÿÿOÿB("artikel")
+art$ÿÿ+(Artikelnummer.artikel)
+ÿ›i%ÿÿ/(art$)ÿq9
+art$ÿart$ÿ" "
+ÿ±i%
+Artikel$(a%)ÿart$ÿ"  "ÿBezeichnung.artikelÿ", "ÿÿ(vkeh,"9999999.00")ÿÿ'(120)ÿÿ(codear.artikel,"000000000")
+a%ÿa%ÿ1
+ÿÉÿ±
+	ÿÙ
+ÿ’ÿ¡
+artz%ÿa%
+opt1%ÿopt%
+suna1$ÿsuna$
+LAuswahl$ÿLieferant$(0)
+LAuswahl1$(0)ÿLAuswahl$
+ÿ‰ÿñ"PREISLIS",0,0,308,225,"Auswahl","MS Sans Serif",8
+ÿ|ÿñ"PREISLIS",4,2,6,306,197,0," Auswahl des Artikel"
+ÿ|ÿñ"PREISLIS",7,5,17,303,185,2,2,Artikel$,Lauswahl1$," "
+ÿ|ÿñ"PREISLIS",1,85,209,55,16,1,"&OK",1,1
+ÿ|ÿñ"PREISLIS",1,145,209,55,16,0,"&Abbrechen",0,0
+ÿñ"PREISLIS",req%
+ÿ¾ÿñ"PREISLIS"
+ÿ¡req%ÿ1ÿp
+	LAuswahl$ÿLAuswahl1$(0)
+	cuart%ÿÿ0(ÿ-(LAuswahl$,9))
+ÿ’ÿ¡
+ÿßÿ³
+ÿ’ÿ¡
+
+ÿwEnde1
+ÿ^
+ÿ×LAuswahl1$(1)
+a%ÿ0
+ÿÉÿ`
+ÿÉÿ¥suna$ÿ£feld$$
+ÿ¡suna1$ÿsuna$ÿopt%ÿopt1%ÿp
+ÿØartz%ÿ0
+	Artikel$(artz%)ÿ""
+	artz%ÿartz%ÿ1
+ÿÙ
+ÿØÿ>(ÿ+(feld$$,ÿ/(suna$)))ÿÿ>(suna$)ÿÿOÿB("artikel")
+	art$ÿÿ+(ÿ(Artikelcode.artikel,"999999999"))
+	ÿ›i%ÿÿ/(art$)ÿq9
+art$ÿart$ÿ" "
+	ÿ±i%
+	Artikel$(a%)ÿart$ÿ"  "ÿBezeichnung.artikelÿ", "ÿÿ(vkeh.artikel,"999999.00")ÿÿ'(120)ÿÿ(codear.artikel,"000000000")
+	a%ÿa%ÿ1
+	ÿÉÿ±
+ÿÙ
+ÿ’ÿ¡
+artz%ÿa%
+opt1%ÿopt%
+suna1$ÿsuna$
+LAuswahl$ÿLieferant$(0)
+LAuswahl1$(0)ÿLAuswahl$
+ÿ‰ÿñ"PREISLIS",0,0,308,225,"Auswahl","MS Sans Serif",8
+ÿ|ÿñ"PREISLIS",4,2,6,306,197,0," Auswahl des Artikel"
+ÿ|ÿñ"PREISLIS",7,5,17,303,185,2,2,Artikel$,Lauswahl1$," "
+ÿ|ÿñ"PREISLIS",1,85,209,55,16,1,"&OK",1,1
+ÿ|ÿñ"PREISLIS",1,145,209,55,16,0,"&Abbrechen",0,0
+ÿñ"PREISLIS",req%
+ÿ¾ÿñ"PREISLIS"
+ÿ¡req%ÿ1ÿp
+LAuswahl$ÿLAuswahl1$(0)
+cuart%ÿÿ0(ÿ-(LAuswahl$,9))
+ÿ’ÿ¡
+ÿßÿ³
+ 
+ÿ½ SELECT KEY suna$ INDEX feld$$
+ÿwEnde1
+ÿ¡ÿ>(ÿ+(feld$$,ÿ/(suna$)))ÿÿ>(suna$)ÿp
+ÿÂ"Eintrag nicht gefunden!","hnliche Eintragungen suchen?",130,req%
+ÿ¡req%ÿ1ÿp
+	suna$ÿ"*"ÿsuna$ÿ"*"
+	wi%ÿ0
+	ÿƒServer("LISTBOXINIT","Artikelauswahl")
+	ÿ™"artikel"
+	ÿ£CodeAR.ARTIKEL
+	ÿÉÿ`
+	ÿßÿe
+	ÿƒGauge(1,"Artikeldatei wird durchsucht...")
+	_prozt%ÿ0
+	_anz%ÿÿI("artikel")
+	ÿØÿOÿB("artikel")
+_proz%ÿÿ((100ÿ_anz%)ÿCodeAR.artikel)
+ÿ¡_proz%ÿ100ÿp_proz%ÿ100
+ÿ¡_proz%ÿ
+2ÿp_proz%ÿ2
+ÿ¡_proz%ÿ_prozt%ÿp
+_prozt%ÿ_proz%
+ÿÊÿË"erweiterte Suche... "ÿÿ(_prozt%,"999")ÿ" %"
+ÿƒGauge(_proz%,"")
+ÿ’ÿ¡
+artfound%ÿ0
+ÿ¡feld$$ÿsuna$ÿpartfound%ÿ1
+ÿ¡artfound%ÿ1ÿp
+ÿÉÿæopt%
+ÿæ1
+tmpZeile$ÿArtBezLief.ARTIKELÿ", "ÿBestellnummer.ARTIKELÿ", "ÿÿF(ÿH(ÿ(Artikelcode.artikel,"999999.9999")))ÿ", "ÿBezeichnung.ARTIKELÿ" ("ÿÿ(CodeAR.artikel,"000000")ÿ")"
+msg$ÿ"Bitte w„hlen Sie den gewnschten Artikel aus:"ÿÿ(10)ÿÿ(13)ÿ"Art.-Bez. Lief., Bestellnr., Artikelcode, Artikelbez."
+ÿæ2
+tmpZeile$ÿÿF(ÿH(ÿ(Artikelcode.artikel,"9999999")))ÿ", "ÿArtBezLief.ARTIKELÿ", "ÿBestellnummer.ARTIKELÿ", "ÿBezeichnung.ARTIKELÿ" ("ÿÿ(CodeAR.artikel,"000000")ÿ")"
+msg$ÿ"Bitte w„hlen Sie den gewnschten Artikel aus:"ÿÿ(10)ÿÿ(13)ÿ"Artikelcode, Art.-Bez. Lief., Bestellnr., Artikelbez."
+ÿæ3
+tmpZeile$ÿArtBezLief.ARTIKELÿ", "ÿBestellnummer.ARTIKELÿ", "ÿÿF(ÿH(ÿ(Artikelcode.artikel,"999999.9999")))ÿ", "ÿBezeichnung.ARTIKELÿ" ("ÿÿ(CodeAR.artikel,"000000")ÿ")"
+msg$ÿ"Bitte w„hlen Sie den gewnschten Artikel aus:"ÿÿ(10)ÿÿ(13)ÿ"Art.-Bez. Lief., Bestellnr., Artikelcode, Artikelbez."
+ÿæ4
+tmpZeile$ÿBestellnummer.ARTIKELÿ", "ÿArtBezLief.ARTIKELÿ", "ÿÿF(ÿH(ÿ(Artikelcode.artikel,"999999.9999")))ÿ", "ÿBezeichnung.ARTIKELÿ" ("ÿÿ(CodeAR.artikel,"000000")ÿ")"
+msg$ÿ"Bitte w„hlen Sie den gewnschten Artikel aus:"ÿÿ(10)ÿÿ(13)ÿ"Bestellnr., Art.-Bez. Lief., Artikelcode, Artikelbez."
+ÿæ5
+tmpZeile$ÿArtBezLief.ARTIKELÿ", "ÿBestellnummer.ARTIKELÿ", "ÿÿF(ÿH(ÿ(Artikelcode.artikel,"999999.9999")))ÿ", "ÿBezeichnung.ARTIKELÿ" ("ÿÿ(CodeAR.artikel,"000000")ÿ")"
+msg$ÿ"Bitte w„hlen Sie den gewnschten Artikel aus:"ÿÿ(10)ÿÿ(13)ÿ"Art.-Bez. Lief., Bestellnr., Artikelcode, Artikelbez."
+ÿ’ÿæ
+wi%ÿwi%ÿ1
+ÿƒServer("GaugeMessage","Artikeldatei wird durchsucht... "ÿÿF(ÿ(wi%,"9999"))ÿ" gefunden")
+ÿƒServer("LISTBOXADD",tmpZeile$)
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"artikel"ÿ£CodeAR.artikel
+	ÿÙ
+	ÿƒGauge(0,"")
+	ÿÊÿË""
+	ÿ¡wi%ÿ0ÿp
+ÿÊÿË"Bitte w„hlen Sie einen Artikel aus"
+ÿƒServer("LISTBOXSHOW",msg$)
+erg$ÿServerReply$()
+ÿ¡erg$ÿ""ÿp
+cuart%ÿÿ0(ÿ,(erg$,ÿ/(erg$)ÿ6,6))
+ÿ’ÿ¡
+	ÿ^
+ÿƒFehler("Kein entsprechender Artikel gefunden!","")
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ^
+cuart%ÿCodeAR.artikel
+ÿ’ÿ¡
+Ende1: 
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿÊÿË""
+ ÿÉÿ¥cuart%ÿ™"artikel"ÿ£CodeAR.artikel
+ ÿ¡opt%ÿ1ÿp
+ÿÊÿ£feld1$$
+ÿ£feld1$$
+ ÿ^
+ÿÊÿ£feld$$
+ÿ£feld$$
+ ÿ’ÿ¡
+ ÿœ
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ ÿ½ *** Maske Abgang/Zugang - Knopf Show ***
+ÿÿSHOW1()
+ cuart%ÿCodeAR.artikel
+ ÿƒGauge(0,"")
+ ÿÊÿË""
+ ÿ¡wi%ÿ0ÿp
+ÿÊÿË"Bitte w„hlen Sie einen Artikel aus"
+ÿƒServer("LISTBOXSHOW",msg$)
+erg$ÿServerReply$()
+ÿ¡erg$ÿ""ÿp
+cuart%ÿÿ0(ÿ,(erg$,ÿ/(erg$)ÿ6,6))
+ÿ’ÿ¡
+ ÿ^
+ÿƒFehler("Kein entsprechender Artikel gefunden!","")
+ ÿ’ÿ¡
+ ÿÉÿ¥cuart%ÿ™"artikel"ÿ£CodeAR.artikel
+ ÿ¡feld$ÿ""ÿp
+ÿÊÿ£feld$$
+ÿ£feld$$
+ ÿ^
+ÿÊÿ£CodeAR.artikel
+ÿ£CodeAR.artikel
+ ÿ’ÿ¡
+ ÿœ
+ ÿßÿ³
+ ÿ’ÿÿ
+
+ 
+ ' Lieferanten suchen in Adressdatei (Anzeige aller Lieferanten)
+ ' =======================================================================
+
+ÿÿWLiefSu2()
+ codeart1%ÿCodeAR.artikel
+ ÿÉÿ¥codeart1%ÿáÿ™"artikel"ÿ£CodeAR.artikel
+ ÿ½ REQUEST "W„hlen Sie einen Lieferanten aus:","",25,reg%,Liefnr1%,65,CodeKU.adressen,Nachname.adressen,vorname.adressen INDEX nachname.adressen WHERE AALieferant.adressen = "j"
+ liefnr1%ÿLiefersuche1%()
+ ÿ¡liefnr1%ÿ0ÿp
+liefnr1%ÿkunr%
+ÿÉÿ¥liefnr1%ÿ™"adressen"ÿ£CodeKU.adressen
+Lieferant.artikelÿliefnr1%
+liefname1.artikelÿNachname.adressen
+vLieferant%ÿLieferant.artikel
+vliefname1$ÿliefname1.artikel
+ÿœ
+ÿƒFStore("artikel")
+ ÿ’ÿ¡
+ ÿßÿ³
+ ÿ”Bezeichnung.artikel,0
+ ÿ’ÿÿ
+ 
+
+ ' Lieferanten suchen in Artikeldatei (Anzeige aller Lieferanten)  
+ÿÿWLiefSu3()
+ suli$ÿliefname1.artikelÿ"*"
+ ÿ½ REQUEST "W„hlen Sie einen Lieferanten aus:","",25,reg%,Lieferant.artikel,65,CodeKU.adressen,Nachname.adressen,vorname.adressen INDEX nachname.adressen WHERE nachname.adressen LIKE suli$ AND AALieferant.adressen = "j"
+ ÿ½  IF reg% = 1 THEN 
+ÿÉÿ™"adressen"ÿĞnachname ÿsuna$
+ liefname1.artikelÿNachname.adressen
+ Lieferant.artikelÿcodeku.adressen
+vLieferant%ÿLieferant.artikel
+vliefname1$ÿliefname1.artikel
+ÿœ
+ÿ½ EXECUTE "enter " + "Bezeichnung.artikel,0"
+ÿ½ ARTIKELsub% = 1
+ÿ”Bestellnummer.artikel,0
+ ÿ½  END IF 
+ ÿ’ÿÿ
+
+ 
+ ' Warengruppe suchen 
+ ' =======================================================================
+
+ÿÿWGSuche()
+ artnr%ÿCodeAR.artikel
+ ÿÂ"W„hlen Sie eine Warengruppe aus:","",25,reg%,WGnu%,30,CodeGR.gruppen,Produktgruppe.gruppenÿ£Produktgruppe.gruppen
+ ÿ™"gruppen"
+ ÿÉÿ¥wgnu%ÿ£CodeGR.gruppen
+ wgbez$ÿProduktgruppe.gruppen
+ ÿ™"artikel"
+ ÿÉÿ¥artnr%ÿáÿ™"artikel"ÿ£codear.artikel
+ CodeGR.artikelÿwgnu%
+ Produktgruppe.artikelÿwgbez$
+ ÿƒQuickStore("artikel")
+ ÿœ
+ ÿ”me.artikel,0
+ ÿ’ÿÿ
+ 
+
+ ' Warengruppe neu
+ ' =======================================================================
+
+ÿÿWGNeu1()
+ wgbez$ÿProduktgruppe.artikel
+ artnr%ÿCodeAR.artikel
+ wgnu%ÿCodeGR.artikel
+ ÿ™"gruppen"
+ ÿÉÿ¥wgbez$ÿ£Produktgruppe.gruppen
+ ÿ¡wgbez$ÿProduktgruppe.gruppenÿp
+ÿÂ"Warengruppenbezeichnung nicht vorhanden!","Neuaufnahme ?",130,reg%
+ÿ¡reg%ÿ1ÿp
+ÿ£CodeGR.gruppen
+ÿÉÿb
+nr%ÿCodeGR.gruppen
+ÿ
+CodeGR.gruppenÿnr%ÿ1
+nenr%ÿCodeGR.gruppen
+Produktgruppe.gruppenÿwgbez$
+Kurzbezeichnung.gruppenÿwgbez$
+ÿƒFStore("gruppen")
+ÿ™"artikel"
+ÿ½ SELECT KEY artnr% LOCK FILE "artikel" INDEX codear.artikel
+CodeGR.artikelÿnenr%
+Produktgruppe.artikelÿwgbez$
+ÿƒQuickStore("artikel")
+wgnu%ÿnenr%
+ÿ^
+ÿÂ"Warengruppe nicht korrekt","",2
+ÿÂ"W„hlen Sie eine Warengruppe aus:","",25,reg%,WGNu%,30,CodeGR.gruppen,Produktgruppe.gruppenÿ£Produktgruppe.gruppen
+ÿ¡req%ÿ0ÿp
+ÿÉÿ`ÿ£CodeGR.gruppen
+wgnu%ÿCodeGR.gruppen
+wgkorrekt$ÿ"n"
+ÿ’ÿ¡
+ÿ™"artikel"
+CodeGR.artikelÿwgnu%
+ÿ’ÿ¡
+ ÿ^
+wgnu%ÿCodeGR.gruppen
+wgbez$ÿProduktgruppe.gruppen
+ÿ™"artikel"
+ÿ½ SELECT KEY artnr% LOCK FILE "artikel" INDEX codear.artikel
+CodeGR.artikelÿwgnu%
+Produktgruppe.artikelÿwgbez$
+ÿƒQuickStore("artikel")
+ ÿ’ÿ¡
+ ÿœ
+ ÿ¡wgkorrekt$ÿ"n"ÿp
+ARTIKELsub%ÿ3
+ ÿ^
+wgkorrekt$ÿ""
+ARTIKELsub%ÿ2
+ ÿ’ÿ¡
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+
+
+ ' Warengruppennummer prfen 
+ ' =======================================================================
+
+ÿÿWGNeu2()
+ wgbez$ÿProduktgruppe.artikel
+ artnr%ÿCodeAR.artikel
+ wgnu%ÿCodeGR.artikel
+ ÿ™"gruppen"
+ ÿÉÿ¥wgnu%ÿ£CodeGR.gruppen
+ ÿ¡wgnu%ÿCodeGR.gruppenÿp
+ÿÂ"Warengruppennummer nicht vorhanden! Sie sollten erst","die neue Warengruppe aufnehmen oder eine vorhandene ausw„hlen!",2
+ÿÂ"W„hlen Sie eine Warengruppe aus:","",25,reg%,WGNu%,30,CodeGR.gruppen,Produktgruppe.gruppenÿ£Produktgruppe.gruppen
+ÿ¡req%ÿ0ÿp
+ÿÉÿ`ÿ£CodeGR.gruppen
+wgnu%ÿCodeGR.gruppen
+wgkorrekt$ÿ"n"
+ÿ’ÿ¡
+ÿ™"artikel"
+CodeGR.artikelÿwgnu%
+Produktgruppe.artikelÿwgbez$
+wgkorrekt$ÿ"n"
+ ÿ^
+ÿÉÿ¥wgnu%ÿ£CodeGR.gruppen
+wgnu%ÿCodeGR.gruppen
+wgbez$ÿProduktgruppe.gruppen
+ÿ™"artikel"
+CodeGR.artikelÿwgnu%
+Produktgruppe.artikelÿwgbez$
+ ÿ’ÿ¡
+ ÿœ
+ ÿ¡wgkorrekt$ÿ"n"ÿp
+ARTIKELsub%ÿ3
+ ÿ^
+wgkorrekt$ÿ""
+ARTIKELsub%ÿ2
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+
+
+ 
+ 
+ 
+ ' Artikelbezeichnung intern aus der des Lieferanten bernehmen
+ ' =======================================================================
+
+ÿÿArtikelbezgen()
+ ÿ¡bezeichnung.artikelÿ""ÿp
+bezeichnung.artikelÿArtBezLief.artikel
+ ÿ’ÿ¡
+ ÿ”letztelieferung.artikel,0
+ ÿ’ÿÿ
+ 
+
+
+
+ ÿ½ Sprungauswahl nach Feld Bezeichnung
+
+ÿÿSprungBez()
+ ÿ¡artneu1$ÿ""ÿartzug1$ÿ"j"ÿp
+ÿ”Artikelcode.artikel,0
+ ÿ^
+ÿ”ek.artikel,0
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+
+
+
+ ' Anzeige und Auswahl der Mengeneinheiten / Berechnung Verteiler
+ ' =======================================================================
+
+ÿÿSatzBerech()
+ berechja$ÿ""
+ artnr%ÿCodeAR.artikel
+ mengeinh$ÿme.artikel
+ ÿ™"einheit"
+ ÿÉÿ¥mengeinh$ÿ£einhbez.einheit
+ ÿ¡mengeinh$ÿeinhbez.einheitÿp
+ÿÂ"Mengeneinheit nicht vorhanden!","Neuaufnahme?",130,reg%
+ÿ¡reg%ÿ1ÿp
+ÿ
+einhbez.einheitÿmengeinh$
+ÿƒFStore("einheit")
+ÿ™"artikel"
+me.artikelÿmengeinh$
+ÿ^
+ÿÂ"Mengeneinheit nicht korrekt","",2
+ÿÂ"W„hlen Sie eine Mengeneinheit aus:","",25,reg%,mengeinh$,30,einhbez.einheitÿ£einhbez.einheit
+ÿ¡req%ÿ0ÿp
+mengeinh$ÿ_mengeinh$
+ÿ’ÿ¡
+ÿ™"artikel"
+me.artikelÿmengeinh$
+ÿ’ÿ¡
+ ÿ^
+ÿ™"artikel"
+me.artikelÿmengeinh$
+ ÿ’ÿ¡
+ mengeinh$ÿme.artikel
+ ÿ¡mengeinh$ÿ"SATZ"ÿmengeinh$ÿ"PAAR"ÿmengeinh$ÿ"DUTZEND"ÿp
+
+ÿ½ **** HIER Abfragedialog und Einzelsatzerzeugung fr Artikeldatei 
+
+ ÿ^
+ÿ½  IF artneu1$ = "" THEN 
+ÿ½   REQUEST "Keine Neueingabe !","Sollen trotzdem die Verteilervorschl„ge neu berechnet werden ?",135,req%
+ÿ½ IF req% <> 1 THEN berechja$ = ""
+ÿ½ IF req% = 1 THEN berechja$ = "J"
+ÿ½ END IF 
+berechja$ÿ"J"
+ÿ¡artneu1$ÿ""ÿberechja$ÿ"J"ÿp
+verteiler1.artikelÿ0:verteiler2.artikelÿ0:verteiler3.artikelÿ0:verteiler4.artikelÿ0:verteiler5.artikelÿ0:verteiler6.artikelÿ0:verteiler7.artikelÿ0:verteiler8.artikelÿ0:verteiler9.artikelÿ0
+ÿ½ verteiler10.artikel = 0
+ÿ¡artzug1$ÿ"j"ÿp
+ÿ¡_verteiler1%ÿ0ÿpverteiler1.artikelÿ(bestand.artikelÿ_verteiler1%)ÿ100ÿ0.5
+ÿ¡_verteiler2%ÿ0ÿpverteiler2.artikelÿ(bestand.artikelÿ_verteiler2%)ÿ100ÿ0.5
+ÿ¡_verteiler3%ÿ0ÿpverteiler3.artikelÿ(bestand.artikelÿ_verteiler3%)ÿ100
+ÿ¡_verteiler4%ÿ0ÿpverteiler4.artikelÿ(bestand.artikelÿ_verteiler4%)ÿ100
+ÿ¡_verteiler5%ÿ0ÿpverteiler5.artikelÿ(bestand.artikelÿ_verteiler5%)ÿ100
+ÿ¡_verteiler6%ÿ0ÿpverteiler6.artikelÿ(bestand.artikelÿ_verteiler6%)ÿ100
+ÿ¡_verteiler7%ÿ0ÿpverteiler7.artikelÿ(bestand.artikelÿ_verteiler7%)ÿ100
+ÿ¡_verteiler8%ÿ0ÿpverteiler8.artikelÿ(bestand.artikelÿ_verteiler8%)ÿ100
+ÿ¡_verteiler9%ÿ0ÿpverteiler9.artikelÿ(bestand.artikelÿ_verteiler9%)ÿ100
+vert%ÿbestand ÿ(verteiler1 ÿverteiler2 ÿverteiler3 ÿverteiler4 ÿverteiler5 ÿverteiler6 ÿverteiler7 ÿverteiler8 ÿverteiler9)
+verteiler1 ÿverteiler1 ÿvert%
+ÿ^
+ÿ¡_verteiler1%ÿ0ÿpverteiler1.artikelÿ(zugabg.artikelÿ_verteiler1%)ÿ100ÿ0.5
+ÿ¡_verteiler2%ÿ0ÿpverteiler2.artikelÿ(zugabg.artikelÿ_verteiler2%)ÿ100ÿ0.5
+ÿ¡_verteiler3%ÿ0ÿpverteiler3.artikelÿ(zugabg.artikelÿ_verteiler3%)ÿ100
+ÿ¡_verteiler4%ÿ0ÿpverteiler4.artikelÿ(zugabg.artikelÿ_verteiler4%)ÿ100
+ÿ¡_verteiler5%ÿ0ÿpverteiler5.artikelÿ(zugabg.artikelÿ_verteiler5%)ÿ100
+ÿ¡_verteiler6%ÿ0ÿpverteiler6.artikelÿ(zugabg.artikelÿ_verteiler6%)ÿ100
+ÿ¡_verteiler7%ÿ0ÿpverteiler7.artikelÿ(zugabg.artikelÿ_verteiler7%)ÿ100
+ÿ¡_verteiler8%ÿ0ÿpverteiler8.artikelÿ(zugabg.artikelÿ_verteiler8%)ÿ100
+ÿ¡_verteiler9%ÿ0ÿpverteiler9.artikelÿ(zugabg.artikelÿ_verteiler9%)ÿ100
+vert%ÿzugabg ÿ(verteiler1 ÿverteiler2 ÿverteiler3 ÿverteiler4 ÿverteiler5 ÿverteiler6 ÿverteiler7 ÿverteiler8 ÿverteiler9)
+verteiler1 ÿverteiler1 ÿvert%
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ berechja$ÿ""
+ ÿœ
+ ÿƒFStore("artikel")
+ ÿ’ÿÿ
+ 
+
+
+
+
+ ' Mengeneinheit ausw„hlen
+ ' =======================================================================
+ 
+ÿÿMEAnzeig()
+ artnr%ÿCodeAR.artikel
+ ÿÂ"W„hlen Sie eine Mengeneinheit aus:","",25,reg%,mengeinh$,30,einhbez.einheitÿ£einhbez.einheit
+ ÿ™"artikel"
+ me.artikelÿmengeinh$
+ ÿœ
+ ÿ”w„hrung.artikel,0
+ ÿ’ÿÿ
+ 
+
+ ' Lager ausw„hlen
+ ' =======================================================================
+ 
+ÿÿLagerAuswahl()
+ artnr%ÿCodeAR.artikel
+ ÿÂ"W„hlen Sie ein Lager aus:","",25,reg%,lager$,30,lagerort.lagerÿ£lagerort.lager
+ ÿ™"artikel"
+ lagerort.artikelÿlager$
+ ÿœ
+ ÿ”w„hrung.artikel,0
+ ÿ’ÿÿ
+ 
+
+ ' W„hrung ausw„hlen
+ ' =======================================================================
+
+ÿÿW„hrungAnzeig()
+ artnr%ÿCodeAR.artikel
+ ÿ½ REQUEST "W„hlen Sie eine W„hrung aus:","",25,reg%,W„hrung.artikel,30,w„hrung.waehrumr,umrfaktor.waehrumr INDEX w„hrung.waehrumr
+
+ ÿ×Keywaehr$(ÿA("waehrumr"))
+ ÿ×Auswahl$(1)
+ ÿßÿe
+ ÿ™"waehrumr"
+ ÿÉÿ`
+ a%ÿ0
+ prompt$ÿ"ZZZZZZZ"
+ ÿØÿOÿB("waehrumr")
+Keywaehr$(a%)ÿÿ+(w„hrung.waehrumr,10)ÿ"          "ÿÿ(9)ÿÿ(umrfaktor.waehrumr,"9999999.0000")
+ÿ¡Keywaehr$(a%)ÿ
+prompt$ÿpprompt$ÿKeywaehr$(a%)
+a%ÿa%ÿ1
+ÿÉÿ±
+ ÿÙ
+ ÿßÿ³
+ ÿ‰ÿñ"KEYWORD",0,0,233,200,"W„hrungen","MS Sans Serif",8
+ ÿ|ÿñ"KEYWORD",4,0,1,233,176,0,""
+ ÿ|ÿñ"KEYWORD",9,4,12,21,24,2
+ ÿ|ÿñ"KEYWORD",5,31,14,189,19,0,"Bitte w„hlen Sie die W„hrung aus, die in den aktuellen Artikel aufgenommen werden soll:"
+ ÿ|ÿñ"KEYWORD",7,31,38,188,122,130,2,Keywaehr$,Auswahl$,prompt$
+ ÿ|ÿñ"KEYWORD",6,31,158,188,12,8,0,KW$,20
+ ÿ|ÿñ"KEYWORD",6,179,158,43,12,0,0,umr%,20
+ ÿ|ÿñ"KEYWORD",5,108,158,65,12,0,"Umrechnungsfaktor"
+ ÿ¡MNdisabled%("SUPERVISOR")ÿp
+ÿ|ÿñ"KEYWORD",1,57,182,55,15,1,"&OK",1,1
+ÿ|ÿñ"KEYWORD",1,113,182,55,15,0,"&Abbrechen",0,0
+ ÿ^
+ÿ|ÿñ"KEYWORD",1,32,182,55,15,1,"&OK",1,1
+ÿ|ÿñ"KEYWORD",1,88,182,55,15,0,"&Abbrechen",0,0
+ÿ|ÿñ"KEYWORD",1,144,182,55,15,0,"&L”schen",2,1
+ ÿ’ÿ¡
+ ÿñ"KEYWORD",req%
+ ÿ¾ÿñ"KEYWORD"
+ ÿ¡req%ÿ0ÿp
+ÿ¡kw$ÿ""ÿpkw$ÿÿ+(Auswahl$(0),10)
+ÿ¡req%ÿ1ÿp
+ÿ½ ** W„hrung neu aufnehmen
+kw1$ÿÿ+(kw$,10)
+ÿ¡ÿOÿJ(kw1$,w„hrung.waehrumr)ÿp
+ÿ
+w„hrung.waehrumrÿÿ+(kw$,10)
+umrfaktor.waehrumrÿumr%
+ÿƒFStore("waehrumr")
+ÿ’ÿ¡
+ÿ™"artikel"
+w„hrung.artikelÿÿ+(kw$,10)
+ÿƒFStore("artikel")
+ÿ’ÿ¡
+ÿ¡req%ÿ2ÿp
+ÿ½ ** Stichwort aus Datei KEYWORDS l”schen
+kw1$ÿÿ+(kw$,10)
+ÿ¡ÿJ(kw1$,w„hrung.waehrumr)ÿp
+ÿÉÿ¥kw1$ÿáÿ™"waehrumr"ÿ£w„hrung.waehrumr
+ÿÂ"Wollen Sie die W„hrung "ÿÿ(34)ÿkw1$ÿÿ(34),"wirklich aus der W„hrungsliste entfernen?",135,req2%
+ÿ¡req2%ÿ1ÿp
+	ÿÉÿ¾
+	ÿÊÿË"W„hrung gel”scht"
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Die eingegebene W„hrung ist nicht in der W„hrungsliste enthalten!","")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿÊÿË""
+ ÿ™"artikel"
+ w„hrung$ÿw„hrung.artikel
+ ÿßÿ³
+ ÿœ
+ ÿ”ekw„hrung.artikel,0
+ ÿ’ÿÿ
+ 
+
+ ' W„hrung prfen
+ ' =======================================================================
+ 
+ÿÿW„hrungPrf()
+ artnr%ÿCodeAR.artikel
+ w„hrung$ÿw„hrung.artikel
+ ÿ™"waehrumr"
+ ÿÉÿ¥w„hrung$ÿ£w„hrung.waehrumr
+ ÿ¡w„hrung$ÿw„hrung.waehrumrÿp
+ÿÂ"W„hrung nicht vorhanden!","Neuaufnahme?",130,reg%
+ÿ¡reg%ÿ1ÿp
+ufaktor1%ÿ0
+ufaktor2%ÿ1
+ÿØufaktor1%ÿufaktor2%
+d$ÿ"dia"
+ÿ‰ÿñd$,0,0,176,54,"W„hrungsumrechnungsfaktor > 0 eingeben !","MS Sans Serif",8
+ÿ|ÿñd$,5,33,4,72,8,0,"Umrechnungsfaktor:"
+ÿ|ÿñd$,6,109,4,40,12,0,0,ufaktor1%,10
+ÿ|ÿñd$,5,33,17,72,10,0,"Wiederholung:"
+ÿ|ÿñd$,6,109,17,40,13,0,0,ufaktor2%,10
+ÿ|ÿñd$,1,49,35,36,15,1,"&OK",1,1
+ÿ|ÿñd$,1,89,35,36,15,0,"&Abbruch",2,0
+ÿñd$,a%
+ÿ¾ÿñd$
+ÿ¡a%ÿ2ÿp
+	ufaktor1%ÿufaktor2%
+	w„hrung$ÿ_w„hrung$
+ÿ’ÿ¡
+ÿÙ
+ÿ¡a%ÿ1ÿp
+ÿ
+w„hrung.waehrumrÿw„hrung$
+umrfaktor.waehrumrÿufaktor1%
+ÿƒFStore("waehrumr")
+ÿ^
+w„hrung$ÿ_w„hrung$
+ÿ’ÿ¡
+ÿ™"artikel"
+ÿÉÿ¥artnr%ÿ£CodeAR.artikel
+w„hrung.artikelÿw„hrung$
+ÿ^
+w„hrung$ÿ_w„hrung$
+ÿ™"artikel"
+w„hrung.artikelÿw„hrung$
+ÿ’ÿ¡
+ ÿ^
+ÿ™"artikel"
+w„hrung.artikelÿw„hrung$
+ ÿ’ÿ¡
+ ÿßÿ³
+ ÿœ
+ ÿ”ekw„hrung.artikel,0
+ ÿ’ÿÿ
+
+ 
+
+ ' W„hrungsberechnung EK, Berechnung der VK-Preisvorschl„ge fr Groá- und Einzelhandel
+ ' =====================================================================================
+ 
+ÿÿEKW„hrBerech()
+ berechja$ÿ""
+ artnr%ÿCodeAR.artikel
+ ÿ¡ekw„hrung.artikelÿ
+0.01ÿp
+ÿÂ"EKW„hrung muá >0,01 DM sein!","",2
+ARTIKELsub%ÿ5
+
+ÿ½ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ÿwsubende1
+
+ ÿ’ÿ¡
+ ÿ¡artzug1$ÿ"j"ÿpberechja$ÿ"J"
+ ÿ½ IF artneu1$ = "" AND artzug1$ <> "j" THEN 
+ ÿ¡artneu1$ÿ""ÿp
+ÿÂ"Keine Neueingabe !","Sollen trotzdem die Preise neu berechnet werden ?",135,req%
+ÿ¡req%ÿ1ÿp
+berechja$ÿ"N"
+ÿ½ !!!!!!!!!!!!!!!!!!!! 
+ÿwsubende1 
+ÿ’ÿ¡
+ÿ¡req%ÿ1ÿpberechja$ÿ"J"
+ ÿ’ÿ¡
+ berechja$ÿ"J"
+ artnr%ÿCodeAR.artikel
+ w„hrung$ÿw„hrung.artikel
+ liefnr%ÿLieferant.artikel
+ ÿ™"adressen"
+ ÿÉÿ¥liefnr%ÿ£codeku.adressen
+ fracht%ÿfrachtanteil1.adressen
+ ÿ¡fracht%ÿ0ÿpfracht%ÿ_frachtx%
+ ÿ¡AALieferant.adressenÿ"j"ÿFIIMMAK.adressenÿ"j"ÿp
+groshandel$ÿ"j"
+ ÿ^
+groshandel$ÿ"n"
+ ÿ’ÿ¡
+ ÿ™"waehrumr"
+ ecu$ÿ"ECU"
+ ÿÉÿ¥ecu$ÿ£w„hrung.waehrumr
+ w„hrfakecu%ÿUmrFaktor.waehrumr
+ ÿÉÿ¥w„hrung$ÿ£w„hrung.waehrumr
+ w„hrfaktor%ÿUmrFaktor.waehrumr
+ ÿ™"artikel"
+ ÿ½ SELECT KEY artnr% INDEX CodeAR.artikel
+ ÿ¡ek.artikelÿ0ÿp
+ek.artikelÿekW„hrung.artikelÿw„hrfaktor%
+ ÿ’ÿ¡
+ EKEq.artikelÿek.artikelÿw„hrfakecu%
+ inventurpreis.artikelÿek.artikel
+ ÿ¡artneu1$ÿ""ÿberechja$ÿ"J"ÿp
+letztekw„hrung.artikelÿekw„hrung.artikel
+durchekw„hrung.artikelÿekw„hrung.artikel
+letztekdm.artikelÿek.artikel
+durchekdm.artikelÿek.artikel
+letztekeq.artikelÿekeq.artikel
+durchekeq.artikelÿekeq.artikel
+ ÿ’ÿ¡
+ ÿ¡groshandel$ÿ"j"ÿp
+vorVKGH.artikelÿdurchEKDM.artikelÿ(((fracht%ÿ_frachtx%)ÿdurchEKDM.artikel)ÿ100)
+vorVKGH.artikelÿvorVKGH.artikelÿ((vorVKGH.artikelÿ_KalkLiefGH%)ÿ100)
+vorVKEH.artikelÿ(vorVKGH.artikelÿ((vorVKGH.artikelÿ_KalkLiefEH%)ÿ100))
+vorVKEH.artikelÿvorvkeh.artikelÿ((vorvkeh.artikelÿmwst.artikel)ÿ100)
+vorVKmin.artikelÿdurchEKDM.artikelÿ(((fracht%ÿ_frachtx%)ÿdurchEKDM.artikel)ÿ100)
+vorVKmin.artikelÿvorVKmin.artikelÿ((vorVKmin.artikelÿ_KalkLiefMin%)ÿ100)
+vorVKmin ÿvorVKmin.artikelÿ((vorVKmin.artikelÿMwst.artikel)ÿ100)
+VKGH.artikelÿvorVKGH.artikel
+VKEH.artikelÿvorVKEH.artikel
+VKmin.artikelÿvorVKmin.artikel
+ ÿ’ÿ¡
+ ÿ¡groshandel$ÿ"n"ÿp
+vorVKEH.artikelÿdurchEKdm.artikelÿ((fracht%ÿ_frachtx%)ÿdurchEKdm.artikel)ÿ100
+vorVKEH.artikelÿ(vorVKEH.artikelÿ((vorVKeh.artikelÿ_KalkLiefEH%)ÿ100))
+vorVKEH.artikelÿvorvkeh.artikelÿ((vorvkeh.artikelÿmwst.artikel)ÿ100)
+vorVKmin.artikelÿdurchEKDM.artikelÿ(((fracht%ÿ_frachtx%)ÿdurchEKDM.artikel)ÿ100)
+vorVKmin.artikelÿvorVKmin.artikelÿ((vorVKmin.artikelÿ_KalkLiefMin%)ÿ100)
+vorVKmin.artikelÿvorVKmin.artikelÿ((vorVKmin.artikelÿMwst.artikel)ÿ100)
+vorVKmin.artikelÿvorVKmin.artikelÿ0.005
+vorVKGH.artikelÿvorVKEH.artikelÿ((vorvkeh.artikelÿ_KalkLiefAbsch%)ÿ100)
+VKGH.artikelÿvorVKGH.artikel
+VKEH.artikelÿvorVKEH.artikel
+VKmin.artikelÿvorVKmin.artikel
+ ÿ’ÿ¡
+ ARTIKELsub%ÿ6
+
+ ÿ½ !!!!!!!!!!!!!!!!!!!!!!!!!!!
+subende1: 
+ lieferEK.artikelÿek.artikel
+ berechja$ÿ""
+ ÿœ
+ ÿ’ÿÿ
+ 
+
+ ÿ½ Berechnungen, die aus der nderung des VKEH resultieren 
+
+ÿÿVKEHnderung()
+ artnr%ÿCodeAR.artikel
+ vkeh%ÿvkeh.artikel
+ w„hrung$ÿw„hrung.artikel
+ liefnr%ÿLieferant.artikel
+ ÿ™"adressen"
+ ÿÉÿ¥liefnr%ÿ£codeku.adressen
+ fracht%ÿfrachtanteil1.adressen
+ ÿ¡fracht%ÿ0ÿpfracht%ÿ_frachtx%
+ ÿ¡AALieferant.adressenÿ"j"ÿFIIMMAK.adressenÿ"j"ÿp
+groshandel$ÿ"j"
+ ÿ^
+groshandel$ÿ"n"
+ ÿ’ÿ¡
+ ÿ™"artikel"
+ ÿ¡groshandel$ÿ"n"ÿp
+vorVKGH%ÿVKEH%ÿ((vkeh%ÿ_KalkLiefAbsch%)ÿ100)
+VKGH.artikelÿvorVKGH%
+ ÿ’ÿ¡
+ ÿœ
+ ARTIKELsub%ÿ7
+ ÿ’ÿÿ
+ 
+ 
+ ' Mehrwertsteuer ausw„hlen
+ ' =======================================================================
+
+ÿÿMehrwAnz()
+ artnr%ÿCodeAR.artikel
+ ÿÂ"W„hlen Sie eine Mehrwertsteuer aus:","",25,reg%,mwst.artikel,30,mwst.mehrwertÿ£mwst.mehrwert
+ mwst%ÿmwst.artikel
+ ÿœ
+ ARTIKELsub%ÿ1
+ ÿ’ÿÿ
+ 
+
+ ' Mehrwertsteuer prfen
+ ' =======================================================================
+
+ÿÿMehrwPrf()
+ artnr%ÿCodeAR.artikel
+ mwst%ÿmwst.artikel
+ ÿ™"mehrwert"
+ ÿÉÿ¥mwst%ÿ£mwst.mehrwert
+ ÿ¡mwst%ÿmwst.mehrwertÿp
+ÿÂ"Mehrwertsteuer nicht vorhanden!","",2
+ÿÂ"W„hlen Sie eine Mehrwertsteuer aus:","",25,reg%,mwst.artikel,30,mwst.mehrwertÿ£mwst.mehrwert
+ÿ™"artikel"
+mwst%ÿmwst.artikel
+ÿœ
+ARTIKELsub%ÿ1
+ ÿ’ÿ¡
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+
+ ' Inventur neu
+ ' =======================================================================
+
+ÿÿInventurneu()
+ berechja$ÿ"J"
+ ÿ½  IF artneu1$ = "" THEN 
+ ÿ½    REQUEST "Keine Neueingabe !","Sollen trotzdem die Inventur-Preise neu berechnet werden ?",135,req%
+ ÿ½    IF req% <> 1 THEN END SUB 
+
+ ÿ¡req%ÿ1ÿpberechja$ÿ"J"
+
+ ÿ½  END IF 
+ 
+ InventurMenge.artikelÿbestand.artikel
+ InventurPreis.artikelÿEKW„hrung.artikel
+ InventurWert1.artikelÿbestand.artikelÿEKw„hrung.artikel
+ InventurWert2.artikelÿbestand.artikelÿVKEH.artikel
+ berechja$ÿ""
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ ' Abfrage Groáh„ndler->Ausfllen der Checkboxen in der Adressdatei
+ ' =======================================================================
+
+ÿÿGroshAbfr()
+ kunr%ÿCodeKu.adressen
+ ÿÂ"Ist die Adresse eine Lieferantenadresse ?","",130,req%
+ ÿ¡req%ÿ1ÿp
+ÿÂ"Werden Sie als Groáh„ndler beliefert ?","",130,req%
+ÿ¡req%ÿ1ÿp
+AALieferant.adressenÿ"j"
+FIIMMAK.adressenÿ"j"
+FIATEC.adressenÿ"n"
+AAKunde.adressenÿ"n"
+AAMitarbeiter.adressenÿ"n"
+FIprivat.adressenÿ"n"
+ÿ^
+AALieferant.adressenÿ"j"
+FIIMMAK.adressenÿ"n"
+FIATEC.adressenÿ"j"
+AAKunde.adressenÿ"n"
+AAMitarbeiter.adressenÿ"n"
+FIprivat.adressenÿ"n"
+ÿ’ÿ¡
+ ÿ^
+ÿÂ"Wird der Kunde als Groáh„ndler beliefert ?","",130,req%
+ÿ¡req%ÿ1ÿp
+AALieferant.adressenÿ"n"
+FIIMMAK.adressenÿ"j"
+FIATEC.adressenÿ"n"
+AAKunde.adressenÿ"j"
+AAMitarbeiter.adressenÿ"n"
+FIprivat.adressenÿ"n"
+ÿ^
+AALieferant.adressenÿ"n"
+FIIMMAK.adressenÿ"n"
+FIATEC.adressenÿ"j"
+AAKunde.adressenÿ"j"
+AAMitarbeiter.adressenÿ"n"
+FIprivat.adressenÿ"n"
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ½  ENTER Straáe.adressen
+ ÿœ
+ ÿ”Straáe.adressen,0
+ ÿ’ÿÿ
+ 
+ 
+ '      ************************************************************
+ '      ** Routinen fr die Artikelliste nach Lieferanten sortiert**
+ '      ************************************************************
+
+ÿÿARTLIEFDrucken()
+ÿÁÿs"LIEFART1"
+ ÿ€ÿÁ
+ÿÊÿÁÿí"H_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿŸ
+ 
+ ÿLiefname1.ARTIKEL
+ ÿ€ÿLiefname1.ARTIKEL
+ÿ‘ÿÁ
+ÿÊÿÁÿí"H_Liefname1.002"
+ÿ¶ÿÁÿí
+ ÿ’ÿ
+ 
+ ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÉ
+ 
+ ÿÊÿiÿ³
+ ÿÊÿiÿáÿe
+ ÿÊÿbÿíÿšÿe
+ ÿßÿe
+ ÿÉ;
+ÿĞÿ~
+ÿµÿÁLiefname1.ARTIKEL,ArtBezLief.ARTIKELÿ~
+ÿqÿ~
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+ 
+ 
+ '      ************************************
+ '      ** Routinen fr die Auspreisliste **
+ '      ************************************
+
+ÿÿCreateAUSPR()
+ cfile$ÿÿ™
+ cdir$ÿÿ
+ lw$ÿÿ+(cdir$,2)
+ req%ÿ0
+ ÿØreq%ÿ7
+ ÿßÿ³
+ d$ÿ"AUSP"
+ÿ‰ÿñd$,0,0,332,182,"Einstellungen","MS Sans Serif",8
+ÿ|ÿñd$,9,2,6,19,21,3
+ÿ|ÿñd$,5,26,12,232,8,0,"W„hlen Sie aus, welche Funktionen Sie ausfhren wollen !"
+ÿ|ÿñd$,4,165,32,165,118,0," Funktionen des Lagers"
+ÿ|ÿñd$,1,168,46,160,22,1,"Einspielen der Auspreislisten",1,1
+ÿ|ÿñd$,1,168,68,160,23,1,"Drucken der gesendeten Auspreislisten",2,1
+ÿ|ÿñd$,1,168,89,160,21,1,"Abgleichen der Auspreislisten ",3,1
+ÿ|ÿñd$,1,168,110,160,22,1,"Einspielen der Buchungsdatei LBuch",4,1
+ÿ|ÿñd$,4,2,33,160,141,0," Funktionen der Zentrale "
+ÿ|ÿñd$,5,6,48,150,9,0,"Erzeugen der Auspreisliste pro Lieferant"
+ÿ|ÿñd$,5,6,57,155,8,0,"und Lieferdatum (und Eintrag in die Sendeliste)"
+ÿ|ÿñd$,1,6,68,152,23,1,"Erzeugung &Auspreisliste",5,1
+ÿ|ÿñd$,1,6,90,152,24,1,"Drucken der zusendenden Auspreislisten",8,1
+ÿ|ÿñd$,1,6,114,152,22,0,"&L”schen in der Sendeliste",9,1
+ÿ|ÿñd$,1,6,136,152,22,0,"&Senden der Auspreislisten",6,1
+ÿ|ÿñd$,1,282,156,47,23,0,"&Ende",7,1
+ 
+ÿñd$,req%
+ÿ¾ÿñd$
+ ÿÉÿæreq%
+ÿæ1
+ÿ½ einspielen der gesendeten Auspreislisten in die AUSPREIS.sbf des Lagers
+ÿƒEinspielAusp()
+ÿæ2
+ÿ½ Drucken der gesendeten Auspreislisten bzw der noch nicht gepackten
+ÿƒDRUCKLAusprei()
+ÿæ3
+ÿ½ Abgleichen der Auspreislisten (StatusGepackt="j") šbergabe an ZLSchein StatusGepackt="l"
+ÿƒAbgleichAusp()
+ÿæ4
+ÿ½ Einspielen der Buchungsdatei LBuch und Verrechnung mit Artikeldatei
+ÿƒBerechLBuch()
+ÿæ5
+ÿ½ Erzeugung der Auspreisliste (Zentrale) pro Lieferant und Lieferdatum
+ÿƒAUSP()
+ÿæ6
+ÿ½ Senden (Zentrale) aller in der Sendedatei enthaltenen Auspreislisten
+ÿÂ"Programmpunkt Senden ist noch nicht aktiv !","",2
+ÿæ7
+ÿ½ Ende der Bearbeitung
+ÿæ8
+ÿ½ drucken der zusendenden Auspreisliste
+ÿƒDRUCKAuspreis()
+ÿæ9
+ÿ½ L”schen von Eintragungen in der Auspreisliste
+ÿÂ"W„hlen Sie eine zu l”schende Liste aus:","",25,req%,datei$,65,datei.senden,Liefname1.senden,letzteLieferung.senden,StatusDatei.sendenÿ£datei.senden
+ÿ¡req%ÿ1ÿp
+	ÿ¾ÿaÿ™"senden"ÿĞdatei.sendenÿdatei$
+	ÿÂ"Datei "ÿdatei$ÿ" aus der Sendedatei entfernt !","",2
+ÿ’ÿ¡
+
+ ÿ’ÿÉ
+ ÿÙ
+ ÿ’ÿÿ
+
+
+ÿÿBerechLBuch()
+ÿ¡automatisch$ÿ"j"ÿp
+ÿÂ"Wollen Sie wirklich die Buchnungsdatei verrechnen ?","",130,req%
+ÿ^
+req%ÿ1
+ÿ’ÿ¡
+ÿ¡req%ÿ1ÿp
+ÿ™"artikel"
+ÿÊÿ£Artikelcode.artikel
+ÿ™"lbuch"
+ÿÊÿ£Artikelcode.lbuch
+ÿÉÿĞstatusgepackt.lbuchÿ"a"
+ÿÉÿ`ÿá
+ÿ¡ÿB("lbuch")ÿp
+ÿÂ"Datei LBUCH wurde bereits mit Artikeldatei verrechnet",""2
+weiter$ÿ"n"
+ÿ^
+weiter$ÿ""
+ÿ’ÿ¡
+ÿÉÿ`ÿá
+ÿØÿOÿB("lbuch")ÿweiter$ÿ""
+	ÿ™"lbuch"
+	Artikelcode%ÿArtikelcode.lbuch
+	ÿ¡statusgepackt.lbuchÿ"a"ÿp
+ÿ™"artikel"
+ÿÉÿ¥Artikelcode%ÿáÿ£Artikelcode.artikel
+ÿÊÿË"                          ..."ÿbezeichnung.artikel
+	
+ÿ¡ortimlager.lbuchÿ""ÿportimlager.artikelÿortimlager.lbuch
+verteiler1.artikelÿist1.lbuch:verteiler2.artikelÿist2.lbuch:verteiler3.artikelÿist3.lbuch:verteiler4.artikelÿist4.lbuch:verteiler5.artikelÿist5.lbuch:verteiler6.artikelÿist6.lbuch
+verteiler7.artikelÿist7.lbuch:verteiler8.artikelÿist8.lbuch:verteiler9.artikelÿist9.lbuch
+bestand01.artikelÿbestand01.artikelÿist1.lbuch:bestand02.artikelÿbestand02.artikelÿist2.lbuch:bestand03.artikelÿbestand03.artikelÿist3.lbuch
+bestand04.artikelÿbestand04.artikelÿist4.lbuch:bestand05.artikelÿbestand05.artikelÿist5.lbuch:bestand06.artikelÿbestand06.artikelÿist6.lbuch
+bestand07.artikelÿbestand07.artikelÿist7.lbuch:bestand08.artikelÿbestand08.artikelÿist8.lbuch:bestand09.artikelÿbestand09.artikelÿist9.lbuch
+lagerbestand.artikelÿlagerbestand.artikelÿzugabg.lbuchÿist1.lbuchÿist2.lbuchÿist3.lbuchÿist4.lbuchÿist5.lbuchÿist6.lbuchÿist7.lbuchÿist8.lbuchÿist9.lbuchÿzugbruch.lbuch
+Bestand.artikelÿlagerbestand.artikelÿbestand01.artikelÿbestand02.artikelÿbestand03.artikelÿbestand04.artikelÿbestand05.artikelÿbestand06.artikelÿbestand07.artikelÿbestand08.artikelÿbestand09.artikel
+bruchges.artikelÿbruchges.artikelÿzugbruch.lbuch
+InventurMenge.artikelÿbestand.artikel
+InventurPreis.artikelÿEKW„hrung.artikel
+InventurWert1.artikelÿbestand.artikelÿEKw„hrung.artikel
+InventurWert2.artikelÿbestand.artikelÿVKEH.artikel
+ÿ½ ab###
+timestamp$ÿÿ(ÿ6(ÿQ)ÿ1900,"00")ÿÿ(ÿ5(ÿQ),"00")ÿÿ(ÿ3(ÿQ),"00")ÿÿ(ÿ9(ÿR),"00")ÿÿ(ÿ:(ÿR),"00")
+timestamp%ÿÿ0(timestamp$)
+timestamp.artikelÿtimestamp%
+QuickOrtArtikel.artikelÿOrtImLager.artikelÿÿ(Artikelcode.artikel,"0000000000")
+ÿÌ
+	
+ÿ™"lbuch"
+statusgepackt.lbuchÿ"a"
+statusgebucht.lbuchÿ"a"
+ÿƒQuickStore("lbuch")
+	ÿ’ÿ¡
+	ÿÉÿ±ÿá
+ÿÙ
+ÿ¡weiter$ÿ""ÿp
+ 
+ÿÂ"Artikelbest„nde pro Filiale wurden aktualisiert !","",2
+ÿ¡automatisch$ÿ"j"ÿp
+
+ÿÂ"Sollen die verrechneten S„tze aus LBuch.sbf gel”scht werden ?","",130,req12%
+ÿ^
+req12%ÿ1
+ÿ’ÿ¡
+ÿ¡req12%ÿ1ÿp
+
+ÿ¾ÿaÿ™"lbuch"
+
+ÿÉÿĞ
+
+ÿÂ"Es wurden die verbuchten S„tze aus LBuch.sbf gel”scht!","",2
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿĞ
+ ÿ’ÿÿ
+
+
+ ÿ½ **********************************************************************
+ ÿ½ * Einspielen der gesendeten Auspreislisten in die Lagerauspreisliste *
+ ÿ½ * LAUSPREI.sbf                                                       *
+ ÿ½ **********************************************************************
+ 
+ÿÿEinspielAusp()
+ ÿÂ"W„hlen Sie eine Liste aus:","",25,req%,datei$,65,datei.senden,Liefname1.senden,letzteLieferung.senden,StatusDatei.sendenÿ£datei.sendenÿĞdatei.sendenÿ"*A*"
+ ÿ¡req%ÿ1ÿpÿ’ÿÿ
+ listenr%ÿÿ0(ÿånumeric(datei$))
+ ÿÉÿ¥datei$ÿáÿ™"senden"ÿ£datei.senden
+ dateiname$ÿdatei$ÿ".sbf"
+ suche$ÿQuickCoLiefd.senden
+ ÿ´ÿ™ÿà,0_ppath$ÿdatei$
+ ÿ™datei$
+ ÿßÿe
+_OK%ÿ0
+ ÿÉÿ`ÿá
+ ÿÊÿË"LAUSPREI.SBF Datei wird auf bereits vorhandene S„tze kontrolliert ..."
+ ÿ¡ÿOÿB(datei$)ÿp
+ÿ™"lausprei"
+ÿÉÿ`ÿá
+ÿ¡ÿOÿB("lausprei")ÿp
+ÿÊÿË"L”schen von redundanten Datens„tzen in LAUSPREI.SBF !"
+ÿ¾ÿaÿ™"LAUSPREI"ÿĞQuickCoLiefd.lauspreiÿsuche$
+ÿ’ÿ¡
+ÿ™datei$
+ÿÊÿË"šbernahme der Datens„tze in LAUSPREI.sbf !"
+ÿ¢dateiname$ÿqÿ™"LAUSPREI"
+ÿÉÿĞÿ™"lausprei"
+ÿ†ÿ™datei$
+ÿdatei$ÿ".*"
+ÿ™"senden"
+ÿÉÿ¥datei$ÿáÿ£datei.senden
+StatusDatei.sendenÿ"eingespielt"
+ÿƒQuickStore("senden")
+ÿÂ"Datei "ÿdatei$ÿ" wurde in LAUSPREI.sbf bernommen !","",2
+ ÿ^
+ÿÂ"Datei "ÿdatei$ÿ" wurde nicht in LAUSPREI.sbf bernommen !","Es wurden keine Datens„tze gefunden",2
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ 
+ ÿ½ *************************************************************************
+ ÿ½ Registrierkassenerfassung
+ ÿ½ *************************************************************************
+ 
+ÿÿEditKasse()
+ ÿƒDFile(2,"WAWI\Kasse1"ÿ_fpw$)
+ ÿÊÿÿÉÿ³
+ _formend%ÿ0
+ KASSEsub%ÿ0
+ kassefil%ÿ0
+ ÿÊÿË""
+
+ ÿØreq99%ÿ8
+ ÿßÿ³
+d$ÿ"Kasse"
+ÿ‰ÿñd$,0,0,205,168,"Erfassung Registrierkassen","MS Sans Serif",8
+ÿ|ÿñd$,9,2,6,19,21,3
+ÿ|ÿñd$,5,26,12,168,8,0,"W„hlen Sie ein Funktion !"
+ÿ|ÿñd$,4,24,25,168,112,0," Funktionen fr Registrierkasse "
+ÿ|ÿñd$,5,28,44,116,13,0,"Registrierkasse der Filiale Nummer :"
+ÿ|ÿñd$,6,152,44,14,13,0,0,kassefil%,1
+ÿ|ÿñd$,1,28,65,160,21,1,"&Kasse->Artikelverkauf erfassen",1,1
+ÿ|ÿñd$,1,28,88,160,20,0,"K&orrektur und šbergabe der Artikel an LBuch ",2,1
+ÿ|ÿñd$,1,28,110,160,21,0,"&Druck der erfassten Artikelverk„ufe",3,1
+ÿ|ÿñd$,1,146,140,47,21,0,"&Ende",8,0
+ÿñd$,req%
+ÿ¾ÿñd$
+ÿ¡req%ÿ8ÿp
+ÿ¡kassefil%ÿ0ÿp
+ÿƒFehler("Es muá die Filialnummer eingegeben werden!","")
+req%ÿ7
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡req%ÿ1ÿp
+ÿ½ Erfassung der Registrierkasse
+ÿƒDFile(3,"kasse1"ÿ_fpw$)
+ÿ™"kasse1"
+req1%ÿ0
+ÿØreq1%ÿ99
+	artnr1%ÿ0:zu1%ÿ0
+	d$ÿ"Dialogname"
+	ÿ‰ÿñ"Dialogname",0,0,248,60,"Registrierkasse erfassen","System",10
+	ÿ|ÿñ"Dialogname",5,2,3,193,8,1,"Geben Sie hier die erforderlichen Angaben ein"
+	ÿ|ÿñ"Dialogname",6,55,15,44,12,0,0,artnr1%,10
+	ÿ|ÿñ"Dialogname",6,148,15,38,12,0,0,zu1%,8
+	ÿ|ÿñ"Dialogname",5,112,16,31,11,0,"verkauft"
+	ÿ|ÿñ"Dialogname",5,3,17,49,9,0,"Artikelcode"
+	ÿ|ÿñ"Dialogname",1,145,38,49,14,1,"Speichern",1,1
+	ÿ|ÿñ"Dialogname",1,196,38,49,14,0,"Ende",99,0
+	ÿñd$,req1%
+	ÿ¾ÿñd$
+	ÿ¡req1%ÿ1ÿp
+ÿ¡artnr1%ÿ0ÿp
+ÿ™"artikel"
+ÿ¡ÿJ(artnr1%,Artikelcode.artikel)ÿp
+ÿ™"kasse1"
+ÿ
+Artikelcode.kasse1ÿartnr1%
+ÿÉÿækassefil%
+ÿæ1
+ist1.kasse1ÿzu1%
+ÿæ2
+ist2.kasse1ÿzu1%
+ÿæ3
+ist3.kasse1ÿzu1%
+ÿæ4
+ist4.kasse1ÿzu1%
+ÿæ5
+ist5.kasse1ÿzu1%
+ÿæ6
+ist6.kasse1ÿzu1%
+ÿæ7
+ist7.kasse1ÿzu1%
+ÿæ8
+ist8.kasse1ÿzu1%
+ÿæ9
+ist9.kasse1ÿzu1%
+ÿ’ÿÉ
+statusgepackt.kasse1ÿ"n"
+codegr.kasse1ÿkassefil%
+ÿƒQuickStore("kasse1")
+ÿ^
+ÿƒFehler("Artikel existiert nicht in der Artikeldatei!","Eingabe wiederholen")
+ÿ’ÿ¡
+ÿ’ÿ¡
+	ÿ^
+artnr1%ÿ0:zu1%ÿ0
+	ÿ’ÿ¡
+	ÿ¡req1%ÿ99ÿp
+req%ÿ88
+	ÿ’ÿ¡
+ÿÙ
+ 
+	ÿ½  **********************************************************************************
+	ÿ½  * Bearbeiten der S„tze in Kasse1
+	ÿ½  **********************************************************************************
+ÿ’ÿ¡
+ÿ¡req%ÿ2ÿp
+ÿÊÿÿÉÿ³
+_formend%ÿ0
+KASSEsub%ÿ0
+ÿÊÿË""
+ÿßÿ³
+ÿ™"kasse1"
+ÿ£codegr.kasse1
+ÿÉÿĞcodegr.kasse1ÿkassefil%
+ÿ£Artikelcode.kasse1
+ÿÉÿ`ÿá
+ÿØ_formend%ÿ0
+	kasseform$ÿ"KASSE"ÿÿ(kassefil%,"0")
+	ÿ¡ÿœÿkasseform$ÿp
+ÿ´ÿœkasseform$
+	ÿ’ÿ¡
+	ÿÉÿœÿ`ÿá
+	ÿ¬ÿ³
+	ÿÏÿßÿÿ¥
+	ÿ¡Kassesub%ÿ1ÿp
+ÿ½ Bearbeiten Satz
+ÿ”Artikelcode.kasse1,0
+	ÿ’ÿ¡
+	ÿ¡KASSEsub%ÿ2ÿp
+ÿ½ S„tze an Artikel- Datei bergeben
+ÿÂ"Wollen Sie die S„tze mit der Artikeldatei verrechnen","und anschlieáend aus der Kassendatei l”schen",130,req22%
+ÿ¡req22%ÿ1ÿp
+ÿÂ"Haben Sie die S„tze ausgedruckt?","Sie werden aus der Kassendatei gel”scht!",130,req21%
+ÿ¡req21%ÿ1ÿp
+ÿ™"kasse1"
+ÿ£codegr.kasse1
+ÿÉÿĞcodegr.kasse1ÿkassefil%
+ÿÉÿ`ÿáÿ™"kasse1"ÿ£artikelcode.kasse1
+i%ÿkassefil%
+ÿØÿOÿB("kasse1")
+artnr%ÿartikelcode.kasse1
+ÿÊÿË"Berarbeitung Artikel: "ÿÿ(artnr%,"0000000000")
+ÿ™"artikel"
+ÿÉÿ¥artnr%ÿáÿ™"artikel"ÿ£Artikelcode.artikel
+ÿ¡Artikelcode.artikelÿartnr%ÿp
+ÿ–"bestand.artikel = bestand.artikel - ist"ÿÿ(i%,"0")ÿ".kasse1"
+ÿ–"VerkaufSTGesamt.artikel = VerkaufSTGesamt.artikel + ist"ÿÿ(i%,"0")ÿ".kasse1"
+ÿ–"VerkaufPRGesamt.artikel = VerkaufPRGesamt.artikel + (ist"ÿÿ(i%,"0")ÿ".kasse1 * vkeh.artikel)"
+ÿ–"verkaufST"ÿÿ(i%,"00")ÿ".artikel=verkaufst"ÿÿ(i%,"00")ÿ".artikel+ist"ÿÿ(i%,"0")ÿ".kasse1"
+ÿ–"verkaufPr"ÿÿ(i%,"00")ÿ".artikel=verkaufPr"ÿÿ(i%,"00")ÿ".artikel+(ist"ÿÿ(i%,"0")ÿ".kasse1 * vkeh.artikel)"
+ÿ–"Bestand"ÿÿ(i%,"00")ÿ".artikel=bestand"ÿÿ(i%,"00")ÿ".artikel-ist"ÿÿ(i%,"0")ÿ".kasse1"
+ÿ–"bestand% = Bestand"ÿÿ(i%,"00")ÿ".artikel"
+ÿ–"lBestand"ÿÿ(i%,"00")ÿ".artikel = lBestand"ÿÿ(i%,"00")ÿ".artikel+ist"ÿÿ(i%,"0")ÿ".kasse1"
+ÿ–"lbestand% = lBestand"ÿÿ(i%,"00")ÿ".artikel"
+ÿ¡OrtimLager.artikelÿ"***"ÿ(Lagerbestand.artikelÿ	0ÿLagerbestand.artikelÿ	Dispomenge.artikel)ÿp
+bestellvorges.artikelÿ"j"
+ÿ’ÿ¡
+ÿ¡OrtimLager.artikelÿ"***"ÿLagerbestand.artikelÿ	0ÿp
+ÿ–"Liefvor"ÿÿ(i%,"00")ÿ".artikel=~u~"
+ÿ–"lbestand"ÿÿ(i%,"00")ÿ".artikel=0"
+liefvorges.artikelÿ"u"
+ÿ^
+bestellvorges.artikelÿ"n"
+ÿ¡lbestand%ÿbestand%ÿp
+ÿ–"Liefvor"ÿÿ(i%,"00")ÿ".artikel=~j~"
+liefvorges.artikelÿ"j"
+ÿ^
+ÿ–"Liefvor"ÿÿ(i%,"00")ÿ".artikel=~n~"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿƒQuickStore("artikel")
+ÿ^
+ÿÊÿË"Artikel:"ÿÿ(artnr%,"9999999999")ÿ" nicht gefunden !!"
+ÿ’ÿ¡
+ÿÉÿ±ÿáÿ™"kasse1"ÿ£artikelcode.kasse1
+ÿÙ
+ÿßÿ³
+ÿ™("kasse1")
+
+ÿ¾ÿaÿ™"kasse1"ÿĞcodegr.kasse1ÿkassefil%
+ÿßÿ³
+ÿÂ"S„tze wurden mit Artikeldatei verrechnet und","die S„tze wurden aus der Kassendatei gel”scht",2
+_formend%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ™"kasse1"
+ÿÉÿĞ
+ÿßÿ³
+	ÿ’ÿ¡
+	KASSEsub%ÿ0
+ÿÙ
+ÿÉÿĞÿ™"kasse1"
+_formend%ÿ0
+ÿÊÿÿÉÿe
+ÿ¡ÿœÿ"WAWI"ÿp
+	ÿ´ÿœ"WAWI"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡req%ÿ3ÿp
+ÿ½ Drucken der Kassendatei
+beri$ÿ"DRUKASS"ÿÿ(kassefil%,"0")
+ÿÁÿsberi$
+ÿÉÿækassefil%
+	ÿæ1
+ÿÁÿ³ist1.KASSE1ÿVKEH.ARTIKELÿU"berichtsum%"
+	ÿæ2
+ÿÁÿ³ist2.KASSE1ÿVKEH.ARTIKELÿU"berichtsum%"
+	ÿæ3
+ÿÁÿ³ist3.KASSE1ÿVKEH.ARTIKELÿU"berichtsum%"
+	ÿæ4
+ÿÁÿ³ist4.KASSE1ÿVKEH.ARTIKELÿU"berichtsum%"
+	ÿæ5
+ÿÁÿ³ist5.KASSE1ÿVKEH.ARTIKELÿU"berichtsum%"
+	ÿæ6
+ÿÁÿ³ist6.KASSE1ÿVKEH.ARTIKELÿU"berichtsum%"
+	ÿæ7
+ÿÁÿ³ist7.KASSE1ÿVKEH.ARTIKELÿU"berichtsum%"
+	ÿæ8
+ÿÁÿ³ist8.KASSE1ÿVKEH.ARTIKELÿU"berichtsum%"
+	ÿæ9
+ÿÁÿ³ist9.KASSE1ÿVKEH.ARTIKELÿU"berichtsum%"
+ÿ’ÿÉ
+ÿ}ÿÁ
+	ÿÊÿÁÿí"F_REPORT"
+	ÿ¶ÿÁÿí
+ÿ’ÿÁ
+ÿŸ
+	ÿÊÿÁÿí"H_PAGE"
+	ÿ¶ÿÁÿí
+ÿ’ÿŸ
+ÿš1
+	ÿÊÿÁÿí"F_PAGE"
+	ÿ¶ÿÁÿí
+ÿ’ÿš
+ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ÿ’ÿÉ
+ÿÊÿiÿe
+ÿÊÿiÿáÿe
+ÿÉ;
+	ÿĞArtikelcode.KASSE1ÿArtikelcode.ARTIKELÿcodegr.kasse1ÿkassefil%
+	ÿµÿÁArtikelcode.KASSE1
+	ÿqÿ~
+ÿ’ÿ¡
+ÿ¡req%ÿ8ÿp
+req99%ÿ8
+ÿ’ÿ¡
+ÿßÿ³
+ÿÙ
+
+ ÿÉÿĞÿ™"kasse1"
+ _formend%ÿ0
+ ÿÊÿÿÉÿe
+ ÿ½ IF FORM <> "WAWI" THEN 
+ ÿ½     OPEN FORM "WAWI"
+ ÿ½ END IF 
+ ÿ’ÿÿ
+ 
+
+
+
+
+ ÿ½ *************************************************************************
+ ÿ½ Abgleichen der Lagerauspreisliste LAUSPREI pro Lieferant und Lieferdatum
+ ÿ½ *************************************************************************
+
+ÿÿAbgleichAusp()
+ ÿÊÿÿÉÿ³
+ _formend%ÿ0
+ LAUSPREIsub%ÿ0
+ ÿÊÿË""
+ ÿÂ"W„hlen Sie eine Liste fr den Abgleich aus:","",25,req%,dateisenden$,65,datei.senden,Liefname1.senden,letzteLieferung.senden,StatusDatei.sendenÿ£datei.sendenÿĞdatei.sendenÿ"*A*"ÿstatusdatei.sendenÿ""
+ ÿ¡req%ÿ1ÿpÿ’ÿÿ
+ listenr%ÿÿ0(ÿånumeric(dateisenden$))
+ ÿßÿe
+ ÿ™"lausprei"
+ ÿÊÿ£Artikelcode.lausprei
+ ÿÉÿĞlistenr.lauspreiÿlistenr%
+ ÿÉÿ`ÿá
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿ"EDITAUSP"ÿp
+ÿ´ÿœ"EDITAUSP"
+ÿÉÿœÿ¥listenr%ÿ£Artikelcode.lausprei
+ÿ’ÿ¡
+ÿÉÿœÿ`ÿá
+ÿ¬ÿ³
+ÿßÿ³
+ÿÏÿßÿÿ¥
+ÿÉÿæLAUSPREIsub%
+ÿæ1
+ÿ½ abgleichen in der Auspreisliste
+ÿ”zugabg.lausprei,0
+ÿæ2
+ÿ½ S„tze ber StatusGepackt als gepackt kennzeichnen und an ZLSchein bergeben
+ÿÂ"Wollen Sie die S„tze wirklich als gepackt kennzeichnen ?","",130,req1%
+ÿ¡req1%ÿ1ÿp
+ÿ™"lausprei"
+ÿ½ *** SELECT WHERE listenr.lausprei = listenr%
+ÿÉÿœÿ`ÿá
+ÿ™"Zlschein"
+ÿÉÿ¥dateisenden$ÿáÿ™"senden"ÿ£datei.senden
+ÿ¡statusdatei.sendenÿ"gepackt"ÿp
+	ÿÂ"Liste wurde bereits in Datei ZLSCHEIN.sbf bernommen !","",2
+ÿ^
+	ÿ™"lausprei"
+	ÿßÿe
+	ÿœ
+	ÿÊÿË"S„tze werden in die zentrale Lieferscheindatei ZLSchein.sbf eingtragen !"
+
+	ÿ™"lausprei"
+	ÿßÿe
+	ÿÂ"šbernahme der Datens„tze in ZLSCHEIN.sbf !","",2
+	ÿÉÿĞlistenr.lauspreiÿlistenr%
+	ÿÉÿ`ÿá
+	ÿØÿOÿB("lausprei")
+ÿ™"zlschein"
+artcode%ÿArtikelcode.lausprei
+ÿÉÿ¥artcode%ÿáÿ™"zlschein"ÿ£Artikelcode.zlschein
+ÿ¡Artikelcode.zlscheinÿartcode%ÿp
+bezeichnung.zlscheinÿbezeichnung.lausprei
+ÿÊÿË"           ....    "ÿbezeichnung.zlschein
+ist1.zlscheinÿist1.zlscheinÿist1.lausprei:ist2.zlscheinÿist2.zlscheinÿist2.lausprei:ist3.zlscheinÿist3.zlscheinÿist3.lausprei:ist4.zlscheinÿist4.zlscheinÿist4.lausprei:ist5.zlscheinÿist5.zlscheinÿist5.lausprei
+ist6.zlscheinÿist6.zlscheinÿist6.lausprei:ist7.zlscheinÿist7.zlscheinÿist7.lausprei
+ist8.zlscheinÿist8.zlscheinÿist8.lausprei:ist9.zlscheinÿist9.zlscheinÿist9.lausprei
+vkeh.zlscheinÿvkeh.lausprei
+Listenr.zlscheinÿ0
+ÿƒQuickStore("zlschein")
+ÿ^
+ÿ
+CodeZLS.zlscheinÿsernum%("zlschein")
+codear.zlscheinÿcodear.lausprei
+Artikelcode.zlscheinÿArtikelcode.lausprei
+bezeichnung.zlscheinÿbezeichnung.lausprei
+ÿÊÿË"šbernahme Artikel...        "ÿbezeichnung.zlschein
+me.zlscheinÿme.lausprei
+vkeh.zlscheinÿvkeh.lausprei
+ist1.zlscheinÿist1.lausprei:ist2.zlscheinÿist2.lausprei:ist3.zlscheinÿist3.lausprei
+ist4.zlscheinÿist4.lausprei:ist5.zlscheinÿist5.lausprei:ist6.zlscheinÿist6.lausprei:ist7.zlscheinÿist7.lausprei
+ist8.zlscheinÿist8.lausprei:ist9.zlscheinÿist9.lausprei
+timestamp$ÿÿ(ÿ6(ÿQ)ÿ1900,"00")ÿÿ(ÿ5(ÿQ),"00")ÿÿ(ÿ3(ÿQ),"00")ÿÿ(ÿ9(ÿR),"00")ÿÿ(ÿ:(ÿR),"00")
+timestamp%ÿÿ0(timestamp$)
+timestamp.zlscheinÿtimestamp%
+ÿÌ
+ÿ’ÿ¡
+ÿ™"lausprei"
+ÿÉÿ±ÿá
+	ÿÙ
+	ÿßÿ³
+	ÿ™"senden"
+	ÿÉÿ¥dateisenden$ÿáÿ™"senden"ÿ£datei.senden
+	statusDatei.sendenÿ"gepackt"
+	ÿƒQuickStore("senden")
+	ÿ™("lausprei")
+	ÿßÿ³
+	ÿÂ"S„tze wurden als gepackt gekennzeichnet und an ZLSchein bergeben !","",2
+ÿ’ÿ¡
+ÿ½ S„tze als gebucht kennzeichnen und šbergabe an Sendedatei(Bestandskorrekturdatei) fr Zentrale
+ÿ½ REQUEST "Wollen Sie die S„tze wirklich buchen ?","",130,req1%
+ÿßÿe
+ÿ½ IF req1% = 1 THEN 
+ÿ™"LBUCH"
+buchung$ÿ""
+ÿ¡buchung$ÿ"n"ÿp
+	ÿ™"lausprei"
+ÿßÿe
+ÿœ
+ÿÊÿË"S„tze werden in die zentrale Buchungsdatei LBUCH.sbf eingtragen !"
+ÿ¢"lausprei.sbf"ÿqÿ™"lbuch"ÿĞlistenr.lauspreiÿlistenr%
+ÿ™("lausprei")
+ÿÉÿ¥dateisenden$ÿáÿ™"senden"ÿ£datei.senden
+ÿ¾ÿaÿ™"senden"ÿĞdatei.sendenÿdateisenden$
+ÿ½ * L”schen der Datei A0000...
+ÿ¡ÿJ(dateisenden$ÿ".sbf")ÿpÿdateisenden$ÿ".*"
+ÿ¾ÿaÿ™"lausprei"ÿĞlistenr.lauspreiÿlistenr%
+ÿ¾ÿaÿ™"auspreis"ÿĞlistenr.auspreisÿlistenr%
+ÿßÿ³
+ÿÂ"S„tze wurden als gebucht gekennzeichnet und an LBuch bergeben !","Die Liste wurde aus LAUSPREI gel”scht",2
+_formend%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿÉ
+LAUSPREIsub%ÿ0
+ ÿÙ
+
+ ÿÉÿĞÿ™"lausprei"
+ _formend%ÿ0
+ ÿÊÿÿÉÿe
+ ÿ¡ÿœÿ"WAWI"ÿp
+ÿ´ÿœ"WAWI"
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+
+ 
+
+ÿÿAUSP()
+ cfile$ÿÿ™
+ cdir$ÿÿ
+ lw$ÿÿ+(cdir$,2)
+ ÿÊÿË"šbernahme der Datens„tze in AUSPREIS.sbf !"
+ ÿßÿe
+ ÿ™"artikel"
+ ÿÉÿĞÿ™"artikel"
+ ÿÊÿ£quickcoliefd.artikel
+ ÿÉÿ`ÿá
+ 
+ ÿ½ kunr% ist global und wird durch Lieferantsuche bergeben
+ ÿƒLieferantsuche()
+
+ ÿ¡kunr%ÿ0ÿpÿ’ÿÿ
+ÿÉÿ¥kunr%ÿáÿ™"adressen"ÿ£Codeku.adressen
+lieferer$ÿnachname.adressen
+datok%ÿ0
+ÿØdatok%ÿ0
+datok%ÿ1
+w%ÿ180:h%ÿ70
+dat1%ÿ1
+d$ÿ"DatumWie"
+ÿ‰ÿñd$,0,0,w%,h%,"Datum der Lieferung","MS Sans Serif",8
+ÿ|ÿñd$,4,4,2,w%ÿ8,h%ÿ20,0,"Datumsangabe "
+ÿ½ ADD DIALOG d$,3,8,12,w% - 16,12,0,"Anzahl der Tage seit Lieferung",1,dat1%
+ÿ½ ADD DIALOG d$,3,8,24,w% - 16,12,0,"Datum der Lieferung",1,dat1%
+ÿ|ÿñd$,6,8,36,40,12,128,0,vdate$,10
+ÿ|ÿñd$,1,w%ÿ95,h%ÿ16,45,12,1,"&Weiter",1,1
+ÿ|ÿñd$,1,w%ÿ49,h%ÿ16,45,12,0,"&Abbruch",0,0
+ÿñd$,req%
+ÿ¡req%ÿ0ÿpnodate%ÿ1:ÿ’ÿÿ
+nodate%ÿ0
+ÿ¾ÿñd$
+zwdat%ÿÿ1(vdate$)
+zwdat1%ÿÿ1(ÿQ)
+ÿ¡zwdat%ÿzwdat1%ÿp
+ÿÂ"Eingabe nicht korrekt !!!","Datum muá <= heutiger Tag sein.",2
+datok%ÿ0
+ÿ’ÿ¡
+ÿÙ
+ ÿ™"artikel"
+ ÿßÿe
+_OK%ÿ0
+ such$ÿÿ(kunr%,"000000")ÿÿ(zwdat%,"ddmmyy")
+ ÿßÿe
+ ÿ™"artikel"
+ ÿÉÿĞÿ™"artikel"
+ ÿÊÿ£quickcoliefd.artikel
+ ÿÉÿĞQuickCoLiefD.artikelÿsuch$
+ ÿÉÿ`ÿá
+ ÿÊÿË"AUSPREIS.SBF Datei wird auf vorhandene Lieferanten kontrolliert ..."
+ ÿ¡ÿOÿB("artikel")ÿp
+ÿ™"auspreis"
+ÿÉÿ`ÿá
+ÿ¡ÿOÿB("auspreis")ÿp
+ÿÊÿË"L”schen von redundanten Datens„tzen aus Datei AUSPREIS.SBF !"
+ÿ¾ÿaÿ™"AUSPREIS"ÿĞQuickCoLiefD.auspreisÿsuch$
+ÿ’ÿ¡
+ÿÉÿĞÿ™"auspreis"
+datei$ÿ"auspreis"
+datei$ÿÿ>(datei$)
+ÿÉÿ¥datei$ÿáÿ™"sernum"ÿ£datei.sernum
+lastnum%ÿListenum%()
+ÿÊÿË"šbernahme der Datens„tze in AUSPREIS.sbf !"
+ÿØÿOÿB("artikel")
+ÿ™"Auspreis"
+ÿ
+CodeAus.auspreisÿsernum%("auspreis")
+Artikelcode.auspreisÿArtikelcode.artikel
+ÿÊÿËbezeichnung.artikel
+bezeichnung.auspreisÿbezeichnung.artikel
+ÿÊÿË"                          ..."ÿbezeichnung.auspreis
+Lieferant.auspreisÿLieferant.artikel
+liefname1.auspreisÿliefname1.artikel
+liefname1$ÿliefname1.artikel
+letzteLief%ÿletzteLieferung.artikel
+zugabg.auspreisÿzugabg.artikel
+Bestellnummer.auspreisÿBestellnummer.artikel
+me.auspreisÿme.artikel
+lagerort.auspreisÿlagerort.artikel
+bestand.auspreisÿbestand.artikel
+produktgruppe.auspreisÿproduktgruppe.artikel
+codegr.auspreisÿcodegr.artikel
+ortimlager.auspreisÿortimlager.artikel
+artbezlief.auspreisÿartbezlief.artikel
+vkeh.auspreisÿvkeh.artikel
+verteiler1.auspreisÿverteiler1.artikel:verteiler2.auspreisÿverteiler2.artikel:verteiler3.auspreisÿverteiler3.artikel:verteiler4.auspreisÿverteiler4.artikel:verteiler5.auspreisÿverteiler5.artikel
+verteiler6.auspreisÿverteiler6.artikel:verteiler7.auspreisÿverteiler7.artikel:verteiler8.auspreisÿverteiler8.artikel:verteiler9.auspreisÿverteiler9.artikel
+ist1.auspreisÿverteiler1.artikel:ist2.auspreisÿverteiler2.artikel:ist3.auspreisÿverteiler3.artikel:ist4.auspreisÿverteiler4.artikel:ist5.auspreisÿverteiler5.artikel:ist6.auspreisÿverteiler6.artikel
+ist7.auspreisÿverteiler7.artikel:ist8.auspreisÿverteiler8.artikel:ist9.auspreisÿverteiler9.artikel
+bestand01.auspreisÿbestand01.artikel:bestand02.auspreisÿbestand02.artikel:bestand03.auspreisÿbestand03.artikel:bestand04.auspreisÿbestand04.artikel:bestand05.auspreisÿbestand05.artikel:bestand06.auspreisÿbestand06.artikel
+bestand07.auspreisÿbestand07.artikel:bestand08.auspreisÿbestand08.artikel:bestand09.auspreisÿbestand09.artikel
+lbestand01.auspreisÿlbestand01.artikel:lbestand02.auspreisÿlbestand02.artikel:lbestand03.auspreisÿlbestand03.artikel
+lbestand04.auspreisÿlbestand04.artikel:lbestand05.auspreisÿlbestand05.artikel:lbestand06.auspreisÿlbestand06.artikel:lbestand07.auspreisÿlbestand07.artikel:lbestand08.auspreisÿlbestand08.artikel
+lbestand09.auspreisÿlbestand09.artikel
+mwst.auspreisÿmwst.artikel
+letztelieferung.auspreisÿletztelieferung.artikel
+quickcodeart.auspreisÿquickcodeart.artikel
+quickcoliefd.auspreisÿquickcoliefd.artikel
+quick$ÿquickCoLiefd.artikel
+Lagerbestand.auspreisÿLagerbestand.artikel
+CodeAR.auspreisÿCodeAR.artikel
+StatusGepackt.auspreisÿ"n"
+StatusGebucht.auspreisÿ"n"
+Listenr.auspreisÿlastnum%
+QuickOrtArtikel.auspreisÿOrtImLager.auspreisÿÿ(Artikelcode.auspreis,"0000000000")
+ÿƒQuickStore("auspreis")
+ÿ™"artikel"
+ÿÉÿ±ÿá
+ÿÙ
+ 
+
+ÿ™("auspreis")
+destfile$ÿ"A"ÿÿ(lastnum%,"0000000")
+ÿÊÿË"Datei "ÿdestfile$ÿ" wird erzeugt"
+ÿ×openfiles$(40)
+ÿÿopenfiles$,0
+ÿ›a%ÿ0ÿq40
+ÿ¡ÿ>(openfiles$(a%))ÿÿ>(destfile$)ÿp
+ÿ†ÿ™destfile$
+ÿ’ÿ¡
+ÿ±a%
+ÿ¡ÿJ(destfile$ÿ".sbf")ÿpÿdestfile$ÿ".*"
+prolog$ÿ"SELECT ALL REPORT WHERE "
+such$ÿÿ(kunr%,"000000")ÿÿ(zwdat%,"ddmmyy")
+filter$ÿ"QuickCoLiefD.auspreis = such$"
+epilog$ÿ" ORDER REPORT TO FILE destfile$"
+befehl$ÿprolog$ÿfilter$ÿepilog$
+ÿ–befehl$
+ÿÊÿË"Ausgabe an "ÿdestfile$ÿ".SBF beendet!"
+_OK%ÿ0
+ÿÉÿĞÿ™"auspreis"
+ÿßÿ³
+ÿÂ"Soll die Datei "ÿdestfile$ÿ" in die Sendeliste aufgenommen werden ?","",130,req%
+ÿ¡req%ÿ1ÿp
+ÿ™"Senden"
+ÿ
+datei.sendenÿdestfile$
+dateidatum.sendenÿÿQ
+liefname1.sendenÿliefname1$
+letzteLieferung.sendenÿletzteLief%
+StatusDatei.sendenÿ""
+quickcoliefd.sendenÿquick$
+ÿƒQuickStore("senden")
+ÿ™"artikel"
+ÿÂ"Datei "ÿdestfile$ÿ" wurde in die Sendeliste eingetragen !","",2
+ÿ’ÿ¡
+ ÿ^
+ÿÂ"Es wurden keine zutreffenden S„tze in der Artikeldatei gefunden !,"",2
+ ÿ’ÿ¡
+ÿÉÿĞÿ™"artikel"
+ÿïÿ™"auspreis"
+ÿÉÿĞÿ™"auspreis"
+ ÿ™cfile$
+ ÿcdir$
+ ÿ’ÿÿ
+
+
+ÿÿDRUCKAuspreis()
+ cfile$ÿÿ™
+ cdir$ÿÿ
+ lw$ÿÿ+(cdir$,2)
+ 
+ ÿÂ"W„hlen Sie einen Lieferanten aus:","",25,req%,listenr$,65,datei.senden,Liefname1.senden,letzteLieferung.sendenÿ£datei.sendenÿĞdatei.sendenÿ"*A*"
+ listenr%ÿÿ0(ÿånumeric(listenr$))
+ ÿ¡req%ÿ0ÿpÿ’ÿÿ
+ ÿÉÿ¥listenr$ÿáÿ™"senden"ÿ£datei.senden
+ suche$ÿquickcoliefd.senden
+ ÿÉÿ¥suche$ÿáÿ™"auspreis"ÿ£quickcoliefd.auspreis
+ ÿÂ"Soll die Auspreisliste Nr:A"ÿÿ(listenr%,"00000000")ÿ" gedruckt werden ?","",130,req%
+ ÿ¡req%ÿ1ÿp
+ÿßÿe
+ÿ™"auspreis"
+ÿ£listenr.auspreis
+ÿÁÿs"NEUPR1"
+ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ÿ’ÿŸ
+ 
+ÿš1
+ÿÊÿÁÿí"F_PAGE"
+ÿ¶ÿÁÿí
+ÿ’ÿš
+ 
+ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ÿ’ÿÉ
+ 
+ÿÊÿiÿe
+ÿÊÿiÿáÿe
+ÿÉ;
+ÿĞlistenr.auspreisÿlistenr%
+ÿµÿÁArtikelcode.auspreis
+ÿqÿ~
+ ÿ’ÿ¡
+ ÿÉÿĞ
+ ÿßÿ³
+ ÿ™cfile$
+ ÿcdir$
+ ÿ’ÿÿ
+ 
+
+
+ÿÿDRUCKLSchein()
+cfile$ÿÿ™
+ cdir$ÿÿ
+ lw$ÿÿ+(cdir$,2)
+ ÿ¡automatisch$ÿ"j"ÿp
+ÿÂ"W„hlen Sie eine Liste aus:","",25,req%,listenr$,65,datei.senden,dateidatum.senden,statusdatei.sendenÿ£datei.sendenÿĞdatei.sendenÿ"*L*"
+listenr%ÿÿ0(ÿånumeric(listenr$))
+ÿ¡req%ÿ0ÿpÿ’ÿÿ
+ÿÉÿ¥listenr$ÿáÿ™"senden"ÿ£datei.senden
+ÿÂ"Soll die Liefervorschlagsliste Nr:L"ÿÿ(listenr%,"00000000")ÿ" gedruckt werden ?","",130,req%
+ ÿ^
+req%ÿ1
+ ÿ’ÿ¡
+ÿ™"lschein"
+ÿÉÿ¥listenr%ÿáÿ™"lschein"ÿ£listenr.lschein
+ 
+ ÿ¡req%ÿ1ÿp
+ ÿßÿe
+ÿ™"lschein"
+ÿ£Artikelcode.lschein
+ÿ¡automatisch$ÿ"j"ÿp
+ÿÁÿs"NLSCHEIN"
+ÿ^
+ÿÁÿs"NLSCHEI1"
+ÿ’ÿ¡
+ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ÿ’ÿŸ
+ 
+ÿš1
+ÿÊÿÁÿí"F_PAGE"
+ÿ¶ÿÁÿí
+ÿ’ÿš
+ 
+ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ÿ’ÿÉ
+ 
+ÿÊÿiÿe
+ÿÊÿiÿáÿe
+ÿ¡automatisch$ÿ"j"ÿp
+ÿÉ;
+ÿĞlistenr.lscheinÿlistenr%
+ÿµÿÁQuickOrtArtikel.lschein
+ÿqÿ~
+ÿ^
+ÿÉ;
+ÿĞlistenr.lscheinÿlistenr%
+ÿµÿÁQuickOrtArtikel.lschein
+ÿqÿh
+ÿ’ÿ¡
+
+ ÿ’ÿ¡
+ ÿÉÿĞ
+ ÿßÿ³
+ ÿ™cfile$
+ ÿcdir$
+ ÿ’ÿÿ
+ 
+
+ÿÿDRUCKLLSchein()
+cfile$ÿÿ™
+ cdir$ÿÿ
+ lw$ÿÿ+(cdir$,2)
+ 
+ ÿÂ"W„hlen Sie eine Liste aus:","",25,req%,listenr$,65,datei.senden,dateidatum.senden,statusdatei.sendenÿ£datei.sendenÿĞdatei.sendenÿ"*L*"
+ listenr%ÿÿ0(ÿånumeric(listenr$))
+ ÿ¡req%ÿ0ÿpÿ’ÿÿ
+ ÿÉÿ¥listenr$ÿáÿ™"senden"ÿ£datei.senden
+ ÿ™"llschein"
+ ÿÉÿ¥listenr%ÿáÿ™"llschein"ÿ£listenr.llschein
+ 
+ ÿÂ"Soll die Liefervorschlagsliste Nr:L"ÿÿ(listenr%,"00000000")ÿ" gedruckt werden ?","",130,req%
+ ÿ¡req%ÿ1ÿp
+ ÿßÿe
+ÿ™"llschein"
+ÿ£Artikelcode.llschein
+
+
+ÿÁÿs"NLLSCHEI"
+ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ÿ’ÿŸ
+ 
+ÿš1
+ÿÊÿÁÿí"F_PAGE"
+ÿ¶ÿÁÿí
+ÿ’ÿš
+ 
+ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ÿ’ÿÉ
+ 
+ÿÊÿiÿe
+ÿÊÿiÿáÿe
+ÿÉ;
+ÿĞlistenr.llscheinÿlistenr%
+ÿµÿÁQuickOrtArtikel.llschein
+ÿqÿ~
+ ÿ’ÿ¡
+ ÿÉÿĞ
+ ÿßÿ³
+ ÿ™cfile$
+ ÿcdir$
+ ÿ’ÿÿ
+
+
+
+ÿÿDRUCKLAusprei()
+ cfile$ÿÿ™
+ cdir$ÿÿ
+ lw$ÿÿ+(cdir$,2)
+ 
+ ÿÂ"W„hlen Sie einen Lieferanten aus:","",25,req%,listenr$,65,datei.senden,Liefname1.senden,letzteLieferung.senden,StatusDatei.sendenÿ£datei.sendenÿĞdatei.sendenÿ"*A*"ÿstatusdatei.sendenÿ"eingespielt"
+ listenr%ÿÿ0(ÿånumeric(listenr$))
+ ÿ¡req%ÿ0ÿpÿ’ÿÿ
+ ÿÉÿ¥listenr$ÿáÿ™"senden"ÿ£datei.senden
+ suche$ÿquickcoliefd.senden
+ ÿÉÿ¥suche$ÿáÿ™"lausprei"ÿ£quickcoliefd.lausprei
+ ÿÂ"Soll die Auspreisliste Nr:A"ÿÿ(listenr%,"00000000")ÿ" gedruckt werden ?","",130,req%
+ ÿ¡req%ÿ1ÿp
+ ÿßÿe
+ÿ™"lausprei"
+ÿ£listenr.lausprei
+ÿÁÿs"LAUSPR"
+ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ÿ’ÿŸ
+ 
+ÿš1
+ÿÊÿÁÿí"F_PAGE"
+ÿ¶ÿÁÿí
+ÿ’ÿš
+ 
+ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ÿ’ÿÉ
+ 
+ÿÊÿiÿe
+ÿÊÿiÿáÿe
+ÿÉ;
+ÿĞlistenr.lauspreiÿlistenr%
+ÿµÿÁQuickOrtArtikel
+ÿqÿ~
+ ÿ’ÿ¡
+ ÿÉÿĞ
+ ÿßÿ³
+ ÿ™cfile$
+ ÿcdir$
+ ÿ’ÿÿ
+ 
+ ' *******************************************************************
+ '                         Routinen fr die Inventur                 *
+ ' *******************************************************************
+ÿÿInventur()
+cfile$ÿÿ™
+ cdir$ÿÿ
+ lw$ÿÿ+(cdir$,2)
+ req%ÿ0
+ ÿØreq%ÿ8
+ ÿßÿ³
+d$ÿ"Inventur"
+ ÿ‰ÿñd$,0,0,205,168,"Inventur","MS Sans Serif",8
+ÿ|ÿñd$,9,2,6,19,21,3
+ÿ|ÿñd$,5,26,12,168,8,0,"W„hlen Sie ein Funktion !"
+ÿ|ÿñd$,4,24,25,168,96,0," Funktionen fr Inventur "
+ÿ|ÿñd$,1,26,38,160,21,1,"Kasse->Artikel, Filialbestandsverrechnung",2,1
+ÿ|ÿñd$,1,26,60,160,23,1,"Druck des Filial Inventur-Berichtes",4,1
+ÿ|ÿñd$,1,26,84,160,22,1,"Erfassung der Lagerbest„nde",5,1
+ÿ|ÿñd$,1,146,126,47,24,0,"&Ende",8,1
+ÿñd$,req%
+ ÿ¾ÿñd$
+ ÿÉÿæreq%
+ÿæ2
+ÿ½ CALL "kasse.pif"
+ÿ½ REQUEST "War der Kassenaustausch erfolgreich ?","wenn nicht dann Aktion wiederholen !",130,req22%
+ÿ½ Einspielen der Verkaufsdaten in die Artikeldatei und Verrechnung mit Filialbest„nden, Fhrung Liefervorschl„ge
+ÿƒZBericht1()
+ÿæ4
+	ÿÂ"Soll die Filial-Inventurliste gedruckt werden ?","",130,req%
+ÿ¡req%ÿ1ÿp
+
+ÿƒDruckZBerich1()
+ÿ’ÿ¡
+ÿæ5
+ÿ½ Erfassung der Lagerbest„nde
+ÿƒDFile(3,"laginv"ÿ_fpw$)
+ÿ™"laginv"
+req1%ÿ0
+ÿØreq1%ÿ3
+	artnr1%ÿ0:zu1%ÿ0
+
+d$ÿ"Dialogname"
+
+ÿ‰ÿñ"Dialogname",0,0,248,60,"Inventur-Lagerbestand erfassen","System",10
+
+ÿ|ÿñ"Dialogname",5,2,3,193,8,1,"Geben Sie hier die erforderlichen Angaben ein"
+
+ÿ|ÿñ"Dialogname",6,55,15,44,12,0,0,artnr1%,10
+
+ÿ|ÿñ"Dialogname",6,148,15,38,12,0,0,zu1%,8
+
+ÿ|ÿñ"Dialogname",5,112,16,31,11,0,"Bestand"
+
+ÿ|ÿñ"Dialogname",5,3,17,49,9,0,"Artikelcode"
+
+ÿ|ÿñ"Dialogname",1,6,38,116,14,0,"Aktualisierung Artikeldatei",2,1
+
+ÿ|ÿñ"Dialogname",1,145,38,49,14,1,"Speichern",1,1
+
+ÿ|ÿñ"Dialogname",1,196,38,49,14,0,"Ende",3,0
+	ÿñd$,req1%
+	ÿ¾ÿñd$
+	ÿ¡req1%ÿ1ÿp
+ÿ¡artnr1%ÿ0ÿp
+ÿ
+Artikelcode.laginvÿartnr1%
+ist1.laginvÿzu1%
+statusgepackt.laginvÿ"n"
+ÿƒQuickStore("laginv")
+ÿ’ÿ¡
+	ÿ^
+artnr1%ÿ0:zu1%ÿ0
+	ÿ’ÿ¡
+	ÿ½  **********************************************************************************
+	ÿ½  * Aktualisieren der Lagebest„nde der Artikeldatei und setzen StatusGepackt = "j" * 
+	ÿ½  **********************************************************************************
+	ÿ¡req1%ÿ2ÿp
+ÿÂ"Wollen Sie wirklich die Lagerinventur-Datei verrechnen ?","",130,req%
+ÿ¡req%ÿ1ÿp
+ÿ™"artikel"
+ÿÊÿ£Artikelcode.artikel
+ÿ™"laginv"
+ÿÊÿ£Artikelcode.laginv
+ÿÉÿĞstatusgepackt.laginvÿ"j"
+ÿÉÿ`ÿá
+ÿ¡ÿB("laginv")ÿp
+ÿÂ"In Datei LAGINV wurden bereits alle Artikel mit Artikeldatei verrechnet",""2
+weiter$ÿ"n"
+ÿ^
+weiter$ÿ""
+ÿ’ÿ¡
+ÿÉÿ`ÿá
+gefunden%ÿ0:fehl%ÿ0
+ÿØÿOÿB("laginv")ÿweiter$ÿ""
+ÿ™"laginv"
+Artikelcode%ÿArtikelcode.laginv
+ÿ™"artikel"
+ÿÉÿ¥Artikelcode%ÿáÿ£Artikelcode.artikel
+ÿ¡Artikelcode%ÿArtikelcode.artikelÿp
+ÿÊÿË"Artikel "ÿÿ(Artikelcode%)ÿ" nicht in der Artikeldatei gefunden !"
+fehl%ÿfehl%ÿ1
+ÿ^
+gefunden%ÿgefunden%ÿ1
+ÿÊÿË"                          ..."ÿbezeichnung.artikel
+lagerbestand.artikelÿist1.laginv
+bestand.artikelÿbestand.artikelÿist1.laginv
+InventurMenge.artikelÿbestand.artikel
+InventurPreis.artikelÿEKW„hrung.artikel
+InventurWert1.artikelÿbestand.artikelÿEKw„hrung.artikel
+InventurWert2.artikelÿbestand.artikelÿVKEH.artikel
+timestamp$ÿÿ(ÿ6(ÿQ)ÿ1900,"00")ÿÿ(ÿ5(ÿQ),"00")ÿÿ(ÿ3(ÿQ),"00")ÿÿ(ÿ9(ÿR),"00")ÿÿ(ÿ:(ÿR),"00")
+timestamp%ÿÿ0(timestamp$)
+timestamp.artikelÿtimestamp%
+ÿÌ
+	
+ÿ™"laginv"
+statusgepackt.laginvÿ"j"
+ÿƒQuickStore("laginv")
+ÿ’ÿ¡
+ÿ™"laginv"
+ÿÉÿ±ÿá
+ÿÙ
+ÿ¡weiter$ÿ""ÿp
+ÿÂ"Lagerbest„nde pro Artikel wurden aktualisiert !","",2
+ÿÂ"Es wurden "ÿÿ(gefunden%)ÿ" Artikels„tze aktualisiert!","Es konnten "ÿÿ(fehl%)ÿ"nicht gefunden werden!",13
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿĞ
+	ÿ’ÿ¡
+ÿÙ
+ 
+ÿæ8
+ÿ½ Ende der Bearbeitung
+ ÿ’ÿÉ
+ ÿÙ
+ 
+ ÿ’ÿÿ
+
+ ' *************************************************************************************************
+ ' *      Routinen zur Verarbeitung des Z/X-Berichtes u.Setzen der Filialbest„nde durch Inventur   *
+ ' *************************************************************************************************
+ 
+ÿÿZBericht1()
+ datumok%ÿ0
+ ÿ¡automatisch$ÿ"j"ÿp
+ÿØdatumok%ÿ0
+datumok%ÿ1
+d$ÿ"DatumWie"
+ÿ‰ÿñd$,0,0,180,70,"Datum der ZBERICHTE","MS Sans Serif",8
+ÿ|ÿñd$,4,4,2,172,50,0,"Datumsangabe "
+ÿ|ÿñd$,6,8,36,40,12,128,0,vdate$,10
+ÿ|ÿñd$,1,85,54,45,12,1,"&Weiter",1,1
+ÿ|ÿñd$,1,131,54,45,12,0,"&Abbruch",0,0
+ÿñd$,req%
+ÿ¾ÿñd$
+ÿ¡req%ÿ0ÿpnodate%ÿ1:ÿ’ÿÿ
+nodate%ÿ0
+zwdat%ÿÿ1(vdate$)
+zbdatum%ÿzwdat%
+zwdat1%ÿÿ1(ÿQ)
+ÿ¡zwdat%ÿzwdat1%ÿp
+ÿÂ"Eingabe nicht korrekt !!!","Datum muá <= heutiger Tag sein.",2
+datok%ÿ0
+ÿ’ÿ¡
+ÿÙ
+ ÿ^
+zwdat%ÿÿ1(ÿQ)
+zbdatum%ÿzwdat%
+ ÿ’ÿ¡
+ ÿ›i%ÿ1ÿq_HKassenanz%ÿk1
+ÿ™"ZBericht"
+ÿÉÿĞ
+ÿßÿe
+ÿ¾ÿaÿ™"ZBericht"ÿĞleer1 ÿ""
+dirakt$ÿlw$ÿ_HKasseDir$(i%)
+dateiname$ÿdirakt$ÿ_HZBericht$
+ÿ¡ÿJ(dateiname$)ÿp
+ÿ¢dateiname$ÿqÿ™"ZBERICHT"ÿsÿ™"",ÿ(13)ÿÿ(10),"2"
+ÿ¾ÿaÿ™"ZBericht"ÿĞstck1 ÿ"*zzz*"ÿart1 ÿ""ÿstck1 ÿ"*xxx*"
+ 
+ÿÍart2 ÿ""ÿĞstck2 ÿ"*zzz*"ÿstck2 ÿ"*xxx*"
+ÿ’ÿÍ
+ÿÊÿË"Datei "ÿdateiname$ÿ" in ZBericht.sbf bernommen!"
+ÿ™"ZBericht"
+ÿÉÿĞ
+ÿßÿe
+ÿÉÿ`
+ÿÊÿË"Beginn Neuaufnahme von ZBericht "ÿdateiname$ÿ" in ZBEART.sbf !"
+ÿØÿOÿB("ZBericht")
+ÿ¡art1.zberichtÿ""ÿstck1.zberichtÿ""ÿpreis1.zberichtÿ""ÿp
+	ÿ™"ZBERART"
+	ÿ
+	CodeZBe.zberartÿsernum%("zberart")
+	artikel.zberartÿÿ0(art1.zbericht)
+	stckzahl.zberartÿÿ0(stck1.zbericht)ÿ1000
+	spreis.zberartÿÿ0(preis1.zbericht)ÿ100
+	filiale.zberartÿi%
+	ZBDatum.zberartÿzbdatum%
+	ÿƒQuickStore("ZBERART")
+	ÿ™"ZBericht"
+ÿ’ÿ¡
+ÿ¡art2.zberichtÿ""ÿstck2.zberichtÿ""ÿpreis2.zberichtÿ""ÿp
+	ÿ™"ZBERART"
+	ÿ
+	CodeZBe.zberartÿsernum%("zberart")
+	artikel.zberartÿÿ0(art2.zbericht)
+	stckzahl.zberartÿÿ0(stck2.zbericht)ÿ1000
+	spreis.zberartÿÿ0(preis2.zbericht)ÿ100
+	filiale.zberartÿi%
+	ZBDatum.zberartÿzbdatum%
+	ÿƒQuickStore("ZBERART")
+	ÿ™"ZBericht"
+ÿ’ÿ¡
+ÿÉÿ±ÿá
+ÿÙ
+ÿÊÿË"Neuaufnahme ZBericht "ÿdateiname$ÿ" in ZBEART.sbf abgeschlossen!"
+dateisich$ÿdirakt$ÿÿ(ÿQ,"ddmmyy")ÿ".REP"
+ÿˆdateiname$ÿqdateisich$
+ÿdateiname$
+ÿ^
+ÿÂ"Datei nicht gefunden:"ÿdateiname$,"",2
+ÿ’ÿ¡
+ ÿ±i%
+ 
+
+ÿ½ **************************************************************************************
+ÿ½ *           Aktualisierung der Artikeldatei                                          *
+ÿ½ *           - Bestand (gesamt)                                                       *
+ÿ½ *           - Bestand1-9 pro Filiale                                                 *
+ÿ½ *           - Liefervorschl„ge 1-9 pro Filiale
+ÿ½ *           - VerkaufSt1-9 pro Filiale (verkaufte Stckzahl)                         *
+ÿ½ *           - VerkaufSTGesamt (verkaufte Stckzahl Gesamt)                           *
+ÿ½ *           - VerkaufPR1-9 pro Filiale (get„tigter Umsatz pro Artikel pro Filiale)   *
+ÿ½ *           - VerkaufPRGesamt (get„tigter Umsatz pro Artikel gesamt)                 *
+ÿ½ **************************************************************************************
+ ÿ¡automatisch$ÿ"j"ÿp
+ÿÂ"Sollen die Verkaufszahlen in die Artikeldatei bernommen werden ?","",130,req%
+ÿ¡req%ÿ1ÿpÿ’ÿÿ
+ ÿ’ÿ¡
+ 
+ÿ™"ZBERART"
+ÿÉÿ`ÿáÿ™"zberart"ÿ£filiale.zberart
+ 
+ÿØÿOÿB("zberart")
+ÿ¡StatusBearb.zberartÿ"j"ÿp
+artnr%ÿartikel.zberart
+i%ÿfiliale.zberart
+ÿÊÿË"Berarbeitung Artikel: "ÿÿ(artnr%,"0000000000")ÿ" Filiale:"ÿÿ(i%,"00")
+ÿ™"artikel"
+ÿÉÿ¥artnr%ÿáÿ™"artikel"ÿ£Artikelcode.artikel
+ÿ¡Artikelcode.artikelÿartnr%ÿp
+	
+	bestand.artikelÿbestand.artikelÿstckzahl.zberart
+	ÿ–"Bestand"ÿÿ(i%,"00")ÿ".artikel=stckzahl.zberart"
+
+	bestellvorges.artikelÿ"n"
+	ÿ–"Liefvor"ÿÿ(i%,"00")ÿ".artikel=~n~"
+	liefvorges.artikelÿ"n"
+timestamp$ÿÿ(ÿ6(ÿQ)ÿ1900,"00")ÿÿ(ÿ5(ÿQ),"00")ÿÿ(ÿ3(ÿQ),"00")ÿÿ(ÿ9(ÿR),"00")ÿÿ(ÿ:(ÿR),"00")
+timestamp%ÿÿ0(timestamp$)
+timestamp.artikelÿtimestamp%
+ 
+	ÿÌ
+	ÿ™"ZBERART"
+	vkehpos.zberartÿvkeh.artikel
+	vkehges.zberartÿvkeh.artikelÿstckzahl.zberart
+	bezeichnung.zberartÿbezeichnung.artikel
+	StatusBearb.zberartÿ"j"
+	ÿƒQuickStore("zberart")
+ÿ^
+	ÿÊÿË"Artikel:"ÿÿ(artnr%,"9999999999")ÿ" nicht gefunden !!"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿáÿ™"zberart"ÿ£filiale.zberart
+ÿÙ
+ÿÂ"Aktualisierung der Filialbest„nde beendet !!!","",2
+ ÿßÿ³
+ ÿÊÿË"Arbeit beendet !"
+ ÿÉÿĞÿ™"zberart"
+ ÿÉÿĞÿ™"artikel"
+ ÿ’ÿÿ
+ 
+ ' ********************************************
+ ' *        Druck des Inventur-Berichtes      *
+ ' ********************************************
+
+ÿÿDruckZBerich1()
+datok%ÿ0
+ ÿØdatok%ÿ0
+datok%ÿ1
+d$ÿ"filiale"
+ÿ‰ÿñd$,0,0,217,70,"Filiale und Datum","MS Sans Serif",8
+ÿ|ÿñd$,4,5,1,205,51,0,"Geben Sie die Filialnr und das Datum fr den ZBericht ein "
+ÿ|ÿñd$,6,100,20,13,13,0,0,filiale1%,2
+ÿ|ÿñd$,6,162,20,40,13,128,0,vdate$,10
+ÿ|ÿñd$,5,54,22,44,11,0,"Filialnummer"
+ÿ|ÿñd$,5,137,24,24,9,0,"Datum"
+ÿ|ÿñd$,1,164,54,45,12,0,"&Abbruch",0,0
+ÿ|ÿñd$,1,116,55,45,12,1,"&Weiter",1,1
+ÿñd$,req%
+ÿ¾ÿñd$
+ÿ¡req%ÿ0ÿpnodate%ÿ1:ÿ’ÿÿ
+nodate%ÿ0
+zwdat%ÿÿ1(vdate$)
+zwdat1%ÿÿ1(ÿQ)
+ÿ¡zwdat%ÿzwdat1%ÿp
+ÿÂ"Eingabe nicht korrekt !!!","Datum muá <= heutiger Tag sein.",2
+datok%ÿ0
+ÿ’ÿ¡
+ÿ¡filiale1%ÿ0ÿfiliale1%ÿ_HKassenanz%ÿp
+ÿÂ"Eingabe nicht korrekt !!!","Nummer muá >0 und < "ÿÿ(_HKassenanz%,"00")ÿ" sein!",2
+datok%ÿ0
+ÿ’ÿ¡
+ ÿÙ
+ ÿ™"zberart"
+ ÿßÿe
+ ÿÁÿs"ZBERICH1"
+ ÿÁÿ³SPreis.ZBERARTÿU"summe1%"
+ ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿŸ
+ filiale2%ÿfiliale1%
+ ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÉ
+ 
+ ÿÊÿiÿ³
+ ÿÊÿiÿáÿ³
+ ÿÊÿbÿíÿšÿe
+ ÿÉ;
+ÿĞFiliale.ZBERARTÿfiliale1%ÿArtikel.ZBERARTÿArtikelcode.ARTIKELÿZBDatum.zberartÿzwdat%
+ÿµÿÁFiliale.ZBERART,Artikel.ZBERART
+ÿqÿ~
+ ÿÉÿĞ
+ ÿßÿ³
+ ÿ’ÿÿ
+
+
+
+
+
+
+
+
+
+
+ ' ************************************ *******************************
+ '  Routinen fr den Kassenaustausch und Erstellung Liefervorschl„ge  *
+ ' ********************************************************************
+
+
+ÿÿCreateLiefvor()
+ cfile$ÿÿ™
+ cdir$ÿÿ
+ lw$ÿÿ+(cdir$,2)
+ req%ÿ0
+ ÿØreq%ÿ8
+ ÿßÿ³
+d$ÿ"Liefvor"
+ÿ‰ÿñd$,0,0,205,223,"Kassenaustausch","MS Sans Serif",8
+ÿ|ÿñd$,4,24,3,168,197,0," Funktionen fr Liefervorschl„ge "
+ÿ|ÿñd$,1,28,22,160,22,1,"Registrierkasse erfassen",9,1
+ÿ|ÿñd$,1,28,44,160,23,1,"Artikel -> Kasse, ZBericht holen",1,1
+ÿ|ÿñd$,1,28,67,160,21,1,"Kasse->Artikel, Filialbestandsverrechnung",2,1
+ÿ|ÿñd$,1,28,88,160,22,1,"Drucken des ZBerichtes",3,1
+ÿ|ÿñd$,1,28,110,160,22,1,"Erstellen Liefervorschlagsliste",4,1
+ÿ|ÿñd$,1,28,132,160,21,1,"Drucken Liefervorschlagslisten",6,1
+ÿ|ÿñd$,1,28,152,160,22,1,"L”schen in der Sendeliste",5,1
+ÿ|ÿñd$,1,28,174,160,22,1,"Funktionen automatisch ausfhren",7,1
+ÿ|ÿñd$,9,2,6,19,21,3
+ÿ|ÿñd$,1,86,200,47,19,0,"&Ende",8,1
+ÿñd$,req%
+ÿ¾ÿñd$
+ ÿÉÿæreq%
+ÿæ1
+ÿ½ Erzeugen der Kassenaus.src und HOSAI Aufruf
+ÿƒCreateSRCFile()
+ÿƒBerechLBuch()
+ÿƒ"kasse.pif"
+ÿÂ"War der Kassenaustausch erfolgreich ?","wenn nicht dann Aktion wiederholen !",130,req22%
+ÿæ2
+ÿ½ Einspielen der Verkaufsdaten in die Artikeldatei und Verrechnung mit Filialbest„nden, Fhrung Liefervorschl„ge
+ÿƒZBericht()
+ÿæ3
+ÿ½ Drucken ZBericht
+ÿƒDruckZBericht()
+ÿæ4
+ÿ½ Erstellen der Liefervorschlagsliste
+ÿƒLiefervor()
+ÿÂ"Soll der Liefervorschlag gedruckt werden ?","",130,req%
+ÿ¡req%ÿ1ÿp
+
+ÿƒDRUCKLSchein()
+ÿ’ÿ¡
+ÿæ5
+ÿ½ L”schen in der Sendeliste
+ÿÂ"W„hlen Sie eine zu l”schende Liste aus:","",25,req%,datei$,65,datei.senden,dateidatum.senden,StatusDatei.sendenÿ£datei.sendenÿĞdatei.sendenÿ"*L*"
+ÿ¡req%ÿ1ÿp
+
+ÿ™"senden"
+
+ÿ¾ÿaÿ™"senden"ÿĞdatei.sendenÿdatei$
+
+ÿÂ"Datei "ÿdatei$ÿ" aus der Sendedatei entfernt !","",2
+ÿ’ÿ¡
+ÿæ6
+ÿƒDRUCKLSchein()
+ÿæ7
+ÿ½ alles automatisch machen
+ÿ½ ***************************************************************************
+ÿ½ *                           Timer setzen                                  *
+ÿ½ ***************************************************************************
+a%ÿ60
+day1%ÿÿ1(ÿQ)
+automatisch$ÿ"j"
+ÿ½ EVENTCLASS TIMEVAL OFF :REM setzt alle Timerereignisse off
+ÿ½ ON EVENTCLASS TIMEVAL :REM set Timerdefinitionen zurck
+ÿ½ ON EVENTCLASS TIMEVAL = a% CALL t(), REPEAT :REM definiert ein neues Ereignis
+ÿ½ EVENTCLASS TIMEVAL ON :REM und setzt es auf on
+ÿÂ"CALL CreateSRCFile()","Erzeugung Kasse.SRC",2
+ÿƒCreateSRCFile()
+ÿÂ"CALL BerechLBuch()","Einspielen Buchungsdatei",2
+ÿƒBerechLBuch()
+ÿ‹"hh:mm:ss"
+a$ÿÿ7(ÿR)
+aktzeit%ÿÿ8(a$)
+dfubeginn%ÿÿ8(_HDFšBeginn$)
+dfuverarb%ÿÿ8(_HDFšVerarb$)
+ÿßÿe
+ÿØaktzeit%ÿ
+dfubeginn%ÿday1%ÿÿ1(ÿQ)
+ÿÊÿË"Warte auf HOSAI-Beginn !"
+
+automatisch$ÿ"j"
+
+a$ÿÿ7(ÿR)
+
+aktzeit%ÿÿ8(a$)
+ÿÙ
+ÿÊÿË"HOSAI Kassenaustausch hat begonnen !"
+ÿÂ"Call Kasse.pif","",2
+ÿƒ"kasse.pif"
+ÿ‹"hh:mm:ss"
+a$ÿÿ7(ÿR)
+aktzeit%ÿÿ8(a$)
+ÿ¡dfuverarb%ÿ
+dfubeginn%ÿpday1%ÿday1%ÿ1
+ÿØaktzeit%ÿ
+dfuverarb%ÿday1%ÿÿ1(ÿQ)
+
+ÿÊÿË"Warte auf HOSAI - Verarbeitung !"
+
+automatisch$ÿ"j"
+
+a$ÿÿ7(ÿR)
+
+aktzeit%ÿÿ8(a$)
+ÿÙ
+ÿÊÿË"HOSAI - Verarbeitung begonnen !"
+ÿÂ"Call ZBericht()","Einspielen Kassendaten in Artikeldatei",2
+ÿƒZBericht()
+ÿÂ"Call Liefervor","Erzeugung Liefervorschlag",2
+ÿƒLiefervor()
+ÿÂ"Call DRUCKLSchein","",2
+ÿƒDRUCKLSchein()
+automatisch$ÿ"n"
+ÿßÿ³
+ÿÊÿË"Verarbeitung beendet !"
+ÿæ9
+ÿ½ Erfassung einer Registriekasse, evt Kassennummer hier abverlangen
+ÿƒEditKasse()
+ÿæ8
+ÿ½ Ende der Bearbeitung
+ ÿ’ÿÉ
+ ÿÙ
+ ÿ’ÿÿ
+ 
+
+
+
+
+
+
+ÿÿCreateSRCFile()
+ cfile$ÿÿ™
+ cdir$ÿÿ
+ lw$ÿÿ+(cdir$,2)
+ ÿÊÿË"ZURKASSE.SBF-SRC Datei wird generiert..."
+ ÿßÿe
+ destfile$ÿ"ZURKASSE"
+ ÿ™"artikel"
+ ÿ×openfiles$(40)
+ ÿÿopenfiles$,0
+ ÿ›a%ÿ0ÿq40
+ÿ¡ÿ>(openfiles$(a%))ÿÿ>(destfile$)ÿp
+ÿ†ÿ™destfile$
+ÿ’ÿ¡
+ ÿ±a%
+ SatzStatus$ÿ"n"
+ ÿÉÿ¥SatzStatus$ÿáÿ£SatzStatusNC.artikel
+ ÿ¡ÿOÿC("artikel")ÿp
+SatzStatus$ÿ"c"
+ÿÉÿ¥SatzStatus$ÿáÿ£SatzStatusNC.artikel
+ÿ¡ÿOÿC("artikel")ÿp
+SatzStatus$ÿ"d"
+ÿÉÿ¥SatzStatus$ÿáÿ£SatzStatusNC.artikel
+ÿ¡ÿOÿC("artikel")ÿp
+ÿÂ"Keine Artikel, die an die Kasse bergeben werden mssen, gefunden!!","",2
+_OK%ÿÿ1
+ÿ^
+_OK%ÿ0
+ÿ’ÿ¡
+ÿ^
+_OK%ÿ0
+ÿ’ÿ¡
+ ÿ^
+_OK%ÿ0
+ ÿ’ÿ¡
+ ÿ¡_OK%ÿÿ1ÿp
+ÿ¡ÿJ(destfile$ÿ".sbf")ÿpÿdestfile$ÿ".*"
+prolog$ÿ"SELECT SatzStatusNC,SatzStatusTrans,Artikelcode,Bezeichnung,CodeGR,VKEH REPORT WHERE "
+filter$ÿ"SatzStatusNC <> "ÿÿ(34)ÿ"u"ÿÿ(34)
+epilog$ÿ" ORDER REPORT TO FILE destfile$"
+befehl$ÿprolog$ÿfilter$ÿepilog$
+ÿ–befehl$
+ÿÊÿË"Ausgabe an ZURKASSE.SBF beendet!"
+ÿßÿ³
+ÿ™"ZURKASSE"
+ÿ‰ÿ£ÿ³Artikelcode.zurkasse
+ÿÉÿĞ
+ÿÊÿ£Artikelcode.zurkasse
+ÿÉÿ`
+ÿÍSatzStatusNC.zurkasseÿ"n"
+ÿ’ÿÍ
+ÿßÿe
+ÿ½ SET STATUS "Exportiere Datei nach " + dateiname$ + " ..."
+ÿ›i%ÿ1ÿq_HKassenanz%ÿk1
+dirakt$ÿlw$ÿ_HKasseDir$(i%)
+ÿdirakt$
+dateiname$ÿ_HKasseAust$
+ÿÊÿË"Exportiere Datei nach "ÿdateiname$ÿ" ..."
+dateisich$ÿdirakt$ÿÿ(ÿQ,"ddmmyy")ÿ".SRC"
+
+ÿˆdateiname$ÿqdateisich$
+ÿ¡ÿJ(dateiname$)ÿpÿdateiname$
+ÿÊÿÿÿe
+ÿ—dateiname$ÿsÿ™" ",ÿ(13)ÿÿ(10),"2"
+ÿÊÿË"Ausgabe Kassenaustausch Filiale "ÿÿ(i%,"00")ÿ" beendet!"
+ÿ±i%
+ÿÊÿ£Artikelcode.zurkasse
+ÿÉÿ`
+ÿÍSatzStatusNC.zurkasseÿ"c"
+ÿ’ÿÍ
+ÿßÿe
+ÿ½ SET STATUS "Exportiere Datei nach " + dateiname$ + " ..."
+ÿ›i%ÿ1ÿq_HKassenanz%ÿk1
+dirakt$ÿlw$ÿ_HKasseDir$(i%)
+ÿdirakt$
+dateiname$ÿ_HKasseAust$
+dateiname$ÿ"NKASSEAU.SRC"
+ÿÊÿË"Exportiere Datei nach "ÿdateiname$ÿ" ..."
+dateisich$ÿdirakt$ÿÿ(ÿQ,"ddmmyy")ÿ".SRC"
+ 
+ÿ½ COPY dateiname$ TO dateisich$
+ÿ¡ÿJ(dateiname$)ÿpÿdateiname$
+ÿÊÿÿÿe
+ÿ—dateiname$ÿsÿ™" ",ÿ(13)ÿÿ(10),"2"
+ÿÊÿË"Ausgabe Kassenaustausch Filiale "ÿÿ(i%,"00")ÿ" beendet!"
+ÿ±i%
+ÿ™cfile$
+ÿcdir$
+ÿ¡automatisch$ÿ"j"ÿp
+ÿÂ"Sollen die Datens„tze als šBERTRAGEN gekennzeichnet werden ?","",130,req%
+ÿ^
+req%ÿ1
+ÿ’ÿ¡
+ÿ¡req%ÿ1ÿp
+ÿ™"artikel"
+ÿ£CodeAR.artikel
+ÿÉÿ`ÿáÿ™"artikel"ÿ£CodeAR.artikel
+i%ÿ0
+ÿØÿOÿB("artikel")
+	ÿ¡SatzStatusNC.artikelÿ"u"ÿp
+SatzStatusNC.artikelÿ"u"
+timestamp$ÿÿ(ÿ6(ÿQ)ÿ1900,"00")ÿÿ(ÿ5(ÿQ),"00")ÿÿ(ÿ3(ÿQ),"00")ÿÿ(ÿ9(ÿR),"00")ÿÿ(ÿ:(ÿR),"00")
+timestamp%ÿÿ0(timestamp$)
+timestamp.artikelÿtimestamp%
+ÿÌ
+i%ÿi%ÿ1
+ÿÊÿË"Kennzeichnung der bertragenen S„tze in der Artikeldatei ..."ÿÿ(i%,"999999")
+ÿ½ UPDATE SatzStatusNC.artikel = "u" WHERE SatzStatusNC.artikel <> "u"
+	ÿ’ÿ¡
+	ÿÉÿ±ÿá
+ÿÙ
+ÿÊÿË"nderung beendet beendet!"
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ _OK%ÿ0
+ ÿßÿ³
+ ÿ™cfile$
+ ÿcdir$
+ ÿ’ÿÿ
+ 
+
+ ' ***********************************************************************************
+ ' *      Routinen zur Verarbeitung des Z/X-Berichtes und der Bestandsaktualisierung *
+ ' ***********************************************************************************
+
+ÿÿZBericht()
+ datumok%ÿ0
+ ÿ¡automatisch$ÿ"j"ÿp
+ÿØdatumok%ÿ0
+datumok%ÿ1
+d$ÿ"DatumWie"
+ÿ‰ÿñd$,0,0,180,70,"Datum der ZBERICHTE","MS Sans Serif",8
+ÿ|ÿñd$,4,4,2,172,50,0,"Datumsangabe "
+ÿ|ÿñd$,6,8,36,40,12,128,0,vdate$,10
+ÿ|ÿñd$,1,85,54,45,12,1,"&Weiter",1,1
+ÿ|ÿñd$,1,131,54,45,12,0,"&Abbruch",0,0
+ÿñd$,req%
+ÿ¾ÿñd$
+ÿ¡req%ÿ0ÿpnodate%ÿ1:ÿ’ÿÿ
+nodate%ÿ0
+zwdat%ÿÿ1(vdate$)
+zbdatum%ÿzwdat%
+zwdat1%ÿÿ1(ÿQ)
+ÿ¡zwdat%ÿzwdat1%ÿp
+ÿÂ"Eingabe nicht korrekt !!!","Datum muá <= heutiger Tag sein.",2
+datok%ÿ0
+ÿ’ÿ¡
+ÿÙ
+ ÿ^
+zwdat%ÿÿ1(ÿQ)
+zbdatum%ÿzwdat%
+ ÿ’ÿ¡
+ ÿ›i%ÿ1ÿq_HKassenanz%ÿk1
+ÿ™"ZBericht"
+ÿÉÿĞ
+ÿßÿe
+ÿ¾ÿaÿ™"ZBericht"ÿĞleer1 ÿ""
+dirakt$ÿlw$ÿ_HKasseDir$(i%)
+dateiname$ÿdirakt$ÿ_HZBericht$
+ÿ¡ÿJ(dateiname$)ÿp
+ÿ¢dateiname$ÿqÿ™"ZBERICHT"ÿsÿ™"",ÿ(13)ÿÿ(10),"2"
+ÿ¾ÿaÿ™"ZBericht"ÿĞstck1 ÿ"*zzz*"ÿart1 ÿ""ÿstck1 ÿ"*xxx*"
+ 
+ÿÍart2 ÿ""ÿĞstck2 ÿ"*zzz*"ÿstck2 ÿ"*xxx*"
+ÿ’ÿÍ
+ÿÊÿË"Datei "ÿdateiname$ÿ" in ZBericht.sbf bernommen!"
+ÿ™"ZBericht"
+ÿÉÿĞ
+ÿßÿe
+ÿÉÿ`
+ÿÊÿË"Beginn Neuaufnahme von ZBericht "ÿdateiname$ÿ" in ZBEART.sbf !"
+ÿØÿOÿB("ZBericht")
+ÿ¡art1.zberichtÿ""ÿstck1.zberichtÿ""ÿpreis1.zberichtÿ""ÿp
+	ÿ™"ZBERART"
+	ÿ
+	CodeZBe.zberartÿsernum%("zberart")
+	artikel.zberartÿÿ0(art1.zbericht)
+	stckzahl.zberartÿÿ0(stck1.zbericht)ÿ1000
+	ÿ¡leer2.zberichtÿ"*-*"ÿp
+stckzahl.zberartÿstckzahl.zberartÿÿ1
+	ÿ’ÿ¡
+	spreis.zberartÿÿ0(preis1.zbericht)ÿ100
+	ÿ¡leer3.zberichtÿ"-"ÿp
+spreis.zberartÿspreis.zberartÿÿ1
+	ÿ’ÿ¡
+	filiale.zberartÿi%
+	ZBDatum.zberartÿzbdatum%
+	ÿƒQuickStore("ZBERART")
+	ÿ™"ZBericht"
+ÿ’ÿ¡
+ÿ¡art2.zberichtÿ""ÿstck2.zberichtÿ""ÿpreis2.zberichtÿ""ÿp
+	ÿ™"ZBERART"
+	ÿ
+	CodeZBe.zberartÿsernum%("zberart")
+	artikel.zberartÿÿ0(art2.zbericht)
+	stckzahl.zberartÿÿ0(stck2.zbericht)ÿ1000
+	ÿ¡leer5.zberichtÿ"*-*"ÿp
+stckzahl.zberartÿstckzahl.zberartÿÿ1
+	ÿ’ÿ¡
+	spreis.zberartÿÿ0(preis2.zbericht)ÿ100
+	ÿ¡leer6.zberichtÿ"-"ÿp
+spreis.zberartÿspreis.zberartÿÿ1
+	ÿ’ÿ¡
+	filiale.zberartÿi%
+	ZBDatum.zberartÿzbdatum%
+	ÿƒQuickStore("ZBERART")
+	ÿ™"ZBericht"
+ÿ’ÿ¡
+ÿÉÿ±ÿá
+ÿÙ
+ÿÊÿË"Neuaufnahme ZBericht "ÿdateiname$ÿ" in ZBEART.sbf abgeschlossen!"
+dateisich$ÿdirakt$ÿÿ(ÿQ,"ddmmyy")ÿ".REP"
+ÿˆdateiname$ÿqdateisich$
+ÿdateiname$
+ÿ^
+ÿÂ"Datei nicht gefunden:"ÿdateiname$,"",2
+ÿ’ÿ¡
+ ÿ±i%
+
+
+ÿ½ **************************************************************************************
+ÿ½ *           Aktualisierung der Artikeldatei                                          *
+ÿ½ *           - Bestand (gesamt)                                                       *
+ÿ½ *           - Bestand1-9 pro Filiale                                                 *
+ÿ½ *           - Liefervorschl„ge 1-9 pro Filiale
+ÿ½ *           - VerkaufSt1-9 pro Filiale (verkaufte Stckzahl)                         *
+ÿ½ *           - VerkaufSTGesamt (verkaufte Stckzahl Gesamt)                           *
+ÿ½ *           - VerkaufPR1-9 pro Filiale (get„tigter Umsatz pro Artikel pro Filiale)   *
+ÿ½ *           - VerkaufPRGesamt (get„tigter Umsatz pro Artikel gesamt)                 *
+ÿ½ **************************************************************************************
+ ÿ¡automatisch$ÿ"j"ÿp
+ÿÂ"Sollen die Verkaufszahlen in die Artikeldatei bernommen werden ?","",130,req%
+ÿ¡req%ÿ1ÿpÿ’ÿÿ
+ ÿ’ÿ¡
+ 
+ÿ™"ZBERART"
+ÿÉÿ`ÿáÿ™"zberart"ÿ£filiale.zberart
+
+ÿØÿOÿB("zberart")
+ÿ¡StatusBearb.zberartÿ"j"ÿp
+artnr%ÿartikel.zberart
+i%ÿfiliale.zberart
+ÿÊÿË"Berarbeitung Artikel: "ÿÿ(artnr%,"0000000000")ÿ" Filiale:"ÿÿ(i%,"00")
+ÿ™"artikel"
+ÿÉÿ¥artnr%ÿáÿ™"artikel"ÿ£Artikelcode.artikel
+ÿ¡Artikelcode.artikelÿartnr%ÿp
+	bestand.artikelÿbestand.artikelÿstckzahl.zberart
+	VerkaufSTGesamt.artikelÿVerkaufSTGesamt.artikelÿStckzahl.zberart
+	VerkaufPRGesamt.artikelÿVerkaufPRGesamt.artikelÿSPreis.zberart
+	ÿ–"verkaufST"ÿÿ(i%,"00")ÿ".artikel=verkaufst"ÿÿ(i%,"00")ÿ".artikel+stckzahl.zberart"
+	ÿ–"verkaufPr"ÿÿ(i%,"00")ÿ".artikel=verkaufPr"ÿÿ(i%,"00")ÿ".artikel+spreis.zberart"
+	ÿ–"Bestand"ÿÿ(i%,"00")ÿ".artikel=bestand"ÿÿ(i%,"00")ÿ".artikel-stckzahl.zberart"
+	ÿ–"bestand% = Bestand"ÿÿ(i%,"00")ÿ".artikel"
+	ÿ–"lBestand"ÿÿ(i%,"00")ÿ".artikel = lBestand"ÿÿ(i%,"00")ÿ".artikel+stckzahl.zberart"
+	ÿ–"lbestand% = lBestand"ÿÿ(i%,"00")ÿ".artikel"
+	ÿ½ ### neu ### 22.05.95
+	ÿ¡stckzahl.zberartÿ0ÿp
+timestamp$ÿÿ(ÿ6(ÿQ)ÿ1900,"00")ÿÿ(ÿ5(ÿQ),"00")ÿÿ(ÿ3(ÿQ),"00")ÿÿ(ÿ9(ÿR),"00")ÿÿ(ÿ:(ÿR),"00")
+timestamp%ÿÿ0(timestamp$)
+ÿ–"Tstamp"ÿÿ(i%,"00")ÿ".artikel = timestamp%"
+	ÿ’ÿ¡
+	ÿ½ ### neu ###
+	ÿ¡OrtimLager.artikelÿ"***"ÿ(Lagerbestand.artikelÿ	0ÿLagerbestand.artikelÿ	Dispomenge.artikel)ÿp
+bestellvorges.artikelÿ"j"
+	ÿ’ÿ¡
+	ÿ¡OrtimLager.artikelÿ"***"ÿLagerbestand.artikelÿ	0ÿp
+ÿ–"Liefvor"ÿÿ(i%,"00")ÿ".artikel=~u~"
+ÿ–"lbestand"ÿÿ(i%,"00")ÿ".artikel=0"
+liefvorges.artikelÿ"u"
+	ÿ^
+bestellvorges.artikelÿ"n"
+ÿ¡lbestand%ÿbestand%ÿp
+ÿ–"Liefvor"ÿÿ(i%,"00")ÿ".artikel=~j~"
+liefvorges.artikelÿ"j"
+ÿ^
+ÿ–"Liefvor"ÿÿ(i%,"00")ÿ".artikel=~n~"
+ÿ’ÿ¡
+	ÿ’ÿ¡
+timestamp$ÿÿ(ÿ6(ÿQ)ÿ1900,"00")ÿÿ(ÿ5(ÿQ),"00")ÿÿ(ÿ3(ÿQ),"00")ÿÿ(ÿ9(ÿR),"00")ÿÿ(ÿ:(ÿR),"00")
+timestamp%ÿÿ0(timestamp$)
+timestamp.artikelÿtimestamp%
+ 
+	ÿÌ
+	ÿ™"ZBERART"
+	vkehpos.zberartÿvkeh.artikel
+	vkehges.zberartÿvkeh.artikelÿstckzahl.zberart
+	bezeichnung.zberartÿbezeichnung.artikel
+	StatusBearb.zberartÿ"j"
+	ÿƒQuickStore("zberart")
+ÿ^
+	ÿÊÿË"Artikel:"ÿÿ(artnr%,"9999999999")ÿ" nicht gefunden !!"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿáÿ™"zberart"ÿ£filiale.zberart
+ÿÙ
+ÿÂ"Aktualisierung der Filialbest„nde beendet !!!","",2
+ ÿßÿ³
+ ÿÊÿË"Arbeit beendet !"
+ ÿÉÿĞÿ™"zberart"
+ ÿÉÿĞÿ™"artikel"
+ ÿ’ÿÿ
+
+
+
+
+ÿ½ ************************************************************************************
+ÿ½ *               Erzeugung der  Bestellvorschl„ge                                   *     
+ÿ½ ************************************************************************************
+ÿÿBestellvor()
+ÿÂ"Sollen die Bestellvorschl„ge erzeugt werden?","Erzeugung/Erg„nzung der einzelnen Voschl„ge!",130,req%
+ÿ™"artikel"
+ÿÉÿĞ
+ÿ¡req%ÿ1ÿpÿ’ÿÿ
+ÿßÿe
+ÿ½ ***********************************************************************************
+ÿ½ *    Erzeugung Lieferantenbersicht fr die akt.Bestellvorschl„ge in bestlief.sbf *
+ÿ½ ***********************************************************************************
+ÿ¡ÿJ("bestlief.sbf")ÿpÿ"bestlief.*"
+ÿÉÿòLieferant.artikel,Liefname1.artikelÿĞbestellvorges.artikelÿ"j"
+ÿÁ
+ÿµÿÁLiefname1.artikel
+ÿqÿ™"bestlief"
+ÿ†ÿ™"bestlief"
+ÿ’ÿÉ
+ÿ™"artikel"
+ÿ£lieferant.artikel
+ÿ½ SELECT WHERE bestellvorges = "j"
+ÿÉÿ`
+ÿØÿOÿB("artikel")
+ÿ¡bestellvorges ÿ"j"ÿp
+ÿÊÿËÿ(CodeAr.artikel,"9999999999")
+lieferant%ÿlieferant.artikel
+ÿ™"adressen"
+ÿ£Codeku.adressen
+ÿÉÿ`
+ÿÉÿ¥lieferant%ÿ™"ADRESSEN"ÿ£CodeKU.adressen
+ÿ¡ÿOÿC("adressen")ÿpÿwweiter1
+frachtfrei1%ÿfrachtfrei1.adressen
+ÿ½ ** Prfung, ob in Master eine noch nicht gebuchte Bestellung des Lieferanten vorhanden
+ÿ™"master"
+ÿ£CodeKU.master
+ÿÉÿ`
+ÿÉÿ¥lieferant%ÿ™"master"ÿ£Codeku.master
+codems%ÿ0
+ÿØÿOÿB("master")
+ÿ¡art.masterÿ5ÿstatusm.masterÿ"b"ÿstatusm.masterÿ"s"ÿCodeku.masterÿlieferant%ÿp
+codems%ÿCodeMS.master
+ÿ’ÿ¡
+ÿÉÿ±
+ÿÙ
+ÿ¡codems%ÿ0ÿp
+ÿÉÿ¥codems%ÿ™"master"ÿ£Codems.master
+cums%ÿCodeMS.master
+codems%ÿcums%
+ÿ’ÿ¡
+ÿ½ ** Es wurde keine, nicht gebuchte Bestellung gefunden codems%=0
+ÿ¡codems%ÿ0ÿp
+ÿ
+CodeMS.MASTERÿsernum%("MASTER")
+codems%ÿCodeMS.master
+cums%ÿcodems%
+datum.masterÿÿQ
+KalkArt.MASTERÿ0
+td$ÿÿ(ÿQ,"ddmmyy")
+td2$ÿReadConfig$("PRICEIT","TODAY")
+ÿ¡td$ÿtd2$ÿp
+ÿƒWriteConfig("PRICEIT","TODAY",td$)
+ÿƒWriteConfig("PRICEIT","LASTNUM","1")
+nnum%ÿ1
+ÿ^
+nnum%ÿÿ0(ReadConfig$("PRICEIT","LASTNUM"))ÿ1
+ÿƒWriteConfig("PRICEIT","LASTNUM",ÿH(ÿ(nnum%,"9999")))
+ÿ’ÿ¡
+Nummer.masterÿ"B"ÿÿ(ÿQ,"ddmmyy")ÿÿ(nnum%,"000")
+art.masterÿ5
+ÿÉÿ¥lieferant%ÿ™"ADRESSEN"ÿ£CodeKU.adressen
+ÿ¡ÿOÿC("adressen")ÿpÿwweiter1
+knr%ÿlieferant%
+art.masterÿ5
+CodeKU.MASTERÿlieferant%
+Anrede.MASTERÿAnrede.adressen
+Nachname.MasterÿNachname.adressen
+Vorname.masterÿVorname.adressen
+Geburtsname.masterÿGeburtsname.adressen
+Straáe.masterÿStraáe.adressen
+PLZ.masterÿPLZ.adressen
+Ort.MasterÿOrt.Adressen
+Kundennummer.MasterÿeigKunr.Adressen
+frachtfrei.masterÿfrachtfrei1.adressen
+Titel.MASTERÿ"Bestellung"
+
+ÿƒQuickStore("master")
+ÿ’ÿ¡
+ÿ½ *******************************************************
+ÿ½ *Eintragen der einzelnen Positionen fr die Bestellung*
+ÿ½ *******************************************************
+ÿ™"SCHEIN"
+ÿáÿt
+ÿ
+npos%ÿAnzPos.MASTERÿ1
+scode%ÿcums%ÿ1000ÿnpos%
+CodeMS.scheinÿcums%
+PosNr.scheinÿnpos%
+ÿƒQuickStore("SCHEIN")
+ÿÉÿœÿ¥cums%ÿáÿ™"MASTER"ÿ£CodeMS.master
+AnzPos.MASTERÿnpos%
+GesNetto.masterÿGesNetto.masterÿek.artikelÿzugabg.artikel
+GesBrutto.masterÿGesNetto.masterÿ(gesnetto.masterÿ100ÿMwSt.ARTIKEL)
+ÿƒQuickStore("MASTER")
+ÿÉÿ¥scode%ÿ™"SCHEIN"ÿ£QuickCodePOS.SCHEIN
+VKnetto.scheinÿEK.ARTIKEL
+VKbrutto.SCHEINÿEK.ARTIKELÿ(EK.ARTIKELÿ100ÿMwSt.ARTIKEL)
+GesamtNetto.scheinÿVKnetto.SCHEINÿzugabg.artikel
+GesamtBrutto.scheinÿVKbrutto.SCHEINÿzugabg.artikel
+EK.scheinÿEK.ARTIKEL
+Artikelnummer.SCHEINÿBestellnummer.ARTIKEL
+CodeAR.scheinÿCodeAR.ARTIKEL
+CodeGR.scheinÿCodeGR.ARTIKEL
+Bezeichnung.scheinÿBezeichnung.ARTIKEL
+ME.SCHEINÿME.ARTIKEL
+MwSt.SCHEINÿMwSt.Artikel
+Anzahl.SCHEINÿzugabg.artikel
+Liefereinheit.scheinÿliefereinheit.artikel
+ÿƒQuickStore("SCHEIN")
+ 
+weiter1: 
+ÿ½ * von artikel *
+ ÿ’ÿ¡
+ÿ™"artikel"
+ÿÉÿ±
+ÿÙ
+ ÿÍbestellvorges.artikelÿ"n"ÿĞbestellvorges.artikelÿ"j"
+ ÿ’ÿÍ
+ ÿ’ÿÿ
+ 
+ 
+ÿÿAbglBestLief(art%)
+ ÿ™"master"
+ ÿƒDFile(3,"MASTER"ÿ_fpw$)
+ ÿÉÿæart%
+ ÿæ1
+subHeader$ÿ"Angebote"
+ ÿæ2
+subHeader$ÿ"Rechnungen"
+ ÿæ3
+subHeader$ÿ"Lieferscheine"
+ ÿæ4
+subHeader$ÿ"Auftr„ge"
+ ÿæ5
+subHeader$ÿ"Bestellungen"
+ ÿæ6
+subHeader$ÿ"Artikelzug„nge"
+ ÿæ7
+subHeader$ÿ"Gutschriften"
+ ÿ’ÿÉ
+ weiter%ÿ0
+ ÿ×LAuswahl1$(1)
+ ÿ×LAuswahl$(1000)
+ ÿØweiter%ÿ0
+ÿ›a%ÿ0ÿq1000
+LAuswahl$(a%)ÿ""
+ÿ±a%
+a%ÿ0
+ÿ™"Master"
+ÿÉÿĞ
+ÿ£datum.master
+counter%ÿ0
+ÿÉÿ`
+ÿßÿe
+ÿØÿOÿB("master")
+ÿ¡art.masterÿart%ÿStatusM.masterÿ"b"ÿStatusM.masterÿ"s"ÿp
+LAuswahl$(a%)ÿÿ(Datum.master,"0d.mm.yy")ÿ"   "ÿnummer.masterÿ"   "ÿÿ(GesBrutto.master,"9999999.00")ÿ"   "ÿnachname.masterÿÿ'(90)ÿÿ(codems.master,"000000")
+a%ÿa%ÿ1
+ÿ’ÿ¡
+ÿÉÿ±
+ÿÙ
+LAuswahl$ÿLAuswahl$(0)
+LAuswahl1$(0)ÿLAuswahl$
+ÿ‰ÿñ"PREISLIS",0,0,326,225,"Auswahl","MS Sans Serif",8
+ÿ|ÿñ"PREISLIS",4,2,6,323,194,0," Auswahl des Bestellvorschlages"
+ÿ|ÿñ"PREISLIS",7,7,17,315,178,2,2,LAuswahl$,LAuswahl1$," "
+ÿ|ÿñ"PREISLIS",1,101,204,55,16,1,"&OK",1,1
+ÿ|ÿñ"PREISLIS",1,161,204,55,16,0,"&Abbrechen",0,0
+ÿñ"PREISLIS",req%
+ÿ¾ÿñ"PREISLIS"
+ÿ¡req%ÿ1ÿp
+LAuswahl$ÿLAuswahl1$(0)
+codems%ÿÿ0(ÿ-(LAuswahl$,6))
+ÿÉÿ¥codems%ÿ™"master"ÿ£codems.master
+knr%ÿCodeKU.master
+ÿ™"adressen"
+ÿÉÿ¥knr%ÿ™"adressen"ÿ£CodeKu.adressen
+ÿ¡ÿOÿC("adressen")ÿpknr%ÿ0
+ÿ^
+codems%ÿ0
+weiter%ÿ1
+ÿ’ÿ¡
+ÿ¡knr%ÿ0ÿcodems%ÿ0ÿp
+wawispezi$ÿ"j"
+ÿƒADRBestell()
+ÿ’ÿ¡
+ ÿÙ
+ wawispezi$ÿ""
+ ÿ’ÿÿ
+
+
+
+
+
+ÿÿLiefervor()
+ÿ½ ********************************************************************
+ÿ½ Erarbeiten der Liefervorschl„ge 
+ÿ½ ********************************************************************
+ÿ¡automatisch$ÿ"j"ÿp
+ÿÂ"Soll die Liefervorschlagsliste erzeugt werden ?","Eintrag der betroffenen Positionen in LSCHEIN.SBF !",130,req%
+ÿ^
+req%ÿ1
+ÿ’ÿ¡
+ÿ™"artikel"
+ÿÉÿĞ
+ÿßÿe
+ÿ¡req%ÿ1ÿp
+lastnumzaehl%ÿ1
+ÿÉÿĞliefvorges.artikelÿ"j"
+ÿÉÿ`ÿá
+ÿ¡ÿOÿB("artikel")ÿp
+ÿÉÿĞÿ™"lschein"
+datei$ÿ"lschein"
+datei$ÿÿ>(datei$)
+ÿÉÿ¥datei$ÿáÿ™"sernum"ÿ£datei.sernum
+lastnum%ÿListenum%()
+listenr%ÿlastnum%
+ÿ™"artikel"
+ÿÂ"šbernahme der Datens„tze in LSCHEIN.sbf !","",2
+ÿØÿOÿB("artikel")
+ÿ™"LSCHEIN"
+ÿ
+CodeLS.lscheinÿsernum%("LSCHEIN")
+Artikelcode.lscheinÿArtikelcode.artikel
+bezeichnung.lscheinÿbezeichnung.artikel
+ÿÊÿË"šbernahme Artikel..."ÿbezeichnung.artikel
+me.lscheinÿme.artikel
+ortimlager.lscheinÿortimlager.artikel
+vkeh.lscheinÿvkeh.artikel
+ÿ¡liefvor01.artikelÿ"j"ÿp
+
+lbestand01.lscheinÿlbestand01.artikel
+
+ist1.lscheinÿlbestand01
+ÿ’ÿ¡
+ÿ¡liefvor02.artikelÿ"j"ÿp
+
+lbestand02.lscheinÿlbestand02.artikel
+
+ist2.lscheinÿlbestand02
+ÿ’ÿ¡
+ÿ¡liefvor03.artikelÿ"j"ÿp
+
+lbestand03.lscheinÿlbestand03.artikel
+
+ist3.lscheinÿlbestand03
+ÿ’ÿ¡
+ÿ¡liefvor04.artikelÿ"j"ÿp
+
+lbestand04.lscheinÿlbestand04.artikel
+
+ist4.lscheinÿlbestand04
+ÿ’ÿ¡
+ÿ¡liefvor05.artikelÿ"j"ÿp
+
+lbestand05.lscheinÿlbestand05.artikel
+
+ist5.lscheinÿlbestand05
+ÿ’ÿ¡
+ÿ¡liefvor06.artikelÿ"j"ÿp
+
+lbestand06.lscheinÿlbestand06.artikel
+
+ist6.lscheinÿlbestand06
+ÿ’ÿ¡
+ÿ¡liefvor07.artikelÿ"j"ÿp
+
+lbestand07.lscheinÿlbestand07.artikel
+
+ist7.lscheinÿlbestand07
+ÿ’ÿ¡
+ÿ¡liefvor08.artikelÿ"j"ÿp
+
+lbestand08.lscheinÿlbestand08.artikel
+
+ist8.lscheinÿlbestand08
+ÿ’ÿ¡
+ÿ¡liefvor09.artikelÿ"j"ÿp
+
+lbestand09.lscheinÿlbestand09.artikel
+
+ist9.lscheinÿlbestand09
+ÿ’ÿ¡
+StatusGepackt.lscheinÿ"n"
+StatusGebucht.lscheinÿ"n"
+Listenr.lscheinÿlistenr%
+timestamp$ÿÿ(ÿ6(ÿQ)ÿ1900,"00")ÿÿ(ÿ5(ÿQ),"00")ÿÿ(ÿ3(ÿQ),"00")ÿÿ(ÿ9(ÿR),"00")ÿÿ(ÿ:(ÿR),"00")
+timestamp%ÿÿ0(timestamp$)
+timestamp.lscheinÿtimestamp%
+ÿ¡ortimlager.lscheinÿ""ÿp
+
+OrtImLager.lscheinÿ"00-00-00"
+ÿ’ÿ¡
+QuickOrtArtikel.lscheinÿOrtImLager.lscheinÿÿ(Artikelcode.lschein,"0000000000")
+ÿÌ
+ÿ™"artikel"
+ÿ¡liefvor01.artikelÿ"j"ÿp
+
+lbestand01.artikelÿ0
+
+liefvor01.artikelÿ"n"
+ÿ’ÿ¡
+ÿ¡liefvor02.artikelÿ"j"ÿp
+
+lbestand02.artikelÿ0
+
+liefvor02.artikelÿ"n"
+ÿ’ÿ¡
+ÿ¡liefvor03.artikelÿ"j"ÿp
+
+lbestand03.artikelÿ0
+
+liefvor03.artikelÿ"n"
+ÿ’ÿ¡
+ÿ¡liefvor04.artikelÿ"j"ÿp
+
+lbestand04.artikelÿ0
+
+liefvor04.artikelÿ"n"
+ÿ’ÿ¡
+ÿ¡liefvor05.artikelÿ"j"ÿp
+	lbestand05.artikelÿ0
+	liefvor05.artikelÿ"n"
+ÿ’ÿ¡
+ÿ¡liefvor06.artikelÿ"j"ÿp
+
+lbestand06.artikelÿ0
+
+liefvor06.artikelÿ"n"
+ÿ’ÿ¡
+ÿ¡liefvor07.artikelÿ"j"ÿp
+
+lbestand07.artikelÿ0
+
+liefvor07.artikelÿ"n"
+ÿ’ÿ¡
+ÿ¡liefvor08.artikelÿ"j"ÿp
+
+lbestand08.artikelÿ0
+
+liefvor08.artikelÿ"n"
+ÿ’ÿ¡
+ÿ¡liefvor09.artikelÿ"j"ÿp
+
+lbestand09.artikelÿ0
+
+liefvor09.artikelÿ"n"
+ÿ’ÿ¡
+liefvorges.artikelÿ"n"
+timestamp$ÿÿ(ÿ6(ÿQ)ÿ1900,"00")ÿÿ(ÿ5(ÿQ),"00")ÿÿ(ÿ3(ÿQ),"00")ÿÿ(ÿ9(ÿR),"00")ÿÿ(ÿ:(ÿR),"00")
+timestamp%ÿÿ0(timestamp$)
+timestamp.artikelÿtimestamp%
+ÿÌ
+ÿÉÿ±ÿá
+ÿÙ
+ÿßÿ³
+ÿßÿe
+ÿ™("lschein")
+destfile$ÿ"L"ÿÿ(lastnum%,"0000000")
+ÿÊÿË"Datei "ÿdestfile$ÿ" wird erzeugt"
+ÿ×openfiles$(40)
+ÿÿopenfiles$,0
+ÿ›a%ÿ0ÿq40
+ÿ¡ÿ>(openfiles$(a%))ÿÿ>(destfile$)ÿp
+
+ÿ†ÿ™destfile$
+ÿ’ÿ¡
+ÿ±a%
+ÿ¡ÿJ(destfile$ÿ".sbf")ÿpÿdestfile$ÿ".*"
+prolog$ÿ"SELECT ALL REPORT WHERE "
+filter$ÿ"listenr.lschein = listenr%"
+epilog$ÿ" ORDER REPORT TO FILE destfile$"
+befehl$ÿprolog$ÿfilter$ÿepilog$
+ÿ–befehl$
+ÿÊÿË"Ausgabe an "ÿdestfile$ÿ".SBF beendet!"
+_OK%ÿ0
+dateianz$ÿdestfile$ÿ".sbf"
+ÿ½ REGISTER CLEAR :REGISTER "CODIEAPP.DLL","FILEDATE","CC":REGISTER "CODIEAPP.DLL","FILETIME","CC":dateidatum$ = CALL ("FILEDATE",dateianz$):dateizeit$ = CALL ("FILETIME",dateianz$):REGISTER CLEAR 
+ÿÉÿĞÿ™"lschein"
+ÿßÿ³
+ÿ™"Senden"
+ÿ
+dateidatum.sendenÿÿQ
+datei.sendenÿdestfile$
+dateidatum.sendenÿÿQ
+liefname1.sendenÿliefname1$
+letzteLieferung.sendenÿletzteLief%
+StatusDatei.sendenÿ""
+quickcoliefd.sendenÿquick$
+ÿƒQuickStore("senden")
+ÿ™"artikel"
+ÿÂ"Datei "ÿdestfile$ÿ" wurde in die Sendeliste eingetragen !","",2
+ÿ™"artikel"
+ÿÉÿĞÿ™"artikel"
+ÿßÿ³
+ÿÉÿĞÿ™"lschein"
+ÿ™"artikel
+ÿ^
+ÿÂ"Es wurden keine Liefervorschl„ge gefunden !","",2
+ÿßÿ³
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿßÿ³
+ÿÊÿË"Arbeit beendet !"
+ ÿ’ÿÿ
+
+
+
+
+ ÿ½ *****************************************************
+ ÿ½ Men fr die allgemeinen Lagert„tigkeiten im Lager
+ ÿ½ *****************************************************
+
+ÿÿLagermen()
+ cfile$ÿÿ™
+ cdir$ÿÿ
+ lw$ÿÿ+(cdir$,2)
+ req%ÿ0
+ ÿØreq%ÿ7
+ ÿßÿ³
+ 
+d$ÿ"Lagemen"
+ÿ‰ÿñd$,0,0,336,182,"Lager","MS Sans Serif",8
+ÿ|ÿñd$,9,2,6,19,21,3
+ÿ|ÿñd$,5,26,12,232,8,0,"W„hlen Sie aus, welche Funktionen Sie ausfhren wollen !"
+ÿ|ÿñd$,4,2,32,166,86,0," Funktionen des Lagers (Auspreislisten)"
+ÿ|ÿñd$,5,112,35,5,3,0,"Text"
+ÿ|ÿñd$,1,5,46,160,22,1,"Einspielen der Auspreislisten",1,1
+ÿ|ÿñd$,1,5,68,160,21,1,"Drucken der gesendeten Auspreislisten",2,1
+ÿ|ÿñd$,1,5,89,160,23,1,"Abgleichen der Auspreislisten ",3,1
+ÿ|ÿñd$,4,172,32,160,86,0," Funktionen des Lagers (Liefervorschlag) "
+ÿ|ÿñd$,1,176,46,152,22,1,"Einspielen der Liefervorschl„ge",5,1
+ÿ|ÿñd$,1,176,67,152,23,1,"Drucken der gesendeten Liefervorschl„ge",8,1
+ÿ|ÿñd$,1,176,89,152,23,0,"Abgleichen der Liefervorschlagslisten",9,1
+ÿ|ÿñd$,1,92,136,152,22,1,"Druck vorhandener Lieferscheine pro Filiale",4,1
+ÿ|ÿñd$,1,282,156,47,23,0,"&Ende",7,1
+ÿ|ÿñd$,1,92,158,152,22,0,"&Senden der Buchungsdatei",6,1
+ÿñd$,req%
+ÿ¾ÿñd$
+ÿÉÿæreq%
+ÿæ1
+ÿ½ einspielen der gesendeten Auspreislisten in die AUSPREIS.sbf des Lagers
+ÿƒEinspielAusp()
+ÿæ2
+ÿ½ Drucken der gesendeten Auspreislisten bzw der noch nicht gepackten
+ÿƒDRUCKLAusprei()
+ÿæ3
+ÿ½ Abgleichen der Auspreislisten (StatusGepackt="j") šbergabe an ZLSchein StatusGepackt="l"
+ÿƒAbgleichAusp()
+ÿæ4
+ÿ½ Druck vorhandener Lieferscheine pro Filiale
+ÿƒZLScheinDruck()
+ÿæ5
+ÿ½ Einspielen der Liefervorschl„ge in LLSchein.sbf
+ÿƒEinspielLief()
+ÿæ6
+ÿ½ Senden der Buchungsdatei an die Zentrale
+ÿÂ"Programmpunkt Senden ist noch nicht aktiv !","",2
+ÿæ7
+ÿ½ Ende der Bearbeitung
+ÿæ8
+ÿ½ drucken der gesendeten Liefervorschl„ge
+ÿƒDRUCKLLSchein()
+ÿæ9
+ÿ½ Abgleichen Liefervorschl„ge
+ÿƒAbgleichLief()
+ ÿ’ÿÉ
+ ÿÙ
+ ÿ’ÿÿ
+
+
+
+ 
+ ÿ½ *****************************************************
+ ÿ½ Men fr die Bestellvorschl„ge
+ ÿ½ *****************************************************
+ 
+ÿÿBestellvmen()
+ cfile$ÿÿ™
+ cdir$ÿÿ
+ lw$ÿÿ+(cdir$,2)
+ req%ÿ0
+ ÿØreq%ÿ7
+ ÿßÿ³
+
+d$ÿ"Bestellv"
+ÿ‰ÿñd$,0,0,248,115,"Bestellvorschlag","MS Sans Serif",8
+ÿ|ÿñd$,9,2,6,19,21,3
+ÿ|ÿñd$,5,26,12,195,8,0,"W„hlen Sie aus, welche Funktionen Sie ausfhren wollen !"
+ÿ|ÿñd$,4,46,30,167,64,0," Bestellvorschlag"
+ÿ|ÿñd$,5,112,35,5,3,0,"Text"
+ÿ|ÿñd$,1,50,44,160,23,1,"Erzeugen Bestellvorschlag",1,1
+ÿ|ÿñd$,1,50,67,160,23,1,"Abgleichen Bestellvorschlag Lieferant",2,1
+ÿ|ÿñd$,1,98,96,63,18,0,"&Ende",7,1
+ 
+ÿñd$,req%
+ÿ¾ÿñd$
+ÿÉÿæreq%
+ÿæ1
+ÿ½ Erzeugung des Bestellvorschlages
+ÿƒBestellvor()
+ÿæ2
+ÿ½ Drucken der gesamten Bestellungen
+ÿƒAbglBestLief(5)
+ÿæ7
+ÿ½ Ende der Bearbeitung
+ÿ’ÿÉ
+ ÿÙ
+ ÿ’ÿÿ
+ 
+
+
+
+ ÿ½ **********************************************************************
+ ÿ½ *             DRUCK der Filial-Lieferscheine aus Datei ZLSchein.sbf  *
+ ÿ½ **********************************************************************
+
+
+ÿÿZLScheinDruck()
+ file1$ÿÿ™
+ cdir1$ÿÿ
+ d$ÿ"ZLSDruck"
+ ÿ‰ÿñd$,0,0,217,51,"Lieferschein","MS Sans Serif",8
+ ÿ|ÿñd$,4,5,0,205,30,0,"T„tigkeit w„hlen "
+ ÿ|ÿñd$,5,10,14,191,11,0,"Soll ein Lieferschein erstellt oder gedruckt werden?"
+ ÿ|ÿñd$,1,34,33,44,13,0,"&Erstellen",1,1
+ ÿ|ÿñd$,1,79,33,44,13,1,"&Drucken",2,1
+ ÿ|ÿñd$,1,124,33,44,13,0,"&Abbruch",0,0
+ ÿñd$,req131%
+ ÿ¾ÿñd$
+ ÿ¡req131%ÿ0ÿpÿ’ÿÿ
+ ÿ¡req131%ÿ2ÿp
+ÿ½ Selektion der S„tze in zlschein, die in dem der Filiale entsprechenden
+ÿ½ Verteiler.zlschein Feld die Listennummer haben(bereits erstellte Liste)
+ÿ½ oder erstellen eines neuen Lieferscheins
+ÿ½ REQUEST "Soll ein bereits vorhandener Lieferschein gedruckt werden ?","",130,req14%
+ÿ½ IF req14% = 1 THEN 
+ÿ™"senden"
+ÿÂ"W„hlen Sie eine Liste aus:","",25,req16%,listenr$,65,datei.senden,dateidatum.senden,statusdatei.sendenÿ£datei.sendenÿĞdatei.sendenÿ"*Z*"
+listenr%ÿÿ0(ÿånumeric(listenr$))
+ÿ¡req16%ÿ0ÿpÿ’ÿÿ
+ÿÉÿ¥listenr$ÿáÿ™"senden"ÿ£datei.senden
+filiale%ÿÿ0(ÿ+(statusdatei.senden,1))
+ÿ¡statusdatei.sendenÿ"*gedruckt*"ÿp
+ÿ½ filiale% = VAL ( LEFT$ (statusdatei.senden,1))
+ÿ^
+StatusDatei.sendenÿStatusDatei.sendenÿ"gedruckt"
+ÿÌ
+ÿ’ÿ¡
+ÿ™"zlsdruck"
+ÿ£artikelcode
+ÿ½ indexfeld$ = "verteiler" + STR$ (filiale%,"9") + ".zlschein"
+ÿÉÿĞlistenr.zlsdruckÿlistenr%
+ÿÉÿ`
+ÿÂ"Soll der Lieferschein Nr:Z"ÿÿ(listenr%,"00000000")ÿ" gedruckt werden ?","",130,req15%
+ÿ¡req15%ÿ1ÿp
+ÿßÿe
+ÿ™"zlsdruck"
+ÿ£Artikelcode.zlsdruck
+ÿÁÿs"ZLSDRUCK"
+ÿÁÿ³(IST.ZLSDRUCKÿVKEH.ZLSDRUCK)ÿU"summ1%"
+ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ÿ’ÿÁ
+ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ÿ’ÿŸ
+ÿš1
+ÿÊÿÁÿí"F_PAGE"
+ÿ¶ÿÁÿí
+ÿ’ÿš
+ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ÿ’ÿÉ
+ÿÊÿiÿe
+ÿÊÿiÿáÿe
+ÿÉ;
+
+ÿĞlistenr.zlsdruckÿlistenr%
+
+ÿµÿÁArtikelcode.zlsdruck
+
+ÿqÿ~
+ÿ’ÿÉ
+ÿÉÿĞÿ™"zlschein"
+ÿ’ÿ¡
+ÿ½ von req15%
+ÿ½ END IF 
+ÿ½ von req14%
+ ÿ’ÿ¡
+ ÿ½ von req131%
+ ÿ¡req131%ÿ1ÿp
+ÿßÿe
+ÿ½ Eintragung des ZLieferscheins in senden.sbf mit Filialnummer
+ÿ½ datei.senden=Z+Listennummer und statusdatei.senden=Filialnr
+ÿ½ Eintragen der Listennummer in zlschein.sbf, und zwar werden  
+ÿ½ hierfr die Felder Verteiler1 bis Verteiler9 genutzt
+ÿ‰ÿñd$,0,0,217,70,"Filiale und Datum","MS Sans Serif",8
+ÿ|ÿñd$,4,5,1,205,51,0,"Geben Sie bitte die Filialnummer ein ! "
+ÿ|ÿñd$,6,100,21,13,12,0,0,Filiale%,2
+ÿ|ÿñd$,5,54,22,44,11,0,"Filialnummer"
+ÿ|ÿñd$,1,116,54,45,13,1,"&Weiter",1,1
+ÿ|ÿñd$,1,164,54,45,13,0,"&Abbruch",0,0
+ÿñd$,req13%
+ÿ¾ÿñd$
+ÿ¡req13%ÿ1ÿp
+ÿ¡filiale%ÿ0ÿfiliale%ÿ	_Hkassenanz%ÿp
+datei$ÿ"zlschein"
+datei$ÿÿ>(datei$)
+ÿÉÿ¥datei$ÿáÿ™"sernum"ÿ£datei.sernum
+lastnum%ÿListenum%()
+listenr%ÿlastnum%
+ÿ™"Senden"
+ÿ
+datei.sendenÿ"Z"ÿÿ(lastnum%,"0000000")
+dateidatum.sendenÿÿQ
+ÿ½ der Dateistatus wird zur Speicherung der Filialnr. genutzt
+StatusDatei.sendenÿÿ(filiale%,"99")
+ÿƒQuickStore("senden")
+ÿ™"zlschein"
+ÿÉÿ`ÿá
+verteil$ÿ"verteiler"ÿÿ(filiale%,"9")ÿ".zlschein"
+ist$ÿ"ist"ÿÿ(filiale%,"9")ÿ".zlschein"
+i%ÿ0
+ÿÊÿË"Suche nach Datens„tzen !"
+ÿØÿOÿB("zlschein")
+	ÿ¡ist$$ÿ0ÿp
+ÿ™"zlsdruck"
+ÿ
+Artikelcode.zlsdruckÿArtikelcode.zlschein
+bezeichnung.zlsdruckÿbezeichnung.zlschein
+vkeh.zlsdruckÿvkeh.zlschein
+ist.zlsdruckÿist$$
+filiale.zlsdruckÿfiliale%
+listenr.zlsdruckÿlistenr%
+timestamp$ÿÿ(ÿ6(ÿQ)ÿ1900,"00")ÿÿ(ÿ5(ÿQ),"00")ÿÿ(ÿ3(ÿQ),"00")ÿÿ(ÿ9(ÿR),"00")ÿÿ(ÿ:(ÿR),"00")
+timestamp%ÿÿ0(timestamp$)
+timestamp.zlsdruckÿtimestamp%
+ÿÌ
+ÿ™"zlschein"
+i%ÿi%ÿ1
+ist$$ÿ0
+ÿÌ
+ÿÊÿË"Anzahl der bearbeiteten S„tze: "ÿÿ(i%,"9999")
+	ÿ’ÿ¡
+	ÿÉÿ±ÿá
+ÿÙ
+ÿ¡i%ÿ0ÿp
+	ÿÂ"Lieferschein Z"ÿÿ(lastnum%,"0000000")ÿ" erstellt !","Anzahl der Artikel: "ÿÿ(i%,"9999"),2
+ÿ^
+	ÿ™"sernum"
+	datei$ÿ"zlschein"
+	datei$ÿÿ>(datei$)
+	ÿÉÿ¥datei$ÿáÿ™"sernum"ÿ£datei.sernum
+	lastartintern.sernumÿlastartintern.sernumÿ1
+	ÿÌ
+	ÿ™"senden"
+	liste$ÿ"Z"ÿÿ(lastnum%,"0000000")
+	ÿÉÿ¥liste$ÿáÿ£datei.senden
+	ÿ¾ÿaÿ™"senden"ÿĞdatei.sendenÿliste$
+	ÿÂ"Lieferschein wurde nicht erstellt,","da keine S„tze fr diese Filiale gefunden wurden !",2
+ÿ’ÿ¡
+ÿßÿ³
+ÿ’ÿ¡
+ÿ½ von filiale%
+ÿ^
+ÿÂ"Filialnummer ist ungltig !","Sie muá gr”áer 0 und kleiner/gleich "ÿÿ(_HKassenanz%,"99")ÿ" sein !",2
+ÿ’ÿ¡
+ÿ½ von req13% 
+ ÿ’ÿ¡
+ ÿ½ von req131%
+ ÿ™"zlsdruck"
+ ÿÉÿĞ
+ ÿ™"senden"
+ ÿÉÿĞ
+ ÿ™"zlschein"
+ ÿÉÿĞ
+ ÿ™file1$
+ ÿcdir1$
+ ÿ’ÿÿ
+
+
+
+
+
+ ÿ½ ************************************************************************
+ ÿ½ Einspielen der gesendeten Liefervorschlagslisten in
+ ÿ½ LLSchein.sbf
+ ÿ½ ************************************************************************
+ 
+ÿÿEinspielLief()
+ ÿÂ"W„hlen Sie eine Liste aus:","",25,req%,datei$,65,datei.senden,dateidatum.senden,StatusDatei.sendenÿ£datei.sendenÿĞdatei.sendenÿ"*L*"
+ ÿ¡req%ÿ1ÿpÿ’ÿÿ
+ listenr%ÿÿ0(ÿånumeric(datei$))
+ ÿÉÿ¥datei$ÿáÿ™"senden"ÿ£datei.senden
+ dateiname$ÿdatei$ÿ".sbf"
+ 
+ ÿ´ÿ™ÿà,0_ppath$ÿdatei$
+ ÿ™datei$
+ ÿßÿe
+_OK%ÿ0
+ ÿÉÿ`ÿá
+ ÿÊÿË"LLSchein.SBF Datei wird auf bereits vorhandene S„tze kontrolliert ..."
+ ÿ¡ÿOÿB(datei$)ÿp
+ÿ™"llschein"
+ÿÉÿ`ÿá
+ÿ¡ÿOÿB("llschein")ÿp
+ÿÊÿË"L”schen von redundanten Datens„tzen in LAUSPREI.SBF !"
+ÿ¾ÿaÿ™"Llschein"ÿĞlistenr.llscheinÿlistenr%
+ÿ’ÿ¡
+ 
+
+ÿ™datei$
+ÿÊÿË"šbernahme der Datens„tze in LLSchein.sbf !"
+ÿ¢dateiname$ÿqÿ™"LLSCHEIN"
+ÿÉÿĞÿ™"llschein"
+ÿ†ÿ™datei$
+ÿdatei$ÿ".*"
+ÿ™"senden"
+ÿÉÿ¥datei$ÿáÿ£datei.senden
+StatusDatei.sendenÿ"eingespielt"
+ÿƒQuickStore("senden")
+ÿÂ"Datei "ÿdatei$ÿ" wurde in LLSchein.sbf bernommen !","",2
+ ÿ^
+ÿÂ"Datei "ÿdatei$ÿ" wurde in nicht in LLSchein.sbf bernommen !","Es wurden keine Datens„tze gefunden",2
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ 
+
+ ÿ½ *************************************************************************
+ ÿ½ Abgleichen der Lagerliefervorschlagsliste LLSchein
+ ÿ½ *************************************************************************
+ 
+ÿÿAbgleichLief()
+ ÿÊÿÿÉÿ³
+ _formend%ÿ0
+ LLScheinsub%ÿ0
+ ÿÊÿË""
+ ÿÂ"W„hlen Sie eine Liste fr den Abgleich aus:","",25,req%,dateisenden$,65,datei.senden,dateidatum.senden,StatusDatei.sendenÿ£datei.sendenÿĞdatei.sendenÿ"*L*"ÿstatusdatei.sendenÿ""
+
+ÿ¡req%ÿ1ÿpÿ’ÿÿ
+ÿ™"senden"
+ÿÉÿ¥dateisenden$ÿáÿ£datei.senden
+listenr%ÿÿ0(ÿånumeric(dateisenden$))
+ÿ™"llschein"
+ÿ½ SET INDEX Artikelcode.llschein
+ÿÊÿ£QuickOrtArtikel.llschein
+ 
+ÿÉÿĞlistenr.llscheinÿlistenr%
+ÿÉÿ`ÿáÿ£QuickOrtArtikel.llschein
+ÿØ_formend%ÿ0
+ÿ¡ÿœÿ"EDITLSCH"ÿp
+ÿ´ÿœ"EDITLSCH"
+ÿ½ SELECT FORM KEY listenr% INDEX Artikelcode.llschein
+ÿÉÿœÿ¥listenr%ÿ£listenr.llschein
+ÿ’ÿ¡
+ÿ¬ÿ³
+ÿÉÿœÿ`ÿá
+ÿßÿ³
+ÿÏÿßÿÿ¥
+ÿÉÿæLLScheinSUB%
+ÿæ1
+ÿ½ abgleichen in der Auspreisliste
+ÿ”ist1.llschein,0
+ÿæ2
+ÿ½ S„tze ber StatusGepackt als gepackt kennzeichnen und an ZLSchein bergeben
+ÿÂ"Wollen Sie die S„tze wirklich als gepackt kennzeichnen ?","",130,req1%
+ÿ¡req1%ÿ1ÿp
+	ÿßÿe
+	ÿ™"llschein"
+	ÿÉÿĞlistenr.llscheinÿlistenr%
+	ÿÉÿœÿ`ÿá
+	ÿ™"Zlschein"
+	ÿÉÿ¥dateisenden$ÿáÿ™"senden"ÿ£datei.senden
+	ÿ¡statusdatei.sendenÿ"gepackt"ÿp
+ÿÂ"Liste wurde bereits als gepackt bergeben, Sie kann nicht nocheinmal bergebn werden","",2
+	ÿ^
+ÿ™"llschein"
+ÿÉÿĞlistenr.llscheinÿlistenr%
+ÿÉÿœÿ`ÿá
+ÿßÿe
+ÿÍstatusGepackt.llscheinÿ"j"ÿĞlistenr.llscheinÿlistenr%
+ÿ’ÿÍ
+ÿÊÿË"S„tze werden in die zentrale Lieferscheindatei ZLSchein.sbf eingtragen !"
+ÿ½ IMPORT "llschein.sbf" TO FILE "zlschein" WHERE listenr.llschein = listenr%
+
+ÿ™"llschein"
+ÿßÿe
+ÿÂ"šbernahme der Datens„tze in ZLSCHEIN.sbf !","",2
+ÿÉÿĞlistenr.llscheinÿlistenr%
+ÿÉÿ`ÿá
+ÿØÿOÿB("llschein")
+ÿ™"zlschein"
+artcode%ÿArtikelcode.llschein
+ÿÉÿ¥artcode%ÿáÿ™"zlschein"ÿ£Artikelcode.zlschein
+ÿ¡Artikelcode.zlscheinÿartcode%ÿp
+ÿ¡bezeichnung.llscheinÿ"ohne Bezeichnung"ÿpbezeichnung.zlscheinÿbezeichnung.llschein
+ÿÊÿË"           ....    "ÿbezeichnung.zlschein
+ist1.zlscheinÿist1.zlscheinÿist1.llschein:ist2.zlscheinÿist2.zlscheinÿist2.llschein:ist3.zlscheinÿist3.zlscheinÿist3.llschein:ist4.zlscheinÿist4.zlscheinÿist4.llschein:ist5.zlscheinÿist5.zlscheinÿist5.llschein
+ist6.zlscheinÿist6.zlscheinÿist6.llschein:ist7.zlscheinÿist7.zlscheinÿist7.llschein
+ist8.zlscheinÿist8.zlscheinÿist8.llschein:ist9.zlscheinÿist9.zlscheinÿist9.llschein
+Listenr.zlscheinÿlastnum%
+vkeh.zlscheinÿvkeh.llschein
+ÿƒQuickStore ("zlschein")
+ÿ^
+ÿ
+CodeZLS.zlscheinÿsernum%("zlschein")
+Codear.zlscheinÿcodear.llschein
+Artikelcode.zlscheinÿArtikelcode.llschein
+bezeichnung.zlscheinÿbezeichnung.llschein
+ÿÊÿË"šbernahme Artikel...        "ÿbezeichnung.zlschein
+me.zlscheinÿme.llschein
+ÿ½ ortimlager.zlschein = ortimlager.llschein
+vkeh.zlscheinÿvkeh.llschein
+ist1.zlscheinÿist1.llschein:ist2.zlscheinÿist2.llschein:ist3.zlscheinÿist3.llschein
+ist4.zlscheinÿist4.llschein:ist5.zlscheinÿist5.llschein:ist6.zlscheinÿist6.llschein:ist7.zlscheinÿist7.llschein
+ist8.zlscheinÿist8.llschein:ist9.zlscheinÿist9.llschein
+ÿ½ mwst.zlschein = mwst.llschein
+CodeAR.zlscheinÿCodeAR.llschein
+ÿ½ StatusGepackt.zlschein = "n"
+ÿ½ StatusGebucht.zlschein = "n"
+Listenr.zlscheinÿlastnum%
+ÿƒQuickStore("zlschein")
+ÿ’ÿ¡
+ÿ™"llschein"
+ÿÉÿ±ÿá
+
+ÿÙ
+
+ÿßÿ³
+
+ÿ™"senden"
+
+ÿÉÿ¥dateisenden$ÿáÿ™"senden"ÿ£datei.senden
+
+statusDatei.sendenÿ"gepackt"
+
+ÿƒQuickStore("senden")
+
+ÿßÿ³
+
+ÿÂ"S„tze wurden als gepackt gekennzeichnet und an ZLSchein bergeben !","",2
+ÿ’ÿ¡
+ÿ½ END IF 
+ÿ½ CASE 3
+ÿ½ S„tze als gebucht kennzeichnen und šbergabe an Sendedatei(Bestandskorrekturdatei) fr Zentrale
+ÿ½ REQUEST "Wollen Sie die S„tze wirklich buchen ?","",130,req1%
+ÿ½ IF req1% = 1 THEN 
+	ÿ™"LBUCH"
+	ÿÉÿ¥dateisenden$ÿáÿ™"senden"ÿ£datei.senden
+	ÿ¡statusdatei.sendenÿ"gebucht"ÿp
+ÿÂ"Liste wurde bereits in Datei LBUCH.sbf bernommen !","",2
+buchung$ÿ"n"
+	ÿ^
+buchung$ÿ""
+	ÿ’ÿ¡
+	ÿ¡buchung$ÿ"n"ÿp
+ÿ™"llschein"
+ÿÉÿĞlistenr.llscheinÿlistenr%ÿstatusgepackt.llscheinÿ"j"
+ÿÉÿ`ÿá
+ÿ¡ÿOÿB("llschein")ÿp
+ÿÂ"Die Daten dieser Liste wurden noch nicht als gepackt gekennzeichnet !","Es kann nicht gebucht werden !",2
+buchung$ÿ"n"
+ÿ^
+buchung$ÿ""
+ÿ’ÿ¡
+ÿ™"llschein"
+ÿÉÿĞlistenr.llscheinÿlistenr%
+ÿÉÿ`ÿá
+ÿ¡buchung$ÿ"n"ÿp
+ÿßÿe
+ÿÍStatusGebucht.llscheinÿ"j"ÿĞlistenr.llscheinÿlistenr%
+ÿ’ÿÍ
+ÿÊÿË"S„tze werden in die zentrale Buchungsdatei LBUCH.sbf eingtragen !"
+ÿ½ *IMPORT "llschein.sbf" TO FILE "lbuch" WHERE listenr.llschein = listenr%
+ÿÉÿĞlistenr.llscheinÿlistenr%
+ÿÉÿ`ÿá
+ÿØÿOÿB("llschein")
+ÿ™"lbuch"
+ÿ
+CodeZLS.lbuchÿCodeLS.llschein
+Artikelcode.lbuchÿArtikelcode.llschein
+bezeichnung.lbuchÿbezeichnung.llschein
+ÿÊÿË"šbernahme Artikel..."ÿbezeichnung.llschein
+me.lbuchÿme.llschein
+ortimlager.lbuchÿortimlager.llschein
+vkeh.lbuchÿvkeh.llschein
+ist1.lbuchÿist1.llschein
+ist2.lbuchÿist2.llschein
+ist3.lbuchÿist3.llschein
+ist4.lbuchÿist4.llschein
+ist5.lbuchÿist5.llschein
+ist6.lbuchÿist6.llschein
+ist7.lbuchÿist7.llschein
+ist8.lbuchÿist8.llschein
+ist9.lbuchÿist9.llschein
+ÿƒQuickStore("lbuch")
+ÿ™"llschein"
+ÿÉÿ±ÿá
+ÿÙ
+ÿ™"senden"
+ÿÉÿ¥dateisenden$ÿáÿ™"senden"ÿ£datei.senden
+statusDatei.sendenÿ"gebucht"
+ÿƒQuickStore("senden")
+ÿ™("llschein")
+ÿÉÿ¥dateisenden$ÿáÿ™"senden"ÿ£datei.senden
+ÿ½ REMOVE FROM FILE "senden" WHERE datei.senden = dateisenden$
+ÿ½ * L”schen der Datei A0000...
+ÿ½ IF EXISTS (dateisenden$ + ".sbf") THEN DELETE dateisenden$ + ".*"
+ÿ½ REMOVE FROM FILE "llschein" WHERE listenr.llschein = listenr%
+ÿ½ REMOVE FROM FILE "lschein" WHERE listenr.lschein = listenr%
+ÿßÿ³
+ÿÂ"S„tze wurden als gebucht gekennzeichnet und an LBuch bergeben !","",2
+ÿ’ÿ¡
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿæ4
+ÿ™"llschein"
+ÿßÿ³
+ÿ¡statusgepackt.llscheinÿ"j"ÿp
+ÿÂ"Liste wurde schon gepackt und kann nicht mehr erg„nzt werden !","",2
+ÿ^
+req1%ÿ0
+ÿØreq1%ÿ3
+artnr1%ÿ0:artbez$ÿ"":zu1%ÿ0:zu2%ÿ0:zu3%ÿ0:zu4%ÿ0
+d$ÿ"Dialogname"
+ÿ‰ÿñd$,0,0,248,82,"Artikel zus„tzlich erfassen","System",10
+ÿ|ÿñ"Dialogname",5,2,3,193,8,1,"Geben Sie hier die erforderlichen Angaben ein"
+ÿ|ÿñ"Dialogname",5,2,15,49,9,0,"Artikelcode"
+ÿ|ÿñ"Dialogname",6,55,15,44,12,0,0,artnr1%,10
+ÿ|ÿñ"Dialogname",5,101,15,43,10,0,"Bezeichnung"
+ÿ|ÿñ"Dialogname",6,145,15,102,12,64,0,Artbez$,30
+ÿ|ÿñ"Dialogname",5,10,33,40,9,0,"Filiale1"
+ÿ|ÿñ"Dialogname",5,55,33,40,9,0,"Filiale2"
+ÿ|ÿñ"Dialogname",5,100,33,40,9,0,"Filiale3"
+ÿ|ÿñ"Dialogname",5,145,33,40,9,0,"Filiale4"
+ÿ|ÿñ"Dialogname",5,190,33,40,9,0,"Filiale9"
+ÿ|ÿñ"Dialogname",6,10,45,38,12,0,0,zu1%,8
+ÿ|ÿñ"Dialogname",6,56,45,38,12,0,0,zu2%,8
+ÿ|ÿñ"Dialogname",6,100,45,38,12,0,0,zu3%,8
+ÿ|ÿñ"Dialogname",6,145,45,38,12,0,0,zu4%,8
+ÿ|ÿñ"Dialogname",6,190,45,38,12,0,0,zu9%,8
+ÿ|ÿñ"Dialogname",1,142,63,49,14,1,"Speichern",1,1
+ÿ|ÿñ"Dialogname",1,194,63,49,14,0,"Ende",3,0
+ 
+ÿñd$,req1%
+ÿ¾ÿñd$
+	ÿ¡req1%ÿ1ÿp
+ÿ¡artbez$ÿ""ÿpartbez$ÿ"ohne Bezeichnung"
+ÿ¡artnr1%ÿ0ÿp
+ÿ
+Artikelcode.llscheinÿartnr1%
+bezeichnung.llscheinÿartbez$
+ist1.llscheinÿzu1%
+ist2.llscheinÿzu2%
+ist3.llscheinÿzu3%
+ist4.llscheinÿzu4%
+ist5.llscheinÿzu5%
+ist6.llscheinÿzu6%
+ist7.llscheinÿzu7%
+ist8.llscheinÿzu8%
+ist9.llscheinÿzu9%
+listenr.llscheinÿlistenr%
+statusgepackt.llscheinÿ"n"
+statusgebucht.llscheinÿ"n"
+ÿƒQuickStore("llschein")
+ÿÉÿœÿ`
+ÿ’ÿ¡
+	ÿ^
+artnr1%ÿ0:artbez$ÿ"":zu1%ÿ0:zu2%ÿ0:zu3%ÿ0:zu4%ÿ0
+zu5%ÿ0:zu6%ÿ0:zu7%ÿ0:zu8%ÿ0:zu9%ÿ0
+	ÿ’ÿ¡
+ÿÙ
+ÿ’ÿ¡
+
+ÿ’ÿÉ
+LLScheinsub%ÿ0
+ ÿÙ
+ 
+ ÿÉÿĞÿ™"llschein"
+ _formend%ÿ0
+ ÿÊÿÿÉÿe
+ ÿ¡ÿ°("llschein")ÿÿ("llschein")ÿpÿƒQuickStore("llschein")
+ ÿ¡ÿœÿ"WAWI"ÿp
+ÿ´ÿœ"WAWI"
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ' ************************************
+ ' *        Druck des ZBerichtes      *
+ ' ************************************
+
+ÿÿDruckZBericht()
+datok%ÿ0
+ ÿØdatok%ÿ0
+datok%ÿ1
+d$ÿ"filiale"
+ÿ‰ÿñd$,0,0,217,70,"Filiale und Datum","MS Sans Serif",8
+ÿ|ÿñd$,4,5,1,205,51,0,"Geben Sie die Filialnr und das Datum fr den ZBericht ein "
+ÿ|ÿñd$,6,100,20,13,13,0,0,filiale1%,2
+ÿ|ÿñd$,6,162,20,40,13,128,0,vdate$,10
+ÿ|ÿñd$,5,54,22,44,11,0,"Filialnummer"
+ÿ|ÿñd$,5,137,24,24,9,0,"Datum"
+ÿ|ÿñd$,1,164,54,45,12,0,"&Abbruch",0,0
+ÿ|ÿñd$,1,116,55,45,12,1,"&Weiter",1,1
+ÿñd$,req%
+ÿ¾ÿñd$
+ÿ¡req%ÿ0ÿpnodate%ÿ1:ÿ’ÿÿ
+nodate%ÿ0
+zwdat%ÿÿ1(vdate$)
+zwdat1%ÿÿ1(ÿQ)
+ÿ¡zwdat%ÿzwdat1%ÿp
+ÿÂ"Eingabe nicht korrekt !!!","Datum muá <= heutiger Tag sein.",2
+datok%ÿ0
+ÿ’ÿ¡
+ÿ¡filiale1%ÿ0ÿfiliale1%ÿ_HKassenanz%ÿp
+ÿÂ"Eingabe nicht korrekt !!!","Nummer muá >0 und < "ÿÿ(_HKassenanz%,"00")ÿ" sein!",2
+datok%ÿ0
+ÿ’ÿ¡
+ ÿÙ
+ ÿ™"zberart"
+ ÿßÿe
+ ÿÁÿs"ZBERICHT"
+ ÿÁÿ³SPreis.ZBERARTÿU"summe1%"
+ ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿŸ
+ filiale2%ÿfiliale1%
+ ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÉ
+ 
+ ÿÊÿiÿ³
+ ÿÊÿiÿáÿ³
+ ÿÊÿbÿíÿšÿe
+ ÿÉ;
+ÿĞFiliale.ZBERARTÿfiliale1%ÿArtikel.ZBERARTÿArtikelcode.ARTIKELÿZBDatum.zberartÿzwdat%
+ÿµÿÁFiliale.ZBERART,Artikel.ZBERART
+ÿqÿ~
+ ÿÉÿĞ
+ ÿßÿ³
+ ÿ’ÿÿ
+
+
+
+
+ ' ************************************
+ ' *     Lagerliste                   *
+ ' ************************************
+
+ÿÿLagerliste()
+datok%ÿ0
+ ÿØdatok%ÿ0
+datok%ÿ1
+d$ÿ"filiale"
+ÿ‰ÿñd$,0,0,217,70,"Filiale und Datum","MS Sans Serif",8
+ÿ|ÿñd$,4,5,1,205,51,0,"Geben Sie die Filialnr und das Datum fr den ZBericht ein "
+ÿ|ÿñd$,6,100,20,13,13,0,0,filiale1%,2
+ÿ|ÿñd$,6,162,20,40,13,128,0,vdate$,10
+ÿ|ÿñd$,5,54,22,44,11,0,"Filialnummer"
+ÿ|ÿñd$,5,137,24,24,9,0,"Datum"
+ÿ|ÿñd$,1,164,54,45,12,0,"&Abbruch",0,0
+ÿ|ÿñd$,1,116,55,45,12,1,"&Weiter",1,1
+ÿñd$,req%
+ÿ¾ÿñd$
+ÿ¡req%ÿ0ÿpnodate%ÿ1:ÿ’ÿÿ
+nodate%ÿ0
+zwdat%ÿÿ1(vdate$)
+zwdat1%ÿÿ1(ÿQ)
+ÿ¡zwdat%ÿzwdat1%ÿp
+ÿÂ"Eingabe nicht korrekt !!!","Datum muá <= heutiger Tag sein.",2
+datok%ÿ0
+ÿ’ÿ¡
+ÿ¡filiale1%ÿ0ÿfiliale1%ÿ_HKassenanz%ÿp
+ÿÂ"Eingabe nicht korrekt !!!","Nummer muá >0 und < "ÿÿ(_HKassenanz%,"00")ÿ" sein!",2
+datok%ÿ0
+ÿ’ÿ¡
+ ÿÙ
+ ÿ™"zberart"
+ ÿßÿe
+ ÿÁÿs"LAGERLI"
+ ÿ}ÿÁ
+ÿÊÿÁÿí"F_REPORT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÁ
+ 
+ ÿŸ
+ÿÊÿÁÿí"H_PAGE"
+ÿ¶ÿÁÿí
+ ÿ’ÿŸ
+ filiale2%ÿfiliale1%
+ ÿ}ÿÉ
+ÿÊÿÁÿí"F_SELECT"
+ÿ¶ÿÁÿí
+ ÿ’ÿÉ
+ 
+ ÿÊÿiÿ³
+ ÿÊÿiÿáÿ³
+ ÿÊÿbÿíÿšÿe
+ ÿÉ;
+ÿĞArtikel.ZBERARTÿArtikelcode.ARTIKELÿFiliale.ZBERARTÿfiliale2%ÿZBDatum.zberartÿzwdat%
+ÿµÿÁFiliale.ZBERART,Artikel.ZBERART
+ÿqÿ~
+ ÿÉÿĞ
+ ÿßÿ³
+ ÿ’ÿÿ
+
+
+
+
+
+ÿÿSelectNext1()
+ ÿ¡datei$ÿ"artikel"ÿp
+ÿ¡ÿ°("artikel")ÿÿ("artikel")ÿp
+ÿƒFStore("artikel")
+ÿ£Artikelcode.artikel
+ÿ’ÿ¡
+ ÿ^
+ÿ¡ÿ(datei$)ÿÿ°(datei$)ÿp
+ÿÂ"Datensatz wurde ge„ndert !","Datensatz sichern?",130,req%
+ÿ¡req%ÿ1ÿpÿƒFStore(datei$)
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿÉÿœÿ±
+ ÿ¡ÿB("")ÿp
+ÿÂ"Dateiende","",2
+ÿÉÿœÿb
+ ÿ’ÿ¡
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿSelectPrevious1()
+ ÿ¡datei$ÿ"artikel"ÿp
+ÿ¡ÿ°("artikel")ÿÿ("artikel")ÿp
+ÿƒFStore("artikel")
+ÿ£Artikelcode.artikel
+ÿ’ÿ¡
+ ÿ^
+ÿ¡ÿ(datei$)ÿÿ°(datei$)ÿp
+ÿÂ"Datensatz wurde ge„ndert !","Datensatz sichern?",130,req%
+ÿ¡req%ÿ1ÿpÿƒFStore(datei$)
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿÉÿœÿg
+ ÿ¡ÿB("")ÿp
+ÿÂ"Dateianfang","",2
+ÿÉÿœÿ`
+ ÿ’ÿ¡
+ ÿœ
+ ÿ’ÿÿ
+
+ÿÿSelectFirst1()
+ ÿ¡datei$ÿ"artikel"ÿp
+ÿ¡ÿ°("artikel")ÿÿ("artikel")ÿp
+ÿƒFStore("artikel")
+ÿ£Artikelcode.artikel
+ÿ’ÿ¡
+ ÿ^
+ÿ¡ÿ(datei$)ÿÿ°(datei$)ÿp
+ÿÂ"Datensatz sichern?","",130,req%
+ÿ¡req%ÿ1ÿpÿƒFStore(datei$)
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿÉÿœÿ`
+ ÿœ
+ ÿ’ÿÿ
+
+ÿÿSelectLast1()
+ ÿ¡datei$ÿ"artikel"ÿp
+ÿ¡ÿ°("artikel")ÿÿ("artikel")ÿp
+ÿƒFStore("artikel")
+ÿ£Artikelcode.artikel
+ÿ’ÿ¡
+ ÿ^
+ÿ¡ÿ(datei$)ÿÿ°(datei$)ÿp
+ÿÂ"Datensatz sichern?","",130,req%
+ÿ¡req%ÿ1ÿpÿƒFStore(datei$)
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿÉÿœÿb
+ ÿœ
+ ÿ’ÿÿ
+
+
+ÿÿListenum%()
+ ÿ¡ÿOÿC("sernum")ÿp
+ÿÿ™"sernum"
+CodeSN.sernumÿÿI("sernum")
+Datei.sernumÿdatei$
+lastnum.sernumÿÿI(datei$)ÿ1
+lastartintern.sernumÿ1
+listenum%ÿlastartintern.sernum
+ÿÌÿ™"sernum"
+ ÿ^
+lastartintern.sernumÿlastartintern.sernumÿ1
+listenum%ÿlastartintern.sernum
+ÿÌÿ™"sernum"
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+
+
+
+ '      ***********************
+ '      ** Mendeklarationen **
+ '      ***********************
+ 
+ 
+ ' Hauptmen
+ ' ======================================================================
+ 
+ÿÿMNWAWI()
+ ÿ¬ÿ…
+ ÿƒMNProgramm()
+ ÿ¬2,0,1,"&Optionen","",""
+ ÿ¬2,1,1,"Reorganisation der Datenbank","ReorgDB","Reorganisiert alle Dateien, die zur Datenbank geh”ren"
+ ÿ¬2,2,1,"&Adressen","ADRESSEN",""
+ ÿ¬2,3,1,"An&schreiben","ANSCHR",""
+ ÿ¬2,4,1,"&Mailing","MAILING",""
+ ÿ¬2,5,1,"A&quise","AKQUISE",""
+ ÿƒMNHilfe(3)
+ ÿ’ÿÿ
+ 
+
+ÿÿMNARTIKEL()
+ ÿ¬ÿ…
+ ÿƒMNProgramm()
+ÿ¬1,1,1,"&Druck Artikel..","ARTLIEFDrucken","Druckausgabe Artikelliste nach Lieferanten sortiert"
+ ÿ¬1,5,1,"&Zurck,Esc","ARTIKELEnde",""
+ ÿ¬1,6,1,"&Beenden,Alt+F4","Exit","Programmende"
+ ÿ¬2,0,1,"&Daten","",""
+ ÿ¬2,1,1,"&Neu","ARTIKELNeu","einen neuen Datensatz erfassen"
+ ÿ¬2,2,1,"&Bearbeiten","Bearbeiten",""
+ ÿ¬2,3,1,"&Sichern,F4","MStore",""
+ ÿ¬2,4,1,"&L”schen","ARTIKELLoeschen",""
+ ÿ¬2,5,1,"S&uchen,F6","ARTIKELSuchen",""
+ ÿ¬3,0,1,"&Bewegen","",""
+ ÿ¬3,1,1,"&N„chster,BildAb","SelectNext1","n„chster Datensatz"
+ ÿ¬3,2,1,"&Vorheriger,BildAuf","SelectPrevious1",""
+ ÿ¬3,3,1,"&Erster,F11","SelectFirst1",""
+ ÿ¬3,4,1,"&Letzter,F12","SelectLast1",""
+ ÿƒMNHilfe(4)
+ ÿ’ÿÿ
+
+ 
+
+ÿÿEditRecord()
+ ÿßÿ³
+ ÿ”
+ ÿ’ÿÿ
+ 
+ÿÿBearbeiten()
+ ÿßÿ³
+ ÿ”
+ ÿ’ÿÿ
+ 
+
+
+ÿÿLieferantsuche()
+ ÿ™"adressen"
+ ÿ×LAuswahl1$(1)
+ a%ÿ0
+ ÿ£AALieferant.adressen
+ ÿÉÿ`
+ ÿÉÿ¥"j"ÿ™"adressen"ÿ£aalieferant.adressen
+ ÿØaalieferant.adressenÿ"j"ÿÿOÿB("adressen")
+Lieferant$(a%)ÿnachname.adressenÿÿ'(70)ÿÿ(codeku.adressen,"000000")
+a%ÿa%ÿ1
+ÿÉÿ±
+ ÿÙ
+ LAuswahl$ÿLieferant$(0)
+ LAuswahl1$(0)ÿLAuswahl$
+ 
+ ÿ‰ÿñ"PREISLIS",0,0,153,225,"Auswahl","MS Sans Serif",8
+ÿ|ÿñ"PREISLIS",4,3,6,149,190,0," Auswahl des Lieferanten"
+ÿ|ÿñ"PREISLIS",7,5,17,145,178,2,2,Lieferant$,Lauswahl1$," "
+ÿ|ÿñ"PREISLIS",1,20,208,55,16,1,"&OK",1,1
+ÿ|ÿñ"PREISLIS",1,80,208,55,16,0,"&Abbrechen",0,0
+ ÿñ"PREISLIS",req%
+ ÿ¾ÿñ"PREISLIS"
+ ÿ¡req%ÿ1ÿp
+LAuswahl$ÿLAuswahl1$(0)
+kunr%ÿÿ0(ÿ-(LAuswahl$,6))
+ ÿ^
+kunr%ÿ0
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+
+ÿÿLiefersuche1%()
+ ÿ™"adressen"
+ ÿ×LAuswahl1$(1)
+ a%ÿ0
+ ÿ£AALieferant.adressen
+ ÿÉÿ`
+ ÿÉÿ¥"j"ÿ™"adressen"ÿ£aalieferant.adressen
+ ÿØaalieferant.adressenÿ"j"ÿÿOÿB("adressen")
+Lieferant$(a%)ÿnachname.adressenÿÿ'(70)ÿÿ(codeku.adressen,"000000")
+a%ÿa%ÿ1
+ÿÉÿ±
+ ÿÙ
+ LAuswahl$ÿLieferant$(0)
+ LAuswahl1$(0)ÿLAuswahl$
+ 
+ ÿ‰ÿñ"PREISLIS",0,0,153,225,"Auswahl","MS Sans Serif",8
+ÿ|ÿñ"PREISLIS",4,3,6,149,190,0," Auswahl des Lieferanten"
+ÿ|ÿñ"PREISLIS",7,5,17,145,178,2,2,Lieferant$,Lauswahl1$," "
+ÿ|ÿñ"PREISLIS",1,20,208,55,16,1,"&OK",1,1
+ÿ|ÿñ"PREISLIS",1,80,208,55,16,0,"&Abbrechen",0,0
+ ÿñ"PREISLIS",req%
+ ÿ¾ÿñ"PREISLIS"
+ ÿ¡req%ÿ1ÿp
+LAuswahl$ÿLAuswahl1$(0)
+kunr%ÿÿ0(ÿ-(LAuswahl$,6))
+ ÿ^
+kunr%ÿ0
+ ÿ’ÿ¡
+ Liefersuche1%ÿkunr%
+ ÿ’ÿÿ
+
+
+

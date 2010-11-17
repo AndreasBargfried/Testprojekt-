@@ -1,0 +1,36 @@
+SBP
+яяmain()
+я‰яс"ADRCON1",0,0,280,185,"Projektsuche","MS Sans Serif",8
+я|яс"ADRCON1",4,0,0,278,150,0,""
+я|яс"ADRCON1",5,30,8,240,11,0,"Tragen Sie hier die einzelnen Suchbegriffe in die zugeh”rigen Felder ein!"
+я|яс"ADRCON1",9,5,9,20,21,2
+я|яс"ADRCON1",5,30,20,61,11,0,"Kundennummer"
+я|яс"ADRCON1",5,30,32,61,11,0,"Nachname/FIRMA"
+я|яс"ADRCON1",5,30,44,61,11,0,"Vorname/ZUSATZ"
+я|яс"ADRCON1",5,30,56,61,11,0,"Geburtsname/z.H."
+я|яс"ADRCON1",5,30,68,50,11,0,"Straбe"
+я|яс"ADRCON1",5,30,82,50,11,0,"PLZ"
+я|яс"ADRCON1",5,30,94,50,11,0,"Ort"
+я|яс"ADRCON1",5,30,106,49,11,0,"Land"
+я|яс"ADRCON1",5,30,116,49,11,0,"Stadtteil"
+я|яс"ADRCON1",5,30,130,59,11,0,"Kunde seit von"
+я|яс"ADRCON1",5,155,131,19,11,0,"bis"
+я|яс"ADRCON1",6,105,20,136,11,128,0,Projektnummer$,20
+я|яс"ADRCON1",6,105,32,136,11,128,0,name1$,50
+я|яс"ADRCON1",6,105,43,136,11,128,0,name2$,50
+я|яс"ADRCON1",6,105,56,136,11,128,0,name3$,50
+я|яс"ADRCON1",6,105,68,136,11,128,0,Strasse$,50
+я|яс"ADRCON1",6,105,80,136,11,128,0,PLZ$,8
+я|яс"ADRCON1",6,105,92,136,11,128,0,Ort$,50
+я|яс"ADRCON1",6,105,104,136,11,128,0,Land$,50
+я|яс"ADRCON1",6,105,116,136,11,128,0,Stadtteil$,50
+я|яс"ADRCON1",6,105,130,40,11,0,0,Projektstart$,10
+я|яс"ADRCON1",6,175,130,40,11,0,0,Projektstart2$,10
+я|яс"ADRCON1",6,242,20,98,90,4,2,Notiz$,4000
+я|яс"ADRCON1",1,80,159,55,14,1,"&OK",1,1
+я|яс"ADRCON1",1,138,159,54,14,0,"&Abbrechen",0,0
+яс"ADRCON1",reqsu%
+яѕяс"ADRCON1"
+ 
+ я’яя
+

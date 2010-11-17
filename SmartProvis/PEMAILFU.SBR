@@ -1,0 +1,3142 @@
+SBP
+ ' ***************************** Email Smtp Server Modul *****************************************************
+ ' SMTP Server fr Superbase Routinen
+ ' Firma : MIS Software
+ ' Autor : Christian Wolff
+ ' Modulname : MIS-SMTPServ
+ ' This functions Copyright 2003 and later by Christian Wolff (service@mis-software.de)
+ ' *********************************************************************************************************** 
+ ' The Blat.dll is downloaded on http://www.blat.net/
+ ' Thanks for sourceforge.net
+ ' *********************************************************************************************************** 
+ ' we have translated the functions in english spell
+ ' History:
+ ' ------------
+ ' Version 1.32 faster send emails. Superbase not delete the bodyfile (old emailtxt.dat)
+ '              Newfilename ist body.txt.    
+ ' ***********************************************************************************************************
+ ÿƒmain()
+ ÿ½ SUB main()
+ÿ½ REQUEST "Diese Datei ist eine Funktionsbibliothek","",139
+ÿ½ CALL examplemail()
+ÿ½ QUIT 
+ ÿ½ END SUB 
+
+ÿÿexamplemail()
+e%ÿ1
+ÿÂ"Wollen Sie wirklich "ÿÿ(e%,"99.")ÿ"  Email(s) versenden ?","",148,ant%%
+ÿ¡ant%%ÿ1ÿp
+ÿ›i%ÿ1ÿqe%
+ÿƒTTemail(RetVal%%,RetVal$)
+ÿ±
+ÿÂ"Fertig Fehlercode : "ÿÿH(ÿ(RetVal%%,"9999.")),ÿ+(RetVal$,72)
+ÿ’ÿ¡
+ ÿ’ÿÿ
+
+ ' ******************************************************************************************************
+ ' Beispiel-Aufruf fr Emailversand.
+ ' CALL TTemail(RetVal%%,RetVal$)
+ ' RetVal%% = Fehlernummer, 0 bedeutet kein Fehler
+ ' RetVal$  = Fehlertext
+ ' English:
+ ' ---------
+ ' Example for sending emails.
+ ' CALL TTemail(RetVal%%,RetVal$)
+ ' RetVal%% = Errorcode, 0 No errors
+ ' RetVal$  = errormessage
+ ' ******************************************************************************************************
+ÿÿTTemail(RetVal%%,RetVal$)
+ X%%ÿMK_Init%%()
+ X%%ÿMK_SendServer%%("post.strato.de","25","info@codie-software.de","codie8474#",SendServer$)
+ X%%ÿMK_SendFrom%%("info@codie-software.de",SendFrom$)
+ X%%ÿMK_SendReply%%("info@codie.com",SendReply$)
+ X%%ÿMK_Priority%%(1,Priority$)
+ X%%ÿMK_SendTo%%("ab@codie.com",SendTo$)
+ X%%ÿMK_XHeader%%("CODie Power mailer",SendHeader$)
+ ÿ½ X%% = MK_SendCC%%("technik@mis-software.de,service@mis-software.de",SendCC$)
+ ÿ½ X%% = MK_SendBCC%%("ab@codie.com,send@codie.com",SendBCC$)
+ X%%ÿMK_Subject%%("Test Email von CODie software products e.K.",SendSubject$)
+ ÿƒMK_WriteBody0()' Text in Htmlformat . You must change the parameter to MK_Html%%(1,Html$)
+ 'CALL MK_WriteBody2()' Text NOT in Htmlformat . You must change the parameter to MK_Html%%(0,Html$)
+ 'X%% = MK_Attach%%( DIRECTORY + "\attach\email.pdf",AttachString$)
+ 'X%% = MK_Attach%%( DIRECTORY + "\attach\email_abc.pdf",AttachString$)
+ X%%ÿMK_LogFile%%("logdatei.log",LogDateiName$)
+ X%%ÿMK_Html%%(0,Html$)
+ X%%ÿMK_SendGo%%(RetVal%%,RetVal$,SendHeader$,SendTo$,SendFrom$,SendReply$,Priority$,SendCC$,SendBCC$,SendSubject$,LogDateiName$,SendServer$,AttachString$,Html$)
+ X%%ÿMK_InitReset%%()
+ ÿ’ÿÿ
+
+ ' ******************************************************************************************************
+ ' Testtext als Email versenden als Body(Haupttext)
+ ' MK_Body%% setzt den Text einer Zeile in einer Email
+ ' X%% = MK_Body%%("Das ist ein Bodytext,",OutClose%%)
+ ' OutClose%% = 0 , die Datei body.txt wird nicht geschlossen(kein CLOSE OUTPUT)
+ ' OutClose%% = 1 , die Datei body.txt wird geschlossen(CLOSE OUTPUT)
+ ' Hinweis :
+ ' In der letzten Zeile ist eine 1 zwingend erforderlich
+ ' English:
+ ' ---------
+ ' Testtext for sending emails via smtp (bodytext)
+ ' MK_Body%% set the text for one line in the file body.txt
+ ' X%% = MK_Body%%("this is a example,",OutClose%%)
+ ' OutClose%% = 0 , the file body.txt are not closing(No CLOSE OUTPUT)
+ ' OutClose%% = 1 , teh file body.txt are closing the textfile body.txt(CLOSE OUTPUT)
+ ' Tipp :
+ ' the last command must be Outclose%%=1
+ ' ****************************************************************************************************** 
+ÿÿMK_WriteBody0()
+ X%%ÿMK_Body%%("Sehr geehrte Damen und Herren,",0)
+ X%%ÿMK_Body%%("",0)
+ X%%ÿMK_Body%%("Dies ist der erfolgreiche Test!",0)
+ X%%ÿMK_Body%%("Ihr email scheint korrekt eingestellt zus sein",0)
+ X%%ÿMK_Body%%("                 ",0)
+ X%%ÿMK_Body%%("Mit freundlichen Gráen",0)
+ X%%ÿMK_Body%%("CODie software products e.K.",0)
+ X%%ÿMK_Body%%("Datum :"ÿÿ(ÿQ,"0d.mm.yyyy")ÿ"  Zeit : "ÿÿ7(ÿR,"mm:hh:ss"),0)
+ X%%ÿMK_Body%%("",1)
+ ÿ’ÿÿ
+ 
+
+
+ÿÿMK_WriteBody()
+ X%%ÿMK_Body%%("Sehr geehrte Damen und Herren,<BR><BR>",0)
+ X%%ÿMK_Body%%("",0)
+ X%%ÿMK_Body%%("D”ss isn Tescht.<BR>",0)
+ X%%ÿMK_Body%%("Wir bitten šberweisung bis zum <FONT>"ÿÿ(ÿQÿ10,"0d.mm.yyyy")ÿ".</FONT><BR><BR>",0)
+ X%%ÿMK_Body%%("mfg<BR>",0)
+ X%%ÿMK_Body%%("Andreas Bargfried<BR>",0)
+ X%%ÿMK_Body%%("CODie software products e.K.<BR><BR>",0)
+ X%%ÿMK_Body%%("Datum :"ÿÿ(ÿQ,"0d.mm.yyyy")ÿ"  Zeit : "ÿÿ7(ÿR,"mm:hh:ss")ÿ"<BR>",0)
+ X%%ÿMK_Body%%("-------------------------------------",1)
+ ÿ’ÿÿ
+
+ ' Text NOT in HtmlFormat.
+ÿÿMK_WriteBodyN(ttext$)
+ X%%ÿMK_Body%%(ttext$,1)
+ ÿ½ X%% = MK_Body%%(bodytxt$,"",1)
+ ÿ’ÿÿ
+ 
+ ' ***********************  Funktionen fr SMTP-Server  *************************************************
+ ' English:
+ ' ---------
+ ' Functions for SMTP-Sending Emails
+ ' ******************************************************************************************************
+ ' ******************************************************************************************************
+ ' ******************************************************************************************************
+ ' ******************************************************************************************************
+ ' Versenden der Email 
+ ' English:
+ ' ---------
+ ' Sending emails for SMTP
+ ' This is the startcommand for sending a email
+ ' X%% = MK_SendGo%%()
+ ' ******************************************************************************************************
+ÿÿMK_SendGo%%(RetVal%%,RetVal$,SendHeader$,SendTo$,SendFrom$,SendReply$,Priority$,SendCC$,SendBCC$,SendSubject$,LogDateiName$,SendServer$,AttachString$,Html$)
+ÿ¡LogDateiName$ÿ""ÿpLogDateiName$ÿ" ":ÿ’ÿ¡
+tdatei$ÿGbodytxt$
+ÿ_netpath$
+SendString$ÿtdatei$ÿSendHeader$ÿSendTo$ÿSendFrom$ÿSendReply$ÿPriority$ÿSendCC$ÿSendBCC$ÿSendSubject$ÿLogDateiName$ÿSendServer$ÿAttachString$ÿHtml$
+ÿ½ SendString$ = "body.txt" + SendHeader$ + SendTo$ + SendFrom$ + SendReply$ + Priority$ + SendCC$ + SendBCC$ + SendSubject$ + LogDateiName$ + SendServer$ + AttachString$ + Html$
+
+sendstring1$ÿsendstring$
+ÿ½ CALL Fehler(SendString1$,"")
+RetVal%%ÿÿƒ("Send",SendString1$)
+ÿÉÿæRetVal%%
+ÿæ0
+RetVal$ÿ"Emailversand OK"
+ÿæ1
+RetVal$ÿ"SMTP-Fehler beim verbinden,  SMTP-Adresse oder Port oder Username oder das Passwort sind falsch (bitte bei Mitarbeitereinstellungen prfen)!"
+ÿæ2
+RetVal$ÿ"Textdatei fr Emailbody:"ÿGbodytxt$ÿ" ist nicht vorhanden oder der Username oder das Passwort sind falsch (bitte bei Mitarbeitereinstellungen prfen)!"
+ÿæ3
+RetVal$ÿ"Datei-Lesefehler"
+ÿæ4
+RetVal$ÿ"Falscher Dateityp"
+ÿæ5
+RetVal$ÿ"Fehler beim Lesen des Messagetextes"
+ÿæ12
+RetVal$ÿ"Server nicht gefunden oder Absendeadresse falsch"
+ÿæ13
+RetVal$ÿ"Fehler beim Lesen aus dem TEMP-Verzeichnis"
+ÿ’ÿæ
+ ÿ’ÿÿ
+ ' ****************************************************************************************************** 
+ ' Initialisierung und Registrierung der BLAT.DLL
+ ' English:
+ ' ---------
+ ' Register the DLL
+ ' X%% = MK_Init%%()
+ ' ******************************************************************************************************
+ÿÿMK_Init%%()
+ÿÊÿ_ÿe167
+ÿÊÿ_ÿe168
+ÿîÿ…"Send"
+ÿî_netpath$ÿ"blat.dll","Send","IC"
+ ÿ’ÿÿ
+ ' ******************************************************************************************************
+ ' Entfernen der registrierten Funktion "Send"
+ ' English:
+ ' ---------
+ ' Remove the DLL from Windows Register
+ ' X%% = MK_InitReset%%()
+ ' ******************************************************************************************************
+ÿÿMK_InitReset%%()
+ÿîÿ…"Send"
+ÿÊÿ_ÿ³167
+ÿÊÿ_ÿ³168
+ ÿ’ÿÿ
+ ' ******************************************************************************************************
+ ' Schreiben des X-Headers
+ ' X%% = MK_XHeader%%(Header$,SendHeader$)
+ ' Header$ = "MIS Software"
+ ' Rckgabewert wird an SendHeader$ bergeben
+ ' English:
+ ' ---------
+ ' Write X-Headers
+ ' X%% = MK_XHeader%%(Header$,SendHeader$)
+ ' Header$ = "MIS Software"
+ ' Returnvalue on SendHeader$
+ ' ******************************************************************************************************
+ÿÿMK_XHeader%%(Header$,SendHeader$)
+SendHeader$ÿ" -x "ÿÿ(34)ÿ"X-Header: "ÿHeader$ÿÿ(34)ÿ" "
+ ÿ’ÿÿ
+ ' ******************************************************************************************************
+ ' Subject (Betreffzeile) wird erstellt
+ ' X%% = MK_Subject%%(subject$,SendSubject$)
+ ' subject$ = "Das ist eine Testmail von MIS Software"
+ ' Rckgabewert wird an SendSubject$ bergeben
+ ' English:
+ ' ---------
+ ' Makes Subjectline
+ ' X%% = MK_Subject%%(subject$,SendSubject$)
+ ' subject$ = "Thois is a example mail from MIS Software"
+ ' Returnvalue on SendHeader$
+ ' ******************************************************************************************************
+ÿÿMK_Subject%%(subject$,SendSubject$)
+SendSubject$ÿ" -s "ÿÿ(34)ÿsubject$ÿÿ(34)
+ ÿ’ÿÿ
+ ' ******************************************************************************************************
+ ' Schreiben einer Textzeile im Haupttext (Body)
+ ' X%% = MK_Body%%(BodyText$,OutClose%%)
+ ' BodyText$ = "Das ist die erste Zeile in der Email"
+ ' OutClose%% = 0/1, Bei 0 wird kein CLOSE OUTPUT geschrieben, bei 1 wird CLOSE OUTPUT geschrieben
+ ' English:
+ ' ---------
+ ' Write a textline in bodytext
+ ' X%% = MK_Body%%(BodyText$,OutClose%%)
+ ' BodyText$ = "tihis is a example line in this email"
+ ' OutClose%% = 0/1, 0 write no CLOSE OUTPUT in body.txt, 1 Write CLOSE OUTPUT in body.txt
+ ' ******************************************************************************************************
+ÿÿMK_Body%%(datatxt$,OutClose%%)
+ÿ´Gbodytxt$ÿ›ÿT
+ÿ{ÿåANSI(datatxt$)
+ÿ¡OutClose%%ÿ1ÿp
+ÿ†ÿ¶
+ÿ’ÿ¡
+ÿ’ÿÿ
+ ' ******************************************************************************************************
+ ' Schreiben der Absendeadresse
+ ' X%% = MK_SendFrom%%(_SendFrom$,SendFrom$)
+ ' _SendFrom$ = "service@mis-software.de"
+ ' Rckgabewert wird an SendFrom$ bergeben
+ ' English:
+ ' ---------
+ ' Write Fromadress
+ ' X%% = MK_SendFrom%%(_SendFrom$,SendFrom$)
+ ' _SendFrom$ = "service@mis-software.de"
+ ' Returnvalue on SendFrom$
+ ' ******************************************************************************************************
+ÿÿMK_SendFrom%%(_SendFrom$,SendFrom$)
+SendFrom$ÿ" -f "ÿ_SendFrom$ÿ" "
+ ÿ’ÿÿ
+ ' ******************************************************************************************************
+ ' Schreiben der Absendeadresse
+ ' X%% = MK_SendReply%%(_SendReply$,SendReply$)
+ ' _SendReply$ = "support@mis-software.de"
+ ' Rckgabewert wird an SendReply$ bergeben
+ ' English:
+ ' ---------
+ ' Write Replyadress
+ ' X%% = MK_SendReply%%(_SendReply$,SendReply$)
+ ' _SendReply$ = "support@mis-software.de"
+ ' Returnvalue on SendReply$
+ ' ******************************************************************************************************
+ÿÿMK_SendReply%%(_SendReply$,SendReply$)
+SendReply$ÿ" -replyto "ÿ_SendReply$ÿ" "
+ ÿ’ÿÿ
+ ' ******************************************************************************************************
+ ' Erzeugen der Priorit„t der Email (z.B. rotes Ausrufezeichen)
+ ' X%% = MK_Priority%%(Priority%%,Priority$)
+ ' Priority%% = 0/1, Bei 1 hohe Priorit„t
+ ' Rckgabewert wird an Priority$ bergeben
+ ' English:
+ ' ---------
+ ' Write Priority for this email
+ ' X%% = MK_Priority%%(Priority%%,Priority$)
+ ' Priority%% = 0/1/2, 1 high Priority, 0 Low Priority,, 2 Normal Priority
+ ' Returnvalue on Priority$ 
+ ' ******************************************************************************************************
+ÿÿMK_Priority%%(Priority%%,Priority$)
+Priority$ÿ" -priority "ÿÿ(Priority%%,"0.")ÿ" "
+ ÿ’ÿÿ
+ ' ******************************************************************************************************
+ ' Schreiben der Empf„ngeradresse
+ ' X%% = MK_SendTo%%(_SendTo$,SendTo$)
+ ' _SendTo$ = "technik@mis-software.de"
+ ' Rckgabewert wird an SendTo$ bergeben
+ ' English:
+ ' ---------
+ ' Write ToAdress
+ ' X%% = MK_SendTo%%(_SendTo$,SendTo$)
+ ' _SendTo$ = "technik@mis-software.de"
+ ' Returnvalue on SendTo$ 
+ ' ******************************************************************************************************
+ÿÿMK_SendTo%%(_SendTo$,SendTo$)
+SendTo$ÿ" -t "ÿ_SendTo$ÿ" "
+ ÿ’ÿÿ
+ ' ******************************************************************************************************
+ ' Schreiben der CC-Emailadresse(n)
+ ' X%% = MK_SendCC%%(_SendCC$,SendCC$)
+ ' _SendCC$ = "maier@deutschland.de,krause@aol.com"
+ ' Die Emailadressen werden durch ein , (Komma) getrennt!
+ ' Rckgabewert wird an SendCC$ bergeben
+ ' English:
+ ' ---------
+ ' Write CCAdress
+ ' X%% = MK_SendCC%%(_SendCC$,SendCC$)
+ ' _SendCC$ = "maier@deutschland.de,krause@aol.com"
+ ' cut the emailadresses with ","!
+ ' Returnvalue on SendCC$ 
+ ' ******************************************************************************************************
+ÿÿMK_SendCC%%(_SendCC$,SendCC$)
+SendCC$ÿ" -c "ÿ_SendCC$ÿ" "
+ ÿ’ÿÿ
+ ' ******************************************************************************************************
+ ' Schreiben der BCC-Emailadresse(n)
+ ' X%% = MK_SendBCC%%(_SendBCC$,SendBCC$)
+ ' _SendBCC$ = "maier@deutschland.de,krause@aol.com"
+ ' Die Emailadressen werden durch ein , (Komma) getrennt!
+ ' Rckgabewert wird an SendBCC$ bergeben
+ ' English:
+ ' ---------
+ ' Write BCCAdress
+ ' X%% = MK_SendBCC%%(_SendBCC$,SendBCC$)
+ ' _SendBCC$ = "maier@deutschland.de,krause@aol.com"
+ ' cut the emailadresses with ","!  
+ ' Returnvalue on SendBCC$  
+ ' ******************************************************************************************************
+ÿÿMK_SendBCC%%(_SendBCC$,SendBCC$)
+SendBCC$ÿ" -bcc "ÿ_SendBCC$ÿ" "
+ ÿ’ÿÿ
+ ' ******************************************************************************************************
+ ' Datei der Email anh„ngen
+ ' X%% = MK_Attach%%(attach$,AttachString$)
+ ' attach$ = "C:\test\testmail.txt"
+ ' attach$ = "C:\test\testmail.exe"
+ ' Rckgabewert wird an AttachString$ bergeben
+ ' English:
+ ' ---------
+ ' File to attach on actual email
+ ' X%% = MK_Attach%%(attach$,AttachString$)
+ ' attach$ = "C:\test\testmail.txt"
+ ' attach$ = "C:\test\testmail.exe"
+ ' Returnvalue on AttachString$
+ ' ******************************************************************************************************
+ÿÿMK_Attach%%(attach$,AttachString$)
+AttachString$ÿAttachString$ÿ" -attach "ÿattach$
+ ÿ’ÿÿ
+ ' ******************************************************************************************************
+ '
+ ' X%% = MK_SendServer%%(MailServer$,SmtpPort$,SendUser$,SendPassword$,SendServer$)
+ ' MailServer$      = SMTP-Mailserver, z.B. "post.strato.de"
+ ' SmtpPort$        = Port fr SMTP-Server, z.B. "25"
+ ' SendUser$        = Username fr SMTP, falls ESMTP benutzt wird, d.h., bei jedem versenden einer Email
+ '                    muss der Client sich anmelden. Sollte kein ESMTP erforderlich sein, dann
+ '                    SendUser$ =""
+ ' SendPassword$    = Password fr ESMTP. Sollte kein ESMTP erforderlich sein, dann
+ '                    SendPassword$ =""
+ '
+ ' Rckgabewert wird an SendServer$ bergeben
+ ' Beispiel :
+ ' -----------
+ ' X%% = MK_SendServer%%("post.strato.de","25","Usermaier","PWabc",SendServer$)
+ ' English:
+ ' ---------
+ ' X%% = MK_SendServer%%(MailServer$,SmtpPort$,SendUser$,SendPassword$,SendServer$)
+ ' MailServer$      = SMTP-Mailserver, e.g. "post.strato.de"
+ ' SmtpPort$        = Port for SMTP-Server, e.g. "25"
+ ' SendUser$        = Username for SMTP, if use ESMTP. 
+ '                    If use no ESMTP then value SendUser$ =""
+ ' SendPassword$    = Password for ESMTP. If no use ESMTP then SendPassword$ =""
+ ' Returnvalue on SendServer$
+ ' Example :
+ ' -----------
+ ' X%% = MK_SendServer%%("post.strato.de","25","Usermaier","PWabc",SendServer$)
+ ' ******************************************************************************************************
+ÿÿMK_SendServer%%(MailServer$,SmtpPort$,SendUser$,SendPassword$,SendServer$)
+ÿ´Gbodytxt$ÿ›ÿ¶
+ÿ†ÿ¶
+ÿ¡SendUser$ÿ""ÿp
+SendServer$ÿ"-server "ÿMailServer$ÿ" -port "ÿSmtpPort$ÿ" -u "ÿSendUser$ÿ" -pw "ÿSendPassword$
+ÿ^
+SendServer$ÿ"-server "ÿMailServer$ÿ" -port "ÿSmtpPort$
+ÿ’ÿ¡
+ ÿ’ÿÿ
+
+ ' ******************************************************************************************************
+ ' Ausw„hlen, ob eine Email im HTML oder Textformat erstellt werden soll 
+ ' X%% = MK_Html%%(html%%,Html$) 
+ ' html%% = 0 , dann Textformat
+ '          1 , dann Htmlformat
+ ' X%% = MK_Html%%(html%%,Html$) 
+ ' Html$  = Rckgabewert
+ '
+ ' English:
+ ' ---------
+ ' X%% = MK_Html%%(html%%,Html$) 
+ ' html%% = 0 , Textformat
+ '          1 , Htmlformat
+ ' X%% = MK_Html%%(html%%,Html$) 
+ ' Html$  = Returnvalue
+ ' ****************************************************************************************************** 
+ÿÿMK_Html%%(html%%,Html$)
+ÿ¡html%%ÿ0ÿp
+Html$ÿ""
+ÿ^
+Html$ÿ" -html"
+ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ ' ******************************************************************************************************
+ ' Erstellen eines Eintrages in die Logdatei
+ ' X%% = MK_LogFile%%(Datei$,LogDateiName$)
+ ' Datei$ = Dateiname fr Logdatei
+ ' X%% = MK_LogFile%%("logdatei.log",LogDateiName$)
+ ' 
+ ' Rckgabewert wird an LogDateiName$ bergeben
+ ' English:
+ ' ---------
+ ' If you want use a logfile, then Datei$ is the logfilename, e.g. "testlog.txt"
+ ' X%% = MK_LogFile%%(Datei$,LogDateiName$)
+ ' Datei$ = Filename for Logfile
+ ' X%% = MK_LogFile%%("logdatei.log",LogDateiName$)
+ ' Returnvalue on LogDateiName$
+ ' ******************************************************************************************************
+ÿÿMK_LogFile%%(Datei$,LogDateiName$)
+LogDateiName$ÿ" -log "ÿDatei$ÿ" "
+ ÿ’ÿÿ
+
+
+
+ ÿ½ Erzeugung Sendebericht
+
+ÿÿSendeBer(Ppassw$,adresse$,TOM$,attachges$,ccx$,bccx$,Betreff$,emailtext$)
+
+ÿ½ CALL WriteINIDes("EMAILSERVER","HOST",EMAILShost.supervis,datei$)
+ÿ½ CALL WriteINIDes("EMAILSERVER","PORT",port$,datei$)
+ÿ½ CALL WriteINIDes("EMAILSERVER","USERID",UserID$,datei$)
+ÿ½ CALL WriteINIDes("EMAILSERVER","PW",Ppassw$,datei$)
+ÿ½ CALL WriteINIDes("EMAILSERVER","ABSFirma",AFirma$,datei$)
+ÿ½ CALL WriteINIDes("EMAILSERVER","ABSName",AName$,datei$)
+ÿ½ CALL WriteINIDes("EMAILSERVER","ABSEMAIL",ANummer$,datei$)
+ÿ½ CALL WriteINIDes("EMAILSERVER","KOPIEANABSENDER",Sen$,datei$)
+ÿ½ CALL WriteINIDes("EMAILSERVER","BerSendenummer",BerSend$,datei$)
+ÿ½ CALL WriteINIDes("EMAILSERVER","BerSendenummer1",BerSend1$,datei$)
+ÿ½ CALL WriteINIDes("EMAILSERVER","TO",TOM$,datei$)
+ÿ½ CALL WriteINIDes("EMAILSERVER","SENDEBERICHT",senber$,datei$)
+ÿ½ CALL WriteINIDes("EMAILSERVER","Betreff",Betreff$,datei$)
+ 
+
+
+
+datei$ÿGMACodeDir$ÿ"codietes.ini"
+Host$ÿReadINIDes$("EMAILSERVER","HOST",datei$)
+Port$ÿReadINIDes$("EMAILSERVER","PORT",datei$)
+UserID$ÿReadINIDes$("EMAILSERVER","USERID",datei$)
+Betreff$ÿReadINIDes$("EMAILSERVER","Betreff",datei$)
+AFirma$ÿReadINIDes$("EMAILSERVER","ABSFirma",datei$)
+AName$ÿReadINIDes$("EMAILSERVER","ABSName",datei$)
+ANummer$ÿReadINIDes$("EMAILSERVER","ABSEMAIL",datei$)
+Bersend$ÿReadINIDes$("EMAILSERVER","BerSendenummer",datei$)
+Bersend1$ÿReadINIDes$("EMAILSERVER","BerSendenummer1",datei$)
+
+sendtxt$ÿ_netpath$ÿÿ(GMACodema%,"000000")ÿ"-1.txt"
+ÿ¡ÿJ(sendtxt$)ÿpÿsendtxt$
+Gbodytxt$ÿ_netpath$ÿÿ(GMACodema%,"000000")ÿ".txt"
+ÿ¡ÿJ(Gbodytxt$)ÿp
+ÿˆGbodytxt$ÿqsendtxt$
+ÿGbodytxt$
+ÿ’ÿ¡
+
+X%%ÿMK_Init%%()
+X%%ÿMK_SendServer%%(Host$,port$,UserID$,Ppassw$,SendServer$)
+ÿ½ Absender
+von1$ÿ"an "ÿadresse$ÿ" von "ÿAName$
+X%%ÿMK_SendFrom%%(ANUmmer$,SendFrom$)
+ÿ½ antworten an
+X%%ÿMK_SendReply%%(ANUmmer$,SendReply$)
+ÿ½ 0=klein,1=groá
+X%%ÿMK_Priority%%(0,Priority$)
+X%%ÿMK_SendTo%%(BerSend$,SendTo$)
+X%%ÿMK_XHeader%%("xxPower mailer",SendHeader$)
+ÿ¡BerSend1$ÿ""ÿp
+X%%ÿMK_SendBCC%%(BerSend1$,SendBCC$)
+ÿ’ÿ¡
+subject1$ÿ"Sendebericht: "ÿadresse$ÿ"-"ÿTOM$
+X%%ÿMK_Subject%%(subject1$,SendSubject$)
+ÿ½ CALL Fehler("Sendebericht","")
+ÿƒMK_WriteBodyN("Absenderfirma: "ÿAFirma$)
+ÿƒMK_WriteBodyN("Absendername: "ÿAName$)
+ÿƒMK_WriteBodyN("Absenderemail: "ÿANummer$)
+ÿƒMK_WriteBodyN("email an: "ÿTOM$)
+ÿƒMK_WriteBodyN("Betreff: "ÿBetreff$)
+ÿƒMK_WriteBodyN("CC: "ÿccx$)
+ÿƒMK_WriteBodyN("BCC: "ÿbccx$)
+ÿƒMK_WriteBodyN("Dateianh„nge: ")
+ÿ¡attachges$ÿ""ÿpÿƒMK_WriteBodyN(attachges$)
+ÿƒMK_WriteBodyN("")
+ÿ½ CALL Fehler(zeile$,emailtext$)
+ÿƒMK_WriteBodyN(emailtext$)
+ÿwwei060920051
+ÿ´sendtxt$ÿ›ÿ¤
+ÿØÿOÿB("*")
+ÿ¤ÿczeile$
+ÿƒFehler(zeile$,"")
+zeile1$ÿÿåansi(zeile$)
+zeile2$ÿÿåoem(zeile$)
+zeile3$ÿÿåibm(zeile$)
+ÿƒMK_WriteBodyN(zeile$)
+ÿÙ
+wei060920051: 
+X%%ÿMK_LogFile%%(GMACodeDir$ÿ"emailsend.log",LogDateiName$)
+X%%ÿMK_Html%%(0,Html$)
+ÿßÿe
+X%%ÿMK_SendGo%%(RetVal%%,RetVal$,SendHeader$,SendTo$,SendFrom$,SendReply$,Priority$,SendCC$,SendBCC$,SendSubject$,LogDateiName$,SendServer$,AttachString$,Html$)
+ÿßÿ³
+X%%ÿMK_InitReset%%()
+ 
+ ÿ’ÿÿ
+
+
+
+ 
+
+
+ 
+ÿÿTerLiMail(codeaq%)
+ ÿƒDFile(2,"OFFICE\tvorlage"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\"ÿGADRDat$ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\"ÿGTelDat$ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\aktionen"ÿ_fpw$)
+ req%ÿ1
+ _cuaq%ÿcodeaq%
+ ÿÉÿ`ÿ™GAkquiDat$ÿ£codeaq.GAkquiDat$
+ ÿÉÿ¥codeaq%ÿ™GAkquiDat$ÿ£codeaq.GAkquiDat$
+ ÿÉÿ`ÿ™"supervis"ÿ£codema.supervis
+ ÿÉÿ¥codema.GAkquiDat$ÿ™"supervis"ÿ£codema.supervis
+ ÿÉÿ`ÿ™GAdrDat$ÿ£codeku.GAdrDat$
+ ÿÉÿ¥codeku.GAkquiDat$ÿ™GAdrDat$ÿ£codeku.GAdrDat$
+ ÿÉÿ`ÿ™GTelDat$ÿ£codeku.GTelDat$
+ ÿÉÿ¥codeku.GAkquiDat$ÿ™GTelDat$ÿ£codeku.GTelDat$
+ ÿÉÿœÿ¥codeaq%ÿ™GAkquiDat$ÿ£codeaq.GAkquiDat$
+ knr%ÿCodeKU.GAdrDat$
+ ÿœ
+ ÿ¡req%ÿ1ÿp
+lastT1%ÿ_cuaq%
+_continue%ÿ1
+ÿ¡_continue%ÿ0ÿp
+cudat$ÿÿ(ÿQ,"0d.mm.yyyy")
+datanz$ÿÿ(ÿQ,"0d.mm.yyyy")
+ÿÊÿË"Bereit"
+_formend%ÿ0
+ÿØ_formend%ÿ0
+	ÿ½ vbezug$ = "Adre&sse"
+	ÿ½ _vcodema% = vcodema%
+	AQsub%ÿ0
+	akmaske$ÿ"AKQMAIL"
+	ta%ÿ1
+	ÿ¡GCODie%ÿÿ1ÿp
+ÿ¡GCODieRuf1%ÿ
+0ÿp
+ta%ÿ0
+ÿ^
+ta%ÿ1
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	ÿ¡ÿ>(ÿœ)ÿakmaske$ÿta%ÿ1ÿp
+ÿÊÿŸtitle$ÿ" - Termine"
+ÿ¡ÿJ(GOFFForm$ÿakmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿakmaske$
+ÿ^
+ÿ´ÿœGOFFForm$ÿakmaske$
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÉÿœÿ¥_cuaq%ÿ£codeaq.GAkquiDat$
+ÿÊÿË"Termine"
+ÿƒMNAKQUISE()
+ÿ¬5,4,0,"&Adresshistorie,F10","AQAdrHistT","Adresshistorie anzeigen/drucken"
+ÿ¬ÿ³
+ÿ½ CALL Fehler("","")
+ÿƒAKQUISEIntro1()
+ÿÉÿœÿ¥_cuaq%ÿ£codeaq.GAkquiDat$
+ÿ½ FORM 
+ÿÊÿÿ³
+ÿœ3
+	ÿ’ÿ¡
+	ÿƒAQButtUpdate()
+	ÿÊÿË"Bereit"
+	ÿ¡ÿOÿ°(GAkquiDat$)ÿp
+ÿ¬ÿ³
+ÿßÿ³
+ÿ¡akmaske$ÿ"AKQMAIL"ÿp
+f.suchen.enabledÿÿ1
+f.suchen.visibleÿÿ1
+f.abbruch.enabledÿ0
+f.abbruch.visibleÿ0
+f.abbruch2.enabledÿ0
+f.abbruch2.visibleÿ0
+ÿ¡_projeKt$ÿ"PROVIS"ÿworkstation%ÿ0ÿp
+f.vertrag.enabledÿÿ1
+f.vertrag.visibleÿÿ1
+ÿ^
+f.vertrag.enabledÿ0
+f.vertrag.visibleÿ0
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+ÿÏÿßÿÿ¥ÿÿÍÿÿ¬
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒAQPrev()
+ÿæCrsRight%,PgDn%
+ÿƒAQNext()
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp
+ÿœ1
+ÿ^
+_formend%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+	ÿ^
+AQsub%ÿ99
+	ÿ’ÿ¡
+	ÿÉÿæAQsub%
+	ÿæ102
+ÿ½ in der Emailmaske von Akquise EMAIL versenden aufrufen
+_cuaq%ÿCodeAQ.AKQUISE
+ÿƒEMAILManSend(CodeAQ.AKQUISE,1)
+	ÿæ101
+ÿ½ Terminbersicht Kunde 12082003
+codeku%ÿcodeku.akquise
+codeaq%ÿcodeaq.Akquise
+_cuaq%ÿcodeaq%
+ÿƒKunTer1()
+knr%ÿcodeku%
+GCodieruf2%ÿ0
+ÿßÿe
+ÿÉÿ`ÿ™"ADRESSEN"ÿ£codeku.adressen
+ÿÉÿ¥codeku%ÿ™"ADRESSEN"ÿ£codeku.adressen
+ÿ¡ÿ>(ÿœ)ÿakmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Termine"
+ÿ´ÿœGOFFForm$ÿakmaske$
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Termine"
+ÿƒMNAKQUISE()
+ÿ¬6,3,1,"Liste erneut &anzeigen,F7","AQTermineO2","Suchliste erneut anzeigen"
+ÿ¬ÿ³
+ÿœ
+ÿÊÿÿ³
+ÿ’ÿ¡
+ÿßÿe
+ÿÉÿ`ÿ™"AKQUISE"ÿ£codeaq.akquise
+ÿÉÿœÿ¥codeaq%ÿ™"AKQUISE"ÿ£codeaq.akquise
+ÿœ
+ÿƒAKQUISEIntro1()
+ÿßÿ³
+	ÿæ100
+ÿ½ Vertragsbersicht
+ÿƒDFile(3,"gekond"ÿ_fpw$)
+ÿƒDFile(3,"kvertrag"ÿ_fpw$)
+ÿƒDFile(3,"maadr"ÿ_fpw$)
+ÿƒDFile(3,"sparten"ÿ_fpw$)
+ÿƒDFile(3,"vorgang"ÿ_fpw$)
+ÿÉÿ¥codeku.GAkquiDat$ÿ™GAdrDat$ÿ£codeku.GAdrDat$
+ÿÉÿ¥codeku.GAkquiDat$ÿ™"kvertrag"ÿ£codeku.kvertrag
+ÿƒKVERTRAGGR()
+ 
+	ÿæ99
+ÿ¡ergdatuma$ÿ"TRUE"ÿÿO(ÿ°(GAkquiDat$)ÿÿ(GAkquiDat$))ÿp
+codeaq%ÿCodeAQ.GAkquiDat$
+
+ÿÉÿ¥codeaq%ÿáÿ™GAkquiDat$ÿ£CodeAq.GAkquiDat$
+ÿ¡ergebnis.GAkquiDat$ÿ""ÿp
+ergebnis.GAkquiDat$ÿergebnis.GAkquiDat$ÿÿ(13)ÿÿ(10)ÿÿ(ÿQ)ÿ" "ÿÿ7(ÿR,"hh.mm")
+ÿ^
+ergebnis.GAkquiDat$ÿergebnis.GAkquiDat$ÿÿ(ÿQ)ÿ" "ÿÿ7(ÿR,"hh.mm")
+ÿ’ÿ¡
+ÿƒQuickStore(GAkquiDat$)
+ÿ’ÿ¡
+ÿßÿ³
+ÿ¡akmaske$ÿ"AKQMAIL"ÿp
+ÿ”EMAILTO.akquise,0
+ÿwre060920052
+ÿ’ÿ¡
+ÿ¡ÿíÿ1ÿp
+ÿƒButDesabled()
+f.seite2.enabledÿ0
+f.offenetermine.enabledÿ0
+f.terminplan.enabledÿ0
+f.sprache.enabledÿ0
+f.brief.enabledÿ0
+f.Telefon.enabledÿ0
+f.mitarbeiter.enabledÿ0
+f.bezug.enabledÿ0
+f.aktion.enabledÿ0
+f.kundeninfo.enabledÿ0
+f.Monat.enabledÿ0
+f.Juli.enabledÿ0
+f.Jahr.enabledÿ0
+f.W1.enabledÿ0
+f.W2.enabledÿ0
+f.W3.enabledÿ0
+f.W4.enabledÿ0
+f.W5.enabledÿ0
+f.W6.enabledÿ0
+f.vertrag.enabledÿ0
+f.vertrag.visibleÿ0
+ÿ’ÿ¡
+ÿ¡ÿíÿ2ÿp
+f.bearb2.enabledÿ0
+f.abbruch2.enabledÿÿ1
+f.abbruch2.visibleÿÿ1
+f.kundeninfo2.enabledÿ0
+f.seite1.enabledÿ0
+ÿ’ÿ¡
+ÿ¡ÿíÿ
+3ÿp
+ÿ¬ÿe
+ÿ”datum.GAkquiDat$,0
+ÿ¬ÿ³
+ÿ’ÿ¡
+ÿ¡ÿíÿ1ÿp
+ÿƒButEnabled()
+f.seite2.enabledÿÿ1
+f.offenetermine.enabledÿÿ1
+f.terminplan.enabledÿÿ1
+f.sprache.enabledÿÿ1
+f.brief.enabledÿÿ1
+f.Telefon.enabledÿÿ1
+f.mitarbeiter.enabledÿÿ1
+f.bezug.enabledÿÿ1
+f.aktion.enabledÿÿ1
+f.kundeninfo.enabledÿÿ1
+f.Monat.enabledÿÿ1
+f.Juli.enabledÿÿ1
+f.Jahr.enabledÿÿ1
+f.W1.enabledÿÿ1
+f.W2.enabledÿÿ1
+f.W3.enabledÿÿ1
+f.W4.enabledÿÿ1
+f.W5.enabledÿÿ1
+f.W6.enabledÿÿ1
+f.suchen.enabledÿÿ1
+f.suchen.visibleÿÿ1
+ÿ¡_projeKt$ÿ"PROVIS"ÿp
+f.vertrag.enabledÿÿ1
+f.vertrag.visibleÿÿ1
+ÿ^
+f.vertrag.enabledÿ0
+f.vertrag.visibleÿ0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ÿíÿ2ÿp
+f.bearb2.enabledÿÿ1
+f.abbruch2.enabledÿ0
+f.abbruch2.visibleÿ0
+f.kundeninfo2.enabledÿÿ1
+f.seite1.enabledÿÿ1
+ÿ’ÿ¡
+ÿ¡ÿíÿ3ÿp
+GEMAILRAUS$ÿEMAILRAUS.akquise
+ÿ”emailto.GAkquiDat$,0
+ÿ’ÿ¡
+re060920052: 
+	ÿ’ÿÉ
+ÿÙ
+ÿ¡art%ÿ2ÿp
+	ÿÉÿœÿ¥_cuaq%ÿ£codeaq.GAkquiDat$
+	ÿ½ cuaq% = _cuaq%
+ÿ’ÿ¡
+ÿ’ÿ¡
+_formend%ÿ0
+ÿ¡akmaske$ÿ"AKQMAIL"ÿpart%ÿ1
+ÿ¡art%ÿ1ÿp
+cuaq%ÿ0
+_formend%ÿ0
+ÿ’ÿ¡
+ÿ½ _formend% = 1
+ÿ¡ÿ°(GAkquiDat$)ÿÿ(GAkquiDat$)ÿCodeAQ.GAkquiDat$ÿ0ÿpÿƒFStore(GAkquiDat$)
+ÿ’ÿ¡
+ 
+ ÿ’ÿÿ
+
+ 
+ 
+ ÿ½ EMAIL aus Adresse versenden
+ÿÿSendEMAIL(Nummer$,codeku%)
+ÿ™"supervis"
+ÿ£codema.supervis
+ÿÉÿ`ÿ™"supervis"
+ÿÉÿ¥GMACodeMA%ÿ™"Supervis"ÿ£codema.supervis
+ÿÉÿ`ÿ™GAdrDat$ÿ£codeku.GAdrDat$
+ÿÉÿ¥codeku%ÿ™GAdrDat$ÿ£codeku.GAdrDat$
+ 
+ÿƒAQRegAdr(codeku.GAdrDat$,Nummer$,0)
+ÿƒTerLiMail(cuaq%)
+ 
+ 
+ÿ½ CALL Fehler("Eigener Dialog oder eigene Form","")
+ 
+GMailBetreff$ÿ""
+GMailIn%ÿ0
+ ÿ’ÿÿ
+
+ ÿ½ Zugangsdaten - EMAIL aus Adresse versenden
+ÿÿSendEMAIL1(Nummer$,codeku%)
+ÿ™"supervis"
+ÿ£codema.supervis
+ÿÉÿ`ÿ™"supervis"
+ÿÉÿ¥GMACodeMA%ÿ™"Supervis"ÿ£codema.supervis
+ÿÉÿ`ÿ™GAdrDat$ÿ£codeku.GAdrDat$
+ÿÉÿ¥codeku%ÿ™GAdrDat$ÿ£codeku.GAdrDat$
+ 
+ÿƒAQRegAdr(codeku.GAdrDat$,Nummer$,1)
+ÿƒTerLiMail(cuaq%)
+ 
+ 
+ÿ½ CALL Fehler("Eigener Dialog oder eigene Form","")
+ 
+GMailBetreff$ÿ""
+GMailIn%ÿ0
+ ÿ’ÿÿ
+
+
+ ÿ½ Werbe - EMAIL aus Adresse versenden
+ÿÿSendEMAIL2(Nummer$,codeku%)
+ÿƒDFile(2,"OFFICE\wemail"ÿ_fpw$)
+ÿ™"supervis"
+ÿ£codema.supervis
+ÿÉÿ`ÿ™"supervis"
+ÿÉÿ¥GMACodeMA%ÿ™"Supervis"ÿ£codema.supervis
+ÿÉÿ`ÿ™GAdrDat$ÿ£codeku.GAdrDat$
+ÿÉÿ¥codeku%ÿ™GAdrDat$ÿ£codeku.GAdrDat$
+GWemailAbr%ÿ0
+ÿƒAQRegAdr(codeku.GAdrDat$,Nummer$,2)
+ÿ¡GWemailAbr%ÿÿ1ÿp
+ÿƒTerLiMail(cuaq%)
+ÿ’ÿ¡
+ 
+ 
+ÿ½ CALL Fehler("Eigener Dialog oder eigene Form","")
+ 
+GMailBetreff$ÿ""
+GMailIn%ÿ0
+ ÿ’ÿÿ
+
+ÿÿEMAILATT(nr%)
+ codeaq%ÿcodeaq.GAkquiDat$
+ codeku%ÿcodeku.GAkquiDat$
+ iniPath$ÿ""
+ iniPath$ÿDokuGetNam$(codeku%)
+ ÿ¡iniPath$ÿ""ÿpa%ÿÿ1
+ ÿ¡ÿ("akquise")ÿpÿÌÿ™"akquise"
+ req%ÿ0
+ÿcdir$
+ÿ¡a%ÿÿ1ÿp
+ÿÂ"Erstelle Arbeitskopie der zu versendenden Datei","",2
+ÿÊÿË"Erstelle Arbeitskopie der zu versendenden Datei"
+ÿßÿe
+endung$ÿGetDateiendung$(iniPath$)
+ÿ½ zz$ = GMACodeDir$ + STR$ (codeaq%,"000000") + "-" + STR$ (nr%,"0") + "." + endung$
+zz$ÿ_netpath$ÿ"EMAILATT\"ÿÿ(codeaq%,"000000")ÿ"-"ÿÿ(nr%,"0")ÿ"."ÿendung$
+ÿ½ IF EXISTS (zz$) THEN DELETE zz$
+a%ÿÿƒ("_SBFileExists",zz$)
+ÿ¡a%ÿÿ1ÿp
+	a%ÿÿƒ("_SBFileDelete1",zz$)
+ÿ’ÿ¡
+a%ÿÿƒ("_SBFileCopy",iniPath$,zz$)
+textvorlage$ÿÿåansi(iniPath$)
+ÿ¡a%ÿÿ1ÿp
+	textvorlage$ÿ""
+	zz$ÿ""
+ÿ’ÿ¡
+req%ÿ1
+ÿßÿ³
+ÿÊÿË""
+ÿ’ÿ¡
+ 
+ ÿ¡req%ÿ1ÿp
+ÿ½ IF EXISTS (textvorlage$) THEN 
+ÿÉÿ¥codeaq%ÿáÿ™GAkquiDat$ÿ£codeaq.GAkquiDat$
+feld$ÿ"EMAILATT"ÿÿ(nr%,"0")ÿ"."ÿGAkquiDat$
+feld$$ÿtextvorlage$
+feld1$ÿ"EATT"ÿÿ(nr%,"0")ÿ"."ÿGAkquiDat$
+feld1$$ÿzz$
+ÿƒQuickStore(GAkquiDat$)
+ÿ½ END IF 
+ ÿ’ÿ¡
+EN070820061: 
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ÿÿShowAtt(feld$)
+ ÿ¡feld$ÿ""ÿp
+ÿ½ feld$ = feld$ + "." + GAkquiDat$
+ÿ½ inifile$ = feld$$
+a%ÿÿƒ("_SBFileExists",feld$)
+ÿ¡a%ÿÿ1ÿp
+ÿ½ i% = CALL ("ShellExecute",0,"open",feld$,"","",1)
+ÿƒTextAnz(feld$)
+ÿ^
+ÿƒFehler ("Datei: "ÿinifile$ÿ" nicht gefunden!","")
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+
+
+ÿÿEMAILATTold(nr%)
+ codeaq%ÿcodeaq.GAkquiDat$
+ÿ¡ÿ("akquise")ÿpÿÌÿ™"akquise"
+ÿ¡Gcodie%ÿÿ1ÿp
+textvorlage$ÿ"*.*"
+iniPath$ÿGScanDir$
+ÿ¡inipath$ÿ""ÿpinipath$ÿ_ppath$
+ÿ½ IF inipath$ LIKE "" THEN iniPath$ = "C:\"
+ÿ½ REGISTER _netpath$ + "CODieLIB.dll","_SelectFile","IFFF"
+ÿ½ a% = CALL ("_SelectFile",texttitel$,iniPath$,textvorlage$)
+ÿ½ REGISTER CLEAR "_SelectFile"
+ÿ½ a% = CALL ("_SBFileExists",iniPath$)
+
+ÿ½ ********************************************************************
+inifile$ÿGMACodeDir$ÿ"codiesf0.ini"
+exefile$ÿGMACodeDir$ÿ"codiesf0.exe"
+a%ÿÿƒ("_SBFileExists",inifile$)
+ÿ¡a%ÿÿ1ÿp
+a%ÿÿƒ("_SBFileDelete1",inifile$)
+ÿ’ÿ¡
+ 
+a%ÿ1
+ÿƒWriteINIDes("DATA","ScanDir",GScanDir$,inifile$)
+ÿƒWriteINIDes("DATA","Titel","Auswahl der zu importierenden Datei",inifile$)
+ÿƒWriteINIDes("DATA","Filter","*.*",inifile$)
+ÿ¡ÿJ(GMACodeDir$ÿ"sready.ini")ÿp
+ÿGMACodeDir$ÿ"sready.ini"
+ÿ’ÿ¡
+i%ÿÿƒ("ShellExecute",0,"open",exefile$,"","",1)
+zz%ÿ0
+ÿØÿOÿJ(GMACodeDir$ÿ"sready.ini")
+zz%ÿzz%ÿ1
+ÿßÿe
+ÿÏÿ›1
+ÿ¡zz%ÿ60ÿp
+	ÿƒFehler("Irgendwas ist beim ™ffnendialog schiefgegangen!","")
+	ÿww230120055
+ÿ’ÿ¡
+ÿÙ
+inipath$ÿReadINIDes$("DATA","Importfile",inifile$)
+a%ÿÿ1
+ÿ¡inipath$ÿ""ÿinipath$ÿ"leer"ÿp
+ÿƒFehler("Es wurde keine zu importierende Datei ausgew„hlt!","Der Import abgebrochen!")
+ÿwEN070820061
+ÿ’ÿ¡
+ÿ½ ********************************************************************
+
+ÿcdir$
+ÿ¡a%ÿÿ1ÿp
+ÿÂ"Erstelle Arbeitskopie der zu versendenden Datei","",2
+ÿÊÿË"Erstelle Arbeitskopie der zu versendenden Datei"
+ÿßÿe
+endung$ÿGetDateiendung$(iniPath$)
+ÿ½ zz$ = GMACodeDir$ + STR$ (codeaq%,"000000") + "-" + STR$ (nr%,"0") + "." + endung$
+zz$ÿ_netpath$ÿ"EMAILATT\"ÿÿ(codeaq%,"000000")ÿ"-"ÿÿ(nr%,"0")ÿ"."ÿendung$
+ÿ½ IF EXISTS (zz$) THEN DELETE zz$
+a%ÿÿƒ("_SBFileExists",zz$)
+ÿ¡a%ÿÿ1ÿp
+	a%ÿÿƒ("_SBFileDelete1",zz$)
+ÿ’ÿ¡
+a%ÿÿƒ("_SBFileCopy",iniPath$,zz$)
+textvorlage$ÿÿåansi(iniPath$)
+req%ÿ1
+ÿßÿ³
+ÿÊÿË""
+ÿ’ÿ¡
+ÿ^
+ÿÂ"Datei ausw„hlen","",26,req%,textvorlage$
+ÿ’ÿ¡
+ ÿ¡req%ÿ1ÿp
+ÿ½ IF EXISTS (textvorlage$) THEN 
+ÿÉÿ¥codeaq%ÿáÿ™GAkquiDat$ÿ£codeaq.GAkquiDat$
+feld$ÿ"EMAILATT"ÿÿ(nr%,"0")ÿ"."ÿGAkquiDat$
+feld$$ÿtextvorlage$
+feld1$ÿ"EATT"ÿÿ(nr%,"0")ÿ"."ÿGAkquiDat$
+feld1$$ÿzz$
+ÿƒQuickStore(GAkquiDat$)
+ÿ½ END IF 
+ ÿ’ÿ¡
+EN070820061: 
+ ÿœ
+ ÿ’ÿÿ
+
+ÿÿShowAtt(feld$)
+ ÿ¡feld$ÿ""ÿp
+ÿ½ feld$ = feld$ + "." + GAkquiDat$
+ÿ½ inifile$ = feld$$
+a%ÿÿƒ("_SBFileExists",feld$)
+ÿ¡a%ÿÿ1ÿp
+i%ÿÿƒ("ShellExecute",0,"open",feld$,"","",1)
+ÿ^
+ÿƒFehler ("Datei: "ÿinifile$ÿ" nicht gefunden!","")
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ ÿ½ Duplizieren einer email(Termin)
+ÿÿEMAILDupli(codeaq%)
+ ÿ™"Telefon"
+ ÿ£codeku.telefon
+ ÿ™"Adressen"
+ ÿ£codeku.adressen
+ ÿ™"akquise"
+ ÿ£codeaq.akquise
+ ÿÉÿ`ÿ™"akquise"ÿ£codeaq.akquise
+ ÿÉÿ¥codeaq%ÿ™"akquise"ÿ£codeaq.akquise
+ ÿÂ"Soll dieser neue Emailsendetermin einer","anderen Adresse zugeordnet werden?",130,req%
+ ÿ¡req%ÿ1ÿp
+adr%ÿADRSuche%(0)
+ÿ¡adr%ÿ0ÿp
+ÿÉÿ`ÿ™"adressen"ÿ£codeku.adressen
+ÿÉÿ¥adr%ÿ™"adressen"ÿ£codeku.adressen
+codeku%ÿadr%
+
+ÿ’ÿ¡
+ ÿ^
+ÿÉÿ`ÿ™"adressen"ÿ£codeku.adressen
+ÿÉÿ¥codeku.akquiseÿ™"adressen"ÿ£codeku.adressen
+codeku%ÿcodeku.akquise
+ ÿ’ÿ¡
+ knr%ÿcodeku%
+ÿ×Telefonliste$(300)
+ÿ™"Telefon"
+GTelDat$ÿ"Telefon"
+ÿ£CodeKU
+ÿÉÿ`
+ÿÉÿ¥codeku%
+a%ÿ0
+prompt$ÿ"ZZZZZZ"
+ÿØCodeKU.GTelDat$ÿcodeku%ÿÿOÿB(GTelDat$)
+ÿ¡art.telefonÿ"email*"ÿart.telefonÿ"@"ÿnummer.telefonÿ"*@*"ÿkart1.telefonÿ"email"ÿp
+Telefonliste$(a%)ÿArt.GTelDat$ÿ", "ÿNummer.GTelDat$ÿ","ÿKART1.GTelDat$ÿ","ÿKart2.GTelDat$ÿÿ'(80)ÿÿ(CodeTEL.GTelDat$,"000000")
+ÿ¡Telefonliste$(a%)ÿ
+prompt$ÿpprompt$ÿTelefonliste$(a%)
+a%ÿa%ÿ1
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"Telefon"
+ÿÙ
+TelefonListe$(a%)ÿ""
+Kunde$ÿNachname.GAdrDat$ÿ", "ÿVorname.GAdrDat$
+nummer$ÿ""
+ÿ‰ÿñ"KEYWORD",0,0,333,200,title$,"MS Sans Serif",8
+ÿ|ÿñ"KEYWORD",4,0,1,333,176,0,""
+ÿ|ÿñ"KEYWORD",9,4,12,21,24,2
+ÿ|ÿñ"KEYWORD",5,31,14,189,19,0,"Bitte w„hlen Sie den Eintrag aus, der in die aktuelle Adresse aufgenommen werden soll:"
+ÿ|ÿñ"KEYWORD",7,5,38,320,132,2,2,TelefonListe$,Auswahl$,prompt$
+ÿ|ÿñ"KEYWORD",1,57,182,55,15,1,"&OK",1,1
+ÿ|ÿñ"KEYWORD",1,113,182,55,15,0,"&Abbrechen",0,0
+ÿñ"KEYWORD",req%
+ÿ¾ÿñ"KEYWORD"
+ÿ¡req%ÿ1ÿp
+codetel%ÿÿ0(ÿ-(Auswahl$(0),6))
+ÿ™"telefon"
+ÿ£codetel.telefon
+ÿÉÿ`ÿ™"telefon"ÿ£codetel.telefon
+ÿÉÿ¥codetel%ÿ™"telefon"ÿ£codetel.telefon
+nummer$ÿnummer.telefon
+ÿ’ÿ¡
+
+ ÿßÿe
+ ÿ™"Telefon"
+ ÿ£codeku.telefon
+ ÿ™"Akquise"
+ ÿÿ]
+ codeaqneu%ÿÿI("Akquise",1)
+ codeaq.akquiseÿcodeaqneu%
+ codeku.akquiseÿcodeku%
+ emailto.akquiseÿnummer$
+ EMAILRAUS.akquiseÿ"n"
+ EMAILSendDat.akquiseÿ0
+ EMAILSendZeit.akquiseÿ0
+ ÿƒQuickStore("Akquise")
+ ÿ™"akquise"
+ ÿ£codeku.akquise
+ ÿÉÿ¥codeku%ÿ™"telefon"ÿ£codeku.telefon
+ ÿÉÿœÿ¥codeku%ÿ™"akquise"ÿ£codeku.akquise
+ ÿœ
+ ÿ’ÿÿ
+
+
+ 
+ ÿ½ EMAIL manuell versenden aus "Akquise heraus"
+ÿÿEMAILManSend(codeaq%,schalter%)
+ ÿ¡GCODie%ÿÿ1ÿp
+ÿƒFehler("EMAIL - Versand wurde nicht konfiguriert!","")
+ÿwe120520031
+ ÿ’ÿ¡
+ ÿ¡GEMAIL%ÿÿ1ÿp
+ÿƒFehler("EMAIL - Versand wurde fr diesen Nutzer nicht konfiguriert!","")
+ÿwe120520031 
+ ÿ’ÿ¡
+ GAkquiDat$ÿ"AKQUISE"
+ GADRDat$ÿ"ADRESSEN"
+ÿ¡ÿOÿ´("adressen")ÿpÿƒDFile(2,"OFFICE\adressen"ÿ_fpw$)
+ÿ¡ÿOÿ´("akquise")ÿpÿƒDFile(2,"OFFICE\akquise"ÿ_fpw$)
+ codemaold%ÿcodema.supervis
+ codema%ÿcodema.GAkquiDat$
+ ÿ½ codema% = GMAcodema%
+ÿ™"akquise"
+ÿ£codeaq.akquise
+ÿ™"ADRESSEN"
+ÿ£codeku.adressen
+ÿ™"supervis"
+ÿ£codema.supervis
+ ÿÉÿ`ÿ™"Supervis"ÿ£codema.supervis
+ ÿÉÿ¥codema%ÿ™"Supervis"ÿ£codema.supervis
+ ÿÉÿ`ÿ™GAkquiDat$ÿ£codeaq.GAkquiDat$
+ ÿÉÿ¥codeaq%ÿáÿ™GAkquiDat$ÿ£codeaq.GAkquiDat$
+ ÿÉÿ`ÿ™GADRDat$ÿ£codeku.GADRDat$
+ ÿÉÿ¥codeku.GAkquiDat$ÿ™GADRDat$ÿ£codeku.GADRDat$
+ adresse$ÿNachname.adressenÿ"-"ÿVorname.adressen
+ datei$ÿGMACodeDir$ÿ"codietes.ini"
+ ateus$ÿname.supervis
+ ÿ¡ÿJ(datei$)ÿp
+ÿ³ÿ_ÿwmas070520031
+ÿdatei$
+ÿwmas070520032
+mas070520031: 
+ÿ¡schalter%ÿ0ÿpÿƒfehler("Es konnte die tempor„re Datei "ÿdatei$ÿ" nicht gel”scht werden, bitte prfen Sie, ob die Datei ge”ffnet ist und schlieáen Sie diese!,"")
+mas070520032: 
+ÿ³ÿ_ÿwErrorHandler
+ ÿ’ÿ¡
+ datei1$ÿGMACodeDir$ÿ"codietes.txt"
+ ÿ¡ÿJ(datei1$)ÿp
+ÿ³ÿ_ÿwmas070520035
+ÿdatei1$
+ÿwmas070520036
+mas070520035: 
+ÿ¡schalter%ÿ0ÿpÿƒfehler("Es konnte die tempor„re Datei "ÿdatei1$ÿ" nicht gel”scht werden, bitte prfen Sie, ob die Datei ge”ffnet ist und schlieáen Sie diese!,"")
+mas070520036: 
+ÿ³ÿ_ÿwErrorHandler
+ ÿ’ÿ¡
+ ÿ´datei$ÿ›ÿ¶
+ ÿ†ÿ¶
+ ÿ¡EmailShost.supervisÿ""ÿp
+Host$ÿÿåANSI(EMAILSHost.supervis)
+UserID$ÿÿåANSI(EMAILSUserID.supervis)
+AFirma$ÿÿåansi(EMAILSAFirma.supervis)
+AName$ÿÿåansi(EMAILSAName.supervis)
+ANUmmer$ÿÿåANSI(EMAILNummer.supervis)
+ÿ½ BCC$ = EMAILSKopie.supervis
+Sen$ÿÿåANSI(EMAILSKopie.supervis)
+Hpop3$ÿ""
+HPPort$ÿ""
+PUID$ÿ""
+Ppassw$ÿ""
+PJN$ÿEMAILPOP3JN.supervis
+ÿ¡EMAILPOP3JN.supervisÿ"TRUE"ÿp
+Hpop3$ÿÿåANSI(EMAILPHost.supervis)
+HPPort$ÿÿH(ÿ(EMAILPPort.supervis,"999999"))
+ÿ¡HPPort$ÿ""ÿpHPPort$ÿ"110"
+PUID$ÿÿåANSI(EmailPUserID.supervis)
+Ppassw$ÿÿåANSI(EMAILPPasww.supervis)
+ÿ’ÿ¡
+port$ÿÿH(ÿ(EMAILSPort.supervis,"999999"))
+ÿ¡port$ÿ""ÿpport$ÿ"25"
+ÿ¡EMAILSNummer.supervisÿ""ÿp
+Bersend$ÿÿåANSI(EMAILSNummer.supervis)
+ÿ^
+Bersend$ÿÿåANSI(EMAILNummer.supervis)
+ÿ’ÿ¡
+Bersend1$ÿÿåANSI(EMAILSNummer1.supervis)
+Text1$ÿEMAILText1.supervis
+Text2$ÿEMAILText2.supervis
+BAnrede$ÿÿåansi(Briefanrede.GADRDat$)
+alltxt$ÿGMACodeDir$ÿ"codietes.ini"
+fehler$ÿ""
+TOM$ÿÿåANSI(EMAILTO.GAkquiDat$)
+tom1$ÿtom$
+ÿ¡TOM$ÿ""ÿpfehler$ÿ"Es wurde keine <Sende an> Emailadresse angegeben! Bitte ausfllen! / "
+Betreff$ÿVSNRPackGK$(EMAILBETREFF.GAkquiDat$)
+ÿ¡Betreff$ÿ""ÿpfehler$ÿfehler$ÿ"Es wurde keine Betreffzeile ausgefllt! Bitte ausfllen!"
+senber$ÿÿ>(EMAILSErg.supervis)
+ÿ¡fehler$ÿ""ÿp
+ÿƒFehler(fehler$,"Der EMAIL Versand wurde abgebrochen!")
+ÿwe120520031
+ÿ’ÿ¡
+ÿƒWriteINIDes("EMAILSERVER","HOST",EMAILShost.supervis,datei$)
+ÿƒWriteINIDes("EMAILSERVER","PORT",port$,datei$)
+ÿƒWriteINIDes("EMAILSERVER","USERID",UserID$,datei$)
+ÿƒWriteINIDes("EMAILSERVER","ABSFirma",AFirma$,datei$)
+ÿƒWriteINIDes("EMAILSERVER","ABSName",AName$,datei$)
+ÿƒWriteINIDes("EMAILSERVER","ABSEMAIL",ANummer$,datei$)
+ÿƒWriteINIDes("EMAILSERVER","KOPIEANABSENDER",Sen$,datei$)
+ÿƒWriteINIDes("EMAILSERVER","BerSendenummer",BerSend$,datei$)
+ÿƒWriteINIDes("EMAILSERVER","BerSendenummer1",BerSend1$,datei$)
+ÿƒWriteINIDes("EMAILSERVER","TO",TOM$,datei$)
+ÿƒWriteINIDes("EMAILSERVER","SENDEBERICHT",senber$,datei$)
+ÿƒWriteINIDes("EMAILSERVER","Betreff",Betreff$,datei$)
+ 
+ÿ½ *****************************************************
+Gbodytxt$ÿ_netpath$ÿÿ(GMACodema%,"000000")ÿ".txt"
+sendtxt$ÿ_netpath$ÿÿ(GMACodema%,"000000")ÿ"-1.txt"
+ÿ¡ÿJ(Gbodytxt$)ÿpÿGbodytxt$
+ÿ¡ÿJ(sendtxt$)ÿpÿsendtxt$
+ÿ½ CALL Fehler("EMAIL1","")
+ÿ½ X%% = MK_Init%%()
+X%%ÿMK_SendServer%%(Host$,port$,UserID$,Ppassw$,SendServer$)
+ÿ½ Absender
+X%%ÿMK_SendFrom%%(ANUmmer$,SendFrom$)
+ÿ½ antworten an
+X%%ÿMK_SendReply%%(ANUmmer$,SendReply$)
+ÿ½ 0=klein,1=groá
+X%%ÿMK_Priority%%(1,Priority$)
+X%%ÿMK_SendTo%%(TOM$,SendTo$)
+X%%ÿMK_XHeader%%("xxPower mailer",SendHeader$)
+GMailBetreff$ÿVSNRPackGK$(Betreff$)
+X%%ÿMK_Subject%%(GMailBetreff$,SendSubject$)
+ÿ½ emailtext$ = emailtext.GAkquiDat$ + emailtext1.GAkquiDat$
+ÿƒMK_WriteBodyN(emailtext.GAkquiDat$)
+ÿƒMK_WriteBodyN(emailtext1.GAkquiDat$)
+ÿww111020055
+ÿ¡emailtext.GAkquiDat$ÿ"*"ÿText1$ÿ"*"ÿp
+ÿ^
+ÿ¡text1$ÿ""ÿp
+	ÿƒMK_WriteBodyN("")
+	ÿƒMK_WriteBodyN("")
+	ÿƒMK_WriteBodyN(Text1$)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡emailtext.GAkquiDat$ÿ"*"ÿtext2$ÿ"*"ÿp
+ÿ^
+ÿ¡Text2$ÿ""ÿp
+	ÿƒMK_WriteBodyN("")
+	ÿƒMK_WriteBodyN("")
+	ÿƒMK_WriteBodyN(Text2$)
+ÿ’ÿ¡
+ÿ’ÿ¡
+w111020055: 
+sen$ÿ"TRUE"
+bccx$ÿ""
+ÿ¡Sen$ÿ"TRUE"ÿp
+bccx$ÿANUmmer$ÿ","
+ÿ’ÿ¡
+ÿ´datei1$ÿ›ÿ¶
+ÿ{ÿåansi(emailtext.GAkquiDat$ÿemailtext1.GAkquiDat$)
+ÿ†ÿ¶
+ccx$ÿ""
+ÿ¡emailcc.GAkquiDat$ÿ""ÿp
+ccx$ÿemailcc.GAkquiDat$
+X%%ÿMK_SendCC%%(emailcc.GAkquiDat$,SendCC$)
+pos%ÿÿ?(emailcc.GAkquiDat$,";")
+ÿ¡pos%ÿ0ÿp
+laeng%ÿÿ/(emailcc.GAkquiDat$)
+j%ÿ0
+ÿ›i%ÿ1ÿqlaeng%
+	posold%ÿpos%
+	cc$ÿÿ,(emailcc.GAkquiDat$,i%,pos%ÿi%)
+	pos%ÿÿ?(posold%ÿ1,emailcc.GAkquiDat$,";")
+ 
+	ÿ¡pos%ÿ0ÿp
+i%ÿposold%
+	ÿ^
+i%ÿlaeng%ÿ1
+	ÿ’ÿ¡
+	ÿ½ CALL WriteINIDes("CC","Z" + LTRIM$ ( STR$ (j%,"999")), FN ansi(CC$),datei$)
+	
+	j%ÿj%ÿ1
+ÿ±i%
+ÿ^
+ÿƒWriteINIDes("CC","Z0",ÿåansi(emailcc.GAkquiDat$),datei$)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡emailbcc.GAkquiDat$ÿ""ÿbccx$ÿ""ÿp
+bccx$ÿbccx$ÿemailbcc.GAkquiDat$
+X%%ÿMK_SendBCC%%(bccx$,SendBCC$)
+pos%ÿÿ?(emailbcc.GAkquiDat$,";")
+ÿ¡pos%ÿ0ÿp
+laeng%ÿÿ/(emailbcc.GAkquiDat$)
+j%ÿ0
+ÿ›i%ÿ1ÿqlaeng%
+	posold%ÿpos%
+	cc$ÿÿ,(emailbcc.GAkquiDat$,i%,pos%ÿi%)
+	pos%ÿÿ?(posold%ÿ1,emailbcc.GAkquiDat$,";")
+ 
+	ÿ¡pos%ÿ0ÿp
+i%ÿposold%
+	ÿ^
+i%ÿlaeng%ÿ1
+	ÿ’ÿ¡
+	ÿƒWriteINIDes("BCC","Z"ÿÿH(ÿ(j%,"999")),ÿåansi(CC$),datei$)
+	j%ÿj%ÿ1
+ÿ±i%
+ÿ^
+ÿƒWriteINIDes("BCC","Z0",ÿåansi(emailbcc.GAkquiDat$),datei$)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ok%ÿÿ1
+ÿ¡emailatt1.GAkquiDat$ÿ""ÿeatt1.GAkquiDat$ÿ""ÿp
+ÿ¡Gcodie%ÿÿ1ÿp
+iniPath$ÿemailatt1.GAkquiDat$
+ÿ¡eatt1.GAkquiDat$ÿ""ÿpiniPath$ÿeatt1.GAkquiDat$
+a%ÿÿƒ("_SBFileExists",iniPath$)
+ÿ¡a%ÿÿ1ÿp
+	ÿƒWriteINIDes("AT","Z0",ÿåansi(iniPath$),datei$)
+	X%%ÿMK_Attach%%(iniPath$,AttachString$)
+	at1$ÿiniPath$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 1 nicht gefunden "
+ÿ’ÿ¡
+ÿ^
+ÿ¡ÿJ(emailatt1.GAkquiDat$)ÿp
+	ÿƒWriteINIDes("AT","Z0",ÿåansi(emailatt1.GAkquiDat$),datei$)
+	X%%ÿMK_Attach%%(emailatt1.GAkquiDat$,AttachString$)
+	at1$ÿemailatt1.GAkquiDat$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 1 nicht gefunden "
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+
+ÿ¡emailatt2.GAkquiDat$ÿ""ÿeatt2.GAkquiDat$ÿ""ÿp
+ÿ¡Gcodie%ÿÿ1ÿp
+iniPath$ÿemailatt2.GAkquiDat$
+ÿ¡eatt2.GAkquiDat$ÿ""ÿpiniPath$ÿeatt2.GAkquiDat$
+a%ÿÿƒ("_SBFileExists",iniPath$)
+ÿ¡a%ÿÿ1ÿp
+	ÿƒWriteINIDes("AT","Z1",ÿåansi(iniPath$),datei$)
+	X%%ÿMK_Attach%%(iniPath$,AttachString$)
+	at1$ÿiniPath$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 2 nicht gefunden "
+ÿ’ÿ¡
+ÿ^
+ÿ¡ÿJ(emailatt2.GAkquiDat$)ÿp
+	ÿƒWriteINIDes("AT","Z1",ÿåansi(emailatt2.GAkquiDat$),datei$)
+	X%%ÿMK_Attach%%(emailatt2.GAkquiDat$,AttachString$)
+	at1$ÿemailatt2.GAkquiDat$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 2 nicht gefunden "
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+
+ÿ¡emailatt3.GAkquiDat$ÿ""ÿeatt3.GAkquiDat$ÿ""ÿp
+ÿ¡Gcodie%ÿÿ1ÿp
+iniPath$ÿemailatt3.GAkquiDat$
+ÿ¡eatt3.GAkquiDat$ÿ""ÿpiniPath$ÿeatt3.GAkquiDat$
+a%ÿÿƒ("_SBFileExists",iniPath$)
+ÿ¡a%ÿÿ1ÿp
+	ÿƒWriteINIDes("AT","Z2",ÿåansi(iniPath$),datei$)
+	X%%ÿMK_Attach%%(iniPath$,AttachString$)
+	at1$ÿiniPath$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 3 nicht gefunden "
+ÿ’ÿ¡
+ÿ^
+ÿ¡ÿJ(emailatt3.GAkquiDat$)ÿp
+	ÿƒWriteINIDes("AT","Z2",ÿåansi(emailatt3.GAkquiDat$),datei$)
+	X%%ÿMK_Attach%%(emailatt3.GAkquiDat$,AttachString$)
+	at1$ÿemailatt3.GAkquiDat$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 3 nicht gefunden "
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+
+ÿ¡emailatt4.GAkquiDat$ÿ""ÿeatt4.GAkquiDat$ÿ""ÿp
+ÿ¡Gcodie%ÿÿ1ÿp
+iniPath$ÿemailatt4.GAkquiDat$
+ÿ¡eatt4.GAkquiDat$ÿ""ÿpiniPath$ÿeatt4.GAkquiDat$
+a%ÿÿƒ("_SBFileExists",iniPath$)
+ÿ¡a%ÿÿ1ÿp
+	ÿƒWriteINIDes("AT","Z3",ÿåansi(iniPath$),datei$)
+	X%%ÿMK_Attach%%(iniPath$,AttachString$)
+	at1$ÿiniPath$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 4 nicht gefunden "
+ÿ’ÿ¡
+ÿ^
+ÿ¡ÿJ(emailatt4.GAkquiDat$)ÿp
+	ÿƒWriteINIDes("AT","Z3",ÿåansi(emailatt4.GAkquiDat$),datei$)
+	X%%ÿMK_Attach%%(emailatt4.GAkquiDat$,AttachString$)
+	at1$ÿemailatt4.GAkquiDat$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 4 nicht gefunden "
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+
+ÿ¡emailatt5.GAkquiDat$ÿ""ÿeatt5.GAkquiDat$ÿ""ÿp
+ÿ¡Gcodie%ÿÿ1ÿp
+iniPath$ÿemailatt5.GAkquiDat$
+ÿ¡eatt5.GAkquiDat$ÿ""ÿpiniPath$ÿeatt5.GAkquiDat$
+a%ÿÿƒ("_SBFileExists",iniPath$)
+ÿ¡a%ÿÿ1ÿp
+	ÿƒWriteINIDes("AT","Z4",ÿåansi(iniPath$),datei$)
+	X%%ÿMK_Attach%%(iniPath$,AttachString$)
+	at1$ÿiniPath$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 5 nicht gefunden "
+ÿ’ÿ¡
+ÿ^
+ÿ¡ÿJ(emailatt5.GAkquiDat$)ÿp
+	ÿƒWriteINIDes("AT","Z4",ÿåansi(emailatt5.GAkquiDat$),datei$)
+	X%%ÿMK_Attach%%(emailatt5.GAkquiDat$,AttachString$)
+	at1$ÿemailatt5.GAkquiDat$
+	attachges$ÿattachges$ÿat1$ÿ" ,"
+ÿ^
+	at1$ÿ""
+	ok%ÿ0
+	fehl$ÿ"Dateianhang 5 nicht gefunden "
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+schalter$ÿÿ(schalter%,"0")
+ÿ½ CALL Fehler("MAIL","")
+ÿ½ CALL Fehler(datei$ + " " + datei1$ + " " + schalter$ + " " + adresse$ + " " + Hpop3$ + " " + PUID$ + " " + HPPort$ + " " + Ppassw$ + " " + PJN$,"")
+ÿ¡ok%ÿp
+ÿßÿe
+ÿ½ ret% = CALL ("_SendEMAILAuto",datei$,datei1$,schalter$,adresse$,Hpop3$,PUID$,HPPort$,Ppassw$,PJN$)
+X%%ÿMK_LogFile%%(GMACodeDir$ÿ"emailsen.log",LogDateiName$)
+X%%ÿMK_Html%%(0,Html$)
+ÿÊÿË"sende email"
+ÿßÿe
+X%%ÿMK_Init%%()
+X%%ÿMK_SendGo%%(RetVal%%,RetVal$,SendHeader$,SendTo$,SendFrom$,SendReply$,Priority$,SendCC$,SendBCC$,SendSubject$,LogDateiName$,SendServer$,AttachString$,Html$)
+X%%ÿMK_InitReset%%()
+Fehler$ÿ""
+ÿ¡RetVal%%ÿ0ÿp
+ret%ÿÿ1
+ÿ½ REQUEST RetVal$,"",2
+ÿ^
+ret%ÿ1
+Fehler$ÿRetVal$
+ÿ½ CALL Fehler(RetVal$,"")
+ÿ’ÿ¡
+ 
+
+ 
+ÿ½ Sendebericht an 
+ÿ¡senber$ÿ"TRUE"ÿRetVal%%ÿ0ÿp
+ÿ½ Sendebericht an BerSend$
+ÿÊÿË"sende Sendebericht"
+emailtext$ÿemailtext.akquiseÿemailtext1.akquise
+ÿßÿe
+ÿƒSendeBer(Ppassw$,adresse$,TOM$,attachges$,ccx$,bccx$,Betreff$,emailtext$)
+ÿ’ÿ¡
+ÿÊÿË""
+ÿßÿ³
+ÿ^
+ret%ÿ4
+ÿ’ÿ¡
+ÿ¡ret%ÿÿ1ÿp
+emailraus.GAkquiDat$ÿ"j"
+EMAILSendDat.akquiseÿÿQ
+EMAILSendZeit.akquiseÿÿR
+ÿÉÿ¥GMACodema%ÿ™"supervis"ÿ£codema.supervis
+ÿ¡EMAILAutomat.GAkquiDat$ÿ"j"ÿp
+text1$ÿÿ(EMAILSendDat.GAkquiDat$,"0d.mm.yyyy")ÿ" "ÿÿ7(EMAILSendZeit.GAkquiDat$,"hh:mm")ÿ" EMAIL wurde per Automatik von "ÿname.supervisÿ" gesendet "
+ÿ^
+text1$ÿÿ(EMAILSendDat.GAkquiDat$,"0d.mm.yyyy")ÿ" "ÿÿ7(EMAILSendZeit.GAkquiDat$,"hh:mm")ÿ" EMAIL wurde per Hand von "ÿname.supervisÿ" gesendet "
+ÿ’ÿ¡
+text2$ÿ""
+ergebnis.akquiseÿÿ+(ergebnis.akquiseÿÿ(13)ÿÿ(10)ÿtext1$ÿtext2$,1500)
+ÿÌÿ™GAkquiDat$
+ÿ½ CALL Fehler("emailTest","")
+GMailIn%ÿÿ1
+GEMAILSer%ÿÿ1
+textdatei%ÿDOKNeu%(0,"allgemeine Schreiben",0)
+GMailIn%ÿ0
+GEMAILSer%ÿ0
+textdatei$ÿÿ(textdatei%,6)
+textdatei%ÿÿ0(textdatei$)
+ÿ¡ÿJ(textdatei%,CodeDOK.GDokDat$)ÿtextdatei%ÿ0ÿp
+ÿÉÿ¥textdatei%ÿ™GDokDat$ÿ£CodeDOK.GDokDat$
+datei1$ÿ_netpath$ÿDateiname.GDokDat$
+ÿˆGbodytxt$ÿqdatei1$
+ÿÉÿ`ÿ™GAkquiDat$ÿ£codeaq.GAkquiDat$
+ÿÉÿ¥codeaq%ÿáÿ™GAkquiDat$ÿ£codeaq.GAkquiDat$
+codedok.GAkquiDat$ÿtextdatei%
+nono$ÿNOTiz.GAkquiDat$
+ÿ¡NOTiz.GAkquiDat$ÿ"sende EMAIL :"ÿp
+	NOTiz.GAkquiDat$ÿNOTiz.GAkquiDat$ÿBetreff$
+	ÿÌÿ™GAkquiDat$
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ÿ¡ÿJ(codeaq%,codeaq.tvorlage)ÿp
+ÿÉÿ¥codeaq%ÿáÿ™"TVORLAGE"ÿ£codeaq.tvorlage
+emailraus.tvorlageÿ"j"
+ÿÌÿ™"tvorlage"
+ÿ’ÿ¡
+ÿ½ CALL Fehler(ergebnis.akquise,"")
+ÿ’ÿ¡
+ÿ¡ret%ÿ1ÿp
+text1$ÿÿ(ÿQ,"0d.mm.yyyy")ÿ" "ÿÿ7(ÿR,"hh:mm")ÿ" EMAIL sollte per Hand von <"ÿname.supervisÿ"> versandt, "
+text2$ÿ"werden, konnte aber nicht durchgefhrt werden, Fehlemeldung: "ÿFehler$
+ergebnis.akquiseÿÿ+(ergebnis.akquiseÿÿ(13)ÿÿ(10)ÿtext1$ÿtext2$,1500)
+ÿÌÿ™GAkquiDat$
+ÿƒFehler(text1$,text2$)
+ÿ’ÿ¡
+ ÿ^
+ÿƒFehler("EMAIL kann nicht versendet werden, da fr den User "ÿName.supervisÿ" das Feld <Host> nicht ausgefllt wurde!","")
+ ÿ’ÿ¡
+ ÿ¡ret%ÿ1ÿp
+t2$ÿ"Bitte prfen Sie, ob Sie in Ihrem EMAIL-Posteingang eine Kopie der EMAIL erhalten haben. Wenn nicht, ist beim EMAIL Versand ein Fehler aufgetreten!"
+ÿƒFehler("EMAIL wurde an "ÿtom1$ÿ" versandt! Eine Kopie wurde "ÿ"zur Kontrolle an "ÿANUmmer$ÿ" gesandt!",t2$)
+ ÿ’ÿ¡
+e120520031: 
+ ÿ’ÿÿ
+
+
+
+ 
+ 
+ÿÿEMAILUsTest(codema%)
+ÿ½ SendEMAILTest(char *absenderemail,char *HostSMTP, char *UserIDSMTP, char *PortSMTP,
+ÿ½  char * HostPOP3,char * UserIDPOP3,char * PortPOP3,char * PasswortPOP3,char * POPCon)
+ÿ½ SELECT FIRST FILE "Supervis" INDEX codema.supervis
+ÿÉÿ¥codema%ÿ™"Supervis"ÿ£codema.supervis
+ 
+ÿ½ SMTP
+Host$ÿEMAILSHost.supervis
+UserID$ÿEMAILSUserID.supervis
+ANUmmer$ÿEMAILNummer.supervis
+port$ÿÿH(ÿ(EMAILSPort.supervis,"999999"))
+ÿ¡port$ÿ""ÿpport$ÿ"25"
+ÿ½ POP3
+Hpop3$ÿ""
+HPPort$ÿ""
+PUID$ÿ""
+PJN$ÿEMAILPOP3JN.supervis
+Ppassw$ÿ""
+ÿ¡EMAILPOP3JN.supervisÿ"TRUE"ÿp
+Hpop3$ÿEMAILPHost.supervis
+HPPort$ÿÿH(ÿ(EMAILPPort.supervis,"999999"))
+ÿ¡HPPort$ÿ""ÿpHPPort$ÿ"110"
+PUID$ÿEmailPUserID.supervis
+Ppassw$ÿEMAILPPasww.supervis
+ÿ’ÿ¡
+ok%ÿÿ1
+fehl$ÿ""
+ÿ¡EMAILPOP3JN.supervisÿ"TRUE"ÿp
+ÿ¡ÿH(HPOP3$)ÿ""ÿp
+ok%ÿ0
+fehl$ÿfehl$ÿ"POP3 Host muss ausgefllt werden"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡ÿH(PUID$)ÿ""ÿp
+ok%ÿ0
+fehl$ÿfehl$ÿ"POP3 UserID muss ausgefllt werden"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡ÿH(ANummer$)ÿ""ÿp
+ok%ÿ0
+fehl$ÿfehl$ÿ"eigene EMAIL-Adresse muss fr POP3 ausgefllt werden"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ÿH(Host$)ÿ""ÿp
+ok%ÿ0
+fehl$ÿfehl$ÿ"SMTP Host muss ausgefllt werden"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡ÿH(UserID$)ÿ""ÿp
+ok%ÿ0
+fehl$ÿfehl$ÿ"SMTP UserID muss ausgefllt werden"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡ÿH(Host$)ÿ""ÿp
+ok%ÿ0
+fehl$ÿfehl$ÿ"SMTP Host muss ausgefllt werden"ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡ok%ÿp
+ÿßÿe
+ÿ½ ret% = CALL ("_SendEMAILTest",ANummer$,Host$,UserID$,port$,Hpop3$,PUID$,HPPort$,Ppassw$,PJN$)
+Gbodytxt$ÿ_netpath$ÿÿ(GMACodema%,"000000")ÿ".txt"
+ÿ¡ÿJ(Gbodytxt$)ÿpÿGbodytxt$
+X%%ÿMK_Init%%()
+X%%ÿMK_SendServer%%(Host$,port$,UserID$,Ppassw$,SendServer$)
+ÿ½ Absender
+X%%ÿMK_SendFrom%%(ANUmmer$,SendFrom$)
+ÿ½ antworten an
+X%%ÿMK_SendReply%%(ANUmmer$,SendReply$)
+ÿ½ 0=klein,1=groá
+X%%ÿMK_Priority%%(1,Priority$)
+X%%ÿMK_SendTo%%(ANUmmer$,SendTo$)
+X%%ÿMK_XHeader%%("xxPower mailer",SendHeader$)
+ÿ½ X%% = MK_SendCC%%("technik@mis-software.de,service@mis-software.de",SendCC$)
+ÿ½ X%% = MK_SendBCC%%("ab@codie.com,send@codie.com",SendBCC$)
+X%%ÿMK_Subject%%("Test Email von CODie software products e.K.",SendSubject$)
+ÿƒMK_WriteBody0()' Text in Htmlformat . You must change the parameter to MK_Html%%(1,Html$)
+ÿƒMK_WriteBodyN("")
+ÿƒMK_WriteBodyN("")
+ÿƒMK_WriteBodyN(EMAILText1.supervis)
+ÿƒMK_WriteBodyN("")
+ÿƒMK_WriteBodyN("")
+ 
+ÿƒMK_WriteBodyN(EMAILText2.supervis)
+ 
+'CALL MK_WriteBody2()' Text NOT in Htmlformat . You must change the parameter to MK_Html%%(0,Html$)
+'X%% = MK_Attach%%( DIRECTORY + "\attach\email.pdf",AttachString$)
+'X%% = MK_Attach%%( DIRECTORY + "\attach\email_abc.pdf",AttachString$)
+X%%ÿMK_LogFile%%(GMACodeDir$ÿ"emailsend.log",LogDateiName$)
+X%%ÿMK_Html%%(0,Html$)
+ÿßÿe
+X%%ÿMK_SendGo%%(RetVal%%,RetVal$,SendHeader$,SendTo$,SendFrom$,SendReply$,Priority$,SendCC$,SendBCC$,SendSubject$,LogDateiName$,SendServer$,AttachString$,Html$)
+ÿßÿ³
+X%%ÿMK_InitReset%%()
+ 
+ÿƒFehler(RetVal$,"")
+a%ÿÿƒ("ShellExecute",0,"open",GMACodeDir$ÿ"emailsend.log","","",1)
+ÿßÿ³
+ÿ¡retval%%ÿ0ÿpÿƒFehler ("Es wurde eine Testemail an die Adresse "ÿANummer$ÿ" gesendet!","Bitte prfen Sie, ob diese email angekommen ist!")
+ÿ^
+ÿƒFehler(fehl$,"")
+ÿ’ÿ¡
+ ÿ’ÿÿ
+
+
+
+ ÿ½ l”schen
+ÿÿEMAILATTD(nr%)
+ codeaq%ÿcodeaq.GAkquiDat$
+ ÿ¡ÿ("akquise")ÿpÿÌÿ™"akquise"
+ ÿÂ"EMAIL Anhang wirklich l”schen?","",130,req%
+ 
+ ÿ¡req%ÿ1ÿp
+ÿ½ IF EXISTS (textvorlage$) THEN 
+ÿÉÿ¥codeaq%ÿáÿ™GAkquiDat$ÿ£codeaq.GAkquiDat$
+feld$ÿ"EMAILATT"ÿÿ(nr%,"0")ÿ"."ÿGAkquiDat$
+feld$$ÿ""
+feld1$ÿ"EATT"ÿÿ(nr%,"0")ÿ"."ÿGAkquiDat$
+feld1$$ÿ""
+ÿƒQuickStore(GAkquiDat$)
+ÿ½ END IF 
+ ÿ’ÿ¡
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ ÿ½ ******************************************************************************************
+ ÿ½ FUNCTION DokSuchen%(codeku%,befehl$)SELECT WHERE codeku.dokument = knr% AND novi1.dokument = 0
+ ÿ½ FUNCTION DokSuch2%(codeku%)
+ 
+ÿÿDokuGetNam$(codeku%)
+DokuGetNam$ÿ""
+optemail%ÿ1
+ÿ™"dokument"
+ÿÉÿĞÿ™"dokument"
+befehl$ÿ"SELECT WHERE codeku.dokument = codeku% AND novi1.dokument = 0"
+ 
+ÿ×dlg1 ÿUDialog
+ÿ×control ÿUDialogControl 
+ 
+Superbase.Dialogs.Add("Dialogname")
+ÿÊdlg1 ÿSuperbase.Dialogs.Dialogname
+dlg1.Move(0,0,230,123)
+dlg1.Captionÿ"Art des Serienbriefes"
+dlg1.FontNameÿ"MS Sans Serif"
+dlg1.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg1.Add("DialogFrame1","DialogFrame")
+control.Move(2,8,228,84)
+control.Captionÿ" W„hlen Sie eine Option "
+ 
+ÿÊcontrol ÿdlg1.Add("DialogOptionButton1","DialogOptionButton")
+control.Move(6,20,214,10)
+control.Captionÿ"Suche1 in eigener Dokumentendatei - aktueller Kunde"
+control.Bind("optemail%")
+control.ValueOnÿ1
+ 
+ÿÊcontrol ÿdlg1.Add("DialogOptionButton2","DialogOptionButton")
+control.Move(6,32,214,10)
+control.Captionÿ"Suche1 in eigener Dokumentendatei"
+control.Bind("optemail%")
+control.ValueOnÿ2
+ 
+ÿÊcontrol ÿdlg1.Add("DialogOptionButton3","DialogOptionButton")
+control.Move(6,44,214,10)
+control.Captionÿ"Suche2 in eigener Dokumentendatei - aktueller Kunde"
+control.Bind("optemail%")
+control.ValueOnÿ3
+ 
+ÿÊcontrol ÿdlg1.Add("DialogOptionButton4","DialogOptionButton")
+control.Move(6,56,214,10)
+control.Captionÿ"Suche2 in eigener Dokumentendatei"
+control.Bind("optemail%")
+control.ValueOnÿ4
+ 
+ÿÊcontrol ÿdlg1.Add("DialogOptionButton5","DialogOptionButton")
+control.Move(6,68,214,10)
+control.Captionÿ"externes Dokument"
+control.Bind("optemail%")
+control.ValueOnÿ5
+ 
+ÿÊcontrol ÿdlg1.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(59,98,43,16)
+control.Defaultÿ1
+control.Captionÿ"OK"
+control.ReturnValueÿ1
+ 
+ÿÊcontrol ÿdlg1.Add("DialogCommandButton2","DialogCommandButton")
+control.Move(105,98,42,16)
+control.Captionÿ"Abbruch"
+control.ReturnValueÿ0
+ 
+ÿñ"Dialogname",reqemail%
+ÿ¾ÿñ"Dialogname"
+ÿ™"dokument"
+ÿ¡reqemail%ÿ1ÿp
+ÿßÿe
+ÿÉÿæoptemail%
+	ÿæ1
+ÿ½ Suche 1 im aktuellen Kunden
+codedok%ÿDokSuchen%(codeku%,befehl$)
+ÿÉÿĞÿ™"dokument"
+ÿ¡codedok%ÿ0ÿp
+ÿÉÿ`ÿ™"Dokument"ÿ£codedok.dokument
+ÿÉÿ¥codedok%ÿ™"Dokument"ÿ£codedok.dokument
+DokuGetNam$ÿ_netpath$ÿDateiname.dokument
+ÿ’ÿ¡
+	ÿæ2
+ÿ½ Suche 1
+codedok%ÿDokSuchen%(0,"")
+ÿÉÿĞÿ™"dokument"
+ÿ¡codedok%ÿ0ÿp
+ÿÉÿ`ÿ™"Dokument"ÿ£codedok.dokument
+ÿÉÿ¥codedok%ÿ™"Dokument"ÿ£codedok.dokument
+DokuGetNam$ÿ_netpath$ÿDateiname.dokument
+ÿ’ÿ¡
+	ÿæ3
+ÿ½ Suche 2 im aktuellen Kunden
+ÿ™"dokument"
+ÿ–befehl$
+ÿÉÿ`ÿ™"dokument"
+codedok%ÿDokSuch2%(codeku%)
+ÿÉÿĞÿ™"dokument"
+ÿ¡codedok%ÿ0ÿp
+ÿÉÿ`ÿ™"Dokument"ÿ£codedok.dokument
+ÿÉÿ¥codedok%ÿ™"Dokument"ÿ£codedok.dokument
+DokuGetNam$ÿ_netpath$ÿDateiname.dokument
+ÿ’ÿ¡
+	ÿæ4
+ÿ½ Suche 2
+codedok%ÿDokSuch2%(0)
+ÿÉÿĞÿ™"dokument"
+ÿ¡codedok%ÿ0ÿp
+ÿÉÿ`ÿ™"Dokument"ÿ£codedok.dokument
+ÿÉÿ¥codedok%ÿ™"Dokument"ÿ£codedok.dokument
+DokuGetNam$ÿ_netpath$ÿDateiname.dokument
+ÿ’ÿ¡
+	ÿæ5
+ÿ½ externes Dokument
+DokuGetNam$ÿGetExtDoc$()
+	ÿ’ÿÉ
+ÿ’ÿ¡
+ ÿ½ ******************************************************************************************
+ ÿ’ÿÿ
+ 
+ 
+ 
+ÿÿGetExtDoc$()
+ GetExtDoc$ÿ""
+ÿ¡Gcodie%ÿÿ1ÿp
+textvorlage$ÿ"*.*"
+iniPath$ÿGScanDir$
+ÿ¡inipath$ÿ""ÿpinipath$ÿ_ppath$
+inifile$ÿGMACodeDir$ÿ"codiesf0.ini"
+exefile$ÿGMACodeDir$ÿ"codiesf0.exe"
+a%ÿÿƒ("_SBFileExists",inifile$)
+ÿ¡a%ÿÿ1ÿp
+a%ÿÿƒ("_SBFileDelete1",inifile$)
+ÿ’ÿ¡
+ 
+a%ÿ1
+ÿƒWriteINIDes("DATA","ScanDir",GScanDir$,inifile$)
+ÿƒWriteINIDes("DATA","Titel","Auswahl der zu importierenden Datei",inifile$)
+ÿƒWriteINIDes("DATA","Filter","*.*",inifile$)
+ÿ¡ÿJ(GMACodeDir$ÿ"sready.ini")ÿp
+ÿGMACodeDir$ÿ"sready.ini"
+ÿ’ÿ¡
+i%ÿÿƒ("ShellExecute",0,"open",exefile$,"","",1)
+zz%ÿ0
+ÿØÿOÿJ(GMACodeDir$ÿ"sready.ini")
+zz%ÿzz%ÿ1
+ÿßÿe
+ÿÏÿ›1
+ÿ¡zz%ÿ60ÿp
+	ÿƒFehler("Irgendwas ist beim ™ffnendialog schiefgegangen!","")
+	ÿww230120055
+ÿ’ÿ¡
+ÿÙ
+w230120055: 
+inipath$ÿReadINIDes$("DATA","Importfile",inifile$)
+a%ÿÿ1
+ÿ¡inipath$ÿ""ÿinipath$ÿ"leer"ÿp
+ÿƒFehler("Es wurde keine zu importierende Datei ausgew„hlt!","Der Import abgebrochen!")
+ÿwEN140320081
+ÿ’ÿ¡
+GetExtDoc$ÿinipath$
+ÿ^
+textvorlage$ÿ""
+ÿÂ"Datei ausw„hlen","",26,req%,textvorlage$
+ÿ¡textvorlage$ÿ""ÿpGetExtDoc$ÿtextvorlage$
+ÿ’ÿ¡
+EN140320081: 
+ ÿ’ÿÿ
+ 
+ÿÿDokSuch2%(codeku%)
+ DokSuch2%ÿ0
+ 
+ DOKGruppen$(0)ÿ"<ALLE DOKUMENTENGRUPPEN>"
+ DOKGruppen$(1)ÿ"allgemeine Schreiben"
+ ÿƒFillDokGruppe(1)
+ a%ÿ0
+ 
+ 
+ ÿ‰ÿñ"DOK",0,0,300,338,title$,"MS Sans Serif",8
+ ÿ|ÿñ"DOK",9,2,4,22,23,2
+ ÿ|ÿñ"DOK",5,26,11,236,9,0,"W„hlen Sie eine Dokumentengruppe aus:"
+ ÿ|ÿñ"DOK",7,25,25,263,250,2,2,DOKGruppen$,Auswahl$,Gruppe.dokument
+ ÿ|ÿñ"DOK",6,25,300,98,11,128,0,Gsuna1$,50
+ ÿ|ÿñ"DOK",2,130,300,28,10,0,"UND","J","N",Gund$
+ ÿ|ÿñ"DOK",6,160,300,108,11,128,0,Gsuna2$,50
+ ÿ|ÿñ"DOK",5,25,270,250,30,0,"Geben Sie hier bis zu 2 Bestandteile des Dokumentennamens ein, den Sie suchen: Die Begriffe k”nne mit UND verknpft werden. Die Eingabe von Suchbegriffen ist optional!"
+ 
+ ÿ|ÿñ"DOK",1,106,317,48,16,1,"&Weiter",1,1
+ ÿ|ÿñ"DOK",1,158,317,48,16,0,"&Abbruch",0,0
+ ÿ|ÿñ"DOK",1,210,317,48,16,0,"Alle",2,2
+ ÿñ"DOK",req%
+ ÿ¾ÿñ"DOK"
+ ÿ¡req%ÿ0ÿp
+req%ÿDOKAusw1a%(Auswahl$(0),codeku%,req%)
+ÿ¡req%ÿÿ1ÿp
+DokSuch2%ÿreq%
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿÉÿ¥DokSuch2%ÿ™"DOKUMENT"ÿ£codeDok.DOKUMENT
+ ÿßÿe
+ DOKGruppen$(0)ÿ"allgemeine Schreiben"
+ ÿƒFillDokGruppe(0)
+ a%ÿ0
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+ÿÿDOKAusw1a%(filter$,linkfield%,alle%)
+ÿ¡alle%ÿ1ÿpalle$ÿ"n"
+ÿ¡alle%ÿ2ÿpalle$ÿ"j"
+ ÿƒDFile(2,"OFFICE\dokument"ÿ_fpw$)
+ ÿ½ CALL DFile(2,"OFFICE\dokgrup" + _fpw$)
+ ÿƒDFile(2,"OFFICE\adressen"ÿ_fpw$)
+ ÿÊÿË"Dokumenten-/Vorlagenauswahl"
+ cfile$ÿÿ™
+ _cuko%ÿCodeKU.Adressen
+ DOKAusw1a%ÿ0
+ ÿ×DokList$(25000)
+ ÿ½ 261198-1
+a240120051: 
+ ÿ™"Dokument"
+ ÿ£Gruppe.DOKUMENT
+ ÿÉÿ`
+ ÿ¡filter$ÿ"<ALLE DOKUMENTENGRUPPEN>"ÿp
+filter$ÿ""
+ÿ™"Dokument"
+ÿ£codedok.DOKUMENT
+ 
+ ÿ^
+ÿÉÿ`ÿ™"DOKUMENT"ÿ£Gruppe.DOKUMENT
+ÿÉÿ¥filter$ÿ™"DOKUMENT"ÿ£Gruppe.DOKUMENT
+ÿ¡linkfield%ÿ0ÿp
+ÿ™"Dokument"
+ÿ£QuickCodekuGru.dokument
+filt$ÿÿ(linkfield%,"000000")ÿÿ>(filter$)
+ÿÉÿ`ÿ™"DOKUMENT"ÿ£QuickCodekuGru.dokument
+ÿÉÿ¥filt$ÿ™"DOKUMENT"ÿ£QuickCodekuGru.dokument
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ a%ÿ0
+ 
+ÿ¡GCODIE%ÿÿ1ÿp
+ÿƒSearchInitDo1("dokument")
+ÿ’ÿ¡
+ 
+ÿßÿe
+ÿ¡filter$ÿ""ÿlinkfield%ÿ0ÿpÿØÿOÿB("DOKUMENT")ÿQuickCodekuGru.dokumentÿfilt$
+ÿ¡filter$ÿ""ÿlinkfield%ÿ0ÿpÿØÿOÿB("DOKUMENT")ÿGruppe.DOKUMENTÿfilter$
+ÿ¡filter$ÿ""ÿpÿØÿOÿB("DOKUMENT")
+ok%ÿÿ1
+ÿ¡alle$ÿ"n"ÿp
+ÿ¡novi1.dokumentÿ1ÿpok%ÿ0
+ÿ’ÿ¡
+ÿ¡Gsuna1$ÿ""ÿGsuna2$ÿ""ÿp
+ÿ¡Gsuna1$ÿ""ÿGsuna2$ÿ""ÿp
+	ÿ¡Gund$ÿ"J"ÿp
+ÿ½ beide suchbegriffe ausgefllt und mit UND verknpft
+ÿ¡dokument.dokumentÿ"*"ÿGsuna1$ÿ"*"ÿdokument.dokumentÿ"*"ÿGsuna2$ÿ"*"ÿp
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+	ÿ^
+ÿ¡dokument.dokumentÿ"*"ÿGsuna1$ÿ"*"ÿdokument.dokumentÿ"*"ÿGsuna2$ÿ"*"ÿp
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+	ÿ’ÿ¡
+ÿ^
+	ÿ¡Gsuna1$ÿ""ÿp
+ÿ¡dokument.dokumentÿ"*"ÿGsuna1$ÿ"*"ÿp
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	ÿ¡Gsuna2$ÿ""ÿp
+ÿ¡dokument.dokumentÿ"*"ÿGsuna2$ÿ"*"ÿp
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ok%ÿÿ1ÿp
+ÿ¡filter$ÿ""ÿp
+	ÿ¡Gruppe.DOKUMENTÿfilter$ÿ(linkfield%ÿ0ÿlink.DOKUMENTÿlinkfield%)ÿcodeku.dokumentÿlinkfield%ÿp
+ÿ¡CodeKU.DOKUMENTÿ0ÿp
+ÿÉÿ¥CodeKU.DOKUMENTÿ™"ADRESSEN"ÿ£CodeKU.ADRESSEN
+Name$ÿNachname.ADRESSENÿ", "ÿVorname.ADRESSEN
+ÿ^
+Name$ÿ"(ohne Zuordnung)"
+ÿ’ÿ¡
+ÿ¡GCODIE%ÿÿ1ÿpÿƒSearchVorbDO1("dokument")
+DokList$(a%)ÿDokument.DOKUMENTÿ", "ÿÿH(ÿ(erstellt_am.DOKUMENT,"0d.mm.yyyy"))ÿ"/"ÿÿH(ÿ(letzte_Bearbeit.DOKUMENT,"0d.mm.yyyy"))ÿ", "ÿName$ÿÿ'(100)ÿÿ(CodeDOK.DOKUMENT,"000000")
+a%ÿa%ÿ1
+	ÿ’ÿ¡
+ÿ^
+	ÿ¡(linkfield%ÿ0ÿlink.DOKUMENTÿlinkfield%)ÿcodeku.dokumentÿlinkfield%ÿp
+ÿ¡CodeKU.DOKUMENTÿ0ÿp
+ÿÉÿ¥CodeKU.DOKUMENTÿ™"ADRESSEN"ÿ£CodeKU.ADRESSEN
+Name$ÿNachname.ADRESSENÿ", "ÿVorname.ADRESSEN
+ÿ^
+Name$ÿ"(ohne Zuordnung)"
+ÿ’ÿ¡
+ÿ¡GCODIE%ÿÿ1ÿpÿƒSearchVorbDO1("dokument")
+DokList$(a%)ÿDokument.DOKUMENTÿ", "ÿÿH(ÿ(erstellt_am.DOKUMENT,"0d.mm.yyyy"))ÿ"/"ÿÿH(ÿ(letzte_Bearbeit.DOKUMENT,"0d.mm.yyyy"))ÿ", "ÿName$ÿÿ'(100)ÿÿ(CodeDOK.DOKUMENT,"000000")
+a%ÿa%ÿ1
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÊÿËÿ(a%,",9999999")ÿ" gefunden "ÿDokument.DOKUMENT
+ÿÉÿ±ÿ™"dokument"
+ÿÙ
+ ÿßÿ³
+ DOKAusw1a%ÿÿ1
+ ÿ¡a%ÿ0ÿp
+ÿ¡GCODIE%ÿÿ1ÿp
+c$ÿ"aa"
+req3%ÿ0
+DOKAuswahl%ÿ0
+ÿ½ CALL Fehler("","")
+req3%ÿÿƒ("_SearchShow",c$)
+ÿ¡ÿ0(c$)ÿ0ÿp
+DOKAusw1a%ÿÿ0(c$)
+ok%ÿ0
+ÿÊÿË"Dokument gefunden..."
+ÿ’ÿ¡
+ÿ¡ÿ0(c$)ÿ0ÿreq3%ÿ33ÿp
+ret%ÿÿƒ("_SearchClose")
+GCODieRuf%ÿ0
+GCODieRuf1%ÿ0
+GCODieRuf2%ÿ0
+alle$ÿ"j"
+req3%ÿ0
+ÿwa240120051
+ÿ’ÿ¡
+ÿ^
+ÿ‰ÿñ"DOK",0,0,426,304,title$,"MS Sans Serif",8
+ÿ|ÿñ"DOK",4,0,0,426,280,0,""
+ÿ|ÿñ"DOK",5,40,12,160,10,0,"Bitte w„hlen Sie das gewnschte Dokument aus:"
+ÿ|ÿñ"DOK",9,6,14,22,22,2
+ÿ|ÿñ"DOK",5,40,24,160,10,0,"Bezeichnung, erstellt/bearbeitet, Adressat"
+ÿ|ÿñ"DOK",7,19,35,400,239,2,1,DokList$,Auswahl$
+ÿ|ÿñ"DOK",1,210,287,55,15,0,"&Abbrechen",0,0
+ÿ|ÿñ"DOK",1,154,287,55,15,1,"&OK",1,1
+ÿñ"DOK",req%
+ÿ¾ÿñ"DOK"
+ÿ¡req%ÿ1ÿp
+DOKAusw1a%ÿÿ0(ÿ-(Auswahl$(0),6))
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ^
+ÿƒFehler("Keine Dokumente in dieser Gruppe gefunden!","")
+ ÿ’ÿ¡
+ ÿÉÿ¥_cuko%ÿ™"ADRESSEN"ÿ£CodeKU.ADRESSEN
+ ÿ™cfile$
+ ÿ’ÿÿ
+ 
+
+
+ ÿ½ *****************************************************************************************************************
+ ÿ½                 WMAIL Form
+ ÿ½ *****************************************************************************************************************
+ 
+ÿÿWEMAILform()
+ ÿ½ knr% = Codeku.adressen
+ ÿ½ IF disabled%("DOKUMENT") THEN END SUB 
+ ÿƒDFile(2,"OFFICE\dokument"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\wemail"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\akquise"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\adressen"ÿ_fpw$)
+ ÿ½ CALL DFile(2,"OFFICE\dokgrup" + _fpw$)
+ ÿ½ cudo% = CodeDOK.DOKUMENT
+ ÿ½ knr% = Codeku.adressen
+ _formend%ÿ0
+ ÿÊÿË"Bereit"
+ maske$ÿ"WMAIL"
+ 
+ ÿ™"wemail"
+ ÿÉÿĞÿ™"wemail"
+ ÿ£codekey.wemail
+ ÿÉÿ`
+ ÿØ_formend%ÿ0
+AQsub%ÿ0
+ÿ¡ÿ>(ÿœ)ÿmaske$ÿp
+ÿ™"wemail"
+ÿ´ÿœGOFFForm$ÿmaske$
+ÿÊÿË"Werbe-Emailenverwaltung"
+ÿƒMNwemail()
+ÿƒwemailINT()
+ÿœ
+ÿÊÿÿ³
+GAppName$ÿ_netpath$ÿ"DOCP\dokument.pdf"
+ÿ’ÿ¡
+ÿ¬ÿ³
+ÿœ
+ÿßÿ³
+ÿœ
+ÿƒClearKBDBuffer()
+ÿÏÿßÿÿ¥ÿÿ¬
+ÿ½ ** Tastencodes
+ÿk$
+ÿ¡k$ÿÿ(27)ÿp_formend%ÿ1
+ 
+ÿÉÿæAQsub%
+ÿæ1
+ÿ½ Neu
+ÿÉÿ`ÿ™"supervis"ÿ£codema.supervis
+ÿÉÿ¥GMACodema%ÿ™"supervis"ÿ£codema.supervis
+ÿÿ™"wemail"
+codekey.wemailÿÿI("wemail",1)
+Beschreibung.wemailÿ"NEU "ÿÿ(ÿQ,"0d.mm.yyyy")
+ÿ½ EMAILText1.wemail = EMAILText1.supervis + CHR$ (13) + CHR$ (10) + CHR$ (13) + CHR$ (10) + EMAILText1.supervis
+Name.wemailÿName.supervis
+Datum.wemailÿÿQ
+Ersteller.wemailÿName.supervis
+EDatum.wemailÿÿQ
+ÿÌÿ™"wemail"
+ÿ½ CALL wemailINT()
+codekey%ÿcodekey.wemail
+ÿÉÿ`ÿ™"wemail"ÿ£codekey.wemail
+ÿÉÿ¥codekey%ÿáÿ™"wemail"ÿ£codekey.wemail
+ÿœ2
+ÿ”Beschreibung.wemail,0
+ÿæ101
+ÿ½ gehe zu einzelne email
+codekey%ÿcodekey.wemail
+ÿÉÿ`ÿ™"wemail"ÿ£codekey.wemail
+ÿÉÿ¥codekey%ÿáÿ™"wemail"ÿ£codekey.wemail
+ÿœ2
+ÿæ3
+codekey%ÿcodekey.wemail
+ÿ¡ÿ("wemail")ÿÿ°("wemail")ÿpÿÌÿ™"wemail"
+ÿÉÿ`ÿ™"wemail"ÿ£codekey.wemail
+ÿÉÿ¥codekey%ÿáÿ™"wemail"ÿ£codekey.wemail
+ÿ½ CALL EMAILSerSend(CodeKey%)
+ÿæ4
+ÿ½ L”schen
+ÿ™"wemail"
+codekey%ÿcodekey.wemail
+ÿÉÿ`ÿ™"wemail"ÿ£codekey.wemail
+ÿÉÿ¥codekey%ÿáÿ™"wemail"ÿ£codekey.wemail
+ÿÂ"Wirklich l”schen?","",130,req%
+ÿ¡req%ÿ1ÿp
+ÿÉÿ¾ÿ™"wemail"
+ÿƒFehler("Datensatz wurde gel”scht!","")
+ÿœ1
+ÿœ
+ÿ’ÿ¡
+ÿæ5
+ÿ½ refresh
+codekey%ÿcodekey.wemail
+ÿƒQuickStore("wemail")
+ÿœ1
+ÿ½ SELECT FIRST FILE "wemail" INDEX codekey.wemail
+ÿÉÿœÿ`ÿ™"wemail"ÿ£codekey.wemail
+ÿœ
+ÿæ6
+ÿ½ Sortierung nach Beschreibung
+maske$ÿ"WMAIL"
+ÿæ7
+ÿ½ Sortierung nach Bearbeiter
+maske$ÿ"WMAIL1"
+ÿæ8
+ÿ½ Sortierung nach TimeStamp
+maske$ÿ"WMAIL2"
+ÿæ9
+ÿ½ Sortierung nach Erstellung
+maske$ÿ"WMAIL3"
+ÿæ10
+ÿ½ Druck
+ÿƒWEMAILV(codekey.wemail)
+ÿæ99
+ÿ”Beschreibung.wemail,0
+ÿ’ÿÉ
+ ÿÙ
+ _formend%ÿ0
+ ÿ½ IF FileChanged%("wemail") = 1 THEN CALL FStore("wemail")
+ ÿÉÿĞÿ™"wemail"
+ ÿ’ÿÿ
+ 
+ 
+ÿÿMNwemail()
+ ÿƒMNProgramm()
+ ÿ¬2,0,1,"&Option","",""
+ ÿ¬2,1,1,"aus Suchliste ausw„hlen,F7","DokKurzSuche",""
+ ÿƒMNHilfe(3)
+ ÿ’ÿÿ
+ 
+ÿÿwemailINT()
+ ÿ½ SELECT FORM KEY knr% FILE "Adressen" INDEX codeku.adressen
+ ÿ½ SELECT FORM KEY knr% FILE "wemail" INDEX codeku.wemail
+ ÿÉÿœÿ`ÿ™"wemail"
+ ÿ’ÿÿ
+ 
+ 
+ 
+ÿÿwemailATTE(nr%)
+ codekey%ÿcodekey.wemail
+ ÿ¡ÿ("wemail")ÿÿ°("wemail")ÿpÿÌÿ™"wemail"
+ ÿÉÿ`ÿ™"wemail"ÿ£codekey.wemail
+ ÿÉÿ¥codekey%ÿáÿ™"wemail"ÿ£codekey.wemail
+ ÿÂ"Datei ausw„hlen","",26,req%,textvorlage$
+ ÿ¡req%ÿ1ÿp
+ÿ½ IF EXISTS (textvorlage$) THEN 
+a%ÿÿƒ("_SBFileExists",textvorlage$)
+ÿ¡a%ÿÿ1ÿp
+ÿÉÿ¥codekey%ÿáÿ™"wemail"ÿ£codekey.wemail
+feld$ÿ"EMAILATT"ÿÿH(ÿ(nr%,"99"))ÿ".wemail"
+feld$$ÿtextvorlage$
+ÿƒQuickStore("wemail")
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿwEMAILATT(nr%)
+ codekey%ÿcodekey.wemail
+ÿ¡ÿ("wemail")ÿpÿÌÿ™"wemail"
+ÿ¡Gcodie%ÿÿ1ÿp
+textvorlage$ÿ"*.*"
+iniPath$ÿGScanDir$
+ÿ¡inipath$ÿ""ÿpinipath$ÿ_ppath$
+ÿ½ IF inipath$ LIKE "" THEN iniPath$ = "C:\"
+ÿ½ REGISTER _netpath$ + "CODieLIB.dll","_SelectFile","IFFF"
+ÿ½ a% = CALL ("_SelectFile",texttitel$,iniPath$,textvorlage$)
+ÿ½ REGISTER CLEAR "_SelectFile"
+ÿ½ a% = CALL ("_SBFileExists",iniPath$)
+ 
+ÿ½ ********************************************************************
+inifile$ÿGMACodeDir$ÿ"codiesf0.ini"
+exefile$ÿGMACodeDir$ÿ"codiesf0.exe"
+a%ÿÿƒ("_SBFileExists",inifile$)
+ÿ¡a%ÿÿ1ÿp
+a%ÿÿƒ("_SBFileDelete1",inifile$)
+ÿ’ÿ¡
+ 
+a%ÿ1
+ÿƒWriteINIDes("DATA","ScanDir",GScanDir$,inifile$)
+ÿƒWriteINIDes("DATA","Titel","Auswahl der zu importierenden Datei",inifile$)
+ÿƒWriteINIDes("DATA","Filter","*.*",inifile$)
+ÿ¡ÿJ(GMACodeDir$ÿ"sready.ini")ÿp
+ÿGMACodeDir$ÿ"sready.ini"
+ÿ’ÿ¡
+i%ÿÿƒ("ShellExecute",0,"open",exefile$,"","",1)
+zz%ÿ0
+ÿØÿOÿJ(GMACodeDir$ÿ"sready.ini")
+zz%ÿzz%ÿ1
+ÿßÿe
+ÿÏÿ›1
+ÿ¡zz%ÿ60ÿp
+	ÿƒFehler("Irgendwas ist beim ™ffnendialog schiefgegangen!","")
+	ÿww230120055
+ÿ’ÿ¡
+ÿÙ
+inipath$ÿReadINIDes$("DATA","Importfile",inifile$)
+a%ÿÿ1
+ÿ¡inipath$ÿ""ÿinipath$ÿ"leer"ÿp
+ÿƒFehler("Es wurde keine zu importierende Datei ausgew„hlt!","Der Import abgebrochen!")
+ÿwEN210220071
+ÿ’ÿ¡
+ÿ½ ********************************************************************
+ 
+ÿcdir$
+ÿ¡a%ÿÿ1ÿp
+ÿÂ"Erstelle Arbeitskopie der zu versendenden Datei","",2
+ÿÊÿË"Erstelle Arbeitskopie der zu versendenden Datei"
+ÿßÿe
+endung$ÿGetDateiendung$(iniPath$)
+ÿ½ zz$ = GMACodeDir$ + STR$ (codeaq%,"000000") + "-" + STR$ (nr%,"0") + "." + endung$
+zz$ÿ_netpath$ÿ"EMAILATT\"ÿÿ(codekey%,"0000000")ÿÿ(nr%,"0")ÿ"."ÿendung$
+ÿ½ IF EXISTS (zz$) THEN DELETE zz$
+a%ÿÿƒ("_SBFileExists",zz$)
+ÿ¡a%ÿÿ1ÿp
+	a%ÿÿƒ("_SBFileDelete1",zz$)
+ÿ’ÿ¡
+a%ÿÿƒ("_SBFileCopy",iniPath$,zz$)
+textvorlage$ÿÿåansi(iniPath$)
+req%ÿ1
+ÿßÿ³
+ÿÊÿË""
+ÿ’ÿ¡
+ÿ^
+ÿÂ"Datei ausw„hlen","",26,req%,textvorlage$
+ÿ’ÿ¡
+ ÿ¡req%ÿ1ÿp
+ÿ½ IF EXISTS (textvorlage$) THEN 
+ÿÉÿ¥codekey%ÿáÿ™"wemail"ÿ£codekey.wemail
+feld$ÿ"EMAILATT"ÿÿ(nr%,"0")ÿ".wemail"
+feld$$ÿtextvorlage$
+feld1$ÿ"EATT"ÿÿ(nr%,"0")ÿ".wemail"
+feld1$$ÿzz$
+ÿƒQuickStore("wemail")
+ÿ½ END IF 
+ ÿ’ÿ¡
+EN210220071: 
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿwShowAtt(feld$)
+ ÿ½ feld$ = feld$ + ".wemail"
+ ÿ¡feld$ÿ""ÿp
+ÿ½ feld$ = feld$ + "." + GAkquiDat$
+ÿ½ inifile$ = feld$$
+a%ÿÿƒ("_SBFileExists",feld$)
+ÿ¡a%ÿÿ1ÿp
+ÿ½ i% = CALL ("ShellExecute",0,"open",feld$,"","",1)
+ÿƒTextAnz(feld$)
+ÿ^
+ÿƒFehler ("Datei: "ÿinifile$ÿ" nicht gefunden!","")
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ ÿ½ l”schen
+ÿÿWMAILATTD(nr%)
+ codekey%ÿcodekey.wemail
+ ÿ¡ÿ("wemail")ÿpÿÌÿ™"wemail"
+ ÿÂ"EMAIL Anhang wirklich l”schen?","",130,req%
+ 
+ ÿ¡req%ÿ1ÿp
+ÿ½ IF EXISTS (textvorlage$) THEN 
+ÿÉÿ¥codekey%ÿáÿ™"wemail"ÿ£codekey.wemail
+feld$ÿ"EMAILATT"ÿÿ(nr%,"0")ÿ"."ÿ"wemail"
+feld$$ÿ""
+feld1$ÿ"EATT"ÿÿ(nr%,"0")ÿ"."ÿ"wemail"
+feld1$$ÿ""
+ÿƒQuickStore("wemail")
+ÿ½ END IF 
+ ÿ’ÿ¡
+ ÿœ
+ ÿ’ÿÿ
+
+ ÿ½ *****************************************************************************************************************
+ ÿ½                 EMAIL Form
+ ÿ½ *****************************************************************************************************************
+ 
+ÿÿEMAILform()
+ ÿ½ knr% = Codeku.adressen
+ ÿ½ IF disabled%("DOKUMENT") THEN END SUB 
+ ÿƒDFile(2,"OFFICE\dokument"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\email"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\akquise"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\adressen"ÿ_fpw$)
+ ÿ½ CALL DFile(2,"OFFICE\dokgrup" + _fpw$)
+ ÿ½ cudo% = CodeDOK.DOKUMENT
+ ÿ½ knr% = Codeku.adressen
+ _formend%ÿ0
+ ÿÊÿË"Bereit"
+ maske$ÿ"EMAIL"
+ ÿ¡ProjectJN$ÿ"TRUE"ÿpmaske$ÿ"EMAIL"
+ 
+ ÿ™"EMAIL"
+ ÿÉÿĞÿ™"EMAIL"
+ ÿ£codeku.EMAIL
+ ÿÉÿ`
+ ÿØ_formend%ÿ0
+AQsub%ÿ0
+ÿ¡ÿ>(ÿœ)ÿmaske$ÿp
+ÿ™"email"
+ÿ´ÿœGOFFForm$ÿmaske$
+ÿÊÿË"Emailenverwaltung"
+ÿƒMNEMAIL()
+ÿƒEMAILINT()
+ÿœ
+ÿÊÿÿ³
+GAppName$ÿ_netpath$ÿ"DOCP\dokument.pdf"
+ÿ’ÿ¡
+ÿ¬ÿ³
+ÿœ
+ÿßÿ³
+ÿœ
+ÿƒClearKBDBuffer()
+ÿÏÿßÿÿ¥ÿÿ¬
+ÿ½ ** Tastencodes
+ÿk$
+ÿ¡k$ÿÿ(27)ÿp_formend%ÿ1
+ 
+ÿÉÿæAQsub%
+ÿæ1
+ÿ½ Neu
+ÿÿ™"email"
+codekey.emailÿÿI("email",1)
+EMAILBETREFF.emailÿ"NEU "ÿÿ(ÿQ,"0d.mm.yyyy")
+ÿÌÿ™"email"
+ÿƒEMAILINT()
+ÿœ
+ÿæ2
+ÿ½ gehe zu einzelne email
+codekey%ÿcodekey.email
+ÿÉÿ`ÿ™"email"ÿ£codekey.email
+ÿÉÿ¥codekey%ÿáÿ™"email"ÿ£codekey.email
+ÿœ2
+ÿæ3
+codekey%ÿcodekey.email
+ÿ¡ÿ("email")ÿÿ°("email")ÿpÿÌÿ™"email"
+ÿÉÿ`ÿ™"email"ÿ£codekey.email
+ÿÉÿ¥codekey%ÿáÿ™"email"ÿ£codekey.email
+ÿƒEMAILSerSend(CodeKey%)
+ÿæ99
+ÿ”emailbetreff.email,0
+ÿ’ÿÉ
+ ÿÙ
+ _formend%ÿ0
+ ÿ½ IF FileChanged%("email") = 1 THEN CALL FStore("email")
+ ÿÉÿĞÿ™"email"
+ ÿ’ÿÿ
+ 
+ 
+ÿÿMNEMAIL()
+ ÿƒMNProgramm()
+ ÿ¬2,0,1,"&Option","",""
+ ÿ¬2,1,1,"aus Suchliste ausw„hlen,F7","DokKurzSuche",""
+ ÿƒMNHilfe(3)
+ ÿ’ÿÿ
+ 
+ÿÿEMAILINT()
+ ÿ½ SELECT FORM KEY knr% FILE "Adressen" INDEX codeku.adressen
+ ÿ½ SELECT FORM KEY knr% FILE "email" INDEX codeku.email
+ ÿÉÿœÿ`ÿ™"email"
+ ÿ’ÿÿ
+ 
+ÿ½ para% = 0 normale email aus Adressmaske
+ÿ½ para% = 1 Zugangsdaten-Email
+ÿ½ para% = 2 Werbeemail mit Werbetetxt aus supervisdatei
+ÿÿAQRegAdr(codeku%,Nummer$,para%)
+ cfile$ÿÿ™
+ ÿ¡ÿOÿ´("aktionen")ÿpÿƒDFile(2,"OFFICE\aktionen"ÿ_fpw$)
+ ÿ¡ÿOÿ´(GADRDat$)ÿpÿƒDFile(2,"OFFICE\"ÿGADRDat$ÿ_fpw$)
+ ÿ¡ÿOÿ´(GAkquiDat$)ÿpÿƒDFile(2,"OFFICE\"ÿGAkquiDat$ÿ_fpw$)
+ ÿÉÿ`ÿ™GADRDat$ÿ£codeku.GADRDat$
+ ÿÉÿ¥codeku%ÿ™GADRDat$ÿ£codeku.GADRDat$
+ ÿ×Aktionen$(300)
+ ÿ™"AKTIONEN"
+ ÿ£CodeAK
+ ÿÉÿ`
+ a%ÿÿ1
+ ÿØÿOÿB("AKTIONEN")
+a%ÿa%ÿ1
+Aktionen$(a%)ÿBezeichnung.AKTIONENÿ" ("ÿÿ(CodeAK.AKTIONEN,"000000")ÿ")"
+ÿÉÿ±
+ ÿÙ
+ ÿÉÿ¥1
+ Aktion$ÿBezeichnung.AKTIONENÿ" ("ÿÿ(CodeAK.AKTIONEN,"000000")ÿ")"
+ ÿ×Mitarbeiter$(20000)
+ ÿ™"SUPERVIS"
+ ÿ£CodeMA
+ ÿÉÿ`
+ a%ÿÿ1
+ ÿØÿOÿB("SUPERVIS")
+a%ÿa%ÿ1
+Mitarbeiter$(a%)ÿNachname.SUPERVISÿ", "ÿVorname.SUPERVISÿ" ("ÿÿ(CodeMA.SUPERVIS,"000000")ÿ")"
+ÿÉÿ±
+ ÿÙ
+ ÿÉÿ¥GMAcodema%ÿ™"supervis"ÿ£codema.supervis
+ MANachname$ÿNachname.SUPERVISÿ", "ÿVorname.SUPERVISÿ" ("ÿÿ(CodeMA.SUPERVIS,"000000")ÿ")"
+ datum$ÿÿ(ÿQ,"0d.mm.yyyy")
+ Termin$ÿÿ(ÿQ,"0d.mm.yyyy")
+ Nachname$ÿNachname.GAdrDat$
+ Vorname$ÿVorname.GAdrDat$
+ Straáe$ÿStraáe.GAdrDat$
+ Ort$ÿPLZ.GAdrDat$ÿ" "ÿOrt.GAdrDat$
+ tmpku%ÿCodeKU.GAdrDat$
+ RNotiz$ÿ"sende EMAIL : "
+ _ok%ÿ1
+ ÿwdokt030920053
+ 
+ÿ×dlg ÿUDialog
+ÿ×control ÿUDialogControl
+ ÿ³ÿ_ÿwdokt030920051
+ÿwdokt030920052
+dokt030920051: 
+ÿƒFehler("Die Werte fr Datum oder Uhrzeit scheinen falsch zu sein!","Bitte prfen")
+dokt030920052: 
+Superbase.Dialogs.Add("AQREGISTER")
+ÿÊdlg ÿSuperbase.Dialogs.AQREGISTER
+dlg.Move(0,0,354,235)
+dlg.Captionÿtitle$
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox1","DialogTextBox")
+control.Move(5,8,40,12)
+control.MaxLengthÿ10
+control.TextBindingÿ"Datum$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox2","DialogTextBox")
+control.Move(49,8,40,12)
+control.MaxLengthÿ10
+control.TextBindingÿ"Termin$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox3","DialogTextBox")
+control.Move(93,8,25,12)
+control.MaxLengthÿ5
+control.TextBindingÿ"Zeit$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox4","DialogTextBox")
+control.Move(130,8,24,12)
+control.MaxLengthÿ5
+control.TextBindingÿ"Dauer$"
+ÿ¡GADRDat$ÿ"ADRESSEN"ÿp
+ÿÊcontrol ÿdlg.Add("DialogTextBox6","DialogTextBox")
+control.Move(185,8,40,12)
+control.MaxLengthÿ10
+control.TextBindingÿ"VTermin$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox7","DialogTextBox")
+control.Move(235,8,25,12)
+control.MaxLengthÿ5
+control.TextBindingÿ"VZeit$"
+ÿ’ÿ¡
+ÿÊcontrol ÿdlg.Add("DialogLabel4","DialogLabel")
+control.Move(130,22,28,11)
+control.Captionÿ"Dauer"
+ÿ¡GADRDat$ÿ"ADRESSEN"ÿp
+ÿÊcontrol ÿdlg.Add("DialogLabel19","DialogLabel")
+control.Move(185,22,45,13)
+control.Captionÿ"Vorlagetermin"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel20","DialogLabel")
+control.Move(235,22,54,13)
+control.Captionÿ"Vorlagezeit"
+ÿ’ÿ¡
+ÿÊcontrol ÿdlg.Add("DialogLabel1","DialogLabel")
+control.Move(5,22,32,13)
+control.Captionÿ"Datum"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel2","DialogLabel")
+control.Move(49,22,28,13)
+control.Captionÿ"Termin"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel3","DialogLabel")
+control.Move(93,22,28,13)
+control.Captionÿ"Uhrzeit"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel5","DialogLabel")
+control.Move(5,36,123,12)
+control.Captionÿ"Zuordnung zur Aktion"
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame1","DialogFrame")
+control.Move(186,44,160,81)
+control.Captionÿ"Adresse"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel8","DialogLabel")
+control.Move(190,59,39,12)
+control.Captionÿ"Nachname"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel14","DialogLabel")
+control.Move(230,59,116,12)
+control.NoKeyboardEquivalentÿ1
+control.CaptionBindingÿ"Nachname$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel9","DialogLabel")
+control.Move(190,69,32,12)
+control.Captionÿ"Vorname"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel15","DialogLabel")
+control.Move(230,69,116,12)
+control.NoKeyboardEquivalentÿ1
+control.CaptionBindingÿ"Vorname$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel10","DialogLabel")
+control.Move(190,79,24,12)
+control.Captionÿ"Straáe"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel16","DialogLabel")
+control.Move(230,79,116,12)
+control.CaptionBindingÿ"Straáe$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel11","DialogLabel")
+control.Move(190,89,19,12)
+control.Captionÿ"Ort"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel17","DialogLabel")
+control.Move(230,89,116,12)
+control.CaptionBindingÿ"Ort$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(190,104,152,14)
+control.Captionÿ"Auswahl"
+control.ReturnValueÿ2
+ 
+ÿÊcontrol ÿdlg.Add("DialogComboBox1","DialogComboBox")
+control.Move(5,46,169,83)
+control.Styleÿ2
+control.Sortedÿ1
+control.ScrollBarsÿ2
+control.Bind("Aktionen$","Aktion$")
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel6","DialogLabel")
+control.Move(5,65,139,8)
+control.Captionÿ"Eintragen in den Kalender des Mitarbeiters"
+ 
+ÿÊcontrol ÿdlg.Add("DialogComboBox2","DialogComboBox")
+control.Move(5,76,169,90)
+control.Styleÿ2
+control.Sortedÿ1
+control.ScrollBarsÿ2
+control.Bind("Mitarbeiter$","MANachname$")
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel7","DialogLabel")
+control.Move(5,96,139,8)
+control.Captionÿ"Notiz"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox5","DialogTextBox")
+control.Move(5,105,169,128)
+control.MultiLineÿ1
+control.ScrollBarsÿ2
+control.MaxLengthÿ4000
+control.TextBindingÿ"RNotiz$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel12","DialogLabel")
+control.Move(186,133,162,29)
+control.Captionÿ"Wenn Sie diesen Termin nur zu Informationszwecken aufnehmen m”chten, markieren Sie bitte die Option 'Termin erledigt'."
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox1","DialogCheckBox")
+control.Move(186,165,76,12)
+control.Captionÿ"Termin erledigt"
+control.Bind("Terminerl$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel13","DialogLabel")
+control.Move(186,178,159,37)
+control.Captionÿ"Nach Bet„tigung der Schaltfl„che 'OK' wird der Eintrag in der Termindatei erzeugt."
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton2","DialogCommandButton")
+control.Move(186,217,78,15)
+control.Defaultÿ1
+control.Captionÿ"&OK"
+control.ReturnValueÿ1
+ 
+ 
+ _ok%ÿ0
+ ÿØ_ok%ÿ0
+ÿñ"AQREGISTER",req%
+ÿ¡req%ÿ2ÿp
+kunr%ÿADRSuche%(0)
+ÿ¡kunr%ÿ0ÿp
+ÿÉÿ¥kunr%ÿ™GAdrDat$ÿ£CodeKU.GAdrDat$
+Nachname$ÿNachname.GAdrDat$
+Vorname$ÿVorname.GAdrDat$
+Straáe$ÿStraáe.GAdrDat$
+Ort$ÿPLZ.GAdrDat$ÿ" "ÿOrt.GAdrDat$
+tmpku%ÿCodeKU.GAdrDat$
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡req%ÿ0ÿp_ok%ÿ2
+ÿ¡req%ÿ1ÿp_ok%ÿ1
+ ÿÙ
+ ÿ¾ÿñ"AQREGISTER"
+dokt030920053: 
+ ÿ¡_ok%ÿ1ÿp
+ÿ¡para%ÿ2ÿp
+ÿ½ 21022007 - Werbeemail
+ÿ½ anzeige was in wemail vorhanden ist, danach gehts weiter
+ÿ™"wemail"
+ÿ£codekey.wemail
+ÿÉÿ`ÿ™"wemail"ÿ£codekey.wemail
+ÿ×wemail$(ÿA("wemail"))
+a%ÿ0
+ÿØÿOÿB("wemail")
+ok%ÿÿ1
+ÿ¡ok%ÿÿ1ÿp
+	wemail$(a%)ÿBeschreibung.wemailÿ"/"ÿname.wemailÿ"/"ÿÿ(Datum.wemail,"0d.mm.yyyy")ÿÿ'(100)ÿÿ(Codekey.wemail,"0000000")
+	a%ÿa%ÿ1
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"wemail"ÿ£codekey.wemail
+ÿÙ
+ÿ×Auswahl1$(1)
+Auswahl$ÿwemail$(0)
+Auswahl1$(0)ÿAuswahl$
+codekey%ÿ0
+GWemailAbr%ÿÿ1
+ÿ‰ÿñ"PREISLIS",0,0,500,364,"Werbe-Email-Vorlage","MS Sans Serif",8
+ÿ|ÿñ"PREISLIS",4,0,0,499,340,0," Auswahl Werbe-Email-Vorlage"
+ÿ|ÿñ"PREISLIS",7,5,14,489,325,2,2,wemail$,Auswahl1$," "
+ÿ|ÿñ"PREISLIS",1,17,345,55,16,1,"&OK",1,1
+ÿ|ÿñ"PREISLIS",1,77,345,55,16,0,"&Abbrechen",0,0
+ÿñ"PREISLIS",req%
+ÿ¾ÿñ"PREISLIS"
+ÿ¡req%ÿ1ÿp
+codekey%ÿÿ0(ÿ-(Auswahl1$(0),8))
+ÿ¡codekey%ÿ0ÿp
+	ÿÉÿ`ÿ™"wemail"ÿ£codekey.wemail
+	ÿÉÿ¥codekey%ÿ™"wemail"ÿ£codekey.wemail
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡codekey%ÿ0ÿreq%ÿ0ÿp
+ÿƒFehler("Auswahl abgebrochen","")
+GWemailAbr%ÿ0
+ÿwwe210220072
+ÿ’ÿ¡
+ 
+ÿ½ ****************
+ÿ’ÿ¡
+ÿ™GAkquiDat$
+ÿÿ™GAkquiDat$
+ÿ¡para%ÿ2ÿp
+ÿ½ 21022007 - Werbeemail
+ÿ½ anzeige was in wemail vorhanden ist, danach gehts weiter
+ÿ¡codekey%ÿ0ÿreq%ÿ1ÿp
+ÿ½ copyrecord
+a%ÿCopyRecord%("wemail","Akquise")
+
+ÿ’ÿ¡
+ÿ’ÿ¡
+cuaq%ÿÿI(GAkquiDat$,1)
+codeaq.GAkquiDat$ÿcuaq%
+codeKU.GAkquiDat$ÿtmpku%
+CodeAK.GAkquiDat$ÿÿ0(ÿ,(Aktion$,ÿ/(Aktion$)ÿ6,6))
+CodeMA.GAkquiDat$ÿÿ0(ÿ,(MANachname$,ÿ/(MANachname$)ÿ6,6))
+codema1%ÿÿ0(ÿ,(MANachname$,ÿ/(MANachname$)ÿ6,6))
+ÿÉÿ¥tmpku%ÿ™GAdrDat$ÿ£CodeKU.GAdrDat$
+nachname.GAkquiDat$ÿnachname.GAdrDat$
+Wertung.GAkquiDat$ÿ0
+Datum.GAkquiDat$ÿDatum$
+Uhrzeit.GAkquiDat$ÿzeit$
+Dauer.GAkquiDat$ÿÿ0(dauer$)
+CodeDOK.GAkquiDat$ÿ0
+ErDatum.GAkquiDat$ÿVTermin$
+ErZeit.GAkquiDat$ÿVZeit$
+ÿ½ REQUEST "Soll der Termin erledigt werden?","",130,req%
+ÿ¡req%ÿ1ÿp
+erledigt_Termin.GAkquiDat$ÿ"n"
+ÿ’ÿ¡
+ÿÉÿ¥codema.GAkquiDat$ÿáÿ™"supervis"ÿ£codema.supervis
+Bearbeiter.GAkquiDat$ÿnachname.supervis
+ÿ¡_projekt$ÿ"PROVIS"ÿ_projekt$ÿ"IMMAK"ÿp
+AnzTermine.supervisÿAnzTermine.supervisÿ1
+ÿ¡Terminerl$ÿ"j"ÿp
+AnzTermineErl.supervisÿAnzTermineErl.supervisÿ1
+ÿ^
+AnzTermineUnErl.supervisÿAnzTermineUnErl.supervisÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÌÿ™"supervis"
+ÿïÿYÿ™"Supervis"
+notiz.GAkquiDat$ÿrnotiz$
+termin.GAkquiDat$ÿTermin$
+erledigt_Termin.GAkquiDat$ÿTerminerl$
+ÿ¡_projekt$ÿ"PROVIS"ÿ_projekt$ÿ"IMMAK"ÿp
+TerminNr.GAkquiDat$ÿAnzTermine.supervis
+ÿ’ÿ¡
+ÿ½ 01032001
+GErledTermin$ÿTerminerl$
+emailto.akquiseÿNummer$
+ÿ½ normale email aus Adressmaske
+ÿ¡para%ÿ
+1ÿp
+eMAILtEXT.akquiseÿBriefanrede.adressenÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+eMAILtEXT1.akquiseÿEMAILText1.supervisÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+eMAILtEXT1.akquiseÿeMAILtEXT1.akquiseÿEMAILText2.supervis
+ÿ’ÿ¡
+ÿ½ Zugangsdaten email
+ÿ¡para%ÿ1ÿp
+ÿ¡version.adressenÿ"CBFC*"ÿp
+EMAILBETREFF.akquiseÿ"CODieBOARD#finance-center Update"
+ÿ^
+EMAILBETREFF.akquiseÿ"CODie-SmartPROVIS Update"
+ÿ’ÿ¡
+t1t$ÿBriefanrede.adressenÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+ÿ¡version.adressenÿ"CBFC*"ÿp
+t1t$ÿt1t$ÿ"anbei bersenden wir Ihnen die Zugangsdaten fr Ihr Update des Programmes CODieBOARD#finance-center"ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+ÿ^
+t1t$ÿt1t$ÿ"anbei bersenden wir Ihnen die Zugangsdaten fr Ihr Update des Programmes SmartPROVIS"ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+t1t$ÿt1t$ÿ"Internetadresse: http://www.codie.com"ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Benutzername: "ÿInternetname.adressenÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Passwort: "ÿInternetpasswo.adressenÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+ÿ¡version.adressenÿ"CBFC*"ÿp
+t1t$ÿt1t$ÿ"Bitte denken Sie an eine Datensicherung der gesamten CBFC Datenbank mittel des MS Enterprisemanger oder des MS Managementstudios!!!!!!!!"ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+ÿ^
+t1t$ÿt1t$ÿ"Bitte denken an eine Datensicherung des gesamten CODie-Ordners!!!!!!!!!"ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+t1t$ÿt1t$ÿ"Bitte lesen Sie den Updatetext und informieren auch Ihre Mitarbeiter ber die knftigen nderungen im Programm."ÿÿ(13)ÿÿ(10)
+ÿ½ t1t$ = t1t$ + "Vor der Installation fhren Sie bitte eine komplette Datensicherung durch, die auch die Sicherung der Dokumente beinhalten sollte." + CHR$ (13) + CHR$ (10)
+t1t$ÿt1t$ÿ"Denken Sie daran, dass w„hrend der Installation und Datenanpassung kein anderer Nutzer das System ge”ffnet haben darf. Gehen Sie in der vom System vorgegebenen Reihenfolge vor."ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Bitte prfen Sie, ob Sie den Update-Beitrag Brutto fr das 2.Halbjahr 2006 berwiesen haben, wenn nicht, bitten wir Sie hiermit um Begleichung des Betrages."ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Kunden mit Online Servicevertrag (Updateinstallation durch CODie) vereinbaren bitte einen Installationstermin mit Herrn Bargfried (bei der Installation darf kein Mitarbeiter mit dem System arbeiten)"ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Bei technischen Fragen zur ASP Version wenden Sie sich bitte an die Firma Maklersoftware.com oder an die Smea GmbH. "ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Bei Fragen und Wnschen rufen Sie uns bitte an! "ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Mit freundlichen Gráen verbleibt"ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Ihr CODie Team"ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+ 
+eMAILtEXT.akquiseÿt1t$
+eMAILtEXT1.akquiseÿEMAILText1.supervisÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+eMAILtEXT1.akquiseÿeMAILtEXT1.akquiseÿEMAILText2.supervis
+ÿ’ÿ¡
+ÿ½ Werbeemail
+ÿ¡para%ÿ2ÿp
+atest2$ÿPostanschrift.adressenÿÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿBriefanrede.adressenÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿeMAILtEXT.akquise
+eMAILtEXT.akquiseÿatest2$
+eMAILtEXT1.akquiseÿEMAILText1.supervisÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+eMAILtEXT1.akquiseÿeMAILtEXT1.akquiseÿEMAILText2.supervis
+ÿ½ t1t$ = Werbeemail.supervis + CHR$ (13) + CHR$ (10)
+ÿ½ eMAILtEXT.akquise = Briefanrede.adressen + CHR$ (13) + CHR$ (10) + CHR$ (13) + CHR$ (10)
+ÿ½ eMAILtEXT.akquise = eMAILtEXT.akquise + t1t$
+ÿ½ eMAILtEXT1.akquise = EMAILText1.supervis + CHR$ (13) + CHR$ (10) + CHR$ (13) + CHR$ (10)
+ÿ½ eMAILtEXT1.akquise = eMAILtEXT1.akquise + EMAILText2.supervis
+ÿ’ÿ¡
+ÿ½ emailbetreff.akquise = Betreff.mail
+ÿ½ emailtext.akquise = nachricht.mail
+ÿ½ emailcc.akquise = emailcc.mail
+ÿ½ emailbcc.akquise = emailbcc.mail
+ÿƒFStore(GAkquiDat$)
+ ÿ’ÿ¡
+we210220072: 
+ ÿ™cfile$
+ ÿ³ÿ_ÿwErrorHandler
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+
+
+
+ÿ½ para% = 0 normale email aus Adressmaske
+ÿ½ para% = 1 Zugangsdaten-Email
+ÿ½ para% = 2 Werbeemail mit Werbetetxt aus supervisdatei
+ÿÿAQRegAdrold(codeku%,Nummer$,para%)
+ cfile$ÿÿ™
+ ÿ¡ÿOÿ´("aktionen")ÿpÿƒDFile(2,"OFFICE\aktionen"ÿ_fpw$)
+ ÿ¡ÿOÿ´(GADRDat$)ÿpÿƒDFile(2,"OFFICE\"ÿGADRDat$ÿ_fpw$)
+ ÿ¡ÿOÿ´(GAkquiDat$)ÿpÿƒDFile(2,"OFFICE\"ÿGAkquiDat$ÿ_fpw$)
+ ÿÉÿ`ÿ™GADRDat$ÿ£codeku.GADRDat$
+ ÿÉÿ¥codeku%ÿ™GADRDat$ÿ£codeku.GADRDat$
+ ÿ×Aktionen$(300)
+ ÿ™"AKTIONEN"
+ ÿ£CodeAK
+ ÿÉÿ`
+ a%ÿÿ1
+ ÿØÿOÿB("AKTIONEN")
+a%ÿa%ÿ1
+Aktionen$(a%)ÿBezeichnung.AKTIONENÿ" ("ÿÿ(CodeAK.AKTIONEN,"000000")ÿ")"
+ÿÉÿ±
+ ÿÙ
+ ÿÉÿ¥1
+ Aktion$ÿBezeichnung.AKTIONENÿ" ("ÿÿ(CodeAK.AKTIONEN,"000000")ÿ")"
+ ÿ×Mitarbeiter$(20000)
+ ÿ™"SUPERVIS"
+ ÿ£CodeMA
+ ÿÉÿ`
+ a%ÿÿ1
+ ÿØÿOÿB("SUPERVIS")
+a%ÿa%ÿ1
+Mitarbeiter$(a%)ÿNachname.SUPERVISÿ", "ÿVorname.SUPERVISÿ" ("ÿÿ(CodeMA.SUPERVIS,"000000")ÿ")"
+ÿÉÿ±
+ ÿÙ
+ ÿÉÿ¥GMAcodema%ÿ™"supervis"ÿ£codema.supervis
+ MANachname$ÿNachname.SUPERVISÿ", "ÿVorname.SUPERVISÿ" ("ÿÿ(CodeMA.SUPERVIS,"000000")ÿ")"
+ datum$ÿÿ(ÿQ,"0d.mm.yyyy")
+ Termin$ÿÿ(ÿQ,"0d.mm.yyyy")
+ Nachname$ÿNachname.GAdrDat$
+ Vorname$ÿVorname.GAdrDat$
+ Straáe$ÿStraáe.GAdrDat$
+ Ort$ÿPLZ.GAdrDat$ÿ" "ÿOrt.GAdrDat$
+ tmpku%ÿCodeKU.GAdrDat$
+ RNotiz$ÿ"sende EMAIL : "
+ _ok%ÿ1
+ ÿwdokt030920053
+ 
+ÿ×dlg ÿUDialog
+ÿ×control ÿUDialogControl
+ ÿ³ÿ_ÿwdokt030920051
+ÿwdokt030920052
+dokt030920051: 
+ÿƒFehler("Die Werte fr Datum oder Uhrzeit scheinen falsch zu sein!","Bitte prfen")
+dokt030920052: 
+Superbase.Dialogs.Add("AQREGISTER")
+ÿÊdlg ÿSuperbase.Dialogs.AQREGISTER
+dlg.Move(0,0,354,235)
+dlg.Captionÿtitle$
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox1","DialogTextBox")
+control.Move(5,8,40,12)
+control.MaxLengthÿ10
+control.TextBindingÿ"Datum$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox2","DialogTextBox")
+control.Move(49,8,40,12)
+control.MaxLengthÿ10
+control.TextBindingÿ"Termin$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox3","DialogTextBox")
+control.Move(93,8,25,12)
+control.MaxLengthÿ5
+control.TextBindingÿ"Zeit$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox4","DialogTextBox")
+control.Move(130,8,24,12)
+control.MaxLengthÿ5
+control.TextBindingÿ"Dauer$"
+ÿ¡GADRDat$ÿ"ADRESSEN"ÿp
+ÿÊcontrol ÿdlg.Add("DialogTextBox6","DialogTextBox")
+control.Move(185,8,40,12)
+control.MaxLengthÿ10
+control.TextBindingÿ"VTermin$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox7","DialogTextBox")
+control.Move(235,8,25,12)
+control.MaxLengthÿ5
+control.TextBindingÿ"VZeit$"
+ÿ’ÿ¡
+ÿÊcontrol ÿdlg.Add("DialogLabel4","DialogLabel")
+control.Move(130,22,28,11)
+control.Captionÿ"Dauer"
+ÿ¡GADRDat$ÿ"ADRESSEN"ÿp
+ÿÊcontrol ÿdlg.Add("DialogLabel19","DialogLabel")
+control.Move(185,22,45,13)
+control.Captionÿ"Vorlagetermin"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel20","DialogLabel")
+control.Move(235,22,54,13)
+control.Captionÿ"Vorlagezeit"
+ÿ’ÿ¡
+ÿÊcontrol ÿdlg.Add("DialogLabel1","DialogLabel")
+control.Move(5,22,32,13)
+control.Captionÿ"Datum"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel2","DialogLabel")
+control.Move(49,22,28,13)
+control.Captionÿ"Termin"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel3","DialogLabel")
+control.Move(93,22,28,13)
+control.Captionÿ"Uhrzeit"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel5","DialogLabel")
+control.Move(5,36,123,12)
+control.Captionÿ"Zuordnung zur Aktion"
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame1","DialogFrame")
+control.Move(186,44,160,81)
+control.Captionÿ"Adresse"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel8","DialogLabel")
+control.Move(190,59,39,12)
+control.Captionÿ"Nachname"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel14","DialogLabel")
+control.Move(230,59,116,12)
+control.NoKeyboardEquivalentÿ1
+control.CaptionBindingÿ"Nachname$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel9","DialogLabel")
+control.Move(190,69,32,12)
+control.Captionÿ"Vorname"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel15","DialogLabel")
+control.Move(230,69,116,12)
+control.NoKeyboardEquivalentÿ1
+control.CaptionBindingÿ"Vorname$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel10","DialogLabel")
+control.Move(190,79,24,12)
+control.Captionÿ"Straáe"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel16","DialogLabel")
+control.Move(230,79,116,12)
+control.CaptionBindingÿ"Straáe$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel11","DialogLabel")
+control.Move(190,89,19,12)
+control.Captionÿ"Ort"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel17","DialogLabel")
+control.Move(230,89,116,12)
+control.CaptionBindingÿ"Ort$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(190,104,152,14)
+control.Captionÿ"Auswahl"
+control.ReturnValueÿ2
+ 
+ÿÊcontrol ÿdlg.Add("DialogComboBox1","DialogComboBox")
+control.Move(5,46,169,83)
+control.Styleÿ2
+control.Sortedÿ1
+control.ScrollBarsÿ2
+control.Bind("Aktionen$","Aktion$")
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel6","DialogLabel")
+control.Move(5,65,139,8)
+control.Captionÿ"Eintragen in den Kalender des Mitarbeiters"
+ 
+ÿÊcontrol ÿdlg.Add("DialogComboBox2","DialogComboBox")
+control.Move(5,76,169,90)
+control.Styleÿ2
+control.Sortedÿ1
+control.ScrollBarsÿ2
+control.Bind("Mitarbeiter$","MANachname$")
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel7","DialogLabel")
+control.Move(5,96,139,8)
+control.Captionÿ"Notiz"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox5","DialogTextBox")
+control.Move(5,105,169,128)
+control.MultiLineÿ1
+control.ScrollBarsÿ2
+control.MaxLengthÿ4000
+control.TextBindingÿ"RNotiz$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel12","DialogLabel")
+control.Move(186,133,162,29)
+control.Captionÿ"Wenn Sie diesen Termin nur zu Informationszwecken aufnehmen m”chten, markieren Sie bitte die Option 'Termin erledigt'."
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox1","DialogCheckBox")
+control.Move(186,165,76,12)
+control.Captionÿ"Termin erledigt"
+control.Bind("Terminerl$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel13","DialogLabel")
+control.Move(186,178,159,37)
+control.Captionÿ"Nach Bet„tigung der Schaltfl„che 'OK' wird der Eintrag in der Termindatei erzeugt."
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton2","DialogCommandButton")
+control.Move(186,217,78,15)
+control.Defaultÿ1
+control.Captionÿ"&OK"
+control.ReturnValueÿ1
+ 
+ 
+ _ok%ÿ0
+ ÿØ_ok%ÿ0
+ÿñ"AQREGISTER",req%
+ÿ¡req%ÿ2ÿp
+kunr%ÿADRSuche%(0)
+ÿ¡kunr%ÿ0ÿp
+ÿÉÿ¥kunr%ÿ™GAdrDat$ÿ£CodeKU.GAdrDat$
+Nachname$ÿNachname.GAdrDat$
+Vorname$ÿVorname.GAdrDat$
+Straáe$ÿStraáe.GAdrDat$
+Ort$ÿPLZ.GAdrDat$ÿ" "ÿOrt.GAdrDat$
+tmpku%ÿCodeKU.GAdrDat$
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡req%ÿ0ÿp_ok%ÿ2
+ÿ¡req%ÿ1ÿp_ok%ÿ1
+ ÿÙ
+ ÿ¾ÿñ"AQREGISTER"
+dokt030920053: 
+ ÿ¡_ok%ÿ1ÿp
+ÿ™GAkquiDat$
+ÿÿ™GAkquiDat$
+cuaq%ÿÿI(GAkquiDat$,1)
+codeaq.GAkquiDat$ÿcuaq%
+codeKU.GAkquiDat$ÿtmpku%
+CodeAK.GAkquiDat$ÿÿ0(ÿ,(Aktion$,ÿ/(Aktion$)ÿ6,6))
+CodeMA.GAkquiDat$ÿÿ0(ÿ,(MANachname$,ÿ/(MANachname$)ÿ6,6))
+codema1%ÿÿ0(ÿ,(MANachname$,ÿ/(MANachname$)ÿ6,6))
+ÿÉÿ¥tmpku%ÿ™GAdrDat$ÿ£CodeKU.GAdrDat$
+nachname.GAkquiDat$ÿnachname.GAdrDat$
+Wertung.GAkquiDat$ÿ0
+Datum.GAkquiDat$ÿDatum$
+Uhrzeit.GAkquiDat$ÿzeit$
+Dauer.GAkquiDat$ÿÿ0(dauer$)
+CodeDOK.GAkquiDat$ÿ0
+ErDatum.GAkquiDat$ÿVTermin$
+ErZeit.GAkquiDat$ÿVZeit$
+ÿÉÿ¥codema.GAkquiDat$ÿáÿ™"supervis"ÿ£codema.supervis
+Bearbeiter.GAkquiDat$ÿnachname.supervis
+ÿ¡_projekt$ÿ"PROVIS"ÿ_projekt$ÿ"IMMAK"ÿp
+AnzTermine.supervisÿAnzTermine.supervisÿ1
+ÿ¡Terminerl$ÿ"j"ÿp
+AnzTermineErl.supervisÿAnzTermineErl.supervisÿ1
+ÿ^
+AnzTermineUnErl.supervisÿAnzTermineUnErl.supervisÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÌÿ™"supervis"
+ÿïÿYÿ™"Supervis"
+ÿ¡PROJECTJN$ÿ"TRUE"ÿp
+codepr.GAkquiDat$ÿcodeprdok%
+projekt.GAkquiDat$ÿprojektdok$
+codeprdok%ÿ0
+projektdok$ÿ""
+ÿ’ÿ¡
+notiz.GAkquiDat$ÿrnotiz$
+termin.GAkquiDat$ÿTermin$
+erledigt_Termin.GAkquiDat$ÿTerminerl$
+ÿ¡_projekt$ÿ"PROVIS"ÿ_projekt$ÿ"IMMAK"ÿp
+TerminNr.GAkquiDat$ÿAnzTermine.supervis
+ÿ’ÿ¡
+ÿ½ 01032001
+GErledTermin$ÿTerminerl$
+emailto.akquiseÿNummer$
+ÿ½ normale email aus Adressmaske
+ÿ¡para%ÿ
+1ÿp
+eMAILtEXT.akquiseÿBriefanrede.adressenÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+eMAILtEXT1.akquiseÿEMAILText1.supervisÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+eMAILtEXT1.akquiseÿeMAILtEXT1.akquiseÿEMAILText2.supervis
+ÿ’ÿ¡
+ÿ½ Zugangsdaten email
+ÿ¡para%ÿ1ÿp
+EMAILBETREFF.akquiseÿ"CODie-SmartPROVIS Update"
+t1t$ÿBriefanrede.adressenÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"anbei bersenden wir Ihnen die Zugangsdaten fr Ihr Update des Programmes SmartPROVIS"ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Internetadresse: http://www.codie.com"ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Benutzername: "ÿInternetname.adressenÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Passwort: "ÿInternetpasswo.adressenÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Bitte denken an eine komplette Datensicherung des gesamten CODie-Ordners !!!!!!!!!"ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+ 
+t1t$ÿt1t$ÿ"Bitte lesen Sie den Updatetext und informieren auch Ihre Mitarbeiter ber die knftigen nderungen im Programm."ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Vor der Installation fhren Sie bitte eine komplette Datensicherung durch, die auch die Sicherung der Dokumente beinhalten sollte."ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Installation kein anderer Nutzer das System ge”ffnet haben darf. Gehen Sie in der vom System vorgegebenen Reihenfolge vor."ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Bitte prfen Sie, ob Sie den Update-Beitrag Brutto fr das 1.Halbjahr 2006 berwiesen haben, wenn nicht, bitten wir Sie hiermit um Begleichung des Betrages."ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Kunden mit Online Servicevertrag (Updateinstallation durch CODie) vereinbaren bitte einen Installationstermin mit Herrn Bargfried (bei der Installation darf kein Mitarbeiter mit dem System arbeiten)"ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Bei technischen Fragen zur ASP Version wenden Sie sich bitte an die Firma Maklersoftware.com oder an die Smea GmbH. "ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Bei Fragen und Wnschen rufen Sie uns bitte an! "ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"Mit freundlichen Gráen verbleibt"ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+t1t$ÿt1t$ÿ"das CODie Team"ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+ 
+eMAILtEXT.akquiseÿt1t$
+eMAILtEXT1.akquiseÿEMAILText1.supervisÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+eMAILtEXT1.akquiseÿeMAILtEXT1.akquiseÿEMAILText2.supervis
+ÿ’ÿ¡
+ÿ½ Werbeemail
+ÿ¡para%ÿ2ÿp
+ÿ½ 21022007 - Werbeemail
+ÿ½ anzeige was in wemail vorhanden ist, danach gehts weiter
+ÿ™"wemail"
+ÿ£codekey.wemail
+ÿÉÿ`ÿ™"wemail"ÿ£codekey.wemail
+ÿ×wemail$(ÿA("wemail"))
+a%ÿ0
+ÿØÿOÿB("wemail")
+ok%ÿÿ1
+ÿ¡ok%ÿÿ1ÿp
+	wemail$(a%)ÿBeschreibung.wemailÿ"/"ÿname.wemailÿ"/"ÿÿ(Datum.wemail,"0d.mm.yyyy")ÿÿ'(100)ÿÿ(Codekey.wemail,"0000000")
+	a%ÿa%ÿ1
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"wemail"ÿ£codekey.wemail
+ÿÙ
+ÿ×Auswahl1$(1)
+Auswahl$ÿwemail$(0)
+Auswahl1$(0)ÿAuswahl$
+codekey%ÿ0
+ÿ‰ÿñ"PREISLIS",0,0,500,364,"Werbe-Email-Vorlage","MS Sans Serif",8
+ÿ|ÿñ"PREISLIS",4,0,0,499,340,0," Auswahl Werbe-Email-Vorlage"
+ÿ|ÿñ"PREISLIS",7,5,14,489,325,2,2,wemail$,Auswahl1$," "
+ÿ|ÿñ"PREISLIS",1,17,345,55,16,1,"&OK",1,1
+ÿ|ÿñ"PREISLIS",1,77,345,55,16,0,"&Abbrechen",0,0
+ÿñ"PREISLIS",req%
+ÿ¾ÿñ"PREISLIS"
+ÿ¡req%ÿ1ÿp
+codekey%ÿÿ0(ÿ-(Auswahl1$(0),8))
+ÿ¡codekey%ÿ0ÿp
+	ÿÉÿ`ÿ™"wemail"ÿ£codekey.wemail
+	ÿÉÿ¥codekey%ÿ™"wemail"ÿ£codekey.wemail
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡codekey%ÿ0ÿreq%ÿ0ÿp
+ÿƒFehler("Auswahl abgebrochen","")
+ÿwwe210220072
+ÿ’ÿ¡
+ 
+ÿ½ ****************
+ÿ’ÿ¡
+ ÿ½ emailbetreff.akquise = Betreff.mail
+ÿ½ emailtext.akquise = nachricht.mail
+ÿ½ emailcc.akquise = emailcc.mail
+ÿ½ emailbcc.akquise = emailbcc.mail
+ÿƒFStore(GAkquiDat$)
+ ÿ’ÿ¡
+ ÿ™cfile$
+ ÿ³ÿ_ÿwErrorHandler
+ ÿßÿ³
+ ÿ’ÿÿ
+

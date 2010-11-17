@@ -1,0 +1,99 @@
+SBP
+	ja%ÿÿ1
+	ÿ¡disabled%("ADRDrucken")ÿpja%ÿ0
+	ÿ¡req3%ÿ3ÿja%ÿÿ1ÿp
+ÿ½ drucken
+ÿ³ÿ_ÿwadrdr190620021
+ÿ×dlg ÿUDialog
+ÿ×control ÿUDialogControl
+adrdr190620021: 
+ÿ³ÿ_ÿwErrorHandler
+Superbase.Dialogs.Add("ADRFilter")
+ÿÊdlg ÿSuperbase.Dialogs.ADRFilter
+dlg.Move(0,0,158,111)
+dlg.Captionÿtitle$
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame2","DialogFrame")
+control.Move(5,7,141,77)
+control.Captionÿ"Druckoptionen"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox1","DialogCheckBox")
+control.Move(11,24,85,10)
+control.Captionÿ"Alle Angaben drucken"
+control.Bind("KurzLang$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox2","DialogCheckBox")
+control.Move(11,38,85,11)
+control.Captionÿ"Termine mitdrucken"
+control.Bind("Terminejn$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox3","DialogCheckBox")
+control.Move(11,53,115,11)
+control.Captionÿ"Vertr„ge zur Adresse drucken!"
+control.Bind("VertragJN$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox4","DialogCheckBox")
+control.Move(11,68,105,11)
+control.Captionÿ"als Telefonliste"
+control.Bind("adrtelefon$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(22,89,48,15)
+control.Defaultÿ1
+control.Captionÿ"&Weiter"
+control.ReturnValueÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton2","DialogCommandButton")
+control.Move(74,89,48,15)
+control.Captionÿ"&Abbruch"
+control.ReturnValueÿ0
+control.Cancelÿ1
+ÿñ"ADRFilter",req%
+ÿ¾ÿñÿt
+ÿ¡req%ÿ1ÿp
+ÿ½ jetzt das Array auslesen und in eine Datei speichern
+ÿ™GADRDat$
+cindex$ÿÿ£
+ÿ£codeku.Gadrdat$
+ÿƒDFile(2,"OFFICE\ADRLEER"ÿ_fpw$)
+ÿ›xi%ÿ0ÿqa%ÿ1
+codeku%ÿÿ0(ÿ-(AdrFound$(xi%),6))
+ÿÉÿ¥codeku%ÿ™GADRDat$ÿ£codeku.GADRDat$
+anrede$ÿAnrede.GadrDat$
+titel$ÿTitel.GADRDat$
+ÿ¡anrede$ÿ"Herr*"ÿanrede$ÿ"Fr*"ÿanrede$ÿ"Fam*"ÿanrede$ÿ"Ehe*"ÿanrede$ÿ"Kind*"ÿp
+nachname$ÿÿH(nachname.GAdrDat$)
+vorname$ÿÿH(vorname.GAdrDat$)
+ÿ^
+nachname$ÿÿH(nachname.GAdrDat$)
+vorname$ÿÿH(Geburtsname.GAdrDat$)
+ÿ’ÿ¡
+gebdat%ÿGeburtstag.GAdrDat$
+ÿ½ CALL WriteAdrTemp(codeku%,anrede$,titel$,nachname$,vorname$,gebdat%)
+ÿÿ™"ADRLEER"
+a%ÿCopyRecord%(GADRDat$,"ADRLEER")
+Nachname.adrleerÿnachname$
+Vorname.adrleerÿVorname$
+ÿÌÿ™"ADRLEER"
+ÿïÿ™"ADRLEER"
+ÿ±xi%
+ÿ½ dann drucken ausl”sen
+Wbericht$ÿ"ADRLEER"
+title2$ÿ"Adressliste "
+ÿƒVPEADRGr(Wbericht$,FormatPrint$,title2$,Terminejn$,KurzLang$)
+ÿ£cindex$
+ÿ¾ÿaÿ™"ADRLEER"
+ÿ½ CALL Fehler("","")
+ÿ’ÿ¡
+	ÿ’ÿ¡
+

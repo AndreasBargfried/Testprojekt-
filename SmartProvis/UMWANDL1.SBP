@@ -1,0 +1,1232 @@
+SBP
+ÿÿmain()
+ ÿƒMAKRO2()
+ÿ½ CALL Aquio()
+ ÿ½ CALL Tell()
+ ÿ½ CALL Aquianp()
+ ÿ½ CALL KV1anp()
+ ÿ½ CALL GeadrAnp()
+ ÿ½ CALL SpartAnp()
+ ÿ½ CALL VPAnp()
+ ÿ½ CALL VGAnp()
+ ÿ½ CALL KVAnp()
+ ÿ½ CALL VG2Anp()
+ ÿ½ CALL KV3anp()
+ ÿ½ CALL Tell1anp()
+ ÿ½ CALL adreganp()
+ ÿ½ CALL adrfinanp()
+ ÿ½ CALL KV4anp()
+ ÿ½ REMOVE FROM FILE "KVERTRAG"
+ ÿ½ CALL prepdat1()
+ ÿ½ CALL KVFAEL()
+ ÿ½ CALL prepdat2()
+ ÿ½ CALL prepdat3()
+ ÿ½ CALL prep4()
+ ÿ½ CALL KVAnp0()
+ ÿ½ CALL Super1()
+ ÿƒKV1()
+ ÿ’ÿÿ
+
+ÿÿKV1()
+ sou$ÿ"KVEROLD"
+ dest$ÿ"KVERTRAG"
+ ÿ™sou$
+ ÿ£lfdnr.sou$
+ ÿ½ CopyRecord%(source$,dest$)
+ ÿÉÿ`ÿ™sou$
+ i%ÿ0
+ j%ÿÿA(sou$)
+ ÿØÿOÿB(sou$)
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ"/"ÿÿ(j%)
+ÿÿ™dest$
+a%ÿCopyRecord%(sou$,dest$)
+ÿÌÿ™dest$
+ÿÉÿ±ÿ™sou$
+ ÿÙ
+ 
+ ÿ’ÿÿ
+ 
+
+
+ÿÿSuper1()
+ sou$ÿ"SUPEROLD"
+ dest$ÿ"SUPERVIS"
+ ÿ™sou$
+ ÿ£codema.sou$
+ ÿ½ CopyRecord%(source$,dest$)
+ ÿÉÿ`ÿ™sou$
+ i%ÿ0
+ j%ÿÿA(sou$)
+ ÿØÿOÿB(sou$)
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ"/"ÿÿ(j%)
+ÿÿ™dest$
+a%ÿCopyRecord%(sou$,dest$)
+ÿÌÿ™dest$
+ÿÉÿ±ÿ™sou$
+ ÿÙ
+ 
+ ÿ’ÿÿ
+
+ÿÿKVAnp0()
+ ÿ™"kverold"
+ ÿ£lfdnr.kverold
+ ÿÉÿ`ÿáÿ™"kverold"ÿ£lfdnr.kverold
+ i%ÿ0
+ j%ÿÿA("kverold")
+ ÿØÿOÿB("kverold")
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ" von "ÿÿ(j%)ÿ" Vertr„ge codege.... anpassen"
+lfdnrneu.kveroldÿi%
+ÿÌÿ™"kverold"
+ÿÉÿ±ÿáÿ™"kverold"ÿ£lfdnr.kverold
+ ÿÙ
+ ÿ’ÿÿ
+
+ÿÿprepdat3()
+ ÿ½ GOTO n141220031
+ sou$ÿ"GEADROLD"
+ dest$ÿ"GEADR"
+ ÿ™sou$
+ ÿ£codege.sou$
+ ÿ½ CopyRecord%(source$,dest$)
+ ÿÉÿ`ÿ™sou$
+ i%ÿ0
+ j%ÿÿA(sou$)
+ ÿØÿOÿB(sou$)
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ"/"ÿÿ(j%)
+ÿÿ™dest$
+a%ÿCopyRecord%(sou$,dest$)
+ÿÌÿ™dest$
+ÿÉÿ±ÿ™sou$
+ ÿÙ
+ 
+ sou$ÿ"MAADOLD"
+ dest$ÿ"MAADR"
+ ÿ™sou$
+ ÿ£codema.sou$
+ ÿ½ CopyRecord%(source$,dest$)
+ ÿÉÿ`ÿ™sou$
+ i%ÿ0
+ j%ÿÿA(sou$)
+ ÿØÿOÿB(sou$)
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ"/"ÿÿ(j%)
+ÿÿ™dest$
+a%ÿCopyRecord%(sou$,dest$)
+ÿÌÿ™dest$
+ÿÉÿ±ÿ™sou$
+ ÿÙ
+ 
+ 
+ sou$ÿ"SPAROLD"
+ dest$ÿ"SPARTEN"
+ ÿ™sou$
+ ÿ£codeVA.sou$
+ ÿ½ CopyRecord%(source$,dest$)
+ ÿÉÿ`ÿ™sou$
+ i%ÿ0
+ j%ÿÿA(sou$)
+ ÿØÿOÿB(sou$)
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ"/"ÿÿ(j%)
+ÿÿ™dest$
+a%ÿCopyRecord%(sou$,dest$)
+ÿÌÿ™dest$
+ÿÉÿ±ÿ™sou$
+ ÿÙ
+ 
+ 
+ sou$ÿ"VPRODOLD"
+ dest$ÿ"VPRODUKT"
+ ÿ™sou$
+ ÿ£codevp.sou$
+ ÿ½ CopyRecord%(source$,dest$)
+ ÿÉÿ`ÿ™sou$
+ i%ÿ0
+ j%ÿÿA(sou$)
+ ÿØÿOÿB(sou$)
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ"/"ÿÿ(j%)
+ÿÿ™dest$
+a%ÿCopyRecord%(sou$,dest$)
+ÿÌÿ™dest$
+ÿÉÿ±ÿ™sou$
+ ÿÙ
+ ÿwn141220031
+ sou$ÿ"AKQOLD"
+ dest$ÿ"AKQUISE"
+ ÿ™sou$
+ ÿ£codeaq.sou$
+ ÿ½ CopyRecord%(source$,dest$)
+ ÿÉÿ`ÿ™sou$
+ i%ÿ0
+ j%ÿÿA(sou$)
+ ÿØÿOÿB(sou$)
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ"/"ÿÿ(j%)
+ÿÿ™dest$
+a%ÿCopyRecord%(sou$,dest$)
+ÿÌÿ™dest$
+ÿÉÿ±ÿ™sou$
+ ÿÙ
+n141220031: 
+ ÿ’ÿÿ
+ 
+ÿÿprep4()
+ sou$ÿ"TELOLD"
+ dest$ÿ"TELEFON"
+ ÿ™sou$
+ ÿ£codetel.sou$
+ ÿ½ CopyRecord%(source$,dest$)
+ ÿÉÿ`ÿ™sou$
+ i%ÿ0
+ j%ÿÿA(sou$)
+ ÿØÿOÿB(sou$)
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ"/"ÿÿ(j%)
+ÿÿ™dest$
+a%ÿCopyRecord%(sou$,dest$)
+ÿÌÿ™dest$
+ÿÉÿ±ÿ™sou$
+ ÿÙ
+ 
+ ÿ’ÿÿ
+ 
+ÿÿprepdat2()
+ ÿ™"ADROLD"
+ ÿ£codeku.ADROLD
+ ÿ½ CopyRecord%(source$,dest$)
+ ÿÉÿ`ÿ™"ADROLD"
+ i%ÿ0
+ j%ÿÿA("ADROLD")
+ ÿØÿOÿB("ADROLD")
+i%ÿi%ÿ1
+codeku%ÿcodeku.ADRold
+ÿÊÿËÿ(i%)ÿ"/"ÿÿ(j%)
+ÿÿ™"ADRESSEN"
+a%ÿCopyRecord%("ADROLD","ADRESSEN")
+dat$ÿ"ADREG"
+ÿ¡ÿJ(codeku.ADRold,codeku.dat$)ÿp
+ÿÉÿ`ÿ™dat$ÿ£codeku.dat$
+ÿÉÿ¥codeku%ÿ™dat$ÿ£codeku.dat$
+a%ÿCopyRecord%(dat$,"ADRESSEN")
+ÿ’ÿ¡
+dat$ÿ"ADRFIN"
+ÿ¡ÿJ(codeku.ADRold,codeku.dat$)ÿp
+ÿÉÿ`ÿ™dat$ÿ£codeku.dat$
+ÿÉÿ¥codeku%ÿ™dat$ÿ£codeku.dat$
+a%ÿCopyRecord%(dat$,"ADRESSEN")
+ÿ’ÿ¡
+dat$ÿ"ADRNOTIZ"
+ÿ¡ÿJ(codeku.ADRold,codeku.dat$)ÿp
+ÿÉÿ`ÿ™dat$ÿ£codeku.dat$
+ÿÉÿ¥codeku%ÿ™dat$ÿ£codeku.dat$
+a%ÿCopyRecord%(dat$,"ADRESSEN")
+ÿ’ÿ¡
+ 
+ 
+ÿÌÿ™"ADRESSEN"
+ÿÉÿ±ÿ™"ADROLD"
+ ÿÙ
+ 
+ ÿ’ÿÿ
+ 
+ 
+ 
+ 
+ÿÿprepdat1()
+ 
+ ÿ™"kverOLD"
+ ÿ£lfdnr.kverold
+ ÿ½ CopyRecord%(source$,dest$)
+ ÿÉÿ`ÿ™"KVerOLD"
+ i%ÿ0
+ j%ÿÿA("KVEROLD")
+ ÿØÿOÿB("KVerOLD")
+i%ÿi%ÿ1
+lfdnr%ÿlfdnr.kverold
+ÿÊÿËÿ(i%)ÿ"/"ÿÿ(j%)
+ÿÿ™"KVERTRAG"
+a%ÿCopyRecord%("KVEROLD","KVERTRAG")
+dat$ÿ"KBH"
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.dat$)ÿp
+ÿÉÿ`ÿ™dat$ÿ£lfdnr.dat$
+ÿÉÿ¥lfdnr%ÿ™dat$ÿ£lfdnr.dat$
+a%ÿCopyRecord%(dat$,"KVERTRAG")
+ÿ’ÿ¡
+dat$ÿ"KFISP"
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.dat$)ÿp
+ÿÉÿ`ÿ™dat$ÿ£lfdnr.dat$
+ÿÉÿ¥lfdnr%ÿ™dat$ÿ£lfdnr.dat$
+a%ÿCopyRecord%(dat$,"KVERTRAG")
+ÿ’ÿ¡
+dat$ÿ"KGEBAE"
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.dat$)ÿp
+ÿÉÿ`ÿ™dat$ÿ£lfdnr.dat$
+ÿÉÿ¥lfdnr%ÿ™dat$ÿ£lfdnr.dat$
+a%ÿCopyRecord%(dat$,"KVERTRAG")
+ÿ’ÿ¡
+dat$ÿ"KGLAS"
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.dat$)ÿp
+ÿÉÿ`ÿ™dat$ÿ£lfdnr.dat$
+ÿÉÿ¥lfdnr%ÿ™dat$ÿ£lfdnr.dat$
+a%ÿCopyRecord%(dat$,"KVERTRAG")
+ÿ’ÿ¡
+dat$ÿ"KHaft"
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.dat$)ÿp
+ÿÉÿ`ÿ™dat$ÿ£lfdnr.dat$
+ÿÉÿ¥lfdnr%ÿ™dat$ÿ£lfdnr.dat$
+a%ÿCopyRecord%(dat$,"KVERTRAG")
+ÿ’ÿ¡
+dat$ÿ"KHAUS"
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.dat$)ÿp
+ÿÉÿ`ÿ™dat$ÿ£lfdnr.dat$
+ÿÉÿ¥lfdnr%ÿ™dat$ÿ£lfdnr.dat$
+a%ÿCopyRecord%(dat$,"KVERTRAG")
+ÿ’ÿ¡
+dat$ÿ"KINVE"
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.dat$)ÿp
+ÿÉÿ`ÿ™dat$ÿ£lfdnr.dat$
+ÿÉÿ¥lfdnr%ÿ™dat$ÿ£lfdnr.dat$
+a%ÿCopyRecord%(dat$,"KVERTRAG")
+ÿ’ÿ¡
+dat$ÿ"KKAPI"
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.dat$)ÿp
+ÿÉÿ`ÿ™dat$ÿ£lfdnr.dat$
+ÿÉÿ¥lfdnr%ÿ™dat$ÿ£lfdnr.dat$
+a%ÿCopyRecord%(dat$,"KVERTRAG")
+ÿ’ÿ¡
+dat$ÿ"KKFZ1"
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.dat$)ÿp
+ÿÉÿ`ÿ™dat$ÿ£lfdnr.dat$
+ÿÉÿ¥lfdnr%ÿ™dat$ÿ£lfdnr.dat$
+a%ÿCopyRecord%(dat$,"KVERTRAG")
+ÿ’ÿ¡
+dat$ÿ"KKFZ2"
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.dat$)ÿp
+ÿÉÿ`ÿ™dat$ÿ£lfdnr.dat$
+ÿÉÿ¥lfdnr%ÿ™dat$ÿ£lfdnr.dat$
+a%ÿCopyRecord%(dat$,"KVERTRAG")
+ÿ’ÿ¡
+dat$ÿ"KKRAN"
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.dat$)ÿp
+ÿÉÿ`ÿ™dat$ÿ£lfdnr.dat$
+ÿÉÿ¥lfdnr%ÿ™dat$ÿ£lfdnr.dat$
+a%ÿCopyRecord%(dat$,"KVERTRAG")
+ÿ’ÿ¡
+dat$ÿ"KLEBE"
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.dat$)ÿp
+ÿÉÿ`ÿ™dat$ÿ£lfdnr.dat$
+ÿÉÿ¥lfdnr%ÿ™dat$ÿ£lfdnr.dat$
+a%ÿCopyRecord%(dat$,"KVERTRAG")
+ÿ’ÿ¡
+dat$ÿ"KRECH"
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.dat$)ÿp
+ÿÉÿ`ÿ™dat$ÿ£lfdnr.dat$
+ÿÉÿ¥lfdnr%ÿ™dat$ÿ£lfdnr.dat$
+a%ÿCopyRecord%(dat$,"KVERTRAG")
+ÿ’ÿ¡
+dat$ÿ"KTIER"
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.dat$)ÿp
+ÿÉÿ`ÿ™dat$ÿ£lfdnr.dat$
+ÿÉÿ¥lfdnr%ÿ™dat$ÿ£lfdnr.dat$
+a%ÿCopyRecord%(dat$,"KVERTRAG")
+ÿ’ÿ¡
+dat$ÿ"KUNFA"
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.dat$)ÿp
+ÿÉÿ`ÿ™dat$ÿ£lfdnr.dat$
+ÿÉÿ¥lfdnr%ÿ™dat$ÿ£lfdnr.dat$
+a%ÿCopyRecord%(dat$,"KVERTRAG")
+ÿ’ÿ¡
+ÿÌÿ™"KVERTRAG"
+ÿÉÿ±ÿ™"KVEROLD"
+ ÿÙ
+ 
+ ÿ’ÿÿ
+ 
+ÿÿKVFAEL()
+ ÿ™"kvfaeOLD"
+ ÿ£codevt.kvfaeold
+ ÿ½ CopyRecord%(source$,dest$)
+ ÿÉÿ`ÿ™"kvfaeOLD"
+ i%ÿ0
+ j%ÿÿA("kvfaeOLD")
+ ÿØÿOÿB("kvfaeOLD")
+i%ÿi%ÿ1
+ÿ½ lfdnr% = codevt.kvfaeold
+ÿÊÿËÿ(i%)ÿ"/"ÿÿ(j%)
+ÿÿ™"KVFAEL"
+a%ÿCopyRecord%("kvfaeOLD","KVFAEL")
+ÿÌÿ™"KVFAEL"
+ÿÉÿ±ÿ™"kvfaeold"
+ ÿÙ
+ ÿ’ÿÿ
+
+ÿÿMAKRO2():ÿ½                                        10.Okt.2003
+ ÿŽ"E:\codie.nik\OFFICE"
+ ÿ´ÿ™"E:\codie.nik\OFFICE\ADROLD.SBF;paris"
+ ÿ™"ADROLD"
+ ÿƒFldAdd("codekuneu","NUM;000000.",1)
+ ÿƒFldAdd("Codemaneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\OFFICE\ADREG.SBF;paris"
+ ÿ™"ADREG"
+ ÿƒFldAdd("codekuneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\OFFICE\ADRFIN.SBF;paris"
+ ÿ™"ADRFIN"
+ ÿƒFldAdd("codekuneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\OFFICE\ADRNOTIZ.SBF;paris"
+ ÿ™"ADRNOTIZ"
+ ÿƒFldAdd("codekuneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ½ OPEN FILE "E:\codie.nik\OFFICE\ADRSTAT.SBF;paris"
+ ÿ½ FILE "ADRSTAT"
+ ÿ½ CALL FldAdd("codekuneu","NUM;000000.",1)
+ ÿ½ SAVE FILE FILE 
+ ÿ´ÿ™"E:\codie.nik\OFFICE\ADRESSEN.SBF;paris"
+ ÿ´ÿ™"E:\codie.nik\OFFICE\AKQOLD.SBF;paris"
+ ÿ™"AKQOLD"
+ ÿƒFldAdd("codekuneu","NUM;000000.",1)
+ ÿƒFldAdd("codemaneu","NUM;000000.",1)
+ ÿƒFldAdd("codeAKneu","NUM;000000.",1)
+ ÿƒFldAdd("codeaqneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\OFFICE\AKQUISE.SBF;paris"
+ ÿ´ÿ™"E:\codie.nik\OFFICE\TELEFON.SBF;paris"
+ ÿ´ÿ™"E:\codie.nik\OFFICE\TELOLD.SBF;paris"
+ ÿ™"TELOLD"
+ ÿƒFldAdd("codekuneu","NUM;000000.",1)
+ ÿƒFldAdd("codetelneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\MAADR.SBF;paris"
+ ÿ´ÿ™"E:\codie.nik\PROVIS\MAADOLD.SBF;paris"
+ ÿ™"MAADOLD"
+ ÿƒFldAdd("codeMAneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\GEADR.SBF;paris"
+ ÿ´ÿ™"E:\codie.nik\PROVIS\GEADROLD.SBF;paris"
+ ÿ™"GEADROLD"
+ ÿƒFldAdd("codegeneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\KVERTRAG.SBF;paris"
+ ÿ´ÿ™"E:\codie.nik\PROVIS\KVEROLD.SBF;paris"
+ ÿ™"KVEROLD"
+ ÿƒFldAdd("codekuneu","NUM;000000.",1)
+ ÿƒFldAdd("codegeneu","NUM;000000.",1)
+ ÿƒFldAdd("codemaneu","NUM;000000.",1)
+ ÿƒFldAdd("codevaneu","NUM;000000.",1)
+ ÿƒFldAdd("codevpneu","NUM;000000.",1)
+ ÿƒFldAdd("lfdnrneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ 
+ ÿ´ÿ™"E:\codie.nik\PROVIS\VPRODUKT.SBF;paris"
+ ÿ´ÿ™"E:\codie.nik\PROVIS\VPRODOLD.SBF;paris"
+ ÿ™"VPRODOLD"
+ ÿƒFldAdd("codevpneu","NUM;000000.",1)
+ ÿƒFldAdd("codegeneu","NUM;000000.",1)
+ ÿƒFldAdd("codevaneu","NUM;000000.",1)
+ ÿƒFldAdd("codevpneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\SPARTEN.SBF;paris"
+ ÿ´ÿ™"E:\codie.nik\PROVIS\SPAROLD.SBF;paris"
+ ÿ™"sparOLD"
+ ÿƒFldAdd("codevaneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\KBH.SBF;paris"
+ ÿ™"KBH"
+ ÿƒFldAdd("lfdnrneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\KFISP.SBF;paris"
+ ÿ™"KFISP"
+ ÿƒFldAdd("lfdnrneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\KGEBAE.SBF;paris"
+ ÿ™"KGEBAE"
+ ÿƒFldAdd("lfdnrneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\KGLAS.SBF;paris"
+ ÿ™"KGLAS"
+ ÿƒFldAdd("lfdnrneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\KHAFT.SBF;paris"
+ ÿ™"KHAFT"
+ ÿƒFldAdd("lfdnrneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\KHAUS.SBF;paris"
+ ÿ™"KHAUS"
+ ÿƒFldAdd("lfdnrneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\KINVE.SBF;paris"
+ ÿ™"KINVE"
+ ÿƒFldAdd("lfdnrneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\KKAPI.SBF;paris"
+ ÿ™"KKAPI"
+ ÿƒFldAdd("lfdnrneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\KKFZ1.SBF;paris"
+ ÿ™"KKFZ1"
+ ÿƒFldAdd("lfdnrneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\KKFZ2.SBF;paris"
+ ÿ™"KKFZ2"
+ ÿƒFldAdd("lfdnrneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\KKRAN.SBF;paris"
+ ÿ™"KKRAN"
+ ÿƒFldAdd("lfdnrneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\KLEBE.SBF;paris"
+ ÿ™"KLEBE"
+ ÿƒFldAdd("lfdnrneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\KRECH.SBF;paris"
+ ÿ™"KRECH"
+ ÿƒFldAdd("lfdnrneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\KTIER.SBF;paris"
+ ÿ™"KTIER"
+ ÿƒFldAdd("lfdnrneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\KUNFA.SBF;paris"
+ ÿ™"KUNFA"
+ ÿƒFldAdd("lfdnrneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\kvfaeold.SBF;paris"
+ ÿ™"kvfaeold"
+ ÿƒFldAdd("codevtneu","NUM;000000.",1)
+ ÿÅÿ™ÿ™
+ ÿ´ÿ™"E:\codie.nik\PROVIS\kvfael.SBF;paris"
+ ÿ½ CALL Aquio()
+ ÿ½ CALL Tell()
+ ÿ½ CALL Aquianp()
+ ÿ½ CALL KV1anp()
+ ÿ½ CALL GeadrAnp()
+ ÿ½ CALL SpartAnp()
+ ÿ½ CALL VPAnp()
+ ÿ½ CALL VGAnp()
+ ÿ½ CALL KVAnp()
+ ÿ½ CALL VG2Anp()
+ ÿ½ CALL KV3anp()
+ ÿ½ CALL Tell1anp()
+ ÿ½ CALL adreganp()
+ ÿ½ CALL adrfinanp()
+ ÿ’ÿÿ
+ 
+ 
+ÿÿadrfinanp()
+ ÿ™"adrfin"
+ ÿ£codeku.adrfin
+ ÿÉÿ`ÿá
+ i%ÿ0
+ ÿØÿOÿB("adrfin")
+ÿ¡ÿJ(codeku.adrfin,codeku.adrold)ÿp
+ÿÉÿ`ÿ™"adrold"ÿ£codeku.adrold
+ÿÉÿ¥codeku.adregÿ™"adrold"ÿ£codeku.adrold
+codekuneu.adrfinÿcodekuneu.adrold
+ÿ’ÿ¡
+ÿÌÿ™"adrfin"
+ÿÉÿ±ÿáÿ™"adrfin"
+ ÿÙ
+ 
+ ÿ™"adrnotiz"
+ ÿ£codeku.adrnotiz
+ ÿÉÿ`ÿá
+ i%ÿ0
+ ÿØÿOÿB("adrnotiz")
+ÿ¡ÿJ(codeku.adrnotiz,codeku.adrold)ÿp
+ÿÉÿ`ÿ™"adrold"ÿ£codeku.adrold
+ÿÉÿ¥codeku.adrnotizÿ™"adrold"ÿ£codeku.adrold
+codekuneu.adrnotizÿcodekuneu.adrold
+ÿ’ÿ¡
+ÿÌÿ™"adrnotiz"
+ÿÉÿ±ÿáÿ™"adrnotiz"
+ ÿÙ
+ 
+ ÿ’ÿÿ
+ 
+ÿÿadreganp()
+ ÿ™"adreg"
+ ÿ£codekuneu.adreg
+ ÿÉÿ`ÿá
+ i%ÿ0
+ ÿØÿOÿB("adreg")
+ÿ¡ÿJ(codeku.adreg,codeku.adrold)ÿp
+ÿÉÿ`ÿ™"adrold"ÿ£codeku.adrold
+ÿÉÿ¥codeku.adregÿ™"adrold"ÿ£codeku.adrold
+codekuneu.adregÿcodekuneu.adrold
+ÿ’ÿ¡
+ÿÌÿ™"adreg"
+ÿÉÿ±ÿáÿ™"adreg"
+ ÿÙ
+ ÿ’ÿÿ
+ 
+ÿÿTell1anp()
+ ÿ™"TELOLD"
+ ÿ£codekuneu.TELold
+ ÿÉÿ`ÿá
+ i%ÿ0
+ ÿØÿOÿB("TELOLD")
+ÿ¡ÿJ(codeku.telold,codeku.adrold)ÿp
+ÿÉÿ`ÿ™"adrold"ÿ£codeku.adrold
+ÿÉÿ¥codeku.teloldÿ™"adrold"ÿ£codeku.adrold
+codekuneu.teloldÿcodekuneu.adrold
+ÿ’ÿ¡
+ÿÌÿ™"telold"
+ÿÉÿ±ÿáÿ™"TELOLD"
+ ÿÙ
+ ÿ’ÿÿ
+ 
+
+ÿÿKV4anp()
+ ÿ™"kverold"
+ ÿ£lfdnr.kverold
+ ÿÉÿ`ÿá
+ i%ÿ0
+ ÿØÿOÿB("kverold")
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)
+ÿ¡ÿJ(lfdnr.kverold,codevt.kvfaeold)ÿp
+ÿÉÿ`ÿ™"kvfaeold"ÿ£codevt.kvfaeold
+ÿÉÿ¥lfdnr.kveroldÿ™"kvfaeold"ÿ£codevt.kvfaeold
+codevtneu.kvfaeoldÿlfdnrneu.kverold
+ÿÌÿ™"kvfaeold"
+ÿ’ÿ¡
+ ÿÉÿ±ÿ™"KVEROLD"
+ ÿÙ
+ ÿ’ÿÿ
+
+
+ÿÿKV3anp()
+ ÿ™"KVERTRAG"
+ ÿ£lfdnrneu.kvertrag
+ ÿÉÿ`ÿá
+ i%ÿ0
+ ÿØÿOÿB("KVERTRAG")
+ i%ÿi%ÿ1
+ ÿÊÿËÿ(i%)
+ ÿ¡ÿJ(codeku.kvertrag,codeku.adrold)ÿp
+ÿÉÿ`ÿ™"adrold"ÿ£codeku.adrold
+ÿÉÿ¥codeku.kvertragÿ™"adrold"ÿ£codeku.adrold
+codekuneu.kvertragÿcodekuneu.adrold
+ ÿ’ÿ¡
+ ÿ¡ÿJ(codema.kvertrag,codema.maadr)ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema.kvertragÿ™"maadr"ÿ£codema.maadr
+codemaneu.kvertragÿcodemaneu.maadr
+ ÿ’ÿ¡
+ ÿ¡ÿJ(codeva.kvertrag,codeva.sparten)ÿp
+ÿÉÿ`ÿ™"sparten"ÿ£codeva.sparten
+ÿÉÿ¥codeva.kvertragÿ™"sparten"ÿ£codeva.sparten
+codevaneu.kvertragÿcodevaneu.sparten
+ ÿ’ÿ¡
+ ÿ¡ÿJ(codege.kvertrag,codege.geadr)ÿp
+ÿÉÿ`ÿ™"geadr"ÿ£codege.geadr
+ÿÉÿ¥codege.kvertragÿ™"geadr"ÿ£codege.geadr
+codegeneu.kvertragÿcodegeneu.geadr
+ ÿ’ÿ¡
+ ÿ¡ÿJ(codevp.kvertrag,codevp.vprodukt)ÿp
+ÿÉÿ`ÿ™"vprodukt"ÿ£codevp.vprodukt
+ÿÉÿ¥codevp.kvertragÿ™"vprodukt"ÿ£codevp.vprodukt
+codevpneu.kvertragÿcodevpneu.vprodukt
+ ÿ’ÿ¡
+ codemaneu.kvertragÿ1
+ ÿÌÿ™"KVERTRAG"
+ 
+ ÿ™"kvertrag"
+ ÿÉÿ±ÿáÿ™"kvertrag"ÿ£lfdnrneu.kvertrag
+ ÿÙ
+ ÿ’ÿÿ
+ 
+ÿÿVG2Anp()
+ ÿ™"vorgang"
+ ÿ£codevgneu.vorgang
+ ÿÉÿ`ÿá
+ i%ÿ0
+ ÿØÿOÿB("vorgang")
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ" Vorgang"
+ÿ¡ÿJ(codevt.vorgang,lfdnr.kvertrag)ÿp
+ÿÉÿ`ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ¥codevt.vorgangÿ™"kvertrag"ÿ£lfdnr.kvertrag
+codevtneu.vorgangÿlfdnrneu.kvertrag
+ÿ’ÿ¡
+ÿ¡ÿJ(codeku.vorgang,codeku.adrold)ÿp
+ÿÉÿ`ÿ™"adrold"ÿ£codeku.adrold
+ÿÉÿ¥codeku.vorgangÿ™"adrold"ÿ£codeku.adrold
+codekuneu.vorgangÿcodekuneu.adrold
+ÿ’ÿ¡
+ÿÌÿ™"vorgang"
+ÿÉÿ±ÿáÿ™"vorgang"ÿ£codevgneu.vorgang
+ ÿÙ
+ ÿ’ÿÿ
+ 
+ 
+
+
+
+ÿÿKVAnp()
+ ÿ™"kverold"
+ ÿ£lfdnr.kverold
+ ÿÉÿ`ÿáÿ™"kverold"ÿ£lfdnr.kverold
+ i%ÿ0
+ j%ÿÿA("kverold")
+ ÿØÿOÿB("kverold")
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ" von "ÿÿ(j%)ÿ" Vertr„ge codege.... anpassen"
+lfdnrneu.kveroldÿi%
+ÿÌÿ™"kverold"
+ÿÉÿ±ÿáÿ™"kverold"ÿ£lfdnr.kverold
+ ÿÙ
+ ÿÉÿ`ÿáÿ™"kverold"ÿ£lfdnrneu.kverold
+ i%ÿ0
+ j%ÿÿA("kverold")
+ ÿØÿOÿB("kverold")
+i%ÿi%ÿ1
+lfdnrneu%ÿlfdnrneu.kverold
+lfdnr$ÿlfdnr.kverold
+ÿÊÿËÿ(i%)ÿ" von "ÿÿ(j%)ÿ" Vertr„ge codege.... anpassen"
+ÿ¡ÿJ(codege.kverold,codege.geadrold)ÿp
+ÿÉÿ`ÿ™"geadrold"ÿ£codege.geadrold
+ÿÉÿ¥codege.kveroldÿ™"geadrold"ÿ£codege.geadrold
+codegeneu.kveroldÿcodegeneu.geadrold
+ÿ’ÿ¡
+ÿ¡ÿJ(codeva.kverold,codeva.sparold)ÿp
+ÿÉÿ`ÿ™"sparold"ÿ£codeva.sparold
+ÿÉÿ¥codeva.kveroldÿ™"sparold"ÿ£codeva.sparold
+codevaneu.kveroldÿcodevaneu.sparold
+ÿ’ÿ¡
+ÿ¡ÿJ(codevp.kverold,codevp.vprodold)ÿp
+ÿÉÿ`ÿ™"vprodold"ÿ£codevp.vprodold
+ÿÉÿ¥codevp.kveroldÿ™"vprodold"ÿ£codevp.vprodold
+codevpneu.kveroldÿcodevpneu.vprodold
+ÿ’ÿ¡
+ 
+ÿ¡ÿJ(codema.kverold,codema.maadold)ÿp
+ÿÉÿ`ÿ™"maadold"ÿ£codema.maadold
+ÿÉÿ¥codema.kveroldÿ™"maadold"ÿ£codema.maadold
+codemaneu.kveroldÿcodemaneu.maadold
+ÿ’ÿ¡
+ 
+ÿ¡ÿJ(codeku.kverold,codeku.adrold)ÿp
+ÿÉÿ`ÿ™"adrold"ÿ£codeku.adrold
+ÿÉÿ¥codeku.kveroldÿ™"adrold"ÿ£codeku.adrold
+codekuneu.kveroldÿcodekuneu.adrold
+ÿ’ÿ¡
+ÿÌÿ™"kverold"
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.kbh)ÿp
+ÿ™"KBH"
+ÿÍlfdnrneu.kbhÿlfdnrneu%ÿÐlfdnr.kbhÿlfdnr$
+ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.kfisp)ÿp
+ÿ™"KFISP"
+ÿÍlfdnrneu.kfispÿlfdnrneu%ÿÐlfdnr.kfispÿlfdnr$
+ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.kgebae)ÿp
+ÿ™"KGEBAE"
+ÿÍlfdnrneu.kGEBAEÿlfdnrneu%ÿÐlfdnr.kGEBAEÿlfdnr$
+ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.kglas)ÿp
+ÿ™"KGLAS"
+ÿÍlfdnrneu.kGLASÿlfdnrneu%ÿÐlfdnr.kGLASÿlfdnr$
+ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.khaft)ÿp
+ÿ™"KHAFT"
+ÿÍlfdnrneu.kHAFTÿlfdnrneu%ÿÐlfdnr.kHAFTÿlfdnr$
+ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.khaus)ÿp
+ÿ™"KHAUS"
+ÿÍlfdnrneu.kHAUSÿlfdnrneu%ÿÐlfdnr.kHAUSÿlfdnr$
+ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.kinve)ÿp
+ÿ™"KINVE"
+ÿÍlfdnrneu.kINVEÿlfdnrneu%ÿÐlfdnr.kINVEÿlfdnr$
+ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.kkapi)ÿp
+ÿ™"KKAPI"
+ÿÍlfdnrneu.kKAPIÿlfdnrneu%ÿÐlfdnr.kKAPIÿlfdnr$
+ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.kkfz1)ÿp
+ÿ™"Kkfz1"
+ÿÍlfdnrneu.kkfz1ÿlfdnrneu%ÿÐlfdnr.kkfz1ÿlfdnr$
+ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.kkfz2)ÿp
+ÿ™"Kkfz2"
+ÿÍlfdnrneu.kkfz2ÿlfdnrneu%ÿÐlfdnr.kkfz2ÿlfdnr$
+ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.kkran)ÿp
+ÿ™"Kkran"
+ÿÍlfdnrneu.kkranÿlfdnrneu%ÿÐlfdnr.kkranÿlfdnr$
+ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.klebe)ÿp
+ÿ™"Klebe"
+ÿÍlfdnrneu.klebeÿlfdnrneu%ÿÐlfdnr.klebeÿlfdnr$
+ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.krech)ÿp
+ÿ™"Krech"
+ÿÍlfdnrneu.krechÿlfdnrneu%ÿÐlfdnr.krechÿlfdnr$
+ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.ktier)ÿp
+ÿ™"Ktier"
+ÿÍlfdnrneu.ktierÿlfdnrneu%ÿÐlfdnr.ktierÿlfdnr$
+ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ¡ÿJ(lfdnr.kverold,lfdnr.kunfa)ÿp
+ÿ™"Kunfa"
+ÿÍlfdnrneu.kunfaÿlfdnrneu%ÿÐlfdnr.kunfaÿlfdnr$
+ÿ’ÿÍ
+ÿ’ÿ¡
+ 
+ 
+ 
+ÿ™"kverold"
+ÿÉÿ±ÿáÿ™"kverold"ÿ£lfdnrneu.kverold
+ ÿÙ
+ ÿ’ÿÿ
+ 
+ 
+ 
+
+ÿÿVPAnp()
+ ÿ™"vprodold"
+ ÿ£codevp.vprodold
+ ÿÉÿ`ÿá
+ i%ÿ0
+ j%ÿÿA("vprodold")
+ ÿØÿOÿB("vprodold")
+ 
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ" von "ÿÿ(j%)ÿ" in Vprodukt"
+ codevpneu.vprodoldÿi%
+ÿÌÿ™"vprodold"
+ÿÉÿ`ÿ™"geadrold"ÿ£codege.geadrold
+ÿÉÿ¥codege.vprodoldÿ™"geadrold"ÿ£codege.geadrold
+codege$ÿcodege.vprodold
+codegeneu%ÿcodegeneu.geadrold
+ÿÉÿ`ÿ™"Sparold"ÿ£codeva.sparold
+ÿÉÿ¥codeva.vprodoldÿ™"sparold"ÿ£codeva.sparold
+codevaneu%ÿcodevaneu.sparold
+codeva$ÿcodeva.vprodold
+ÿÍcodegeneu.vprodoldÿcodegeneu%ÿÐcodege.vprodoldÿcodege$
+ÿ’ÿÍ
+ÿÍcodevaneu.vprodoldÿcodevaneu%ÿÐcodeva.vprodoldÿcodeva$
+ÿ’ÿÍ
+ÿÉÿ±ÿáÿ™"vprodold"
+ ÿÙ
+ ÿ’ÿÿ
+ 
+ 
+ÿÿSpartAnp()
+ ÿ™"sparold"
+ ÿ£codeva.sparold
+ ÿÉÿ`ÿá
+ i%ÿ0
+ ÿØÿOÿB("sparold")
+i%ÿi%ÿ1
+codevaneu.sparoldÿi%
+ÿÌÿ™"sparold"
+ÿÉÿ±ÿá
+ ÿÙ
+ ÿ’ÿÿ
+ 
+ÿÿGeadrAnp()
+ ÿ™"geadrold"
+ ÿ£codege.geadrold
+ ÿÉÿ`ÿá
+ i%ÿ0
+ ÿØÿOÿB("geadrold")
+i%ÿi%ÿ1
+codegeneu.geadroldÿi%
+ÿÌÿ™"geadrold"
+ÿÉÿ±ÿá
+ ÿÙ
+ ÿ’ÿÿ
+ 
+ 
+
+ÿÿKV1anp()
+ ÿ™"kverold"
+ ÿ£lfdnr.kverold
+ ÿÉÿ`ÿá
+ i%ÿ0
+ j%ÿÿA("KVERold")
+ ÿØÿOÿB("KVERold")
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ" von "ÿÿ(j%)ÿ" Vertr„ge codeku angepasst"
+ÿ¡ÿJ(codeku.kverold,codeku.adrold)ÿp
+ÿÉÿ`ÿ™"adrold"ÿ£codeku.adrold
+ÿÉÿ¥codeku.kveroldÿ™"adrold"ÿ£codeku.adrold
+codekuneu.kveroldÿcodekuneu.adrold
+ÿÌÿ™"kverold"
+ÿ’ÿ¡
+ÿ™"kverold"
+ÿÉÿ±ÿáÿ™"kverold"
+ ÿÙ
+ ÿ’ÿÿ
+ 
+
+ÿÿAquio()
+ ÿ™"AKQOLD"
+ ÿ£codeku.akqold
+ ÿÉÿ`ÿá
+ i%ÿ0
+ ÿØÿOÿB("AKQOLD")
+i%ÿi%ÿ1
+codeaqneu.akqoldÿi%
+codeakneu ÿ1
+codemaneu ÿ1
+ÿÌÿ™"AKQOLD"
+ÿÉÿ±ÿá
+ ÿÙ
+ ÿ’ÿÿ
+ 
+ 
+ÿÿADRo()
+ ÿ™"ADROLD"
+ ÿ£codeku.adrold
+ ÿÉÿ`ÿá
+ i%ÿ0
+ ÿØÿOÿB("ADROLD")
+i%ÿi%ÿ1
+codekuneu.adroldÿi%
+ÿÌÿ™"ADROLD"
+ÿÉÿ±ÿáÿ™"ADROLD"ÿ£codeku.adrold
+ ÿÙ
+ ÿ’ÿÿ
+ 
+ÿÿTell()
+ ÿ™"TELOLD"
+ ÿ£codeku.TELold
+ ÿÉÿ`ÿá
+ i%ÿ0
+ ÿØÿOÿB("TELOLD")
+i%ÿi%ÿ1
+codeTelneu.Teloldÿi%
+ÿÌÿ™"TELOLD"
+ÿÉÿ±ÿáÿ™"TELOLD"
+ ÿÙ
+ ÿ’ÿÿ
+ 
+ÿÿAquianp()
+ ÿ™"ADROLD"
+ ÿ£Kundennummer.adrold
+ ÿÉÿ`ÿ™"ADROLD"ÿ£Kundennummer.adrold
+ i%ÿ0
+ j%ÿÿA("ADROLD")
+ ÿØÿOÿB("ADROLD")
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ" von "ÿÿ(j%)ÿ" Adressen"
+codekuneu%ÿcodekuneu.adrold
+codekuold$ÿcodeku.adrold
+ÿ™"AKQOLD"
+ÿÍcodekuneu.akqoldÿcodekuneu%ÿÐcodeku.akqoldÿcodekuold$
+ÿ’ÿÍ
+ÿ™"TELOLD"
+ÿÍcodekuneu.teloldÿcodekuneu%ÿÐcodeku.teloldÿcodekuold$
+ÿ’ÿÍ
+ÿ™"ADREG"
+ÿÍcodekuneu.ADREGÿcodekuneu%ÿÐcodeku.adregÿcodekuold$
+ÿ’ÿÍ
+ÿ™"ADRFIN"
+ÿÍcodekuneu.ADRFINÿcodekuneu%ÿÐcodeku.adrfinÿcodekuold$
+ÿ’ÿÍ
+ÿ™"ADRnotiz"
+ÿÍcodekuneu.ADRnotizÿcodekuneu%ÿÐcodeku.adrnotizÿcodekuold$
+ÿ’ÿÍ
+ÿ™"TELOLD"
+ÿÍcodekuneu.TELOLDÿcodekuneu%ÿÐcodeku.TELOLDÿcodekuold$
+ÿ’ÿÍ
+ÿ½ FILE "kverold"
+ÿ½ UPDATE codekuneu.kvertrag = codekuneu% WHERE codeku.kverold = codekuold$
+ÿ½ END UPDATE 
+ÿ™"adrold"
+ÿÉÿ±ÿ™"ADROLD"ÿ£Kundennummer.adrold
+ ÿÙ
+ ÿ’ÿÿ
+
+ 
+ÿÿFldAdd(Feldname$,NewFormat$,IndexType%)
+ ÿÊÿË"prfen Datei "ÿÿ™ÿ" Feld "ÿFeldname$
+ ÿ³ÿ_ÿwTrapFileFind
+ tsfound%ÿ0
+ a$ÿÿö(FeldName$,0)
+ tsfound%ÿ1
+TrapFileFind: 
+ ÿ¡test%ÿ0ÿpÿ³ÿ_ÿwErrorHandler ÿ^ÿ³ÿ_
+ ÿ¡tsfound%ÿ0ÿp
+ÿ½ ** Feld neu erstellen
+ÿ|Feldname$ÿ";"ÿNewFormat$ÿ";1;1"
+ÿÉÿæIndexType%
+ÿæ1
+ÿ‰ÿ£ÿ³Feldname$$
+ÿæ2
+ÿ‰ÿ£ÿ³Feldname$$ÿr
+ÿ’ÿÉ
+ ÿ^
+ÿ½ ** Feld auf Format„nderungen testen und anpassen
+oldindex%ÿ0
+ÿ¡GIndNeu%ÿÿ1ÿp
+ÿ¡ÿö(feldname$,3)ÿ"IX*"ÿpoldindex%ÿ1
+ÿ’ÿ¡
+ÿ¡ÿö(feldname$,3)ÿ"IX*"ÿIndexType%ÿ0ÿp
+ÿ¾ÿ£Feldname$$
+ÿ’ÿ¡
+ok%ÿ1
+NewForm%ÿ0
+NewIndex%ÿ0
+cFormat$ÿÿF(ÿö(Feldname$,0)ÿ";"ÿÿö(Feldname$,4))
+ÿ¡ÿ>(cformat$)ÿÿ>(NewFormat$)ÿp
+ok%ÿ0
+NewForm%ÿ1
+ÿ’ÿ¡
+IndexType$ÿÿö(feldname$,3)
+ÿ¡(IndexType$ÿ"IXD"ÿIndexType%ÿ2)ÿ(IndexType$ÿ"IXU"ÿIndexType%ÿ1)ÿp
+ok%ÿ0
+NewIndex%ÿ1
+ÿ’ÿ¡
+ÿ¡ÿö(feldname$,3)ÿ""ÿIndexType%ÿ0ÿp
+NewIndex%ÿ1
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡oldindex%ÿ1ÿp
+ok%ÿ0
+NewForm%ÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿ0ÿp
+ÿ¡NewForm%ÿ1ÿIndexType$ÿ"IX*"ÿp
+ÿ¾ÿ£Feldname$$
+df$ÿÿ™
+ÿÅÿ™df$
+ÿ’ÿ¡
+ÿ¡NewForm%ÿ1ÿp
+ÿ®Feldname$$,Feldname$ÿ";"ÿNewFormat$
+ÿÉÿæIndexType%
+ÿæ1
+	ÿ‰ÿ£ÿ³Feldname$$
+ÿæ2
+	ÿ‰ÿ£ÿ³Feldname$$ÿr
+ÿ’ÿÉ
+ok%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ok%ÿ0ÿp
+ÿ¡NewIndex%ÿ1ÿp
+ÿ¡IndexType$ÿ"IX*"ÿp
+	ÿ¾ÿ£Feldname$$
+ÿ’ÿ¡
+ÿÉÿæIndexType%
+ÿæ1
+	ÿ‰ÿ£ÿ³Feldname$$
+ÿæ2
+	ÿ‰ÿ£ÿ³Feldname$$ÿr
+ÿ’ÿÉ
+ok%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ df$ÿÿ™
+ 
+ 
+ 
+ ÿÅÿ™df$
+ ÿ’ÿÿ
+ 
+
+ 
+ 
+ 
+ ' Feld fr XCHANGE als MAIN markieren
+ ' =======================================================================
+
+ÿÿMarkMain(FieldName$)
+ ÿ½ ** Originaleintrag aus XCHANGE -> MODIFY findex$$,findex$ + ";" + FieldType$ + ";" + dFormat$,"COM MAIN"
+ ÿ¡ÿö(FieldName$,8)ÿ"MAIN"ÿp
+tIndex$ÿÿö(FieldName$,3)
+ÿ¡tIndex$ÿ""ÿpÿ¾ÿ£Fieldname$$
+FieldType$ÿÿö(FieldName$,0)
+dFormat$ÿÿö(FieldName$,4)
+ÿ®FieldName$$,FieldName$ÿ";"ÿFieldType$ÿ";"ÿdFormat$,"COM MAIN"
+ÿ¡tIndex$ÿ""ÿp
+ÿ‰ÿ£ÿ³FieldName$$
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+
+ErrorHandler: 
+ _error%ÿÿ&
+ÿ½ ? ERRNO 
+ÿ½ ? ERR$ ( ERRNO )
+ ÿÉÿæ_error%
+ ÿæ8
+ÿÂ"Kein eineindeutiges Suchergebnis!"
+ÿyÿ±
+ ÿæ10
+ÿÊÿË"Dateiende!"
+ÿÏÿ›0.05
+ÿÊÿË"Bereit"
+ÿyÿ±
+ ÿæ11
+ÿ½ IF askonerror% = 1 THEN REQUEST "Funktion abgebrochen!","",2
+ÿ½ CALL Fehler("Funktion abgebrochen!","")
+req%ÿ0
+ÿyÿ±
+ ÿæ19,73
+ÿƒFehler("Bitte geben Sie ein Datum in der Form TT.MM.JJJJ ein (z.B. "ÿÿ(ÿQ,"dd.mm.yyyy")ÿ")","")
+ÿyÿ±
+ ÿæ34
+ÿyÿ±
+ ÿæ156
+ÿyÿ±
+ ÿæ177
+ÿƒFehler("Datensatz ist nicht gesperrt!","Operation wurde nicht durchgefhrt.")
+ÿyÿ±
+ ÿæ130
+ÿ¡_errormessages%ÿ1ÿpÿƒFehler("Datensatz wird zur Zeit benutzt","durch: "ÿÿ((0))
+ÿyÿ±
+ ÿæ140,132
+ÿ½ Datei ist fr gemeinsamen Schreibzugriff ge”ffnet
+ÿyÿ±
+ ÿæ160
+ÿÂ"Ende?"
+ ÿæ176
+ÿ¡ErrZAB%ÿ
+1ÿp
+ErrZAB%ÿ1
+ÿy
+ÿ^
+ErrZAB%ÿ0
+ÿ’ÿ¡
+ ÿ’ÿæ
+ Fehler%ÿÿ&
+ Fehler$ÿ"["ÿÿH(ÿ(Fehler%,"9999999"))ÿ"] "ÿÿ((Fehler%)ÿ"/"ÿÿ((0)
+ ÿ‰ÿñ"PROBHILFE",0,0,245,180,title$,"MS Sans Serif",8
+ ÿ|ÿñ"PROBHILFE",5,34,11,133,9,0,"Hinweise"
+ ÿ|ÿñ"PROBHILFE",9,5,12,20,21,4
+ ÿ|ÿñ"PROBHILFE",4,34,18,203,5,0,""
+ ÿ|ÿñ"PROBHILFE",5,34,30,56,10,0,"Wiederholen:"
+ ÿ|ÿñ"PROBHILFE",5,40,40,197,32,0,"Falls die Fehlermeldung z.B. durch eine nicht eingelegte Diskette oder einem „hnlichen Fehler verursacht wurde, k”nnen Sie die letzte Aktion vom Programm wiederholen lassen."
+ ÿ|ÿñ"PROBHILFE",5,34,76,60,10,0,"Ignorieren:"
+ ÿ|ÿñ"PROBHILFE",5,40,86,196,30,0,"Die Fehlermeldung wird ignoriert und das Programm versucht eine andere M”glichkeit zur Weiterfhrung der aktuellen Funktion zu finden."
+ ÿ|ÿñ"PROBHILFE",5,34,115,60,10,0,"Beenden:"
+ ÿ|ÿñ"PROBHILFE",5,40,125,196,31,0,"W„hlen Sie diese M”glichkeit um das Programm ordnungsgem„á zu beenden, falls 'Wiederholen' und 'Ignorieren' keine Wirkung zeigten."
+ ÿ|ÿñ"PROBHILFE",1,90,159,55,15,1,"&OK",0,0
+ ÿ‰ÿñ"REQ",0,0,261,99,title$,"MS Sans Serif",8
+ ÿ|ÿñ"REQ",9,4,11,22,22,3
+ ÿ|ÿñ"REQ",5,30,12,156,10,0,"Problem bei der Programmabarbeitung!"
+ ÿ|ÿñ"REQ",4,30,22,155,5,0,""
+ ÿ|ÿñ"REQ",5,30,30,52,11,0,"Fehlermeldung:"
+ ÿ|ÿñ"REQ",5,30,43,155,45,0,Fehler$
+ ÿ|ÿñ"REQ",1,197,12,55,15,1,"&Wiederholen",1,1
+ ÿ|ÿñ"REQ",1,197,30,55,15,0,"&Ignorieren",0,0
+ ÿ|ÿñ"REQ",1,197,48,55,15,0,"&Beenden",2,1
+ ÿ|ÿñ"REQ",1,197,73,55,15,0,"&Hilfe",4,2,"PROBHILFE"
+ ÿñ"REQ",req%
+ ÿ¾ÿñ"PROBHILFE"
+ ÿ¾ÿñ"REQ"
+ ÿ¡req%ÿ1ÿpÿy
+ ÿ¡req%ÿ0ÿpÿyÿ±
+ 
+ 
+ 
+ 
+ 
+ÿÿCopyRecord%(source$,dest$)
+cfile$ÿÿ™
+'Kopiert alle gemeinsamen Felder von Datei _source$ nach Datei _dest$    
+oldErrorLabel$ÿSuperbase.ErrorTrapLabel
+ÿ³ÿ_ÿwCopyRecordError
+CopyRecord%ÿ0
+
+'Feldnamen der Quelldatei ermitteln  
+ÿ™source$
+fieldno%ÿÿõ(source$,1)
+ÿ×sourceNames$(fieldno%)
+ÿÿsourceNames$,1
+ÿ›i%%ÿ0ÿqfieldno%ÿ1
+sourceNames$(i%%)ÿÿ>(sourceNames$(i%%))
+ÿ±i%%
+ÿ×sourceSet ÿUSet 
+ÿÿsourceNames$(fieldno%ÿ1)
+sourceSet.AddArray("sourceNames$")
+
+
+'Feldnamen der Zieldatei ermitteln  
+ÿ™dest$
+fieldno%ÿÿõ(dest$,1)
+ÿ×destNames$(fieldno%)
+ÿÿdestNames$,1
+ÿ›i%%ÿ0ÿqfieldno%ÿ1
+destNames$(i%%)ÿÿ>(destNames$(i%%))
+ÿ±i%%
+ 
+ÿ×destSet ÿUSet
+ÿÿdestNames$(fieldno%ÿ1)
+destSet.AddArray("destNames$")
+
+destSet.Intersect(sourceSet)
+ 
+fieldno%ÿdestSet.Elements.Count'Gr”áe der Schnittmenge der Felder
+ÿ×copyNames$(fieldno%ÿ1)
+ÿ›i%%ÿ1ÿqfieldno%
+copyNames$(i%%ÿ1)ÿdestSet.Elements(i%%)
+ÿ±i%%
+
+'das Zeug reinklatschen ...    
+ÿ›j%ÿ0ÿqfieldno%ÿ1
+ÿ³ÿ_ÿwCopyRecordErr1 
+destfield$ÿcopyNames$(j%)ÿ"."ÿdest$
+sourcefield$ÿcopyNames$(j%)ÿ"."ÿsource$
+destfield$$ÿsourcefield$$
+ 
+'alles io
+ÿwCopyRecordNext
+
+CopyRecordErr1: 
+ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Fehler in CopyRecord()","Ziel = "ÿdestfield$ÿ"  Quelle = "ÿsourcefield$)
+ÿwCopyRecordNext
+ 
+CopyRecordNext: 
+ÿ³ÿ_ÿwCopyRecordError
+ÿ±j%
+
+'alles io
+CopyRecord%ÿÿ1
+ÿwCopyRecordEnde
+
+CopyRecordError: 
+ 'irgend etwas ist grunds„tzlich schief gelaufen
+ÿƒFehler("Fehler in CopyRecord: "ÿdatei$,ÿ(ÿ&,"z")ÿ": "ÿÿ((ÿ&))
+ÿwCopyRecordEnde
+ 
+CopyRecordEnde: 
+Superbase.ErrorTrapLabelÿoldErrorLabel$
+ÿ™cfile$
+ ÿ’ÿÿ
+ '***********************************************************************************************
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+

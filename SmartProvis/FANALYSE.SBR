@@ -1,0 +1,6413 @@
+SBP
+ ÿƒmain()
+
+ÿÿAllAnalysLoe()
+ ÿ×Dateien$(500)
+ ÿ_netpath$ÿ"ANALYSE"
+ ÿÿDateien$,5,"*.sbf"
+ ÿÂ"Alle Analyse-Dateien leeren?","",135,req%
+ ÿ¡req%ÿ1ÿp
+ÿßÿe
+ÿØDateien$(i%)ÿ""
+dd$ÿDateien$(i%)
+datei1$ÿÿ+(dd$,ÿ/(dd$)ÿ4)
+ÿ¾ÿaÿ™datei1$
+ÿÊÿË"L”sche die Daten in Datei: "ÿdatei1$
+i%ÿi%ÿ1
+ÿÙ
+ ÿ’ÿ¡
+ ÿßÿ³
+ ÿ’ÿÿ
+
+
+
+ÿÿDruFin1()
+ ÿ½ Gcodeanalyse
+ ÿÉÿ`ÿ™"FINVDETA"ÿ£codeanalyse.finvdeta
+ ÿÉÿ¥Gcodeanalyse%ÿ™"FINVDETA"ÿ£codeanalyse.finvdeta
+ ÿ_netpath$ÿ"ANALYSE"
+ ÿ×Dateien$(500)
+ ÿ×felder$(feldanz%)
+ ÿ×feldtyp$(feldanz%)
+ ÿ×feldindex$(feldanz%)
+ ÿ×feldanzeig$(feldanz%)
+ ÿÿDateien$,5,"*.sbf"
+ ÿ½ CALL Fehler("Start ROrg","")
+ i%ÿ0
+ ÿ½ WriteINIDes(topic$,item$,value$,datei$)
+ ÿ¡ÿJ(_netpath$ÿ"Analyse\0analys.ini")ÿp
+ÿ_netpath$ÿ"Analyse\0analys.ini"
+ ÿ’ÿ¡
+ ÿ¡ÿJ(_netpath$ÿ"Analyse\Report\0analys.ini")ÿp
+ÿ_netpath$ÿ"Analyse\Report\0analys.ini"
+ ÿ’ÿ¡
+ ÿ¡ÿJ(_netpath$ÿ"Analyse\0analys.txt")ÿp
+ÿ_netpath$ÿ"Analyse\0analys.txt"
+ ÿ’ÿ¡
+ ÿßÿe
+ ÿØDateien$(i%)ÿ""
+dd$ÿDateien$(i%)
+datei1$ÿÿ+(dd$,ÿ/(dd$)ÿ4)
+i%ÿi%ÿ1
+ ÿÙ
+ 
+ ÿ›a%ÿ0ÿqi%ÿ1
+dd$ÿDateien$(a%)
+datei1$ÿÿ+(dd$,ÿ/(dd$)ÿ4)
+ok%ÿ0
+ÿ¡datei1$ÿ"FINADR"ÿdatei1$ÿ"FINBERU"ÿdatei1$ÿ"FININVE"ÿdatei1$ÿ"FINEINK"ÿdatei1$ÿ"FINAUSG"ÿdatei1$ÿ"FINZIEL"ÿp
+ok%ÿÿ1
+ÿ’ÿ¡
+ÿ¡ÿJ(Gcodeanalyse%,codeanalyse.datei1$)ÿok%ÿÿ1ÿp
+ÿ½ CALL Fehler("da ist was zu exportieren","")
+ÿ™datei1$
+ÿ£codeanalyse.datei1$
+ÿÉÿ`ÿ™datei1$ÿ£codeanalyse.datei1$
+ÿÉÿ¥Gcodeanalyse%ÿ™datei1$ÿ£codeanalyse.datei1$
+feldanz%ÿÿõ(datei1$,1)
+ÿÿfelder$(feldanz%,1)
+ÿÿfeldtyp$(feldanz%,1)
+ÿÿfeldanzeig$(feldanz%,1)
+ÿÿfelder$(feldanz%)
+ÿÿfeldtyp$(feldanz%)
+ÿÿfeldanzeig$(feldanz%)
+
+ÿÿfelder$,1
+ÿ›j%ÿ0ÿqfeldanz%ÿ1
+ausg$ÿ""
+item$ÿ""
+feldtyp$(j%)ÿÿö(felder$(j%),0)
+feldanzeig$(j%)ÿÿö(felder$(j%),4)
+fname0$ÿfelder$(j%)
+fname$ÿVSNRPack$(ÿ>(felder$(j%)))
+ÿ¡fname$ÿ"ZGeldAlter"ÿp
+	ÿ½ CALL Fehler(datei1$,fname$)
+ÿ’ÿ¡
+item$ÿdatei1$ÿ"."ÿfname$
+ÿ¡feldtyp$(j%)ÿ"TXT"ÿp
+	ausg$ÿfname0$$
+ÿ’ÿ¡
+ÿ¡feldtyp$(j%)ÿ"DAT"ÿp
+	ausg$ÿÿ(fname0$$,"0d.mm.yyyy")
+ÿ’ÿ¡
+ÿ¡feldtyp$(j%)ÿ"NUM"ÿp
+	ausg$ÿÿH(ÿ(fname0$$,feldanzeig$(j%)))
+	ÿ¡fname$ÿ"GUMF5"ÿp
+ÿ¡fname0$$ÿ
+100000ÿp
+ausg$ÿ"bis "ÿÿH(ÿ(fname0$$,feldanzeig$(j%)))
+ÿ^
+ausg$ÿ"ber "ÿÿH(ÿ(fname0$$,feldanzeig$(j%)))
+ÿ’ÿ¡
+ÿ¡fname0$$ÿ
+1ÿp
+ausg$ÿ""
+ÿ’ÿ¡
+ÿ¡AnlageFestg.fininveÿ"j"ÿAnlageWertpap.fininveÿ"j"ÿp
+ausg$ÿ""
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	ÿ¡fname$ÿ"GANZKAUF2"ÿp
+ÿ¡fname0$$ÿ
+20ÿp
+ausg$ÿ"bis "ÿÿH(ÿ(fname0$$,feldanzeig$(j%)))
+ÿ^
+ausg$ÿ"ber "ÿÿH(ÿ(fname0$$,feldanzeig$(j%)))
+ÿ’ÿ¡
+ÿ¡fname0$$ÿ
+1ÿp
+ausg$ÿ""
+ÿ’ÿ¡
+ÿ¡AnlageFestg.fininveÿ"j"ÿAnlageWertpap.fininveÿ"j"ÿp
+ausg$ÿ""
+ÿ’ÿ¡
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡feldtyp$(j%)ÿ"NMI"ÿp
+	ausg$ÿÿH(ÿ(fname0$$,feldanzeig$(j%)))
+ÿ’ÿ¡
+ÿ¡fname$ÿ"Anl1?jn"ÿdatei1$ÿ"FININVE"ÿp
+	ÿ¡AnlageFestg.fininveÿ"j"ÿAnlageWertpap.fininveÿ"j"ÿfname0$$ÿ"j"ÿp
+ausg$ÿ""
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡fname$ÿ"Anl1?Jahr"ÿdatei1$ÿ"FININVE"ÿp
+	ÿ¡AnlageFestg.fininveÿ"j"ÿAnlageWertpap.fininveÿ"j"ÿfname0$$ÿ0ÿp
+ausg$ÿ""
+	ÿ^
+ÿ¡fname0$$ÿ0ÿp
+fe$ÿÿ+(fname0$,5)ÿ"jn.fininve"
+ÿ¡fe$$ÿ"j"ÿpausg$ÿ""
+ÿ’ÿ¡
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ½ IF ausg$ <> "" THEN 
+	ÿƒWriteINIDes("ANALYSE",item$,ÿåansi(ausg$),_netpath$ÿ"Analyse\0analys.ini")
+ÿ½ END IF 
+ÿÊÿËitem$ÿ"  "ÿausg$
+ÿ±j%
+ÿ’ÿ¡
+ ÿ±a%
+
+ ÿ½ Berechnungen erzeugen
+ netto%ÿ0
+ ÿ›q%ÿ0ÿq14
+variable$ÿ"w"ÿÿH(ÿ(q%,"99"))ÿ"%"
+variable$$ÿ0
+ ÿ±q%
+ ÿ›a%ÿ0ÿqi%ÿ1
+dd$ÿÿ>(Dateien$(a%))
+datei1$ÿÿ+(dd$,ÿ/(dd$)ÿ4)
+ok%ÿ0
+ÿ¡datei1$ÿ"FINEINK"ÿp
+ÿ¡ÿJ(Gcodeanalyse%,codeanalyse.datei1$)ÿpok%ÿÿ1
+ÿ’ÿ¡
+ÿ¡datei1$ÿ"FINAUSG"ÿp
+ÿ¡ÿJ(Gcodeanalyse%,codeanalyse.datei1$)ÿpok%ÿÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿÿ1ÿp
+ÿ™datei1$
+ÿ£codeanalyse.datei1$
+ÿÉÿ`ÿ™datei1$ÿ£codeanalyse.datei1$
+ÿÉÿ¥Gcodeanalyse%ÿ™datei1$ÿ£codeanalyse.datei1$
+ÿÉÿædatei1$
+ÿæ"FINEINK"
+	ÿ½ CALL Fehler("","")
+	ÿ½ Einknfte aus nichtselbst„ndiger Arbeit(brutto)/Monat
+	ÿ½ Jahreseinkommen/12->Mittelwert
+	w0%ÿ(EinkNSbesJBrut.datei1$ÿEinkNSbesJBrutP.datei1$)ÿ12
+	w0$ÿÿH(ÿ(w0%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","W0",ÿåansi(w0$),_netpath$ÿ"Analyse\0analys.ini")
+ 
+	ÿ½ Einknfte aus selbst„ndiger Arbeit
+	w7%ÿEinSEGewinn.fineinkÿEinSEGewinnP.fineink
+	w7$ÿÿH(ÿ(w7%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","W7",ÿåansi(w7$),_netpath$ÿ"Analyse\0analys.ini")
+
+	ÿ½ Einknfte aus Kapitalverm”gen
+	w8%ÿEinKapital.fineinkÿEinKapitalP.fineink
+	w8$ÿÿH(ÿ(w8%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","W8",ÿåansi(w8$),_netpath$ÿ"Analyse\0analys.ini")
+
+	ÿ½ Einknfte aus Land und Forstwirtschaft
+	w9%ÿEinkForst.fineinkÿEinkForstP.fineink
+	w9$ÿÿH(ÿ(w9%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","W9",ÿåansi(w9$),_netpath$ÿ"Analyse\0analys.ini")
+
+	ÿ½ Einknfte aus Vermietung und Verpachtung
+	w10%ÿEinVermiet.fineinkÿEinVermietP.fineink
+	w10$ÿÿH(ÿ(w10%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","W10",ÿåansi(w10$),_netpath$ÿ"Analyse\0analys.ini")
+
+	ÿ½ Einknfte aus geringfgiger Besch„ft
+	w11%ÿ(EinkGFbesSu.fineinkÿEinkGFbesSuP.fineink)ÿ12
+	w11$ÿÿH(ÿ(w11%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","W11",ÿåansi(w11$),_netpath$ÿ"Analyse\0analys.ini")
+
+	ÿ½ Einknfte aus Ausschttungen/Entnahmen
+	ÿ½ muá ins Formular rein
+	w12%ÿEinKAus_Ent.fineinkÿEinKAus_EntP.fineink
+	w12$ÿÿH(ÿ(w12%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","W12",ÿåansi(w12$),_netpath$ÿ"Analyse\0analys.ini")
+
+	ÿ½  sonstige Einknfte 
+	w13%ÿsonstEink.fineinkÿsonstEinkP.fineink
+	w13$ÿÿH(ÿ(w13%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","W13",ÿåansi(w13$),_netpath$ÿ"Analyse\0analys.ini")
+
+	ÿ½  Kindergeld 
+	w14%ÿKindergeld.fineinkÿKindergeldP.fineink
+	w14$ÿÿH(ÿ(w14%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","W14",ÿåansi(w14$),_netpath$ÿ"Analyse\0analys.ini")
+	
+	netto%ÿ(EinkNSbesJNet.fineinkÿEinkNSbesJNetP.fineink)ÿ12
+	netto$ÿÿ(netto%,",9999999.00")
+	ÿ½ CALL Fehler(netto$,"")
+ÿæ"FINAUSG"
+	ÿ½ Einkommenssteuer
+	w1%ÿLohnsteuer.finausgÿLohnsteuerp.finausg
+	w1$ÿÿH(ÿ(w1%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","W1",ÿåansi(w1$),_netpath$ÿ"Analyse\0analys.ini")
+	ÿ½  Soli
+	w2%ÿSoli.finausgÿSolip.finausg
+	w2$ÿÿH(ÿ(w2%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","W2",ÿåansi(w2$),_netpath$ÿ"Analyse\0analys.ini")
+	ÿ½ Kirchenst
+	w3%ÿKirchensteuer.finausgÿKirchensteuerp.finausg
+	w3$ÿÿH(ÿ(w3%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","W3",ÿåansi(w3$),_netpath$ÿ"Analyse\0analys.ini")
+	ÿ½ Pflegevers
+	w4%ÿPflegeV.finausgÿPflegeVp.finausg
+	w4$ÿÿH(ÿ(w4%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","W4",ÿåansi(w4$),_netpath$ÿ"Analyse\0analys.ini")
+	ÿ½ Arbeitslosenvers
+	w5%ÿArbeitslosenV.finausgÿArbeitslosenVp.finausg
+	w5$ÿÿH(ÿ(w5%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","W5",ÿåansi(w5$),_netpath$ÿ"Analyse\0analys.ini")
+	ÿ½ Rentenvers
+	w6%ÿrv.finausgÿrvp.finausg
+	w6$ÿÿH(ÿ(w6%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","W6",ÿåansi(w6$),_netpath$ÿ"Analyse\0analys.ini")
+	ÿ½ Krankeners
+	w6k%ÿkv.finausgÿkvp.finausg
+	w6k$ÿÿH(ÿ(w6k%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","W6K",ÿåansi(w6k$),_netpath$ÿ"Analyse\0analys.ini")
+
+	ÿ½ Kosten Lebenshaltung
+	k1%ÿAusLebenshalt.finausgÿAusLebenshaltp.finausg
+	k1$ÿÿH(ÿ(k1%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","K1",ÿåansi(k1$),_netpath$ÿ"Analyse\0analys.ini")
+
+	ÿ½ Kosten Wohnen
+	k2%ÿAusWohnKost.finausgÿAusWohnKostp.finausg
+	k2$ÿÿH(ÿ(k2%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","K2",ÿåansi(k2$),_netpath$ÿ"Analyse\0analys.ini")
+
+	ÿ½ Kosten KFZ
+	k4%ÿAusKFZ.finausgÿAusKFZp.finausg
+	k4$ÿÿH(ÿ(k4%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","K4",ÿåansi(k4$),_netpath$ÿ"Analyse\0analys.ini")
+ 
+	ÿ½ Kosten sonstige
+	k5%ÿAusSonst.finausgÿAusSonstP.finausg
+	k5$ÿÿH(ÿ(k5%,",999999999999.00"))
+	ÿƒWriteINIDes("GESAMTEINK","K5",ÿåansi(k5$),_netpath$ÿ"Analyse\0analys.ini")
+
+ÿ’ÿÉ
+ÿ½ CALL Fehler("Test","")
+sum1%ÿ0
+sum1%ÿnetto%ÿw7%ÿw8%ÿw9%ÿw10%ÿw11%ÿw12%ÿw13%ÿw14%
+sum1$ÿÿH(ÿ(sum1%,",999999999999.00"))
+ÿƒWriteINIDes("GESAMTEINK","SUM1",ÿåansi(sum1$),_netpath$ÿ"Analyse\0analys.ini")
+ÿ’ÿ¡
+ ÿ±a%
+
+ ÿ›a%ÿ0ÿqi%ÿ1
+dd$ÿÿ>(Dateien$(a%))
+datei1$ÿÿ+(dd$,ÿ/(dd$)ÿ4)
+ok%ÿ0
+ÿ¡datei1$ÿ"FINEINK"ÿp
+ÿ¡ÿJ(Gcodeanalyse%,codeanalyse.datei1$)ÿpok%ÿÿ1
+ÿ’ÿ¡
+ÿ¡datei1$ÿ"FINAUSG"ÿp
+ÿ¡ÿJ(Gcodeanalyse%,codeanalyse.datei1$)ÿpok%ÿÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿÿ1ÿp
+ÿ™datei1$
+ÿ£codeanalyse.datei1$
+ÿÉÿ`ÿ™datei1$ÿ£codeanalyse.datei1$
+ÿÉÿ¥Gcodeanalyse%ÿ™datei1$ÿ£codeanalyse.datei1$
+ÿÉÿædatei1$
+ÿæ"xxxxFINV1"
+	ÿ½ Risiko LV
+	ÿØÿOÿB("FINV1")ÿcodeanalyse.datei1$ÿGcodeanalyse%
+JahresRBeitr1%ÿRBeitr1.finv1ÿRZW1.finv1
+w0$ÿÿH(ÿ(w0%,",999999999999.00"))
+ÿƒWriteINIDes("GESAMTEINK","W0",ÿåansi(w0$),_netpath$ÿ"Analyse\0analys.ini")
+ÿÉÿ±ÿ™datei1$ÿ£codeanalyse.datei1$
+	ÿÙ
+ÿ’ÿÉ
+ÿ’ÿ¡
+ ÿ±a%
+ ÿƒWriteINIDes("GESAMTEINK","V1","130,83",_netpath$ÿ"Analyse\0analys.ini")
+ ÿƒWriteINIDes("GESAMTEINK","V2","450,00",_netpath$ÿ"Analyse\0analys.ini")
+ ÿƒWriteINIDes("GESAMTEINK","V3","41,67",_netpath$ÿ"Analyse\0analys.ini")
+ ÿƒWriteINIDes("GESAMTEINK","V4","0,00",_netpath$ÿ"Analyse\0analys.ini")
+ ÿƒWriteINIDes("GESAMTEINK","V5","100,00",_netpath$ÿ"Analyse\0analys.ini")
+ ÿƒWriteINIDes("GESAMTEINK","V6","110,00",_netpath$ÿ"Analyse\0analys.ini")
+ ÿƒWriteINIDes("GESAMTEINK","V7","23,44",_netpath$ÿ"Analyse\0analys.ini")
+ ÿƒWriteINIDes("GESAMTEINK","V8","33,00",_netpath$ÿ"Analyse\0analys.ini")
+ ÿƒWriteINIDes("GESAMTEINK","K6","12,99",_netpath$ÿ"Analyse\0analys.ini")
+ ÿƒWriteINIDes("GESAMTEINK","SUM2","557,58",_netpath$ÿ"Analyse\0analys.ini")
+ ÿßÿ³
+ ÿ½ CALL Fehler ("Fertig mit Analyse","")
+ ÿˆ_netpath$ÿ"Analyse\0analys.ini"ÿq_netpath$ÿ"Analyse\Report\0analys.ini"
+ ÿÏÿ›1
+ analys$ÿ_netpath$ÿ"Analyse\Report\BVFFin.exe"
+ a%ÿÿƒ("ShellExecute",0,"open",analys$,"","",1)
+ ÿ’ÿÿ
+
+
+ÿÿFINEINKBer1()
+ VerstEink.fineinkÿ0
+ VerstEink.fineinkÿVerstEink.fineinkÿEinkNSbesJNet.fineink
+ VerstEink.fineinkÿVerstEink.fineinkÿEinkNSbesJBrut.fineink
+ VerstEink.fineinkÿVerstEink.fineinkÿ(EinkGFbes.fineinkÿAnzGFbes.fineink)
+ VerstEink.fineinkÿVerstEink.fineinkÿ(EinSEGewinn.fineinkÿ12)
+ VerstEink.fineinkÿVerstEink.fineinkÿ(EinVermiet.fineinkÿ12)
+ VerstEink.fineinkÿVerstEink.fineinkÿ(EinKapital.fineinkÿ12)
+ VerstEink.fineinkÿVerstEink.fineinkÿ(sonstEink.fineinkÿ12)
+ VerstEink.fineinkÿVerstEink.fineinkÿ(Kindergeld.fineinkÿ12)ÿ(EinkForst.fineinkÿ12)ÿ(EinKAus_Ent.fineinkÿ12)
+
+ VerstEinkP.fineinkÿ0
+ VerstEinkP.fineinkÿVerstEinkP.fineinkÿEinkNSbesJNetP.fineink
+ VerstEinkP.fineinkÿVerstEinkP.fineinkÿEinkNSbesJBrutP.fineink
+ VerstEinkP.fineinkÿVerstEinkP.fineinkÿ(EinkGFbesP.fineinkÿAnzGFbesP.fineink)
+ VerstEinkP.fineinkÿVerstEinkP.fineinkÿ(EinSEGewinnP.fineinkÿ12)
+ VerstEinkP.fineinkÿVerstEinkP.fineinkÿ(EinVermietP.fineinkÿ12)
+ VerstEinkP.fineinkÿVerstEinkP.fineinkÿ(EinKapitalP.fineinkÿ12)
+ VerstEinkP.fineinkÿVerstEinkP.fineinkÿ(sonstEinkP.fineinkÿ12)
+ VerstEinkP.fineinkÿVerstEinkP.fineinkÿ(KindergeldP.fineinkÿ12)ÿ(EinkForstP.fineinkÿ12)ÿ(EinKAus_EntP.fineinkÿ12)
+ 
+ ÿ’ÿÿ
+
+
+ÿÿFinvGes1(codeku%)
+ knr%ÿcodeku%
+ ÿƒDFile(2,"ANALYSE\"ÿ"FINADR"ÿ_fpw$)
+ ÿƒDFile(2,"ANALYSE\"ÿ"FINVGES"ÿ_fpw$)
+ ÿ™"FINVGES"
+ ÿ£codeku.FINVGES
+ ÿƒDFile(2,"ANALYSE\"ÿ"FINVDETA"ÿ_fpw$)
+ maske$ÿ"FINVGES"
+ ADRsub%ÿ0
+ _formend%ÿ0
+ ÿ¡ÿOÿJ(knr%,codeku.finvges)ÿp
+ÿÂ"Es existiert noch keine Analyse fr diesen Kunden!","Analyse erstellen?",130,req%
+ÿ¡req%ÿ1ÿp
+ÿƒNeuAnalys()
+ÿ^
+ÿwendfinvges040920041
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Finanz-Analyse"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Finanz-Analyse"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒFinvGes1Intro()
+ÿƒMNProgramm()
+ÿ¬ÿ³
+ÿ¡ADRsub%ÿ111111ÿpADRsub%ÿ0
+ÿ¡ADRsub%ÿ99ÿpÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neue Analyse fr Kunden
+ÿƒNeuAnalys()
+ADRsub%ÿ0
+ÿæ2
+ÿ½ spezielle Analyse ansteuern
+ÿƒFAnalyse(CodeAnalyse.finvges,codeku.finvges)
+ADRsub%ÿ0
+ÿ’ÿÉ
+ ÿÙ
+endfinvges040920041: 
+ _formend%ÿ0
+ ADRsub%ÿ0
+ ÿ’ÿÿ
+
+ÿÿFinvGes1Intro()
+ ÿÉÿ`ÿ™"Adressen"ÿ£codeku.adressen
+ ÿÉÿœÿ¥knr%ÿ™"Adressen"ÿ£codeku.adressen
+ ÿÉÿ¥knr%ÿ™"FINVGES"ÿ£codeku.FINVGES
+ ÿœ
+ ÿßÿ³
+ ÿ’ÿÿ
+
+ÿÿNeuAnalys()
+ÿÿ™"finvges"
+CodeAnalyse.finvgesÿÿI("finvges",1)
+Codeku.finvgesÿknr%
+Datum.finvgesÿÿQ
+ÿƒMATimeStamp("finvges")
+ÿƒQuickStore("finvges")
+ ÿ’ÿÿ
+
+
+
+ÿÿFAnalyse(CodeAnalyse%,codeku%)
+ ÿ½ knr% = codeku%
+ GCodeAnalyse%ÿCodeAnalyse%
+
+ ÿ_netpath$ÿ"ANALYSE"
+ ÿ×Dateien$(500)
+ ÿÿDateien$,5,"*.sbf"
+ ÿ½ CALL Fehler("Start ROrg","")
+ i%ÿ0
+ ÿØDateien$(i%)ÿ""
+dd$ÿDateien$(i%)
+datei1$ÿÿ+(dd$,ÿ/(dd$)ÿ4)
+ÿ½ CALL FileReorg("OFFICE\" + datei1$)
+ÿ¡ÿOÿ´(datei1$)ÿpÿƒDFile(2,"ANALYSE\"ÿdatei1$ÿ_fpw$)
+i%ÿi%ÿ1
+ ÿÙ
+ ÿ™"FINVDETA"
+ ÿ£CodeAnalyse.FINVDETA
+
+ maske$ÿ"FINVDETA"
+ ADRsub%ÿ0
+ _formend%ÿ0
+
+ ÿ¡ÿOÿJ(CodeAnalyse%,CodeAnalyse.FINVDETA)ÿp
+ÿƒNeuFAnalyse()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Finanz-Analyse"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Finanz-Analyse"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒFAnalyseIntro()
+ÿƒMNProgramm()
+ÿ¬ÿ³
+ADRsub%ÿ0
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ Adressen
+ÿƒFinAdr1()
+ÿæ2
+ÿ½ Beruf+Bank
+ÿƒFinBeruf1()
+ÿæ3
+ÿ½ Einkommen
+ÿƒFinEink1()
+ÿæ4
+ÿ½ Ausgaben
+ÿƒFinAusg1()
+ÿæ5
+ÿ½ Investitionen
+ÿƒFinInve1()
+ÿæ6
+ÿ½ Ziele
+ÿƒFinZiel1()
+ÿæ7
+ÿ½ Risiko-LV
+ÿƒFinInv1()
+ÿæ8
+ÿ½ Unfall
+ÿƒFinInv1_1()
+ÿæ9
+ÿ½ Haftpflicht
+ÿƒFinInv2()
+ÿæ10
+ÿ½ Hausrat
+ÿƒFinInv2_1()
+ÿæ11
+ÿ½ Private KV
+ÿƒFinInv3()
+ÿæ12
+ÿ½ Gesetzliche KV
+ÿƒFinInv3_1()
+ÿæ13
+ÿ½ FINV4- Rechtsschutz
+ÿƒFinInv4()
+ÿæ14
+ÿ½ FINV4_1 - Wohngeb„ude
+ÿƒFinInv4_1()
+ÿæ15
+ÿ½ FINV5 - KFZ
+ÿƒFinInv5()
+ÿæ16
+ÿ½ FINV6 - Alleinstehende BU
+ÿƒFinInv6()
+ÿæ17
+ÿ½ FINV7 - sonstige Versicherungen
+ÿƒFinInv7()
+ÿæ18
+ÿ½ FINV8 - KapitalbildenLV
+ÿƒFinInv8()
+ÿæ19
+ÿ½ FINV8 - FondsgebundeneLV
+ÿƒFinInv8_1()
+ÿæ20
+ÿ½ FINV9 - sonstigeLV
+ÿƒFinInv9()
+ÿæ21
+ÿ½ FINV8 - Private RV
+ÿƒFinInv8_2()
+ÿæ22
+ÿ½ FINV8 - Fondsgebunden RV
+ÿƒFinInv8_3()
+ÿæ23
+ÿ½ betriebliche Haftpflicht
+ÿƒFinInv2B()
+ÿæ24
+ÿ½ betriebliche Inventar
+ÿæ25
+ÿ½ betriebliche Elektronik
+ÿæ26
+ÿ½ betriebliche Rechtschutz
+ÿƒFinInv4B()
+ÿæ27
+ÿ½ betriebliche Multiple Risk
+ÿæ28
+ÿ½ Immobilien-FINV17
+ÿƒFinInv17()
+ÿæ29
+ÿ½ Immofonds-FINV18
+ÿƒFinInv18()
+ÿæ30
+ÿ½ Bauspar-FINV14
+ÿƒFinInv14()
+ÿæ31
+ÿ½ Einmalanlagen-FINV11
+ÿƒFinInv11()
+ÿæ32
+ÿ½ Sparvertrag-FINV12
+ÿƒFinInv12()
+ÿæ33
+ÿ½ Verm”gensbildungsgesetz-FINV12_1
+ÿƒFinInv12_1()
+ÿæ34
+ÿ½ Girokonten-FINV13
+ÿƒFinInv13()
+ÿæ35
+ÿ½ Sparbcher-FINV13_1
+ÿƒFinInv13_1()
+ÿæ36
+ÿ½ Langfristige DarlehenFINV17_1
+ÿƒFinInv17_1()
+ÿæ37
+ÿ½ Anschaffungsdarlehen-FINV20
+ÿƒFinInv20()
+ÿæ38
+ÿ½ Leasing-FINV19
+ÿƒFinInv19()
+ÿæ39
+ÿ½ Aktien-FINV16
+ÿƒFinInv16()
+ÿæ40
+ÿ½ Anleihen-FINV16_1
+ÿƒFinInv16_1()
+ÿæ41
+ÿ½ sonstige Fonds-FINV18_1
+ÿƒFinInv18_1()
+ÿæ42
+ÿ½ Investmentfonds-FINV15
+ÿƒFinInv15()
+ÿæ43
+ÿ½ Beteiligungen-FINV18_2
+ÿƒFinInv18_2()
+ÿæ44
+ÿ½ sonstige Verm”genswerte-FINV21
+ÿƒFinInv21()
+ÿæ45
+ÿ½ sonstige Verm”genswerte-lfd.Zahlungen-FINV21_1
+ÿƒFinInv21_1()
+ÿæ99
+ÿ½ Druck
+ÿƒDruFin1()
+ÿæ100
+ÿ½ Auswahl Berater, der in FINADR eingetragen wird
+ÿƒFinAdr1B()
+ÿ’ÿÉ
+ ÿÙ
+endFAnalyse040920041: 
+ _formend%ÿ0
+ ADRsub%ÿ0
+ ÿ’ÿÿ
+ 
+ÿÿFAnalyseIntro()
+ ÿÉÿ`ÿ™"FINVGES"ÿ£codeanalyse.finvges
+ ÿÉÿœÿ¥Gcodeanalyse%ÿ™"FINVGES"ÿ£codeanalyse.finvges
+ ÿÉÿ¥Gcodeanalyse%ÿ™"FINVDETA"ÿ£codeanalyse.FINVDETA
+ ÿœ
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ÿÿNeuFAnalyse()
+ÿÿ™"FINVDETA"
+codekey.FINVDETAÿÿI("FINVDETA",1)
+codeku.FINVDETAÿknr%
+codeanalyse.FINVDETAÿGcodeanalyse%
+Datum.FINVDETAÿÿQ
+ÿƒMATimeStamp("FINVDETA")
+ÿƒQuickStore("FINVDETA")
+ ÿ’ÿÿ
+
+
+
+
+
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                           ADRESSE
+ ÿ½ *************************************************************************************************** 
+
+
+ÿÿFinAdr1()
+ maske$ÿ"FINADR"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.finadr)ÿp
+ÿƒNeuFinAdr1()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Adresse"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Adresse"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinAdr1Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finadr")ÿpÿƒQuickStore("finadr")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinAdr1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINADR"ÿ£CodeAnalyse.finadr
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinAdr1()
+ÿÿ™"FINADR"
+ab%ÿCopyRecord%("ADRESSEN","FINADR")
+Codeanalyse.finadrÿGCodeanalyse%
+Codeku.finadrÿknr%
+National.finadrÿNationalit„t.adressen
+AnredeP.finadrÿEGAnrede.adressen
+FamilienstandP.finadrÿFamilienstand.adressen
+NachnameP.finadrÿEGNachname.adressen
+ÿ¡NachnameP.finadrÿ""ÿpNachnameP.finadrÿnachname.adressen
+VornameP.finadrÿEGVorname.adressen
+OrtP.finadrÿEGASOrt.adressen
+ÿ¡OrtP.finadrÿ""ÿpOrtP.finadrÿOrt.adressen
+PLZP.finadrÿEGASPLZ.adressen
+ÿ¡PLZP.finadrÿ""ÿpPLZP.finadrÿplz.adressen
+StraáeP.finadrÿEGASStraáe.adressen
+ÿ¡StraáeP.finadrÿ""ÿpStraáeP.finadrÿstraáe.adressen
+NationalP.finadrÿNationalit„t.adressen
+LandP.finadrÿLand.adressen
+GeburtstagP.finadrÿEGGeburtstag.adressen
+GterstandP.finadrÿGterstand.adressen
+GeburtstagK1.finadrÿK1Geburtstag.adressen
+GeburtstagK2.finadrÿK2Geburtstag.adressen
+GeburtstagK3.finadrÿK3Geburtstag.adressen
+GeburtstagK4.finadrÿK4Geburtstag.adressen
+ 
+ÿƒMATimeStamp("FINADR")
+ÿƒQuickStore("FINADR")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Adresse.FINVDETAÿ"X"
+ÿƒMATimeStamp("FINVDETA")
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+ 
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                           ADRESSE-Berater
+ ÿ½ *************************************************************************************************** 
+ 
+ 
+ÿÿFinAdr1B()
+ maske$ÿ"FINADR1B"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.finadr)ÿp
+ÿƒNeuFinAdr1B()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Berater"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Berater"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinAdr1Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ Auswahl Berater
+ÿƒFinADR1Berater()
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finadr")ÿpÿƒQuickStore("finadr")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+
+
+ÿÿFinADR1Berater()
+ cfile$ÿÿ™
+ ÿƒDFile(3,"maadr"ÿ_fpw$)
+ ÿ™"maadr"
+ ÿ£codema.maadr
+ ÿÉÿ`
+ ÿ¡gfsc%ÿÿ1ÿGASP%ÿÿ1ÿp
+ÿƒMASuFS24()
+ ÿ^
+ÿƒMADRSuchen()
+ ÿ’ÿ¡
+ ÿ¡GCodema%ÿ0ÿp
+ÿÉÿ`ÿ™"MAADR"ÿ£codema.maadr
+ÿÉÿ¥gcodema%ÿ™"MAADR"ÿ£codema.maadr
+ÿÉÿ¥GCodeAnalyse%ÿáÿ™"FINADR"ÿ£CodeAnalyse.finadr
+BFirma.finadrÿFirmaName.maadr
+BAnrede.finadrÿanrede.maadr
+BNachname.finadrÿNachname.maadr
+BVorname.finadrÿVorname.maadr
+BStrasse.finadrÿstraáe.maadr
+BOrt.finadrÿort.maadr
+BPLZ.finadrÿplz.maadr
+BTelefon.finadrÿTelefon1.maadr
+BFax.finadrÿtelefax.maadr
+BMobil.finadrÿtelefon2.maadr
+BEmail.finadrÿemail.maadr
+ÿƒQuickStore("finadr")
+ ÿ’ÿ¡
+ ÿ™cfile$
+ ÿ’ÿÿ
+
+ÿÿFinAdr1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINADR"ÿ£CodeAnalyse.finadr
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinAdr1B()
+ÿÿ™"FINADR"
+ab%ÿCopyRecord%("ADRESSEN","FINADR")
+Codeanalyse.finadrÿGCodeanalyse%
+Codeku.finadrÿknr%
+National.finadrÿNationalit„t.adressen
+AnredeP.finadrÿEGAnrede.adressen
+FamilienstandP.finadrÿFamilienstand.adressen
+NachnameP.finadrÿEGNachname.adressen
+ÿ¡NachnameP.finadrÿ""ÿpNachnameP.finadrÿnachname.adressen
+VornameP.finadrÿEGVorname.adressen
+OrtP.finadrÿEGASOrt.adressen
+ÿ¡OrtP.finadrÿ""ÿpOrtP.finadrÿOrt.adressen
+PLZP.finadrÿEGASPLZ.adressen
+ÿ¡PLZP.finadrÿ""ÿpPLZP.finadrÿplz.adressen
+StraáeP.finadrÿEGASStraáe.adressen
+ÿ¡StraáeP.finadrÿ""ÿpStraáeP.finadrÿstraáe.adressen
+NationalP.finadrÿNationalit„t.adressen
+LandP.finadrÿLand.adressen
+GeburtstagP.finadrÿEGGeburtstag.adressen
+GterstandP.finadrÿGterstand.adressen
+GeburtstagK1.finadrÿK1Geburtstag.adressen
+GeburtstagK2.finadrÿK2Geburtstag.adressen
+GeburtstagK3.finadrÿK3Geburtstag.adressen
+GeburtstagK4.finadrÿK4Geburtstag.adressen
+ÿ¡BFirma.finadrÿ""ÿpBFirma.finadrÿ"NEU"
+ÿƒMATimeStamp("FINADR")
+ÿƒQuickStore("FINADR")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Adresse.FINVDETAÿ"X"
+ÿƒMATimeStamp("FINVDETA")
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+
+
+
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                          BERUF
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinBeruf1()
+ maske$ÿ"FINBERU"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINBERU)ÿp
+ÿƒNeuFinBeru1()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Beruf"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Beruf"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinBeru1Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finberu")ÿpÿƒQuickStore("finberu")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinBeru1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINBERU"ÿ£CodeAnalyse.finBERU
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinBeru1()
+ÿÿ™"FINBERU"
+Codeanalyse.finberuÿGCodeanalyse%
+Codeku.finberuÿknr%
+ÿƒQuickStore("FINberu")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Beruf_Bank.FINVDETAÿ"X"
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+ 
+ ÿ½ ***************************************************************************************************
+ ÿ½                          EINKOMMEN
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinEink1()
+ maske$ÿ"FINEINK"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINEINK)ÿp
+ÿƒNeuFinEink1()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Einkommen"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Einkommen"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinEink1Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("fineink")ÿpÿƒQuickStore("fineink")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinEink1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINEINK"ÿ£CodeAnalyse.finEINK
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinEink1()
+ÿÿ™"FINEINK"
+Codeanalyse.finEINKÿGCodeanalyse%
+Codeku.finEINKÿknr%
+ÿƒQuickStore("FINEINK")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Einkommen.FINVDETAÿ"X"
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                          AUSGABEN
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinAusg1()
+ maske$ÿ"FINAUSG"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINAusg)ÿp
+ÿƒNeuFinAusg1()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Ausgaben"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Ausgaben"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinEink1Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finAusg")ÿpÿƒQuickStore("finAusg")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinAusg1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINAusg"ÿ£CodeAnalyse.finAusg
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinAusg1()
+ÿÿ™"FINAusg"
+Codeanalyse.finAusgÿGCodeanalyse%
+Codeku.finAusgÿknr%
+SplitTab.finausgÿ"n"
+ÿƒQuickStore("FINAusg")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Ausgaben.FINVDETAÿ"X"
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+ 
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                          INVESTISTIONSANGABEN
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInve1()
+ maske$ÿ"FININVE"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FININVE)ÿp
+ÿƒNeuFinInve1()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Investitionsangaben"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Investitionsangaben"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinInve1Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finAusg")ÿpÿƒQuickStore("finAusg")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinInve1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FININVE"ÿ£CodeAnalyse.finINVE
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinInve1()
+ÿÿ™"FININVE"
+Codeanalyse.finINVEÿGCodeanalyse%
+Codeku.finINVEÿknr%
+ÿƒQuickStore("FININVE")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Investangaben.FINVDETAÿ"X"
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+ 
+
+ 
+ ÿ½ ***************************************************************************************************
+ ÿ½                           Ziele
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinZiel1()
+ maske$ÿ"FINZIEL"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINZIEL)ÿp
+ÿƒNeuFinZiel1()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Ziele"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Ziele"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinInve1Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finZIEL")ÿpÿƒQuickStore("finZIEL")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinZiel1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINZIEL"ÿ£CodeAnalyse.finZIEL
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinZiel1()
+ÿÿ™"FINZIEL"
+Codeanalyse.finZIELÿGCodeanalyse%
+Codeku.finZIELÿknr%
+ÿƒQuickStore("FINZIEL")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Ziele.FINVDETAÿ"X"
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+ 
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV1-Risiko LV
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv1()
+ maske$ÿ"FINV1"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV1)ÿp
+ÿƒNeuFinv1()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Risiko LV"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Risiko LV"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv1Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv1()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV1"ÿ£codekey.finv1
+ÿÉÿ¥codekey%ÿáÿ™"FINV1"ÿ£codekey.finv1
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV1"ÿ£codekey.finv1
+ÿÉÿ¥codekey%ÿáÿ™"FINV1"ÿ£codekey.finv1
+ÿÉÿ¾ÿ™"FINV1"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Risiko_LV.FINVDETAÿRisiko_LV.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv1")ÿpÿƒQuickStore("finv1")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV1"ÿ£CodeAnalyse.finv1
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV1"ÿ£CodeAnalyse.finv1
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv1()
+ÿÿ™"FINV1"
+Codeanalyse.FINV1ÿGCodeanalyse%
+codekey.FINV1ÿÿI("FINV1",1)
+Codeku.FINV1ÿknr%
+RGesell1.FINV1ÿ"NEU"
+RZw1.finv1ÿ12
+ÿƒQuickStore("FINV1")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Risiko_LV.FINVDETAÿRisiko_LV.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+ 
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV1_1Unfall
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv1_1()
+ maske$ÿ"FINV1_1"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV1_1)ÿp
+ÿƒNeuFinv1_1()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Unfall"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Unfall"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv1_1Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv1_1()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV1_1"ÿ£codekey.finv1_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV1_1"ÿ£codekey.finv1_1
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv1_1
+ÿÉÿ`ÿ™"FINV1_1"ÿ£codekey.finv1_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV1_1"ÿ£codekey.finv1_1
+ÿÉÿ¾ÿ™"FINV1_1"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Unfall.FINVDETAÿUnfall.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv1_1")ÿpÿƒQuickStore("finv1_1")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv1_1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV1_1"ÿ£CodeAnalyse.finv1_1
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV1_1"ÿ£CodeAnalyse.finv1_1
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv1_1()
+ÿÿ™"FINV1_1"
+Codeanalyse.FINV1_1ÿGCodeanalyse%
+codekey.FINV1_1ÿÿI("FINV1_1",1)
+Codeku.FINV1_1ÿknr%
+UZW1.finv1_1ÿ12
+UGesell1.FINV1_1ÿ"NEU"
+ÿƒQuickStore("FINV1_1")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Unfall.FINVDETAÿUnfall.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV2-Haftpflicht
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv2()
+ maske$ÿ"FINV2"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV2)ÿp
+ÿƒNeuFinv2()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Haftpflicht"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Haftpflicht"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv2Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv2()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV2"ÿ£codekey.finv2
+ÿÉÿ¥codekey%ÿáÿ™"FINV2"ÿ£codekey.finv2
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv2
+ÿÉÿ`ÿ™"FINV2"ÿ£codekey.finv2
+ÿÉÿ¥codekey%ÿáÿ™"FINV2"ÿ£codekey.finv2
+ÿÉÿ¾ÿ™"FINV2"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Haftpflicht.FINVDETAÿHaftpflicht.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv2")ÿpÿƒQuickStore("finv2")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv2Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV2"ÿ£CodeAnalyse.finv2
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV2"ÿ£CodeAnalyse.finv2
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv2()
+ÿÿ™"FINV2"
+Codeanalyse.FINV2ÿGCodeanalyse%
+codekey.FINV2ÿÿI("FINV2",1)
+Codeku.FINV2ÿknr%
+Gesell1.FINV2ÿ"NEU"
+ZW1.finv2ÿ12
+ÿƒQuickStore("FINV2")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Haftpflicht.FINVDETAÿHaftpflicht.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV2_1-Hausrat
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv2_1()
+ maske$ÿ"FINV2_1"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV2_1)ÿp
+ÿƒNeuFinv2_1()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Hausrat"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Hausrat"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv2_1Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv2_1()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV2_1"ÿ£codekey.finv2_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV2_1"ÿ£codekey.finv2_1
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv2_1
+ÿÉÿ`ÿ™"FINV2_1"ÿ£codekey.finv2_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV2_1"ÿ£codekey.finv2_1
+ÿÉÿ¾ÿ™"FINV2_1"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Hausrat.FINVDETAÿHausrat.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv2_1")ÿpÿƒQuickStore("finv2_1")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv2_1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV2_1"ÿ£CodeAnalyse.finv2_1
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV2_1"ÿ£CodeAnalyse.finv2_1
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv2_1()
+ÿÿ™"FINV2_1"
+Codeanalyse.FINV2_1ÿGCodeanalyse%
+codekey.FINV2_1ÿÿI("FINV2_1",1)
+Codeku.FINV2_1ÿknr%
+Gesell1.FINV2_1ÿ"NEU"
+ZW1.finv2_1ÿ12
+ÿƒQuickStore("FINV2_1")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Hausrat.FINVDETAÿHausrat.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+ 
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV3-Private KV
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv3()
+ maske$ÿ"FINV3"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV3)ÿp
+ÿƒNeuFinv3()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Private KV"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Private KV"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv3Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv3()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV3"ÿ£codekey.finv3
+ÿÉÿ¥codekey%ÿáÿ™"FINV3"ÿ£codekey.finv3
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv3
+ÿÉÿ`ÿ™"FINV3"ÿ£codekey.finv3
+ÿÉÿ¥codekey%ÿáÿ™"FINV3"ÿ£codekey.finv3
+ÿÉÿ¾ÿ™"FINV3"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Private_KV.FINVDETAÿPrivate_KV.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv3")ÿpÿƒQuickStore("finv3")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv3Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV3"ÿ£CodeAnalyse.finv3
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV3"ÿ£CodeAnalyse.finv3
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv3()
+ÿÿ™"FINV3"
+Codeanalyse.FINV3ÿGCodeanalyse%
+codekey.FINV3ÿÿI("FINV3",1)
+Codeku.FINV3ÿknr%
+Gesell1.FINV3ÿ"NEU"
+ZW1.finv3ÿ12
+ÿƒQuickStore("FINV3")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Private_KV.FINVDETAÿPrivate_KV.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV3_1-gesetzliche KV
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv3_1()
+ maske$ÿ"FINV3_1"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV3_1)ÿp
+ÿƒNeuFinv3_1()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Gesetzliche KV"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Gesetzliche KV"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv3_1Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv3_1()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV3_1"ÿ£codekey.finv3_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV3_1"ÿ£codekey.finv3_1
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv3_1
+ÿÉÿ`ÿ™"FINV3_1"ÿ£codekey.finv3_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV3_1"ÿ£codekey.finv3_1
+ÿÉÿ¾ÿ™"FINV3_1"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Gesetzliche_KV.FINVDETAÿGesetzliche_KV.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv3_1")ÿpÿƒQuickStore("finv3_1")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv3_1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV3_1"ÿ£CodeAnalyse.finv3_1
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV3_1"ÿ£CodeAnalyse.finv3_1
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv3_1()
+ÿÿ™"FINV3_1"
+Codeanalyse.FINV3_1ÿGCodeanalyse%
+codekey.FINV3_1ÿÿI("FINV3_1",1)
+Codeku.FINV3_1ÿknr%
+Gesell1.FINV3_1ÿ"NEU"
+ZW1.finv3_1ÿ12
+ÿƒQuickStore("FINV3_1")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Gesetzliche_KV.FINVDETAÿGesetzliche_KV.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV4- Rechtsschutz
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv4()
+ maske$ÿ"FINV4"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV4)ÿp
+ÿƒNeuFinv4()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Rechtsschutz"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Rechtsschutz"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv4Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv4()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV4"ÿ£codekey.finv4
+ÿÉÿ¥codekey%ÿáÿ™"FINV4"ÿ£codekey.finv4
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv4
+ÿÉÿ`ÿ™"FINV4"ÿ£codekey.finv4
+ÿÉÿ¥codekey%ÿáÿ™"FINV4"ÿ£codekey.finv4
+ÿÉÿ¾ÿ™"FINV4"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Rechtsschutz.FINVDETAÿRechtsschutz.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv4")ÿpÿƒQuickStore("finv4")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv4Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV4"ÿ£CodeAnalyse.finv4
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV4"ÿ£CodeAnalyse.finv4
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv4()
+ÿÿ™"FINV4"
+Codeanalyse.FINV4ÿGCodeanalyse%
+codekey.FINV4ÿÿI("FINV4",1)
+Codeku.FINV4ÿknr%
+Gesell1.FINV4ÿ"NEU"
+ZW1.finv4ÿ12
+ÿƒQuickStore("FINV4")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Rechtsschutz.FINVDETAÿRechtsschutz.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV4_1-Wohngeb„ude
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv4_1()
+ maske$ÿ"FINV4_1"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV4_1)ÿp
+ÿƒNeuFinv4_1()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Wohngebaeude"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Wohngebaeude"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv4_1Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv4_1()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV4_1"ÿ£codekey.finv4_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV4_1"ÿ£codekey.finv4_1
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv4_1
+ÿÉÿ`ÿ™"FINV4_1"ÿ£codekey.finv4_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV4_1"ÿ£codekey.finv4_1
+ÿÉÿ¾ÿ™"FINV4_1"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Wohngebaeude.FINVDETAÿWohngebaeude.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv4_1")ÿpÿƒQuickStore("finv4_1")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv4_1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV4_1"ÿ£CodeAnalyse.finv4_1
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV4_1"ÿ£CodeAnalyse.finv4_1
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv4_1()
+ÿÿ™"FINV4_1"
+Codeanalyse.FINV4_1ÿGCodeanalyse%
+codekey.FINV4_1ÿÿI("FINV4_1",1)
+Codeku.FINV4_1ÿknr%
+Gesell1.FINV4_1ÿ"NEU"
+ZW1.finv4_1ÿ12
+ÿƒQuickStore("FINV4_1")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Wohngebaeude.FINVDETAÿWohngebaeude.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV5-KFZ
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv5()
+ maske$ÿ"FINV5"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV5)ÿp
+ÿƒNeuFinv5()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse KFZ"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse KFZ"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv5Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv5()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV5"ÿ£codekey.finv5
+ÿÉÿ¥codekey%ÿáÿ™"FINV5"ÿ£codekey.finv5
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv5
+ÿÉÿ`ÿ™"FINV5"ÿ£codekey.finv5
+ÿÉÿ¥codekey%ÿáÿ™"FINV5"ÿ£codekey.finv5
+ÿÉÿ¾ÿ™"FINV5"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+KFZ_Versicherun.FINVDETAÿKFZ_Versicherun.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv5")ÿpÿƒQuickStore("finv5")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv5Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV5"ÿ£CodeAnalyse.finv5
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV5"ÿ£CodeAnalyse.finv5
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv5()
+ÿÿ™"FINV5"
+Codeanalyse.FINV5ÿGCodeanalyse%
+codekey.FINV5ÿÿI("FINV5",1)
+Codeku.FINV5ÿknr%
+Gesell1.FINV5ÿ"NEU"
+ZW1.finv5ÿ12
+ÿƒQuickStore("FINV5")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+KFZ_Versicherun.FINVDETAÿKFZ_Versicherun.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+ 
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV6-Alleinstehende BU
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv6()
+ maske$ÿ"FINV6"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV6)ÿp
+ÿƒNeuFinv6()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Alleinstehende BU"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Alleinstehende BU"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv6Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv6()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV6"ÿ£codekey.finv6
+ÿÉÿ¥codekey%ÿáÿ™"FINV6"ÿ£codekey.finv6
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv6
+ÿÉÿ`ÿ™"FINV6"ÿ£codekey.finv6
+ÿÉÿ¥codekey%ÿáÿ™"FINV6"ÿ£codekey.finv6
+ÿÉÿ¾ÿ™"FINV6"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+AlleinstehendBU.FINVDETAÿAlleinstehendBU.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv6")ÿpÿƒQuickStore("finv6")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv6Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV6"ÿ£CodeAnalyse.finv6
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV6"ÿ£CodeAnalyse.finv6
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv6()
+ÿÿ™"FINV6"
+Codeanalyse.FINV6ÿGCodeanalyse%
+codekey.FINV6ÿÿI("FINV6",1)
+Codeku.FINV6ÿknr%
+Gesell1.FINV6ÿ"NEU"
+ZW1.finv6ÿ12
+ÿƒQuickStore("FINV6")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+AlleinstehendBU.FINVDETAÿAlleinstehendBU.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV7-sonstige Versicherungen
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv7()
+ maske$ÿ"FINV7"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV7)ÿp
+ÿƒNeuFinv7()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse sonstige Versicherungen"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse sonstige Versicherungen"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv7Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv7()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV7"ÿ£codekey.finv7
+ÿÉÿ¥codekey%ÿáÿ™"FINV7"ÿ£codekey.finv7
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv7
+ÿÉÿ`ÿ™"FINV7"ÿ£codekey.finv7
+ÿÉÿ¥codekey%ÿáÿ™"FINV7"ÿ£codekey.finv7
+ÿÉÿ¾ÿ™"FINV7"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+SonstigeVersich.FINVDETAÿSonstigeVersich.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv7")ÿpÿƒQuickStore("finv7")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv7Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV7"ÿ£CodeAnalyse.finv7
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV7"ÿ£CodeAnalyse.finv7
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv7()
+ÿÿ™"FINV7"
+Codeanalyse.FINV7ÿGCodeanalyse%
+codekey.FINV7ÿÿI("FINV7",1)
+Codeku.FINV7ÿknr%
+Gesell1.FINV7ÿ"NEU"
+ZW1.finv7ÿ12
+ÿƒQuickStore("FINV7")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+SonstigeVersich.FINVDETAÿSonstigeVersich.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV8-Kapitalbildende LV
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv8()
+ maske$ÿ"FINV8"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV8)ÿp
+ÿƒNeuFinv8()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Kapitalbildende LV"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Kapitalbildende LV"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv8Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv8()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV8"ÿ£codekey.finv8
+ÿÉÿ¥codekey%ÿáÿ™"FINV8"ÿ£codekey.finv8
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv8
+ÿÉÿ`ÿ™"FINV8"ÿ£codekey.finv8
+ÿÉÿ¥codekey%ÿáÿ™"FINV8"ÿ£codekey.finv8
+ÿÉÿ¾ÿ™"FINV8"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+KapitalbildenLV.FINVDETAÿKapitalbildenLV.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv8")ÿpÿƒQuickStore("finv8")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv8Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV8"ÿ£CodeAnalyse.finv8
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV8"ÿ£CodeAnalyse.finv8
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv8()
+ÿÿ™"FINV8"
+Codeanalyse.FINV8ÿGCodeanalyse%
+codekey.FINV8ÿÿI("FINV8",1)
+Codeku.FINV8ÿknr%
+Gesell1.FINV8ÿ"NEU"
+ZW1.finv8ÿ12
+ÿƒQuickStore("FINV8")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+KapitalbildenLV.FINVDETAÿKapitalbildenLV.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV8_1-Fondsgebundene LV
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv8_1()
+ maske$ÿ"FINV8_1"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV8_1)ÿp
+ÿƒNeuFinv8_1()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Fondsgebundene LV"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Fondsgebundene LV"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv8_1Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv8_1()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV8_1"ÿ£codekey.finv8_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV8_1"ÿ£codekey.finv8_1
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv8_1
+ÿÉÿ`ÿ™"FINV8_1"ÿ£codekey.finv8_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV8_1"ÿ£codekey.finv8_1
+ÿÉÿ¾ÿ™"FINV8_1"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+FonsgebLV.FINVDETAÿFonsgebLV.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv8_1")ÿpÿƒQuickStore("finv8_1")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv8_1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV8_1"ÿ£CodeAnalyse.finv8_1
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV8_1"ÿ£CodeAnalyse.finv8_1
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv8_1()
+ÿÿ™"FINV8_1"
+Codeanalyse.FINV8_1ÿGCodeanalyse%
+codekey.FINV8_1ÿÿI("FINV8_1",1)
+Codeku.FINV8_1ÿknr%
+Gesell1.FINV8_1ÿ"NEU"
+ZW1.finv8_1ÿ12
+ÿƒQuickStore("FINV8_1")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+FonsgebLV.FINVDETAÿFonsgebLV.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV9-sonstige LV
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv9()
+ maske$ÿ"FINV9"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV9)ÿp
+ÿƒNeuFinv9()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse sonstige LV"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse sonstige LV"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv9Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv9()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV9"ÿ£codekey.finv9
+ÿÉÿ¥codekey%ÿáÿ™"FINV9"ÿ£codekey.finv9
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv9
+ÿÉÿ`ÿ™"FINV9"ÿ£codekey.finv9
+ÿÉÿ¥codekey%ÿáÿ™"FINV9"ÿ£codekey.finv9
+ÿÉÿ¾ÿ™"FINV9"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+sonstige_LV.FINVDETAÿsonstige_LV.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv9")ÿpÿƒQuickStore("finv9")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv9Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV9"ÿ£CodeAnalyse.finv9
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV9"ÿ£CodeAnalyse.finv9
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv9()
+ÿÿ™"FINV9"
+Codeanalyse.FINV9ÿGCodeanalyse%
+codekey.FINV9ÿÿI("FINV9",1)
+Codeku.FINV9ÿknr%
+Gesell1.FINV9ÿ"NEU"
+ZW1.finv9ÿ12
+ÿƒQuickStore("FINV9")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+sonstige_LV.FINVDETAÿsonstige_LV.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV8_2-Private RV
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv8_2()
+ maske$ÿ"FINV8_2"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV8_2)ÿp
+ÿƒNeuFinv8_2()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Private RV"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Private RV"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv8_2Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv8_2()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV8_2"ÿ£codekey.finv8_2
+ÿÉÿ¥codekey%ÿáÿ™"FINV8_2"ÿ£codekey.finv8_2
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv8_2
+ÿÉÿ`ÿ™"FINV8_2"ÿ£codekey.finv8_2
+ÿÉÿ¥codekey%ÿáÿ™"FINV8_2"ÿ£codekey.finv8_2
+ÿÉÿ¾ÿ™"FINV8_2"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+PrivateRV.FINVDETAÿPrivateRV.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv8_2")ÿpÿƒQuickStore("finv8_2")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv8_2Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV8_2"ÿ£CodeAnalyse.finv8_2
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV8_2"ÿ£CodeAnalyse.finv8_2
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv8_2()
+ÿÿ™"FINV8_2"
+Codeanalyse.FINV8_2ÿGCodeanalyse%
+codekey.FINV8_2ÿÿI("FINV8_2",1)
+Codeku.FINV8_2ÿknr%
+Gesell1.FINV8_2ÿ"NEU"
+ZW1.finv8_2ÿ12
+ÿƒQuickStore("FINV8_2")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+PrivateRV.FINVDETAÿPrivateRV.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV8_2-Fondsgebundene RV
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv8_3()
+ maske$ÿ"FINV8_3"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV8_3)ÿp
+ÿƒNeuFinv8_3()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Fondsgebundene RV"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Fondsgebundene RV"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv8_3Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv8_3()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV8_3"ÿ£codekey.finv8_3
+ÿÉÿ¥codekey%ÿáÿ™"FINV8_3"ÿ£codekey.finv8_3
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv8_3
+ÿÉÿ`ÿ™"FINV8_3"ÿ£codekey.finv8_3
+ÿÉÿ¥codekey%ÿáÿ™"FINV8_3"ÿ£codekey.finv8_3
+ÿÉÿ¾ÿ™"FINV8_3"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+FondsgebRV.FINVDETAÿFondsgebRV.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv8_3")ÿpÿƒQuickStore("finv8_3")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv8_3Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV8_3"ÿ£CodeAnalyse.finv8_3
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV8_3"ÿ£CodeAnalyse.finv8_3
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv8_3()
+ÿÿ™"FINV8_3"
+Codeanalyse.FINV8_3ÿGCodeanalyse%
+codekey.FINV8_3ÿÿI("FINV8_3",1)
+Codeku.FINV8_3ÿknr%
+Gesell1.FINV8_3ÿ"NEU"
+ZW1.finv8_3ÿ12
+ÿƒQuickStore("FINV8_3")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+FondsgebRV.FINVDETAÿFondsgebRV.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV2B-Betriebliche Haftpflicht
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv2B()
+ maske$ÿ"FINV2B"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV2B)ÿp
+ÿƒNeuFinv2B()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Betriebliche Haftpflicht"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Betriebliche Haftpflicht"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv2BIntro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv2B()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV2B"ÿ£codekey.finv2B
+ÿÉÿ¥codekey%ÿáÿ™"FINV2B"ÿ£codekey.finv2B
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv2B
+ÿÉÿ`ÿ™"FINV2B"ÿ£codekey.finv2B
+ÿÉÿ¥codekey%ÿáÿ™"FINV2B"ÿ£codekey.finv2B
+ÿÉÿ¾ÿ™"FINV2B"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+BHaft.FINVDETAÿBHaft.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv2B")ÿpÿƒQuickStore("finv2B")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv2BIntro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV2B"ÿ£CodeAnalyse.finv2B
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV2B"ÿ£CodeAnalyse.finv2B
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv2B()
+ÿÿ™"FINV2B"
+Codeanalyse.FINV2BÿGCodeanalyse%
+codekey.FINV2BÿÿI("FINV2B",1)
+Codeku.FINV2Bÿknr%
+Gesell1.FINV2Bÿ"NEU"
+ZW1.finv2Bÿ12
+ÿƒQuickStore("FINV2B")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+BHaft.FINVDETAÿBHaft.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV4B-Betriebliche Rechtschutz
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv4B()
+ maske$ÿ"FINV4B"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV4B)ÿp
+ÿƒNeuFinv4B()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Betriebliche Rechtschutz"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Betriebliche Rechtschutz"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv4BIntro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv4B()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV4B"ÿ£codekey.finv4B
+ÿÉÿ¥codekey%ÿáÿ™"FINV4B"ÿ£codekey.finv4B
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv4B
+ÿÉÿ`ÿ™"FINV4B"ÿ£codekey.finv4B
+ÿÉÿ¥codekey%ÿáÿ™"FINV4B"ÿ£codekey.finv4B
+ÿÉÿ¾ÿ™"FINV4B"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+BRechtsschutz.FINVDETAÿBRechtsschutz.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv4B")ÿpÿƒQuickStore("finv4B")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv4BIntro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV4B"ÿ£CodeAnalyse.finv4B
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV4B"ÿ£CodeAnalyse.finv4B
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv4B()
+ÿÿ™"FINV4B"
+Codeanalyse.FINV4BÿGCodeanalyse%
+codekey.FINV4BÿÿI("FINV4B",1)
+Codeku.FINV4Bÿknr%
+Gesell1.FINV4Bÿ"NEU"
+ZW1.finv4Bÿ12
+ÿƒQuickStore("FINV4B")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+BRechtsschutz.FINVDETAÿBRechtsschutz.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV17-Immobilien
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv17()
+ maske$ÿ"FINV17"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV17)ÿp
+ÿƒNeuFinv17()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Immobilien"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Immobilien"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv17Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv17()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV17"ÿ£codekey.finv17
+ÿÉÿ¥codekey%ÿáÿ™"FINV17"ÿ£codekey.finv17
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv17
+ÿÉÿ`ÿ™"FINV17"ÿ£codekey.finv17
+ÿÉÿ¥codekey%ÿáÿ™"FINV17"ÿ£codekey.finv17
+ÿÉÿ¾ÿ™"FINV17"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Immobilien.FINVDETAÿImmobilien.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv17")ÿpÿƒQuickStore("finv17")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv17Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV17"ÿ£CodeAnalyse.finv17
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV17"ÿ£CodeAnalyse.finv17
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv17()
+ÿÿ™"FINV17"
+Codeanalyse.FINV17ÿGCodeanalyse%
+codekey.FINV17ÿÿI("FINV17",1)
+Codeku.FINV17ÿknr%
+Objektnr1.FINV17ÿ"NEU"
+ZW1.finv17ÿ12
+ÿƒQuickStore("FINV17")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Immobilien.FINVDETAÿImmobilien.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV18-Immobilienfonds
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv18()
+ maske$ÿ"FINV18"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV18)ÿp
+ÿƒNeuFinv18()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Immobilienfonds"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Immobilienfonds"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv18Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv18()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV18"ÿ£codekey.finv18
+ÿÉÿ¥codekey%ÿáÿ™"FINV18"ÿ£codekey.finv18
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv18
+ÿÉÿ`ÿ™"FINV18"ÿ£codekey.finv18
+ÿÉÿ¥codekey%ÿáÿ™"FINV18"ÿ£codekey.finv18
+ÿÉÿ¾ÿ™"FINV18"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Immobilienfonds.FINVDETAÿImmobilienfonds.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv18")ÿpÿƒQuickStore("finv18")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv18Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV18"ÿ£CodeAnalyse.finv18
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV18"ÿ£CodeAnalyse.finv18
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv18()
+ÿÿ™"FINV18"
+Codeanalyse.FINV18ÿGCodeanalyse%
+codekey.FINV18ÿÿI("FINV18",1)
+Codeku.FINV18ÿknr%
+Gesell1.FINV18ÿ"NEU"
+ZW1.finv18ÿ12
+ÿƒQuickStore("FINV18")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Immobilienfonds.FINVDETAÿImmobilienfonds.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV14-Bauspar
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv14()
+ maske$ÿ"FINV14"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV14)ÿp
+ÿƒNeuFinv14()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Bauspar"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Bauspar"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv14Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv14()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV14"ÿ£codekey.finv14
+ÿÉÿ¥codekey%ÿáÿ™"FINV14"ÿ£codekey.finv14
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv14
+ÿÉÿ`ÿ™"FINV14"ÿ£codekey.finv14
+ÿÉÿ¥codekey%ÿáÿ™"FINV14"ÿ£codekey.finv14
+ÿÉÿ¾ÿ™"FINV14"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Bausparvertrag.FINVDETAÿBausparvertrag.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv14")ÿpÿƒQuickStore("finv14")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv14Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV14"ÿ£CodeAnalyse.finv14
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV14"ÿ£CodeAnalyse.finv14
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv14()
+ÿÿ™"FINV14"
+Codeanalyse.FINV14ÿGCodeanalyse%
+codekey.FINV14ÿÿI("FINV14",1)
+Codeku.FINV14ÿknr%
+Gesell1.FINV14ÿ"NEU"
+ZW1.finv14ÿ12
+ÿƒQuickStore("FINV14")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Bausparvertrag.FINVDETAÿBausparvertrag.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV11-Einmalanlagen
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv11()
+ maske$ÿ"FINV11"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV11)ÿp
+ÿƒNeuFinv11()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Einmalanlagen"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Einmalanlagen"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv11Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv11()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV11"ÿ£codekey.finv11
+ÿÉÿ¥codekey%ÿáÿ™"FINV11"ÿ£codekey.finv11
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv11
+ÿÉÿ`ÿ™"FINV11"ÿ£codekey.finv11
+ÿÉÿ¥codekey%ÿáÿ™"FINV11"ÿ£codekey.finv11
+ÿÉÿ¾ÿ™"FINV11"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Einmalanlage.FINVDETAÿEinmalanlage.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv11")ÿpÿƒQuickStore("finv11")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv11Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV11"ÿ£CodeAnalyse.finv11
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV11"ÿ£CodeAnalyse.finv11
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv11()
+ÿÿ™"FINV11"
+Codeanalyse.FINV11ÿGCodeanalyse%
+codekey.FINV11ÿÿI("FINV11",1)
+Codeku.FINV11ÿknr%
+Gesell1.FINV11ÿ"NEU"
+ZW1.finv11ÿ12
+ÿƒQuickStore("FINV11")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Einmalanlage.FINVDETAÿEinmalanlage.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV12-Sparvertrag
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv12()
+ maske$ÿ"FINV12"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV12)ÿp
+ÿƒNeuFinv12()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Sparvertrag"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Sparvertrag"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv12Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv12()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV12"ÿ£codekey.finv12
+ÿÉÿ¥codekey%ÿáÿ™"FINV12"ÿ£codekey.finv12
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv12
+ÿÉÿ`ÿ™"FINV12"ÿ£codekey.finv12
+ÿÉÿ¥codekey%ÿáÿ™"FINV12"ÿ£codekey.finv12
+ÿÉÿ¾ÿ™"FINV12"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Sparvertrag.FINVDETAÿSparvertrag.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv12")ÿpÿƒQuickStore("finv12")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv12Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV12"ÿ£CodeAnalyse.finv12
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV12"ÿ£CodeAnalyse.finv12
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv12()
+ÿÿ™"FINV12"
+Codeanalyse.FINV12ÿGCodeanalyse%
+codekey.FINV12ÿÿI("FINV12",1)
+Codeku.FINV12ÿknr%
+Gesell1.FINV12ÿ"NEU"
+ZW1.finv12ÿ12
+ÿƒQuickStore("FINV12")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Sparvertrag.FINVDETAÿSparvertrag.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV12_1-Verm”gensbildungsgesetz
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv12_1()
+ maske$ÿ"FINV12_1"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV12_1)ÿp
+ÿƒNeuFinv12_1()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Verm”gensbildungsgesetz"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Verm”gensbildungsgesetz"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv12_1Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv12_1()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV12_1"ÿ£codekey.finv12_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV12_1"ÿ£codekey.finv12_1
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv12_1
+ÿÉÿ`ÿ™"FINV12_1"ÿ£codekey.finv12_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV12_1"ÿ£codekey.finv12_1
+ÿÉÿ¾ÿ™"FINV12_1"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Vermoegbildges.FINVDETAÿVermoegbildges.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv12_1")ÿpÿƒQuickStore("finv12_1")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv12_1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV12_1"ÿ£CodeAnalyse.finv12_1
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV12_1"ÿ£CodeAnalyse.finv12_1
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv12_1()
+ÿÿ™"FINV12_1"
+Codeanalyse.FINV12_1ÿGCodeanalyse%
+codekey.FINV12_1ÿÿI("FINV12_1",1)
+Codeku.FINV12_1ÿknr%
+Gesell1.FINV12_1ÿ"NEU"
+ZW1.finv12_1ÿ12
+ÿƒQuickStore("FINV12_1")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Vermoegbildges.FINVDETAÿVermoegbildges.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV13-Girokonten
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv13()
+ maske$ÿ"FINV13"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV13)ÿp
+ÿƒNeuFinv13()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Girokonten"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Girokonten"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv13Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv13()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV13"ÿ£codekey.finv13
+ÿÉÿ¥codekey%ÿáÿ™"FINV13"ÿ£codekey.finv13
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv13
+ÿÉÿ`ÿ™"FINV13"ÿ£codekey.finv13
+ÿÉÿ¥codekey%ÿáÿ™"FINV13"ÿ£codekey.finv13
+ÿÉÿ¾ÿ™"FINV13"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Girokonto.FINVDETAÿGirokonto.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv13")ÿpÿƒQuickStore("finv13")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv13Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV13"ÿ£CodeAnalyse.finv13
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV13"ÿ£CodeAnalyse.finv13
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv13()
+ÿÿ™"FINV13"
+Codeanalyse.FINV13ÿGCodeanalyse%
+codekey.FINV13ÿÿI("FINV13",1)
+Codeku.FINV13ÿknr%
+Gesell1.FINV13ÿ"NEU"
+ZW1.finv13ÿ12
+ÿƒQuickStore("FINV13")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Girokonto.FINVDETAÿGirokonto.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV13_1-Sparbcher
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv13_1()
+ maske$ÿ"FINV13_1"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV13_1)ÿp
+ÿƒNeuFinv13_1()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Sparbcher"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Sparbcher"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv13_1Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv13_1()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV13_1"ÿ£codekey.finv13_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV13_1"ÿ£codekey.finv13_1
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv13_1
+ÿÉÿ`ÿ™"FINV13_1"ÿ£codekey.finv13_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV13_1"ÿ£codekey.finv13_1
+ÿÉÿ¾ÿ™"FINV13_1"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Sparbuch.FINVDETAÿSparbuch.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv13_1")ÿpÿƒQuickStore("finv13_1")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv13_1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV13_1"ÿ£CodeAnalyse.finv13_1
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV13_1"ÿ£CodeAnalyse.finv13_1
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv13_1()
+ÿÿ™"FINV13_1"
+Codeanalyse.FINV13_1ÿGCodeanalyse%
+codekey.FINV13_1ÿÿI("FINV13_1",1)
+Codeku.FINV13_1ÿknr%
+Gesell1.FINV13_1ÿ"NEU"
+ZW1.finv13_1ÿ12
+ÿƒQuickStore("FINV13_1")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Sparbuch.FINVDETAÿSparbuch.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV17_1-Langfristige Darlehen
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv17_1()
+ maske$ÿ"FINV17_1"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV17_1)ÿp
+ÿƒNeuFinv17_1()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Langfristige Darlehen"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Langfristige Darlehen"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv17_1Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv17_1()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV17_1"ÿ£codekey.finv17_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV17_1"ÿ£codekey.finv17_1
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv17_1
+ÿÉÿ`ÿ™"FINV17_1"ÿ£codekey.finv17_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV17_1"ÿ£codekey.finv17_1
+ÿÉÿ¾ÿ™"FINV17_1"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+LangfristDarleh.FINVDETAÿLangfristDarleh.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv17_1")ÿpÿƒQuickStore("finv17_1")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv17_1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV17_1"ÿ£CodeAnalyse.finv17_1
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV17_1"ÿ£CodeAnalyse.finv17_1
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv17_1()
+ÿÿ™"FINV17_1"
+Codeanalyse.FINV17_1ÿGCodeanalyse%
+codekey.FINV17_1ÿÿI("FINV17_1",1)
+Codeku.FINV17_1ÿknr%
+Gesell1.FINV17_1ÿ"NEU"
+ZW1.finv17_1ÿ12
+ÿƒQuickStore("FINV17_1")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+LangfristDarleh.FINVDETAÿLangfristDarleh.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV19-Leasing
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv19()
+ maske$ÿ"FINV19"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV19)ÿp
+ÿƒNeuFinv19()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Leasing"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Leasing"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv19Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv19()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV19"ÿ£codekey.finv19
+ÿÉÿ¥codekey%ÿáÿ™"FINV19"ÿ£codekey.finv19
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv19
+ÿÉÿ`ÿ™"FINV19"ÿ£codekey.finv19
+ÿÉÿ¥codekey%ÿáÿ™"FINV19"ÿ£codekey.finv19
+ÿÉÿ¾ÿ™"FINV19"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Leasing.FINVDETAÿLeasing.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv19")ÿpÿƒQuickStore("finv19")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv19Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV19"ÿ£CodeAnalyse.finv19
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV19"ÿ£CodeAnalyse.finv19
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv19()
+ÿÿ™"FINV19"
+Codeanalyse.FINV19ÿGCodeanalyse%
+codekey.FINV19ÿÿI("FINV19",1)
+Codeku.FINV19ÿknr%
+Gesell1.FINV19ÿ"NEU"
+ZW1.finv19ÿ12
+ÿƒQuickStore("FINV19")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Leasing.FINVDETAÿLeasing.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV20-Anschaffungsdarlehen
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv20()
+ maske$ÿ"FINV20"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV20)ÿp
+ÿƒNeuFinv20()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Anschaffungsdarlehen"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Anschaffungsdarlehen"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv20Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv20()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV20"ÿ£codekey.finv20
+ÿÉÿ¥codekey%ÿáÿ™"FINV20"ÿ£codekey.finv20
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv20
+ÿÉÿ`ÿ™"FINV20"ÿ£codekey.finv20
+ÿÉÿ¥codekey%ÿáÿ™"FINV20"ÿ£codekey.finv20
+ÿÉÿ¾ÿ™"FINV20"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+AnschaffDarleh.FINVDETAÿAnschaffDarleh.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv20")ÿpÿƒQuickStore("finv20")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv20Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV20"ÿ£CodeAnalyse.finv20
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV20"ÿ£CodeAnalyse.finv20
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv20()
+ÿÿ™"FINV20"
+Codeanalyse.FINV20ÿGCodeanalyse%
+codekey.FINV20ÿÿI("FINV20",1)
+Codeku.FINV20ÿknr%
+Gesell1.FINV20ÿ"NEU"
+ZW1.finv20ÿ12
+ÿƒQuickStore("FINV20")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+AnschaffDarleh.FINVDETAÿAnschaffDarleh.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV16-Aktien
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv16()
+ maske$ÿ"FINV16"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV16)ÿp
+ÿƒNeuFinv16()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Aktien"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Aktien"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv16Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv16()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV16"ÿ£codekey.finv16
+ÿÉÿ¥codekey%ÿáÿ™"FINV16"ÿ£codekey.finv16
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv16
+ÿÉÿ`ÿ™"FINV16"ÿ£codekey.finv16
+ÿÉÿ¥codekey%ÿáÿ™"FINV16"ÿ£codekey.finv16
+ÿÉÿ¾ÿ™"FINV16"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Aktien.FINVDETAÿAktien.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv16")ÿpÿƒQuickStore("finv16")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv16Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV16"ÿ£CodeAnalyse.finv16
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV16"ÿ£CodeAnalyse.finv16
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv16()
+ÿÿ™"FINV16"
+Codeanalyse.FINV16ÿGCodeanalyse%
+codekey.FINV16ÿÿI("FINV16",1)
+Codeku.FINV16ÿknr%
+Gesell1.FINV16ÿ"NEU"
+ZW1.finv16ÿ12
+ÿƒQuickStore("FINV16")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Aktien.FINVDETAÿAktien.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV16_1-Anleihen
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv16_1()
+ maske$ÿ"FINV16_1"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV16_1)ÿp
+ÿƒNeuFinv16_1()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Anleihen"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Anleihen"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv16_1Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv16_1()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV16_1"ÿ£codekey.finv16_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV16_1"ÿ£codekey.finv16_1
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv16_1
+ÿÉÿ`ÿ™"FINV16_1"ÿ£codekey.finv16_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV16_1"ÿ£codekey.finv16_1
+ÿÉÿ¾ÿ™"FINV16_1"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Anleihen.FINVDETAÿAnleihen.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv16_1")ÿpÿƒQuickStore("finv16_1")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv16_1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV16_1"ÿ£CodeAnalyse.finv16_1
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV16_1"ÿ£CodeAnalyse.finv16_1
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv16_1()
+ÿÿ™"FINV16_1"
+Codeanalyse.FINV16_1ÿGCodeanalyse%
+codekey.FINV16_1ÿÿI("FINV16_1",1)
+Codeku.FINV16_1ÿknr%
+Gesell1.FINV16_1ÿ"NEU"
+ZW1.finv16_1ÿ12
+ÿƒQuickStore("FINV16_1")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Anleihen.FINVDETAÿAnleihen.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV18_1-sonstige Fonds
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv18_1()
+ maske$ÿ"FINV18_1"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV18_1)ÿp
+ÿƒNeuFinv18_1()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse sonstige Fonds"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse sonstige Fonds"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv18_1Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv18_1()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV18_1"ÿ£codekey.finv18_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV18_1"ÿ£codekey.finv18_1
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv18_1
+ÿÉÿ`ÿ™"FINV18_1"ÿ£codekey.finv18_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV18_1"ÿ£codekey.finv18_1
+ÿÉÿ¾ÿ™"FINV18_1"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+sonstigeFonds.FINVDETAÿsonstigeFonds.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv18_1")ÿpÿƒQuickStore("finv18_1")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv18_1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV18_1"ÿ£CodeAnalyse.finv18_1
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV18_1"ÿ£CodeAnalyse.finv18_1
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv18_1()
+ÿÿ™"FINV18_1"
+Codeanalyse.FINV18_1ÿGCodeanalyse%
+codekey.FINV18_1ÿÿI("FINV18_1",1)
+Codeku.FINV18_1ÿknr%
+Gesell1.FINV18_1ÿ"NEU"
+ZW1.finv18_1ÿ12
+ÿƒQuickStore("FINV18_1")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+sonstigeFonds.FINVDETAÿsonstigeFonds.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV15-Investmentfonds
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv15()
+ maske$ÿ"FINV15"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV15)ÿp
+ÿƒNeuFinv15()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Investmentfonds"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Investmentfonds"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv15Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv15()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV15"ÿ£codekey.finv15
+ÿÉÿ¥codekey%ÿáÿ™"FINV15"ÿ£codekey.finv15
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv15
+ÿÉÿ`ÿ™"FINV15"ÿ£codekey.finv15
+ÿÉÿ¥codekey%ÿáÿ™"FINV15"ÿ£codekey.finv15
+ÿÉÿ¾ÿ™"FINV15"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Investmentfonds.FINVDETAÿInvestmentfonds.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv15")ÿpÿƒQuickStore("finv15")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv15Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV15"ÿ£CodeAnalyse.finv15
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV15"ÿ£CodeAnalyse.finv15
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv15()
+ÿÿ™"FINV15"
+Codeanalyse.FINV15ÿGCodeanalyse%
+codekey.FINV15ÿÿI("FINV15",1)
+Codeku.FINV15ÿknr%
+Gesell1.FINV15ÿ"NEU"
+ZW1.finv15ÿ12
+ÿƒQuickStore("FINV15")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Investmentfonds.FINVDETAÿInvestmentfonds.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV18_2-Beteiligungen
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv18_2()
+ maske$ÿ"FINV18_2"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV18_2)ÿp
+ÿƒNeuFinv18_2()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse Beteiligungen"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse Beteiligungen"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv18_2Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv18_2()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV18_2"ÿ£codekey.finv18_2
+ÿÉÿ¥codekey%ÿáÿ™"FINV18_2"ÿ£codekey.finv18_2
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv18_2
+ÿÉÿ`ÿ™"FINV18_2"ÿ£codekey.finv18_2
+ÿÉÿ¥codekey%ÿáÿ™"FINV18_2"ÿ£codekey.finv18_2
+ÿÉÿ¾ÿ™"FINV18_2"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Beteiligungen.FINVDETAÿBeteiligungen.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv18_2")ÿpÿƒQuickStore("finv18_2")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv18_2Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV18_2"ÿ£CodeAnalyse.finv18_2
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV18_2"ÿ£CodeAnalyse.finv18_2
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv18_2()
+ÿÿ™"FINV18_2"
+Codeanalyse.FINV18_2ÿGCodeanalyse%
+codekey.FINV18_2ÿÿI("FINV18_2",1)
+Codeku.FINV18_2ÿknr%
+Gesell1.FINV18_2ÿ"NEU"
+ZW1.finv18_2ÿ12
+ÿƒQuickStore("FINV18_2")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+Beteiligungen ÿBeteiligungen.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV21-sonstige Verm”genswerte
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv21()
+ maske$ÿ"FINV21"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV21)ÿp
+ÿƒNeuFinv21()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse sonstige Verm”genswerte"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse sonstige Verm”genswerte"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv21Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv21()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV21"ÿ£codekey.finv21
+ÿÉÿ¥codekey%ÿáÿ™"FINV21"ÿ£codekey.finv21
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv21
+ÿÉÿ`ÿ™"FINV21"ÿ£codekey.finv21
+ÿÉÿ¥codekey%ÿáÿ™"FINV21"ÿ£codekey.finv21
+ÿÉÿ¾ÿ™"FINV21"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+sonstigVermoeg.FINVDETAÿsonstigVermoeg.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv21")ÿpÿƒQuickStore("finv21")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv21Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV21"ÿ£CodeAnalyse.finv21
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV21"ÿ£CodeAnalyse.finv21
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv21()
+ÿÿ™"FINV21"
+Codeanalyse.FINV21ÿGCodeanalyse%
+codekey.FINV21ÿÿI("FINV21",1)
+Codeku.FINV21ÿknr%
+Gesell1.FINV21ÿ"NEU"
+ZW1.finv21ÿ12
+ÿƒQuickStore("FINV21")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+sonstigVermoeg.FINVDETAÿsonstigVermoeg.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV21_1-sonstige Verm”genswerte-lfd.Zahlungen
+ ÿ½ ***************************************************************************************************
+ 
+ÿÿFinInv21_1()
+ maske$ÿ"FINV21_1"
+ ADRsub%ÿ0
+ ÿ¡ÿOÿJ(GCodeanalyse%,Codeanalyse.FINV21_1)ÿp
+ÿƒNeuFinv21_1()
+ ÿ’ÿ¡
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Analyse sonstige Verm”genswerte-lfd.Zahlungen"
+ÿ¡ÿJ(GOFFForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGOFFForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Analyse sonstige Verm”genswerte-lfd.Zahlungen"
+ÿ½ CALL ADRIntro()
+ÿßÿe
+ÿ½ CALL MNProgramm()
+ÿ½ CALL ADRFeldnamen()
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMNProgramm()
+ÿƒFinv21_1Intro()
+ADRsub%ÿ0
+ÿ¬ÿ³
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿÉÿæÿ.(k$)
+ÿæCrsLeft%,PgUp%
+ÿƒADRPrev()
+ÿæCrsRight%,PgDn%
+ÿƒADRNext()
+ÿæÿ.("T"),ÿ.("t")
+ÿƒAKQUISE(2)
+ÿ’ÿÉ
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæADRsub%
+ÿæ1
+ÿ½ neuer Datensatz
+ÿƒNeuFinv21_1()
+ÿæ2
+ÿ½ Ansteuerung einzelner Datensatz
+codekey%ÿcodekey.finv1
+ÿÉÿ`ÿ™"FINV21_1"ÿ£codekey.finv21_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV21_1"ÿ£codekey.finv21_1
+ÿœ2
+ÿœ
+ÿæ3
+ÿ½ L”schen
+codekey%ÿcodekey.finv21_1
+ÿÉÿ`ÿ™"FINV21_1"ÿ£codekey.finv21_1
+ÿÉÿ¥codekey%ÿáÿ™"FINV21_1"ÿ£codekey.finv21_1
+ÿÉÿ¾ÿ™"FINV21_1"
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+sonstVermlfdZah.FINVDETAÿsonstVermlfdZah.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ÿœ1
+ÿ’ÿÉ
+ ÿÙ
+ ÿ¡ÿ("finv21_1")ÿpÿƒQuickStore("finv21_1")
+ _formend%ÿ0
+ ÿ’ÿÿ
+ 
+ 
+ÿÿFinv21_1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV21_1"ÿ£CodeAnalyse.finv21_1
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV21_1"ÿ£CodeAnalyse.finv21_1
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv21_1()
+ÿÿ™"FINV21_1"
+Codeanalyse.FINV21_1ÿGCodeanalyse%
+codekey.FINV21_1ÿÿI("FINV21_1",1)
+Codeku.FINV21_1ÿknr%
+Gesell1.FINV21_1ÿ"NEU"
+ZW1.finv21_1ÿ12
+ÿƒQuickStore("FINV21_1")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+sonstVermlfdZah.FINVDETAÿsonstVermlfdZah.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+
+
+ ÿ½ ***************************************************************************************************
+ ÿ½                            FINV21_1-sonstige Verm”genswerte-lfd.Zahlungen
+ ÿ½ ***************************************************************************************************
+ 
+
+ 
+ 
+ 
+ÿÿFinv21_1Intro()
+ ÿÉÿœÿ¥GCodeAnalyse%ÿ™"FINVDETA"ÿ£CodeAnalyse.finvdeta
+ ÿÉÿ`ÿ™"FINV21_1"ÿ£CodeAnalyse.finv21_1
+ ÿÉÿ¥GCodeAnalyse%ÿ™"FINV21_1"ÿ£CodeAnalyse.finv21_1
+ ÿœ
+ ÿ’ÿÿ
+ 
+ÿÿNeuFinv21_1()
+ÿÿ™"FINV21_1"
+Codeanalyse.FINV21_1ÿGCodeanalyse%
+codekey.FINV21_1ÿÿI("FINV21_1",1)
+Codeku.FINV21_1ÿknr%
+Gesell1.FINV21_1ÿ"NEU"
+ZW1.finv21_1ÿ12
+ÿƒQuickStore("FINV21_1")
+ÿÉÿ¥GCodeanalyse%ÿáÿ™"FINVDETA"ÿ£Codeanalyse.FINVDETA
+sonstVermlfdZah.FINVDETAÿsonstVermlfdZah.FINVDETAÿ1
+ÿƒQuickStore("FINVDETA")
+ 
+ ÿ’ÿÿ
+ 
+ 
+ ÿ½ *********************************************************************************
+ ÿ½                             Vermittler DETAILDATEN
+ ÿ½ *********************************************************************************
+
+ 
+ÿÿMADetail()
+ maske$ÿ"MADETAIL"
+ MAADRUB%ÿ0
+ _formend%ÿ0
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿmaske$ÿp
+ÿÊÿŸtitle$ÿ" - Vermittler Detaildaten"
+ÿ¡ÿJ(GPrjForm$ÿmaske$ÿ".sbv")ÿp
+ÿ´ÿœGPrjForm$ÿmaske$ÿí1
+ÿ^
+ÿ´ÿœGPrjForm$ÿmaske$ÿí1
+ÿ’ÿ¡
+ÿÊf ÿSuperbase.Form
+ÿÊÿË"Vermittler Detaildaten"
+ÿßÿe
+ÿßÿe
+GAppName$ÿ_netpath$ÿ"DOC\adressen.pdf"
+ÿ’ÿ¡
+ÿƒMADRIntro()
+ÿƒMADRUpdate()
+ÿƒMNProgramm()
+ÿ¡GAgentDetail$ÿ"TRUE"ÿp
+f.intabr.visibleÿÿ1
+f.intabr.enabledÿÿ1
+f.s3.visibleÿÿ1
+f.s3.enabledÿÿ1
+f.s4.visibleÿÿ1
+f.s4.enabledÿÿ1
+f.s5.visibleÿÿ1
+f.s5.enabledÿÿ1
+ÿ^
+f.intabr.visibleÿ0
+f.intabr.enabledÿ0
+f.s3.visibleÿ0
+f.s3.enabledÿ0
+f.s4.visibleÿ0
+f.s4.enabledÿ0
+f.s5.visibleÿ0
+f.s5.enabledÿ0
+ÿœ
+ÿ’ÿ¡
+MAADRUB%ÿ0
+ÿœ
+ÿ¬ÿ³
+
+ÿÏÿßÿÿ¥ÿÿ¬ÿÿ›600
+ÿk$
+ÿ¡k$ÿÿ(27)ÿp
+ÿ¡ÿíÿ1ÿp_formend%ÿ1
+ÿ¡ÿíÿ1ÿpÿœ1
+ÿ’ÿ¡
+ÿÉÿæMADRsub%
+ÿæ120
+ÿ½ Lebenslauf mit Lichtbild
+codema%ÿcodema.maadr
+dfeld$ÿ"DLeblauf.maadr"
+ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema%ÿáÿ™"maadr"ÿ£codema.maadr
+dd$ÿÿ>(dfeld$$)
+pfad$ÿÿ,(ÿ>(_netpath$),3)
+l1%ÿ0
+l1%ÿÿ/(pfad$)
+pos%ÿ0
+pos%ÿÿ?(dd$,pfad$)
+ÿ¡pos%ÿ0ÿp
+	dateiname$ÿÿ,(dd$,pos%ÿl1%)
+	ÿ½ CALL Fehler(dateiname$,dd$)
+	dfeld$$ÿdateiname$
+	ok%ÿ1
+ÿ^
+	t1%ÿÿ?(4,dd$,"\")
+	zw1$ÿÿ,(dd$,t1%)
+	dfeld$$ÿzw1$
+	ok%ÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿ1ÿp
+	ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿpdfeld$$ÿÿ,(dfeld$$,2)
+	ÿ¡ÿ-(dfeld$$,1)ÿ"\"ÿp
+l%ÿÿ/(dfeld$$)
+dfeld$$ÿÿ+(dfeld$$,l%ÿ1)
+	ÿ’ÿ¡
+	ÿÌÿ™"maadr"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿƒMADRDok(codema%,"DLeblauf.maadr")
+MADRsub%ÿ0
+ÿæ1
+ÿ¡ÿOdisabled%("MAADRKONDUEBERSICHT")ÿp
+ÿ¡nachname.maadrÿ"<ohne Zuordnung>"ÿp
+	ÿ¡ÿOdisabled%("KONDITIONVIEW")ÿp
+cuma%ÿCodeMA.maadr
+ÿÉÿœÿ¥codema%ÿ™"maadr"ÿ£codema.maadr
+ÿƒGEKONDA()
+	ÿ’ÿ¡
+ÿ^
+	ÿƒFehler ("Fr die Agentur <ohne Zuordnung> k”nnen keine Konditionen erfaát werden!","")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿßÿe
+ÿƒMADRUpdate()
+MADRsub%ÿ0
+ÿæ2
+ÿ½ 251196 Test CALL VVPEUniRep(0,codema.maadr,0,0,0,0,0,0,1, - 1)
+ÿ¡ÿOdisabled%("MAADRVERTRUEBERSICHT")ÿp
+maab%ÿCodeMA.maadr
+ÿƒVertrUniRep(0,codema.maadr,0,0,0,0,0,0,1,ÿ1,tarif%)
+ÿÉÿœÿ¥maab%ÿ™"maadr"ÿ£codema.maadr
+ÿ½ CALL LIST6()
+ÿƒMADRUpdate()
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿæ3
+maab%ÿCodeMA.maadr
+ÿ¡bearb11$ÿ"j"ÿp
+ÿ›i%ÿ0ÿqtfoundadr%
+	ÿ¡AdrFound$(i%)ÿ""ÿÿ0(ÿ-(Adrfound$(i%),6))ÿadrfound%ÿp
+prompt%ÿi%
+	ÿ’ÿ¡
+ÿ±i%
+LAuswahl1$(0)ÿLAuswahl$
+AdrFound$ÿLAuswahl$
+ÿ‰ÿñ"ADRSTICHW",0,0,250,260,"Fehlerliste","MS Sans Serif",8
+ÿ|ÿñ"ADRSTICHW",7,5,6,240,225,2,2,AdrFound$,Lauswahl1$,AdrFound$(prompt%)
+ÿ|ÿñ"ADRSTICHW",1,43,242,55,16,1,"&Bearbeiten",1,1
+ÿ|ÿñ"ADRSTICHW",1,103,242,55,16,0,"&Abbrechen",0,0
+ÿñ"ADRSTICHW",req5%
+ÿßÿ³
+ÿ¾ÿñ"ADRSTICHW"
+ÿ¡req5%ÿ1ÿp
+	LAuswahl$ÿLAuswahl1$(0)
+	maab%ÿÿ0(ÿ-(LAuswahl$,6))
+	adrfound%ÿcodema%
+	bearb11$ÿ"j"
+	ÿÉÿœÿ¥maab%ÿ™"maadr"ÿ£codema.maadr
+	ÿœ
+ÿ’ÿ¡
+ÿ^
+codema1ab%ÿcodema.maadr
+a$ÿ"alle Mitarbeiter ohne Nachnamen+Vornamen, Mitteilung fr kein Vorg„nger od. keine Kondition, Mitteilung aller Mitarbeiter deren Vorg„nger nicht mehr existiert(dort wird dann der Vorg„nger auf <ohne Zurdnung>gesetzt)!"
+ÿƒFehler("Folgende Schritte werden durchgefhrt: L”schen aller Konditionen fr die kein Mitarbeiter oder keine Gesellschaft und Sparte existiert",a$)
+ÿÂ"Start Prfung"
+ÿßÿe
+ÿ™"gekond"
+ÿ£codema.gekond
+ÿÉÿ`
+ÿÊÿË"Prfung auf Konditionen, fr die kein Mitarbeiter existiert"
+ÿ¾ÿaÿ™"gekond"ÿĞcodema.gekondÿ
+1
+ÿÊÿË"Prfung auf Konditionen, fr die kein Produkt existiert"
+ÿ¾ÿaÿ™"gekond"ÿĞcodege.gekondÿ
+1ÿcodeva.gekondÿ
+1
+ÿÉÿ`
+ÿ™"MAADR"
+ÿ¾ÿaÿ™"maadr"ÿĞcodema.maadrÿ
+1
+ÿÊÿË"Prfung auf Mitarbeiter ohne Nachname und Vorname"
+ÿ¾ÿaÿ™"maadr"ÿĞnachname.maadrÿ""ÿvorname.maadrÿ""
+ÿ£nachname.maadr
+ÿÉÿ`ÿá
+ÿÿAdrFound$(3ÿÿA("maadr"))
+a%ÿ0
+found1%ÿ0
+
+ÿØÿOÿB("maadr")
+	codema1%ÿcodema.maadr
+	codemaold%ÿcodema.maadr
+	ÿ¡vorg„nger.maadrÿ
+1ÿp
+AdrFound$(a%)ÿ"KEIN VORGNGER DEFINIERT    - "ÿNachname.maadrÿ","ÿvorname.maadrÿ","ÿAgenturnr.maadrÿÿ'(120)ÿÿ(codema,"000000")
+a%ÿa%ÿ1
+	ÿ’ÿ¡
+	ÿ¡ÿOÿJ(codema1%,codema.gekond)ÿp
+AdrFound$(a%)ÿ"keine Konditionen definiert - "ÿNachname.maadrÿ","ÿvorname.maadrÿ","ÿAgenturnr.maadrÿÿ'(120)ÿÿ(codema,"000000")
+a%ÿa%ÿ1
+	ÿ’ÿ¡
+	ÿ¡ÿOÿJ(vorg„nger.maadr,codema.maadr)ÿvorg„nger.maadrÿ0ÿp
+AdrFound$(a%)ÿ"VORGNGER gel”scht    - "ÿNachname.maadrÿ","ÿvorname.maadrÿ","ÿAgenturnr.maadrÿÿ'(120)ÿÿ(codema,"000000")
+a%ÿa%ÿ1
+vorg„nger.maadrÿ0
+ÿÌÿ™"maadr"
+ÿïÿYÿ™"maadr"
+	ÿ’ÿ¡
+	ÿÊÿË"Prfe "ÿnachname.maadrÿ", "ÿvorname.maadr
+ÿÉÿ±ÿá
+ÿÙ
+tfoundadr%ÿa%
+AdrFound$(a%)ÿ""
+ÿÊÿË""
+ÿÂ"Ende der Prfung"
+ÿßÿ³
+ÿ¡a%ÿ0ÿp
+	bearb11$ÿ"n"
+	LAuswahl$ÿAdrFound$(0)
+	LAuswahl1$(0)ÿLAuswahl$
+	ÿ‰ÿñ"ADRSTICHW",0,0,250,260,"Fehlerliste","MS Sans Serif",8
+	ÿ|ÿñ"ADRSTICHW",7,5,6,240,230,2,2,AdrFound$,Lauswahl1$,AdrFound$(0)
+	ÿ|ÿñ"ADRSTICHW",1,43,242,55,16,1,"&Bearbeiten",1,1
+	ÿ|ÿñ"ADRSTICHW",1,103,242,55,16,0,"&Abbrechen",0,0
+	ÿñ"ADRSTICHW",req5%
+	ÿßÿ³
+	ÿ¾ÿñ"ADRSTICHW"
+	ÿ¡req5%ÿ1ÿp
+LAuswahl$ÿLAuswahl1$(0)
+codema%ÿÿ0(ÿ-(LAuswahl$,6))
+maab%ÿcodema%
+adrfound%ÿcodema%
+bearb11$ÿ"j"
+ÿÉÿœÿ¥codema%ÿ™"maadr"ÿ£codema.maadr
+ÿœ
+	ÿ’ÿ¡
+ÿ^
+	ÿƒFehler("Keine Fehler gefunden!","")
+ÿ’ÿ¡
+ÿÉÿœÿ¥codema1ab%ÿ™"maadr"ÿ£codema.maadr
+ÿ’ÿ¡
+ÿÉÿœÿ¥maab%ÿ™"maadr"ÿ£codema.maadr
+MADRsub%ÿ0
+ÿƒMADRUpdate()
+ÿæ4
+ÿ¡ÿOdisabled%("MAADRKONDEINRICHTEN")ÿp
+ÿ¡nachname.maadrÿ"<ohne Zuordnung>"ÿp
+	maab%ÿcodema.maadr
+	ÿ¡vorg„nger.maadrÿ0ÿp
+maab%ÿcodema.maadr
+ÿƒVORKONDUebern()
+ÿÉÿœÿ¥maab%ÿ™"maadr"ÿ£codema.maadr
+cuko%ÿ0
+	ÿ^
+ÿƒFehler("Geben Sie bitte erst einen Vorg„nger an!","")
+	ÿ’ÿ¡
+	ÿÉÿœÿ¥maab%ÿ™"maadr"ÿ£codema.maadr
+ÿ^
+	ÿƒFehler ("Fr die Agentur <ohne Zuordnung> k”nnen keine Konditionen bernommen werden!","")
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿƒMADRUpdate()
+ÿ’ÿ¡
+MADRsub%ÿ0
+ 
+ÿæ5
+ÿ¡ÿOdisabled%("MAADRKONDEINRICHTEN")ÿp
+ÿ¡nachname.maadrÿ"<ohne Zuordnung>"ÿp
+	maab%ÿcodema.maadr
+	ÿ¡vorg„nger.maadrÿ0ÿp
+ÿƒGEKONDUebern()
+cuko%ÿ0
+	ÿ^
+ÿƒFehler("Geben Sie bitte erst einen Vorg„nger an!","")
+	ÿ’ÿ¡
+	ÿÉÿœÿ¥maab%ÿ™"maadr"ÿ£codema.maadr
+ÿ^
+	ÿƒFehler ("Fr die Agentur <ohne Zuordnung> k”nnen keine Konditionen bernommen werden!","")
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿƒMADRUpdate()
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿæ6
+ÿ½ Vorg„nger ausw„hlen
+ÿ¡ag$ÿ"j"ÿp
+ÿ¡codema.maadrÿ0ÿp
+	ÿ¡ÿOdisabled%("MAADRSTRUBEARB")ÿp
+maab%ÿcodema.maadr
+ÿƒVorgNeu(codema.maadr)
+ÿ¡GASP%ÿpÿƒReadHiera()
+'CALL Vorgaenger()
+'CALL StruAll()
+MADRsub%ÿ0
+ÿÉÿ¥maab%ÿ™"maadr"ÿ£codema.maadr
+ÿƒMADRUpdate()
+	ÿ’ÿ¡
+ÿ^
+	ÿƒFehler("Fr diesen Mitarbeiter k”nnen Sie keinen Vorg„nger erfassen!","")
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Diese Funktion steht unter der Agenturvariante nicht zur Verfgung","")
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿæ7
+ÿ¡ÿOdisabled%("MAADRLIST")ÿp
+codema%ÿcodema.maadr
+ÿ¡codema%ÿ0ÿp
+	ÿƒStruDruck(codema%)
+	ÿÉÿ¥codema%ÿ™"maadr"ÿ£codema.maadr
+	MADRsub%ÿ0
+	ÿ³ÿ_ÿwwe020520021
+	ÿ¡GASP%ÿpÿƒReadHiera()
+we020520021: 
+	ÿ³ÿ_ÿwErrorHandler
+	ÿƒMADRUpdate()
+ÿ^
+	ÿƒFehler("Fr den Vermittler <ohne Zuordnung> kann ein solcher Ausdruck nicht vorgenommen werden! Bitte selektieren Sie ber den Button <Suchen>","den/die jenige(n) Vermittler/Firma fr den/die der Ausdruck der Strukturen erfolgen soll.")
+ÿ’ÿ¡
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿæ8
+ÿ½ Provisionen drucken
+ÿ¡ÿOdisabled%("MAADRKTODRU")ÿp
+codema%ÿcodema.maadr
+ÿƒProvMADruck(codema%)
+ÿÉÿ¥codema%ÿ™"maadr"ÿ£codema.maadr
+MADRsub%ÿ0
+ÿƒMADRUpdate()
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿæ9
+ÿ½ Provisionen verrechnen
+ÿ¡ÿOdisabled%("MAADRKTOVERRECH")ÿp
+codema%ÿcodema.maadr
+ÿƒMAKtoVerrech()
+ÿÉÿ¥codema%ÿ™"maadr"ÿ£codema.maadr
+MADRsub%ÿ0
+ÿƒMADRUpdate()
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿæ10
+ÿ½ Agenturgruppe zuweisen
+ÿ¡ÿOdisabled%("MAADRAGGRUPPE")ÿp
+codema%ÿcodema.maadr
+ÿƒMaGruppe1Stich()
+MADRsub%ÿ0
+ÿÉÿ¥codema%ÿ™"maadr"ÿ£codema.maadr
+ÿƒMADRUpdate()
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿæ11
+ÿ½ schufadokument
+codema%ÿcodema.maadr
+dfeld$ÿ"dschufa.maadr"
+ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema%ÿáÿ™"maadr"ÿ£codema.maadr
+dd$ÿÿ>(dfeld$$)
+pfad$ÿÿ,(ÿ>(_netpath$),3)
+l1%ÿ0
+l1%ÿÿ/(pfad$)
+pos%ÿ0
+pos%ÿÿ?(dd$,pfad$)
+ÿ¡pos%ÿ0ÿp
+	dateiname$ÿÿ,(dd$,pos%ÿl1%)
+	ÿ½ CALL Fehler(dateiname$,dd$)
+	dfeld$$ÿdateiname$
+	ok%ÿ1
+ÿ^
+	t1%ÿÿ?(4,dd$,"\")
+	zw1$ÿÿ,(dd$,t1%)
+	dfeld$$ÿzw1$
+	ok%ÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿ1ÿp
+	ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿpdfeld$$ÿÿ,(dfeld$$,2)
+	ÿ¡ÿ-(dfeld$$,1)ÿ"\"ÿp
+l%ÿÿ/(dfeld$$)
+dfeld$$ÿÿ+(dfeld$$,l%ÿ1)
+	ÿ’ÿ¡
+	ÿÌÿ™"maadr"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿƒMADRDok(codema%,"dschufa.maadr")
+MADRsub%ÿ0
+ÿæ12
+ÿ½ dpsa
+codema%ÿcodema.maadr
+dfeld$ÿ"dpsa.maadr"
+ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema%ÿáÿ™"maadr"ÿ£codema.maadr
+dd$ÿÿ>(dfeld$$)
+pfad$ÿÿ,(ÿ>(_netpath$),3)
+l1%ÿ0
+l1%ÿÿ/(pfad$)
+pos%ÿ0
+pos%ÿÿ?(dd$,pfad$)
+ÿ¡pos%ÿ0ÿp
+	dateiname$ÿÿ,(dd$,pos%ÿl1%)
+	ÿ½ CALL Fehler(dateiname$,dd$)
+	dfeld$$ÿdateiname$
+	ok%ÿ1
+ÿ^
+	t1%ÿÿ?(4,dd$,"\")
+	zw1$ÿÿ,(dd$,t1%)
+	dfeld$$ÿzw1$
+	ok%ÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿ1ÿp
+	ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿpdfeld$$ÿÿ,(dfeld$$,2)
+	ÿ¡ÿ-(dfeld$$,1)ÿ"\"ÿp
+l%ÿÿ/(dfeld$$)
+dfeld$$ÿÿ+(dfeld$$,l%ÿ1)
+	ÿ’ÿ¡
+	ÿÌÿ™"maadr"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ÿƒMADRDok(codema%,"dpsa.maadr")
+MADRsub%ÿ0
+ÿæ13
+codema%ÿcodema.maadr
+dfeld$ÿ"davad.maadr"
+ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema%ÿáÿ™"maadr"ÿ£codema.maadr
+dd$ÿÿ>(dfeld$$)
+pfad$ÿÿ,(ÿ>(_netpath$),3)
+l1%ÿ0
+l1%ÿÿ/(pfad$)
+pos%ÿ0
+pos%ÿÿ?(dd$,pfad$)
+ÿ¡pos%ÿ0ÿp
+	dateiname$ÿÿ,(dd$,pos%ÿl1%)
+	ÿ½ CALL Fehler(dateiname$,dd$)
+	dfeld$$ÿdateiname$
+	ok%ÿ1
+ÿ^
+	t1%ÿÿ?(4,dd$,"\")
+	zw1$ÿÿ,(dd$,t1%)
+	dfeld$$ÿzw1$
+	ok%ÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿ1ÿp
+	ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿpdfeld$$ÿÿ,(dfeld$$,2)
+	ÿ¡ÿ-(dfeld$$,1)ÿ"\"ÿp
+l%ÿÿ/(dfeld$$)
+dfeld$$ÿÿ+(dfeld$$,l%ÿ1)
+	ÿ’ÿ¡
+	ÿÌÿ™"maadr"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ÿƒMADRDok(codema%,"davad.maadr")
+MADRsub%ÿ0
+ÿæ14
+codema%ÿcodema.maadr
+dfeld$ÿ"dpol.maadr"
+ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema%ÿáÿ™"maadr"ÿ£codema.maadr
+dd$ÿÿ>(dfeld$$)
+pfad$ÿÿ,(ÿ>(_netpath$),3)
+l1%ÿ0
+l1%ÿÿ/(pfad$)
+pos%ÿ0
+pos%ÿÿ?(dd$,pfad$)
+ÿ¡pos%ÿ0ÿp
+	dateiname$ÿÿ,(dd$,pos%ÿl1%)
+	ÿ½ CALL Fehler(dateiname$,dd$)
+	dfeld$$ÿdateiname$
+	ok%ÿ1
+ÿ^
+	t1%ÿÿ?(4,dd$,"\")
+	zw1$ÿÿ,(dd$,t1%)
+	dfeld$$ÿzw1$
+	ok%ÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿ1ÿp
+	ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿpdfeld$$ÿÿ,(dfeld$$,2)
+	ÿ¡ÿ-(dfeld$$,1)ÿ"\"ÿp
+l%ÿÿ/(dfeld$$)
+dfeld$$ÿÿ+(dfeld$$,l%ÿ1)
+	ÿ’ÿ¡
+	ÿÌÿ™"maadr"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ÿƒMADRDok(codema%,"dpol.maadr")
+MADRsub%ÿ0
+ÿæ15
+codema%ÿcodema.maadr
+dfeld$ÿ"dgew.maadr"
+ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema%ÿáÿ™"maadr"ÿ£codema.maadr
+dd$ÿÿ>(dfeld$$)
+pfad$ÿÿ,(ÿ>(_netpath$),3)
+l1%ÿ0
+l1%ÿÿ/(pfad$)
+pos%ÿ0
+pos%ÿÿ?(dd$,pfad$)
+ÿ¡pos%ÿ0ÿp
+	dateiname$ÿÿ,(dd$,pos%ÿl1%)
+	ÿ½ CALL Fehler(dateiname$,dd$)
+	dfeld$$ÿdateiname$
+	ok%ÿ1
+ÿ^
+	t1%ÿÿ?(4,dd$,"\")
+	zw1$ÿÿ,(dd$,t1%)
+	dfeld$$ÿzw1$
+	ok%ÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿ1ÿp
+	ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿpdfeld$$ÿÿ,(dfeld$$,2)
+	ÿ¡ÿ-(dfeld$$,1)ÿ"\"ÿp
+l%ÿÿ/(dfeld$$)
+dfeld$$ÿÿ+(dfeld$$,l%ÿ1)
+	ÿ’ÿ¡
+	ÿÌÿ™"maadr"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ÿƒMADRDok(codema%,"dgew.maadr")
+MADRsub%ÿ0
+ÿæ16
+codema%ÿcodema.maadr
+dfeld$ÿ"dgwa.maadr"
+ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema%ÿáÿ™"maadr"ÿ£codema.maadr
+dd$ÿÿ>(dfeld$$)
+pfad$ÿÿ,(ÿ>(_netpath$),3)
+l1%ÿ0
+l1%ÿÿ/(pfad$)
+pos%ÿ0
+pos%ÿÿ?(dd$,pfad$)
+ÿ¡pos%ÿ0ÿp
+	dateiname$ÿÿ,(dd$,pos%ÿl1%)
+	ÿ½ CALL Fehler(dateiname$,dd$)
+	dfeld$$ÿdateiname$
+	ok%ÿ1
+ÿ^
+	t1%ÿÿ?(4,dd$,"\")
+	zw1$ÿÿ,(dd$,t1%)
+	dfeld$$ÿzw1$
+	ok%ÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿ1ÿp
+	ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿpdfeld$$ÿÿ,(dfeld$$,2)
+	ÿ¡ÿ-(dfeld$$,1)ÿ"\"ÿp
+l%ÿÿ/(dfeld$$)
+dfeld$$ÿÿ+(dfeld$$,l%ÿ1)
+	ÿ’ÿ¡
+	ÿÌÿ™"maadr"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ÿƒMADRDok(codema%,"dgwa.maadr")
+MADRsub%ÿ0
+ÿæ17
+codema%ÿcodema.maadr
+dfeld$ÿ"dhauptber.maadr"
+ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema%ÿáÿ™"maadr"ÿ£codema.maadr
+dd$ÿÿ>(dfeld$$)
+pfad$ÿÿ,(ÿ>(_netpath$),3)
+l1%ÿ0
+l1%ÿÿ/(pfad$)
+pos%ÿ0
+pos%ÿÿ?(dd$,pfad$)
+ÿ¡pos%ÿ0ÿp
+	dateiname$ÿÿ,(dd$,pos%ÿl1%)
+	ÿ½ CALL Fehler(dateiname$,dd$)
+	dfeld$$ÿdateiname$
+	ok%ÿ1
+ÿ^
+	t1%ÿÿ?(4,dd$,"\")
+	zw1$ÿÿ,(dd$,t1%)
+	dfeld$$ÿzw1$
+	ok%ÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿ1ÿp
+	ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿpdfeld$$ÿÿ,(dfeld$$,2)
+	ÿ¡ÿ-(dfeld$$,1)ÿ"\"ÿp
+l%ÿÿ/(dfeld$$)
+dfeld$$ÿÿ+(dfeld$$,l%ÿ1)
+	ÿ’ÿ¡
+	ÿÌÿ™"maadr"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ÿƒMADRDok(codema%,"dhauptber.maadr")
+MADRsub%ÿ0
+ÿæ18
+codema%ÿcodema.maadr
+dfeld$ÿ"dhnot.maadr"
+ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema%ÿáÿ™"maadr"ÿ£codema.maadr
+dd$ÿÿ>(dfeld$$)
+pfad$ÿÿ,(ÿ>(_netpath$),3)
+l1%ÿ0
+l1%ÿÿ/(pfad$)
+pos%ÿ0
+pos%ÿÿ?(dd$,pfad$)
+ÿ¡pos%ÿ0ÿp
+	dateiname$ÿÿ,(dd$,pos%ÿl1%)
+	ÿ½ CALL Fehler(dateiname$,dd$)
+	dfeld$$ÿdateiname$
+	ok%ÿ1
+ÿ^
+	t1%ÿÿ?(4,dd$,"\")
+	zw1$ÿÿ,(dd$,t1%)
+	dfeld$$ÿzw1$
+	ok%ÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿ1ÿp
+	ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿpdfeld$$ÿÿ,(dfeld$$,2)
+	ÿ¡ÿ-(dfeld$$,1)ÿ"\"ÿp
+l%ÿÿ/(dfeld$$)
+dfeld$$ÿÿ+(dfeld$$,l%ÿ1)
+	ÿ’ÿ¡
+	ÿÌÿ™"maadr"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ÿƒMADRDok(codema%,"dhnot.maadr")
+MADRsub%ÿ0
+ÿæ19
+codema%ÿcodema.maadr
+dfeld$ÿ"dbernot.maadr"
+ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema%ÿáÿ™"maadr"ÿ£codema.maadr
+dd$ÿÿ>(dfeld$$)
+pfad$ÿÿ,(ÿ>(_netpath$),3)
+l1%ÿ0
+l1%ÿÿ/(pfad$)
+pos%ÿ0
+pos%ÿÿ?(dd$,pfad$)
+ÿ¡pos%ÿ0ÿp
+	dateiname$ÿÿ,(dd$,pos%ÿl1%)
+	ÿ½ CALL Fehler(dateiname$,dd$)
+	dfeld$$ÿdateiname$
+	ok%ÿ1
+ÿ^
+	t1%ÿÿ?(4,dd$,"\")
+	zw1$ÿÿ,(dd$,t1%)
+	dfeld$$ÿzw1$
+	ok%ÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿ1ÿp
+	ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿpdfeld$$ÿÿ,(dfeld$$,2)
+	ÿ¡ÿ-(dfeld$$,1)ÿ"\"ÿp
+l%ÿÿ/(dfeld$$)
+dfeld$$ÿÿ+(dfeld$$,l%ÿ1)
+	ÿ’ÿ¡
+	ÿÌÿ™"maadr"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ÿƒMADRDok(codema%,"dbernot.maadr")
+MADRsub%ÿ0
+ÿæ20
+codema%ÿcodema.maadr
+dfeld$ÿ"dbwb.maadr"
+ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema%ÿáÿ™"maadr"ÿ£codema.maadr
+dd$ÿÿ>(dfeld$$)
+pfad$ÿÿ,(ÿ>(_netpath$),3)
+l1%ÿ0
+l1%ÿÿ/(pfad$)
+pos%ÿ0
+pos%ÿÿ?(dd$,pfad$)
+ÿ¡pos%ÿ0ÿp
+	dateiname$ÿÿ,(dd$,pos%ÿl1%)
+	ÿ½ CALL Fehler(dateiname$,dd$)
+	dfeld$$ÿdateiname$
+	ok%ÿ1
+ÿ^
+	t1%ÿÿ?(4,dd$,"\")
+	zw1$ÿÿ,(dd$,t1%)
+	dfeld$$ÿzw1$
+	ok%ÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿ1ÿp
+	ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿpdfeld$$ÿÿ,(dfeld$$,2)
+	ÿ¡ÿ-(dfeld$$,1)ÿ"\"ÿp
+l%ÿÿ/(dfeld$$)
+dfeld$$ÿÿ+(dfeld$$,l%ÿ1)
+	ÿ’ÿ¡
+	ÿÌÿ™"maadr"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ÿƒMADRDok(codema%,"dbwb.maadr")
+MADRsub%ÿ0
+ÿæ21
+codema%ÿcodema.maadr
+dfeld$ÿ"d34c.maadr"
+ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema%ÿáÿ™"maadr"ÿ£codema.maadr
+dd$ÿÿ>(dfeld$$)
+pfad$ÿÿ,(ÿ>(_netpath$),3)
+l1%ÿ0
+l1%ÿÿ/(pfad$)
+pos%ÿ0
+pos%ÿÿ?(dd$,pfad$)
+ÿ¡pos%ÿ0ÿp
+	dateiname$ÿÿ,(dd$,pos%ÿl1%)
+	ÿ½ CALL Fehler(dateiname$,dd$)
+	dfeld$$ÿdateiname$
+	ok%ÿ1
+ÿ^
+	t1%ÿÿ?(4,dd$,"\")
+	zw1$ÿÿ,(dd$,t1%)
+	dfeld$$ÿzw1$
+	ok%ÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿ1ÿp
+	ÿ¡ÿ+(dfeld$$,1)ÿ"\"ÿpdfeld$$ÿÿ,(dfeld$$,2)
+	ÿ¡ÿ-(dfeld$$,1)ÿ"\"ÿp
+l%ÿÿ/(dfeld$$)
+dfeld$$ÿÿ+(dfeld$$,l%ÿ1)
+	ÿ’ÿ¡
+	ÿÌÿ™"maadr"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ÿƒMADRDok(codema%,"d34c.maadr")
+MADRsub%ÿ0
+ÿæ22
+ÿ½ Dokumentenverwaltung
+ÿ¡codema.maadrÿ0ÿp
+codema%ÿcodema.maadr
+GADRDat$ÿ"MAADR"
+GADRUni$ÿ"MAADR"
+GDokDat$ÿ"DOKMA"
+ÿƒADRDokUni("codema.maadr")
+ÿ^
+ÿƒFehler("Dokumente sind fr diesen Mitarbeiter nicht verfgbar!","")
+ÿ’ÿ¡
+GADRDat$ÿ"ADRESSEN"
+GDokDat$ÿ"DOKUMENT"
+MADRsub%ÿ0
+ÿæ23
+ÿ½ Auszahlungsschwelle bei allen Vermittlern eintragen
+codema%ÿcodema.maadr
+ausz%ÿAuszahlSchw.maadr
+auszeu%ÿAuszahlSchwEU.maadr
+ÿÂ"Wollen Sie den Betrag wirklich bei allen Vermittlern eintragen?","",130,req%
+ÿ¡req%ÿ1ÿp
+ÿÂ"Aktion fortsetzen?","",130,req%
+ÿ¡req%ÿ1ÿp
+	ÿßÿe
+	ÿÍAuszahlSchw.maadrÿausz%:AuszahlSchwEU.maadrÿauszeu%
+	ÿ’ÿÍ
+	ÿßÿ³
+ÿ’ÿ¡
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿÉÿ¥codema%ÿ™"maadr"ÿ£codema.maadr
+ÿƒMADRUpdate()
+ÿæ24
+ÿ½ manuelle Stornoauszahlung
+codema%ÿcodema.maadr
+ok%ÿÿ1
+ÿ¡disabled%("MAADRBEARB")ÿag$ÿ"j"ÿdisabled%("MAADRMANSTORNO")ÿp
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡nachname.maadrÿ"<ohne Zuordnung>"ÿok%ÿÿ1ÿp
+testbw1908200101: 
+buchtext$ÿ"manuelle Auszahlung SR"
+bDat$ÿÿ(ÿQ,"0d.mm.yyyy")
+srspalte$ÿ"j"
+ÿ‰ÿñ"Konto1",0,0,221,200,"Stornoreserve","MS Sans Serif",8
+ÿ|ÿñ"Konto1",9,6,7,24,22,2
+ÿ|ÿñ"Konto1",5,34,8,170,9,0,"SR-Zahlung:"
+ÿ|ÿñ"Konto1",4,34,14,176,5,0,""
+ÿ|ÿñ"Konto1",5,34,22,175,16,0,"Wenn Sie einen negativen Betrag eingeben, wird das SR Konto reduziert und"
+ÿ|ÿñ"Konto1",5,34,40,175,32,0,"ein Buchungssatz mit positivem Auszahlungsbetrag fr den Vermittler erzeugt."
+ÿ|ÿñ"Konto1",5,34,62,175,16,0,"Wenn Sie einen positiven Betrag eingeben, wird das SR Konto erh”ht und"
+ÿ|ÿñ"Konto1",5,34,84,175,32,0,"ein Buchungssatz mit negativem Auszahlungsbetrag fr den Vermittler erzeugt."
+ÿ|ÿñ"Konto1",5,34,111,25,10,0,"Betrag:"
+ÿ|ÿñ"Konto1",6,70,111,45,11,0,0,Betrag$,10
+ÿ|ÿñ"Konto1",5,34,123,25,10,0,"Datum:"
+ÿ|ÿñ"Konto1",6,70,123,45,11,0,0,bDat$,10
+ÿ|ÿñ"Konto1",5,34,136,45,10,0,"Buchungstext:"
+ÿ|ÿñ"Konto1",6,34,147,185,11,0,0,buchtext$,60
+ÿ|ÿñ"Konto1",2,34,162,148,11,0,"Buchung in der SR-Spalte","j","n",srspalte$
+ÿ|ÿñ"Konto1",1,50,180,55,15,1,"&Weiter",1,1
+ÿ|ÿñ"Konto1",1,110,180,55,15,0,"&Abbruch",0,0
+ÿñ"Konto1",req%
+ÿ¾ÿñ"Konto1"
+ÿ¡req%ÿ1ÿp
+	ÿ³ÿ_ÿwtestbw1908200101
+	wert%ÿÿ0(Betrag$)
+	ÿ³ÿ_ÿwErrorHandler
+	ÿÉÿ`ÿ™"STAMM"
+	ÿÉÿ¥codema%ÿáÿ™"maadr"ÿ£codema.maadr
+	ok%ÿÿ1
+	ÿ¡wert%ÿ0ÿp
+ÿ¡wert%ÿ
+0ÿp
+ÿ½ Reduzierung sr konto, Prfung ob ausgezahlt werden darf
+ÿ¡StornoAb.maadrÿ0ÿp
+ÿ¡Stornoreserve.maadrÿStornoAb.maadrÿp
+Stornoreserve.maadrÿStornoreserve.maadrÿwert%
+StornoreserveEU.maadrÿÿ0(ÿ(Stornoreserve.maadrÿumrechnung.stamm,"999999999.00"))
+ÿÌÿ™"maadr"
+ÿïÿYÿ™"maadr"
+ÿ^
+ÿÂ"SR-Konto ist < SR-Auszahlungsschwelle!","Trotzdem auszahlen?",130,req1%
+ÿ¡req1%ÿ1ÿp
+Stornoreserve.maadrÿStornoreserve.maadrÿwert%
+StornoreserveEU.maadrÿÿ0(ÿ(Stornoreserve.maadrÿumrechnung.stamm,"999999999.00"))
+ 
+ÿÌÿ™"maadr"
+ÿïÿYÿ™"maadr"
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ^
+ÿÂ"In SR-Auszahlungsschwelle ist nichts eingetragen!","Trotzdem auszahlen?",130,req1%
+ÿ¡req1%ÿ1ÿp
+Stornoreserve.maadrÿStornoreserve.maadrÿwert%
+StornoreserveEU.maadrÿÿ0(ÿ(Stornoreserve.maadrÿumrechnung.stamm,"999999999.00"))
+ 
+ÿÌÿ™"maadr"
+ÿïÿYÿ™"maadr"
+ÿ^
+ok%ÿ0
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ^
+Stornoreserve.maadrÿStornoreserve.maadrÿwert%
+StornoreserveEU.maadrÿÿ0(ÿ(Stornoreserve.maadrÿumrechnung.stamm,"999999999.00"))
+ 
+ÿÌÿ™"maadr"
+ÿïÿYÿ™"maadr"
+ÿ’ÿ¡
+	ÿ^
+ok%ÿ0
+	ÿ’ÿ¡
+	ÿ½ ************** jetzt Buchungssatz erzeugen!! ***************************
+	ÿÉÿ`ÿ™"stamm"
+	ÿ¡ok%ÿÿ1ÿp
+ÿ¡PrvVerfahr$ÿ"ZAHLUNGSEINGANG"ÿp
+ÿƒDFile(3,"buchung1"ÿ_fpw$)
+ÿÊÿË"Buchung wird gespeichert"
+ÿÿ™"BUCHUNG1"
+CodeBU.buchung1ÿÿI("buchung1",1)
+CodeMA.buchung1ÿcodema%
+ma%ÿCodeMA.buchung1
+Datum.buchung1ÿbdat$
+Buchungstext.buchung1ÿbuchtext$
+datumz%ÿDatum.buchung1
+ÿ¡srspalte$ÿ"j"ÿp
+ÿ½ als normale Buchung
+sr%ÿ0
+betr%ÿwert%ÿÿ1
+Betrag.buchung1ÿbetr%
+ÿ^
+ÿ½ komplett in der SR-Spalte ausweisen
+sr.buchung1ÿwert%
+sr%ÿwert%
+betr%ÿsr%ÿÿ1
+Betrag.buchung1ÿbetr%
+ÿ’ÿ¡
+VTCodema.buchung1ÿcodema%
+codew1%ÿcodew.stamm
+Codew.buchung1ÿcodew.stamm
+euro1%ÿumrechnung.stamm
+umrechnung.buchung1ÿumrechnung.stamm
+waehrung1$ÿwaehrung.stamm
+waehrung.buchung1ÿwaehrung1$
+ÿƒFStore("buchung1")
+zusatz%ÿ1
+eigen%ÿ1
+PSpAll$ÿ""
+PSpAllSeit%ÿ0
+PROVSpEig$ÿ""
+PSpESeit%ÿ0
+ÿƒZentrKTO(ma%,datumz%,betr%,sr%,codew1%,euro1%,waehrung1$,PSpAll$,PSpAllSeit%,PROVSpEig$,PSpESeit%,eigen%,zusatz%)
+ÿÉÿ¥ma%ÿáÿ™"maadr"ÿ£codema.maadr
+AuszahlAB.maadrÿAuszahlAB.maadrÿbetr%
+AuszahlEUAB.maadrÿÿ0(ÿ(AuszahlAB.maadrÿeuro1%,"999999999.00"))
+AuszProvABGes.maadrÿAuszProvABGes.maadrÿbetr%
+AuszProvABGesEU.maadrÿÿ0(ÿ(AuszProvABGes.maadrÿeuro1%,"999999999.00"))
+zusAuszahl.maadrÿzusAuszahl.maadrÿbetr%
+zusAuszahlEU.maadrÿÿ0(ÿ(zusAuszahl.maadrÿeuro1%,"999999999.00"))
+aktZusB.maadrÿaktZusB.maadrÿbetr%
+aktZusBEU.maadrÿÿ0(ÿ(aktZusB.maadrÿeuro1%,"999999999.00"))
+ÿÌÿ™"maadr"
+ÿïÿYÿ™"maadr"
+ÿ^
+ÿƒDFile(3,"buchung"ÿ_fpw$)
+ÿÊÿË"Buchung wird gespeichert"
+ÿÿ™"BUCHUNG"
+CodeBU.buchungÿÿI("buchung",1)
+CodeMA.buchungÿcodema%
+ma%ÿCodeMA.buchung
+Datum.buchungÿbdat$
+Buchungstext.buchungÿbuchtext$
+datumz%ÿDatum.buchung
+ÿ¡srspalte$ÿ"j"ÿp
+ÿ½ als normale Buchung
+sr%ÿ0
+betr%ÿwert%ÿÿ1
+Betrag.buchungÿbetr%
+ÿ^
+ÿ½ komplett in der SR-Spalte ausweisen
+sr.buchungÿwert%
+sr%ÿwert%
+betr%ÿsr%ÿÿ1
+Betrag.buchungÿbetr%
+ÿ’ÿ¡
+VTCodema.buchungÿcodema%
+codew1%ÿcodew.stamm
+Codew.buchungÿcodew.stamm
+euro1%ÿumrechnung.stamm
+umrechnung.buchungÿumrechnung.stamm
+waehrung1$ÿwaehrung.stamm
+waehrung.buchungÿwaehrung1$
+ÿƒFStore("buchung")
+zusatz%ÿ1
+eigen%ÿ1
+PSpAll$ÿ""
+PSpAllSeit%ÿ0
+PROVSpEig$ÿ""
+PSpESeit%ÿ0
+ÿƒZentrKTO(ma%,datumz%,betr%,sr%,codew1%,euro1%,waehrung1$,PSpAll$,PSpAllSeit%,PROVSpEig$,PSpESeit%,eigen%,zusatz%)
+ÿÉÿ¥ma%ÿáÿ™"maadr"ÿ£codema.maadr
+AuszahlAB.maadrÿAuszahlAB.maadrÿbetr%
+AuszahlEUAB.maadrÿÿ0(ÿ(AuszahlAB.maadrÿeuro1%,"999999999.00"))
+AuszProvABGes.maadrÿAuszProvABGes.maadrÿbetr%
+AuszProvABGesEU.maadrÿÿ0(ÿ(AuszProvABGes.maadrÿeuro1%,"999999999.00"))
+zusAuszahl.maadrÿzusAuszahl.maadrÿbetr%
+zusAuszahlEU.maadrÿÿ0(ÿ(zusAuszahl.maadrÿeuro1%,"999999999.00"))
+aktZusB.maadrÿaktZusB.maadrÿbetr%
+aktZusBEU.maadrÿÿ0(ÿ(aktZusB.maadrÿeuro1%,"999999999.00"))
+ÿÌÿ™"maadr"
+ÿïÿYÿ™"maadr"
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	ÿ½ ************** Ende  Buchungssatz erzeugen!! ***************************
+ÿ’ÿ¡
+ÿ^
+ÿ¡ag$ÿ"j"ÿp
+	ÿƒFehler("fr die Agentur <ohne Zuordnung>  ist diese Funktion nicht durchfhrbar!","")
+ÿ^
+	ÿƒFehler("Diese Funktion steht unter der Agenturvariante nicht zur Verfgung","")
+ÿ’ÿ¡
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿÉÿ¥codema%ÿ™"maadr"ÿ£codema.maadr
+ÿƒMADRUpdate()
+ÿæ25
+ÿ½ manuelle Umbuchung vom Auszahlungssperrekonto auf das Auszahlungskonto
+codema%ÿcodema.maadr
+ok%ÿÿ1
+ÿ¡disabled%("MAADRBEARB")ÿp
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡nachname.maadrÿ"<ohne Zuordnung>"ÿok%ÿÿ1ÿp
+testbw2008200101: 
+ÿ½ buchtext$ = "manuelle Auszahlung SR"
+ÿ½ bDat$ = DATE$ ( TODAY ,"0d.mm.yyyy")
+Betrag$ÿ"0"
+ÿ‰ÿñ"Konto1",0,0,221,185,"Auszahlungssperre umbuchen","MS Sans Serif",8
+ÿ|ÿñ"Konto1",9,6,7,24,22,2
+ÿ|ÿñ"Konto1",5,34,8,170,9,0,"Auszahlungssperre:"
+ÿ|ÿñ"Konto1",4,34,14,176,5,0,""
+ÿ|ÿñ"Konto1",5,34,22,175,16,0,"Wenn Sie einen negativen Betrag eingeben, wird das Auszahlungssperre-Konto um den Betrag reduziert"
+ÿ|ÿñ"Konto1",5,34,40,175,32,0,"und das Auszahlungskonto um den Betrag erh”ht."
+ÿ|ÿñ"Konto1",5,34,62,175,16,0,"Wenn Sie einen positiven Betrag eingeben, wird das Auszahlungssperre-Konto um den Betrag erh”ht und"
+ÿ|ÿñ"Konto1",5,34,84,175,32,0,"das Auszahlungskonto um den Betrag verringert."
+ÿ|ÿñ"Konto1",5,34,112,25,10,0,"Betrag:"
+ÿ|ÿñ"Konto1",6,70,112,45,11,0,0,Betrag$,10
+ÿ½ ADD DIALOG "Konto1",5,34,123,25,10,0,"Datum:"
+ÿ½ ADD DIALOG "Konto1",6,70,123,45,11,0,0,bDat$,10
+ÿ½ ADD DIALOG "Konto1",5,34,136,45,10,0,"Buchungstext:"
+ÿ½ ADD DIALOG "Konto1",6,34,147,185,11,0,0,buchtext$,60
+ÿ|ÿñ"Konto1",1,50,164,55,15,1,"&Weiter",1,1
+ÿ|ÿñ"Konto1",1,110,164,55,15,0,"&Abbruch",0,0
+ÿñ"Konto1",req%
+ÿ¾ÿñ"Konto1"
+ÿ¡req%ÿ1ÿp
+	ÿ³ÿ_ÿwtestbw2008200101
+	wert%ÿÿ0(Betrag$)
+	ÿ³ÿ_ÿwErrorHandler
+	ÿÉÿ`ÿ™"STAMM"
+	ÿÉÿ¥codema%ÿáÿ™"maadr"ÿ£codema.maadr
+	ok%ÿÿ1
+	ÿ¡wert%ÿ0ÿp
+ÿ¡wert%ÿ
+0ÿp
+ÿ½ Reduzierung Auszahlungssperre-konto, Prfung ob ausgezahlt werden darf
+AuszahlAB.maadrÿAuszahlAB.maadrÿ(wert%ÿÿ1)
+AuszahlEUAB.maadrÿÿ0(ÿ(AuszahlAB.maadrÿumrechnung.stamm,"999999999.00"))
+AuszahlSperKo.maadrÿAuszahlSperKo.maadrÿwert%
+AuszahlSperKoEu.maadrÿÿ0(ÿ(AuszahlSperKo.maadrÿumrechnung.stamm,"999999999.00"))
+ÿÌÿ™"maadr"
+ÿïÿYÿ™"maadr"
+ÿ^
+ÿ½ Erh”hung Auszahlungssperre-konto, Prfung ob ausgezahlt werden darf
+AuszahlAB.maadrÿAuszahlAB.maadrÿ(wert%ÿÿ1)
+AuszahlEUAB.maadrÿÿ0(ÿ(AuszahlAB.maadrÿumrechnung.stamm,"999999999.00"))
+AuszahlSperKo.maadrÿAuszahlSperKo.maadrÿwert%
+AuszahlSperKoEu.maadrÿÿ0(ÿ(AuszahlSperKo.maadrÿumrechnung.stamm,"999999999.00"))
+ÿÌÿ™"maadr"
+ÿïÿYÿ™"maadr"
+ÿ’ÿ¡
+	ÿ^
+ok%ÿ0
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("fr die Agentur <ohne Zuordnung>  ist diese Funktion nicht durchfhrbar!","")
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿÉÿ¥codema%ÿ™"maadr"ÿ£codema.maadr
+ÿƒMADRUpdate()
+ÿæ26
+ÿ½ Foerderprovisionen
+codema%ÿcodema.maadr
+ÿ¡GAFSK$ÿ"TRUE"ÿp
+ÿ¡nachname.maadrÿ"<ohne*"ÿp
+	ÿƒFehler("Fr diese Agentur k”nnen keine zu betreuenden Agenturen erfaát werden!","")
+ÿ^
+	ÿ½ CALL MABetrKond(codema%)
+	maab%ÿcodema.maadr
+	wks1%ÿWorkstation%
+	ma%ÿMakGetCodeMA%(ma%,Wks1%)
+	ÿßÿe
+	ÿ¡ma%ÿ0ÿp
+betr$ÿ""
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥ma%ÿ™"maadr"ÿ£codema.maadr
+betr$ÿÿ+(ÿH(Nachname.maadr)ÿ","ÿÿH(Vorname.maadr),61)
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥maab%ÿáÿ™"maadr"ÿ£codema.maadr
+Maklerbetreuer.maadrÿbetr$
+CodeMABetreu.maadrÿma%
+ÿƒQuickStore("maadr")
+ÿßÿe
+	ÿ^
+ÿÂ"Es wurde kein Betreuer ausgew„hlt!","Soll <ohne Zuordnung> eingetragen werden?",130,req%
+ÿ¡req%ÿ1ÿp
+ÿßÿe
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥maab%ÿáÿ™"maadr"ÿ£codema.maadr
+Maklerbetreuer.maadrÿ"<ohne Zuordnung>"
+CodeMABetreu.maadrÿ0
+ÿƒQuickStore("maadr")
+ÿßÿe
+ÿ’ÿ¡
+	ÿ’ÿ¡
+	ÿÉÿœÿ¥maab%ÿ™"maadr"ÿ£codema.maadr
+	codema%ÿmaab%
+ÿ’ÿ¡
+ÿ^
+ÿ¡nachname.maadrÿ"<ohne*"ÿp
+	ÿƒFehler("Fr diese Agentur kann keine F”rderprovision erfaát werden!","")
+ÿ^
+	ÿ¡ÿOdisabled%("FOERKOND")ÿp
+ÿƒFoerdKond(codema%)
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+MADRsub%ÿ0
+ÿÉÿ¥codema%ÿ™"maadr"ÿ£codema.maadr
+ÿƒMADRUpdate()
+ÿßÿ³
+ÿæ27
+ÿ½ Titel zuweisen
+codema%ÿcodema.maadr
+feld$ÿ"Titel"
+ÿ›i%ÿ1ÿq25
+feld$ÿ"Titel"ÿÿ(i%,"00")ÿ".stamm"
+ÿ¡feld$$ÿ""ÿp
+	Titel$(i%ÿ1)ÿÿ(i%,"00")ÿ" "ÿfeld$$
+ÿ^
+	i%ÿ26
+ÿ’ÿ¡
+ÿ±i%
+prompt$ÿIstTitel.maadr
+ÿ‰ÿñ"PREISLIS",0,0,190,164,title$,"MS Sans Serif",8
+ÿ|ÿñ"PREISLIS",4,0,0,189,137,0," Auswahl Titel"
+ÿ|ÿñ"PREISLIS",7,5,14,139,125,2,2,Titel$,Auswahl1$,prompt$
+ÿ|ÿñ"PREISLIS",1,37,145,55,16,1,"&OK",1,1
+ÿ|ÿñ"PREISLIS",1,107,145,55,16,0,"&Abbrechen",0,0
+ÿñ"PREISLIS",req%
+ÿ¾ÿñ"PREISLIS"
+ÿ¡req%ÿ1ÿp
+ÿÉÿ¥codema%ÿáÿ™"maadr"ÿ£codema.maadr
+IstTitel.maadrÿÿ,(Auswahl1$(0),4)
+ÿÌÿ™"maadr"
+ÿïÿYÿ™"maadr"
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿÉÿ¥codema%ÿ™"maadr"ÿ£codema.maadr
+ÿƒMADRUpdate()
+ÿæ28
+ÿ½ Bro zuweisen
+ok%ÿÿ1
+ÿ¡disabled%("MAADRCHANGEOFF")ÿp
+ok%ÿ0
+ÿ’ÿ¡
+_cuma%ÿcodema.maadr
+ÿ¡workstation%ÿ0ÿok%ÿÿ1ÿp
+_cuma%ÿcodema.maadr
+ÿ½ rep% = VAL (GetWkscodema$( STR$ (_cuma%,"000000"),Workstation%))
+wsold%ÿWorkstation.maadr
+wsneu%ÿSelectOffice%("Bro-Auswahl","",1,0)
+ÿ½ CALL Fehler("","")
+ÿ¡wsneu%ÿÿ1ÿp
+	ÿÉÿ¥_cuma%ÿáÿ™"maadr"ÿ£codema.maadr
+	Workstation.maadrÿwsneu%
+	ÿƒQuickStore("maadr")
+	ÿÂ"Bro wurde zugewiesen!"
+	ÿÂ"Nachfolgend mssen jetzt die Daten in den Adressen,","Terminen, Dokumenten und Vertr„gen angepaát werden!"
+	ÿßÿe
+	ÿƒDFile(3,"KVERTRAG"ÿ_fpw$)
+	ÿƒDFile(2,"OFFICE\"ÿ"ADRESSEN"ÿ_fpw$)
+	ÿƒDFile(2,"OFFICE\"ÿ"BCKONTAK"ÿ_fpw$)
+	ÿƒDFile(2,"OFFICE\"ÿ"DOKUMENT"ÿ_fpw$)
+	ÿƒDFile(2,"OFFICE\"ÿ"AKQUISE"ÿ_fpw$)
+	ÿƒDFile(2,"OFFICE\"ÿ"AKQUIBCK"ÿ_fpw$)
+	ÿƒDFile(2,"OFFICE\"ÿ"DOKBCK"ÿ_fpw$)
+	ÿƒDFile(2,"OFFICE\"ÿ"DOKMA"ÿ_fpw$)
+	ÿƒDFile(2,"OFFICE\"ÿ"CONBCK"ÿ_fpw$)
+	ÿƒDFile(2,"OFFICE\"ÿ"CONNECT"ÿ_fpw$)
+	ÿƒDFile(2,"OFFICE\"ÿ"TELEFON"ÿ_fpw$)
+	ÿƒDFile(2,"OFFICE\"ÿ"TELBCK"ÿ_fpw$)
+	j%ÿ1
+anfanp160320021: 
+	anp$ÿ"ADRESSEN"
+	ÿ™anp$
+	ÿ£codema.anp$
+	ÿÉÿ`
+	ÿ¡ÿA(anp$)ÿ0ÿp
+ÿÉÿ¥_cuma%ÿáÿ™anp$ÿ£codema.anp$
+	ÿ^
+ÿÉÿb
+	ÿ’ÿ¡
+	ok%ÿÿ1
+	i%ÿ0
+	ÿØÿOÿB(anp$)ÿcodema.anp$ÿ_cuma%
+ÿ¡codema.anp$ÿ_cuma%ÿp
+i%ÿi%ÿ1
+Workstation.anp$ÿwsneu%
+ÿƒQuickStore(anp$)
+ÿÊÿËÿ(i%,"999999")ÿ" Datens„tze in "ÿanp$ÿ" umgestellt"
+ÿ¡ÿJ(codeku.anp$,codeku.kvertrag)ÿp
+ÿ™"KVERTRAG"
+ÿ£codeku.kvertrag
+ÿÉÿ`
+ÿÉÿ¥codeku.anp$ÿáÿ™"kvertrag"ÿ£codeku.kvertrag
+ÿØÿOÿB("KVERTRAG")ÿcodeku.kvertragÿcodeku.anp$
+Workstation.kvertragÿwsneu%
+QWoNo.kvertragÿÿ(Workstation%,"000000")ÿÿ(lfdnr.kvertrag,"000000")
+ÿƒQuickStore("KVERTRAG")
+ÿÉÿ±ÿáÿ™"kvertrag"ÿ£codeku.kvertrag
+ÿÙ
+ÿ’ÿ¡
+ÿ¡ÿJ(codeku.anp$,codeku.akquise)ÿp
+ÿ™"akquise"
+ÿ£codeku.akquise
+ÿÉÿ`
+ÿÉÿ¥codeku.anp$ÿáÿ™"akquise"ÿ£codeku.akquise
+ÿØÿOÿB("akquise")ÿcodeku.akquiseÿcodeku.anp$
+Workstation.akquiseÿwsneu%
+ÿƒQuickStore("akquise")
+ÿÉÿ±ÿáÿ™"akquise"ÿ£codeku.akquise
+ÿÙ
+ÿ’ÿ¡
+ÿ¡ÿJ(codeku.anp$,codeku.telefon)ÿp
+ÿ™"telefon"
+ÿ£codeku.telefon
+ÿÉÿ`
+ÿÉÿ¥codeku.anp$ÿáÿ™"telefon"ÿ£codeku.telefon
+ÿØÿOÿB("telefon")ÿcodeku.telefonÿcodeku.anp$
+Workstation.telefonÿwsneu%
+ÿƒQuickStore("telefon")
+ÿÉÿ±ÿáÿ™"telefon"ÿ£codeku.telefon
+ÿÙ
+ÿ’ÿ¡
+ 
+ÿ¡ÿJ(codeku.anp$,codeku.dokument)ÿp
+ÿ™"dokument"
+ÿ£codeku.dokument
+ÿÉÿ`
+ÿÉÿ¥codeku.anp$ÿáÿ™"dokument"ÿ£codeku.dokument
+ÿØÿOÿB("dokument")ÿcodeku.dokumentÿcodeku.anp$
+Workstation.dokumentÿwsneu%
+ÿƒQuickStore("dokument")
+ÿÉÿ±ÿáÿ™"dokument"ÿ£codeku.dokument
+ÿÙ
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ™anp$
+ÿÉÿ±ÿáÿ™anp$ÿ£codema.anp$
+	ÿÙ
+	anp$ÿ"DOKMA"
+	ÿ™anp$
+	ÿ£codema.anp$
+	ÿÉÿ`
+	ÿ¡ÿA(anp$)ÿ0ÿp
+ÿÉÿ¥_cuma%ÿáÿ™anp$ÿ£codema.anp$
+	ÿ^
+ÿÉÿb
+	ÿ’ÿ¡
+	ok%ÿÿ1
+	i%ÿ0
+	ÿØÿOÿB(anp$)ÿcodema.anp$ÿ_cuma%
+ÿ¡codema.anp$ÿ_cuma%ÿp
+i%ÿi%ÿ1
+Workstation.anp$ÿwsneu%
+ÿƒQuickStore(anp$)
+ÿÊÿËÿ(i%,"999999")ÿ" Datens„tze in "ÿanp$ÿ" umgestellt"
+ÿ’ÿ¡
+ÿÉÿ±ÿáÿ™anp$ÿ£codema.anp$
+	ÿÙ
+ 
+	anp$ÿ"BCKONTAK"
+	GADRDat$ÿ"BCKONTAK"
+	GConDat$ÿ"CONBCK"
+	GTelDat$ÿ"TELBCK"
+	GAkquiDat$ÿ"AKQUIBCK"
+	GDokDat$ÿ"DOKBCK"
+	ÿƒDFile(2,"OFFICE\"ÿanp$ÿ_fpw$)
+	ÿ™anp$
+	ÿ£codema.anp$
+	ÿÉÿ`
+	ÿ¡ÿA(anp$)ÿ0ÿp
+ÿÉÿ¥_cuma%ÿáÿ™anp$ÿ£codema.anp$
+	ÿ^
+ÿÉÿb
+	ÿ’ÿ¡
+	ok%ÿÿ1
+	i%ÿ0
+	ÿØÿOÿB(anp$)ÿcodema.anp$ÿ_cuma%
+ÿ¡codema.anp$ÿ_cuma%ÿp
+i%ÿi%ÿ1
+Workstation.anp$ÿwsneu%
+ÿƒQuickStore(anp$)
+ÿÊÿËÿ(i%,"999999")ÿ" Datens„tze in "ÿanp$ÿ" umgestellt"
+ÿ’ÿ¡
+ÿ¡ÿJ(codeku.anp$,codeku.akquibck)ÿp
+ÿ™"akquibck"
+ÿ£codeku.akquibck
+ÿÉÿ`
+ÿÉÿ¥codeku.anp$ÿáÿ™"akquibck"ÿ£codeku.akquibck
+ÿØÿOÿB("akquibck")ÿcodeku.akquibckÿcodeku.anp$
+Workstation.akquibckÿwsneu%
+ÿƒQuickStore("akquibck")
+ÿÉÿ±ÿáÿ™"akquibck"ÿ£codeku.akquibck
+ÿÙ
+ÿ’ÿ¡
+ÿ¡ÿJ(codeku.anp$,codeku.telbck)ÿp
+ÿ™"telbck"
+ÿ£codeku.telbck
+ÿÉÿ`
+ÿÉÿ¥codeku.anp$ÿáÿ™"telbck"ÿ£codeku.telbck
+ÿØÿOÿB("telbck")ÿcodeku.telbckÿcodeku.anp$
+Workstation.telbckÿwsneu%
+ÿƒQuickStore("telbck")
+ÿÉÿ±ÿáÿ™"telbck"ÿ£codeku.telbck
+ÿÙ
+ÿ’ÿ¡
+ 
+ÿ¡ÿJ(codeku.anp$,codeku.dokbck)ÿp
+ÿ™"dokbck"
+ÿ£codeku.dokbck
+ÿÉÿ`
+ÿÉÿ¥codeku.anp$ÿáÿ™"dokbck"ÿ£codeku.dokbck
+ÿØÿOÿB("dokbck")ÿcodeku.dokbckÿcodeku.anp$
+Workstation.dokbckÿwsneu%
+ÿƒQuickStore("dokbck")
+ÿÉÿ±ÿáÿ™"dokbck"ÿ£codeku.dokbck
+ÿÙ
+ÿ’ÿ¡
+ÿ™anp$
+ÿÉÿ±ÿáÿ™anp$ÿ£codema.anp$
+	ÿÙ
+ 
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Diese Funktion kann nur von der Zentale vorgenommen werden!","")
+ÿ’ÿ¡
+GAdrDat$ÿ"ADRESSEN"
+GConDat$ÿ"CONNECT"
+GTelDat$ÿ"TELEFON"
+GAkquiDat$ÿ"AKQUISE"
+GDokDat$ÿ"DOKUMENT"
+ÿßÿ³
+ÿÉÿ¥_cuma%ÿáÿ™"maadr"ÿ£codema.maadr
+MADRsub%ÿ0
+ÿƒMADRUpdate()
+ÿæ29
+ÿ½ GDV Agenturnummer zuweisen
+codema%ÿcodema.maadr
+ÿ¡codema%ÿ0ÿp
+ÿƒMAGdvAgent(codema%,0,"")
+ÿ½ MAGdvAgent(codematmp%,vonwo%,Agenturnummer$)
+ÿ^
+ÿƒFehler("Fr diese Agentur k”nnen keine GDV Agenturnummern erfaát werden!","")
+ÿ’ÿ¡
+_cuma%ÿcodema%
+ÿÉÿ¥_cuma%ÿ™"maadr"ÿ£codema.maadr
+MADRsub%ÿ0
+ÿƒMADRUpdate()
+ÿæ30
+ÿ½ šbertragung Vermittler in Mitarbeiterdatei
+ÿ¬ÿe
+codema1%ÿcodema.maadr
+ok%ÿÿ1
+ÿ¡disabled%("MAADRBEARB")ÿp
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡codema1%ÿ
+1ÿnachname.maadrÿ"<ohne Zuordnung>"ÿp
+ok%ÿ0
+ÿƒFehler("<ohne Zuordnung> kann nicht als Mitarbeiter eingetragen werden!","")
+ÿ’ÿ¡
+ÿ¡ok%ÿÿ1ÿp
+ÿ¡ÿOÿJ(nachname.maadr,nachname.supervis)ÿp
+	ÿÿ™"supervis"
+	ÿÊÿË"Datensatz neu angelegt..."
+	CodeMA%ÿÿI("supervis",1)
+	Codema.supervisÿCodema%
+	Workstation.supervisÿWorkstation.maadr
+	Nachname.supervisÿNachname.maadr
+	Vorname.supervisÿVorname.maadr
+	ÿ¡vorname.maadrÿ""ÿp
+Name.supervisÿVorname.maadrÿ" "ÿNachname.maadr
+	ÿ^
+Name.supervisÿNachname.maadr
+	ÿ’ÿ¡
+	ÿÌÿ™"supervis"
+	ÿïÿYÿ™"supervis"
+	ÿƒFehler("Der Vermittler wurde als Mitarbeiter eingetragen!","Bitte wechseln Sie in die Vermittlerverwaltung und legen Sie die Mitarbeiterrechte und das Passwort fest!")
+ÿ^
+	ÿÉÿ`ÿ™"Supervis"ÿ£nachname.supervis
+	ÿÉÿ¥nachname.maadrÿ™"Supervis"ÿ£nachname.supervis
+	ÿ¡vorname.supervisÿVorname.maadrÿp
+ÿƒFehler("Es ist bereits ein Mitarbeiter "ÿnachname.supervisÿ" "ÿvorname.supervisÿ" vorhanden!","")
+ÿÂ"Wollen Sie trotzdem den Vermittler","als Mitarbeiter eintragen lassen?",130,req%
+ÿ¡req%ÿ1ÿp
+ÿÿ™"supervis"
+ÿÊÿË"Datensatz neu angelegt..."
+CodeMA%ÿÿI("supervis",1)
+Codema.supervisÿCodema%
+Workstation.supervisÿWorkstation.maadr
+Nachname.supervisÿNachname.maadr
+Vorname.supervisÿVorname.maadr
+ÿ¡vorname.maadrÿ""ÿp
+Name.supervisÿVorname.maadrÿ" "ÿNachname.maadr
+ÿ^
+Name.supervisÿVorname.maadr
+ÿ’ÿ¡
+ÿÌÿ™"supervis"
+ÿïÿYÿ™"supervis"
+ÿƒFehler("Der Vermittler wurde als Mitarbeiter eingetragen!","Bitte wechseln Sie in die Vermittlerverwaltung und legen Sie die Mitarbeiterrechte und das Passwort fest!")
+ÿ’ÿ¡
+	ÿ^
+ÿÿ™"supervis"
+ÿÊÿË"Datensatz neu angelegt..."
+CodeMA%ÿÿI("supervis",1)
+Codema.supervisÿCodema%
+Workstation.supervisÿWorkstation.maadr
+Nachname.supervisÿNachname.maadr
+Vorname.supervisÿVorname.maadr
+ÿ¡vorname.maadrÿ""ÿp
+Name.supervisÿVorname.maadrÿ" "ÿNachname.maadr
+ÿ^
+Name.supervisÿNachname.maadr
+ÿ’ÿ¡
+ÿÌÿ™"supervis"
+ÿïÿYÿ™"supervis"
+ÿƒFehler("Der Vermittler wurde als Mitarbeiter eingetragen!","Bitte wechseln Sie in die Vermittlerverwaltung und legen Sie die Mitarbeiterrechte und das Passwort fest!")
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+_cuma%ÿcodema1%
+ÿÉÿ¥_cuma%ÿ™"maadr"ÿ£codema.maadr
+MADRsub%ÿ0
+ÿƒMADRUpdate()
+ÿæ31
+ÿ¡disabled%("AGENTNOTIZ2")ÿp
+ÿ^
+f.sichern2.enabledÿÿ1
+ÿœ2
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿæ32
+ÿœ1
+ÿæ99
+ÿ¬ÿe
+ok%ÿÿ1
+ÿ¡disabled%("MAADRBEARB")ÿp
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡nachname.maadrÿ"<ohne Zuordnung>"ÿok%ÿÿ1ÿp
+	ÿÿAgenturen$(ÿA("maadr")ÿ5)
+	Agenturen$(ÿA("maadr")ÿ5)ÿ""
+	ÿ¡ÿA("maadr")ÿ0ÿpÿƒMADRNeu()
+	GMaAnrede$ÿAnrede.maadr
+	GMaAnrede2$ÿAnrede2.maadr
+	GMaVorname$ÿVorname.maadr
+	GMaVorname2$ÿVorname2.maadr
+	GMaNachname$ÿNachname.maadr
+	GMaNachname2$ÿNachname2.maadr
+	GMaFirmaName$ÿFirmaName.maadr
+	GMaFirmaName2$ÿFirmaName2.maadr
+	GMaOrt$ÿOrt.maadr
+	GMaOrt2$ÿOrt2.maadr
+	GMaStrasse$ÿStraáe.maadr
+	GMaStrasse2$ÿStrasse2.maadr
+	GMaPLZ$ÿplz.maadr
+	GMaPLZ2$ÿplz2.maadr
+	f.bearb2.enabledÿ0
+	f.sichern2.enabledÿÿ1
+	f.abbruch2.visibleÿÿ1
+	f.abbruch2.enabledÿÿ1
+	f.zurueck2.enabledÿ0
+	sei%ÿÿí
+	ÿ¡ÿíÿ1ÿpÿ”schufa.maadr,0
+	ÿ¡ÿíÿ3ÿpÿ”AKonto01.aumskto,0
+	ÿ¡ÿíÿ5ÿpÿ”PROVSperreEig.maadr,0
+	f.bearb2.enabledÿÿ1
+	f.sichern2.enabledÿ0
+	f.abbruch2.visibleÿ0
+	f.abbruch2.enabledÿ0
+	f.zurueck2.enabledÿÿ1
+	ÿ½ f.seite2.enabled = - 1
+	ÿ½ CALL ButEnabled()
+ÿ^
+ÿ¡ok%ÿÿ1ÿpÿƒFehler ("Die Agentur <ohne Zuordnung> darf und kann nicht ge„ndert werden!","")
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿƒMADRUpdate()
+ÿæ100
+ÿƒMAADRPrev()
+ÿƒMADRUpdate()
+MADRsub%ÿ0
+ÿæ101
+ÿƒMAADRNext()
+MADRsub%ÿ0
+ÿƒMADRUpdate()
+ÿæ102
+ÿ¡gfsc%ÿÿ1ÿGASP%ÿÿ1ÿp
+ÿƒMASuFS24()
+ÿ^
+ÿƒMADRSuchen()
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿƒMADRUpdate()
+ÿæ103
+ÿ¡ÿOdisabled%("MAADRSERIE")ÿp
+ÿƒMASerie()
+MADRsub%ÿ0
+ÿƒMADRUpdate()
+ÿ’ÿ¡
+maser%ÿ0
+MADRsub%ÿ0
+ÿæ104
+ÿ¡ÿOdisabled%("MAADRKUEND")ÿp
+ÿƒMAADRKnd()
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿƒMADRUpdate()
+ÿæ105
+ÿ¡ÿOdisabled%("MAADRNEU")ÿp
+ÿƒMADRNeu()
+ÿƒMADRUpdate()
+ÿ^
+MADRsub%ÿ0
+ÿ’ÿ¡
+ÿæ106
+ÿ¡ÿOdisabled%("MAADRSPERRE")ÿp
+ÿ¡ag$ÿ"j"ÿp
+	ÿƒMAADRSperre()
+ÿ^
+	ÿƒFehler("Diese Funktion steht unter der Agenturvariante nicht zur Verfgung","")
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿƒMADRUpdate()
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿæ107
+codema%ÿcodema.maadr
+ÿ¡codema.maadrÿ0ÿÿOdisabled%("MAADRDIREKTION")ÿp
+codema%ÿcodema.maadr
+codeagdirold%ÿcodeagdir.maadr
+ 
+codeagdir%ÿGETDirektion%()
+ÿ¡codeagdir%ÿÿ1ÿp
+ÿ¡codeagdirold%ÿcodeagdir%ÿÿH(Agenturnr.maadr)ÿ""ÿp
+	ÿÉÿ`ÿ™"AGDIR"ÿ£codeAGDIR.AGDIR
+	ÿÉÿ¥codeagdir%ÿ™"AGDIR"ÿ£codeAGDIR.AGDIR
+	ÿÉÿ¥codema%ÿáÿ™"maadr"ÿ£codema.maadr
+	direktion.maadrÿdirektion.agdir
+	ÿ¡codeagdir%ÿ0ÿp
+nr$ÿÿ(nummer.agdir,"000")
+	ÿ^
+nr$ÿ"000"
+	ÿ’ÿ¡
+	ÿ¡agiteration.agdirÿ0ÿp
+agnr%ÿAGNummer.agdirÿagiteration.agdir
+	ÿ^
+agnr%ÿAGNummer.agdirÿ1
+	ÿ’ÿ¡
+	anzag%ÿAnzahlAGs.agdirÿ1
+	Agenturnr.maadrÿnr$ÿ"."ÿÿ(agnr%,"000000")
+	codeagdir.maadrÿcodeagdir%
+	ÿƒQuickStore("maadr")
+	ÿÉÿ`ÿ™"AGDIR"ÿ£codeAGDIR.AGDIR
+	ÿÉÿ¥codeagdirold%ÿáÿ™"AGDIR"ÿ£codeAGDIR.AGDIR
+	AnzahlAGs.agdirÿAnzahlAGs.agdirÿ1
+	ÿƒQuickStore("agdir")
+	ÿÉÿ`ÿ™"AGDIR"ÿ£codeAGDIR.AGDIR
+	ÿÉÿ¥codeagdir%ÿáÿ™"AGDIR"ÿ£codeAGDIR.AGDIR
+	AGNummer.agdirÿagnr%
+	AnzahlAGs.agdirÿanzag%
+	ÿƒQuickStore("agdir")
+ÿ^
+	ÿÉÿ`ÿ™"AGDIR"ÿ£codeAGDIR.AGDIR
+	ÿÉÿ¥codeagdir%ÿ™"AGDIR"ÿ£codeAGDIR.AGDIR
+	ÿÉÿ¥codema%ÿáÿ™"maadr"ÿ£codema.maadr
+	direktion.maadrÿdirektion.agdir
+	ÿƒQuickStore("maadr")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ^
+ÿ¡codema%ÿ0ÿpÿƒFehler("Sie k”nnen dem Vermittler <ohne Zuordnung> keine Direktion zuordnen!","")
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿÉÿ¥codema%ÿ™"maadr"ÿ£codema.maadr
+ÿƒMADRUpdate()
+MADRsub%ÿ0
+ 
+ÿæ108
+ÿ¡ÿOdisabled%("MAADRDETAIL")ÿp
+ÿœ2
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿƒMADRUpdate()
+ÿæ109
+ÿ½ FORM 1
+_formend%ÿ1
+MADRsub%ÿ0
+ÿƒMADRUpdate()
+ÿæ110
+ÿ¡ÿOdisabled%("MAADRDETAIL")ÿp
+ÿœ1
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿ½ CALL MADRUpdate()
+ÿæ111
+ÿ½ interne Abrechnungsstammdaten MAADRDET
+ÿ¡ÿOdisabled%("MAADRKTOINFO")ÿp
+ÿœ6
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿ½ CALL MADRUpdate() 
+ÿæ112
+ÿ½ Seite 3 MAADRDET
+ÿ¡ÿOdisabled%("MAADRKTOINFO")ÿp
+ÿœ2
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿ½ CALL MADRUpdate()  
+ÿæ113
+ÿ½ Seite4 MAADRDET
+ÿ¡ÿOdisabled%("MAADRKTOINFO")ÿp
+ÿœ3
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿ½ CALL MADRUpdate()   
+ÿæ114
+ÿ½ Seite5 MAADRDET
+ÿ¡ÿOdisabled%("MAADRKTOINFO")ÿp
+ÿœ4
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿ½ CALL MADRUpdate()   
+ÿæ115
+ÿ½ Anzeige der Statistikseite
+ÿ¡ÿOdisabled%("MAADRSTATISTIK")ÿp
+ÿ½ FORM 5
+codema%ÿcodema.maadr
+ÿ´ÿœGPrjForm$ÿ"STMAADR"
+ÿƒMNProgramm()
+ÿÉÿ¥codema%ÿ™"maadr"ÿ£codema.maadr
+ÿœ
+_formend%ÿ0
+ÿƒClearKBDBuffer()
+ÿ¬ÿ³
+ÿØ_formend%ÿ0
+	ÿÏÿßÿÿ¥
+	ÿ¡k$ÿÿ(27)ÿp_formend%ÿ1
+ÿÙ
+_formend%ÿ0
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿæ116
+codema1%ÿcodema.maadr
+ÿ¡GASP%ÿworkstation%ÿ0ÿp
+	ÿƒFehler("Diese Funktion ist fr externe Bros nicht zug„nglich!","")
+ÿ^
+	ÿ½ Button Druck 
+	Superbase.Dialogs.Add("ADRFilter")
+	ÿÊdlg ÿSuperbase.Dialogs.ADRFilter
+	dlg.Move(0,0,320,107)
+	dlg.Captionÿtitle$
+	dlg.FontNameÿ"MS Sans Serif"
+	dlg.FontSizeÿ8
+ 
+	ÿÊcontrol ÿdlg.Add("DialogFrame2","DialogFrame")
+	control.Move(0,6,320,78)
+	control.Captionÿ"Druckoptionen"
+ 
+	ÿÊcontrol ÿdlg.Add("DialogOptionButton1","DialogOptionButton")
+	control.Move(5,19,228,13)
+	control.Captionÿ"Vermittler - Liste"
+	control.Bind("opt%")
+	control.ValueOnÿ0
+	ÿ¡ÿOdisabled1%("KONDITIONVIEW")ÿp
+ÿÊcontrol ÿdlg.Add("DialogOptionButton5","DialogOptionButton")
+control.Move(5,35,228,13)
+control.Captionÿ"aktueller Vermittler - Konditionsliste (Kurzliste)"
+control.Bind("opt%")
+control.ValueOnÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogOptionButton2","DialogOptionButton")
+control.Move(5,48,311,14)
+control.Captionÿ"aktueller Vermittler - Konditionsliste (Langliste)"
+control.Bind("opt%")
+control.ValueOnÿ2
+	ÿ’ÿ¡
+ 
+	ÿÊcontrol ÿdlg.Add("DialogOptionButton4","DialogOptionButton")
+	control.Move(5,64,301,12)
+	control.Captionÿ"aktueller Vermittler - Vertragsbersicht"
+	control.Bind("opt%")
+	control.ValueOnÿ3
+ 
+	ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
+	control.Move(96,89,48,15)
+	control.Defaultÿ1
+	control.Captionÿ"&Weiter"
+	control.ReturnValueÿ1
+ 
+	ÿÊcontrol ÿdlg.Add("DialogCommandButton2","DialogCommandButton")
+	control.Move(148,89,48,15)
+	control.Captionÿ"&Abbruch"
+	control.ReturnValueÿ0
+	control.Cancelÿ1
+	ÿñ"ADRFilter",req%
+	ÿ¾ÿñÿt
+	ÿ¡req%ÿ1ÿp
+ÿ¡opt%ÿ0ÿp
+ÿ½ Vermittler-Liste
+ÿƒMAADRLIST()
+ÿ’ÿ¡
+ÿ¡opt%ÿ1ÿp
+ÿ½ Konditionsliste aktueller Vermittler - Kurzform
+ÿƒKLIST()
+ÿ’ÿ¡
+ÿ¡opt%ÿ2ÿp
+ÿ½ Konditionsliste aktueller Vermittler - Langform
+ÿƒKLIST2()
+ÿ’ÿ¡
+ÿ¡opt%ÿ3ÿp
+ÿ½ Vertragsliste
+ÿ¡ÿOdisabled%("MAADRVERTRUEBERSICHT")ÿp
+maab%ÿCodeMA.maadr
+ÿƒVertrUniRep(0,codema.maadr,0,0,0,0,0,0,1,ÿ1,tarif%)
+ÿÉÿœÿ¥maab%ÿ™"maadr"ÿ£codema.maadr
+ÿ½ CALL LIST6()
+ÿƒMADRUpdate()
+ÿ’ÿ¡
+ÿ’ÿ¡
+	ÿ’ÿ¡
+ÿ’ÿ¡
+MADRsub%ÿ0
+ÿÉÿ¥codema1%ÿ™"maadr"ÿ£codema.maadr
+ÿƒMADRUpdate()
+MADRsub%ÿ0
+ÿ’ÿÉ
+ÿ¬ÿ³
+ ÿÙ
+_formend%ÿ0
+ ÿ½ cuma% = 0
+ ÿ’ÿÿ
+ 
+

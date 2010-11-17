@@ -1,0 +1,1538 @@
+SBP
+ ÿƒmain()
+ 
+ ' Update fr Dateistrukturen
+ ' Copyright (c) 1993-1995 CoDIE Computer-Dienste
+ ' Stand   : 04.04.1995
+ ' =============================================================
+ ' 16.10.94/FA - Umgestellt auf neue SERVER.DLL 3.0
+ ' 07.09.95/FA - LOG nach TXT ge„ndert
+ 
+ 
+ÿÿDoUpdate()
+ ÿƒHideStartup()
+ ÿÿChanges%,ChangesMax%
+ 
+ ÿ½ ****************************************************
+ ÿ½ ** ChangesMax% wird mit der Anzahl der            **
+ ÿ½ ** notwendigen nderungen in OFFICE initialisiert **
+ ÿ½ ****************************************************
+ 
+ ChangesMax%ÿ108
+ 
+ ÿ½ ****************************************************
+ ÿ½ ** Hinzufgen der notwendigen nderungen des      **
+ ÿ½ ** jeweilgen Projektes                            **
+ ÿ½ ****************************************************
+ 
+ ÿÉÿæÿ>(_projekt$)
+ ÿæ"IMMAK"
+ChangesMax%ÿChangesMax%ÿ82
+ ÿæ"FACTURA"
+ChangesMax%ÿChangesMax%ÿ37
+ ÿæ"PROVIS"
+ChangesMax%ÿChangesMax%ÿ270
+ ÿæ"VIDEO"
+ChangesMax%ÿChangesMax%ÿ9
+ ÿ’ÿÉ
+
+ Changes%ÿ0
+ 
+ ÿ‰ÿñ"UPDATE",0,0,278,121,"Update","MS Sans Serif",8
+ ÿ|ÿñ"UPDATE",4,0,0,278,97,0,""
+ ÿ|ÿñ"UPDATE",9,6,6,20,22,4
+ ÿ|ÿñ"UPDATE",5,38,9,203,10,0,"Ihre Daten werden nachfolgend an die neuen Funktionen des"
+ ÿ|ÿñ"UPDATE",5,38,19,76,9,0,"Programmes angepaát."
+ ÿ|ÿñ"UPDATE",5,38,33,219,8,0,"Damit das Update fehlerfrei durchgefhrt werden kann, mssen Sie"
+ ÿ|ÿñ"UPDATE",5,38,43,232,9,0,"sicherstellen, daá kein weiterer Mitarbeiter im Programm angemeldet ist."
+ ÿ|ÿñ"UPDATE",5,38,60,232,8,0,"Wenn Sie das Update jetzt durchfhren lassen wollen, drcken Sie"
+ ÿ|ÿñ"UPDATE",5,38,70,232,8,0,"auf "ÿÿ(34)ÿ"Fortfahren"ÿÿ(34)ÿ", wenn Sie das Update zu einem sp„teren Zeitpunkt"
+ ÿ|ÿñ"UPDATE",5,38,80,219,8,0,"starten wollen, drcken Sie auf "ÿÿ(34)ÿ"Abbrechen"ÿÿ(34)ÿ"."
+ ÿ|ÿñ"UPDATE",1,82,100,55,15,1,"&Fortfahren",1,1
+ ÿ|ÿñ"UPDATE",1,140,100,55,15,0,"&Abbrechen",0,0
+ ÿñ"UPDATE",req%
+ ÿ¾ÿñ"UPDATE"
+ 
+ ÿ¡req%ÿ1ÿp
+ÿƒEXIT()
+ ÿ’ÿ¡
+ 
+ ÿ½ ** zus„tzlich angemeldete Nutzer erkennen **
+ 
+ ÿƒDFile(4,"supervis;paris")
+ ÿ¡_error%ÿ132ÿ_error%ÿ140ÿp
+msg$ÿ"Bitte stellen Sie sicher, daá kein weiterer Mitarbeiter angemeldet ist."
+ÿƒFehler("Es sind noch weitere Mitarbeiter im Programm angemeldet!",msg$)
+ÿƒEXIT()
+ ÿ’ÿ¡
+ 
+ 
+ ÿƒServer("LOADUPDATE","")
+ ÿƒServer("UPDFILE","")
+ ÿƒServer("UPDFIELD","")
+ ÿƒServer("UPDSTATUS","Update wird vorbereitet...")
+ ÿƒServer("UPDGAUGE","0")
+ 
+ 
+ ÿ½ ****************************
+ ÿ½ ** Anpassung SUPERVIS.SBF **
+ ÿ½ ****************************
+ 
+ ÿ™"supervis"
+ ÿƒFldAdd("Nachname","TXT;50",1)
+ ÿƒFldAdd("Name","TXT;50",1)
+ ÿƒFldAdd("Vorname","TXT;50",0)
+ ÿƒMarkMain("CodeMA")
+ ÿÅÿ™"supervis"
+ ÿ£CodeMA
+ ÿÉÿb
+ ÿØCodeMA ÿÿI("SUPERVIS",1)
+ ÿÙ
+ 
+ ÿ½ ** Passw”rter codieren
+ ÿƒPWUpdate()
+ 
+ ÿ¡_projekt$ÿ"FACTURA"ÿ_projekt$ÿ"WAWI"ÿp
+ 
+ÿ½ **************************
+ÿ½ ** Anpassung SERNUM.SBF **
+ÿ½ **************************
+ 
+ÿƒDFile(2,"OFFICE\sernum"ÿ_fpw$)
+ÿ™"SERNUM"
+
+ÿƒFldAdd("lastartintern","NUM;99999999.99",0)
+ÿÅÿ™"sernum"
+ 
+ ÿ’ÿ¡
+ 
+ ÿ½ ***************************
+ ÿ½ ** Anpassung AKQUISE.SBF **
+ ÿ½ ***************************
+ 
+ ÿƒDFile(2,"OFFICE\AKQUISE"ÿ_fpw$)
+ ÿ™"AKQUISE"
+ ÿƒFldAdd("Bearbeiter","TXT;50",0)
+ ÿƒFldAdd("Nachname","TXT;50",0)
+ ÿƒFldAdd("erledigt_Termin","TXT;1",1)
+ ÿƒFldAdd("Sprachnotiz","TXT;1",0)
+ ÿƒFldAdd("Wertung","NMI;00.",0)
+ ÿƒFldAdd("Notiz","TXT;L1500 R",0)
+ ÿƒFldAdd("Ergebnis","TXT;L1500 R",0)
+ ÿƒFldAdd("QuickCodeAK","TXT;12",1)
+ ÿƒFldAdd("QuickAKMA","TXT;18",1)
+ ÿƒFldAdd("CodeAKMA","TXT;12",1)
+ ÿƒFldAdd("QuickKUDat","TXT;13",1)
+ ÿƒFldAdd("QuickMADat","TXT;13",1)
+ ÿƒFldAdd("QuickAKDat","TXT;13",1)
+ ÿƒFldAdd("QuickAKMADat","TXT;19",1)
+ ÿƒFldAdd("MemberOf","TXT;120",1)
+ ÿƒFldAdd("QuickKuDatDiff","NUM;000000000000.",1)
+ ÿƒMarkMain("CodeAQ")
+ ÿƒServer("UPDFIELD","")
+ ÿƒServer("UPDSTATUS","Erzeugung Feldinhalt fr QuickCodes")
+ ÿÍQuickKUDat.akquiseÿÿ(CodeKU.akquise,"000000")ÿÿ>(erledigt_Termin.AKQUISE)ÿÿ(termin.akquise,"yymmdd"):
+QuickMADat.akquiseÿÿ(CodeMA.akquise,"000000")ÿÿ>(erledigt_Termin.AKQUISE)ÿÿ(termin.akquise,"yymmdd"):
+QuickAKDat.akquiseÿÿ(CodeAK.akquise,"000000")ÿÿ>(erledigt_Termin.AKQUISE)ÿÿ(termin.akquise,"yymmdd"):
+QuickAKMADat.akquiseÿÿ(codeak.akquise,"000000")ÿÿ(CodeMA.akquise,"000000")ÿÿ>(erledigt_Termin.AKQUISE)ÿÿ(termin.akquise,"yymmdd"):
+QuickCodeAK.akquiseÿÿ(termin.akquise,"ddmmyy")ÿÿ(CodeAK.akquise,"000000"):
+QuickAKMA.akquiseÿÿ(termin.akquise,"ddmmyy")ÿÿ(CodeAK.akquise,"000000")ÿÿ(CodeMA.akquise,"000000"):
+CodeAKMA.akquiseÿÿ(CodeAK.akquise,"000000")ÿÿ(CodeMA.akquise,"000000")
+QuickKuDatDiff.akquiseÿcodeku ÿ1000000ÿ(1000000ÿÿ1(termin))
+ ÿ’ÿÍ
+ ÿÅÿ™"akquise"
+ ÿ£CodeAQ
+ ÿÉÿb
+ ÿØCodeAQ ÿÿI("AKQUISE",1)
+ ÿÙ
+
+ 
+ 
+ ÿ½ ****************************
+ ÿ½ ** Anpassung AKTIONEN.SBF **
+ ÿ½ ****************************
+ 
+ ÿƒDFile(2,"OFFICE\AKTIONEN"ÿ_fpw$)
+ ÿ™"AKTIONEN"
+ ÿƒFldAdd("MemberOf","TXT;120",1)
+ ÿƒMarkMain("CodeAK")
+ ÿÅÿ™"AKTIONEN"
+ 
+ ÿ½ -- Erzeugung der MemberOf-Felder
+ 
+ ÿÉÿ`ÿ™"AKTIONEN"
+ ÿ¡MemberOf.AKTIONENÿ""ÿp
+ÿƒServer("UPDFILE","AKTIONEN")
+ÿƒServer("UPDFIELD","MemberOf")
+ÿƒServer("UPDSTATUS","Erzeugung Feldinhalt")
+ÿÍMemberOf.AKTIONENÿÿ(CodeAK.AKTIONEN,"000000")ÿĞMemberOf.AKTIONENÿ""
+ÿ’ÿÍ
+ÿƒServer("UPDFILE","AKQUISE")
+ÿƒAQFileUpdate()
+ ÿ’ÿ¡
+ 
+ ÿ½ -- Standardeintr„ge fr AKTIONEN erzeugen
+ 
+ ÿ™"aktionen"
+ ÿ£codeak.aktionen
+ ÿ½ SELECT KEY 999991 LOCK INDEX CodeAk.aktionen
+ testeak%ÿ999991
+ ÿ¡ÿOÿJ(testeak%,codeak.AKTIONEN)ÿp
+ÿƒServer("UPDFILE","AKTIONEN")
+ÿƒServer("UPDFIELD","")
+ÿƒServer("UPDSTATUS","Erzeugung der Standardeintr„ge fr AKTIONEN")
+ÿ
+Codeak.aktionenÿ999991
+bezeichnung.aktionenÿ"<Angebote>"
+ÿƒQuickStore("AKTIONEN")
+ ÿ’ÿ¡
+ testeak%ÿ999992
+ ÿ¡ÿOÿJ(testeak%,codeak.AKTIONEN)ÿp
+ÿ
+CodeAK.aktionenÿ999992
+bezeichnung.aktionenÿ"<Rechnungen>"
+ÿƒQuickStore("AKTIONEN")
+ ÿ’ÿ¡
+ testeak%ÿ999993
+ ÿ¡ÿOÿJ(testeak%,codeak.AKTIONEN)ÿp
+ÿ
+CodeAK.aktionenÿ999993
+bezeichnung.aktionenÿ"<Lieferscheine>"
+ÿƒQuickStore("AKTIONEN")
+ ÿ’ÿ¡
+ testeak%ÿ999994
+ ÿ¡ÿOÿJ(testeak%,codeak.AKTIONEN)ÿp
+ÿ
+CodeAK.aktionenÿ999994
+bezeichnung.aktionenÿ"<Auftr„ge>"
+ÿƒQuickStore("AKTIONEN")
+ ÿ’ÿ¡
+ testeak%ÿ999995
+ ÿ¡ÿOÿJ(testeak%,codeak.AKTIONEN)ÿp
+ÿ
+CodeAK.aktionenÿ999995
+bezeichnung.aktionenÿ"<Bestellungen>"
+ÿƒQuickStore("AKTIONEN")
+ ÿ’ÿ¡
+ testeak%ÿ999997
+ ÿ¡ÿOÿJ(testeak%,codeak.AKTIONEN)ÿp
+ÿ
+CodeAK.aktionenÿ999997
+bezeichnung.aktionenÿ"<Gutschriften>"
+ÿƒQuickStore("AKTIONEN")
+ ÿ’ÿ¡
+ testeak%ÿ999998
+ ÿ¡ÿOÿJ(testeak%,codeak.AKTIONEN)ÿp
+ÿ
+CodeAK.aktionenÿ999998
+bezeichnung.aktionenÿ"<Mahnungen>"
+ÿƒQuickStore("AKTIONEN")
+ ÿ’ÿ¡
+ ÿÉÿ¥999991ÿáÿ™"AKTIONEN"ÿ£CodeAK.AKTIONEN
+ ÿÉÿg
+ tst%ÿCodeAK
+ ÿØtst%ÿÿI("AKTIONEN",1)
+ ÿÙ
+ 
+ 
+ ÿ½ ****************************
+ ÿ½ ** Anpassung DOKUMENT.SBF **
+ ÿ½ ****************************
+ 
+ ÿƒDFile(2,"OFFICE\DOKUMENT"ÿ_fpw$)
+ ÿ™"dokument"
+ ÿƒFldAdd("Bearbeiter","TXT;50",0)
+
+ ÿ½ -- 11.10.93/FA ------------------------------
+ 
+ ÿƒFldAdd("CodeKU","NUM;000000",1)
+ ÿƒMarkMain("CodeDok")
+ ÿÅÿ™"dokument"
+ ÿ£CodeDOK
+ ÿÉÿb
+ ÿØCodeDOK ÿÿI("DOKUMENT",1)
+ ÿÙ
+ 
+ ÿ½ ****************************
+ ÿ½ ** Anpassung ACCODE.SBF **
+ ÿ½ ****************************
+ 
+ ÿƒDFile(2,"ACCODE"ÿ_fpw$)
+ ÿ™"ACCODE"
+ ÿƒMarkMain("CodePR")
+ ÿÅÿ™"ACCODE"
+ 
+ 
+ ÿ½ ****************************
+ ÿ½ ** Anpassung ACCESS.SBF **
+ ÿ½ ****************************
+ 
+ ÿƒDFile(2,"ACCESS"ÿ_fpw$)
+ ÿ™"ACCESS"
+ ÿƒMarkMain("CodePR")
+ ÿÅÿ™"ACCESS"
+
+ 
+ ÿ½ ****************************
+ ÿ½ ** Anpassung ADRESSEN.SBF **
+ ÿ½ ****************************
+ 
+ ÿƒDFile(2,"OFFICE\ADRESSEN"ÿ_fpw$)
+ ÿ™"ADRESSEN"
+ ÿƒFldAdd("Stichwort","TXT;400 R",1)
+ ÿƒFldAdd("Nachname","TXT;50",1)
+ ÿƒFldAdd("Vorname","TXT;50",1)
+ ÿƒFldAdd("Straáe","TXT;50",1)
+ ÿƒFldAdd("Ort","TXT;50",1)
+ ÿƒFldAdd("Land","TXT;50",0)
+ ÿƒFldAdd("ASName","TXT;50",1)
+ ÿƒFldAdd("ASStraáe","TXT;50",1)
+ ÿƒFldAdd("ASOrt","TXT;50",1)
+ ÿƒFldAdd("ASLand","TXT;50",0)
+
+ ÿ½ -- 05.09.93/AB -------------------------------
+ 
+ ÿƒFldAdd("Geburtsname","TXT;50",1)
+ ÿƒFldAdd("LName","TXT;50",0)
+ ÿƒFldAdd("LVorname","TXT;50",0)
+ ÿƒFldAdd("LStraáe","TXT;50",0)
+ ÿƒFldAdd("LOrt","TXT;50",0)
+ ÿƒFldAdd("EGNachname","TXT;50",0)
+ ÿƒFldAdd("EGGeburtsname","TXT;50",0)
+ ÿƒFldAdd("EGVorname","TXT;50",0)
+ ÿƒFldAdd("VBKreditbei","TXT;50",0)
+ ÿƒFldAdd("VBBrgschbei","TXT;50",0)
+ ÿƒFldAdd("EGASName","TXT;50",0)
+ ÿƒFldAdd("EGASStraáe","TXT;50",0)
+ ÿƒFldAdd("EGASOrt","TXT;50",0)
+ ÿƒFldAdd("Inhaber1","TXT;50",0)
+ ÿƒFldAdd("Inhaber2","TXT;50",0)
+ ÿƒFldAdd("Inhaber3","TXT;50",0)
+ ÿƒFldAdd("APartner1","TXT;50",0)
+ ÿƒFldAdd("APartner2","TXT;50",0)
+ ÿƒFldAdd("APartner3","TXT;50",0)
+ ÿƒFldAdd("APartner4","TXT;50",0)
+ ÿƒFldAdd("K1Bank","TXT;50",0)
+ ÿƒFldAdd("K2Bank","TXT;50",0)
+ ÿƒFldAdd("FIATEC","TXT;1",0)
+ ÿƒFldAdd("FIIMMAK","TXT;1",0)
+ ÿƒFldAdd("FIprivat","TXT;1",0)
+ ÿƒFldAdd("AAMietint","TXT;1",1)
+ ÿƒFldAdd("AAKaufint","TXT;1",1)
+ ÿƒFldAdd("AALieferant","TXT;1",1)
+ ÿƒFldAdd("AAMakler","TXT;1",1)
+ ÿƒFldAdd("AAMitarbeiter","TXT;1",1)
+ ÿƒFldAdd("AAKunde","TXT;1",1)
+ ÿƒFldAdd("AAInteressent","TXT;1",1)
+ ÿƒFldAdd("AAEigentmer","TXT;1",1)
+
+ ÿ½ -- 11.04.94/FA ------------------------------
+ 
+ ÿƒFldAdd("Kundennummer","TXT;20",1)
+ ÿƒFldAdd("EGAnrede","TXT;60",0)
+ ÿƒFldAdd("EGGeschlecht","TXT;1",0)
+ ÿƒFldAdd("EGNotiz","TXT;L4000 R",0)
+ ÿƒFldAdd("K1Name","TXT;50",0)
+ ÿƒFldAdd("K2Name","TXT;50",0)
+ ÿƒFldAdd("K3Name","TXT;50",0)
+ ÿƒFldAdd("K4Name","TXT;50",0)
+ ÿƒFldAdd("K1Geschlecht","TXT;1",0)
+ ÿƒFldAdd("K2Geschlecht","TXT;1",0)
+ ÿƒFldAdd("K3Geschlecht","TXT;1",0)
+ ÿƒFldAdd("K4Geschlecht","TXT;1",0)
+ ÿƒFldAdd("K1Geburtstag","DAT;0d.mm.yy",0)
+ ÿƒFldAdd("K2Geburtstag","DAT;0d.mm.yy",0)
+ ÿƒFldAdd("K3Geburtstag","DAT;0d.mm.yy",0)
+ ÿƒFldAdd("K4Geburtstag","DAT;0d.mm.yy",0)
+ ÿƒFldAdd("K1Notiz","TXT;L1000 R",0)
+ ÿƒFldAdd("K2Notiz","TXT;L1000 R",0)
+ ÿƒFldAdd("K3Notiz","TXT;L1000 R",0)
+ ÿƒFldAdd("K4Notiz","TXT;L1000 R",0)
+ ÿƒFldAdd("DebitorKto","TXT;5",0)
+ ÿƒFldAdd("Kostentr„ger","TXT;15",1)
+ ÿƒFldAdd("Kostenstelle","NUM;000000.",1)
+ 
+ ÿ½ -- 16.02.95/FA -------------------------------
+ 
+ ÿƒFldAdd("Vorg„nger","NUM;000000.",1)
+ ÿƒFldAdd("Sperre","NUM;000000.",1)
+ ÿƒFldAdd("Firmenform","TXT;15",1)
+ ÿƒFldAdd("Beruf","TXT;50",0)
+ ÿƒFldAdd("Reisepaá_Nr","TXT;30",0)
+ ÿƒFldAdd("RPAussteller","TXT;50",0)
+ ÿƒFldAdd("RPAusstellung","DAT;0d.mm.yy",0)
+ ÿƒFldAdd("Titel","TXT;30",0)
+ ÿƒFldAdd("KVPflicht","TXT;1",0)
+ ÿƒFldAdd("RVPflicht","TXT;1",0)
+ ÿƒMarkMain("CodeKU")
+ ÿÅÿ™"adressen"
+ ÿƒServer("UPDFIELD","")
+ ÿƒServer("UPDSTATUS","šbernahme AALieferant")
+ ÿÍAALieferant.adressenÿ"j"ÿĞAAMakler.adressenÿ"j"
+ ÿ’ÿÍ
+ 
+ ÿ£CodeKU
+ ÿÉÿb
+ ÿØCodeKU ÿÿI("ADRESSEN",1)
+ ÿÙ
+ nnum%ÿÿ0(ReadConfig$("NUMMERN","LASTKundennummer"))
+ ÿ¡nnum%ÿ
+1ÿp
+ÿ™"adressen"
+ÿ£codeku.adressen
+ÿÉÿb
+ÿƒWriteConfig("NUMMERN","LASTKundennummer",ÿH(ÿ(codeku.adressen,"999999")))
+ ÿ’ÿ¡
+ 
+ ÿ½ -- Anpassung Projekt FACTURA -----------------------------------------------
+ 
+ ÿ¡_projekt$ÿ"FACTURA"ÿ_projekt$ÿ"WAWI"ÿp
+ 
+ÿ½ Anpassung MASTER.SBF
+ÿ½ ================================================
+ 
+ 
+ÿƒDFile(3,"MASTER"ÿ_fpw$)
+ÿ™"master"
+ÿƒFldAdd("Nachname","TXT;50",0)
+ÿƒFldAdd("Vorname","TXT;50",0)
+ÿƒFldAdd("Straáe","TXT;50",0)
+ÿƒFldAdd("Ort","TXT;50",0)
+ÿƒFldAdd("LANachname","TXT;50",0)
+ÿƒFldAdd("LAVorname","TXT;50",0)
+ÿƒFldAdd("LAStraáe","TXT;50",0)
+ÿƒFldAdd("LAOrt","TXT;50",0)
+ÿƒFldAdd("Datum","DAT;0d.mm.yy",1)
+ÿƒFldAdd("Geburtsname","TXT;50",0)
+ÿƒFldAdd("Kundennummer","TXT;20",0)
+ÿƒFldAdd("StatusM","TXT;1",0)
+ÿƒFldAdd("Storno","TXT;1",0)
+ÿƒFldAdd("frachtfrei","NUM;9999999.00",0)
+ÿƒFldAdd("Kostentr„ger","TXT;15",1)
+ÿƒFldAdd("Kostenstelle","NUM;000000.",1)
+ÿƒFldAdd("Art","NUM;0.",1)
+ÿƒFldAdd("Nummer","TXT;10",1)
+ÿƒFldAdd("Adresstext","TXT;L400R",0)
+ÿƒFldAdd("RabattProz","NUM;999.00",0)
+ÿƒFldAdd("Skonto","NUM;9999999.00",0)
+ÿƒFldAdd("SkontoProz","NUM;999.00",0)
+ÿƒFldAdd("SkontoZiel","DAT;0d.mm.yy",0)
+ÿƒFldAdd("CodeDok","NUM;999999",1)
+ÿƒMarkMain("CodeMS")
+ÿÅÿ™"master"
+ÿÍStatusM.masterÿ"b"ÿĞStorno.masterÿ"s"
+ÿ’ÿÍ
+ÿÍStatusM.masterÿ"s"ÿĞStorno.masterÿ"s"
+ÿ’ÿÍ
+ 
+ÿ™"MASTER"
+ÿ£CodeMS
+ÿÉÿb
+ÿØCodeMS ÿÿI("MASTER",1)
+ÿÙ
+ 
+ÿ¡_projekt$ÿ"FACTURA"ÿp
+Nummernkreise$ÿÿ>(ReadConfig$("FACTURA","Nummernkreise"))
+ÿ¡nummernkreise$ÿ"leer"ÿp
+ÿƒWriteConfig("FACTURA","NUmmernkreise","FALSE")
+n%ÿ100000
+ÿƒWriteConfig("FACTURA","LASTAngebot",ÿH(ÿ(n%,"999999")))
+n%ÿ200000
+ÿƒWriteConfig("FACTURA","LASTRechnung",ÿH(ÿ(n%,"999999")))
+n%ÿ300000
+ÿƒWriteConfig("FACTURA","LASTLieferschein",ÿH(ÿ(n%,"999999")))
+n%ÿ400000
+ÿƒWriteConfig("FACTURA","LASTAuftrag",ÿH(ÿ(n%,"999999")))
+n%ÿ500000
+ÿƒWriteConfig("FACTURA","LASTBestellung",ÿH(ÿ(n%,"999999")))
+n%ÿ600000
+ÿƒWriteConfig("FACTURA","LASTGutschrift",ÿH(ÿ(n%,"999999")))
+ÿ’ÿ¡
+ArtiAutoNum$ÿÿ>(ReadConfig$("FACTURA","ArtikelAutoNum"))
+ÿ¡ArtiAutoNum$ÿ"leer"ÿp
+ÿƒWriteConfig("FACTURA","ArtikelAutoNum","FALSE")
+ÿ’ÿ¡
+nnum%ÿÿ0(ReadConfig$("FACTURA","LASTArtikelnummer"))
+ÿ¡nnum%ÿ0ÿp
+ÿƒDFile(3,"ARTIKEL"ÿ_fpw$)
+ÿ™"artikel"
+ÿ£codear.artikel
+ÿÉÿb
+ÿƒWriteConfig("FACTURA","LASTArtikelnummer",ÿH(ÿ(codear.artikel,"999999")))
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ 
+ÿ½ Anpassung FLOSKEL.SBF
+ÿ½ ================================================
+ 
+ÿƒDFile(3,"FLOSKEL"ÿ_fpw$)
+ÿ™"floskel"
+ÿƒFldAdd("Spezial","NMI;0.",0)
+ÿƒFldAdd("TextNr","NMI;00.",0)
+ÿƒMarkMain("CodeFL")
+ÿÅÿ™"floskel"
+ 
+ÿ£CodeFL
+ÿÉÿb
+ÿØCodeFL ÿÿI("FLOSKEL",1)
+ÿÙ
+ 
+ 
+ÿ½ Anpassung SCHEIN.SBF
+ÿ½ ================================================
+ 
+ÿƒDFile(3,"SCHEIN"ÿ_fpw$)
+ÿ™"schein"
+ÿƒFldUpdate("ME","TXT;15")
+ÿƒFldUpdate("Anzahl","NUM;9999999999.00")
+ÿƒFldAdd("Liefereinheit","TXT;20",0)
+ÿƒFldAdd("Bestandskonto","NUM;000000.",1)
+ÿƒFldAdd("Verbrauchskonto","NUM;000000.",1)
+ÿƒFldAdd("Produktgruppe","TXT;40",1)
+ÿƒFldAdd("TextVorPosition","TXT;L1500R",0)
+ÿƒDFile(3,"Gruppen"ÿ_fpw$)
+ÿÅÿ™"schein"
+ÿ™"schein"
+ÿ£Codegr.schein
+ÿÉÿ`ÿá
+ÿØÿOÿB("schein")
+ÿÉÿ¥codegr.scheinÿáÿ™"gruppen"ÿ£codegr.gruppen
+ÿ¡ÿC("gruppen")ÿp
+Produktgruppe.scheinÿProduktgruppe.gruppen
+ÿ^
+Produktgruppe.scheinÿ"gel”schte Gruppe"
+ÿ’ÿ¡
+ÿÌ
+ÿÉÿ±ÿáÿ™"schein"ÿ£codegr.schein
+ÿÙ
+ÿÅÿ™"schein"
+ 
+ÿƒDFile(3,"ABZUGANG"ÿ_fpw$)
+ÿ™"ABZUGANG"
+ÿƒFldAdd("Belegnummer","TXT;12",1)
+ÿƒFldAdd("BelegDatum","DAT;0d.mm.yy",1)
+ÿƒFldAdd("ArtZugang","NUM;0.",1)
+ÿƒFldAdd("ArtAbgang","NUM;0.",1)
+ÿƒFldAdd("Artikelnummer","TXT;20",1)
+ÿƒFldAdd("Bezeichnung","TXT;50",0)
+ÿƒFldAdd("Lieferant","TXT;50",0)
+ÿƒFldAdd("ME","TXT;15",0)
+ÿƒFldAdd("PAbschlus","NUM;0000.",1)
+ÿƒFldAdd("Periode","NUM;0000.",1)
+ÿƒFldAdd("Abgleich","NUM;0.",1)
+ÿƒMarkMain("CodeAZ")
+ 
+ÿ£CodeAZ
+ÿÉÿb
+ÿØCodeAZ ÿÿI("ABZUGANG",1)
+ÿÙ
+ÿÅÿ™"ABZUGANG"
+ 
+ÿƒDFile(3,"KOMBI"ÿ_fpw$)
+ÿ™"KOMBI"
+ÿƒFldUpdate("ME","TXT;15")
+ÿ£CodeKO
+ÿÉÿb
+ÿØCodeKO ÿÿI("KOMBI",1)
+ÿÙ
+ÿÅÿ™"KOMBI"
+ 
+ÿƒDFile(3,"KKOPIE"ÿ_fpw$)
+ÿ™"KKOPIE"
+ÿƒFldUpdate("ME","TXT;15")
+ÿ£CodeKO
+ÿÉÿb
+ÿØCodeKO ÿÿI("KKOPIE",1)
+ÿÙ
+ÿÅÿ™"KKOPIE"
+ 
+ÿ½ Anpassung Artikel.SBF
+ÿ½ ================================================
+ 
+ÿƒDFile(3,"ARTIKEL"ÿ_fpw$)
+ÿ™"Artikel"
+ÿƒFldUpdate("ME","TXT;15")
+ÿƒFldAdd("Lieferant2","NUM;000000.",0)
+ÿƒFldAdd("Lieferant3","NUM;000000.",0)
+ÿƒFldAdd("Bestellnummer2","TXT;20",0)
+ÿƒFldAdd("Bestellnummer3","TXT;20",0)
+ÿƒFldAdd("Bestellnummer2","TXT;20",0)
+ÿƒFldAdd("lieferEK2","NUM;$ ,9999999999.00",0)
+ÿƒFldAdd("lieferEK3","NUM;$ ,9999999999.00",0)
+ÿƒFldAdd("letzteAnpassung","DAT;dd.mm.yy",0)
+ÿƒFldAdd("QuickGRBez","TXT;26",1)
+ÿƒFldAdd("QuickGRArtnr","TXT;26",1)
+ÿƒFldAdd("QuickLiefBez","TXT;26",1)
+ÿƒFldAdd("QuickLiefArtnr","TXT;26",1)
+ÿƒFldAdd("Bestandskonto","NUM;000000.",1)
+ÿƒFldAdd("Verbrauchskonto","NUM;000000.",1)
+ÿƒFldAdd("Notiz","TXT;L4000 R",0)
+ÿƒFldAdd("KostenReparatur","NUM;,9999999999.00",0)
+ÿƒFldAdd("KostenTransport","NUM;,9999999999.00",0)
+ÿƒFldAdd("KostenSonstiges","NUM;,9999999999.00",0)
+ÿƒFldAdd("Stichwort","TXT;L400R",1)
+ÿƒMarkMain("CodeAR")
+ÿƒServer("UPDFIELD","")
+ÿƒServer("UPDSTATUS","Erzeugung der QuickCodes")
+
+ÿÍQuickGRBez.artikelÿÿ(CodeGR.artikel,"000000")ÿÿ+(ÿF(Bezeichnung.artikel),20):
+QuickGRArtnr.artikelÿÿ(CodeGR.artikel,"000000")ÿÿ+(ÿF(Artikelnummer.artikel),20):
+QuickLiefBez.artikelÿÿ(Lieferant.artikel,"000000")ÿÿ+(ÿF(Bezeichnung.artikel),20):
+QuickLiefArtnr.artikelÿÿ(Lieferant.artikel,"000000")ÿÿ+(ÿF(Artikelnummer.artikel),20)
+ÿ’ÿÍ
+ 
+ÿÅÿ™"artikel"
+ÿ£CodeAR
+ÿÉÿb
+ÿØCodeAR ÿÿI("ARTIKEL",1)
+ÿÙ
+ 
+ ÿ’ÿ¡
+ 
+ ÿ¡_projekt$ÿ"WAWI"ÿp
+ 
+ÿ½ Anpassung ZBERART.SBF
+ÿ½ ================================================
+ 
+ÿ™"ZBERART"
+ÿƒFldUpdate("Artikel","NUM;9999999999.")
+ÿƒFldAdd("StatusBearb","TXT;1",1)
+ÿƒFldAdd("Filiale","NUM;00.",1)
+ÿƒFldAdd("ZBDatum","DAT;0d.mm.yy",1)
+ÿÅÿ™"zberart"
+ ÿ’ÿ¡
+ 
+ ÿ½ ===========================
+ ÿ½ -- Anpassung Projekt PROVIS
+ ÿ½ -- Stand: 7.9.95
+ ÿ½ ===========================
+ 
+ ÿ¡_projekt$ÿ"PROVIS"ÿp
+ 
+ÿ½ -- Anpassung KVERTRAG.SBF --
+ 
+ÿƒDFile(3,"KVERTRAG"ÿ_fpw$)
+ÿ™"KVERTRAG"
+ÿƒFldAdd("Storno","NMI;0.",0)
+ÿƒFldAdd("StornoAnteil","NUM;999.99",0)
+ÿƒFldAdd("StornoBetrag","NUM;,99999999.00",0)
+ÿƒFldAdd("StornoProv","TXT;1",0)
+ÿƒFldAdd("vorzeitig","TXT;1",0)
+ÿƒFldAdd("Provision","TXT;1",0)
+ÿƒFldAdd("nderung","TXT;1",0)
+ÿƒFldAdd("TZRate","NMI;999.",0)
+ÿƒFldAdd("letztePflege","DAT;0d.mm.yy",0)
+ÿƒFldAdd("ProviAb","DAT;dd.mm.yyyy",1)
+ÿƒFldAdd("VS_Beginn","DAT;dd.mm.yyyy",1)
+ÿƒFldAdd("CodeKO","NUM;000000.",0)
+ÿƒFldAdd("Volumen","NUM;,9999999.00",0)'                          ; W„hrungsanzeige entfernt
+ÿƒFldAdd("Antragsdatum","DAT;dd.mm.yyyy",0)
+ÿƒFldAdd("Altvertrag","TXT;1",0)
+ÿƒFldAdd("Fremdvertrag","TXT;1",1)
+ÿƒFldAdd("gez_Abschluá","TXT;1",0)
+ÿƒFldAdd("gez_Pauschale","TXT;1",0)
+ÿƒFldAdd("BeitrFreiheit","TXT;1",0)
+ÿƒFldAdd("BUZ_Beitragfrei","TXT;1",0)
+ÿƒFldAdd("Dynamik_HV","TXT;1",0)
+ÿƒFldAdd("Dynamik_TZV","TXT;1",0)
+ÿƒFldAdd("Dynamik_šZR","TXT;1",0)
+ÿƒFldAdd("Dynamik_BU","TXT;1",0)
+ÿƒFldAdd("Dynamik_UZV","TXT;1",0)
+ÿƒFldAdd("zvP1Geschlecht","TXT;1",0)
+ÿƒFldAdd("zvP2Geschlecht","TXT;1",0)
+ÿƒFldAdd("zvP3Geschlecht","TXT;1",0)
+ÿƒFldAdd("zvP4Geschlecht","TXT;1",0)
+ÿƒFldAdd("zvP5Geschlecht","TXT;1",0)
+ÿƒFldAdd("KVVollkosten","TXT;1",0)
+ÿƒFldAdd("KVRestkosten","TXT;1",0)
+ÿƒFldAdd("KVAmbulanteZV","TXT;1",0)
+ÿƒFldAdd("KVZahnZV","TXT;1",0)
+ÿƒFldAdd("KVStation„rZV","TXT;1",0)
+ÿƒFldAdd("KVKrankenTG","TXT;1",0)
+ÿƒFldAdd("KVReise","TXT;1",0)
+ÿƒFldAdd("KVAllgemeineZV","TXT;1",0)
+ÿƒFldAdd("KVHausTG","TXT;1",0)
+ÿƒFldAdd("KVKurTG","TXT;1",0)
+ÿƒFldAdd("UVGruppe1","TXT;1",0)
+ÿƒFldAdd("UVGruppe2","TXT;1",0)
+ÿƒFldAdd("UVGruppe3","TXT;1",0)
+ÿƒFldAdd("UVGruppe4","TXT;1",0)
+ÿƒFldAdd("UVGruppe5","TXT;1",0)
+ÿƒFldAdd("Kennzeichen","TXT;15",0)
+ÿƒFldAdd("Fahrzeugart","NMI;9.",0)
+ÿƒFldAdd("Fabrikat","TXT;20",0)
+ÿƒFldAdd("Fahrgestell_Nr","TXT;20",0)
+ÿƒFldAdd("Typ_Nr","TXT;20",0)
+ÿƒFldAdd("Typklasse","TXT;3",0)
+ÿƒFldAdd("Fahrzeugst„rke","NUM;999999.",0)
+ÿƒFldAdd("Verkehrsart","NMI;9.",0)
+ÿƒFldAdd("Erstzlassung","DAT;0d.mm.yyyy",0)
+ÿƒFldAdd("Fahrzeugwert","NUM;,99999999.00",0)
+ÿƒFldAdd("Reg_Haftpflicht","TXT;3",0)
+ÿƒFldAdd("Reg_Teilkasko","TXT;3",0)
+ÿƒFldAdd("Reg_Vollkasko","TXT;3",0)
+ÿƒFldAdd("Haftpflicht","NMI;9.",0)
+ÿƒFldAdd("HV_SFR","NUM;999.",0)
+ÿƒFldAdd("Teilkasko","NMI;9.",0)
+ÿƒFldAdd("TK_Betrag","NUM;,99999999.00",0)
+ÿƒFldAdd("Vollkasko","NMI;9.",0)
+ÿƒFldAdd("VK_Betrag","NUM;,99999999.00",0)
+ÿƒFldAdd("VK_SFR","NUM;999.",0)
+ÿƒFldAdd("Basisinvalid","NUM;,99999999.00",0)
+ÿƒFldAdd("Progression1","NUM;,999.00",0)
+ÿƒFldAdd("Progression2","NUM;,999.00",0)
+ÿƒFldAdd("Todesfall","NUM;,99999999.00",0)
+ÿƒFldAdd("KHT","NUM;,99999999.00",0)
+ÿƒFldAdd("Genesungsgeld","NUM;,99999999.00",0)
+ÿƒFldAdd("šbergangsleist","NUM;,99999999.00",0)
+ÿƒFldAdd("Chir_Leist","NUM;,99999999.00",0)
+ÿƒFldAdd("Unfallrente","NUM;,99999999.00",0)
+ÿƒFldAdd("Unfall_KHT","NUM;,99999999.00",0)
+ÿƒFldAdd("Bewertungssumme","NUM;,99999999.00",0)
+ÿƒFldAdd("VSumme","NUM;,99999999.00",0)
+ÿƒFldAdd("Risiko","TXT;200R",0)
+ÿƒFldAdd("F_VS","NUM;,99999999.00;",0)
+ÿƒFldAdd("F_Satz","NUM;,9999.",0)
+ÿƒFldAdd("F_Beitrag","NUM;,99999.00",0)
+ÿƒFldAdd("FKBU_VS","NUM;,99999999.00",0)
+ÿƒFldAdd("FKBU_Satz","NUM;,9999.",0)
+ÿƒFldAdd("FKBU_Beitrag","NUM;,99999.00",0)
+ÿƒFldAdd("LW_VS","NUM;,99999999.00",0)
+ÿƒFldAdd("LW_Satz","NUM;,9999.",0)
+ÿƒFldAdd("LW_Beitrag","NUM;,99999.00",0)
+ÿƒFldAdd("LWKBU_VS","NUM;,99999999.00",0)
+ÿƒFldAdd("LWKBU_Satz","NUM;,9999.",0)
+ÿƒFldAdd("LWKBU_Beitrag","NUM;,99999.00",0)
+ÿƒFldAdd("ST_VS","NUM;,99999999.00",0)
+ÿƒFldAdd("ST_Satz","NUM;,9999.",0)
+ÿƒFldAdd("ST_Beitrag","NUM;,99999.00",0)
+ÿƒFldAdd("STKBU_VS","NUM;,99999999.00",0)
+ÿƒFldAdd("STKBU_Satz","NUM;,9999.",0)
+ÿƒFldAdd("STKBU_Beitrag","NUM;,99999.00",0)
+ÿƒFldAdd("ED_VS","NUM;,99999999.00",0)
+ÿƒFldAdd("ED_Satz","NUM;,9999.",0)
+ÿƒFldAdd("ED_Beitrag","NUM;,99999.00",0)
+ÿƒFldAdd("EDVANDA_VS","NUM;,99999999.00",0)
+ÿƒFldAdd("EDVANDA_Satz","NUM;,9999.",0)
+ÿƒFldAdd("EDVANDA_Beitrag","NUM;,99999.00",0)
+ÿƒFldAdd("EDKBU_VS","NUM;,99999999.00",0)
+ÿƒFldAdd("EDKBU_Satz","NUM;,9999.",0)
+ÿƒFldAdd("EDKBU_Beitrag","NUM;,99999.00",0)
+ÿƒFldAdd("Gesamtbeitrag","NUM;,99999999.00",0)
+ÿƒFldAdd("BesVereinbarung","TXT;200R",0)
+ÿƒFldAdd("Bedingungen","TXT;200R",0)
+ÿƒFldAdd("SB_Vereinbarung","TXT;200R",0)
+ÿƒFldAdd("Deckung_Pers","NUM;,999999999.00",0)
+ÿƒFldAdd("Deckung_Sach","NUM;,999999999.00",0)
+ÿƒFldAdd("Deckung_Verm","NUM;,999999999.00",0)
+ÿƒFldAdd("T„tigk_Sch„den","NUM;,999999999.00",0)
+ÿƒFldAdd("T„tigk_SBBetrag","NUM;,999999.00",0)
+ÿƒFldAdd("T„tigk_SBSatz","NUM;99.99",0)
+ÿƒFldAdd("Ums_Betrag","NUM;,999999999.00",0)
+ÿƒFldAdd("Ums_Satz","NUM;,9999.",0)
+ÿƒFldAdd("Ums_Beitrag","NUM;,999999999.00",0)
+ÿƒFldAdd("L”hne_Betrag","NUM;,999999999.00",0)
+ÿƒFldAdd("L”hne_Satz","NUM;,9999.",0)
+ÿƒFldAdd("L”hne_Beitrag","NUM;,999999999.00",0)
+ÿƒFldAdd("Gehalt_Betrag","NUM;,999999999.00",0)
+ÿƒFldAdd("Gehalt_Satz","NUM;,9999.",0)
+ÿƒFldAdd("Gehalt_Beitrag","NUM;,999999999.00",0)
+ÿƒFldAdd("PersB_Betrag","NUM;,999999999.00",0)
+ÿƒFldAdd("PersB_Satz","NUM;,9999.",0)
+ÿƒFldAdd("PersB_Beitrag","NUM;,999999999.00",0)
+ÿƒFldAdd("PersBa_Betrag","NUM;,999999999.00",0)
+ÿƒFldAdd("PersBa_Satz","NUM;,9999.",0)
+ÿƒFldAdd("PersBa_Beitrag","NUM;,999999999.00",0)
+ÿƒFldAdd("Gesamt_Beitrag","NUM;,999999999.00",0)
+ÿƒFldAdd("QuickVSNR","TXT;23",1)
+ÿƒFldAdd("VS_Nr","TXT;23",1)
+ÿƒFldAdd("VTNext","NUM;000000.",1)
+ÿƒFldAdd("VTPrev","NUM;000000.",1)
+ÿƒFldAdd("Pool","NUM;,99999999.00",0)
+ÿƒFldAdd("Todesvollmacht","TXT;60",0)
+ÿƒFldAdd("Beitragssatz","NUM;,999.00",0)
+ÿƒFldAdd("Eintrittsalter","NUM;,999",0)
+ÿƒFldAdd("Wohnfl„che","NUM;,999.99",0)
+ÿƒFldAdd("BZDauer","NUM;,999",0)
+ÿƒFldAdd("Leistungsdauer","NUM;,999",0)
+ÿƒFldAdd("Deckung","TXT;60",0)
+ÿƒFldAdd("VSArt","TXT;30",0)
+ÿƒFldAdd("Fondname","TXT;50",0)
+ÿƒFldAdd("Fondgattung","TXT;50",0)
+ÿƒFldAdd("Fremdvertrag","TXT;1",1)
+ÿƒFldAdd("Check","TXT;1",0)
+ÿƒFldAdd("Mahnung","TXT;1",0)
+
+ÿƒFldAdd("Vollinvalid","NUM;,99999999.00",0)
+ÿƒFldAdd("Vollinvalid1","NUM;,99999999.00",0)
+ÿƒFldAdd("Vollinvalid2","NUM;,99999999.00",0)
+ÿƒFldAdd("Vollinvalid3","NUM;,99999999.00",0)
+ÿƒFldAdd("Vollinvalid4","NUM;,99999999.00",0)
+ÿƒFldAdd("Basisinvalid1","NUM;,99999999.00",0)
+ÿƒFldAdd("Basisinvalid2","NUM;,99999999.00",0)
+ÿƒFldAdd("Basisinvalid3","NUM;,99999999.00",0)
+ÿƒFldAdd("Basisinvalid4","NUM;,99999999.00",0)
+ÿƒFldAdd("Progression1_1","NUM;,99999999.00",0)
+ÿƒFldAdd("Progression1_2","NUM;,99999999.00",0)
+ÿƒFldAdd("Progression1_3","NUM;,99999999.00",0)
+ÿƒFldAdd("Progression1_4","NUM;,99999999.00",0)
+ÿƒFldAdd("Progression2_1","NUM;,99999999.00",0)
+ÿƒFldAdd("Progression2_2","NUM;,99999999.00",0)
+ÿƒFldAdd("Progression2_3","NUM;,99999999.00",0)
+ÿƒFldAdd("Progression2_4","NUM;,99999999.00",0)
+ÿƒFldAdd("Todesfall1","NUM;,99999999.00",0)
+ÿƒFldAdd("Todesfall2","NUM;,99999999.00",0)
+ÿƒFldAdd("Todesfall3","NUM;,99999999.00",0)
+ÿƒFldAdd("Todesfall4","NUM;,99999999.00",0)
+ÿƒFldAdd("KHT1","NUM;,99999999.00",0)
+ÿƒFldAdd("KHT2","NUM;,99999999.00",0)
+ÿƒFldAdd("KHT3","NUM;,99999999.00",0)
+ÿƒFldAdd("KHT4","NUM;,99999999.00",0)
+ÿƒFldAdd("Genesungsgeld1","NUM;,99999999.00",0)
+ÿƒFldAdd("Genesungsgeld2","NUM;,99999999.00",0)
+ÿƒFldAdd("Genesungsgeld3","NUM;,99999999.00",0)
+ÿƒFldAdd("Genesungsgeld4","NUM;,99999999.00",0)
+ÿƒFldAdd("šbergangsleist1","NUM;,99999999.00",0)
+ÿƒFldAdd("šbergangsleist2","NUM;,99999999.00",0)
+ÿƒFldAdd("šbergangsleist3","NUM;,99999999.00",0)
+ÿƒFldAdd("šbergangsleist4","NUM;,99999999.00",0)
+ÿƒFldAdd("Chir_Leist1","NUM;,99999999.00",0)
+ÿƒFldAdd("Chir_Leist2","NUM;,99999999.00",0)
+ÿƒFldAdd("Chir_Leist3","NUM;,99999999.00",0)
+ÿƒFldAdd("Chir_Leist4","NUM;,99999999.00",0)
+ÿƒFldAdd("Unfallrente1","NUM;,99999999.00",0)
+ÿƒFldAdd("Unfallrente2","NUM;,99999999.00",0)
+ÿƒFldAdd("Unfallrente3","NUM;,99999999.00",0)
+ÿƒFldAdd("Unfallrente4","NUM;,99999999.00",0)
+ÿƒFldAdd("QuickKennz","TXT;15",1)
+ÿƒMarkMain("lfdnr")
+ÿÅÿ™"KVERTRAG"
+ÿ½ ** Seriennummer korrigieren
+ÿ£lfdnr
+ÿÉÿb
+ÿØlfdnr ÿÿI("KVERTRAG",1)
+ÿÙ
+ÿ½ ** "Null"-S„tze korrigieren
+ÿÉÿ`ÿá
+ÿØÿOÿB("KVERTRAG")ÿlfdnr ÿ
+1
+ÿ¡lfdnr ÿ
+1ÿp
+lfdnr ÿÿI("KVERTRAG",1)
+ÿÌ
+ÿ’ÿ¡
+ÿÉÿ±ÿá
+ÿÙ
+ÿ½ ** Feld QuickVSNR erzeugen
+ÿ£QuickVSNR'                                               ; letzten Datensatz prfen
+ÿÉÿb
+ÿ¡QuickVSNR ÿ""ÿp'                                       ; QuickVSNR erzeugen
+ÿƒServer("UPDFIELD","QuickVSNR")'                         ; Anzeige aktualisieren
+ÿƒServer("UPDSTATUS","Erzeuge Feldinhalt")
+ÿ™"KVERTRAG"
+ÿ£lfdnr
+ÿÉÿ`ÿá
+perc%ÿ0
+pcu%ÿ0
+pmax%ÿÿA("KVERTRAG")
+ÿØÿOÿB("KVERTRAG")
+pcu%ÿpcu%ÿ1
+perc%ÿÿ(100ÿpmax%ÿpcu%)
+ÿ¡perc%ÿ
+0ÿpperc%ÿ0
+ÿ¡perc%ÿ100ÿpperc%ÿ100
+ÿƒServer("UPDGAUGE",ÿH(ÿ(perc%,"999")))'           ; Gauge updaten
+QuickVSNR.KVERTRAGÿVSNRPack$(VS_NR)'                           ; QuickVSNR erzeugen
+ÿƒQuickStore("KVERTRAG")
+ÿÉÿ±ÿá
+ÿÙ
+ÿ’ÿ¡
+ÿ½ ** Feld QuickKennz erzeugen
+ÿ£QuickKennz
+ÿÉÿb
+ÿ¡QuickKennz ÿ""ÿp
+ÿƒServer("UPDFIELD","QuickKennz")
+ÿƒServer("UPDSTATUS","Erzeuge Feldinhalt")
+ÿÍQuickKennzÿVSNRPack$(Kennzeichen)ÿĞKennzeichenÿ""
+ÿ’ÿÍ
+ÿ’ÿ¡
+
+
+
+ÿ½ -- Anpassung ZEINGANG.SBF --
+ÿƒDFile(3,"ZEINGANG"ÿ_fpw$)
+ÿ™"zeingang"
+ÿƒFldAdd("CodeAZ","NUM;0000000.",1)
+ÿƒFldAdd("gebucht","TXT;1",1)
+ÿƒFldAdd("Betrag_gezahlt","NUM;,9999999.00",0)
+ÿƒFldAdd("VS_Nr","TXT;23",1)
+ÿƒFldAdd("QuickVSNR","TXT;23",1)
+
+
+ÿƒMarkMain("CodeAZ")
+ÿÅÿ™"ZEINGANG"
+
+ÿ¡ÿA("ZEINGANG")ÿ0ÿp
+ÿ£CodeAZ
+ÿÉÿb
+ÿØCodeAZ ÿÿI("ZEINGANG",1)
+ÿÙ
+ÿÉÿ`ÿá
+ÿØÿOÿB("ZEINGANG")
+ÿ¡CodeAZ ÿ
+1ÿp
+	CodeAZ ÿÿI("ZEINGANG",1)
+	ÿÌ
+ÿ’ÿ¡
+ÿÉÿ±ÿá
+ÿÙ
+ÿ’ÿ¡
+ÿƒServer("UPDFIELD","")'                         ; Anzeige aktualisieren
+ÿƒServer("UPDSTATUS","Prfe Vertr„ge...")
+ÿ½ -- Vertr„ge mit vorhandenen Zahlungseing„ngen fr
+ÿ½ -- Zahlungseingangskontrolle markieren
+ÿ™"ZEINGANG"
+ÿ£CodeAZ.ZEINGANG
+ÿÉÿ`
+ÿØÿOÿB("ZEINGANG")
+ÿÉÿ¥CodeVT.ZEINGANGÿáÿ™"KVERTRAG"ÿ£lfdnr.KVERTRAG
+ÿƒServer("UPDSTATUS","Prfe Vertr„ge...("ÿVS_NR.KVERTRAGÿ")")
+ÿ¡ÿC("KVERTRAG")ÿCheck.KVERTRAGÿ"j"ÿp
+Check.KVERTRAGÿ"j"
+ÿƒQuickStore("KVERTRAG")
+ÿ’ÿ¡
+ÿÉÿ±ÿ™"ZEINGANG"ÿ£CodeAZ.ZEINGANG
+ÿÙ
+
+ÿ½ -- Anpassun GEADR.SBF --
+ÿƒDFile(3,"GEADR"ÿ_fpw$)
+ÿ™"GEADR"
+ÿƒMarkMain("CodeGE")
+ÿÅÿ™"GEADR"
+ÿ¡ÿA("GEADR")ÿ0ÿp
+ÿ£CodeGE
+ÿÉÿb
+ÿØCodeGE ÿÿI("GEADR",1)
+ÿÙ
+ÿÉÿ`ÿá
+ÿØÿOÿB("GEADR")
+ÿ¡CodeGE ÿ
+1ÿp
+	CodeGE ÿÿI("GEADR",1)
+	ÿÌ
+ÿ’ÿ¡
+ÿÉÿ±ÿá
+ÿÙ
+ÿ’ÿ¡
+
+ÿ½ -- Anpassun MAADR.SBF --
+ÿƒDFile(3,"MAADR"ÿ_fpw$)
+ÿ™"MAADR"
+ÿƒFldAdd("Nachfolger","NUM;000000.",0)
+ÿƒFldAdd("Vorg„ngerJN","TXT;1",0)
+ÿƒFldAdd("Beruf","TXT;50",0)
+ÿƒMarkMain("CodeMA")
+ÿÅÿ™"MAADR"
+ 
+ÿ¡ÿA("MAADR")ÿ1ÿp
+ÿ£CodeMA
+ÿÉÿb
+ÿØCodeMA ÿÿI("MAADR",1)
+ÿÙ
+ÿÉÿ`ÿá
+ÿØÿOÿB("MAADR")
+ÿ¡CodeMA ÿ
+1ÿp
+	CodeMA ÿÿI("MAADR",1)
+	ÿÌ
+ÿ’ÿ¡
+ÿÉÿ±ÿá
+ÿÙ
+ÿ’ÿ¡
+
+ÿ½ -- Anpassung VORGANG.SBF --
+ÿƒDFile(3,"VORGANG"ÿ_fpw$)
+ÿ™"VORGANG"
+ÿƒFldAdd("erledigt","TXT;1",0)
+ÿƒFldAdd("QuickCode","TXT;12",1)
+
+ÿƒMarkMain("CodeVG")
+ÿÅÿ™"VORGANG"
+ÿ¡ÿA("VORGANG")ÿ0ÿp
+ÿ£CodeVG
+ÿÉÿb
+ÿØCodeVG ÿÿI("VORGANG",1)
+ÿÙ
+ÿÉÿ`ÿá
+ÿØÿOÿB("VORGANG")
+ÿ¡CodeMA ÿ
+1ÿp
+	CodeMA ÿÿI("VORGANG",1)
+	ÿÌ
+ÿ’ÿ¡
+ÿÉÿ±ÿá
+ÿÙ
+ÿ™"VORGANG"
+ÿ£QuickCode.VORGANG
+ÿÉÿ`
+ÿ¡QuickCode.VORGANGÿ""ÿp
+ÿƒServer("UPDFIELD","QuickCode")
+ÿƒServer("UPDSTATUS","Erzeuge Feldinhalt fr "ÿÿH(ÿ(ÿA("VORGANG"),"9999999"))ÿ" Datens„tze")
+ÿÍQuickCode.VORGANGÿÿ(CodeVT.VORGANG,"000000")ÿÿ(Datum.VORGANG,"yymmdd")
+ÿ’ÿÍ
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+ 
+
+
+ÿ½ -- Anpassun SPARTEN.SBF --
+ÿƒDFile(3,"SPARTEN"ÿ_fpw$)
+ÿ™"SPARTEN"
+ÿƒFldAdd("CodeVA","NUM;000000.",1)
+ÿƒFldAdd("Sparte","TXT;60",1)
+ÿƒFldAdd("Tarif","TXT;35",1)
+ÿƒFldAdd("Fondsgattung","TXT;50",1)
+ÿƒMarkMain("CodeVA")
+ÿÅÿ™"SPARTEN"
+ÿ¡ÿA("SPARTEN")ÿ0ÿp
+ÿ£CodeVA
+ÿÉÿb
+ÿØCodeVA ÿÿI("SPARTEN",1)
+ÿÙ
+ÿÉÿ`ÿá
+ÿØÿOÿB("SPARTEN")
+ÿ¡CodeVA ÿ
+1ÿp
+	CodeVA ÿÿI("SPARTEN",1)
+	ÿÌ
+ÿ’ÿ¡
+ÿÉÿ±ÿá
+ÿÙ
+ÿ’ÿ¡
+ 
+ 
+ÿ½ -- Anpassung BUCHUNG.SBF --
+ 
+ÿƒDFile(3,"BUCHUNG"ÿ_fpw$)
+ÿ™"BUCHUNG"
+ÿƒFldAdd("CodeKU","NUM;000000.",1)
+ÿƒFldAdd("Volumen","NUM;,9999999.00",0)' -- W„hrungsanzeige entfernt
+ÿƒFldAdd("Gesamtbetrag","NUM;$ ,9999999.00",0)
+ÿƒFldAdd("gezahlt","NUM;$ ,9999999.00",0)
+ÿƒFldAdd("gezahlt_am","DAT;0d.mm.yy",0)
+ÿƒFldAdd("Provision","TXT;1",1)
+ÿƒFldAdd("SRgezahlt","TXT;1",0)
+ÿƒFldAdd("QuickCode","TXT;12",1)
+ÿƒFldAdd("Mahnung","TXT;1",1)
+ÿƒFldAdd("Sparte","TXT;60",0)
+ÿƒMarkMain("CodeBU")
+ÿÅÿ™"BUCHUNG"
+ÿ¡ÿA("BUCHUNG")ÿ0ÿp
+ÿ£QuickCode.BUCHUNG
+ÿÉÿ`
+ÿ¡QuickCode.BUCHUNGÿ""ÿp
+ÿƒServer("UPDFIELD","QuickCode")
+ÿƒServer("UPDSTATUS","Erzeuge Feldinhalt fr "ÿÿH(ÿ(ÿA("BUCHUNG"),"9999999"))ÿ" Datens„tze")
+ÿÍQuickCode.BUCHUNGÿÿ(CodeMA.BUCHUNG,"000000")ÿÿ(Datum.BUCHUNG,"yymmdd")
+ÿ’ÿÍ
+ÿ’ÿ¡
+
+ÿ£CodeBU
+ÿÉÿb
+ÿØCodeBU ÿÿI("BUCHUNG",1)
+ÿÙ
+ÿÉÿ`ÿá
+ÿØÿOÿB("BUCHUNG")
+ÿ¡CodeBU ÿ
+1ÿp
+	CodeBU ÿÿI("BUCHUNG",1)
+	ÿÌ
+ÿ’ÿ¡
+ÿÉÿ±ÿá
+ÿÙ
+ÿ’ÿ¡
+ 
+ÿ½ -- Anpassung GEKOND.SBF --
+
+ÿƒDFile(3,"GEKOND"ÿ_fpw$)
+ÿ™"GEKOND"
+ÿáÿtÿ™"GEKOND"
+ÿƒFldAdd("TZ6","NUM;999.00",0)
+ÿƒFldAdd("TZ7","NUM;999.00",0)
+ÿƒFldAdd("TZ8","NUM;999.00",0)
+ÿƒFldAdd("TZ9","NUM;999.00",0)
+ÿƒFldAdd("TZ10","NUM;999.00",0)
+ÿƒFldAdd("TZ11","NUM;999.00",0)
+ÿƒFldAdd("TZ12","NUM;999.00",0)
+ÿƒFldAdd("TZD6","NUM;999.",0)
+ÿƒFldAdd("TZD7","NUM;999.",0)
+ÿƒFldAdd("TZD8","NUM;999.",0)
+ÿƒFldAdd("TZD9","NUM;999.",0)
+ÿƒFldAdd("TZD10","NUM;999.",0)
+ÿƒFldAdd("TZD11","NUM;999.",0)
+ÿƒFldAdd("TZD12","NUM;999.",0)
+ÿƒFldAdd("PflegeZW","NMI;99.",0)
+ÿƒFldAdd("Courtage","NUM;999.999",0)
+ÿƒFldAdd("BWjn","TXT;1",0)
+ÿƒFldAdd("VDjn","TXT;1",0)
+ÿƒFldAdd("TZjn","TXT;1",0)
+ÿƒFldAdd("PflegeJN","TXT;1",0)
+ÿƒFldAdd("PauschaleJN","TXT;1",0)
+ÿƒFldAdd("FormelJN","TXT;1",0)
+ÿƒFldAdd("DynamikJN","TXT;1",0)
+ÿƒFldAdd("MaximierungJN","TXT;1",0)
+ÿƒFldAdd("APjn","TXT;1",0)
+ÿƒFldAdd("CourtageJN","TXT;1",0)
+ÿƒFldAdd("SRjn","TXT;1",0)
+ÿƒFldAdd("CourtageZWjn","TXT;1",0)
+ÿƒMarkMain("lfdnr")
+ÿÅÿ™"GEKOND"
+ÿƒServer("UPDFIELD","PflegeZW")
+ÿƒServer("UPDSTATUS","Erzeuge Feldinhalt")
+ÿÍPflegeZW.GEKONDÿ12ÿĞPflegeJN.GEKONDÿ"j"ÿPflegeZW.GEKONDÿ0
+ÿ’ÿÍ
+ÿ¡ÿA("GEKOND")ÿ0ÿp
+ÿ£lfdnr
+ÿÉÿb
+ÿØlfdnr ÿÿI("GEKOND",1)
+ÿÙ
+ÿÉÿ`ÿá
+ÿØÿOÿB("GEKOND")
+ÿ¡lfdnr ÿ
+1ÿp
+	lfdnr ÿÿI("GEKOND",1)
+	ÿÌ
+ÿ’ÿ¡
+ÿÉÿ±ÿá
+ÿÙ
+ÿ’ÿ¡
+ 
+ÿ½ -- Anpassung GEKONDM.SBF --
+
+ÿƒDFile(3,"GEKONDM"ÿ_fpw$)
+ÿ™"GEKONDM"
+ÿƒFldAdd("TZ6","NUM;999.00",0)
+ÿƒFldAdd("TZ7","NUM;999.00",0)
+ÿƒFldAdd("TZ8","NUM;999.00",0)
+ÿƒFldAdd("TZ9","NUM;999.00",0)
+ÿƒFldAdd("TZ10","NUM;999.00",0)
+ÿƒFldAdd("TZ11","NUM;999.00",0)
+ÿƒFldAdd("TZ12","NUM;999.00",0)
+ÿƒFldAdd("TZD6","NUM;999.",0)
+ÿƒFldAdd("TZD7","NUM;999.",0)
+ÿƒFldAdd("TZD8","NUM;999.",0)
+ÿƒFldAdd("TZD9","NUM;999.",0)
+ÿƒFldAdd("TZD10","NUM;999.",0)
+ÿƒFldAdd("TZD11","NUM;999.",0)
+ÿƒFldAdd("TZD12","NUM;999.",0)
+ÿƒFldAdd("PflegeZW","NMI;99.",0)
+ÿƒFldAdd("QuickCode","TXT;18",1)
+ÿƒFldAdd("Courtage","NUM;999.999",0)
+ÿƒFldAdd("BWjn","TXT;1",0)
+ÿƒFldAdd("VDjn","TXT;1",0)
+ÿƒFldAdd("TZjn","TXT;1",0)
+ÿƒFldAdd("PflegeJN","TXT;1",0)
+ÿƒFldAdd("PauschaleJN","TXT;1",0)
+ÿƒFldAdd("FormelJN","TXT;1",0)
+ÿƒFldAdd("DynamikJN","TXT;1",0)
+ÿƒFldAdd("MaximierungJN","TXT;1",0)
+ÿƒFldAdd("APjn","TXT;1",0)
+ÿƒFldAdd("CourtageJN","TXT;1",0)
+ÿƒFldAdd("SRjn","TXT;1",0)
+ÿƒFldAdd("CourtageZWjn","TXT;1",0)
+ÿƒMarkMain("lfdnr")
+ÿÅÿ™"GEKONDM"
+ÿƒServer("UPDFIELD","PflegeZW")
+ÿƒServer("UPDSTATUS","Erzeuge Feldinhalt")
+ÿÍPflegeZW.GEKONDMÿ12
+ÿ’ÿÍ
+ÿÍQuickCode.gekondmÿÿ(CodeMA.GEKONDM,"000000")ÿÿ(CodeGE.gekondm,"000000")ÿÿ(CodeVA.gekondm,"000000")
+ÿ’ÿÍ
+ÿ¡ÿA("GEKONDM")ÿ0ÿp
+ÿ£lfdnr
+ÿÉÿb
+ÿØlfdnr ÿÿI("GEKONDM",1)
+ÿÙ
+ÿÉÿ`ÿá
+ÿØÿOÿB("GEKONDM")
+ÿ¡lfdnr ÿ
+1ÿp
+	lfdnr ÿÿI("GEKONDM",1)
+	ÿÌ
+ÿ’ÿ¡
+ÿÉÿ±ÿá
+ÿÙ
+ÿ’ÿ¡
+ 
+ÿƒDFile(3,"VKOND"ÿ_fpw$)
+ÿ¡ÿA("VKOND")ÿ0ÿp
+ÿƒServer("UPDFILE","Konditionsdatei")
+ÿƒServer("UPDFIELD","")
+ÿƒServer("UPDSTATUS","Anpassung an neue Abrechnungsstruktur")
+ÿƒVKONDAkt()
+ÿ’ÿ¡
+ÿ™"VKOND"
+ÿƒMarkMain("CodeVK")
+ÿÅÿ™"VKOND"
+
+ÿ¡ÿA("VKOND")ÿ0ÿp
+ÿ£CodeVK
+ÿÉÿb
+ÿØCodeVK ÿÿI("VKOND",1)
+ÿÙ
+ÿÉÿ`ÿá
+ÿØÿOÿB("VKOND")ÿCodeVK ÿ
+0
+ÿ¡Codevk ÿ
+1ÿp
+	codevk ÿÿI("vkond",1)
+	ÿÌ
+ÿ’ÿ¡
+ÿÉÿ±ÿá
+ÿÙ
+ÿ’ÿ¡
+
+ ÿ’ÿ¡
+ 
+ 
+ ÿ½ -- Anpassungen fr Projekt IMMAK -------------------------------------------
+ 
+ ÿ¡_projekt$ÿ"IMMAK"ÿp
+ 
+ÿ½ -- Anpassung OBJEKTE.SBF --
+ 
+ÿƒDFile(3,"OBJEKTE"ÿ_fpw$)
+ÿ™"OBJEKTE"
+ÿƒFldUpdate("Straáe","TXT;50")
+ÿƒFldUpdate("Ort","TXT;50")
+ÿƒFldUpdate("Ortsteil","TXT;50")
+ÿƒFldUpdate("Etage","TXT;4")
+ÿƒFldUpdate("™Feinfach","TXT;35")
+ÿƒFldUpdate("™Fmittel","TXT;35")
+ÿƒFldUpdate("™Fgut","TXT;35")
+ÿƒFldUpdate("™Fmonatlich","TXT;35")
+ÿƒFldUpdate("™FAbbau","TXT;35")
+ÿƒFldUpdate("™FAbbauAb","TXT;35")
+ÿƒFldUpdate("Beziehbarbis","TXT;10")
+ÿƒFldUpdate("Baubeginn","TXT;10")
+ÿƒFldUpdate("Fertigstellung","TXT;10")
+ÿƒFldUpdate("Mietbeginn","TXT;10")
+ÿƒFldAdd("Fahrstuhl","TXT;1",1)
+ÿƒFldUpdate("BundesstrEntf","NUM;999.99")
+ÿƒFldUpdate("AutobahnEntf","NUM;999.99")
+ÿƒFldUpdate("BahnhofEntf","NUM;999.99")
+ÿƒFldAdd("PNotiz1","TXT;20",0)
+ÿƒFldAdd("PNotiz2","TXT;20",0)
+ÿƒFldAdd("PNotiz3","TXT;20",0)
+ÿƒFldAdd("AbEtage","TXT;20",0)
+ÿƒFldAdd("ABGallgemein","TXT;1",1)
+ÿƒFldAdd("ABGBranche","TXT;1",1)
+ÿƒFldAdd("ABGFl„chen","TXT;1",1)
+ÿƒFldAdd("ABGPreise","TXT;1",1)
+ÿƒFldAdd("ABGErschlieáung","TXT;1",1)
+ÿƒFldAdd("ABGOrt","TXT;1",1)
+ÿƒFldAdd("ABGOrtsteil","TXT;1",1)
+ÿƒFldAdd("ABGStraáe","TXT;1",1)
+ÿƒFldAdd("ABGStichwort","TXT;1",1)
+ÿƒFldAdd("AAMietint","TXT;1",1)
+ÿƒFldAdd("AAKaufint","TXT;1",1)
+ÿƒFldAdd("ABGKaufint","TXT;1",1)
+ÿƒFldAdd("ABGMietint","TXT;1",1)
+ÿƒFldAdd("Preism2Kauf","NUM;99999.00",0)
+ÿƒFldAdd("ABGNotiz","TXT;L400 R",1)
+ÿƒFldAdd("ABGPLZ","TXT;1",1)
+ÿƒFldAdd("ABGStUND","TXT;1",1)
+ÿƒFldAdd("ABGStODER","TXT;1",1)
+ÿÅÿ™"objekte"
+ 
+ÿ½ -- Anpassung ANFRAGE.SBF --
+ 
+ÿƒDFile(3,"ANFRAGE"ÿ_fpw$)
+ÿ™"ANFRAGE"
+ÿƒFldUpdate("Straáe","TXT;50")
+ÿƒFldUpdate("Ort","TXT;50")
+ÿƒFldUpdate("Ortsteil","TXT;50")
+ÿƒFldUpdate("Etage","TXT;4")
+ÿƒFldUpdate("™Feinfach","TXT;35")
+ÿƒFldUpdate("™Fmittel","TXT;35")
+ÿƒFldUpdate("™Fgut","TXT;35")
+ÿƒFldUpdate("™Fmonatlich","TXT;35")
+ÿƒFldUpdate("™FAbbau","TXT;35")
+ÿƒFldUpdate("™FAbbauAb","TXT;35")
+ÿƒFldUpdate("Beziehbarbis","TXT;10")
+ÿƒFldUpdate("Baubeginn","TXT;10")
+ÿƒFldUpdate("Fertigstellung","TXT;10")
+ÿƒFldUpdate("Mietbeginn","TXT;10")
+ÿƒFldAdd("Fahrstuhl","TXT;1",1)
+ÿƒFldUpdate("BundesstrEntf","NUM;999.99")
+ÿƒFldUpdate("AutobahnEntf","NUM;999.99")
+ÿƒFldUpdate("BahnhofEntf","NUM;999.99")
+ÿƒFldAdd("PNotiz1","TXT;20",0)
+ÿƒFldAdd("PNotiz2","TXT;20",0)
+ÿƒFldAdd("PNotiz3","TXT;20",0)
+ÿƒFldAdd("AbEtage","TXT;20",0)
+ÿƒFldAdd("maxGrundstpreis","NUM;999999999.00",0)
+ÿƒFldAdd("minGrundstpreis","NUM;999999999.00",0)
+ÿƒFldAdd("maxGrundstprm2","NUM;999999999.00",0)
+ÿƒFldAdd("minGrundstprm2","NUM;999999999.00",0)
+ÿƒFldAdd("AAMietint","TXT;1",1)
+ÿƒFldAdd("AAKaufint","TXT;1",1)
+ÿƒFldAdd("ABGKaufint","TXT;1",1)
+ÿƒFldAdd("ABGMietint","TXT;1",1)
+ÿƒFldAdd("maxGrundstfl„ch","NUM;999999999.00",0)
+ÿƒFldAdd("maxGrundstfl„ch","NUM;999999999.00",0)
+ÿƒFldAdd("ABGNotiz","TXT;L400R",1)
+ÿƒFldAdd("ABGPLZ","TXT;1",1)
+ÿƒFldAdd("ABGStUND","TXT;1",1)
+ÿƒFldAdd("ABGStODER","TXT;1",1)
+ÿÅÿ™"anfrage"
+ 
+ ÿ’ÿ¡
+ 
+ ÿ½ -- Ende IMMAK-Update --------------------------------------------
+ 
+ ÿ½    ***********************************
+ ÿ½    ** Anpassung Projekt "Mediathek" **
+ ÿ½    ** 23.01.94/FA                   **
+ ÿ½    ***********************************
+ 
+ ÿ¡_projekt$ÿ"VIDEO"ÿp
+ 
+ÿ½ Anpassung FILME.SBF
+ÿ½ ================================================
+ 
+ÿƒDFile(3,"FILME"ÿ_fpw$)
+ÿ™"FILME"
+ÿƒFldAdd("Tarif","NUM;00.",0)
+ÿƒFldUpdate("Bemerkung","TXT;L4000 R")
+ÿƒFldAdd("Musik","TXT;50",1)
+ÿƒFldAdd("Buch","TXT;50",1)
+ÿÅÿ™"FILME"
+ 
+ÿ½ Anpassung JOURNAL.SBF
+ÿ½ ================================================
+ 
+ÿƒDFile(3,"JOURNAL"ÿ_fpw$)
+ÿ™"JOURNAL"
+ÿƒFldAdd("CodeFL","NUM;000000.",1)
+ÿÅÿ™"FILME"
+ 
+ÿ½ Anpassung VERLEIH.SBF
+ÿ½ ================================================
+ 
+ÿƒDFile(3,"VERLEIH"ÿ_fpw$)
+ÿ™"VERLEIH"
+ÿƒFldAdd("Gebhr","NUM;,99999.00",0)
+ÿƒFldAdd("AnzahlTage","NMI;999.",0)
+ÿƒFldAdd("Journal","TXT;1 U",0)
+ÿƒFldAdd("QuickCodeKU","TXT;12",1)
+ÿÅÿ™"VERLEIH"
+ÿƒServer("UPDFIELD","QuickCodeKU")
+ÿƒServer("UPDSTATUS","Erzeugung Feldinhalt")
+ÿÍQuickCodeKU.VERLEIHÿÿ(datum.VERLEIH,"yymmdd")ÿÿ(CodeKU.VERLEIH,"000000")
+ÿ’ÿÍ
+ 
+ ÿ’ÿ¡
+ ÿ½ -- Ende Mediathek-Update -----------------------------------------
+
+ 
+ ÿƒServer("UNLOADUPDATE","")
+ ÿƒWriteConfig(_projekt$,"UPDATE","FALSE")
+ ÿ½ CALL Fehler("Update beendet!","Das Programm muá neu gestartet werden!")
+ ÿ½ CALL EXIT()
+ ÿ’ÿÿ
+ 
+ 
+ 
+ 
+ '      *********************************************
+ '      ** Routinen fr Updates und Installationen **
+ '      *********************************************
+ 
+ 
+ 
+ ' Feldanpassung
+ ' =======================================================================
+ ' Zweck:       Anpassung des Feldformates
+ ' Aufruf:      CALL FldUpdate(feldname$,newformat$)
+ ' Beispiel:    CALL FldUpdate("Nachname","TXT;50")
+ ' Hinweis:     - Ver„nderungen k”nnen nur an der aktuellen Datei
+ '                vorgenommen werden
+ '              - alle nderungen mssen abschlieáend mit 
+ '                SAVE FILE "filename" gesichert werden
+ '              - die Umbenennung von Feldern ist nicht m”glich
+ ' -----------------------------------------------------------------------
+ ' 01.09.93/FA
+ 
+ÿÿFldUpdate(Feldname$,NewFormat$)
+ ÿƒGaugeUpdate()
+ ÿƒServer("UPDFILE",ÿ™)
+ ÿƒServer("UPDFIELD",Feldname$)
+ IndexTyp$ÿÿö(Feldname$,3)
+ ÿ¡IndexTyp$ÿ"IX*"ÿpÿ¾ÿ£Feldname$$
+ ÿ®Feldname$$,Feldname$ÿ";"ÿNewFormat$
+ ÿ¡IndexTyp$ÿ"IXD"ÿp
+ÿƒServer("UPDSTATUS","Indexanpassung")
+ÿ‰ÿ£ÿ³Feldname$$
+ ÿ’ÿ¡
+ ÿ¡IndexTyp$ÿ"IXU"ÿp
+ÿƒServer("UPDSTATUS","Indexanpassung")
+ÿ‰ÿ£ÿ³Feldname$$ÿr
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+
+ ' Felderg„nzung
+ ' =======================================================================
+ ' Zweck:       fgt ein neues Feld an die aktuelle Datei an
+ ' Aufruf:      CALL FldAdd(feldname$,newformat$,IndexType%
+ '
+ '              IndexType%      0 = kein Index
+ '                              1 = Mehrfachindex
+ '                              2 = Schlsselindex
+ '
+ ' Beispiel:    CALL FldAdd("Notiz","TXT;4000",0)
+ ' Hinweis:     - alle nderungen mssen abschlieáend mit 
+ '                SAVE FILE "filename" gesichert werden
+ ' -----------------------------------------------------------------------
+ ' 01.09.93/FA
+ 
+ÿÿFldAdd(Feldname$,NewFormat$,IndexType%)
+ ÿƒGaugeUpdate()
+ ÿƒServer("UPDFILE",ÿ™)
+ ÿƒServer("UPDFIELD",Feldname$)
+ ÿƒServer("UPDSTATUS","prfen")
+ ÿ³ÿ_ÿwTrapFileFind
+ tsfound%ÿ0
+ a$ÿÿö(FeldName$,0)
+ tsfound%ÿ1
+TrapFileFind: 
+ ÿ¡test%ÿ0ÿpÿ³ÿ_ÿwErrorHandler ÿ^ÿ³ÿ_
+ ÿ¡tsfound%ÿ0ÿp
+ÿ½ ** Feld neu erstellen
+ÿ|Feldname$ÿ";"ÿNewFormat$ÿ";1;1"
+ÿÉÿæIndexType%
+ÿæ1
+ÿ‰ÿ£ÿ³Feldname$$
+ÿæ2
+ÿ‰ÿ£ÿ³Feldname$$ÿr
+ÿ’ÿÉ
+ ÿ^
+ÿ½ ** Feld auf Format„nderungen testen und anpassen
+ÿ¡ÿö(feldname$,3)ÿ"IX*"ÿIndexType%ÿ0ÿp
+ÿƒServer("UPDSTATUS","Indexl”schung")
+ÿ¾ÿ£Feldname$$
+ÿ’ÿ¡
+ok%ÿ1
+NewForm%ÿ0
+NewIndex%ÿ0
+cFormat$ÿÿF(ÿö(Feldname$,0)ÿ";"ÿÿö(Feldname$,4))
+ÿ¡ÿ>(cformat$)ÿÿ>(NewFormat$)ÿp
+ok%ÿ0
+NewForm%ÿ1
+ÿ’ÿ¡
+IndexType$ÿÿö(feldname$,3)
+ÿ¡(IndexType$ÿ"IXD"ÿIndexType%ÿ2)ÿ(IndexType$ÿ"IXU"ÿIndexType%ÿ1)ÿp
+ok%ÿ0
+NewIndex%ÿ1
+ÿ’ÿ¡
+ÿ¡ÿö(feldname$,3)ÿ""ÿIndexType%ÿ0ÿp
+NewIndex%ÿ1
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡ok%ÿ0ÿp
+ÿ¡NewForm%ÿ1ÿIndexType$ÿ"IX*"ÿp
+ÿƒServer("UPDSTATUS","Indexl”schung")
+ÿ¾ÿ£Feldname$$
+ÿ’ÿ¡
+ÿ¡NewForm%ÿ1ÿp
+ÿƒServer("UPDSTATUS","Formatanpassung")
+ÿ®Feldname$$,Feldname$ÿ";"ÿNewFormat$
+ÿƒServer("UPDSTATUS","Indexanpassung")
+ÿÉÿæIndexType%
+ÿæ1
+	ÿ‰ÿ£ÿ³Feldname$$
+ÿæ2
+	ÿ‰ÿ£ÿ³Feldname$$ÿr
+ÿ’ÿÉ
+ok%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ok%ÿ0ÿp
+ÿ¡NewIndex%ÿ1ÿp
+ÿ¡IndexType$ÿ"IX*"ÿp
+	ÿƒServer("UPDSTATUS","Indexl”schung")
+	ÿ¾ÿ£Feldname$$
+ÿ’ÿ¡
+ÿƒServer("UPDSTATUS","Indexanpassung")
+ÿÉÿæIndexType%
+ÿæ1
+	ÿ‰ÿ£ÿ³Feldname$$
+ÿæ2
+	ÿ‰ÿ£ÿ³Feldname$$ÿr
+ÿ’ÿÉ
+ok%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+
+ 
+ ' Feld fr XCHANGE als MAIN markieren
+ ' =======================================================================
+
+ÿÿMarkMain(FieldName$)
+ ÿ½ ** Originaleintrag aus XCHANGE -> MODIFY findex$$,findex$ + ";" + FieldType$ + ";" + dFormat$,"COM MAIN"
+ ÿ¡ÿö(FieldName$,8)ÿ"MAIN"ÿp
+ÿƒServer("UPDFILE",ÿ™)
+ÿƒServer("UPDFIELD",FieldName$)
+ÿƒServer("UPDSTATUS","fr Datenaustausch markieren")
+tIndex$ÿÿö(FieldName$,3)
+ÿ¡tIndex$ÿ""ÿpÿ¾ÿ£Fieldname$$
+FieldType$ÿÿö(FieldName$,0)
+dFormat$ÿÿö(FieldName$,4)
+ÿ®FieldName$$,FieldName$ÿ";"ÿFieldType$ÿ";"ÿdFormat$,"COM MAIN"
+ÿ¡tIndex$ÿ""ÿp
+ÿƒServer("UPDSTATUS","Index neu erstellen")
+ÿ‰ÿ£ÿ³FieldName$$
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+
+
+ ' Gaugeupdate fr Updateprozeduren
+ ' =======================================================================
+ 
+ÿÿGaugeUpdate()
+ Changes%ÿChanges%ÿ1
+ cproz%ÿÿ((100ÿChangesMax%)ÿChanges%)
+ ÿ¡cproz%ÿ
+0ÿpcproz%ÿ0
+ ÿ¡cproz%ÿ100ÿpcproz%ÿ100
+ ÿƒServer("UPDGAUGE",ÿH(ÿ(cproz%,"999")))
+ ÿ’ÿÿ
+ 
+ 
+ ' SUPERVIS - Paáw”rter verschlsseln
+ ' =======================================================================
+ 
+ÿÿPWUpdate()
+ ÿ™"SUPERVIS"
+ ÿ£CodeMA
+ ÿÉÿ`ÿá
+ ÿØÿOÿB("SUPERVIS")
+ÿ¡Krzel ÿ"XX"ÿp
+Paáwort ÿÿƒ("crypt",Paáwort)
+Krzel ÿ"XX"
+ÿÌÿ™"SUPERVIS"
+ÿ’ÿ¡
+ÿÉÿ±ÿáÿ™"SUPERVIS"ÿ£CodeMA
+ ÿÙ
+ ÿ’ÿÿ
+
+ 
+
+
+

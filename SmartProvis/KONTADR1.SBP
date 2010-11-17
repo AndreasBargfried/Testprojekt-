@@ -1,0 +1,611 @@
+SBP
+
+ÿÿmain()
+ ÿƒKONTADR1()
+ ÿ’ÿÿ
+ 
+ÿÿKONTADR1():ÿ½                                      21.06.2002
+ ÿ×myform ÿUForm
+ ÿ×mypage ÿUPage
+ ÿ×mycontrol ÿUFormControl
+ 
+ ÿ¡Forms.Exists("KONTADR1")ÿp
+Forms("KONTADR1").Delete()
+ ÿ’ÿ¡
+ 
+ ÿ•"zur5$","neu1$","intro$","dru$","geskontfi$","but0$","but$","adr$","bearb1$","kontaktfi$"
+ ÿ•"sich1$","adrtext$","loe$"
+ ÿÿzur5$,neu1$,intro$,dru$,geskontfi$,but0$,but$,adr$,bearb1$,kontaktfi$,sich1$,adrtext$
+ ÿÿloe$
+ 
+ ÿ´ÿ™ÿà"D:\2002PRV.B01\OFFICE\CONADR1"
+ ÿ´ÿ™ÿà"D:\2002PRV.B01\OFFICE\ADRE1"
+ ÿ™"ADRE1"
+ 
+ ÿÊmyformÿForms.Add("PROVIS","Form")
+ myform.ScaleModeÿ3
+ myform.ShowExternalsÿ0
+ myform.Nameÿ"PROVIS"
+ myform.FileNameÿ"D:\2002PRV.B01\OFFICE\800.SBV\KONTADR1.SBV"
+ myform.AutoRedrawÿ0
+ myform.AutoLockingÿ0
+ myform.UserFocusChangeÿÿ1
+ 
+ myform.DefVisibleÿÿ1
+ myform.DefEnabledÿÿ1
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ12
+ myform.DefBorderColorÿ8
+ myform.DefBorderWidthÿ1
+ myform.DefForePatternÿ0
+ myform.DefStepWidthÿ2
+ myform.DefBackVisibleÿÿ1
+ myform.DefForeVisibleÿ0
+ myform.DefBorderVisibleÿÿ1
+ myform.DefShadowÿ0
+ myform.DefStretchÿ0
+ myform.DefPrintableÿÿ1
+ myform.DefWindowsDefaultsÿ0
+ myform.DefViewStyleÿ2
+ myform.DefAlignmentÿ0
+ myform.DefFontBoldÿ0
+ myform.DefFontItalicÿ0
+ myform.DefFontUnderlineÿ0
+ myform.DefSectionHÿ1
+ myform.DefSectionVÿ1
+ myform.DefFontStringÿ"System,10,1,1,0"
+ 
+ ÿÊmypage ÿmyform.Pages(1)
+ mypage.BackVisibleÿÿ1
+ mypage.BackColorÿ229
+ mypage.Widthÿ8355
+ mypage.Heightÿ7480
+ mypage.Nameÿ"Page5"
+ mypage.RefreshStyleÿ1
+ mypage.AbsolutePositionÿ0
+ 
+ ÿÊmycontrolÿmyform.Add("Rectangle28","Rectangle")
+ mycontrol.Move(42,63,8094,396)
+ 
+ myform.DefForeColorÿ229
+ myform.DefBackColorÿ6
+ myform.DefBackVisibleÿ0
+ myform.DefForeVisibleÿÿ1
+ ÿÊmycontrolÿmyform.Add("Rectangle1","Rectangle")
+ mycontrol.Move(42,782,8083,4698)
+ 
+ myform.DefForeColorÿ8
+ myform.DefBackColorÿ229
+ myform.DefStepWidthÿ1
+ myform.DefBackVisibleÿÿ1
+ myform.DefForeVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefViewStyleÿ1
+ ÿÊmycontrolÿmyform.Add("Rectangle2","Rectangle")
+ mycontrol.Move(73,803,8052,322)
+ 
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ0
+ myform.DefStepWidthÿ2
+ myform.DefBackVisibleÿ0
+ myform.DefForeVisibleÿÿ1
+ myform.DefViewStyleÿ0
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("Label1","Label")
+ mycontrol.Move(3448,886,521,135)
+ mycontrol.Captionÿ"Vorname"
+ 
+ ÿÊmycontrolÿmyform.Add("Label2","Label")
+ mycontrol.Move(1615,886,635,135)
+ mycontrol.Captionÿ"Nachname"
+ 
+ myform.DefForeColorÿ12
+ myform.DefBackColorÿ81
+ myform.DefBorderWidthÿ0
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefViewStyleÿ2
+ myform.DefSectionHÿ0
+ myform.DefSectionVÿ0
+ ÿÊmycontrolÿmyform.Add("Rectangle27","Rectangle")
+ mycontrol.Move(42,459,8094,323)
+ 
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ50
+ myform.DefBorderColorÿ1
+ myform.DefStepWidthÿ3
+ myform.DefPrintableÿ0
+ myform.DefAlignmentÿ2
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("CommandButton144","CommandButton")
+ mycontrol.Move(7396,136,636,260)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ3
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"&Zurck"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"_formend% = 1"
+ mycontrol.ControlSourceÿ"zur5$"
+ 
+ myform.DefBackColorÿ229
+ ÿÊmycontrolÿmyform.Add("CommandButton145","CommandButton")
+ mycontrol.Move(115,125,625,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ1
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"&Neu"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"KUVorgsub% = 3"
+ mycontrol.ControlSourceÿ"neu1$"
+ 
+ myform.DefBackColorÿ12
+ myform.DefBorderVisibleÿ0
+ myform.DefPrintableÿÿ1
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("CommandButton146","CommandButton")
+ mycontrol.Move(5261,219,323,136)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ5
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"REM"
+ mycontrol.ControlSourceÿ"intro$"
+ 
+ myform.DefBackColorÿ229
+ myform.DefBorderVisibleÿÿ1
+ myform.DefPrintableÿ0
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("CommandButton147","CommandButton")
+ mycontrol.Move(803,125,583,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ2
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"&Drucken"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"KUVorgsub% = 8"
+ mycontrol.ControlSourceÿ"dru$"
+ 
+ myform.DefBackColorÿ0
+ myform.DefPrintableÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("CommandButton148","CommandButton")
+ mycontrol.Move(94,542,7979,156)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ7
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"Kontakt-Gruppe:"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"KUVorgsub% = 5"
+ mycontrol.ControlSourceÿ"geskontfi$"
+ 
+ myform.DefBorderColorÿ2
+ myform.DefWindowsDefaultsÿÿ1
+ myform.DefAlignmentÿ0
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"Arial,10,1,34,0"
+ ÿÊmycontrolÿmyform.Add("CommandButton149","CommandButton")
+ mycontrol.Move(105,1178,541,145)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ8
+ mycontrol.Captionÿ"..."
+ mycontrol.WindowsDefaultsÿÿ1
+ mycontrol.Commandÿ"KUVorgsub% = 2"
+ mycontrol.ControlSourceÿ"but0$"
+ 
+ myform.DefBorderColorÿ9
+ myform.DefStepWidthÿ2
+ myform.DefViewStyleÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox82","TextBox")
+ mycontrol.Move(2990,1188,1323,135)
+ mycontrol.TabIndexÿ9
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"Vorname.CONADR1"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox83","TextBox")
+ mycontrol.Move(990,1188,1990,135)
+ mycontrol.TabIndexÿ10
+ mycontrol.ControlSourceÿ"Nachname.CONADR1"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox150","TextBox")
+ mycontrol.Move(7178,1188,739,135)
+ mycontrol.TabIndexÿ11
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"KontaktGruppe.CONADR1"
+ 
+ myform.DefForeColorÿ0
+ myform.DefBackColorÿ12
+ myform.DefBorderColorÿ1
+ myform.DefStepWidthÿ3
+ myform.DefPrintableÿ0
+ myform.DefWindowsDefaultsÿ0
+ myform.DefAlignmentÿ2
+ ÿÊmycontrolÿmyform.Add("CommandButton700","CommandButton")
+ mycontrol.Move(698,1178,240,145)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ12
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"KUVorgsub% = 1"
+ mycontrol.ControlSourceÿ"but$"
+ 
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ0
+ myform.DefBorderColorÿ9
+ myform.DefStepWidthÿ2
+ myform.DefPrintableÿÿ1
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("TextBox301","TextBox")
+ mycontrol.Move(6990,1188,156,135)
+ mycontrol.TabIndexÿ13
+ mycontrol.ControlSourceÿ"Typ.CONADR1"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox1787","TextBox")
+ mycontrol.Move(4344,1188,1292,135)
+ mycontrol.TabIndexÿ14
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"Ort.CONADR1"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox58","TextBox")
+ mycontrol.Move(5667,1188,1292,135)
+ mycontrol.TabIndexÿ15
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"Strasse.CONADR1"
+ 
+ myform.DefForeColorÿ6
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("Label4","Label")
+ mycontrol.Move(1459,188,2302,135)
+ mycontrol.Captionÿ"Interessenten - Kontakte der Adresse:"
+ 
+ myform.DefBackColorÿ12
+ myform.DefBorderColorÿ8
+ myform.DefBackVisibleÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox49","TextBox")
+ mycontrol.Move(3740,188,3604,135)
+ mycontrol.TabIndexÿ4
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"adr$"
+ mycontrol.Calculationÿ"LTRIM$ (Nachname.ADRE1) + ~, ~ + LTRIM$ (Vorname.ADRE1) + ~, ~ + LTRIM$ (Ort.ADRE1) + ~, ~ + LTRIM$ (Straáe.ADRE1)"
+ 
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("Label5","Label")
+ mycontrol.Move(6365,823,1729,271)
+ mycontrol.Captionÿ"Art der Beziehung "ÿÿ(13)ÿÿ(10)ÿ"(V=Vorg„nger/N=Nachfolger)"
+ 
+ myform.DefVisibleÿ0
+ myform.DefBorderColorÿ2
+ myform.DefBackVisibleÿÿ1
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"Arial,10,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox1786","TextBox")
+ mycontrol.Move(3469,344,438,167)
+ mycontrol.TabIndexÿ6
+ mycontrol.ControlSourceÿ"CodeKU.ADRE1"
+ 
+ myform.DefVisibleÿÿ1
+ myform.DefBackVisibleÿ0
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("Label20","Label")
+ mycontrol.Move(4625,886,188,135)
+ mycontrol.Captionÿ"Ort"
+ 
+ ÿÊmycontrolÿmyform.Add("Label21","Label")
+ mycontrol.Move(5698,886,396,135)
+ mycontrol.Captionÿ"Straáe"
+ 
+ ÿÊmycontrolÿmyform.Add("Label22","Label")
+ mycontrol.Move(636,886,500,135)
+ mycontrol.Captionÿ"zur ADR"
+ 
+ ÿÊmycontrolÿmyform.Add("Label23","Label")
+ mycontrol.Move(73,886,417,135)
+ mycontrol.Captionÿ"Details"
+ 
+ ÿÊmycontrolÿmyform.Add("DetailBlock1","DetailBlock")
+ mycontrol.Nameÿ"DetailBlock1"
+ mycontrol.Columnsÿ1
+ mycontrol.Rowsÿ25
+ mycontrol.RowSpaceÿ170
+ mycontrol.ColumnSpaceÿ2000
+ mycontrol.ScrollBarSpaceÿ30
+ mycontrol.AutoScrollÿÿ1
+ mycontrol.Interleaveÿ0
+ mycontrol.TabDirectionÿ0
+ mycontrol.ScrollBarÿ2
+ mycontrol.Add(myform.CommandButton149)
+ mycontrol.Add(myform.TextBox82)
+ mycontrol.Add(myform.TextBox83)
+ mycontrol.Add(myform.TextBox150)
+ mycontrol.Add(myform.CommandButton700)
+ mycontrol.Add(myform.TextBox301)
+ mycontrol.Add(myform.TextBox1787)
+ mycontrol.Add(myform.TextBox58)
+ mycontrol.SortFieldÿ"Nachname.CONADR1"
+ mycontrol.SortOrderÿ1
+ mycontrol.SetMSLink("CodeKU.CONADR1","CodeKU.ADRE1")
+ 
+ ÿÊmypageÿmyform.Pages.Add("Page6","Page")
+ mypage.BackVisibleÿÿ1
+ mypage.BackColorÿ229
+ mypage.Widthÿ8355
+ mypage.Heightÿ7448
+ mypage.Nameÿ"Page6"
+ mypage.RefreshStyleÿ1
+ mypage.AbsolutePositionÿ0
+ 
+ myform.DefForeColorÿ229
+ myform.DefBackColorÿ6
+ myform.DefBorderColorÿ8
+ myform.DefBorderWidthÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefViewStyleÿ2
+ myform.DefSectionHÿ1
+ myform.DefSectionVÿ1
+ ÿÊmycontrolÿmyform.Add("Rectangle4","Rectangle")
+ mycontrol.Move(42,782,8083,4698)
+ 
+ myform.DefForeColorÿ8
+ myform.DefBackColorÿ229
+ myform.DefStepWidthÿ1
+ myform.DefBackVisibleÿÿ1
+ myform.DefForeVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefViewStyleÿ1
+ ÿÊmycontrolÿmyform.Add("Rectangle24","Rectangle")
+ mycontrol.Move(73,803,8042,197)
+ 
+ myform.DefForeColorÿ12
+ myform.DefBackColorÿ81
+ myform.DefBorderWidthÿ0
+ myform.DefStepWidthÿ2
+ myform.DefForeVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefViewStyleÿ2
+ myform.DefSectionHÿ0
+ myform.DefSectionVÿ0
+ ÿÊmycontrolÿmyform.Add("Rectangle25","Rectangle")
+ mycontrol.Move(42,459,8094,323)
+ 
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ12
+ myform.DefBorderWidthÿ1
+ myform.DefForeVisibleÿ0
+ myform.DefSectionHÿ1
+ myform.DefSectionVÿ1
+ ÿÊmycontrolÿmyform.Add("Rectangle26","Rectangle")
+ mycontrol.Move(42,63,8094,396)
+ 
+ myform.DefBackColorÿ50
+ myform.DefBorderColorÿ1
+ myform.DefStepWidthÿ3
+ myform.DefForeVisibleÿÿ1
+ myform.DefPrintableÿ0
+ myform.DefAlignmentÿ2
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("CommandButton127","CommandButton")
+ mycontrol.Move(7396,136,636,260)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ212
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"&Zurck"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"KUVorgsub% = 4"
+ mycontrol.ControlSourceÿ"zur5$"
+ 
+ myform.DefBackColorÿ229
+ ÿÊmycontrolÿmyform.Add("CommandButton133","CommandButton")
+ mycontrol.Move(115,125,625,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ208
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"&Bearb."
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"KUVorgsub% = 99"
+ mycontrol.ControlSourceÿ"bearb1$"
+ 
+ myform.DefBackColorÿ12
+ myform.DefBorderVisibleÿ0
+ myform.DefPrintableÿÿ1
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("CommandButton134","CommandButton")
+ mycontrol.Move(5261,219,323,136)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ213
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"REM"
+ mycontrol.ControlSourceÿ"intro$"
+ 
+ myform.DefBackColorÿ229
+ myform.DefBorderVisibleÿÿ1
+ myform.DefPrintableÿ0
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("CommandButton168","CommandButton")
+ mycontrol.Move(2073,125,584,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ211
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"&Drucken"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"KUVorgsub% = 8"
+ mycontrol.ControlSourceÿ"dru$"
+ 
+ myform.DefBackColorÿ190
+ myform.DefBorderColorÿ8
+ myform.DefStepWidthÿ2
+ myform.DefPrintableÿÿ1
+ myform.DefViewStyleÿ0
+ myform.DefAlignmentÿ0
+ myform.DefFontBoldÿ0
+ ÿÊmycontrolÿmyform.Add("TextBox1","TextBox")
+ mycontrol.Move(146,1323,3125,136)
+ mycontrol.TabIndexÿ217
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"Vorname.CONADR1"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox2","TextBox")
+ mycontrol.Move(146,1105,3125,135)
+ mycontrol.TabIndexÿ214
+ mycontrol.ControlSourceÿ"Nachname.CONADR1"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBorderColorÿ1
+ myform.DefStepWidthÿ3
+ myform.DefAlignmentÿ2
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("CommandButton267","CommandButton")
+ mycontrol.Move(3386,1105,4677,156)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ215
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"Kontakt-Gruppe:"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"KUVorgsub% = 6"
+ mycontrol.ControlSourceÿ"kontaktfi$"
+ 
+ myform.DefBackColorÿ190
+ myform.DefBorderColorÿ8
+ myform.DefStepWidthÿ2
+ myform.DefAlignmentÿ0
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox300","TextBox")
+ mycontrol.Move(146,1678,7917,2104)
+ mycontrol.TabIndexÿ218
+ mycontrol.ControlSourceÿ"Notiz.CONADR1"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("Label234","Label")
+ mycontrol.Move(146,1500,646,136)
+ mycontrol.Captionÿ"Notiz"
+ 
+ myform.DefBackColorÿ229
+ myform.DefBorderColorÿ1
+ myform.DefStepWidthÿ3
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefPrintableÿ0
+ myform.DefAlignmentÿ2
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("CommandButton35","CommandButton")
+ mycontrol.Move(782,125,625,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ209
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"S&ichern"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"CALL QuickStore(~CONADR1~):ENTER END "
+ mycontrol.ControlSourceÿ"sich1$"
+ 
+ myform.DefBackColorÿ0
+ myform.DefStepWidthÿ2
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefPrintableÿÿ1
+ myform.DefAlignmentÿ0
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("Label17","Label")
+ mycontrol.Move(3407,1323,2364,136)
+ mycontrol.Captionÿ"Art der Beziehung (V=Vorg„nger/N=Nachfolger)"
+ 
+ myform.DefBackColorÿ229
+ myform.DefBorderColorÿ2
+ myform.DefBackVisibleÿÿ1
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"Arial,10,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox304","TextBox")
+ mycontrol.Move(5886,1313,177,167)
+ mycontrol.TabIndexÿ216
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"Typ.CONADR1"
+ 
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox305","TextBox")
+ mycontrol.Move(125,3875,6292,1542)
+ mycontrol.TabIndexÿ219
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"adrtext$"
+ 
+ myform.DefBorderColorÿ1
+ myform.DefStepWidthÿ3
+ myform.DefBorderVisibleÿÿ1
+ myform.DefPrintableÿ0
+ myform.DefAlignmentÿ2
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("CommandButton701","CommandButton")
+ mycontrol.Move(1448,125,584,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ210
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"&L”schen"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"KUVorgsub% = 7"
+ mycontrol.ControlSourceÿ"loe$"
+ 
+ myform.DefForeColorÿ6
+ myform.DefBackColorÿ0
+ myform.DefStepWidthÿ2
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefPrintableÿÿ1
+ myform.DefAlignmentÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("Label18","Label")
+ mycontrol.Move(105,542,1364,136)
+ mycontrol.Captionÿ"Kontakte der Adresse:"
+ 
+ myform.DefAlignmentÿ2
+ myform.DefFontStringÿ"MS Sans Serif,14,0,34,0"
+ ÿÊmycontrolÿmyform.Add("Label19","Label")
+ mycontrol.Move(2730,136,4562,250)
+ mycontrol.Captionÿ"Interessenten - Kontakte"
+ 
+ myform.DefBackColorÿ12
+ myform.DefBorderColorÿ8
+ myform.DefBackVisibleÿÿ1
+ myform.DefAlignmentÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox1791","TextBox")
+ mycontrol.Move(1459,542,6531,136)
+ mycontrol.TabIndexÿ220
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"adr$"
+ mycontrol.Calculationÿ"LTRIM$ (Nachname.ADRE1) + ~, ~ + LTRIM$ (Vorname.ADRE1) + ~, ~ + LTRIM$ (Ort.ADRE1) + ~, ~ + LTRIM$ (Straáe.ADRE1)"
+ 
+ 
+ myform.AutoRedrawÿÿ1
+ myform.SetActive()
+ ÿ’ÿÿ
+ 
+

@@ -1,0 +1,28 @@
+SBP
+яяtest()
+ яѓdd()
+ я’яя
+
+яяdd()
+я‰яс"LOGIN",0,0,193,150,title$,"MS Sans Serif",8
+я|яс"LOGIN",4,0,0,193,126,0,""
+я|яс"LOGIN",9,5,11,20,22,2
+я|яс"LOGIN",5,33,11,139,9,0,"Der Zugang zu diesem Programm ist durch "
+я|яс"LOGIN",5,33,20,68,10,0,"Passwort geschЃtzt."
+я|яс"LOGIN",5,33,30,151,11,0,"Bitte w„hlen Sie aus der Liste der Mitarbeiter"
+я|яс"LOGIN",5,33,41,152,10,0,"Ihren Namen aus und geben Sie anschlieбend"
+я|яс"LOGIN",5,33,51,57,9,0,"Ihr Passwort ein."
+я|яс"LOGIN",5,33,97,32,12,0,"&Passwort:"
+яЅ ADD DIALOG "LOGIN",6,33,107,149,12,32,0,pw$,10
+я|яс"LOGIN",5,33,70,53,8,0,"&Mitarbeiterliste:"
+я|яс"LOGIN",8,33,80,149,195,259,2,name$,MALIST$
+яЅ ADD DIALOG "LOGIN",1,119,129,50,15,0,"&Hilfe",0,2,"LOGHELP"
+я|яс"LOGIN",6,33,107,149,12,32,0,pw$,10
+я|яс"LOGIN",1,68,129,50,15,0,"&Abbruch",0,0
+я|яс"LOGIN",1,17,129,50,15,1,"Anmelden",1,1
+ 
+яс"LOGIN",a%
+яѕясяt
+ 
+ я’яя
+

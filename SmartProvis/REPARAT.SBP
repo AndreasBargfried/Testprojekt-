@@ -1,0 +1,96 @@
+SBP
+ÿÿmain()
+ ÿƒdok1()
+ ÿ’ÿÿ
+
+ÿÿdok1()
+ ÿ™"Akquise"
+ ÿ£codeaq
+ ÿÉÿ`
+ ÿ½  SELECT KEY 238 FILE "Akquise" INDEX codeaq
+ ÿ³ÿ_ÿwerrc1
+ ÿØÿOÿB("AKQUISE")
+ÿÿ™"AKQUI1"
+a%ÿCopyRecord%("AKQUISE","AKQUI1")
+ÿÌÿ™"AKQUI1"
+ÿÉÿ±ÿ™"AKQUISE"
+ ÿÙ
+errc1: 
+ ÿ{ÿ(codeaq.akquise)
+ ÿ’ÿÿ
+
+
+ 
+ÿÿCopyRecord%(source$,dest$)
+cfile$ÿÿ™
+'Kopiert alle gemeinsamen Felder von Datei _source$ nach Datei _dest$    
+oldErrorLabel$ÿSuperbase.ErrorTrapLabel
+ÿ³ÿ_ÿwCopyRecordError
+CopyRecord%ÿ0
+
+'Feldnamen der Quelldatei ermitteln  
+ÿ™source$
+fieldno%ÿÿõ(source$,1)
+ÿ×sourceNames$(fieldno%)
+ÿÿsourceNames$,1
+ÿ›i%%ÿ0ÿqfieldno%ÿ1
+sourceNames$(i%%)ÿÿ>(sourceNames$(i%%))
+ÿ±i%%
+ÿ×sourceSet ÿUSet 
+ÿÿsourceNames$(fieldno%ÿ1)
+sourceSet.AddArray("sourceNames$")
+
+
+'Feldnamen der Zieldatei ermitteln  
+ÿ™dest$
+fieldno%ÿÿõ(dest$,1)
+ÿ×destNames$(fieldno%)
+ÿÿdestNames$,1
+ÿ›i%%ÿ0ÿqfieldno%ÿ1
+destNames$(i%%)ÿÿ>(destNames$(i%%))
+ÿ±i%%
+ 
+ÿ×destSet ÿUSet
+ÿÿdestNames$(fieldno%ÿ1)
+destSet.AddArray("destNames$")
+
+destSet.Intersect(sourceSet)
+ 
+fieldno%ÿdestSet.Elements.Count'Gr”áe der Schnittmenge der Felder
+ÿ×copyNames$(fieldno%ÿ1)
+ÿ›i%%ÿ1ÿqfieldno%
+copyNames$(i%%ÿ1)ÿdestSet.Elements(i%%)
+ÿ±i%%
+
+'das Zeug reinklatschen ...    
+ÿ›j%ÿ0ÿqfieldno%ÿ1
+ÿ³ÿ_ÿwCopyRecordErr1 
+destfield$ÿcopyNames$(j%)ÿ"."ÿdest$
+sourcefield$ÿcopyNames$(j%)ÿ"."ÿsource$
+destfield$$ÿsourcefield$$
+ 
+'alles io
+ÿwCopyRecordNext
+
+CopyRecordErr1: 
+ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Fehler in CopyRecord()","Ziel = "ÿdestfield$ÿ"  Quelle = "ÿsourcefield$)
+ÿwCopyRecordNext
+ 
+CopyRecordNext: 
+ÿ³ÿ_ÿwCopyRecordError
+ÿ±j%
+
+'alles io
+CopyRecord%ÿÿ1
+ÿwCopyRecordEnde
+
+CopyRecordError: 
+ 'irgend etwas ist grunds„tzlich schief gelaufen
+ÿƒFehler("Fehler in CopyRecord: "ÿdatei$,ÿ(ÿ&,"z")ÿ": "ÿÿ((ÿ&))
+ÿwCopyRecordEnde
+ 
+CopyRecordEnde: 
+Superbase.ErrorTrapLabelÿoldErrorLabel$
+ÿ™cfile$
+ ÿ’ÿÿ
+

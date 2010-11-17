@@ -1,0 +1,544 @@
+SBP
+ÿÿBuchauszug()
+ ÿ³ÿ_ÿwErrorHandler
+ ÿ¡PrvVerfahr$ÿ"ZAHLUNGSEINGANG"ÿp
+bdat$ÿ"buchung"
+ ÿ^
+bdat$ÿ"buchung1"
+ ÿ’ÿ¡
+ ÿƒDFile(3,bdat$ÿ_fpw$)
+ ÿƒDFile(3,"buchausz"ÿ_fpw$)
+ ÿƒDFile(3,"sparten"ÿ_fpw$)
+ ÿƒDFile(3,"geadr"ÿ_fpw$)
+ ÿƒDFile(3,"gekond"ÿ_fpw$)
+ ÿƒDFile(3,"maadr"ÿ_fpw$)
+ ÿƒDFile(3,"maadrgru"ÿ_fpw$)
+ ÿƒDFile(3,"kvertrag"ÿ_fpw$)
+ ÿƒDFile(3,"vkond"ÿ_fpw$)
+ ÿƒDFile(3,"vprodukt"ÿ_fpw$)
+ ÿƒDFile(3,"spezkond"ÿ_fpw$)
+ ÿƒDFile(3,"AUmskto"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\ADRESSEN"ÿ_fpw$)
+ 
+ 
+ ÿ™"KVERTRAG"
+ ÿ£lfdnr.kvertrag
+ ÿ™"maadr"
+ ÿ£codema.maadr
+ ÿ½ REQUEST "Buchauszug fr die gesamte Firma?","",135,req%
+ atxt$ÿ"Der Buchauszug wird nach den folgenden Kriterien durchgefhrt:Es werden alle Buchungss„tze der Buchungsdatei geprft, die durch Provisionsberechnungen zu Stande kamen (d.H.manuelle Buchungen werden nicht bercksichtigt)"
+ btxt$ÿ"Buchungsart: AP  UND  das Feld SRHaftung des Vertrages > 0 ist UND bei denen das Stornohaftungsende > heute ist  - "
+ ctxt$ÿ"zu jedem Vertrag wird festgestellt wieviel Provision gezahlt wurde,wieviel davon bereits verdient wurde und wieviel sich davon noch in der Haftung befindet,das gleiche gilt fr die SR!"
+ ÿƒFehler(atxt$,btxt$ÿctxt$)
+ req%ÿ1
+ ÿ¡req%ÿ1ÿp
+ma%ÿÿ1
+ma%ÿGetCodeMA%(_cuma%,0)
+ÿ¡ma%ÿ0ÿpÿwebuasuz011120051
+ ÿ^
+ma%ÿ0
+ ÿ’ÿ¡
+ ÿÂ"Wollen Sie wirklich einen Buchauszug erstellen?","",135,req%
+ ÿ¡req%ÿ1ÿp
+ÿwebuasuz011120051
+ ÿ’ÿ¡
+ ÿ™"buchausz"
+ ÿ¾ÿaÿ™"buchausz"
+ ÿ™bdat$
+ ÿ£QCodeMAVT.bdat$
+ ok1%ÿÿ1
+ ÿÉÿ`ÿ™bdat$ÿ£QCodeMAVT.bdat$
+ ÿ¡ma%ÿ0ÿp
+QCodeMAVT$ÿÿ(ma%,"000000")ÿ"000000"
+ÿÉÿ¥QCodeMAVT$ÿ™bdat$ÿ£QCodeMAVT.bdat$
+ÿ¡codema.bdat$ÿma%ÿp
+ok1%ÿ0
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ i%ÿ0
+ j%ÿÿA(bdat$)
+ v%ÿ0
+ ÿ½ CALL Fehler("Buchauszug","")
+ codebuold%ÿ0
+ SSsrgez%ÿ0
+ ÿØok1%ÿÿ1
+i%ÿi%ÿ1
+Sprovgez%ÿ0
+Sprovverdient%ÿ0
+Snprovverdient%ÿ0
+Ssrgez%ÿ0
+Ssrverdient%ÿ0
+Snsrverdient%ÿ0
+codema%ÿcodema.bdat$
+ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
+ÿÉÿ¥codema%ÿ™"maadr"ÿ£codema.maadr
+ÿ½ IF provision.bdat$ = "j" AND codevt.bdat$ > 0 AND apjn.bdat$ = "j" THEN 
+ÿ¡codevt.bdat$ÿ0ÿp
+codevt%ÿcodevt.bdat$
+ÿ½ IF EXISTS (codevt%,lfdnr.kvertrag) AND sreu.bdat$ <> 0 THEN 
+ÿ¡ÿJ(codevt%,lfdnr.kvertrag)ÿp
+ÿÉÿ`ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿÉÿ¥codevt%ÿ™"kvertrag"ÿ£lfdnr.kvertrag
+ÿ½ IF vs_nr.kvertrag LIKE "23 141 085" THEN 
+	ÿ½ CALL Fehler("23 141 085","")
+ÿ½ END IF 
+codeku%ÿcodeku.kvertrag
+ÿÉÿ`ÿ™"ADRESSEN"ÿ£codeku.adressen
+ÿÉÿ¥codeku%ÿ™"ADRESSEN"ÿ£codeku.adressen
+ÿ½ beginn1ab% = Proviab.kvertrag
+ÿ½ beginn1ab% = F„lligkeit.bdat$
+beginn1ab%ÿVS_Beginn.kvertrag
+ÿ¡beginn1ab%ÿ
+1ÿp
+	beginn1ab%ÿDatum.bdat$
+ÿ’ÿ¡
+ 
+_tday%ÿÿ3(beginn1ab%)
+_tmonth%ÿÿ5(ÿQ)
+_tyear%ÿÿ6(ÿQ)
+srhaftmon$ÿÿ(srhaftung.kvertrag,"00")
+srhaftmon%ÿÿ0(srhaftmon$)
+ÿ½ CALL Fehler("srhaftmon$",srhaftmon$)
+weit%ÿÿ1
+ÿ½ IF srhaftmon% > 0 AND (buchungstext.bdat$ LIKE "*AP*" OR buchungstext.bdat$ LIKE "*Absch*") THEN weit% = - 1
+ÿ½ IF srhaftmon% > 0 AND ((buchungstext.bdat$ LIKE "AP*" OR buchungstext.bdat$ LIKE "Absch*") OR (buchungstext.bdat$ LIKE "Sto*" OR buchungstext.bdat$ LIKE "*Sto*") OR (buchungstext.bdat$ LIKE "DY*" OR buchungstext.bdat$ LIKE "*DY*")) THEN weit% = - 1
+ÿ½ IF (buchungstext.bdat$ LIKE "Pf*" OR buchungstext.bdat$ LIKE "*Pf*") THEN weit% = 0
+ÿ½ IF (buchungstext.bdat$ LIKE "Cour*" OR buchungstext.bdat$ LIKE "*Cour*") THEN weit% = 0
+ÿ¡weit%ÿÿ1ÿp
+	srhaftung%ÿsrhaftmon%
+	ÿ½ SRHaftung
+	_day%ÿÿ3(beginn1ab%)
+	_month%ÿÿ5(beginn1ab%)
+	_year%ÿÿ6(beginn1ab%)
+	_month%ÿ_month%ÿsrhaftmon%
+	ÿ½ CALL Fehler(begin1ab$,begin2ab$)
+	ÿØ_month%ÿ0
+_year%ÿ_year%ÿ1
+_month%ÿ_month%ÿ12
+	ÿÙ
+	ÿ¡_month%ÿ	0ÿp
+_year%ÿ_year%ÿ1
+_month%ÿ_month%ÿ12
+	ÿ’ÿ¡
+	ÿ¡(buchungstext.bdat$ÿ"Cour*"ÿbuchungstext.bdat$ÿ"*Cour*")ÿp
+beginn1ab%ÿF„lligkeit.bdat$
+ÿ¡beginn1ab%ÿ
+1ÿp
+beginn1ab%ÿVS_Beginn.kvertrag
+ÿ’ÿ¡
+ 
+ÿ¡zw.kvertragÿ0ÿp
+ÿ½ zahlweise.buchausz = "einmalig"
+srhaftung%ÿ0
+srhaftmon%ÿ0
+ÿ’ÿ¡
+ÿ¡zw.kvertragÿ1ÿp
+ÿ½ zahlweise.buchausz = "j„hrlich"
+srhaftung%ÿ12
+srhaftmon%ÿ12
+ÿ’ÿ¡
+ÿ¡zw.kvertragÿ2ÿp
+ÿ½ zahlweise.buchausz = "halbj„hrlich"
+srhaftung%ÿ6
+srhaftmon%ÿ6
+ÿ’ÿ¡
+ÿ¡zw.kvertragÿ4ÿp
+ÿ½ zahlweise.buchausz = "viertelj„hrlich"
+srhaftung%ÿ3
+srhaftmon%ÿ3
+ÿ’ÿ¡
+ÿ¡zw.kvertragÿ6ÿp
+ÿ½ zahlweise.buchausz = "zweimonatlich"
+srhaftung%ÿ2
+srhaftmon%ÿ2
+ÿ’ÿ¡
+ÿ¡zw.kvertragÿ12ÿp
+ÿ½ zahlweise.buchausz = "monatlich"
+srhaftung%ÿ1
+srhaftmon%ÿ1
+ÿ’ÿ¡
+_day%ÿÿ3(beginn1ab%)
+_month%ÿÿ5(beginn1ab%)
+_year%ÿÿ6(beginn1ab%)
+_month%ÿ_month%ÿsrhaftmon%
+ÿØ_month%ÿ0
+_year%ÿ_year%ÿ1
+_month%ÿ_month%ÿ12
+ÿÙ
+ÿ¡_month%ÿ	0ÿp
+_year%ÿ_year%ÿ1
+_month%ÿ_month%ÿ12
+ÿ’ÿ¡
+ÿ¡_day%ÿ30ÿp_day%ÿ30
+ÿ¡_day%ÿ28ÿ_month%ÿ2ÿp_day%ÿ28
+shende%ÿÿ1(ÿ(_day%,"00")ÿ"."ÿÿ(_month%,"00")ÿ"."ÿÿ(_year%,"9999"))
+shende$ÿÿ(_day%,"00")ÿ"."ÿÿ(_month%,"00")ÿ"."ÿÿ(_year%,"9999")
+	ÿ^
+ÿ¡_day%ÿ30ÿp_day%ÿ30
+ÿ¡_day%ÿ28ÿ_month%ÿ2ÿp_day%ÿ28
+shende%ÿÿ1(ÿ(_day%,"00")ÿ"."ÿÿ(_month%,"00")ÿ"."ÿÿ(_year%,"9999"))
+shende$ÿÿ(_day%,"00")ÿ"."ÿÿ(_month%,"00")ÿ"."ÿÿ(_year%,"9999")
+	ÿ’ÿ¡
+	ÿ½ CALL Fehler("Shende",shende$)
+	ÿ¡shende%ÿÿQÿp
+ÿ½ Differenz1 - Provbeginn bis heute in Monate->verdient
+today1%ÿÿQ
+diff1%ÿÿQÿbeginn1ab%
+tod$ÿÿ+(ÿ(ÿQ,"yyyymm0d"),6)
+ 
+ÿ½ differenz1% = MONTH (diff1%)
+ 
+_day%ÿÿ3(beginn1ab%)
+_month%ÿÿ5(beginn1ab%)
+_year%ÿÿ6(beginn1ab%)
+ÿ½ _month% = _month% + diff1%
+beg$ÿ""
+differenz1%ÿ0
+beg%ÿÿ1(ÿ(_day%,"00")ÿ"."ÿÿ(_month%,"00")ÿ"."ÿÿ(_year%,"9999"))
+beg$ÿÿ+(ÿ(beg%,"yyyymm0d"),6)
+beg1%ÿÿ0(beg$)
+tod1%ÿÿ0(tod$)
+ÿ¡beg1%ÿ
+tod1%ÿp
+ÿØtod$ÿbeg$
+differenz1%ÿdifferenz1%ÿ1
+_month%ÿ_month%ÿ1
+ÿ¡_month%ÿ12ÿp
+_month%ÿ1
+_year%ÿ_year%ÿ1
+ÿ’ÿ¡
+beg%ÿÿ1(ÿ(_day%,"00")ÿ"."ÿÿ(_month%,"00")ÿ"."ÿÿ(_year%,"9999"))
+beg$ÿÿ+(ÿ(beg%,"yyyymm0d"),6)
+ÿÙ
+ÿ^
+ÿ½ CALL Fehler(vs_nr.kvertrag,"")
+ÿ’ÿ¡
+differenz1$ÿÿ(differenz1%,"00")
+ÿ½ CALL Fehler("differenz1",differenz1$)
+ÿ½ Differenz2 - heute bis ende in Monate ->nicht verdient
+ 
+differenz2%ÿsrhaftung%ÿdifferenz1%
+ 
+ 
+provgez%ÿ0
+provverdient%ÿ0
+nprovverdient%ÿ0
+srgez%ÿ0
+srverdient%ÿ0
+nsrverdient%ÿ0
+srhaftges%ÿ0
+srhaftverdie%ÿ0
+nsrhaftverdie%ÿ0
+ 
+srhaftges%ÿsrhaftung%
+srhaftverdie%ÿdifferenz1%
+nsrhaftverdie%ÿdifferenz2%
+ÿÿ™"buchausz"
+a%ÿCopyRecord%(bdat$,"buchausz")
+codebu.buchauszÿÿI("buchausz",1)
+datum.buchauszÿÿQ
+buchungsdatum.buchauszÿdatum.bdat$
+ 
+vs_nr.buchauszÿvs_nr.kvertrag
+ÿ½ WHILE codevt.bdat$ = codevt%
+codebuold1%ÿcodebu.bdat$
+v%ÿv%ÿ1
+provgez%ÿprovgez%ÿBetrageu.bdat$
+srgez%ÿsrgez%ÿsreu.bdat$
+ÿÊÿËÿ(i%,",99999999")ÿ"getestet / verarbeitet: "ÿÿ(V%,",99999999")ÿ" von "ÿÿ(j%,",99999999")ÿ" "ÿBuchungstext.bdat$
+ÿ½ SELECT NEXT FILE bdat$ INDEX QCodeMAVT.bdat$
+ÿ½ IF codebu.bdat$ = codebuold1% THEN 
+ÿ½ GOTO w071120051
+ÿ½ END IF 
+ÿ½ WEND 
+w071120051: 
+xv%ÿ(differenz1%ÿsrhaftung%)ÿ100
+xvn%ÿ100ÿxv%
+ 
+provverdient%ÿ(provgez%ÿxv%)ÿ100
+nprovverdient%ÿprovgez%ÿprovverdient%
+srverdient%ÿ(srgez%ÿxv%)ÿ100
+nsrverdient%ÿsrgez%ÿsrverdient%
+ 
+Betraggez.buchauszÿprovgez%
+Betragverdient.buchauszÿprovverdient%
+Betragnichtverd.buchauszÿnprovverdient%
+ 
+SRgez.buchauszÿsrgez%
+SRverdient.buchauszÿsrverdient%
+SRNichtverdient.buchauszÿnsrverdient%
+ 
+srhaftung.buchauszÿsrhaftung%
+srhaftverdie.buchauszÿsrhaftverdie%
+srhaftnichtverd.buchauszÿnsrhaftverdie%
+ 
+Provbeginn.buchauszÿbeginn1ab%
+Haftungsende.buchauszÿshende%
+ÿ¡(buchungstext.bdat$ÿ"Pf*"ÿbuchungstext.bdat$ÿ"*Pf*")ÿp
+Haftungsende.buchauszÿF„lligkeit.bdat$
+ÿ’ÿ¡
+ÿ¡f„lligkeit.buchauszÿ
+1ÿpf„lligkeit.buchauszÿ0
+allesnull%ÿÿ1
+ÿ½ IF provgez% < 0 THEN allesnull% = 0
+ÿ¡provgez%ÿ
+0ÿp
+ÿ½ allesnull% = 0
+Betraggez.buchauszÿprovgez%
+Betragverdient.buchauszÿ0
+Betragnichtverd.buchauszÿ0
+SRgez.buchauszÿsrgez%
+SRverdient.buchauszÿ0
+SRNichtverdient.buchauszÿ0
+srhaftung.buchauszÿ0
+srhaftverdie.buchauszÿ0
+srhaftnichtverd.buchauszÿ0
+ÿ’ÿ¡
+codevstatus%ÿcodevstatus.kvertrag
+vstatustxt$ÿvstatustxt.kvertrag
+
+ÿ¡codevstatus%ÿ03ÿcodevstatus%ÿ	12ÿpallesnull%ÿ0
+ÿ¡codevstatus%ÿ15ÿpallesnull%ÿ0
+ÿ¡codevstatus%ÿ11ÿpallesnull%ÿÿ1
+ 
+ÿ¡allesnull%ÿ0ÿp
+Betraggez.buchauszÿprovgez%
+Betragverdient.buchauszÿ0
+Betragnichtverd.buchauszÿ0
+ 
+SRgez.buchauszÿ0
+SRverdient.buchauszÿ0
+SRNichtverdient.buchauszÿ0
+ 
+srhaftung.buchauszÿ0
+srhaftverdie.buchauszÿ0
+srhaftnichtverd.buchauszÿ0
+ÿ’ÿ¡
+codevstatus.buchauszÿcodevstatus%
+vstatustxt.buchauszÿvstatustxt$
+ÿ½ aus der Adressdatei
+Nachname.buchauszÿNachname.adressen
+Vorname.buchauszÿVorname.adressen
+Strasse.buchauszÿStraáe.adressen
+Ort.buchauszÿOrt.adressen
+PLZ.buchauszÿPLZ.adressen
+ÿ½ aus Vertrag
+Antragsdatum.buchauszÿAntragsdatum.kvertrag
+VS_Beginn.buchauszÿVS_Beginn.kvertrag
+VS_Summe.buchauszÿVSumme.kvertrag
+Eintrittsalter.buchauszÿEintrittsalter.kvertrag
+Laufzeit.buchauszÿVS_Dauer.kvertrag
+ÿ¡Kndigung.kvertragÿ0ÿp
+Ablauf_Kuend.buchauszÿKndigung.kvertrag
+ÿ’ÿ¡
+ÿ¡TatsKuenDat.kvertragÿ0ÿp
+ÿ¡Kndigung.kvertragÿ0ÿp
+Ablauf_Kuend.buchauszÿTatsKuenDat.kvertrag
+ÿ^
+ÿ¡TatsKuenDat.kvertragÿKndigung.kvertragÿp
+Ablauf_Kuend.buchauszÿTatsKuenDat.kvertrag
+ÿ^
+Ablauf_Kuend.buchauszÿKndigung.kvertrag
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+BeitragPerZahlw.buchauszÿBeitrag.kvertrag
+NettoBeitrperZW.buchauszÿNettoBeitrag.kvertrag
+ÿ¡zw.kvertragÿ0ÿp
+zahlweise.buchauszÿ"einmalig"
+JahresBeitrag.buchauszÿBeitrag.kvertrag
+ÿ’ÿ¡
+ÿ¡zw.kvertragÿ1ÿp
+zahlweise.buchauszÿ"j„hrlich"
+JahresBeitrag.buchauszÿBeitrag.kvertrag
+ÿ’ÿ¡
+ÿ¡zw.kvertragÿ2ÿp
+zahlweise.buchauszÿ"halbj„hrlich"
+JahresBeitrag.buchauszÿBeitrag.kvertragÿ2
+ÿ’ÿ¡
+ÿ¡zw.kvertragÿ4ÿp
+zahlweise.buchauszÿ"viertelj„hrlich"
+JahresBeitrag.buchauszÿBeitrag.kvertragÿ4
+ÿ’ÿ¡
+ÿ¡zw.kvertragÿ6ÿp
+zahlweise.buchauszÿ"zweimonatlich"
+JahresBeitrag.buchauszÿBeitrag.kvertragÿ6
+ÿ’ÿ¡
+ÿ¡zw.kvertragÿ12ÿp
+zahlweise.buchauszÿ"monatlich"
+JahresBeitrag.buchauszÿBeitrag.kvertragÿ12
+ÿ’ÿ¡
+Bewertungssumme.buchauszÿBewertung2.bdat$
+ 
+QCodeVTDat.buchauszÿÿ(codevt.buchausz,"000000")ÿÿ(buchungsdatum.buchausz,"yyyymm0d")
+ÿÌÿ™"buchausz"
+Sprovgez%ÿSprovgez%ÿprovgez%
+Sprovverdient%ÿSprovverdient%ÿprovverdient%
+Snprovverdient%ÿSnprovverdient%ÿnprovverdient%
+Ssrgez%ÿSsrgez%ÿsrgez%
+Ssrverdient%ÿSsrverdient%ÿsrverdient%
+Snsrverdient%ÿSnsrverdient%ÿnsrverdient%
+	ÿ^
+ÿ½ CALL Fehler("Vertrag, der bereits abgelaufen ist oder die Haftung vorbei ist","")
+ÿÿ™"buchausz"
+a%ÿCopyRecord%(bdat$,"buchausz")
+codebu.buchauszÿÿI("buchausz",1)
+datum.buchauszÿÿQ
+buchungsdatum.buchauszÿdatum.bdat$
+Agentur.buchauszÿNachname.maadrÿ", "ÿVorname.maadrÿ", "ÿAgenturnr.maadr
+codevstatus.buchauszÿcodevstatus.kvertrag
+vstatustxt.buchauszÿvstatustxt.kvertrag
+ÿ½ aus der Adressdatei
+Nachname.buchauszÿNachname.adressen
+Vorname.buchauszÿVorname.adressen
+Strasse.buchauszÿStraáe.adressen
+Ort.buchauszÿOrt.adressen
+PLZ.buchauszÿPLZ.adressen
+ÿ½ aus Vertrag
+Antragsdatum.buchauszÿAntragsdatum.kvertrag
+VS_Beginn.buchauszÿVS_Beginn.kvertrag
+VS_Summe.buchauszÿVSumme.kvertrag
+Eintrittsalter.buchauszÿEintrittsalter.kvertrag
+Laufzeit.buchauszÿVS_Dauer.kvertrag
+ÿ¡Kndigung.kvertragÿ0ÿp
+Ablauf_Kuend.buchauszÿKndigung.kvertrag
+ÿ’ÿ¡
+ÿ¡TatsKuenDat.kvertragÿ0ÿp
+ÿ¡Kndigung.kvertragÿ0ÿp
+Ablauf_Kuend.buchauszÿTatsKuenDat.kvertrag
+ÿ^
+ÿ¡TatsKuenDat.kvertragÿKndigung.kvertragÿp
+Ablauf_Kuend.buchauszÿTatsKuenDat.kvertrag
+ÿ^
+Ablauf_Kuend.buchauszÿKndigung.kvertrag
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+BeitragPerZahlw.buchauszÿBeitrag.kvertrag
+NettoBeitrperZW.buchauszÿNettoBeitrag.kvertrag
+ÿ¡zw.kvertragÿ0ÿp
+zahlweise.buchauszÿ"einmalig"
+JahresBeitrag.buchauszÿBeitrag.kvertrag
+ÿ’ÿ¡
+ÿ¡zw.kvertragÿ1ÿp
+zahlweise.buchauszÿ"j„hrlich"
+JahresBeitrag.buchauszÿBeitrag.kvertrag
+ÿ’ÿ¡
+ÿ¡zw.kvertragÿ2ÿp
+zahlweise.buchauszÿ"halbj„hrlich"
+JahresBeitrag.buchauszÿBeitrag.kvertragÿ2
+ÿ’ÿ¡
+ÿ¡zw.kvertragÿ4ÿp
+zahlweise.buchauszÿ"viertelj„hrlich"
+JahresBeitrag.buchauszÿBeitrag.kvertragÿ4
+ÿ’ÿ¡
+ÿ¡zw.kvertragÿ6ÿp
+zahlweise.buchauszÿ"zweimonatlich"
+JahresBeitrag.buchauszÿBeitrag.kvertragÿ6
+ÿ’ÿ¡
+ÿ¡zw.kvertragÿ12ÿp
+zahlweise.buchauszÿ"monatlich"
+JahresBeitrag.buchauszÿBeitrag.kvertragÿ12
+ÿ’ÿ¡
+Bewertungssumme.buchauszÿBewertung2.bdat$
+srgez%ÿsreu.bdat$
+provgez%ÿBetrageu.bdat$
+Betraggez.buchauszÿprovgez%
+Betragverdient.buchauszÿprovgez%
+Betragnichtverd.buchauszÿ0
+SRgez.buchauszÿsrgez%
+SRverdient.buchauszÿsrgez%
+SRNichtverdient.buchauszÿ0
+ 
+srhaftung.buchauszÿsrhaftung%
+srhaftverdie.buchauszÿsrhaftung%
+srhaftnichtverd.buchauszÿ0
+Haftungsende.buchauszÿshende%
+ 
+Ssrgez%ÿSsrgez%ÿsrgez%
+Provbeginn.buchauszÿbeginn1ab%
+vs_nr.buchauszÿvs_nr.kvertrag
+QCodeVTDat.buchauszÿÿ(codevt.buchausz,"000000")ÿÿ(buchungsdatum.buchausz,"yyyymm0d")
+ÿÌÿ™"buchausz"
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ^
+ÿ½ CALL Fehler("Handbuchung, die zu keinem Vertrag geh”rt","")
+ÿÿ™"buchausz"
+a%ÿCopyRecord%(bdat$,"buchausz")
+codebu.buchauszÿÿI("buchausz",1)
+datum.buchauszÿÿQ
+buchungsdatum.buchauszÿdatum.bdat$
+Agentur.buchauszÿNachname.maadrÿ", "ÿVorname.maadrÿ", "ÿAgenturnr.maadr
+srgez%ÿ0
+ÿ¡storwarnjn.bdat$ÿ"j"ÿp
+txta$ÿ"Stornowarnung gemeldet durch Gesellschaft: "
+ÿ¡StorWarnDatGes.bdat$ÿ0ÿptxta$ÿÿ(StorWarnDatGes.bdat$,"0d.mm.yyyy")ÿÿ(13)ÿÿ(10)
+ÿ¡StorWarnDatMa.bdat$ÿ0ÿptxta$ÿtxta$ÿ"Benachrichtigung Vermittler: "ÿÿ(StorWarnDatMa.bdat$,"0d.mm.yyyy")ÿÿ(13)ÿÿ(10)
+txta$ÿtxta$ÿ"Grund: "ÿStorWarnGrund.bdat$ÿÿ(13)ÿÿ(10)
+txta$ÿtxta$ÿ"Maánahme: "ÿStorWarnMasn.bdat$ÿÿ(13)ÿÿ(10)
+txta$ÿtxta$ÿ"Ergebniss: "ÿStorWarnErg.bdat$ÿÿ(13)ÿÿ(10)
+Buchngstext.buchauszÿÿåansi(txta$)
+ÿ^
+srgez%ÿsreu.bdat$
+Betraggez.buchauszÿBetrageu.bdat$
+SRgez.buchauszÿsreu.bdat$
+ÿ’ÿ¡
+vs_nr.buchauszÿvs_nr.kvertrag
+QCodeVTDat.buchauszÿÿ(codevt.buchausz,"000000")ÿÿ(buchungsdatum.buchausz,"yyyymm0d")
+ÿÌÿ™"buchausz"
+ÿ’ÿ¡
+srgez$ÿÿ(srgez%,"999999.00")
+SSsrgez%ÿSSsrgez%ÿÿ0(srgez$)
+ÿÊÿËÿ(i%,",99999999")ÿ" getestet / in Haftung: "ÿÿ(V%,",99999999")ÿ" von "ÿÿ(j%,",99999999")ÿ"/  "ÿÿ(SSsrgez%,",99999999.00")ÿ" SR"
+ 
+ÿÉÿ±ÿ™bdat$ÿ£QCodeMAVT.bdat$
+ÿßÿe
+ÿ¡ma%ÿ0ÿp
+ma1%ÿcodema.bdat$
+ÿ¡codema.bdat$ÿma%ÿp
+ÿwebuasuz011120052
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡codebu.bdat$ÿcodebuold%ÿp
+ÿwebuasuz011120052
+ÿ’ÿ¡
+codebuold%ÿcodebu.bdat$
+ ÿÙ
+ebuasuz011120052: 
+ ÿƒFehler(ÿ(SSsrgez%,",999999.00")ÿ" gezahlte SR","")
+ ma$ÿ_netpath$ÿ"0-Export\BA"ÿÿ(ma%,"000000")ÿ".xls"
+ ÿƒFehler(ma$,"")
+ ÿ¡ÿJ(ma$)ÿpÿma$
+ ÿ™"buchausz"
+ ÿ£QCodeVTDat.buchausz
+ ÿ³ÿ_ÿwebuasuz011120053
+ ÿ³ÿ_ÿwErrorHandler
+ Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+ Superbase.Converters.SBF.SourceFileÿ"BUCHAUSZ"
+ Superbase.Converters.SBF.Descendingÿ0
+ Superbase.Converters.SBF.Mergeÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ ÿ½ Superbase.Converters.SBF.Volatile = 0
+ Superbase.Converters.XLS.DestFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.DestFileÿma$
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.UseLabelsÿÿ1
+ Superbase.Converters.XLS.Convert(Superbase.Converters.SBF)
+ ÿƒFehler("Die Buchauszugsdatei im Excel Format befindet sich unter: ",ma$)
+ a%ÿÿƒ("ShellExecute",0,"open",ma$,"","",1)
+ ÿwebuasuz011120054
+ebuasuz011120053: 
+ ÿƒFehler("Beim Export nach Excel ist etwas schief gegangen!","")
+ebuasuz011120054:
+ ÿ³ÿ_ÿwErrorHandler
+ebuasuz011120051: 
+ ÿ’ÿÿ
+ 
+ 
+

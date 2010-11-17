@@ -1,0 +1,23 @@
+SBP
+ ÿ™"adressen"
+ GAdrDat$ÿ"adressen"
+ ÿ£codeku
+ ÿ™"kvertrag"
+ ÿ£lfdnr
+ j%ÿÿA("kvertrag")
+ ÿÉÿ`ÿáÿ™"KVERTRAG"ÿ£lfdnr
+ ÿßÿe
+ ÿØÿOÿB("kvertrag")
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%,",999999")ÿ"/"ÿÿ(j%,"999999")
+ÿÉÿ¥codeku.kvertragÿ™"Adressen"ÿ£codeku.adressen
+VNehmer.kvertragÿÿ+(ÿH(ÿF(Nachname.adressen))ÿ","ÿÿH(ÿF(vorname.adressen))ÿ","ÿÿH(ÿF(Straáe.adressen))ÿ","ÿÿH(ÿF(PLZ.adressenÿ" "ÿOrt.adressen)),210)
+ANachname.kvertragÿnachname.GAdrDat$
+AVorname.kvertragÿvorname.GAdrDat$
+AStrasse.kvertragÿStraáe.GAdrDat$
+AOrt.kvertragÿOrt.GAdrDat$
+APLZ.kvertragÿPlz.GAdrDat$
+ÿÌÿ™"kvertrag"
+ÿÉÿ±ÿáÿ™"KVERTRAG"ÿ£lfdnr
+ÿÙ
+

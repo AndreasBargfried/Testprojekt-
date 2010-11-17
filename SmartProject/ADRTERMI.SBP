@@ -1,0 +1,126 @@
+SBP
+ ÿ™"Akquise"
+ ÿ£QuickKuter.akquise
+ ÿÉÿb
+ codekuold%ÿcodeku.akquise
+ codeku%ÿcodeku.akquise
+ i%ÿ0
+ ÿ¾ÿaÿ™"adrterm"
+ÿÿ™"adrterm"
+codekey.adrtermÿÿI("adrterm",1)
+codeku.adrtermÿcodeku.akquise
+ÿÌÿ™"adrterm"
+ÿïÿY
+ ÿØÿOÿB("akquise")
+ÿÊÿËÿ(i%,"999999")ÿ" Datens„tz bearbeitet"
+ÿ¡codekuold%ÿcodeku.akquiseÿp
+ÿÉÿ¥codekuold%ÿáÿ™"Adrterm"ÿ£codeku.adrterm
+ÿ^
+ÿÿ™"adrterm"
+codekey.adrtermÿÿI("adrterm",1)
+codeku.adrtermÿcodeku.akquise
+codekuold%ÿcodeku.akquise
+ÿ’ÿ¡
+
+ÿ¡notiz.akquiseÿ""ÿergebnis.akquiseÿ""ÿp
+codeak%ÿcodeak.akquise
+ÿÉÿ¥codeak%ÿ™"aktionen"ÿ£codeak.aktionen
+leng%ÿÿ/(notiz.adrterm)
+leng1%ÿÿ/("fr Mitarbeiter: "ÿbearbeiter.akquiseÿ"  Aktion: "ÿBezeichnung.aktionenÿÿ(10)ÿÿ(13))
+lengges%ÿleng%ÿleng1%
+ÿ¡lengges%ÿ
+3900ÿp
+	notiz.adrtermÿnotiz.adrtermÿ"fr Mitarbeiter: "ÿbearbeiter.akquiseÿ"  Aktion: "ÿBezeichnung.aktionenÿÿ(10)ÿÿ(13)
+ÿ’ÿ¡
+leng%ÿÿ/(notiz.adrterm)
+leng1%ÿÿ/("Datum:"ÿÿ(datum.akquise,"0d.mm.yyyy"))
+lengges%ÿleng%ÿleng1%
+ÿ¡lengges%ÿ
+3900ÿp
+	notiz.adrtermÿnotiz.adrtermÿ"Datum:"ÿÿ(datum.akquise,"0d.mm.yyyy")
+ÿ’ÿ¡
+leng%ÿÿ/(notiz.adrterm)
+leng1%ÿÿ/("  Termin:"ÿÿ(termin.akquise,"0d.mm.yyyy"))
+lengges%ÿleng%ÿleng1%
+ÿ¡lengges%ÿ
+3900ÿp
+	notiz.adrtermÿnotiz.adrtermÿ"  Termin:"ÿÿ(termin.akquise,"0d.mm.yyyy")
+ÿ’ÿ¡
+ÿ¡uhrzeit.akquiseÿ0ÿp
+	leng%ÿÿ/(notiz.adrterm)
+	leng1%ÿÿ/("  Uhrzeit:"ÿÿ7(uhrzeit.akquise,"hh:mm"))
+	lengges%ÿleng%ÿleng1%
+	ÿ¡lengges%ÿ
+3900ÿp
+notiz.adrtermÿnotiz.adrtermÿ"  Uhrzeit:"ÿÿ7(uhrzeit.akquise,"hh:mm")
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡erdatum.akquiseÿ0ÿp
+	leng%ÿÿ/(notiz.adrterm)
+	leng1%ÿÿ/("  VorlageTermin:"ÿÿ(erdatum.akquise,"0d.mm.yyyy"))
+	lengges%ÿleng%ÿleng1%
+	ÿ¡lengges%ÿ
+3900ÿp
+notiz.adrtermÿnotiz.adrtermÿ"  VorlageTermin:"ÿÿ(erdatum.akquise,"0d.mm.yyyy")
+	ÿ’ÿ¡
+	leng%ÿÿ/(notiz.adrterm)
+	leng1%ÿÿ/("  Vorlagezeit:"ÿÿ7(erzeit.akquise,"hh:mm"))
+	lengges%ÿleng%ÿleng1%
+	ÿ¡lengges%ÿ
+3900ÿp
+notiz.adrtermÿnotiz.adrtermÿ"  Vorlagezeit:"ÿÿ7(erzeit.akquise,"hh:mm")
+	ÿ’ÿ¡
+ÿ’ÿ¡
+leng%ÿÿ/(notiz.adrterm)
+leng1%ÿÿ/(erledigt_Termin.akquiseÿÿ(10)ÿÿ(13))
+lengges%ÿleng%ÿleng1%
+ÿ¡lengges%ÿ
+3900ÿp
+	notiz.adrtermÿnotiz.adrtermÿ"  erledigt:"ÿerledigt_Termin.akquiseÿÿ(10)ÿÿ(13)
+ÿ’ÿ¡
+ÿ¡notiz.akquiseÿ""ÿp
+	leng%ÿÿ/(notiz.adrterm)
+	leng1%ÿÿ/("Notiz:"ÿÿ(10)ÿÿ(13))
+	lengges%ÿleng%ÿleng1%
+	ÿ¡lengges%ÿ
+3900ÿp
+notiz.adrtermÿnotiz.adrtermÿ"Notiz:"ÿÿ(10)ÿÿ(13)
+	ÿ’ÿ¡
+	leng%ÿÿ/(notiz.adrterm)
+	leng1%ÿÿ/(ÿH(notiz.akquise)ÿÿ(10)ÿÿ(13))
+	lengges%ÿleng%ÿleng1%
+	ÿ¡lengges%ÿ
+3900ÿp
+notiz.adrtermÿnotiz.adrtermÿÿH(notiz.akquise)ÿÿ(10)ÿÿ(13)
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ergebnis.akquiseÿ""ÿp
+	leng%ÿÿ/(notiz.adrterm)
+	leng1%ÿÿ/("Ergebnis:"ÿÿ(10)ÿÿ(13))
+	lengges%ÿleng%ÿleng1%
+	ÿ¡lengges%ÿ
+3900ÿp
+notiz.adrtermÿnotiz.adrtermÿ"Ergebnis:"ÿÿ(10)ÿÿ(13)
+	ÿ’ÿ¡
+	leng%ÿÿ/(notiz.adrterm)
+	leng1%ÿÿ/(ÿH(ergebnis.akquise)ÿÿ(10)ÿÿ(13))
+	lengges%ÿleng%ÿleng1%
+	ÿ¡lengges%ÿ
+3900ÿp
+notiz.adrtermÿnotiz.adrtermÿÿH(ergebnis.akquise)ÿÿ(10)ÿÿ(13)
+	ÿ’ÿ¡
+ÿ’ÿ¡
+leng%ÿÿ/(notiz.adrterm)
+leng1%ÿÿ/(ÿ(10)ÿÿ(13)ÿÿ(10)ÿÿ(13))
+lengges%ÿleng%ÿleng1%
+ÿ¡lengges%ÿ
+3900ÿp
+	notiz.adrtermÿnotiz.adrtermÿÿ(10)ÿÿ(13)ÿÿ(10)ÿÿ(13)
+ÿ’ÿ¡
+ÿÌÿ™"adrterm"
+ÿïÿY
+ÿ’ÿ¡
+i%ÿi%ÿ1
+ÿÉÿgÿ™"akquise"
+ ÿÙ
+

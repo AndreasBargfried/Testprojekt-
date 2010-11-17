@@ -1,0 +1,305 @@
+SBP
+
+ÿÿmain()
+ ÿƒBVBE1()
+ ÿ’ÿÿ
+ 
+ÿÿBVBE1():ÿ½                                         25.09.2003
+ ÿ×myform ÿUReportForm
+ ÿ×mypage ÿUPage
+ ÿ×mycontrol ÿUFormControl
+ 
+ ÿ¡Forms.Exists("ReportForm5")ÿp
+Forms("ReportForm5").Delete()
+ ÿ’ÿ¡
+ 
+ ÿ•"sumzah%","anzZ%","summeZ1%","anzv1%","seite$","Ueberschr$"
+ ÿÿsumzah%,anzZ%,summeZ1%,anzv1%,seite$,Ueberschr$
+ 
+ ÿ´ÿ™ÿà"C:\CODIE\PROVIS\KVERTRAG"
+ ÿ´ÿ™ÿà"C:\CODIE\PROVIS\ZEINGAN1"
+ ÿ™"KVERTRAG"
+ 
+ ÿÊmyformÿForms.Add("ReportForm5","ReportForm")
+ myform.ScaleModeÿ3
+ myform.ShowExternalsÿ0
+ myform.Nameÿ"ReportForm5"
+ myform.FileNameÿ"C:\CODIE\PROVIS\1024.SBV\BVBE1.SBV"
+ 
+ myform.DefVisibleÿÿ1
+ myform.DefEnabledÿÿ1
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ8
+ myform.DefBorderColorÿ2
+ myform.DefBorderWidthÿ1
+ myform.DefForePatternÿ0
+ myform.DefStepWidthÿ2
+ myform.DefBackVisibleÿÿ1
+ myform.DefForeVisibleÿÿ1
+ myform.DefBorderVisibleÿ0
+ myform.DefShadowÿ0
+ myform.DefStretchÿ0
+ myform.DefPrintableÿÿ1
+ myform.DefWindowsDefaultsÿ0
+ myform.DefViewStyleÿ0
+ myform.DefAlignmentÿ1
+ myform.DefFontBoldÿÿ1
+ myform.DefFontItalicÿ0
+ myform.DefFontUnderlineÿ0
+ myform.DefSectionHÿ0
+ myform.DefSectionVÿ0
+ myform.DefFontStringÿ"Arial,8,1,34,0"
+ 
+ ÿÊmypage ÿmyform.Pages(1)
+ mypage.BackVisibleÿ0
+ mypage.BackColorÿ0
+ mypage.Widthÿ7792
+ mypage.Heightÿ178
+ mypage.Nameÿ"F_lfdnr.KVER002"
+ mypage.RefreshStyleÿ1
+ mypage.AbsolutePositionÿ0
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox39","TextBox")
+ mycontrol.Move(6698,0,938,146)
+ mycontrol.TabIndexÿ12
+ mycontrol.ControlSourceÿ"sumzah%"
+ mycontrol.Calculationÿ"Bewertung.ZEINGAN1"
+ mycontrol.CalcFormatÿ"-,999999999999.00     "
+ mycontrol.Aggregateÿ1
+ 
+ myform.DefBackVisibleÿ0
+ myform.DefAlignmentÿ0
+ myform.DefFontBoldÿ0
+ ÿÊmycontrolÿmyform.Add("Label24","Label")
+ mycontrol.Move(730,0,1166,146)
+ mycontrol.Captionÿ"Summe Zahlungen"
+ 
+ myform.DefBackColorÿ0
+ ÿÊmycontrolÿmyform.Add("Line3","Line")
+ mycontrol.Move(594,167,7791,167)
+ 
+ ÿÊmypageÿmyform.Pages.Add("H_lfdnr.KVER002","Page")
+ mypage.BackVisibleÿ0
+ mypage.BackColorÿ0
+ mypage.Widthÿ7792
+ mypage.Heightÿ178
+ mypage.Nameÿ"H_lfdnr.KVER002"
+ mypage.RefreshStyleÿ1
+ mypage.AbsolutePositionÿ0
+ 
+ myform.DefBackColorÿ8
+ ÿÊmycontrolÿmyform.Add("TextBox34","TextBox")
+ mycontrol.Move(594,0,1438,146)
+ mycontrol.TabIndexÿ7
+ mycontrol.ControlSourceÿ"VS_Nr.KVERTRAG"
+ 
+ myform.DefFontBoldÿÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox35","TextBox")
+ mycontrol.Move(7292,0,250,146)
+ mycontrol.TabIndexÿ8
+ mycontrol.ControlSourceÿ"SRHaftung.KVERTRAG"
+ 
+ myform.DefFontBoldÿ0
+ ÿÊmycontrolÿmyform.Add("TextBox36","TextBox")
+ mycontrol.Move(2157,0,625,146)
+ mycontrol.TabIndexÿ9
+ mycontrol.ControlSourceÿ"VS_Beginn.KVERTRAG"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox37","TextBox")
+ mycontrol.Move(2990,0,625,146)
+ mycontrol.TabIndexÿ10
+ mycontrol.ControlSourceÿ"Kndigung.KVERTRAG"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox38","TextBox")
+ mycontrol.Move(3771,0,3125,146)
+ mycontrol.TabIndexÿ11
+ mycontrol.ControlSourceÿ"VStatusTxT.KVERTRAG"
+ 
+ myform.DefBackColorÿ0
+ ÿÊmycontrolÿmyform.Add("Line5","Line")
+ mycontrol.Move(594,157,7791,157)
+ 
+ ÿÊmypageÿmyform.Pages.Add("F_REPORT","Page")
+ mypage.BackVisibleÿ0
+ mypage.BackColorÿ0
+ mypage.Widthÿ7865
+ mypage.Heightÿ855
+ mypage.Nameÿ"F_REPORT"
+ mypage.RefreshStyleÿ1
+ mypage.AbsolutePositionÿ0
+ 
+ myform.DefBackColorÿ8
+ ÿÊmycontrolÿmyform.Add("Line1","Line")
+ mycontrol.Move(511,63,7854,63)
+ 
+ myform.DefBackVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ myform.DefFontBoldÿÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox2","TextBox")
+ mycontrol.Move(6698,167,938,146)
+ mycontrol.TabIndexÿ4
+ mycontrol.ControlSourceÿ"anzZ%"
+ mycontrol.Calculationÿ"lfdNr.KVERTRAG"
+ mycontrol.CalcFormatÿ"-,999999999999.       "
+ mycontrol.Aggregateÿ2
+ 
+ ÿÊmycontrolÿmyform.Add("Line2","Line")
+ mycontrol.Move(500,761,7833,761)
+ 
+ myform.DefBackVisibleÿ0
+ myform.DefAlignmentÿ0
+ myform.DefFontBoldÿ0
+ ÿÊmycontrolÿmyform.Add("Label21","Label")
+ mycontrol.Move(500,167,1521,146)
+ mycontrol.Captionÿ"Anzahl der Zahlungseing„nge"
+ 
+ myform.DefBackVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ myform.DefFontBoldÿÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox15","TextBox")
+ mycontrol.Move(6698,334,938,146)
+ mycontrol.TabIndexÿ14
+ mycontrol.ControlSourceÿ"summeZ1%"
+ mycontrol.Calculationÿ"BewertungEU.ZEINGAN1"
+ mycontrol.CalcFormatÿ"-,999999999999.00     "
+ mycontrol.Aggregateÿ1
+ 
+ myform.DefBackVisibleÿ0
+ myform.DefAlignmentÿ0
+ myform.DefFontBoldÿ0
+ ÿÊmycontrolÿmyform.Add("Label340","Label")
+ mycontrol.Move(500,334,1167,146)
+ mycontrol.Captionÿ"Summe Zahlungen"
+ 
+ myform.DefBackVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ myform.DefFontBoldÿÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox598","TextBox")
+ mycontrol.Move(6698,500,938,146)
+ mycontrol.TabIndexÿ15
+ mycontrol.ControlSourceÿ"anzv1%"
+ mycontrol.Calculationÿ"COUNT (lfdNr.KVERTRAG)"
+ mycontrol.CalcFormatÿ"-,999999999999.00     "
+ 
+ myform.DefBackVisibleÿ0
+ myform.DefAlignmentÿ0
+ myform.DefFontBoldÿ0
+ ÿÊmycontrolÿmyform.Add("Label341","Label")
+ mycontrol.Move(500,500,1167,146)
+ mycontrol.Captionÿ"Anzahl Vertr„ge"
+ 
+ ÿÊmypageÿmyform.Pages.Add("F_SELECT","Page")
+ mypage.BackVisibleÿ0
+ mypage.BackColorÿ0
+ mypage.Widthÿ7761
+ mypage.Heightÿ157
+ mypage.Nameÿ"F_SELECT"
+ mypage.RefreshStyleÿ1
+ mypage.AbsolutePositionÿ0
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox7","TextBox")
+ mycontrol.Move(730,11,1750,146)
+ mycontrol.TabIndexÿ2
+ mycontrol.ControlSourceÿ"VS_Nr.ZEINGAN1"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox31","TextBox")
+ mycontrol.Move(2532,11,625,146)
+ mycontrol.TabIndexÿ7
+ mycontrol.ControlSourceÿ"BuchungsDatum.ZEINGAN1"
+ 
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox32","TextBox")
+ mycontrol.Move(6396,0,1188,146)
+ mycontrol.TabIndexÿ8
+ mycontrol.ControlSourceÿ"BewertungEU.ZEINGAN1"
+ 
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("TextBox14","TextBox")
+ mycontrol.Move(3282,11,3156,146)
+ mycontrol.TabIndexÿ13
+ mycontrol.ControlSourceÿ"Buchungstext.ZEINGAN1"
+ 
+ ÿÊmypageÿmyform.Pages.Add("H_PAGE","Page")
+ mypage.BackVisibleÿ0
+ mypage.BackColorÿ0
+ mypage.Widthÿ7761
+ mypage.Heightÿ719
+ mypage.Nameÿ"H_PAGE"
+ mypage.RefreshStyleÿ1
+ mypage.AbsolutePositionÿ0
+ 
+ myform.DefForeColorÿ8
+ myform.DefBackColorÿ0
+ myform.DefStepWidthÿ3
+ myform.DefBackVisibleÿÿ1
+ ÿÊmycontrolÿmyform.Add("Rectangle1","Rectangle")
+ mycontrol.Move(511,11,7167,385)
+ 
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ8
+ myform.DefStepWidthÿ2
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox21","TextBox")
+ mycontrol.Move(5584,63,2010,135)
+ mycontrol.TabIndexÿ1
+ mycontrol.ControlSourceÿ"seite$"
+ mycontrol.Calculationÿ"~Datum: ~ + DATE$ ( TODAY ,~dd.mm.yyyy~) + ~, Seite ~ + LTRIM$ ( STR$ ( PG ,~999~))"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿ0
+ myform.DefAlignmentÿ0
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"Arial,12,1,34,0"
+ ÿÊmycontrolÿmyform.Add("Label4","Label")
+ mycontrol.Move(584,0,1437,198)
+ mycontrol.Captionÿ"Vertragsbersicht"
+ 
+ myform.DefBackColorÿ8
+ myform.DefAlignmentÿ1
+ myform.DefFontStringÿ"Arial,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("Label9","Label")
+ mycontrol.Move(6761,417,969,292)
+ mycontrol.Captionÿ"Storno Haftung"ÿÿ(13)ÿÿ(10)ÿ"in Monaten"
+ 
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label11","Label")
+ mycontrol.Move(615,417,865,136)
+ mycontrol.Captionÿ"VS-/Policen-Nr."
+ 
+ myform.DefBackVisibleÿÿ1
+ myform.DefFontBoldÿ0
+ myform.DefFontItalicÿÿ1
+ myform.DefFontStringÿ"Arial,9,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox22","TextBox")
+ mycontrol.Move(584,188,7010,167)
+ mycontrol.TabIndexÿ3
+ mycontrol.ControlSourceÿ"Ueberschr$"
+ mycontrol.WrapOverflowÿÿ1
+ 
+ myform.DefBackVisibleÿ0
+ myform.DefFontBoldÿÿ1
+ myform.DefFontItalicÿ0
+ myform.DefFontStringÿ"Arial,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("Label14","Label")
+ mycontrol.Move(2178,417,395,146)
+ mycontrol.Captionÿ"Beginn"
+ 
+ ÿÊmycontrolÿmyform.Add("Label15","Label")
+ mycontrol.Move(3032,417,364,146)
+ mycontrol.Captionÿ"Ablauf"
+ 
+ myform.DefAlignmentÿ2
+ ÿÊmycontrolÿmyform.Add("Label16","Label")
+ mycontrol.Move(2730,417,156,146)
+ mycontrol.Captionÿ"-"
+ 
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label20","Label")
+ mycontrol.Move(3792,417,886,146)
+ mycontrol.Captionÿ"Vertragsstatus"
+ 
+ 
+ myform.Links.Add("CodeVT.ZEINGAN1","lfdnr.KVERTRAG")
+ ÿ’ÿÿ
+ 
+

@@ -1,0 +1,2118 @@
+SBP
+
+ÿÿmain()
+ ÿƒSPNEU()
+ ÿ’ÿÿ
+ 
+ÿÿSPNEU():ÿ½                                         30.01.2006
+ ÿ×A$:ÿ½                                             Local variable
+ 
+ ÿ×myform ÿUForm
+ ÿ×mypage ÿUPage
+ ÿ×mycontrol ÿUFormControl
+ 
+ ÿ¡Forms.Exists("PROVIS")ÿp
+Forms("PROVIS").Delete()
+ ÿ’ÿ¡
+ 
+ ÿ•"intro$","af_VArt$","vertrag$","sp$","sn$","abbr$","ende$","neu$","saveit$","bearb$"
+ ÿ•"search$","probe$","ti$","xmlexp$","afskimp$","statist$","druck$","spartenart$","afskimp1$"
+ ÿ•"zeigestamm$","su2$","afskimp2$","zur$"
+ ÿÿintro$,af_VArt$,vertrag$,sp$,sn$,abbr$,ende$,neu$,saveit$,bearb$,search$,probe$,ti$
+ ÿÿxmlexp$,afskimp$,statist$,druck$,spartenart$,afskimp1$,zeigestamm$,su2$,afskimp2$
+ ÿÿzur$
+ 
+ ÿ´ÿ™ÿà"E:\CODIE.FPB\PROVIS\SPARTEN"
+ ÿ´ÿ™ÿà"E:\CODIE.FPB\PROVIS\FORMULAR"
+ ÿ´ÿ™ÿà"E:\CODIE.FPB\PROVIS\SPGRUPPE"
+ ÿ´ÿ™ÿà"E:\CODIE.FPB\PROVIS\SPASTIK"
+ 
+ ÿÊmyformÿForms.Add("PROVIS","Form")
+ myform.ScaleModeÿ3
+ myform.ShowExternalsÿ0
+ myform.Nameÿ"PROVIS"
+ myform.FileNameÿ"E:\CODIE.FPB\PROVIS\1024.SBV\SPARTEN.SBV"
+ myform.AutoRedrawÿ0
+ myform.AutoLockingÿ0
+ myform.UserFocusChangeÿÿ1
+ 
+ myform.DefVisibleÿÿ1
+ myform.DefEnabledÿÿ1
+ myform.DefForeColorÿ253
+ myform.DefBackColorÿ0
+ myform.DefBorderColorÿ2
+ myform.DefBorderWidthÿ1
+ myform.DefForePatternÿ0
+ myform.DefStepWidthÿ3
+ myform.DefBackVisibleÿ0
+ myform.DefForeVisibleÿÿ1
+ myform.DefBorderVisibleÿ0
+ myform.DefShadowÿ0
+ myform.DefStretchÿ0
+ myform.DefPrintableÿÿ1
+ myform.DefWindowsDefaultsÿ0
+ myform.DefViewStyleÿ2
+ myform.DefAlignmentÿ0
+ myform.DefFontBoldÿ0
+ myform.DefFontItalicÿ0
+ myform.DefFontUnderlineÿ0
+ myform.DefSectionHÿ0
+ myform.DefSectionVÿ0
+ myform.DefFontStringÿ"System,10,1,1,0"
+ 
+ ÿÊmypage ÿmyform.Pages(1)
+ mypage.BackVisibleÿÿ1
+ mypage.BackColorÿ253
+ mypage.Widthÿ10698
+ mypage.Heightÿ7480
+ mypage.Nameÿ"Page1"
+ mypage.RefreshStyleÿ1
+ mypage.AbsolutePositionÿ0
+ 
+ ÿÊmycontrolÿmyform.Add("Rectangle37","Rectangle")
+ mycontrol.Move(198,167,10198,6667)
+ 
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ13
+ myform.DefStepWidthÿ2
+ myform.DefBackVisibleÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("CommandButton287","CommandButton")
+ mycontrol.Move(5094,365,406,135)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ10
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"REM"
+ mycontrol.ControlSourceÿ"intro$"
+ 
+ myform.DefForeColorÿ253
+ myform.DefBackColorÿ6
+ myform.DefBorderColorÿ8
+ myform.DefBorderVisibleÿÿ1
+ myform.DefSectionHÿ1
+ myform.DefSectionVÿ1
+ ÿÊmycontrolÿmyform.Add("Rectangle8","Rectangle")
+ mycontrol.Move(6053,3448,3281,2625)
+ 
+ ÿÊmycontrolÿmyform.Add("Rectangle9","Rectangle")
+ mycontrol.Move(6053,3438,3281,198)
+ 
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefViewStyleÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("Label7","Label")
+ mycontrol.Move(6125,3469,730,136)
+ mycontrol.Captionÿ"Spartengruppe"
+ 
+ myform.DefForeColorÿ8
+ myform.DefBackColorÿ12
+ myform.DefBackVisibleÿÿ1
+ myform.DefForeVisibleÿ0
+ myform.DefBorderVisibleÿÿ1
+ myform.DefViewStyleÿ2
+ ÿÊmycontrolÿmyform.Add("Rectangle220","Rectangle")
+ mycontrol.Move(1198,657,8146,323)
+ 
+ myform.DefForeColorÿ253
+ myform.DefBackColorÿ6
+ myform.DefForeVisibleÿÿ1
+ ÿÊmycontrolÿmyform.Add("Rectangle221","Rectangle")
+ mycontrol.Move(1198,2917,8136,490)
+ 
+ myform.DefForeColorÿ8
+ ÿÊmycontrolÿmyform.Add("Rectangle222","Rectangle")
+ mycontrol.Move(1198,3438,4844,2656)
+ 
+ myform.DefForeColorÿ253
+ ÿÊmycontrolÿmyform.Add("Rectangle223","Rectangle")
+ mycontrol.Move(1198,990,8136,1948)
+ 
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefViewStyleÿ0
+ ÿÊmycontrolÿmyform.Add("Label536","Label")
+ mycontrol.Move(1271,1053,323,135)
+ mycontrol.Captionÿ"Sparte"
+ 
+ myform.DefBackColorÿ253
+ myform.DefBorderColorÿ2
+ myform.DefBackVisibleÿÿ1
+ myform.DefPrintableÿ0
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("CommandButton280","CommandButton")
+ mycontrol.Move(1667,6605,1250,156)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ31
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"AFTER CodeGrSp.SPARTEN:CALL FStore(~SPARTEN~):ENTER END "
+ mycontrol.ControlSourceÿ"af_VArt$"
+ 
+ myform.DefForeColorÿ6
+ myform.DefBackColorÿ12
+ myform.DefPrintableÿÿ1
+ ÿÊmycontrolÿmyform.Add("Label538","Label")
+ mycontrol.Move(1271,730,469,135)
+ mycontrol.Captionÿ"Sparten"
+ 
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ253
+ myform.DefBorderColorÿ1
+ myform.DefStepWidthÿ3
+ myform.DefBorderVisibleÿÿ1
+ ÿÊmycontrolÿmyform.Add("vertragsuebersicht","CommandButton")
+ mycontrol.Move(8000,719,1261,198)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ11
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"&Vertragsbersicht"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"SPARTEsub% = 1"
+ mycontrol.ControlSourceÿ"vertrag$"
+ 
+ myform.DefBackColorÿ12
+ myform.DefBorderColorÿ8
+ myform.DefStepWidthÿ2
+ myform.DefForeVisibleÿ0
+ myform.DefViewStyleÿ2
+ ÿÊmycontrolÿmyform.Add("Rectangle224","Rectangle")
+ mycontrol.Move(1198,261,8146,396)
+ 
+ myform.DefBackColorÿ253
+ myform.DefBorderColorÿ1
+ myform.DefStepWidthÿ3
+ myform.DefForeVisibleÿÿ1
+ myform.DefPrintableÿ0
+ myform.DefFontStringÿ"Wingdings,8,1,2,1"
+ ÿÊmycontrolÿmyform.Add("links1","CommandButton")
+ mycontrol.Move(3917,323,313,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ6
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"‡"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"datei$ = ~sparten~:SPARTEsub% = 103"
+ mycontrol.ControlSourceÿ"sp$"
+ 
+ ÿÊmycontrolÿmyform.Add("rechts1","CommandButton")
+ mycontrol.Move(4271,323,313,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ7
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"Š"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"datei$ = ~sparten~:SPARTEsub% = 102"
+ mycontrol.ControlSourceÿ"sn$"
+ 
+ myform.DefVisibleÿ0
+ myform.DefBackColorÿ8
+ myform.DefFontStringÿ"System,10,0,34,0"
+ ÿÊmycontrolÿmyform.Add("abbruch","CommandButton")
+ mycontrol.Move(3250,323,625,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ4
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"&Abbruch"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"ENTER END "
+ mycontrol.ControlSourceÿ"abbr$"
+ 
+ myform.DefVisibleÿÿ1
+ myform.DefBackColorÿ6
+ myform.DefPrintableÿÿ1
+ ÿÊmycontrolÿmyform.Add("zurueck","CommandButton")
+ mycontrol.Move(8625,323,636,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ9
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"&Zurck"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"_formend% = 1"
+ mycontrol.ControlSourceÿ"ende$"
+ 
+ myform.DefBackColorÿ253
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("neu","CommandButton")
+ mycontrol.Move(1271,323,625,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ1
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"&Neu"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"SPARTEsub% = 104"
+ mycontrol.ControlSourceÿ"neu$"
+ 
+ ÿÊmycontrolÿmyform.Add("sichern","CommandButton")
+ mycontrol.Move(2573,323,636,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ3
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"S&ichern"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"CALL FStore(~sparten~)"
+ mycontrol.ControlSourceÿ"saveit$"
+ 
+ ÿÊmycontrolÿmyform.Add("bearb","CommandButton")
+ mycontrol.Move(1938,323,594,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ2
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"&Bearb."
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"SPARTEsub% = 99"
+ mycontrol.ControlSourceÿ"bearb$"
+ 
+ myform.DefForeColorÿ253
+ myform.DefBackColorÿ6
+ myform.DefBorderColorÿ8
+ myform.DefStepWidthÿ2
+ myform.DefBackVisibleÿ0
+ ÿÊmycontrolÿmyform.Add("Rectangle225","Rectangle")
+ mycontrol.Move(1198,3459,4802,198)
+ 
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ8
+ myform.DefBorderVisibleÿ0
+ myform.DefViewStyleÿ0
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("Label539","Label")
+ mycontrol.Move(1292,3490,250,135)
+ mycontrol.Captionÿ"Notiz"
+ 
+ myform.DefForeColorÿ253
+ myform.DefBackColorÿ6
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefViewStyleÿ2
+ ÿÊmycontrolÿmyform.Add("Rectangle226","Rectangle")
+ mycontrol.Move(1198,2907,8136,198)
+ 
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefViewStyleÿ0
+ ÿÊmycontrolÿmyform.Add("Label540","Label")
+ mycontrol.Move(1292,2948,542,136)
+ mycontrol.Captionÿ"Formularart"
+ 
+ ÿÊmycontrolÿmyform.Add("Label541","Label")
+ mycontrol.Move(1282,1240,218,135)
+ mycontrol.Captionÿ"Tarif"
+ 
+ ÿÊmycontrolÿmyform.Add("Label542","Label")
+ mycontrol.Move(1282,1438,677,135)
+ mycontrol.Captionÿ"Fondsgattung"
+ 
+ myform.DefBackColorÿ195
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox535","TextBox")
+ mycontrol.Move(2188,1042,4375,136)
+ mycontrol.TabIndexÿ12
+ mycontrol.ControlSourceÿ"sparte.SPARTEN"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox536","TextBox")
+ mycontrol.Move(2188,1240,3646,135)
+ mycontrol.TabIndexÿ13
+ mycontrol.ControlSourceÿ"Tarif.SPARTEN"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox537","TextBox")
+ mycontrol.Move(2188,1438,3646,135)
+ mycontrol.TabIndexÿ14
+ mycontrol.ControlSourceÿ"Fondsgattung.SPARTEN"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox538","TextBox")
+ mycontrol.Move(1240,3678,4750,2375)
+ mycontrol.TabIndexÿ28
+ mycontrol.ControlSourceÿ"Notiz.SPARTEN"
+ 
+ myform.DefBackColorÿ253
+ myform.DefBorderColorÿ1
+ myform.DefStepWidthÿ3
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("suchen","CommandButton")
+ mycontrol.Move(3250,323,625,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ5
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"&Suchen"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"SPARTEsub% = 101"
+ mycontrol.ControlSourceÿ"search$"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBorderColorÿ2
+ myform.DefWindowsDefaultsÿÿ1
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("ComboBox1","ComboBox")
+ mycontrol.Move(1292,3146,6250,3177)
+ mycontrol.TabIndexÿ27
+ mycontrol.WindowsDefaultsÿÿ1
+ mycontrol.ListSourceTypeÿ1
+ mycontrol.Sortedÿÿ1
+ mycontrol.Orderÿ"Formularname"
+ mycontrol.ControlSourceÿ"Formular.SPARTEN"
+ mycontrol.ListSources.Add("Formularname.FORMULAR")
+ mycontrol.ListSources.Add("Formular.FORMULAR")
+ mycontrol.BoundColumnÿ2
+ mycontrol.SetColumnWidths(4000,0)
+ 
+ ÿÊmycontrolÿmyform.Add("ComboBox2","ComboBox")
+ mycontrol.Move(6115,3678,3188,2395)
+ mycontrol.TabIndexÿ29
+ mycontrol.WindowsDefaultsÿÿ1
+ mycontrol.ListSourceTypeÿ1
+ mycontrol.Sortedÿÿ1
+ mycontrol.Orderÿ"Gruppe"
+ mycontrol.ControlSourceÿ"CodeGrSp.SPARTEN"
+ mycontrol.ListSources.Add("Gruppe.SPGRUPPE")
+ mycontrol.ListSources.Add("CodeGrSp.SPGRUPPE")
+ mycontrol.BoundColumnÿ2
+ mycontrol.SetColumnWidths(4000,0)
+ 
+ myform.DefBackColorÿ253
+ myform.DefBorderColorÿ1
+ myform.DefWindowsDefaultsÿ0
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("probe","CommandButton")
+ mycontrol.Move(6053,323,2520,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ8
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"Probeanzeige &Formular"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"SPARTEsub% = 100"
+ mycontrol.ControlSourceÿ"probe$"
+ 
+ myform.DefBackColorÿ195
+ myform.DefBorderColorÿ8
+ myform.DefStepWidthÿ2
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox5","TextBox")
+ mycontrol.Move(8021,1042,292,136)
+ mycontrol.TabIndexÿ23
+ mycontrol.ControlSourceÿ"Hauptsparte.SPARTEN"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox6","TextBox")
+ mycontrol.Move(8021,1240,219,135)
+ mycontrol.TabIndexÿ24
+ mycontrol.ControlSourceÿ"Untersparte.SPARTEN"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ ÿÊmycontrolÿmyform.Add("Label8","Label")
+ mycontrol.Move(6761,1053,937,135)
+ mycontrol.Captionÿ"GDV - Hauptsparte"
+ 
+ ÿÊmycontrolÿmyform.Add("Label9","Label")
+ mycontrol.Move(6761,1240,906,135)
+ mycontrol.Captionÿ"GDV - Untersparte"
+ 
+ myform.DefVisibleÿ0
+ myform.DefBackColorÿ253
+ myform.DefBorderColorÿ1
+ myform.DefStepWidthÿ3
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("tmplimp","CommandButton")
+ mycontrol.Move(6313,5459,2781,260)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ30
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"Import Templeton"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"SPARTEsub% = 4"
+ mycontrol.ControlSourceÿ"ti$"
+ 
+ myform.DefVisibleÿÿ1
+ myform.DefBackColorÿ8
+ myform.DefStepWidthÿ2
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("Label13","Label")
+ mycontrol.Move(6969,1688,2146,271)
+ mycontrol.Captionÿ"Sparte darf durch den GDV - Import "ÿÿ(13)ÿÿ(10)ÿ"aktualisiert werden"
+ 
+ myform.DefBorderColorÿ8
+ myform.DefFontBoldÿ0
+ ÿÊmycontrolÿmyform.Add("CheckBox1","CheckBox")
+ mycontrol.Move(6761,1688,2417,292)
+ mycontrol.TabIndexÿ26
+ mycontrol.ValueOnÿ"j"
+ mycontrol.ValueOffÿ"n"
+ mycontrol.ControlSourceÿ"GDVImport.SPARTEN"
+ 
+ ÿÊmycontrolÿmyform.Add("Label11","Label")
+ mycontrol.Move(1282,1834,708,135)
+ mycontrol.Captionÿ"Vers. Steuer"
+ 
+ myform.DefBackColorÿ195
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox7","TextBox")
+ mycontrol.Move(2188,1834,437,135)
+ mycontrol.TabIndexÿ16
+ mycontrol.ControlSourceÿ"VST.SPARTEN"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ ÿÊmycontrolÿmyform.Add("CheckBox2","CheckBox")
+ mycontrol.Move(6761,1417,2542,229)
+ mycontrol.TabIndexÿ25
+ mycontrol.Captionÿ"Sparte ist Standard fr diese GDV-Hauptsparte"
+ mycontrol.ValueOnÿ"1"
+ mycontrol.ValueOffÿ"0"
+ mycontrol.ControlSourceÿ"GDVStandardSpar.SPARTEN"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBorderColorÿ2
+ myform.DefBackVisibleÿÿ1
+ myform.DefFontStringÿ"Arial,10,1,34,0"
+ ÿÊmycontrolÿmyform.Add("OptionButton1","OptionButton")
+ mycontrol.Move(2771,1844,615,136)
+ mycontrol.TabIndexÿ17
+ mycontrol.Captionÿ"Sach"
+ mycontrol.ValueOnÿ"0"
+ mycontrol.ControlSourceÿ"SparteIstSach.SPARTEN"
+ 
+ ÿÊmycontrolÿmyform.Add("OptionButton2","OptionButton")
+ mycontrol.Move(3428,1844,666,136)
+ mycontrol.TabIndexÿ18
+ mycontrol.Captionÿ"Leben"
+ mycontrol.ValueOnÿ"1"
+ mycontrol.ControlSourceÿ"SparteIstSach.SPARTEN"
+ 
+ myform.DefVisibleÿ0
+ myform.DefEnabledÿ0
+ myform.DefBackColorÿ253
+ myform.DefBorderColorÿ1
+ myform.DefStepWidthÿ3
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("xmlexp","CommandButton")
+ mycontrol.Move(3198,7282,2782,125)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ32
+ mycontrol.Captionÿ"IIM - Sparte zuweisen"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"CALL GetIIMSparteID()"
+ mycontrol.ControlSourceÿ"xmlexp$"
+ 
+ myform.DefVisibleÿÿ1
+ myform.DefEnabledÿÿ1
+ myform.DefBorderColorÿ8
+ myform.DefStepWidthÿ2
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ2
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox81","TextBox")
+ mycontrol.Move(6105,7188,3125,135)
+ mycontrol.TabIndexÿ33
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"IIMsparteid.SPARTEN"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBorderColorÿ2
+ myform.DefAlignmentÿ0
+ myform.DefFontStringÿ"Arial,10,1,34,0"
+ ÿÊmycontrolÿmyform.Add("OptionButton3","OptionButton")
+ mycontrol.Move(4115,1844,667,136)
+ mycontrol.TabIndexÿ19
+ mycontrol.Captionÿ"andere"
+ mycontrol.ValueOnÿ"2"
+ mycontrol.ControlSourceÿ"SparteIstSach.SPARTEN"
+ 
+ myform.DefVisibleÿ0
+ myform.DefBackColorÿ253
+ myform.DefBorderColorÿ1
+ myform.DefStepWidthÿ3
+ myform.DefBorderVisibleÿÿ1
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("afskimp","CommandButton")
+ mycontrol.Move(6313,4282,2781,260)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ34
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"Import fr AFSK - VL"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"SPARTEsub% = 5"
+ mycontrol.ControlSourceÿ"afskimp$"
+ 
+ myform.DefVisibleÿÿ1
+ myform.DefForeColorÿ0
+ myform.DefBackColorÿ2
+ myform.DefAlignmentÿ2
+ ÿÊmycontrolÿmyform.Add("statist","CommandButton")
+ mycontrol.Move(5344,323,667,261)
+ mycontrol.Valueÿÿ1
+ mycontrol.TabIndexÿ35
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"Statistik"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"SPARTEsub% = 6"
+ mycontrol.ControlSourceÿ"statist$"
+ 
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ0
+ myform.DefStepWidthÿ2
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ myform.DefFontStringÿ"Microsoft Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("Label73","Label")
+ mycontrol.Move(209,21,927,136)
+ mycontrol.Captionÿ"letzte nderung"
+ 
+ myform.DefBackColorÿ253
+ myform.DefBorderColorÿ8
+ myform.DefBackVisibleÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox575","TextBox")
+ mycontrol.Move(1157,21,1166,136)
+ mycontrol.TabIndexÿ142
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"MATimeStamp1.SPARTEN"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox576","TextBox")
+ mycontrol.Move(2375,21,3646,136)
+ mycontrol.TabIndexÿ143
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"MAName.SPARTEN"
+ 
+ myform.DefBorderColorÿ1
+ myform.DefStepWidthÿ3
+ myform.DefBorderVisibleÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("druck","CommandButton")
+ mycontrol.Move(4636,323,667,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ147
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"Drucken"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"SPARTEsub% = 105"
+ mycontrol.ControlSourceÿ"druck$"
+ 
+ myform.DefBackColorÿ8
+ myform.DefStepWidthÿ2
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("Label47","Label")
+ mycontrol.Move(1282,2032,708,135)
+ mycontrol.Captionÿ"Kostentr„ger"
+ 
+ myform.DefBackColorÿ195
+ myform.DefBorderColorÿ8
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox634","TextBox")
+ mycontrol.Move(2188,2032,437,135)
+ mycontrol.TabIndexÿ20
+ mycontrol.ControlSourceÿ"Kostentraeger.SPARTEN"
+ 
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox239","TextBox")
+ mycontrol.Move(3875,2480,1063,145)
+ mycontrol.TabIndexÿ21
+ mycontrol.ControlSourceÿ"ZahlBertrMin.SPARTEN"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label124","Label")
+ mycontrol.Move(1292,2480,2511,135)
+ mycontrol.Captionÿ"Minimalwert bei Zahlungseingang Brutto(RealCash)"
+ 
+ myform.DefBackColorÿ195
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox240","TextBox")
+ mycontrol.Move(3875,2688,1063,146)
+ mycontrol.TabIndexÿ22
+ mycontrol.ControlSourceÿ"ZahlBertrMax.SPARTEN"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label125","Label")
+ mycontrol.Move(1292,2688,2542,135)
+ mycontrol.Captionÿ"Maximalwert bei Zahlungseingang Brutto(RealCash)"
+ 
+ myform.DefVisibleÿ0
+ ÿÊmycontrolÿmyform.Add("Label543","Label")
+ mycontrol.Move(1282,2250,708,136)
+ mycontrol.Captionÿ"Spartenart"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBorderColorÿ2
+ myform.DefStepWidthÿ3
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefWindowsDefaultsÿÿ1
+ myform.DefFontStringÿ"Arial,10,1,34,0"
+ ÿÊmycontrolÿmyform.Add("CommandButton288","CommandButton")
+ mycontrol.Move(1938,2230,3000,198)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ160
+ mycontrol.WindowsDefaultsÿÿ1
+ mycontrol.Commandÿ"SPARTEsub% = 7"
+ mycontrol.ControlSourceÿ"spartenart$"
+ 
+ myform.DefBackColorÿ253
+ myform.DefBorderColorÿ1
+ myform.DefWindowsDefaultsÿ0
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("afskimp1","CommandButton")
+ mycontrol.Move(6313,4605,2781,260)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ161
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"Import fr AFSK - PSP"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"SPARTEsub% = 8"
+ mycontrol.ControlSourceÿ"afskimp1$"
+ 
+ myform.DefVisibleÿÿ1
+ myform.DefAlignmentÿ2
+ ÿÊmycontrolÿmyform.Add("zeigestammb","CommandButton")
+ mycontrol.Move(5240,3490,740,125)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ162
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"zoom"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"CALL ADRNoteBig(~Notiz~,~Sparten~)"
+ mycontrol.ControlSourceÿ"zeigestamm$"
+ 
+ myform.DefBackColorÿ8
+ myform.DefStepWidthÿ2
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("Label51","Label")
+ mycontrol.Move(1282,1636,343,135)
+ mycontrol.Captionÿ"WKN"
+ 
+ myform.DefBackColorÿ195
+ myform.DefBorderColorÿ8
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox635","TextBox")
+ mycontrol.Move(2188,1636,1875,135)
+ mycontrol.TabIndexÿ15
+ mycontrol.ControlSourceÿ"WKNr.SPARTEN"
+ 
+ myform.DefBackColorÿ193
+ myform.DefBorderColorÿ1
+ myform.DefStepWidthÿ3
+ myform.DefAlignmentÿ2
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("CommandButton291","CommandButton")
+ mycontrol.Move(6698,719,1261,198)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ163
+ mycontrol.Captionÿ"Vertragssuche"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"SPARTEsub% = 106"
+ mycontrol.ControlSourceÿ"su2$"
+ 
+ myform.DefVisibleÿ0
+ myform.DefBackColorÿ253
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("afskimp2","CommandButton")
+ mycontrol.Move(6313,4928,2781,260)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ164
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"Import fr AFSK - Pflege"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"SPARTEsub% = 9"
+ mycontrol.ControlSourceÿ"afskimp2$"
+ 
+ ÿÊmypageÿmyform.Pages.Add("Page3","Page")
+ mypage.BackVisibleÿÿ1
+ mypage.BackColorÿ253
+ mypage.Widthÿ11698
+ mypage.Heightÿ7480
+ mypage.Nameÿ"Page3"
+ mypage.RefreshStyleÿ1
+ mypage.AbsolutePositionÿ0
+ 
+ myform.DefVisibleÿÿ1
+ myform.DefForeColorÿ253
+ myform.DefBackColorÿ0
+ myform.DefBorderColorÿ2
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefViewStyleÿ2
+ myform.DefSectionHÿ0
+ myform.DefSectionVÿ0
+ ÿÊmycontrolÿmyform.Add("Rectangle33","Rectangle")
+ mycontrol.Move(198,167,10198,6667)
+ 
+ myform.DefBackColorÿ6
+ myform.DefBorderColorÿ8
+ myform.DefStepWidthÿ2
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefSectionHÿ1
+ myform.DefSectionVÿ1
+ ÿÊmycontrolÿmyform.Add("Rectangle11","Rectangle")
+ mycontrol.Move(1000,1563,8532,5073)
+ 
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ0
+ myform.DefViewStyleÿ0
+ myform.DefAlignmentÿ1
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox75","TextBox")
+ mycontrol.Move(2761,2011,1062,135)
+ mycontrol.TabIndexÿ36
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"VertrGesamt.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label48","Label")
+ mycontrol.Move(1053,2011,812,135)
+ mycontrol.Captionÿ"Vertr„ge gesamt"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox76","TextBox")
+ mycontrol.Move(2761,2178,1062,135)
+ mycontrol.TabIndexÿ37
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"VertrStatu1.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label49","Label")
+ mycontrol.Move(1053,2178,812,135)
+ mycontrol.Captionÿ"lebend"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox77","TextBox")
+ mycontrol.Move(2761,2344,1062,136)
+ mycontrol.TabIndexÿ38
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"VertrStatu2.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label50","Label")
+ mycontrol.Move(1053,2344,1458,136)
+ mycontrol.Captionÿ"lebend/kurzfristig/unterj„hrig"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox78","TextBox")
+ mycontrol.Move(2761,2511,1062,135)
+ mycontrol.TabIndexÿ39
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"VertrStatu3.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label52","Label")
+ mycontrol.Move(1053,2511,1458,135)
+ mycontrol.Captionÿ"ruhend/Anwartschaft"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox79","TextBox")
+ mycontrol.Move(2761,2678,1062,135)
+ mycontrol.TabIndexÿ40
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"VertrStatu4.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label53","Label")
+ mycontrol.Move(1053,2678,1458,135)
+ mycontrol.Captionÿ"storniert"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox80","TextBox")
+ mycontrol.Move(2761,2844,1062,136)
+ mycontrol.TabIndexÿ41
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"VertrStatu5.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label54","Label")
+ mycontrol.Move(1053,2844,1458,136)
+ mycontrol.Captionÿ"ruhend/beitragsfrei"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox15","TextBox")
+ mycontrol.Move(2761,3011,1062,135)
+ mycontrol.TabIndexÿ42
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"VertrStatu6.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label55","Label")
+ mycontrol.Move(1053,3011,1458,135)
+ mycontrol.Captionÿ"beitragsfrei"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox82","TextBox")
+ mycontrol.Move(2761,3178,1062,135)
+ mycontrol.TabIndexÿ43
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"VertrStatu7.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label56","Label")
+ mycontrol.Move(1053,3178,1427,177)
+ mycontrol.Captionÿ"beitragsfrei durch Leistung"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox83","TextBox")
+ mycontrol.Move(2761,3344,1062,136)
+ mycontrol.TabIndexÿ44
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"VertrStatu8.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label57","Label")
+ mycontrol.Move(1053,3344,1416,136)
+ mycontrol.Captionÿ"Beitragsstundung"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox84","TextBox")
+ mycontrol.Move(2761,3511,1062,135)
+ mycontrol.TabIndexÿ45
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"VertrStatu9.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label58","Label")
+ mycontrol.Move(1053,3511,1458,135)
+ mycontrol.Captionÿ"Sonstiges"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox85","TextBox")
+ mycontrol.Move(2761,3678,1062,135)
+ mycontrol.TabIndexÿ46
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"VertrStatu10.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label59","Label")
+ mycontrol.Move(1053,3678,1458,135)
+ mycontrol.Captionÿ"Altvertrag"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox86","TextBox")
+ mycontrol.Move(2761,3844,1062,136)
+ mycontrol.TabIndexÿ47
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"VertrStatu11.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label60","Label")
+ mycontrol.Move(1053,3844,1458,136)
+ mycontrol.Captionÿ"Fremdvertrag"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox87","TextBox")
+ mycontrol.Move(2761,4011,1062,135)
+ mycontrol.TabIndexÿ48
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"VertrStatu12.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label61","Label")
+ mycontrol.Move(1053,4011,1458,135)
+ mycontrol.Captionÿ"Antrag"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox88","TextBox")
+ mycontrol.Move(2761,4178,1062,135)
+ mycontrol.TabIndexÿ49
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"VertrStatu13.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label62","Label")
+ mycontrol.Move(1053,4178,1458,135)
+ mycontrol.Captionÿ"storniert durch Dynamisierung"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox89","TextBox")
+ mycontrol.Move(2761,4344,1062,136)
+ mycontrol.TabIndexÿ50
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"VertrStatu14.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label63","Label")
+ mycontrol.Move(1053,4344,1750,136)
+ mycontrol.Captionÿ"Bestandteil eines Bndelungsvertr."
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox90","TextBox")
+ mycontrol.Move(2761,4511,1062,135)
+ mycontrol.TabIndexÿ51
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"VertrStatu15.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label64","Label")
+ mycontrol.Move(1053,4511,1458,135)
+ mycontrol.Captionÿ"Antragswiderruf"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox91","TextBox")
+ mycontrol.Move(2761,4678,1062,135)
+ mycontrol.TabIndexÿ52
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"VertrStatu16.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label65","Label")
+ mycontrol.Move(1053,4678,1458,135)
+ mycontrol.Captionÿ"Policenwiderspruch"
+ 
+ myform.DefBackColorÿ0
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"Arial,10,1,34,0"
+ ÿÊmycontrolÿmyform.Add("Label66","Label")
+ mycontrol.Move(3000,1646,459,167)
+ mycontrol.Captionÿ"Anzahl"
+ 
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox92","TextBox")
+ mycontrol.Move(3855,2011,1250,135)
+ mycontrol.TabIndexÿ53
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BWVertrGesamt.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox93","TextBox")
+ mycontrol.Move(3855,2178,1250,135)
+ mycontrol.TabIndexÿ54
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BWVertrStatu1.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox94","TextBox")
+ mycontrol.Move(3855,2344,1250,136)
+ mycontrol.TabIndexÿ55
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BWVertrStatu2.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox95","TextBox")
+ mycontrol.Move(3855,2511,1250,135)
+ mycontrol.TabIndexÿ56
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BWVertrStatu3.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox96","TextBox")
+ mycontrol.Move(3855,2678,1250,135)
+ mycontrol.TabIndexÿ57
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BWVertrStatu4.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox97","TextBox")
+ mycontrol.Move(3855,2844,1250,136)
+ mycontrol.TabIndexÿ58
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BWVertrStatu5.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox98","TextBox")
+ mycontrol.Move(3855,3011,1250,135)
+ mycontrol.TabIndexÿ59
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BWVertrStatu6.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox99","TextBox")
+ mycontrol.Move(3855,3178,1250,135)
+ mycontrol.TabIndexÿ60
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BWVertrStatu7.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox100","TextBox")
+ mycontrol.Move(3855,3344,1250,136)
+ mycontrol.TabIndexÿ61
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BWVertrStatu8.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox101","TextBox")
+ mycontrol.Move(3855,3511,1250,135)
+ mycontrol.TabIndexÿ62
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BWVertrStatu9.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox102","TextBox")
+ mycontrol.Move(3855,3678,1250,135)
+ mycontrol.TabIndexÿ63
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BWVertrStatu10.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox103","TextBox")
+ mycontrol.Move(3855,3844,1250,136)
+ mycontrol.TabIndexÿ64
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BWVertrStatu11.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox104","TextBox")
+ mycontrol.Move(3855,4011,1250,135)
+ mycontrol.TabIndexÿ65
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BWVertrStatu12.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox105","TextBox")
+ mycontrol.Move(3855,4178,1250,135)
+ mycontrol.TabIndexÿ66
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BWVertrStatu13.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox106","TextBox")
+ mycontrol.Move(3855,4344,1250,136)
+ mycontrol.TabIndexÿ67
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BWVertrStatu14.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox107","TextBox")
+ mycontrol.Move(3855,4511,1250,135)
+ mycontrol.TabIndexÿ68
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BWVertrStatu15.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox108","TextBox")
+ mycontrol.Move(3855,4678,1250,135)
+ mycontrol.TabIndexÿ69
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BWVertrStatu16.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"Arial,10,1,34,0"
+ ÿÊmycontrolÿmyform.Add("Label67","Label")
+ mycontrol.Move(4021,1646,729,167)
+ mycontrol.Captionÿ"Bewertung"
+ 
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox109","TextBox")
+ mycontrol.Move(5136,2011,1250,135)
+ mycontrol.TabIndexÿ70
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BeiVertrGesamt.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox110","TextBox")
+ mycontrol.Move(5136,2178,1250,135)
+ mycontrol.TabIndexÿ71
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BeiVertrStatu1.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox111","TextBox")
+ mycontrol.Move(5136,2344,1250,136)
+ mycontrol.TabIndexÿ72
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BeiVertrStatu2.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox112","TextBox")
+ mycontrol.Move(5136,2511,1250,135)
+ mycontrol.TabIndexÿ73
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BeiVertrStatu3.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox113","TextBox")
+ mycontrol.Move(5136,2678,1250,135)
+ mycontrol.TabIndexÿ74
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BeiVertrStatu4.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox114","TextBox")
+ mycontrol.Move(5136,2844,1250,136)
+ mycontrol.TabIndexÿ75
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BeiVertrStatu5.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox115","TextBox")
+ mycontrol.Move(5136,3011,1250,135)
+ mycontrol.TabIndexÿ76
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BeiVertrStatu6.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox116","TextBox")
+ mycontrol.Move(5136,3178,1250,135)
+ mycontrol.TabIndexÿ77
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BeiVertrStatu7.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox117","TextBox")
+ mycontrol.Move(5136,3344,1250,136)
+ mycontrol.TabIndexÿ78
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BeiVertrStatu8.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox118","TextBox")
+ mycontrol.Move(5136,3511,1250,135)
+ mycontrol.TabIndexÿ79
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BeiVertrStatu9.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox119","TextBox")
+ mycontrol.Move(5136,3678,1250,135)
+ mycontrol.TabIndexÿ80
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BeiVertrStatu10.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox120","TextBox")
+ mycontrol.Move(5136,3844,1250,136)
+ mycontrol.TabIndexÿ81
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BeiVertrStatu11.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox121","TextBox")
+ mycontrol.Move(5136,4011,1250,135)
+ mycontrol.TabIndexÿ82
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BeiVertrStatu12.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox122","TextBox")
+ mycontrol.Move(5136,4178,1250,135)
+ mycontrol.TabIndexÿ83
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BeiVertrStatu13.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox123","TextBox")
+ mycontrol.Move(5136,4344,1250,136)
+ mycontrol.TabIndexÿ84
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BeiVertrStatu14.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox124","TextBox")
+ mycontrol.Move(5136,4511,1250,135)
+ mycontrol.TabIndexÿ85
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BeiVertrStatu15.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox125","TextBox")
+ mycontrol.Move(5136,4678,1250,135)
+ mycontrol.TabIndexÿ86
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BeiVertrStatu16.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"Arial,10,1,34,0"
+ ÿÊmycontrolÿmyform.Add("Label68","Label")
+ mycontrol.Move(5198,1646,927,167)
+ mycontrol.Captionÿ"Beitrag/Brutto"
+ 
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox126","TextBox")
+ mycontrol.Move(6417,2011,1188,135)
+ mycontrol.TabIndexÿ87
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"EinhGesamt.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox127","TextBox")
+ mycontrol.Move(6417,2178,1188,135)
+ mycontrol.TabIndexÿ88
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"EinhStatu1.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox128","TextBox")
+ mycontrol.Move(6417,2344,1188,136)
+ mycontrol.TabIndexÿ89
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"EinhStatu2.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox129","TextBox")
+ mycontrol.Move(6417,2511,1188,135)
+ mycontrol.TabIndexÿ90
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"EinhStatu3.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox130","TextBox")
+ mycontrol.Move(6417,2678,1188,135)
+ mycontrol.TabIndexÿ91
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"EinhStatu4.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox131","TextBox")
+ mycontrol.Move(6417,2844,1188,136)
+ mycontrol.TabIndexÿ92
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"EinhStatu5.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox132","TextBox")
+ mycontrol.Move(6417,3011,1188,135)
+ mycontrol.TabIndexÿ93
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"EinhStatu6.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox133","TextBox")
+ mycontrol.Move(6417,3178,1188,135)
+ mycontrol.TabIndexÿ94
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"EinhStatu7.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox134","TextBox")
+ mycontrol.Move(6417,3344,1188,136)
+ mycontrol.TabIndexÿ95
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"EinhStatu8.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox135","TextBox")
+ mycontrol.Move(6417,3511,1188,135)
+ mycontrol.TabIndexÿ96
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"EinhStatu9.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox136","TextBox")
+ mycontrol.Move(6417,3678,1188,135)
+ mycontrol.TabIndexÿ97
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"EinhStatu10.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox137","TextBox")
+ mycontrol.Move(6417,3844,1188,136)
+ mycontrol.TabIndexÿ98
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"EinhStatu11.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox138","TextBox")
+ mycontrol.Move(6417,4011,1188,135)
+ mycontrol.TabIndexÿ99
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"EinhStatu12.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox139","TextBox")
+ mycontrol.Move(6417,4178,1188,135)
+ mycontrol.TabIndexÿ100
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"EinhStatu13.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox140","TextBox")
+ mycontrol.Move(6417,4344,1188,136)
+ mycontrol.TabIndexÿ101
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"EinhStatu14.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox141","TextBox")
+ mycontrol.Move(6417,4511,1188,135)
+ mycontrol.TabIndexÿ102
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"EinhStatu15.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox142","TextBox")
+ mycontrol.Move(6417,4678,1188,135)
+ mycontrol.TabIndexÿ103
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"EinhStatu16.spastik"
+ mycontrol.CalcFormatÿ"-9.00"
+ 
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"Arial,10,1,34,0"
+ ÿÊmycontrolÿmyform.Add("Label69","Label")
+ mycontrol.Move(6594,1646,636,167)
+ mycontrol.Captionÿ"Einheiten"
+ 
+ myform.DefBackColorÿ13
+ myform.DefBorderColorÿ2
+ myform.DefStepWidthÿ3
+ myform.DefBackVisibleÿÿ1
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("CommandButton16","CommandButton")
+ mycontrol.Move(4896,938,407,135)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ104
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"REM"
+ mycontrol.ControlSourceÿ"intro$"
+ 
+ myform.DefForeColorÿ8
+ myform.DefBackColorÿ12
+ myform.DefBorderColorÿ8
+ myform.DefStepWidthÿ2
+ myform.DefForeVisibleÿ0
+ myform.DefBorderVisibleÿÿ1
+ myform.DefViewStyleÿ2
+ ÿÊmycontrolÿmyform.Add("Rectangle10","Rectangle")
+ mycontrol.Move(1000,1230,8563,323)
+ 
+ myform.DefForeColorÿ0
+ myform.DefForeVisibleÿÿ1
+ myform.DefBorderVisibleÿ0
+ myform.DefViewStyleÿ0
+ myform.DefFontBoldÿÿ1
+ ÿÊmycontrolÿmyform.Add("Label33","Label")
+ mycontrol.Move(1073,1303,469,135)
+ mycontrol.Captionÿ"spastik"
+ 
+ myform.DefForeColorÿ1
+ myform.DefForeVisibleÿ0
+ myform.DefBorderVisibleÿÿ1
+ myform.DefViewStyleÿ2
+ ÿÊmycontrolÿmyform.Add("Rectangle12","Rectangle")
+ mycontrol.Move(1000,834,8563,396)
+ 
+ myform.DefBackColorÿ6
+ myform.DefBorderColorÿ1
+ myform.DefStepWidthÿ3
+ myform.DefForeVisibleÿÿ1
+ myform.DefFontStringÿ"System,10,0,34,0"
+ ÿÊmycontrolÿmyform.Add("CommandButton21","CommandButton")
+ mycontrol.Move(8834,896,635,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ105
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"Seite 1"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"FORM 1"
+ mycontrol.ControlSourceÿ"zur$"
+ 
+ myform.DefForeColorÿ0
+ myform.DefBackColorÿ12
+ myform.DefBorderColorÿ8
+ myform.DefStepWidthÿ2
+ myform.DefBorderVisibleÿ0
+ myform.DefViewStyleÿ0
+ myform.DefAlignmentÿ2
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox539","TextBox")
+ mycontrol.Move(2782,1303,4375,135)
+ mycontrol.TabIndexÿ106
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"Sparte.sparten"
+ mycontrol.CalcFormatÿ"-99999999.00"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿ0
+ myform.DefAlignmentÿ0
+ myform.DefFontStringÿ"Arial,16,1,34,0"
+ ÿÊmycontrolÿmyform.Add("Label34","Label")
+ mycontrol.Move(4521,907,844,250)
+ mycontrol.Captionÿ"Statistik"
+ 
+ myform.DefForeColorÿ1
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox540","TextBox")
+ mycontrol.Move(7636,2011,677,135)
+ mycontrol.TabIndexÿ107
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"AnzSchGesamt.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox541","TextBox")
+ mycontrol.Move(7636,2178,677,135)
+ mycontrol.TabIndexÿ108
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"AnzSchStatu1.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox542","TextBox")
+ mycontrol.Move(7636,2344,677,136)
+ mycontrol.TabIndexÿ109
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"AnzSchStatu2.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox543","TextBox")
+ mycontrol.Move(7636,2511,677,135)
+ mycontrol.TabIndexÿ110
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"AnzSchStatu3.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox544","TextBox")
+ mycontrol.Move(7636,2678,677,135)
+ mycontrol.TabIndexÿ111
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"AnzSchStatu4.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox545","TextBox")
+ mycontrol.Move(7636,2844,677,136)
+ mycontrol.TabIndexÿ112
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"AnzSchStatu5.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox546","TextBox")
+ mycontrol.Move(7636,3011,677,135)
+ mycontrol.TabIndexÿ113
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"AnzSchStatu6.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox547","TextBox")
+ mycontrol.Move(7636,3178,677,135)
+ mycontrol.TabIndexÿ114
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"AnzSchStatu7.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox548","TextBox")
+ mycontrol.Move(7636,3344,677,136)
+ mycontrol.TabIndexÿ115
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"AnzSchStatu8.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox549","TextBox")
+ mycontrol.Move(7636,3511,677,135)
+ mycontrol.TabIndexÿ116
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"AnzSchStatu9.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox550","TextBox")
+ mycontrol.Move(7636,3678,677,135)
+ mycontrol.TabIndexÿ117
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"AnzSchStatu10.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox551","TextBox")
+ mycontrol.Move(7636,3844,677,136)
+ mycontrol.TabIndexÿ118
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"AnzSchStatu11.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox552","TextBox")
+ mycontrol.Move(7636,4011,677,135)
+ mycontrol.TabIndexÿ119
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"AnzSchStatu12.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox553","TextBox")
+ mycontrol.Move(7636,4178,677,135)
+ mycontrol.TabIndexÿ120
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"AnzSchStatu13.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox554","TextBox")
+ mycontrol.Move(7636,4344,677,136)
+ mycontrol.TabIndexÿ121
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"AnzSchStatu14.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox555","TextBox")
+ mycontrol.Move(7636,4511,677,135)
+ mycontrol.TabIndexÿ122
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"AnzSchStatu15.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox556","TextBox")
+ mycontrol.Move(7636,4678,677,135)
+ mycontrol.TabIndexÿ123
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"AnzSchStatu16.spastik"
+ 
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ myform.DefFontStringÿ"Arial,10,1,34,0"
+ ÿÊmycontrolÿmyform.Add("Label35","Label")
+ mycontrol.Move(7782,1771,416,167)
+ mycontrol.Captionÿ"Anzahl"
+ 
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox557","TextBox")
+ mycontrol.Move(8344,2011,1063,135)
+ mycontrol.TabIndexÿ124
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"SchGesamt.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox558","TextBox")
+ mycontrol.Move(8344,2178,1063,135)
+ mycontrol.TabIndexÿ125
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"SchStatu1.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox559","TextBox")
+ mycontrol.Move(8344,2344,1063,136)
+ mycontrol.TabIndexÿ126
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"SchStatu2.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox560","TextBox")
+ mycontrol.Move(8344,2511,1063,135)
+ mycontrol.TabIndexÿ127
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"SchStatu3.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox561","TextBox")
+ mycontrol.Move(8344,2678,1063,135)
+ mycontrol.TabIndexÿ128
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"SchStatu4.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox562","TextBox")
+ mycontrol.Move(8344,2844,1063,136)
+ mycontrol.TabIndexÿ129
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"SchStatu5.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox563","TextBox")
+ mycontrol.Move(8344,3011,1063,135)
+ mycontrol.TabIndexÿ130
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"SchStatu6.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox564","TextBox")
+ mycontrol.Move(8344,3178,1063,135)
+ mycontrol.TabIndexÿ131
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"SchStatu7.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox565","TextBox")
+ mycontrol.Move(8344,3344,1063,136)
+ mycontrol.TabIndexÿ132
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"SchStatu8.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox566","TextBox")
+ mycontrol.Move(8344,3511,1063,135)
+ mycontrol.TabIndexÿ133
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"SchStatu9.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox567","TextBox")
+ mycontrol.Move(8344,3678,1063,135)
+ mycontrol.TabIndexÿ134
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"SchStatu10.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox568","TextBox")
+ mycontrol.Move(8344,3844,1063,136)
+ mycontrol.TabIndexÿ135
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"SchStatu11.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox569","TextBox")
+ mycontrol.Move(8344,4011,1063,135)
+ mycontrol.TabIndexÿ136
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"SchStatu12.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox570","TextBox")
+ mycontrol.Move(8344,4178,1063,135)
+ mycontrol.TabIndexÿ137
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"SchStatu13.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox571","TextBox")
+ mycontrol.Move(8344,4344,1063,136)
+ mycontrol.TabIndexÿ138
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"SchStatu14.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox572","TextBox")
+ mycontrol.Move(8344,4511,1063,135)
+ mycontrol.TabIndexÿ139
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"SchStatu15.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox573","TextBox")
+ mycontrol.Move(8344,4678,1063,135)
+ mycontrol.TabIndexÿ140
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"SchStatu16.spastik"
+ 
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ myform.DefFontStringÿ"Arial,10,1,34,0"
+ ÿÊmycontrolÿmyform.Add("Label36","Label")
+ mycontrol.Move(8417,1771,958,167)
+ mycontrol.Captionÿ"Summe gezahlt"
+ 
+ myform.DefFontBoldÿÿ1
+ ÿÊmycontrolÿmyform.Add("Label37","Label")
+ mycontrol.Move(8032,1646,635,167)
+ mycontrol.Captionÿ"Sch„den"
+ 
+ myform.DefBorderColorÿ3
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox574","TextBox")
+ mycontrol.Move(5740,5823,625,136)
+ mycontrol.TabIndexÿ141
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"STATISTDATE.spastik"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label38","Label")
+ mycontrol.Move(4782,5823,979,136)
+ mycontrol.Captionÿ"letzte Berechnung"
+ 
+ myform.DefForeColorÿ4
+ myform.DefBackColorÿ0
+ myform.DefBorderColorÿ2
+ myform.DefStepWidthÿ3
+ myform.DefSectionHÿ0
+ myform.DefSectionVÿ0
+ ÿÊmycontrolÿmyform.Add("Rectangle21","Rectangle")
+ mycontrol.Move(4594,5323,2156,427)
+ 
+ myform.DefForeColorÿ0
+ myform.DefBackColorÿ8
+ myform.DefStepWidthÿ2
+ ÿÊmycontrolÿmyform.Add("Label28","Label")
+ mycontrol.Move(4657,5375,843,136)
+ mycontrol.Captionÿ"Stornoquote in %"
+ 
+ ÿÊmycontrolÿmyform.Add("Label29","Label")
+ mycontrol.Move(4657,5573,1021,136)
+ mycontrol.Captionÿ"Schadensquote in %"
+ 
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ0
+ myform.DefBorderColorÿ8
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox577","TextBox")
+ mycontrol.Move(5740,5375,938,136)
+ mycontrol.TabIndexÿ144
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"Stornoquote.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox578","TextBox")
+ mycontrol.Move(5740,5573,938,136)
+ mycontrol.TabIndexÿ145
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"Schadquote.spastik"
+ 
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"Arial,10,1,34,0"
+ ÿÊmycontrolÿmyform.Add("Label31","Label")
+ mycontrol.Move(1188,1636,1031,167)
+ mycontrol.Captionÿ"Status Vertr„ge"
+ 
+ ÿÊmycontrolÿmyform.Add("Line1","Line")
+ mycontrol.Move(1000,1959,9499,1959)
+ 
+ myform.DefBorderColorÿ2
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox621","TextBox")
+ mycontrol.Move(2761,5480,1250,135)
+ mycontrol.TabIndexÿ146
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"CAgez.spastik"
+ 
+ myform.DefForeColorÿ4
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label76","Label")
+ mycontrol.Move(1053,6125,7854,407)
+ A$ÿ"Vertr„ge gesamt = lebend + lebend/kurzfristig + ruhend... + beitragsfrei... + Beitragsstundung + Bestandteil Bndelungsvertrag"
+ A$ÿA$ÿÿ(13)
+ A$ÿA$ÿÿ(10)
+ A$ÿA$ÿ"Stornoquote = Bewertungssumme stornierte Vertr„ge/(Bewertungssumme Vertr„ge gesamt + Bewertungssumme stornierte Vertr„ge)  * 100"
+ A$ÿA$ÿÿ(13)
+ A$ÿA$ÿÿ(10)
+ mycontrol.CaptionÿA$ÿ"Schadensquote = (gezahlte Schadenssumme / Summe gezahlter Beitr„ge(Netto) der/des Vertr„ge ) * 100"
+ 
+ myform.DefForeColorÿ1
+ ÿÊmycontrolÿmyform.Add("Label80","Label")
+ mycontrol.Move(1053,5365,1687,542)
+ A$ÿ"erwartete Nettobeitragssumme "
+ A$ÿA$ÿÿ(13)
+ A$ÿA$ÿÿ(10)
+ A$ÿA$ÿ"bis zum Statistikberechnungstag"
+ A$ÿA$ÿÿ(13)
+ A$ÿA$ÿÿ(10)
+ A$ÿA$ÿ"+/- 1 Beitrag pro Vertrag "
+ A$ÿA$ÿÿ(13)
+ A$ÿA$ÿÿ(13)
+ A$ÿA$ÿÿ(10)
+ mycontrol.CaptionÿA$ÿ"(abh„ngig vom Zahlungsstichtag)"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBorderColorÿ8
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox622","TextBox")
+ mycontrol.Move(2761,4844,1062,136)
+ mycontrol.TabIndexÿ148
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"VertrStatu20.spastik"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label45","Label")
+ mycontrol.Move(1053,4844,1458,136)
+ mycontrol.Captionÿ"Antragsablehnung"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox623","TextBox")
+ mycontrol.Move(3855,4844,1250,136)
+ mycontrol.TabIndexÿ149
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BWVertrStatu20.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox624","TextBox")
+ mycontrol.Move(5136,4844,1250,136)
+ mycontrol.TabIndexÿ150
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BeiVertrStatu20.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox625","TextBox")
+ mycontrol.Move(6417,4844,1188,136)
+ mycontrol.TabIndexÿ151
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"EinhStatu20.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox626","TextBox")
+ mycontrol.Move(7636,4844,677,136)
+ mycontrol.TabIndexÿ152
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"AnzSchStatu20.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox627","TextBox")
+ mycontrol.Move(8344,4844,1063,136)
+ mycontrol.TabIndexÿ153
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"SchStatu20.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox628","TextBox")
+ mycontrol.Move(2761,5011,1062,135)
+ mycontrol.TabIndexÿ154
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"VertrStatu21.spastik"
+ 
+ myform.DefBackColorÿ8
+ myform.DefBackVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label46","Label")
+ mycontrol.Move(1053,5011,1458,135)
+ mycontrol.Captionÿ"Knd.wg.Nichtzahlung"
+ 
+ myform.DefBackColorÿ0
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox629","TextBox")
+ mycontrol.Move(3855,5011,1250,135)
+ mycontrol.TabIndexÿ155
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BWVertrStatu21.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox630","TextBox")
+ mycontrol.Move(5136,5011,1250,135)
+ mycontrol.TabIndexÿ156
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"BeiVertrStatu21.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox631","TextBox")
+ mycontrol.Move(6417,5011,1188,135)
+ mycontrol.TabIndexÿ157
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"EinhStatu21.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox632","TextBox")
+ mycontrol.Move(7636,5011,677,135)
+ mycontrol.TabIndexÿ158
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"AnzSchStatu21.spastik"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox633","TextBox")
+ mycontrol.Move(8344,5011,1063,135)
+ mycontrol.TabIndexÿ159
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"SchStatu21.spastik"
+ 
+ myform.DefBorderColorÿ2
+ myform.DefAlignmentÿ0
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"Arial,10,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox1746","TextBox")
+ mycontrol.Move(5959,938,427,167)
+ mycontrol.TabIndexÿ165
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"Jahr.SPASTIK"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox226","TextBox")
+ mycontrol.Move(7094,938,1052,167)
+ mycontrol.TabIndexÿ166
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.ControlSourceÿ"Monat.SPASTIK"
+ 
+ myform.DefForeColorÿ0
+ myform.DefBackColorÿ12
+ myform.DefBorderVisibleÿ0
+ myform.DefFontStringÿ"MS Sans Serif,10,0,34,0"
+ ÿÊmycontrolÿmyform.Add("Label84","Label")
+ mycontrol.Move(5521,948,386,167)
+ mycontrol.Captionÿ"Jahr"
+ 
+ ÿÊmycontrolÿmyform.Add("Label85","Label")
+ mycontrol.Move(6553,948,458,167)
+ mycontrol.Captionÿ"Monat"
+ 
+ ÿÊmycontrolÿmyform.Add("DetailBlock1","DetailBlock")
+ mycontrol.Nameÿ"DetailBlock1"
+ mycontrol.Columnsÿ1
+ mycontrol.Rowsÿ1
+ mycontrol.RowSpaceÿ250
+ mycontrol.ColumnSpaceÿ2000
+ mycontrol.ScrollBarSpaceÿ350
+ mycontrol.AutoScrollÿÿ1
+ mycontrol.Interleaveÿ0
+ mycontrol.TabDirectionÿ0
+ mycontrol.ScrollBarÿ2
+ mycontrol.Add(myform.TextBox1746)
+ mycontrol.Add(myform.TextBox226)
+ mycontrol.SortFieldÿ"QJahrMonat.GEASTIK"
+ mycontrol.SortOrderÿ0
+ myform.DefPageÿ"Page3"
+ 
+ 
+ myform.AutoRedrawÿÿ1
+ myform.SetActive()
+ ÿ’ÿÿ
+ 
+

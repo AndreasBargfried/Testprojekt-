@@ -1,0 +1,85 @@
+SBP
+ÿÿmain()
+ÿƒDia()
+ ÿ’ÿÿ
+
+ÿÿDia()
+ÿ×dlg ÿUDialog
+ÿ×control ÿUDialogControl
+ 
+Superbase.Dialogs.Add("Dialogname")
+ÿÊdlg ÿSuperbase.Dialogs.Dialogname
+dlg.Move(0,0,310,218)
+dlg.Captionÿ"Parameter fr das Update"
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame1","DialogFrame")
+control.Move(0,0,310,32)
+control.Captionÿ"Parametersetzung fr das Update"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox1","DialogCheckBox")
+control.Move(8,11,186,14)
+control.Captionÿ"Neuerzeugung aller Indexdateien fr alle Datenbanken"
+control.Bind("GIndNeu%")
+control.ValueOnÿÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame2","DialogFrame")
+control.Move(0,36,310,95)
+control.Captionÿ"Datenbank: Adressen"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox2","DialogCheckBox")
+control.Move(6,46,234,14)
+control.Captionÿ"komplette Reorganisation und Neuaufbau der Adressdatenbank"
+control.Bind("NeuADR%")
+control.ValueOnÿÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel1","DialogLabel")
+control.Move(6,64,300,28)
+control.Captionÿ"Sie erhalten nachfolgend die M”glichkeit das Postanschriftsfeld neu generieren zu lassen. Dieses Feld befindet sich auf der Notizseite/Maske Kunden und wird fr die Doumenten - und Serienbrieferstellung genutzt."
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel2","DialogLabel")
+control.Move(6,92,300,20)
+control.Captionÿ"Wenn Sie bereits Adressen im Postanschriftsfeld manuell erfaát / ge„ndert haben,sollten Sie nicht die automatische Generierung durchfhren!!!"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox3","DialogCheckBox")
+control.Move(6,113,244,15)
+control.Captionÿ"Neuerzeugung des Postanschriftsfeldes der Adressdatei"
+control.Bind("NeuPost%")
+control.ValueOnÿÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame3","DialogFrame")
+control.Move(0,134,310,30)
+control.Captionÿ"Datenbank: Vertr„ge(KVERTRAG)"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox4","DialogCheckBox")
+control.Move(6,145,294,11)
+control.Captionÿ"komplette Reorganisation und Neuaufbau der Vertragsdatenbank"
+control.Bind("NeuKVer%")
+control.ValueOnÿÿ1
+control.ValueOffÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame4","DialogFrame")
+control.Move(0,168,310,30)
+control.Captionÿ"Stufennummern der Vermittler"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox5","DialogCheckBox")
+control.Move(6,179,294,11)
+control.Captionÿ"Neubestimmung der Vermittlerstufen"
+control.Bind("stufebere$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(120,201,58,14)
+control.Defaultÿ1
+control.Captionÿ"OK"
+control.ReturnValueÿ1
+ 
+ÿñ"Dialogname",req%
+ÿ¾ÿñÿt
+ ÿ’ÿÿ
+

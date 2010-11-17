@@ -1,0 +1,23 @@
+SBP
+
+ ÿ×dateien$(1000)
+ ÿ½ liest die Dateinamen aus 
+ ÿÿdateien$,5,"*.sbd"
+ ÿ›i%ÿ0ÿq1000
+ÿ¡dateien$(i%)ÿ""ÿp
+anzdatei%ÿi%
+ÿ^
+i%ÿ1001
+ÿ’ÿ¡
+ ÿ±i%
+ ÿ×felder$(1000)
+ ÿ›i%ÿ0ÿqanzdatei%ÿ1
+ 
+ÿ´ÿ™ÿà,0"AKQTMP;paris"
+anzfelder%ÿÿõ(dateien$(i%),1)
+ÿÿfelder$,1
+ ÿ±i%
+ anzdatei%ÿÿõ("TARIF",1)
+ ÿ×dateien$(1000)
+ 
+

@@ -1,0 +1,337 @@
+SBP
+
+ÿÿmain()
+ ÿƒWKNR()
+ ÿ’ÿÿ
+ 
+ÿÿWKNR():ÿ½                                          30.06.2005
+ ÿ×myform ÿUForm
+ ÿ×mypage ÿUPage
+ ÿ×mycontrol ÿUFormControl
+ 
+ ÿ¡Forms.Exists("Form2")ÿp
+Forms("Form2").Delete()
+ ÿ’ÿ¡
+ 
+ ÿ•"back$","neu$","saveit$","suchen$","af_keyw$","bearb$","such1$","sn$","sp$"
+ ÿÿback$,neu$,saveit$,suchen$,af_keyw$,bearb$,such1$,sn$,sp$
+ 
+ ÿ´ÿ™ÿà"C:\CODIE.FPB\PROVIS\WKNR"
+ ÿ´ÿ™ÿà"C:\CODIE.FPB\PROVIS\STATUKEY"
+ ÿ´ÿ™ÿà"C:\CODIE.FPB\ZERO"
+ 
+ ÿÊmyformÿForms.Add("Form2","Form")
+ myform.ScaleModeÿ3
+ myform.ShowExternalsÿ0
+ myform.Nameÿ"Form2"
+ myform.FileNameÿ"C:\CODIE.FPB\PROVIS\1024.SBV\WKNR"
+ myform.AutoRedrawÿ0
+ myform.AutoLockingÿ0
+ myform.UserFocusChangeÿÿ1
+ 
+ myform.DefVisibleÿÿ1
+ myform.DefEnabledÿÿ1
+ myform.DefForeColorÿ252
+ myform.DefBackColorÿ0
+ myform.DefBorderColorÿ2
+ myform.DefBorderWidthÿ1
+ myform.DefForePatternÿ0
+ myform.DefStepWidthÿ3
+ myform.DefBackVisibleÿ0
+ myform.DefForeVisibleÿÿ1
+ myform.DefBorderVisibleÿ0
+ myform.DefShadowÿ0
+ myform.DefStretchÿ0
+ myform.DefPrintableÿÿ1
+ myform.DefWindowsDefaultsÿ0
+ myform.DefViewStyleÿ2
+ myform.DefAlignmentÿ0
+ myform.DefFontBoldÿ0
+ myform.DefFontItalicÿ0
+ myform.DefFontUnderlineÿ0
+ myform.DefSectionHÿ0
+ myform.DefSectionVÿ0
+ myform.DefFontStringÿ"System,10,1,1,0"
+ 
+ ÿÊmypage ÿmyform.Pages(1)
+ mypage.BackVisibleÿÿ1
+ mypage.BackColorÿ253
+ mypage.Widthÿ10698
+ mypage.Heightÿ7480
+ mypage.Nameÿ"Page1"
+ mypage.RefreshStyleÿ1
+ mypage.AbsolutePositionÿ0
+ 
+ ÿÊmycontrolÿmyform.Add("Rectangle26","Rectangle")
+ mycontrol.Move(198,167,10198,6833)
+ 
+ myform.DefForeColorÿ253
+ myform.DefBackColorÿ8
+ myform.DefBorderColorÿ8
+ myform.DefStepWidthÿ2
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ myform.DefSectionHÿ1
+ myform.DefSectionVÿ1
+ ÿÊmycontrolÿmyform.Add("Rectangle49","Rectangle")
+ mycontrol.Move(292,1032,10011,5854)
+ 
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ12
+ myform.DefBorderWidthÿ0
+ myform.DefForeVisibleÿ0
+ myform.DefSectionHÿ0
+ myform.DefSectionVÿ0
+ ÿÊmycontrolÿmyform.Add("Rectangle46","Rectangle")
+ mycontrol.Move(292,240,10011,469)
+ 
+ myform.DefBackColorÿ6
+ myform.DefBorderColorÿ1
+ myform.DefStepWidthÿ3
+ myform.DefForeVisibleÿÿ1
+ myform.DefAlignmentÿ1
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"System,10,0,34,0"
+ ÿÊmycontrolÿmyform.Add("zurueck","CommandButton")
+ mycontrol.Move(9355,344,833,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ8
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"&Zurck"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"_formend% = 1"
+ mycontrol.ControlSourceÿ"back$"
+ 
+ myform.DefBackColorÿ253
+ myform.DefAlignmentÿ2
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("neu","CommandButton")
+ mycontrol.Move(375,344,625,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ1
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"&Neu"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"SUPERVISsub% = 90"
+ mycontrol.ControlSourceÿ"neu$"
+ 
+ ÿÊmycontrolÿmyform.Add("sichern","CommandButton")
+ mycontrol.Move(1678,344,625,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ3
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"S&ichern"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"CALL QuickStore(~WKNR~)"
+ mycontrol.ControlSourceÿ"saveit$"
+ 
+ myform.DefVisibleÿ0
+ myform.DefBackColorÿ8
+ myform.DefAlignmentÿ1
+ myform.DefFontStringÿ"System,10,0,34,0"
+ ÿÊmycontrolÿmyform.Add("abbruch","CommandButton")
+ mycontrol.Move(2344,344,625,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ4
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"&Abbruch"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"ENTER END :abbruch% = - 1"
+ mycontrol.ControlSourceÿ"suchen$"
+ 
+ myform.DefVisibleÿÿ1
+ myform.DefBackColorÿ195
+ myform.DefBorderColorÿ8
+ myform.DefStepWidthÿ2
+ myform.DefViewStyleÿ0
+ myform.DefAlignmentÿ0
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox39","TextBox")
+ mycontrol.Move(438,1282,625,135)
+ mycontrol.TabIndexÿ9
+ mycontrol.ControlSourceÿ"WKNR.WKNR"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox41","TextBox")
+ mycontrol.Move(2625,1282,3750,135)
+ mycontrol.TabIndexÿ10
+ mycontrol.ControlSourceÿ"WKNText.WKNR"
+ 
+ myform.DefForeColorÿ0
+ myform.DefBackColorÿ253
+ myform.DefBorderColorÿ2
+ myform.DefForeVisibleÿ0
+ myform.DefBorderVisibleÿ0
+ ÿÊmycontrolÿmyform.Add("CommandButton122","CommandButton")
+ mycontrol.Move(7105,1261,260,156)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ11
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"AFTER keyword.STATUKEY:CALL QuickStore(~statukey~)"
+ mycontrol.ControlSourceÿ"af_keyw$"
+ 
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ195
+ myform.DefBorderColorÿ8
+ myform.DefForeVisibleÿÿ1
+ myform.DefBorderVisibleÿÿ1
+ ÿÊmycontrolÿmyform.Add("TextBox1","TextBox")
+ mycontrol.Move(6407,1282,2427,135)
+ mycontrol.TabIndexÿ12
+ mycontrol.ControlSourceÿ"WKNGesell.WKNR"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox47","TextBox")
+ mycontrol.Move(1094,1282,1500,135)
+ mycontrol.TabIndexÿ13
+ mycontrol.ControlSourceÿ"WKNGesell.WKNR"
+ 
+ ÿÊmycontrolÿmyform.Add("TextBox48","TextBox")
+ mycontrol.Move(8896,1282,1000,135)
+ mycontrol.TabIndexÿ14
+ mycontrol.ControlSourceÿ"AAUf.WKNR"
+ 
+ myform.DefBackColorÿ253
+ myform.DefBorderVisibleÿ0
+ myform.DefFontBoldÿÿ1
+ ÿÊmycontrolÿmyform.Add("Label62","Label")
+ mycontrol.Move(2605,1094,750,136)
+ mycontrol.Captionÿ"WKnr.-Text"
+ 
+ myform.DefBorderColorÿ1
+ myform.DefStepWidthÿ3
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ2
+ ÿÊmycontrolÿmyform.Add("bearb","CommandButton")
+ mycontrol.Move(1042,344,594,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ2
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"&Bearb."
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"SUPERVISsub% = 99"
+ mycontrol.ControlSourceÿ"bearb$"
+ 
+ myform.DefForeColorÿ12
+ myform.DefBackColorÿ0
+ myform.DefBorderColorÿ8
+ myform.DefStepWidthÿ2
+ myform.DefBackVisibleÿ0
+ myform.DefViewStyleÿ2
+ ÿÊmycontrolÿmyform.Add("Rectangle48","Rectangle")
+ mycontrol.Move(292,719,10011,313)
+ 
+ myform.DefForeColorÿ6
+ myform.DefBackColorÿ12
+ myform.DefBackVisibleÿÿ1
+ myform.DefBorderVisibleÿ0
+ myform.DefViewStyleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label64","Label")
+ mycontrol.Move(365,782,1323,135)
+ mycontrol.Captionÿ"Wertpapierkennziffern"
+ 
+ myform.DefForeColorÿ1
+ myform.DefBackColorÿ253
+ ÿÊmycontrolÿmyform.Add("Label5","Label")
+ mycontrol.Move(459,1094,500,136)
+ mycontrol.Captionÿ"WKNr"
+ 
+ myform.DefVisibleÿ0
+ myform.DefBackColorÿ0
+ myform.DefBorderColorÿ2
+ myform.DefFontBoldÿ0
+ myform.DefFontStringÿ"Arial,10,1,34,0"
+ ÿÊmycontrolÿmyform.Add("TextBox2","TextBox")
+ mycontrol.Move(2771,7136,438,167)
+ mycontrol.TabIndexÿ171
+ mycontrol.ControlSourceÿ"zero.ZERO"
+ 
+ myform.DefBackColorÿ253
+ myform.DefBorderColorÿ1
+ myform.DefStepWidthÿ3
+ myform.DefBorderVisibleÿÿ1
+ myform.DefAlignmentÿ2
+ myform.DefFontBoldÿÿ1
+ myform.DefFontStringÿ"MS Sans Serif,8,0,34,0"
+ ÿÊmycontrolÿmyform.Add("suchen","CommandButton")
+ mycontrol.Move(2344,344,625,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ5
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"&Suchen"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"REM CALL VTSuchen()"
+ mycontrol.ControlSourceÿ"such1$"
+ 
+ ÿÊmycontrolÿmyform.Add("rechts1","CommandButton")
+ mycontrol.Move(3511,344,312,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ7
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ">"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"datei$ = ~wknr~:CALL PSelectNext()"
+ mycontrol.ControlSourceÿ"sn$"
+ 
+ ÿÊmycontrolÿmyform.Add("links1","CommandButton")
+ mycontrol.Move(3167,344,313,261)
+ mycontrol.Valueÿ0
+ mycontrol.TabIndexÿ6
+ mycontrol.ReadOnlyÿÿ1
+ mycontrol.TabStopÿ0
+ mycontrol.Captionÿ"<"
+ mycontrol.WindowsDefaultsÿ0
+ mycontrol.Commandÿ"datei$ = ~wknr~:CALL PSelectPrev()"
+ mycontrol.ControlSourceÿ"sp$"
+ 
+ myform.DefVisibleÿÿ1
+ myform.DefStepWidthÿ2
+ myform.DefBorderVisibleÿ0
+ myform.DefAlignmentÿ0
+ ÿÊmycontrolÿmyform.Add("Label4","Label")
+ mycontrol.Move(1396,1094,750,136)
+ mycontrol.Captionÿ"ISIN"
+ 
+ ÿÊmycontrolÿmyform.Add("Label1","Label")
+ mycontrol.Move(6396,1094,750,136)
+ mycontrol.Captionÿ"Gesellschaft"
+ 
+ ÿÊmycontrolÿmyform.Add("Label6","Label")
+ mycontrol.Move(8896,1094,927,136)
+ mycontrol.Captionÿ"Ausg.aufschlag"
+ 
+ ÿÊmycontrolÿmyform.Add("DetailBlock3","DetailBlock")
+ mycontrol.Nameÿ"DetailBlock3"
+ mycontrol.Columnsÿ1
+ mycontrol.Rowsÿ27
+ mycontrol.RowSpaceÿ200
+ mycontrol.ColumnSpaceÿ2000
+ mycontrol.ScrollBarSpaceÿ0
+ mycontrol.AutoScrollÿÿ1
+ mycontrol.Interleaveÿ0
+ mycontrol.TabDirectionÿ0
+ mycontrol.ScrollBarÿ2
+ mycontrol.Add(myform.TextBox39)
+ mycontrol.Add(myform.TextBox41)
+ mycontrol.Add(myform.CommandButton122)
+ mycontrol.Add(myform.TextBox1)
+ mycontrol.Add(myform.TextBox47)
+ mycontrol.Add(myform.TextBox48)
+ mycontrol.SortFieldÿ"WKNR.WKNR"
+ mycontrol.SortOrderÿ1
+ 
+ 
+ myform.AutoRedrawÿÿ1
+ myform.SetActive()
+ ÿ’ÿÿ
+ 
+

@@ -1,0 +1,214 @@
+SBP
+ÿÿA0()
+ÿ×dlg ÿUDialog
+ÿ×control ÿUDialogControl
+ 
+Superbase.Dialogs.Add("Dialogname")
+ÿÊdlg ÿSuperbase.Dialogs.Dialogname
+dlg.Move(0,0,318,177)
+dlg.Captionÿ"Ausgabe der Statistiken"
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel12","DialogLabel")
+control.Move(134,3,86,9)
+control.Captionÿ"Ausgabe nach MS Excel"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel13","DialogLabel")
+control.Move(224,3,86,9)
+control.Captionÿ"Ausgabe als Druckliste"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel1","DialogLabel")
+control.Move(5,19,124,9)
+control.Captionÿ"Mitarbeiter 1"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox1","DialogCheckBox")
+control.Move(168,19,12,9)
+control.Captionÿ""
+control.Bind("xls1$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox2","DialogCheckBox")
+control.Move(257,19,12,9)
+control.Captionÿ""
+control.Bind("xlsd1$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel2","DialogLabel")
+control.Move(5,30,124,10)
+control.Captionÿ"Mitarbeiter 2"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox3","DialogCheckBox")
+control.Move(168,30,12,10)
+control.Captionÿ""
+control.Bind("xls1a$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox4","DialogCheckBox")
+control.Move(257,30,12,10)
+control.Captionÿ""
+control.Bind("xlsd1a$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel10","DialogLabel")
+control.Move(5,41,124,10)
+control.Captionÿ"Mitarbeiter 3 (9)"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox5","DialogCheckBox")
+control.Move(168,41,12,10)
+control.Captionÿ""
+control.Bind("xls9$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox6","DialogCheckBox")
+control.Move(257,41,12,10)
+control.Captionÿ""
+control.Bind("xlsd9$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox7","DialogCheckBox")
+control.Move(168,56,12,9)
+control.Captionÿ""
+control.Bind("xls2$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox8","DialogCheckBox")
+control.Move(257,56,12,9)
+control.Captionÿ""
+control.Bind("xlsd2$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel3","DialogLabel")
+control.Move(5,57,124,10)
+control.Captionÿ"Spartengruppen"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox9","DialogCheckBox")
+control.Move(168,72,12,9)
+control.Captionÿ""
+control.Bind("xls3$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox10","DialogCheckBox")
+control.Move(257,72,12,9)
+control.Captionÿ""
+control.Bind("xlsd3$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel4","DialogLabel")
+control.Move(5,73,124,10)
+control.Captionÿ"Gesellschaften"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel5","DialogLabel")
+control.Move(5,84,124,10)
+control.Captionÿ"Gesellschaften 1 - Spartengruppen"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox11","DialogCheckBox")
+control.Move(168,84,12,10)
+control.Captionÿ""
+control.Bind("xls4$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox12","DialogCheckBox")
+control.Move(257,84,12,10)
+control.Captionÿ""
+control.Bind("xlsd4$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel6","DialogLabel")
+control.Move(5,97,124,10)
+control.Captionÿ"Gesellschaften 2 - Spartengruppen"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox13","DialogCheckBox")
+control.Move(168,97,12,10)
+control.Captionÿ""
+control.Bind("xls5$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox14","DialogCheckBox")
+control.Move(257,97,12,10)
+control.Captionÿ""
+control.Bind("xlsd5$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox19","DialogCheckBox")
+control.Move(168,108,12,10)
+control.Captionÿ""
+control.Bind("xls7$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox20","DialogCheckBox")
+control.Move(257,108,12,10)
+control.Captionÿ""
+control.Bind("xlsd7$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel8","DialogLabel")
+control.Move(5,110,124,10)
+control.Captionÿ"Gesellschaften - Sparten 1 (7)"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox15","DialogCheckBox")
+control.Move(168,127,12,10)
+control.Captionÿ""
+control.Bind("xls6$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox16","DialogCheckBox")
+control.Move(257,127,12,10)
+control.Captionÿ""
+control.Bind("xlsd6$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel7","DialogLabel")
+control.Move(5,128,124,9)
+control.Captionÿ"Sparten 1 (6)"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox17","DialogCheckBox")
+control.Move(168,139,12,9)
+control.Captionÿ""
+control.Bind("xls8$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCheckBox18","DialogCheckBox")
+control.Move(257,139,12,9)
+control.Captionÿ""
+control.Bind("xlsd8$")
+control.ValueOnÿ"j"
+control.ValueOffÿ"n"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel9","DialogLabel")
+control.Move(5,140,124,10)
+control.Captionÿ"Sparten 2 (8)"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(118,156,42,13)
+control.Defaultÿ1
+control.Captionÿ"OK"
+control.ReturnValueÿ1
+control.Cancelÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton2","DialogCommandButton")
+control.Move(162,156,43,13)
+control.Captionÿ"Abbruch"
+control.ReturnValueÿ0
+control.Cancelÿ1
+ 
+ ÿ’ÿÿ

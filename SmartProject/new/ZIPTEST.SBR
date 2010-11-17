@@ -1,0 +1,18 @@
+SBP
+ ÿîÿ…
+ ÿî"ZDLL13A.DLL","ZipInit","ICC"
+ ÿî"ZDLL13A.DLL","ZipSetLanguage","II"
+ ÿî"ZDLL13A.DLL","AddFileToZip","ICCIIII"
+ ÿî"USER","FindWindow","HCC"
+ StatusHnd%ÿÿƒ("FindWindow","ThunderForm","XCHANGE 2.0")
+ ÿ¡StatusHnd%ÿ0ÿp
+ÿÂ"Statusfenster nicht ge”ffnet!"
+ÿ’
+ ÿ’ÿ¡
+ a%ÿÿƒ("ZipInit","CODIE1","ZQ31B*xpkYbN")
+ a%ÿÿƒ("ZipSetLanguage",2)
+ a%ÿÿƒ("AddFileToZip","C:\TEST.BLK","C:\DOS\*.TXT",0,0,0,StatusHnd%)
+ ÿÂ"Zip beendet","Fehlercode: "ÿÿ(a%,"999999")
+ ÿîÿ…
+
+

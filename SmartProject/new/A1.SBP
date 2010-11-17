@@ -1,0 +1,74 @@
+SBP
+ÿÿA1()
+ÿ×dlg ÿUDialog
+ÿ×control ÿUDialogControl
+opt%ÿ1
+ÿ¡ÿH(rechadr.adressen)ÿ""ÿpopt%ÿ6
+anf020920101: 
+Superbase.Dialogs.Add("Dialogname")
+ÿÊdlg ÿSuperbase.Dialogs.Dialogname
+dlg.Move(0,0,222,131)
+dlg.Captionÿ"Art der Adresse"
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame1","DialogFrame")
+control.Move(2,8,219,102)
+control.Captionÿ" W„hlen Sie eine Option "
+ 
+ÿÊcontrol ÿdlg.Add("DialogOptionButton1","DialogOptionButton")
+control.Move(6,20,159,10)
+control.Captionÿ"Adresse aus Rechnungsanschrift nehmen"
+control.Bind("opt%")
+control.ValueOnÿ6
+ 
+ 
+ÿÊcontrol ÿdlg.Add("DialogOptionButton8","DialogOptionButton")
+control.Move(6,32,159,10)
+control.Captionÿ"Adresse aus dem Postanschriftsfeld nehmen"
+control.Bind("opt%")
+control.ValueOnÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogOptionButton2","DialogOptionButton")
+control.Move(6,44,214,9)
+control.Captionÿ"Adresse aus den Feldern der Adressmaske Seite 1 nehmen"
+control.Bind("opt%")
+control.ValueOnÿ0
+ 
+ÿÊcontrol ÿdlg.Add("DialogOptionButton3","DialogOptionButton")
+control.Move(6,56,200,10)
+control.Captionÿ"Zweitanschrift verwenden"
+control.Bind("opt%")
+control.ValueOnÿ2
+ 
+ÿÊcontrol ÿdlg.Add("DialogOptionButton4","DialogOptionButton")
+control.Move(6,68,200,10)
+control.Captionÿ"Drittanschrift verwenden"
+control.Bind("opt%")
+control.ValueOnÿ3
+ 
+ÿÊcontrol ÿdlg.Add("DialogOptionButton5","DialogOptionButton")
+control.Move(6,80,200,10)
+control.Captionÿ"Viertanschrift verwenden"
+control.Bind("opt%")
+control.ValueOnÿ4
+ 
+ÿÊcontrol ÿdlg.Add("DialogOptionButton6","DialogOptionButton")
+control.Move(6,92,200,10)
+control.Captionÿ"Fnftanschrift verwenden"
+control.Bind("opt%")
+control.ValueOnÿ5
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(59,112,43,16)
+control.Defaultÿ1
+control.Captionÿ"OK"
+control.ReturnValueÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton2","DialogCommandButton")
+control.Move(105,112,42,16)
+control.Captionÿ"Abbruch"
+control.ReturnValueÿ0
+ 
+ ÿ’ÿÿ
+

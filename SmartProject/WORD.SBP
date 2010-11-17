@@ -1,0 +1,1031 @@
+SBP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ÿÿWORD()
+oldErrorLabel$ÿSuperbase.ErrorTrapLabel
+errormessage$ÿ""
+ 
+ÿÿwordapplication ÿUAutoObject
+ÿÿworddocument ÿUAutoObject 
+ÿÿwordselection ÿUAutoObject
+ 
+ÿ³ÿ_ÿwnowordinstalled
+
+ÿÊwordapplication ÿServers.Add("Word.Application")
+wordapplication.Visibleÿ0
+wordversion$ÿwordapplication.version
+a%ÿÿ0(wordversion$)
+ÿ¡a%ÿ
+80ÿpÿwwordistoold
+ÿwstart 
+ 
+ 
+ 
+wordistoold: 
+ errormessage$ÿ"Ihre Wordversion ist zu alt. Sie mssen mindestens WinWord 97 installieren !
+ ÿwwordend
+
+nowordinstalled: 
+ errormessage$ÿ"Es wurde keine Wordversion auf Ihrem Rechner gefunden!"
+ ÿwwordend 
+
+start: 
+ errormessage$ÿ"OK"
+
+wordend: 
+ 
+ ÿ½ Superbase.ErrorTrapLabel = oldErrorLabel$
+ ÿ’ÿÿ
+ 
+ 
+ 
+ ÿ½ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+ ÿ½
+ ÿ½ * * * * *  F U N C T I O N L I B R A R Y  by Stephan Mller (survion@web.de) May/June 2001  * * * * *
+ ÿ½
+ ÿ½ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+ 
+ 
+ ÿ½ Wichtige benutzbare Funktionen
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+ 
+ ÿ½ new_doc()
+ '   -> Erstellt ein neues Dokument
+ 
+ ÿ½ open_doc("C:\Eigene Dateien\...\test.doc",passwort$)
+ '   -> ™ffnet ein bestehendes Dokument
+ 
+ ÿ½ close_doc(speichern%)
+ '   -> Schlieát das aktuelle Dokument mit folgenden Optionen
+ '      speichern% -> 0 -> speichert nicht die Ver„nderunge
+ '                   -1 -> speichert die Ver„nderungen
+ '                   -2 -> fragt,ob Ver„nderungen speichern               
+
+ ÿ½ del_all()
+ '   -> l”scht gesamten Inhalt eines Dokuments                 
+ 
+ ÿ½ write("hello world") 
+ '   -> Schreibt TEXT an aktuelle POSITION 
+ '      mit aktuellen Eigenschaften
+
+ ÿ½ set_font("f1,k1,u2,enter22,tm,rot, ... ,times new roman,20)     
+ '   -> Erlaubt die Texteigenschaften zu „ndern, dabei k”nnen 
+ '      beliebig viele Parameter bergeben werden
+ 
+ '      f0              -> nicht fett
+ '      f1              -> fett
+ '      k0              -> nicht kursiv
+ '      k1              -> kursiv
+ '      u0              -> nicht unterstrichen
+ '      u1              -> einfach unterstrichen
+ '      u2              -> doppelt unterstrichen
+ 
+ '      23              -> Schriftgr”áe
+ 
+ '      Times New Roman  -> Schriftart
+
+ '      black   
+ '      blue
+ '      turquoise
+ '      brightgreen
+ '      pink
+ '      red
+ '      yellow
+ '      white
+ '      darkblue
+ '      teal
+ '      green
+ '      violet
+ '      darkred
+ '      darkyellow
+ '      gray50
+ '      gray25
+
+ 
+ '      l               -> Text ist linksbndig
+ '      m               -> Text ist zentriert
+ '      r               -> Text ist rechtsbndig
+ '      b               -> Text ist ein Blocksatz
+ 
+ '      enter           -> Fgt 1 Zeilenumbruch ein
+ '      enter22         -> Fgt 22 Zeilenumbrche ein
+ 
+ '      space           -> Fgt 1 Leerzeile ein
+ '      space12         -> Fgt 12 Leerzeilen ein
+ 
+ '      tabulator       -> Fgt 1 Tabulatorzeichen ein
+ '      tabulator22     -> Fgt 22 Tabulatorzeichen ein
+
+ ÿ½ picture("C:/Windows/.../*.jpg")
+ '   -> Fgt ein Bild an der aktuellen Position ein
+ 
+ ÿ½ Background(background$)
+ '   -> Erlaubt die Gestaltung des Hintergrundes, wobei
+ '      folgende Aufrufe m”glich sind :
+ '      black,blue,...,white (siehe set_font)
+ '      0..16777
+ '      "C:\Windows\ente3.bmp" -> Hintergrundbild
+ 
+ 
+ ÿ½ tabulator(10)
+ '   -> Fgt angegebene Anzahl von Tabulatorzeichen ein
+ 
+ ÿ½ space(10)
+ '   -> Fgt angegebene Anzahl von Leerzeichen ein  
+ 
+ ÿ½ new_table(zeilen%,spalten%,left%,eigenschaft%)
+ '   -> Fgt neue Tabelle mit den an gegebenen Zeilen und Spalten 
+ '      ein,und positioniert diese an der mit left%
+ '      angegebenen Stelle,mit den angegebenen Eigenschaften 
+ '      Folgende Eigenschaften k”nnen bei
+ 
+ '          TABELLEN + SPALTEN + ZEILEN + ZELLEN !!!!!
+ 
+ '      angewendet werden:
+ '      borderstyle0          -> kein Rand
+ '      borderstyle13         -> verschiedenste Borderarten(1..24) 
+ '      borderstylein2        -> ver„ndert nur die inneren Rahmenelemente
+ '      borderstyleout0       -> ver„ndert nur die „uáeren Rahmenelemente
+ '      texture-12            -> Zeichnet Textur, wobei Werte
+ '                               von -12 bis 40 zul„ssig sind
+ '      forecolor3343              -> zeichnet Vordergrundfarbe
+ '                      wobei werte von 0..16777 zul„ssig sind
+ '                      es k”nnen jedoch auch die 8 Standartfarben
+ '                      benutzt werden z.B. forecolorgreen
+ '      backcolorred         siehe forecolor, hier jedoch die Hintergrundfarbe
+ '
+ '      text0                 -> Text steht waagerecht
+ '      text1                 -> Text steht senkrecht/abw„rts
+ '      text2                 -> Text steht senkrecht/aufw„rts
+ 
+ '      width20               -> Legt die Breite fest, nur 
+ '                               bei Spalten und Zellen !
+ '      height20              -> Legt die H”he fest, nur bei 
+ '                               Zeilen undn Zellen !
+ 
+ '      autoformat30          -> Setzt die Eigenschaften, wie sie 
+ '                               in im Autoformat definiert sind
+ '                               (Werte von 0 bis 42)   
+ '          
+ '      bordercolorred        -> setzt Rahmenfarbe (Farben siehe set_font)
+ '             
+ '      borderwidth9          -> setzt Rahmenst„rke(0..9)
+
+ ÿ½ behind_table(tabelle%)
+ '   -> Setzt den Cursor hinter die angegebene Tabelle
+ 
+ ÿ½ set_tablehead(tabelle%,zeile%)
+ '   -> Definiert alle Zeilen in der angegebenen Tabelle
+ '      von der ersten bis zur angegebenen Tabelle als Tabellen-
+ '      berschrift ( wird bei neuer Seite wiederholt)
+
+ ÿ½ new_row(tabelle%,zeile%,eigenschaft$)
+ '   -> Fgt eine neue Zeile in die angegebene Tabelle und
+ '      unter der angegebenen zeile ein.
+ '      Die Anzahl der Zeilen muá ebenfalls angegeben werden
+
+ ÿ½ new_col(tabelle%,spalte%,eigenschaft$)
+ '   -> Fgt eine neue Spalte in die angegebene Tabelle und
+ '      hinter der angegebenen spalte ein.
+ '      Die Anzahl der Spalten muá ebenfalls angegeben werden 
+ 
+ ÿ½ set_row(tabelle%,zeile%,eigenschaft$)
+ '   -> ndert die Eigenschaft einer bestimmten Zeile in der
+ '      angegebenen Tabelle (bisher nur die H”he, diese Funktion
+ '      wird jedoch noch ausgebaut)
+
+ ÿ½ set_col(tabelle%,spalte%,eigenschaft$)
+ '   -> ndert die Eigenschaft einer bestimmten Spalte in der
+ '      angegebenen Tabelle (bisher nur die Breite, diese Funktion
+ '      wird jedoch noch ausgebaut) 
+ 
+ ÿ½ set_cell(tabelle%,zeile%,spalte%,eigenschaft$)
+ '   -> Springt in der angegebene Zelle der angegebenen Tabelle
+ '      setzt dort die angegebenen Eigenschaften   
+ '       von nun an kann in der aktuellen zellen geschrieben werden
+ '      bzw. die Eigenschaft der Schrft ver„ndert werden
+
+ ÿ½ merge_cells(tabelle%,zeile1%,spalte1%,zeile2%,spalte2%)
+ '   -> Verbindet alle zellen, die in dem angegebenen Bereich
+ '      der angegebenen Tabelle liegen
+ 
+ ÿ½ page_down()
+ '   -> Fhrt einen Seitenumbruch durch 
+
+ ÿ½ move(unit%,direction$,extent%)
+ '      unit% gibt an, um welche Einheit der Cursor bewegt werden
+ '      soll :
+ '       1 = Character (!! funktioniert bei Text und Tabellen ;-)
+ '       2 = Word
+ '       3 = Sentence
+ '       4 = Paragraph
+ '       5 = Line  (!! funktioniert bei text und Tabellen ;-) 
+ '       6 = Story
+ '       7 = Screen
+ '       8 = Section
+ '       9 = Column
+ '      10 = Row
+ '      11 = Window
+ '      12 = Cell
+ '      13 = CharacterFormatting
+ '      14 = ParagraphFormatting
+ '      15 = Table
+ '      16 = Item
+
+ '      direction$: 
+ '  - > bewegt den Cursor in die angegebene POSITION 
+ '      mit der angegebenen Anzahl.  
+ '      move(5,"up,left3,down10,right2",1)
+
+ '      extent% = 0 -> Cursor wird bewegt ohne zu markieren
+ '      extent% = 1 -> Cursur wird bewegt und markiert dabei 
+
+ ÿ½ paint(Object$,left,top,width,height,eigenschaft$)
+ '      zeichnet ein Objekt wobei Object folgenden Wert annehmen kann:
+ '       "line"     -> zeichnet Linie
+ '       "arrow"    -> zeichnet Pfeil
+ '       "circle"   -> zeichnet Kreis
+ '       "rectangle -> zeichnet Rechteck
+ '
+ '      eigenschaft$ kann folgende Werte beinhalten
+ '      fillcoloryellow bzw. fillcollor16777215
+ '      linecolorred bzw linecolor2222
+ '      linewidth1 ... linewidth1000
+ '      linestyle1 ... linestyle5
+ '      dashstyle1 ... dashstyle8
+ 
+ ÿ½ set_password(passwort$)
+ '   -> Schtzt das aktuelle Dokument vor šberarbeitungen
+ 
+ ÿ½ remove_password(passwort$)
+ '   -> Entfernt den Schreibschutz
+
+ ÿ½ set_page(seekview%)
+ '  0 -> gibt die Hauptseite zum bearbeiten frei
+ '  1 -> springt zur Kopfzeile
+ '  2 -> springt zur Fuázeile 
+
+ ÿ½ insert(objekt$)
+ '  time        -> fgt die aktuelle Uhrzeit ein
+ '  date        -> fgt das aktuelle Datum ein
+ '  page        -> fgt Nummer der aktuellen Seite ein
+ '  numpages    -> fgt Gesamtzahl der Seiten ein
+ '  numchars    -> fgt Anzahl der Zeichen ein
+ '  numwords    -> fgt Anzahl der W”rter ein
+ '  filename    -> fgt Dateinamen ein
+ '  author      -> fgt Namen des Autors ein
+ '  3..91       -> alle weiteren m”glichen Informationen
+
+
+ 
+
+
+ ÿ½ Im Programm verwendete Funktionen
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+ 
+ ÿ½ font_action(style$) 
+ '   -> Wird von SUB schrift mit einem Parameter aufgerufen und setzt diesen
+ 
+ ÿ½ line_down(anzahl%)
+ '   -> Fhrt Zeilenumbruch durch
+ 
+ ÿ½ RGB%(255,0,0) 
+ '   -> wandelt RGB-Farbangaben in eine 24 bit Zahl   
+
+ ÿ½ color(255,255,255) 
+ '   -> setz die Textfarbe, ruft dabei RGB% auf
+ 
+ ÿ½ align(0..3)
+ '   -> setzt die Textausrichtung
+ '      0 - > Linksbndig
+ '      1 - > Zentriert
+ '      2 - > rechtsbndig
+ '      3 - > Blocksatz
+ 
+ ÿ½ pos_table(tabelle%,left%)
+ '   -> Schiebt die angegebene Tabelle an die angegebene Position
+ 
+
+ ÿ½ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *   
+ ÿ½
+ ÿ½ * * * * * * * * * * * *   P R O G R A M M C O D E   * * * * * * * * * * * * * * * * * * * * * * * * *  
+ ÿ½
+ ÿ½ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *   
+
+
+
+ÿÿnew_doc()
+ÿÊworddocument ÿwordapplication.Documents.Add()
+ÿÊwordselection ÿworddocument.ActiveWindow.Selection
+worddocument.ActiveWindow.View.Typeÿ6
+ ÿ’ÿÿ
+ 
+ÿÿopen_doc(Pfad$,passwort$)
+'ON ERROR GOTO passvorhanden
+ 
+ ' wrongpass$ = CHR$ (1) + CHR$ (2) + CHR$ (3)
+ ' SET worddocument = wordapplication.Documents.Open(Pfad$,0,0,1,wrongpass$)
+ ' worddocument.saveas(Pfad$,0,0,passwort$ + "1")
+ ' worddocument.save()
+ ' worddocument.password = passwort$
+ ' worddocument.save()
+ ' CALL close_doc( - 1)
+ ' SET worddocument = wordapplication.Documents.Open(Pfad$)',0,0,1,passwort$)
+ ' GOTO passweiter
+
+passvorhanden: 
+ÿÊworddocument ÿwordapplication.Documents.Open(Pfad$,0,0,1,passwort$)
+
+passweiter: 
+ÿÊwordselection ÿworddocument.ActiveWindow.Selection
+worddocument.ActiveWindow.View.Typeÿ6
+ ÿ’ÿÿ
+ 
+ÿÿclose_doc(speichern%)
+worddocument.close(speichern%)
+ ÿ’ÿÿ
+ 
+ÿÿdel_all()
+wordselection.WholeStory()
+wordselection.delete()
+ ÿ’ÿÿ
+ 
+ÿÿwrite(s$)
+ wordselection.TypeText(s$)
+ ÿ’ÿÿ
+
+ÿÿset_font(eigenschaft$)' Prft nach, wieviele Schrift-Anweisungen zu
+' bearbeiten sind und bergibt diese einzeln
+' der SUB schritaction, welche diese bearbeitet
+a%ÿ1
+b%ÿÿ/(eigenschaft$)
+ÿØb%ÿ0
+c%ÿÿ?(a%,eigenschaft$,",")
+ÿ¡c%ÿ0ÿpb%ÿc%ÿ1
+ÿ’ÿ¡
+ÿ¡a%ÿc%ÿp
+b%ÿ0
+ÿƒfont_action(ÿ,(eigenschaft$,a%,ÿ/(eigenschaft$)ÿa%ÿ1))
+ÿ^ÿƒfont_action(ÿ,(eigenschaft$,a%,c%ÿa%))
+ÿ’ÿ¡
+a%ÿb%ÿ2
+ÿÙ
+ ÿ’ÿÿ
+ 
+ÿÿpicture(location$)
+wordselection.InlineShapes.AddPicture(location$)
+ ÿ’ÿÿ
+ 
+ÿÿbackground(background$)
+ 
+ÿ¡ÿ0(background$)ÿ0ÿp
+worddocument.Background.Fill.ForeColorÿÿ0(background$)
+worddocument.Background.Fill.visibleÿÿ1
+worddocument.Background.Fill.Solid()
+ 
+ÿ^ÿ¡fillcolor%(background$)ÿÿ1ÿp
+worddocument.Background.Fill.ForeColorÿfillcolor%(background$)
+worddocument.Background.Fill.visibleÿÿ1
+worddocument.Background.Fill.Solid()
+
+ÿ^
+worddocument.Background.Fill.UserPicture(background$)
+
+ÿ’ÿ¡
+ 
+ ÿ’ÿÿ
+ 
+ 
+ÿÿtabulator(i%)
+t$ÿÿ(9)
+ÿ›a%ÿ1ÿqi%
+ÿƒwrite(t$)
+ÿ±
+ ÿ’ÿÿ
+ 
+ÿÿspace(i%)
+ ÿ›a%ÿ1ÿqi%
+ÿƒwrite(" ")
+ ÿ±
+ ÿ’ÿÿ
+ 
+ 
+ÿÿnew_table(zeilen%,spalten%,left%,eigenschaft$)
+ÿ×myTable ÿUAutoObject
+ÿÊmyTable ÿworddocument.Tables.Add(wordselection.Range,zeilen%,spalten%)
+myTable.Rows.SetLeftIndent(left%,1)
+ÿƒtable_property(myTable,eigenschaft$)
+ 
+ ÿ’ÿÿ
+ 
+ÿÿbehind_table(tabelle%)
+ÿ×myTable ÿUAutoObject
+ÿÊmyTable ÿworddocument.Tables(tabelle%)
+myTable.select()
+wordselection.movedown(5,2)
+ÿ’ÿ¡
+ ÿ’ÿÿ
+
+ÿÿset_tablehead(tabelle%,zeile%)
+ ÿ×myRow ÿUAutoObject
+ ÿÊmyRow ÿworddocument.tables(tabelle%).Rows(zeile%)
+ myRow.HeadingFormatÿ1
+ ÿ’ÿÿ
+ 
+ÿÿnew_row(tabelle%,zeile%,eigenschaft$)
+ÿ×myRow ÿUAutoObject
+ÿÊmyRow ÿworddocument.tables(tabelle%).Rows(zeile%)
+myRow.select()
+wordselection.Insertrows(1)
+ÿÊmyRow ÿworddocument.tables(tabelle%).Rows(zeile%ÿ1)
+myRow.select()
+ÿƒtable_property(myRow,eigenschaft$)
+ ÿ’ÿÿ
+ 
+ÿÿnew_col(tabelle%,spalte%,eigenschaft$)
+ÿ×myColumn ÿUAutoObject
+ÿÊmyColumn ÿworddocument.Tables(tabelle%).Columns(spalte%)
+myColumn.select()
+wordselection.Insertcolumns()
+ÿÊmyColumn ÿworddocument.Tables(tabelle%).Columns(spalte%ÿ1)
+myColumn.select()
+ÿƒtable_property(myColumn,eigenschaft$)
+ ÿ’ÿÿ
+
+ÿÿset_row(tabelle%,zeile%,eigenschaft$)
+ ÿ×myRow ÿUAutoObject
+ ÿÊmyRow ÿworddocument.tables(tabelle%).Rows(zeile%)
+ ÿƒtable_property(myRow,eigenschaft$)
+ ÿ’ÿÿ
+ 
+ÿÿset_col(tabelle%,spalte%,eigenschaft$)
+ ÿ×myColumn ÿUAutoObject
+ ÿÊmyColumn ÿworddocument.tables(tabelle%).Columns(spalte%)
+ ÿƒtable_property(myColumn,eigenschaft$)
+ ÿ’ÿÿ
+ 
+ÿÿset_cell(tabelle%,zeile%,spalte%,eigenschaft$)
+ÿ×myCell ÿUAutoObject
+ÿÊmyCell ÿworddocument.Tables(tabelle%).Cell(zeile%,spalte%)
+myCell.select()
+ÿƒtable_property(myCell,eigenschaft$)
+ 
+ ÿ’ÿÿ
+ 
+ÿÿpos_table(tabelle%,left%)
+ÿ×mytable ÿUAutoObject
+ÿÊmyTable ÿworddocument.Tables(tabelle%).Rows
+myTable.SetLeftIndent(left%,1)
+ ÿ’ÿÿ
+ 
+ÿÿmerge_cells(tabelle%,zeile1%,spalte1%,zeile2%,spalte2%)
+ÿ¡zeile1%ÿzeile2%ÿp
+merker%ÿzeile2%
+zeile2%ÿzeile1%
+zeile1%ÿmerker%
+ÿ’ÿ¡
+ÿ¡spalte1%ÿspalte2%ÿp
+merker%ÿspalte2%
+spalte2%ÿspalte1%
+spalte1%ÿmerker%
+ÿ’ÿ¡
+ÿƒset_cell(tabelle%,zeile1%,spalte1%,"")
+wordselection.moveright(1,spalte2%ÿspalte1%,1)
+wordselection.movedown(5,zeile2%ÿzeile1%,1)
+wordselection.cells.merge()
+ ÿ’ÿÿ
+
+ÿÿpage_down()
+wordselection.InsertBreak(7)
+ ÿ’ÿÿ
+
+
+ÿÿmove(unit%,direction$,extent%)
+ ÿ¡selection%ÿ
+0ÿselection%ÿ1ÿp
+selection%ÿ0
+ ÿ’ÿ¡
+ a%ÿ1
+b%ÿÿ/(direction$)
+ÿØb%ÿ0
+c%ÿÿ?(a%,direction$,",")
+ÿ¡c%ÿ0ÿpb%ÿc%ÿ1
+ÿ’ÿ¡
+ÿ¡a%ÿc%ÿp
+b%ÿ0
+ÿƒmove_action(unit%,ÿ,(direction$,a%,ÿ/(direction$)ÿa%ÿ1),extent%)
+ÿ^ÿƒmove_action(unit%,ÿ,(direction$,a%,c%ÿa%),extent%)
+ÿ’ÿ¡
+a%ÿb%ÿ2
+ÿÙ
+ ÿ’ÿÿ
+
+ÿÿpaint(object$,left%,top%,width%,height%,eigenschaft$)
+ ÿÉÿæobject$
+ÿæ"line"
+worddocument.Shapes.addline(left%,right%,left%ÿwidth%,top%ÿheight%).select()
+ÿæ"arrow"
+worddocument.Shapes.addline(left%,right%,left%ÿwidth%,top%ÿheight%).select()
+wordselection.ShapeRange.Line.EndArrowheadStyleÿ2
+wordselection.ShapeRange.Line.EndArrowheadLengthÿ2
+wordselection.ShapeRange.Line.EndArrowheadWidthÿ2
+ÿæ"circle"
+worddocument.Shapes.AddShape(9,left%,top%,left%ÿwidth%,top%ÿheight%).select()
+ÿæ"rectangle"
+worddocument.Shapes.AddShape(1,left%,top%,left%ÿwidth%,top%ÿheight%).select()
+ÿ’ÿæ
+
+a%ÿ1
+b%ÿÿ/(eigenschaft$)
+ÿØb%ÿ0
+c%ÿÿ?(a%,eigenschaft$,",")
+ÿ¡c%ÿ0ÿpb%ÿc%ÿ1
+ÿ’ÿ¡
+ÿ¡a%ÿc%ÿp
+b%ÿ0
+ÿƒpaint_action(ÿ,(eigenschaft$,a%,ÿ/(eigenschaft$)ÿa%ÿ1))
+ÿ^
+ÿƒpaint_action(ÿ,(eigenschaft$,a%,c%ÿa%))
+ÿ’ÿ¡
+a%ÿb%ÿ2
+ÿÙ
+ ÿ’ÿÿ
+
+ÿÿset_password(passwort$)
+worddocument.protect(1,0,passwort$)
+ ÿ’ÿÿ
+
+ÿÿremove_password(passwort$)
+worddocument.unprotect(passwort$)
+ ÿ’ÿÿ
+
+ÿÿset_page(seekview%)
+ÿÉÿæseekview%
+ÿæ0
+wordapplication.ActiveWindow.ActivePane.View.SeekViewÿ0
+ÿæ1
+wordapplication.ActiveWindow.ActivePane.View.SeekViewÿ9
+ÿæ2
+wordapplication.ActiveWindow.ActivePane.View.SeekViewÿ10
+ÿ’ÿæ
+ ÿ’ÿÿ
+ 
+ÿÿinsert(objekt$)
+ 
+ ÿ¡ÿ0(objekt$)ÿ2ÿÿ0(objekt$)ÿ
+92ÿp
+indexnum%ÿÿ0(objekt$)
+ ÿ^
+ 
+ÿÉÿæobjekt$
+ÿæ"time"
+indexnum%ÿ32
+ÿæ"date"
+indexnum%ÿ31
+ÿæ"page"
+indexnum%ÿ33
+ÿæ"numpages"
+indexnum%ÿ26
+ÿæ"numwords"
+indexnum%ÿ28
+ÿæ"numchars"
+indexnum%ÿ27
+ÿæ"filename"
+indexnum%ÿ29
+ÿæ"author"
+indexnum%ÿ17
+
+
+ÿæÿ^indexnum%ÿ0
+ÿ’ÿæ
+ ÿ’ÿ¡
+ wordselection.Fields.Add(wordselection.Range,indexnum%)
+ ÿ’ÿÿ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ ÿ½ Im Programm verwendete Funktionen
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+
+ÿÿtable_property(tab ÿUautoobject,eigenschaft$)
+a%ÿ1
+b%ÿÿ/(eigenschaft$)
+ÿØb%ÿ0
+c%ÿÿ?(a%,eigenschaft$,",")
+ÿ¡c%ÿ0ÿpb%ÿc%ÿ1
+ÿ’ÿ¡
+ÿ¡a%ÿc%ÿp
+b%ÿ0
+ÿƒtable_action(tab,ÿ,(eigenschaft$,a%,ÿ/(eigenschaft$)ÿa%ÿ1))
+ÿ^
+ÿƒtable_action(tab,ÿ,(eigenschaft$,a%,c%ÿa%))
+ÿ’ÿ¡
+a%ÿb%ÿ2
+ÿÙ
+ ÿ’ÿÿ
+ 
+ÿÿtable_action(tab ÿUautoobject,eigenschaft$)
+ 
+ÿ¡ÿ+(eigenschaft$,13)ÿ"borderstylein"ÿp
+Tab.borders.InsideLineStyleÿÿ0(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ13))
+ÿwendtabaction
+ÿ’ÿ¡
+
+ÿ¡ÿ+(eigenschaft$,14)ÿ"borderstyleout"ÿp
+Tab.borders.OutsideLineStyleÿÿ0(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ14))
+ÿwendtabaction
+ÿ’ÿ¡
+
+ÿ¡ÿ+(eigenschaft$,11)ÿ"borderstyle"ÿp
+Tab.borders.enableÿÿ0(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ11))
+ÿwendtabaction
+ÿ’ÿ¡
+	
+ÿ¡ÿ+(eigenschaft$,11)ÿ"bordercolor"ÿp
+ÿ¡color%(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ11))ÿ0ÿp'else 
+bordercolor%ÿcolor%(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ11))
+ÿ’ÿ¡
+ÿ×myBorder ÿUAutoObject
+ÿ³ÿ_ÿwfehlercolor 
+ÿ›z%ÿÿ6ÿqÿ1
+ÿÊmyBorder ÿtab.borders(z%)
+myBorder.colorindexÿbordercolor%
+ÿwweitercolor 
+fehlercolor: 
+ÿyweitercolor
+weitercolor:
+ÿ±
+ 
+ÿ³ÿ_ÿwprogramerror
+ÿwendtabaction
+ÿ’ÿ¡
+ 
+ÿ¡ÿ+(eigenschaft$,11)ÿ"borderwidth"ÿp
+ÿ×myBorder ÿUAutoObject
+ÿ³ÿ_ÿwfehlerwidth 
+ÿ›z%ÿÿ6ÿqÿ1
+ÿÊmyBorder ÿtab.borders(z%)
+myBorder.linewidthÿlinewidth%(ÿ0(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ11)))
+ÿwweiterwidth 
+fehlerwidth: 
+ÿyweiterwidth
+weiterwidth:
+ÿ±
+ 
+ÿ³ÿ_ÿwprogramerror
+ÿwendtabaction
+ÿ’ÿ¡
+ 
+ÿ¡ÿ+(eigenschaft$,6)ÿ"height"ÿp
+tab.setheight(ÿ0(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ6)),1)
+ÿwendtabaction
+ÿ’ÿ¡
+ 
+ÿ¡ÿ+(eigenschaft$,5)ÿ"width"ÿp
+tab.setwidth(ÿ0(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ5)),1)
+ÿwendtabaction
+ÿ’ÿ¡
+ 
+ÿ¡ÿ+(eigenschaft$,7)ÿ"texture"ÿp
+texture%ÿÿ0(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ7))
+ÿ¡texture%ÿÿ12ÿtexture%ÿ
+0ÿp
+Tab.Shading.Textureÿtexture%
+ÿ^
+ÿ¡texture%ÿ	40ÿp
+Tab.Shading.Textureÿtexture%ÿ25
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿwendtabaction
+ÿ’ÿ¡
+ 
+ÿ¡ÿ+(eigenschaft$,9)ÿ"backcolor"ÿp
+ÿ¡color%(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ9))ÿ0ÿp
+tab.Shading.BackgroundPatternColorIndexÿcolor%(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ9))
+ÿ’ÿ¡
+ÿwendtabaction
+ÿ’ÿ¡
+ 
+ÿ¡ÿ+(eigenschaft$,9)ÿ"forecolor"ÿp
+ÿ¡color%(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ9))ÿ0ÿp
+tab.Shading.ForegroundPatternColorIndexÿcolor%(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ9))
+ÿ’ÿ¡
+ÿwendtabaction
+ÿ’ÿ¡
+ 
+ÿ¡ÿ+(eigenschaft$,4)ÿ"text"ÿp
+tab.range.Orientationÿÿ0(ÿ-(eigenschaft$,1))
+ÿwendtabaction 
+ÿ’ÿ¡
+ 
+ÿ¡ÿ+(eigenschaft$,10)ÿ"autoformat"ÿp
+tab.autoformat(ÿ0(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ10)))
+ÿ’ÿ¡
+ 
+endtabaction: 
+ 
+ ÿ’ÿÿ
+ 
+ 
+ÿÿborderaction
+ ÿ’ÿÿ
+ 
+ÿÿfont_action(style$)' Schreibt eine Anweisung
+ ÿ×f ÿUAutoObject
+ ÿÊf ÿwordselection.Font
+a%ÿÿ0(style$)
+ÿ¡a%ÿ0ÿp
+ÿ¡ÿ+(style$,5)ÿ"enter"ÿp
+b%ÿÿ0(ÿ-(style$,ÿ/(style$)ÿ5))
+ÿ¡b%ÿ0ÿpb%ÿ1
+ÿƒline_down(b%)
+
+ÿ^ÿ¡ÿ+(style$,5)ÿ"space"ÿp
+b%ÿÿ0(ÿ-(style$,ÿ/(style$)ÿ5))
+ÿ¡b%ÿ0ÿpb%ÿ1
+ÿƒspace(b%)
+
+ÿ^ÿ¡ÿ+(style$,9)ÿ"tabulator"ÿp
+b%ÿÿ0(ÿ-(style$,ÿ/(style$)ÿ9))
+ÿ¡b%ÿ0ÿpb%ÿ1
+ÿƒtabulator(b%)
+ 
+ÿ^ÿ¡color%(style$)ÿ0ÿp
+wordselection.Font.ColorIndexÿcolor%(style$)
+ 
+ÿ^
+ÿÉÿæstyle$
+ÿæ"f0"
+f.boldÿ0
+ÿæ"f1"
+f.boldÿ1
+ÿæ"k0"
+f.italicÿ0
+ÿæ"k1"
+f.italicÿ1
+ÿæ"u0"
+f.underlineÿ0
+ÿæ"u1"
+f.underlineÿ1
+ÿæ"u2"
+f.underlineÿ3
+ÿæ"l"
+ÿƒalign(0)
+ÿæ"m"
+ÿƒalign(1)
+ÿæ"r"
+ÿƒalign(2)
+ÿæ"b"
+ÿƒalign(3)
+
+ÿæÿ^
+f.nameÿstyle$
+ÿ’ÿæ
+ÿ’ÿ¡
+ÿ^f.sizeÿstyle$
+ ÿ’ÿ¡
+ 
+ ÿ’ÿÿ
+ 
+ 
+ÿÿline_down(anzahl%)
+ÿ›i%ÿ1ÿqanzahl%
+wordselection.TypeText(ÿ(13))
+ÿ±
+ ÿ’ÿÿ
+
+ÿÿRGB%(r%,g%,b%)
+RGB%ÿr%ÿg%ÿ256ÿb%ÿ256ÿ256
+ ÿ’ÿÿ
+ 
+ÿÿlinewidth%(width%)
+ ÿÉÿæwidth%
+ÿæ1
+linewidth%ÿ2
+ÿæ2
+linewidth%ÿ4
+ÿæ3
+linewidth%ÿ6
+ÿæ4
+linewidth%ÿ8
+ÿæ5
+linewidth%ÿ12
+ÿæ6
+linewidth%ÿ18
+ÿæ7
+linewidth%ÿ24
+ÿæ8
+linewidth%ÿ36
+ÿæ9
+linewidth%ÿ48
+ÿæÿ^
+linewidth%ÿ2
+ÿ’ÿæ
+ ÿ’ÿÿ
+ 
+ÿÿcolor%(color$)
+ ÿÉÿæcolor$
+ÿæ"auto"
+color%ÿ0
+ÿæ"black"
+color%ÿ1
+ÿæ"blue"
+color%ÿ2
+ÿæ"turquoise"
+color%ÿ3
+ÿæ"brightgreen"
+color%ÿ4
+ÿæ"pink"
+color%ÿ5
+ÿæ"red"
+color%ÿ6
+ÿæ"yellow"
+color%ÿ7
+ÿæ"white"
+color%ÿ8
+ÿæ"darkblue"
+color%ÿ9
+ÿæ"teal"
+color%ÿ10
+ÿæ"green"
+color%ÿ11
+ÿæ"violet"
+color%ÿ12
+ÿæ"darkred"
+color%ÿ13
+ÿæ"darkyellow"
+color%ÿ14
+ÿæ"gray50"
+color%ÿ15
+ÿæ"gray25"
+color%ÿ16
+ÿæÿ^
+color%ÿÿ1
+ÿ’ÿæ
+ ÿ’ÿÿ
+ 
+ÿÿfillcolor%(color$)
+ ÿÉÿæcolor$
+ÿæ"black"
+fillcolor%ÿRGB%(0,0,0)
+ÿæ"blue"
+fillcolor%ÿRGB%(0,0,255)
+ÿæ"turquoise"
+fillcolor%ÿRGB%(0,255,255)
+ÿæ"brightgreen"
+fillcolor%ÿRGB%(0,255,0)
+ÿæ"pink"
+fillcolor%ÿRGB%(255,0,255)
+ÿæ"red"
+fillcolor%ÿRGB%(255,0,0)
+ÿæ"yellow"
+fillcolor%ÿRGB%(255,255,0)
+ÿæ"white"
+fillcolor%ÿRGB%(255,255,255)
+ÿæ"darkblue"
+fillcolor%ÿRGB%(0,0,128)
+ÿæ"teal"
+fillcolor%ÿRGB%(0,128,128)
+ÿæ"green"
+fillcolor%ÿRGB%(0,128,0)
+ÿæ"violet"
+fillcolor%ÿRGB%(128,0,128)
+ÿæ"darkred"
+fillcolor%ÿRGB%(128,0,0)
+ÿæ"darkyellow"
+fillcolor%ÿRGB%(128,0,128)
+ÿæ"gray50"
+fillcolor%ÿRGB%(128,128,128)
+ÿæ"gray25"
+fillcolor%ÿRGB%(192,192,192)
+ÿæÿ^
+fillcolor%ÿÿ1
+ÿ’ÿæ
+ ÿ’ÿÿ
+
+ÿÿalign(allign%)
+ wordselection.ParagraphFormat.Alignmentÿallign%
+ ÿ’ÿÿ
+
+ÿÿmove_action(unit%,direction$,extent%)
+ ÿ¡ÿ+(direction$,2)ÿ"up"ÿp
+i%ÿÿ0(ÿ-(direction$,ÿ/(direction$)ÿ2))
+ÿ¡i%ÿ0ÿp
+i%ÿ1
+ÿ’ÿ¡
+wordselection.moveup(unit%,i%,extent%)
+ÿwendmoveaction
+ ÿ’ÿ¡
+ 
+ ÿ¡ÿ+(direction$,4)ÿ"down"ÿp
+i%ÿÿ0(ÿ-(direction$,ÿ/(direction$)ÿ4))
+ÿ¡i%ÿ0ÿp
+i%ÿ1
+ÿ’ÿ¡
+wordselection.movedown(unit%,i%,extent%)
+ÿwendmoveaction
+ ÿ’ÿ¡
+
+ ÿ¡ÿ+(direction$,4)ÿ"left"ÿp
+i%ÿÿ0(ÿ-(direction$,ÿ/(direction$)ÿ4))
+ÿ¡i%ÿ0ÿp
+i%ÿ1
+ÿ’ÿ¡
+wordselection.moveleft(unit%,i%,extent%)
+ÿwendmoveaction
+ ÿ’ÿ¡
+ 
+ ÿ¡ÿ+(direction$,5)ÿ"right"ÿp
+i%ÿÿ0(ÿ-(direction$,ÿ/(direction$)ÿ5))
+ÿ¡i%ÿ0ÿp
+i%ÿ1
+ÿ’ÿ¡
+wordselection.moveright(unit%,i%,extent%)
+ÿwendmoveaction
+ ÿ’ÿ¡
+
+endmoveaction: 
+ ÿ’ÿÿ
+
+ÿÿpaint_action(eigenschaft$)
+
+ ÿ¡ÿ+(eigenschaft$,9)ÿ"fillcolor"ÿp
+ÿ¡ÿ0(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ9))ÿ0ÿp
+wordselection.ShapeRange.Fill.ForeColorÿÿ0(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ9))
+ÿ^
+wordselection.ShapeRange.Fill.ForeColorÿfillcolor%(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ9))
+ÿ’ÿ¡
+wordselection.ShapeRange.Fill.Visibleÿÿ1
+wordselection.ShapeRange.Fill.Solid()
+ÿwendpaintaction
+ÿ’ÿ¡
+
+ÿ¡ÿ+(eigenschaft$,9)ÿ"linecolor"ÿp
+ÿ¡ÿ0(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ9))ÿ0ÿp
+wordselection.ShapeRange.Line.ForeColorÿÿ0(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ9))
+ÿ^
+wordselection.ShapeRange.Line.ForeColorÿÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ9)
+ÿ’ÿ¡
+wordselection.ShapeRange.Line.Visibleÿÿ1
+ÿwendpaintaction
+ÿ’ÿ¡
+
+ÿ¡ÿ+(eigenschaft$,9)ÿ"linewidth"ÿp
+wordselection.ShapeRange.Line.Weightÿÿ0(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ9))
+wordselection.ShapeRange.Line.Visibleÿÿ1
+ÿwendpaintaction
+ÿ’ÿ¡
+
+ÿ¡ÿ+(eigenschaft$,9)ÿ"linestyle"ÿp
+wordselection.ShapeRange.Line.Styleÿÿ0(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ9))
+wordselection.ShapeRange.Line.Visibleÿÿ1
+ÿwendpaintaction
+ÿ’ÿ¡
+
+ÿ¡ÿ+(eigenschaft$,9)ÿ"dashstyle"ÿp
+wordselection.ShapeRange.Line.DashStyleÿÿ0(ÿ-(eigenschaft$,ÿ/(eigenschaft$)ÿ9))
+wordselection.ShapeRange.Line.Visibleÿÿ1
+ÿwendpaintaction
+ÿ’ÿ¡
+ 
+endpaintaction: 
+ ÿ’ÿÿ
+
+
+

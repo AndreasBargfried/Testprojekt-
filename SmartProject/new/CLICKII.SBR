@@ -1,0 +1,334 @@
+SBP
+ ÿƒmain()
+ 
+ ' Bilddatenbankroutinen fr SCREENMACHINE II/MCI-Overlay
+ ' Copyright (c) 1992-1994 CoDIE Computer-Dienste
+ ' Stand: 31.05.1994
+
+
+ ' CLICK
+ ' ======================================================================
+ ' Aufruf: CALL CLICK(ApplID%,topic%,link%)
+ '         ApplID%  : interne Projektnummer oder 0 fr alle Projekte
+ '         topic%   : Code fr Themengebiet oder 0 fr alle Themen
+ '         link%    : Bezug auf einzelnen Datensatz in gebundener Datei
+ '
+ ' bereits vergebene topic-Codes:
+ '         1        : IMMAK-Angebote
+ '         2        : IMMAK-Anfragen
+ ' ======================================================================
+
+ÿÿCLICK(ApplID%,topic%,link%)
+ CLAppID%ÿApplID%
+ CLtopic%ÿtopic%
+ CLLink%ÿlink%
+ ÿƒDFile(2,"CLICK\bilder"ÿ_fpw$)
+ ÿßÿe
+ cfile$ÿÿ™
+ _formend%ÿ0
+ ÿØ_formend%ÿ0
+ÿ¡ÿœÿ"CLICK"ÿp
+ÿ´ÿœ_netpath$ÿ"CLICK\CLICK"
+ÿÊÿŸtitle$ÿ" - Bilddatenbank"
+ÿÊÿË"Bilddatenbank"
+ÿƒMNCLICK()
+ÿ¬ÿ³
+ÿ™"BILDER"
+scode$ÿÿ(CLAppID%,"000000")ÿÿ(CLtopic%,"000000")ÿÿ(CLLink%,"000000")
+ÿÉÿĞQuickCode.BILDERÿscode$
+ÿ£Beschreibung.BILDER
+ÿÉÿ`
+ÿƒSMOpen()
+ÿ’ÿ¡
+CLICKsub%ÿ0
+ÿœ
+ÿßÿ³
+ÿ¡CLICKsub%ÿ9ÿpÿÏÿßÿÿ¥ÿÿ¬
+ÿ¡CLICKsub%ÿ99ÿp
+ÿ¡CodePI.BILDERÿ
+1ÿp
+CodePI.BILDERÿÿI("bilder",1)
+link.BILDERÿCLLink%
+ApplID.BILDERÿCLAppID%
+topic.BILDERÿCLtopic%
+cupi%ÿCodePI.BILDER
+ÿ’ÿ¡
+ÿÉÿæÿí
+ÿæ1
+ÿ”Beschreibung.BILDER,0
+ÿæ2
+ÿ”Notiz.BILDER,0
+ÿ’ÿÉ
+ÿ’ÿ¡
+ ÿÙ
+ ÿÉÿĞÿ™"BILDER"
+ ÿƒSMClose()
+ _formend%ÿ0
+ ÿßÿ³
+ ÿ’ÿÿ
+
+
+ ' Bild neu erfassen
+ ' ======================================================================
+ 
+ÿÿCLKNeu()
+ ÿ¡ÿ("bilder")ÿÿ°("bilder")ÿpÿƒFStore("bilder")
+ ÿ
+ ÿ½ CodePI.BILDER = sernum%("bilder")
+ CodePI.BILDERÿÿI("bilder",1)
+ link.BILDERÿCLLink%
+ ApplID.BILDERÿCLAppID%
+ topic.BILDERÿCLtopic%
+ cupi%ÿCodePI.BILDER
+ ÿƒFStore("BILDER")
+ CLICKsub%ÿ99
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ ' Eintrag zurck 
+ ' ======================================================================
+ 
+ÿÿCLKPrev()
+ cupi%ÿCodePI.BILDER
+ ÿ¡ÿ("bilder")ÿÿ°("bilder")ÿpÿƒFStore("bilder")
+ ÿÉÿœÿgÿ™"bilder"ÿ£Beschreibung.BILDER
+ ÿ¡ÿB("BILDER")ÿp
+ÿÂ"Dateianfang erreicht!","",2
+ÿÉÿœÿ¥cupi%ÿ£CodePI.BILDER
+ ÿ’ÿ¡
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ ' Eintrag vor 
+ ' ======================================================================
+ 
+ÿÿCLKNext()
+ cupi%ÿcodepi.bilder
+ ÿ¡ÿ("bilder")ÿÿ°("bilder")ÿpÿƒFStore("bilder")
+ ÿÉÿœÿ±ÿ£Beschreibung.BILDER
+ ÿ¡ÿB("BILDER")ÿp
+ÿÂ"Dateiende erreicht!","",2
+ÿÉÿœÿ¥cupi%ÿ£CodePI.BILDER
+ ÿ’ÿ¡
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ ' Bild l”schen
+ ' ======================================================================
+ 
+ÿÿCLKLoeschen()
+ cupi%ÿCodePI.bilder
+ image$ÿ_netpath$ÿ"click\bilder\"ÿÿ(CodePI.bilder,"00000000")
+ ÿÂ"Bilddaten wirklich l”schen?","",130,req%
+ ÿ¡req%ÿ1ÿp
+ÿßÿe
+ÿ½ DELETE image$ + ".FLM"
+ÿÉÿ¥cupi%ÿáÿ™"bilder"ÿ£CodePI.BILDER
+ÿÉÿ¾ÿ™"BILDER"
+ÿÉÿœÿgÿ™"BILDER"
+ÿœ
+ ÿ’ÿ¡
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+ ' Bild suchen
+ ' ======================================================================
+ 
+ÿÿCLKSuchen()
+ cupi%ÿcodePI.bilder
+ _cupi%ÿcupi%
+ ÿ¡ÿ("bilder")ÿÿ°("bilder")ÿpÿƒFStore("BILDER")
+ scode$ÿÿ(CLAppID%,"000000")ÿÿ(CLtopic%,"000000")ÿÿ(CLLink%,"000000")
+ ÿÂ"Bitte w„hlen Sie das gewnschte Bild aus:","",25,req%,_cupi%,72,codepi.bilder,beschreibung.bilderÿ£beschreibung.bilderÿĞQuickCode.BILDERÿscode$
+ ÿ¡req%ÿ1ÿp
+cupi%ÿ_cupi%
+ ÿ’ÿ¡
+ ÿÉÿœÿ¥cupi%ÿ™"BILDER"ÿ£CodePI.BILDER
+ ÿÊÿ£Beschreibung.BILDER
+ ÿ£Beschreibung.BILDER
+ ÿœ
+ ÿ’ÿÿ
+ 
+ 
+ ' Bild zeigen
+ ' ======================================================================
+ 
+ÿÿCLKZeigen()
+ image$ÿ_netpath$ÿ"click\bilder\"ÿÿ(CodePI.bilder,"00000000")ÿ".flm"
+ ÿƒSMRead(image$)
+ ÿ’ÿÿ
+ 
+ 
+ ' Bild abspeichern
+ ' ======================================================================
+ 
+ÿÿCLKAufnehmen()
+ ÿ¡Beschreibung.BILDERÿ""ÿp
+ÿƒFehler("Bitte geben Sie erst eine Beschreibung fr das Bild ein!","")
+ ÿ^
+image$ÿ_netpath$ÿ"click\bilder\"ÿÿ(codepi.bilder,"00000000")ÿ".flm"
+ÿ¡ÿJ(Image$)ÿp
+ÿÂ"Soll das bestehende Bild berschreiben werden!","",135,req%
+ÿ¡req%ÿ1ÿp
+ÿƒSMWrite(image$)
+ÿ’ÿ¡
+ÿ^
+ÿƒSMWrite(image$)
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ 
+ ' Bild bearbeiten
+ ' ======================================================================
+ 
+ÿÿCLKBearbeiten()
+ ÿßÿe
+ ÿÊÿË"tempor„re Bilddatei wird erzeugt..."
+ Styler$ÿReadINI$("CLICK","Styler")
+ StylerFormat$ÿReadINI$("CLICK","StylerFormat")
+ ÿÿ"save sm C:\IMTEMP."ÿStylerFormat$
+ ÿÊÿË"Bildbearbeitung wird gestartet..."
+ ÿƒSTYLER$ÿ" C:\IMTEMP."ÿÿ+(StylerFormat$,3),3
+ ÿÊÿË""
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ ' Bild kopieren
+ ' ======================================================================
+ 
+ÿÿCLKCopy()
+ ÿßÿe
+ ÿÊÿË"Kopiere Bild in Zwischenablage..."
+ ÿÿ"SAVE sm <clipboard> with -b8"
+ ÿÊÿË""
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+ ' bearbeitetes Bild bernehmen
+ ' ======================================================================
+ 
+ÿÿCLKUebern()
+ StylerFormat$ÿÿ+(ReadINI$("CLICK","StylerFormat"),3)
+ image$ÿ"C:\IMTEMP."ÿStylerFormat$
+ ÿ¡ÿOÿJ(image$)ÿp
+ÿÂ"Bild wurde nicht bearbeitet!","",2
+ ÿ^
+ÿƒSMRead("C:\IMTEMP."ÿStylerFormat$)
+ÿÂ"Bild bernehmen?","",130,req%
+ÿ¡req%ÿ1ÿp
+image$ÿ_netpath$ÿ"click\bilder\"ÿÿ(codepi.bilder,"00000000")ÿ".flm"
+ÿƒSMWrite(image$)
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+
+
+
+ ' **********************************************************************
+ ' Routinen fr SCREENMACHINE II/MCI Treiber
+ ' **********************************************************************
+
+ÿÿSMOpen()
+ ÿÊÿË"Initialisiere SCREENMACHINE..."
+ sm_x$ÿReadINI$("CLICK","Left"):ÿ½ 310
+ sm_y$ÿReadINI$("CLICK","Top"):ÿ½ 85
+ sm_dx$ÿReadINI$("CLICK","Width"):ÿ½ 240
+ sm_dy$ÿReadINI$("CLICK","Height"):ÿ½ 192
+ sm_x%ÿÿ0(sm_x$)
+ sm_y%ÿÿ0(sm_y$)
+ sm_dx%ÿÿ0(sm_dx$)
+ sm_dy%ÿÿ0(sm_dy$)
+ ÿÿ"OPEN OVERLAY ALIAS SM"
+ ÿÿ"window sm handle "ÿÿ(Hwnd%%,"999999999999")ÿ" fixed"
+ ÿÿ"put sm frame at "ÿsm_x$ÿ" "ÿsm_y$ÿ" "ÿsm_dx$ÿ" "ÿsm_dy$
+ ÿÿ"dialog sm popup menu on"
+ ÿÿ"set sm video on"
+ ÿÊÿË""
+ ÿ’ÿÿ
+
+
+ ' FLM laden
+ ' ======================================================================
+ 
+ÿÿSMRead(Image$)
+ ÿ¡ÿJ(Image$)ÿp
+ÿÿ"freeze sm"
+ÿÿ"load sm "ÿImage$
+ ÿ^
+ÿƒFehler("Die Bilddatei konnte nicht gefunden werden!","")
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+ 
+ ' FLM speichern
+ ' ======================================================================
+ 
+ÿÿSMWrite(Image$)
+ ÿÿ"save sm "ÿImage$ÿ" best half"
+ ÿ’ÿÿ
+
+ 
+ ' Video Live
+ ' ======================================================================
+ 
+ÿÿSMLive()
+ ÿÿ"unfreeze sm"
+ ÿ’ÿÿ
+ 
+ 
+ ' Video Pause
+ ' ======================================================================
+ 
+ÿÿSMPause()
+ ÿÿ"freeze sm"
+ ÿ’ÿÿ
+ 
+
+ÿÿSMSaveSetup()
+ ÿÊÿË"Karteneinstellungen werden gespeichert..."
+ ÿßÿe
+ ÿƒWriteINI(Videokarte$,"XPos",ÿH(sm_x%,"99999")
+ ÿƒWriteINI(Videokarte$,"YPos",ÿH(sm_y%,"99999")
+ ÿƒWriteINI(Videokarte$,"Width",ÿH(sm_dx%,"99999")
+ ÿƒWriteINI(Videokarte$,"Height",ÿH(sm_dy%,"99999")
+ ÿÊÿË""
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+ ' SM abmelden 
+ ' ======================================================================
+ 
+ÿÿSMClose()
+ ÿÿ"close sm"
+ ÿ’ÿÿ
+ 
+ 
+ ' Formular "CLICK"
+ ' ======================================================================
+ 
+ÿÿMNCLICK()
+ ÿƒMNProgramm()
+ ÿ¬2,0,1,"&Daten","",""
+ ÿ¬2,1,1,"&Neu,F2","CLKNeu","einen neuen Datensatz erfassen"
+ ÿ¬2,2,1,"&Kopieren","CLKCopy","Bild in Zwischenablage kopieren"
+ ÿ¬2,3,1,"S&ichern,F4","MStore",""
+ ÿ¬2,4,1,"&Verwerfen,Alt+RckT","UNDO",""
+ ÿ¡ÿOMNdisabled%("CLKLoeschen")ÿp
+ÿ¬2,5,1,"&L”schen","CLKLoeschen"
+ ÿ^
+ÿ¬2,5,0,"&L”schen","CLKLoeschen"
+ ÿ’ÿ¡
+ ÿƒMNHilfe(3)
+ ÿ’ÿÿ
+
+ 
+ 
+

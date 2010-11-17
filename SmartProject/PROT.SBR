@@ -1,0 +1,16 @@
+SBP
+ÿÿSBRLoad()
+ ÿ…ÿÿ
+ ÿÿDateiname$
+ Dateiname$ÿ"*.sbr"
+ ÿÂ"Datei ”ffnen","",26,req%,Dateiname$
+ ÿ¡req%ÿ0ÿp
+ÿ¨Dateiname$,ÿ°
+ÿÿ±
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+
+ÿÿSBRSave()
+ÿÅ"I:\"ÿÿåroot(Dateiname$)ÿ".TMP",ÿo
+ ÿ’ÿÿ
+

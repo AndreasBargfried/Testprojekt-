@@ -1,0 +1,30 @@
+SBP
+ ÿ™"akquise"
+ ÿÊÿfÿe
+ ÿ£datum.akquise
+ i%ÿ0
+ ÿÉÿÐNotiz.AKQUISEÿ"MAILING*"ÿerledigt_Termin.AKQUISEÿ"j"
+ÿÉÿ`ÿá
+ÿØÿOÿB("akquise")
+erledigt_Termin.akquiseÿ"j"
+ergebnis.akquiseÿergebnis.akquiseÿ"  autom. erledigt am 1.2.95"
+QuickCodeMA.akquiseÿÿ(termin.akquise,"ddmmyy")ÿÿ(CodeMA.akquise,"000000")
+QuickCodeKU.akquiseÿÿ(termin.akquise,"ddmmyy")ÿÿ(CodeKU.akquise,"000000")
+QuickCodeAK.akquiseÿÿ(termin.akquise,"ddmmyy")ÿÿ(CodeAK.akquise,"000000")
+QuickAKMA.akquiseÿÿ(termin.akquise,"ddmmyy")ÿÿ(codeak.akquise,"000000")ÿÿ(CodeMA.akquise,"000000")
+CodeAKMA.akquiseÿÿ(codeak.akquise,"000000")ÿÿ(CodeMA.akquise,"000000")
+QuickKUDat.akquiseÿÿ(CodeKU.akquise,"000000")ÿÿ>(erledigt_Termin.AKQUISE)ÿÿ(termin.akquise,"yymmdd")
+QuickMADat.akquiseÿÿ(CodeMA.akquise,"000000")ÿÿ>(erledigt_Termin.AKQUISE)ÿÿ(termin.akquise,"yymmdd")
+QuickAKDat.akquiseÿÿ(CodeAK.akquise,"000000")ÿÿ>(erledigt_Termin.AKQUISE)ÿÿ(termin.akquise,"yymmdd")
+QuickAKMADat.akquiseÿÿ(codeak.akquise,"000000")ÿÿ(CodeMA.akquise,"000000")ÿÿ>(erledigt_Termin.AKQUISE)ÿÿ(termin.akquise,"yymmdd")
+QuickKuDatDiff.akquiseÿcodeku ÿ1000000ÿ(1000000ÿÿ1(termin))
+ÿ½ CALL DFile(2,"OFFICE\aktionen" + _fpw$)
+ÿÉÿ¥CodeAK.akquiseÿ™"aktionen"ÿ£CodeAK.aktionen
+ÿ™"akquise"
+MemberOf.akquiseÿMemberOf.aktionen
+I%ÿI%ÿ1
+ÿ{ÿ(I%,"99999")
+ÿÌ
+ÿÉÿ±ÿá
+ÿÙ
+

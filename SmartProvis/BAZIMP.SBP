@@ -1,0 +1,323 @@
+SBP
+
+ ÿƒmain()
+
+ÿÿBazImp()
+ ÿ´ÿ™ÿà,1_netpath$ÿ"0-IMPORT\0-BAZ\ADR.SBF":ÿÎ
+ ÿwabstep1
+ ÿ_netpath$
+ ÿ½ DIRECTORY _netpath$ + "0-IMPORT\0-BAZ"
+ ÿ´ÿ™ÿà,1_netpath$ÿ"0-IMPORT\0-BAZ\AKQUI.SBF"
+ 
+ ÿ´ÿ™ÿà,1_netpath$ÿ"0-IMPORT\0-BAZ\ADR.SBF":ÿÎ
+ ÿ¾ÿaÿ™"ADR"
+ ÿÀÿ™"ADR"ÿq_netpath$ÿ"0-IMPORT\0-BAZ\ADR.SBF"
+ ÿ™"AKQUI"
+ ÿ¾ÿaÿ™"AKQUI"
+ 
+ ÿÀÿ™"AKQUI"ÿq"C:\CODIE1.ASP\0-IMPORT\0-BAZ\AKQUI.SBF"
+ ÿÉÿĞÿ™"ADR"
+
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\0-BAZ\ADR.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"ADR.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+ ÿÉÿĞÿ™"AKQUI"
+ Superbase.Converters.XLS.SourceFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.SourceFileÿ_netpath$ÿ"0-IMPORT\0-BAZ\AKQUI.XLS"
+ Superbase.Converters.XLS.Descendingÿ0
+ Superbase.Converters.XLS.Mergeÿÿ1
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.LabelRowÿ1
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"AKQUI.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.XLS)
+
+abstep1: 
+ ÿƒDFile(3,"maadr"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\ADRESSEN"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\AKQUISE"ÿ_fpw$)
+ ÿƒDFile(2,"OFFICE\TELEFON"ÿ_fpw$)
+ ÿ™"MAADR"
+ ÿ£agnr.maadr
+ ÿ™"ADR"
+ ÿ£lfdnr
+ ÿÉÿ`ÿ™"ADR"
+ i%ÿ0
+ j%ÿÿA("ADR")
+ ÿ½ GOTO abstep2
+ ÿ¾ÿaÿ™"ADRESSEN"
+ ÿÀÿ™"ADRESSEN"ÿq_netpath$ÿ"OFFICE\ADRESSEN.SBF"
+ ÿ¾ÿaÿ™"Telefon"
+ ÿÀÿ™"Telefon"ÿq_netpath$ÿ"OFFICE\Telefon.SBF"
+abstep2: 
+ ÿØÿOÿB("ADR")
+i%ÿi%ÿ1
+ÿÿ™"ADRESSEN"
+codeku.adressenÿÿI("ADRESSEN",1)
+codeku%ÿcodeku.adressen
+Kundennummer.adressenÿÿ(Adressen_Agentu.adr,"000000")
+ÿ¡Adressen_Agentu.adrÿ0ÿp
+ÿ¡ÿJ(Adressen_Agentu.adr,agnr.maadr)ÿp
+ÿÉÿ`ÿ™"maadr"ÿ£agnr.maadr
+ÿÉÿ¥Adressen_Agentu.adrÿ™"maadr"ÿ£agnr.maadr
+codema.adressenÿcodema.maadr
+ÿ^
+oo%ÿ0
+ÿ¡ÿ+(ÿ(Adressen_Agentu.adr,"000000"),2)ÿ"30"ÿp
+	ÿÉÿ`ÿ™"maadr"ÿ£agnr.maadr
+	ÿÉÿ¥301036ÿ™"maadr"ÿ£agnr.maadr
+	codema.adressenÿcodema.maadr
+	oo%ÿÿ1
+ÿ’ÿ¡
+ÿ¡ÿ+(ÿ(Adressen_Agentu.adr,"000000"),2)ÿ"80"ÿp
+	ÿÉÿ`ÿ™"maadr"ÿ£agnr.maadr
+	ÿÉÿ¥801082ÿ™"maadr"ÿ£agnr.maadr
+	codema.adressenÿcodema.maadr
+	oo%ÿÿ1
+ÿ’ÿ¡
+ÿ¡ÿ+(ÿ(Adressen_Agentu.adr,"000000"),2)ÿ"45"ÿp
+	ÿÉÿ`ÿ™"maadr"ÿ£agnr.maadr
+	ÿÉÿ¥971004ÿ™"maadr"ÿ£agnr.maadr
+	codema.adressenÿcodema.maadr
+	oo%ÿÿ1
+ÿ’ÿ¡
+ÿ¡ÿ+(ÿ(Adressen_Agentu.adr,"000000"),2)ÿ"74"ÿp
+	ÿÉÿ`ÿ™"maadr"ÿ£agnr.maadr
+	ÿÉÿ¥973015ÿ™"maadr"ÿ£agnr.maadr
+	codema.adressenÿcodema.maadr
+	oo%ÿÿ1
+ÿ’ÿ¡
+ÿ¡Adressen_Agentu.adrÿ971010ÿp
+	ÿÉÿ`ÿ™"maadr"ÿ£agnr.maadr
+	ÿÉÿ¥971011ÿ™"maadr"ÿ£agnr.maadr
+	codema.adressenÿcodema.maadr
+	oo%ÿÿ1
+ÿ’ÿ¡
+ÿ¡oo%ÿ0ÿp
+	ÿÉÿ`ÿ™"maadr"ÿ£agnr.maadr
+	ÿÉÿ¥999999ÿ™"maadr"ÿ£agnr.maadr
+	codema.adressenÿcodema.maadr
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+Matchcode.adressenÿÿH(ÿ(Akquise_Agentur.adr,"999999"))
+Nachname.adressenÿName.adr
+Vorname.adressenÿVorname.adr
+Titel.adressenÿTitel.adr
+Geburtsname.adressenÿZusatz.adr
+Straáe.adressenÿStraáe.adr
+Land.adressenÿLand.adr
+ort.adressenÿort.adr
+plz.adressenÿplz.adr
+Geburtstag.adressenÿGebdatum.adr
+Gterstand.adressenÿstandtext.adr
+Anzahl_Kinder.adressenÿKinder.adr
+ÿ¡sex.adrÿ"M"ÿp
+Geschlecht.adressenÿ"j"
+ÿ’ÿ¡
+ÿ¡sex.adrÿ"W"ÿp
+Geschlecht.adressenÿ"n"
+ÿ’ÿ¡
+ÿ¡ÿH(sex.adr)ÿ""ÿp
+Geschlecht.adressenÿ""
+ÿ’ÿ¡
+Staatsangeh”rig.adressenÿÿ+(StaatsangehText.adr,10)
+Anstellungsverh.adressenÿÿ+(status_.adr,15)
+BerufStatus.adressenÿstatus_.adr
+beruf.adressenÿberuf.adr
+BerufFachr.adressenÿFachrichtung.adr
+BerufSchwer1.adressenÿSchwerpunkt_1.adr
+BerufSchwer2.adressenÿSchwerpunkt_2.adr
+BerufZus1.adressenÿZusatzbezeichnu.adr
+BerufZus2.adressenÿZusatzbezeic_01.adr
+BerufZus3.adressenÿZusatzbezeic_02.adr
+BerufZus4.adressenÿSpezialgebiet.adr
+ÿ¡Steuermandant.adrÿ1ÿpstichwort.adressenÿstichwort.adressenÿ","ÿ"STEUERMANDAT"
+ÿ¡VERBANDSMITGLIE.adrÿ1ÿpstichwort.adressenÿstichwort.adressenÿ","ÿ"VERBANDSMITGLIED"
+ÿ¡lfd_betriebsw_B.adrÿ1ÿpstichwort.adressenÿstichwort.adressenÿ","ÿ"BWLBETREUUNG"
+ÿ¡Anwaltskanzlei_.adrÿ1ÿpstichwort.adressenÿstichwort.adressenÿ","ÿ"MANDRECHTSANW"
+ÿ¡BAV.adrÿ1ÿpstichwort.adressenÿstichwort.adressenÿ","ÿ"BAV"
+ÿ¡mailings.adrÿ1ÿpstichwort.adressenÿstichwort.adressenÿ","ÿ"MAILING"
+ÿ¡hauszeitung.adrÿ1ÿpstichwort.adressenÿstichwort.adressenÿ","ÿ"MANDZEITSCHR"
+ÿ¡geburtstagskart.adrÿ1ÿpstichwort.adressenÿstichwort.adressenÿ","ÿ"GEBURTSTKARTE"
+ÿ¡gel”scht_nicht_.adrÿ1ÿpstichwort.adressenÿstichwort.adressenÿ","ÿ"GELOESCHT"
+ÿ¡gel”scht_nicht_.adrÿ1ÿp
+ASerJN.adressenÿ"j"
+ÿ’ÿ¡
+lfdnr.adressenÿlfdnr.adr
+briefanrede.adressenÿBriefanrede.adr
+ÿ¡briefanrede.adrÿ"*Herr*"ÿpanrede.adressenÿ"Herr"
+ÿ¡briefanrede.adrÿ"*Frau*"ÿpanrede.adressenÿ"Frau"
+ÿ¡ÿH(Adressen_Bem1.adr)ÿ""ÿp
+Notiz.adressenÿAdressen_Bem1.adrÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡ÿH(Adressen_Bem2.adr)ÿ""ÿp
+Notiz.adressenÿNotiz.adressenÿAdressen_Bem2.adrÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡ÿH(Adressen_Sonsti.adr)ÿ""ÿp
+Notiz.adressenÿNotiz.adressenÿAdressen_Sonsti.adrÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡ÿH(Referenz.adr)ÿ""ÿp
+Notiz.adressenÿNotiz.adressenÿ"Referenz: "ÿReferenz.adrÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡ÿH(Memos_Adressen.adr)ÿ""ÿp
+Notiz.adressenÿNotiz.adressenÿ"Memos: "ÿMemos_Adressen.adrÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡ÿH(Akquise_Bem1.adr)ÿ""ÿp
+Notiz.adressenÿNotiz.adressenÿ"Akquise Bem1: "ÿAkquise_Bem1.adrÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡ÿH(Akquise_Bem2.adr)ÿ""ÿp
+Notiz.adressenÿNotiz.adressenÿ"Akquise Bem2: "ÿAkquise_Bem2.adrÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿ¡ÿH(Akquise_Sonstig.adr)ÿ""ÿp
+Notiz.adressenÿNotiz.adressenÿ"Akquise Sonstiges: "ÿAkquise_Sonstig.adrÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+
+ÿƒQuickStore("ADRESSEN")
+ÿ¡ÿH(Telefon1.adr)ÿ""ÿp
+ÿÿ™"Telefon"
+codetel.TelefonÿÿI("Telefon",1)
+codeku.Telefonÿcodeku%
+Art.Telefonÿ"Telefon "ÿTelefonart1.adr
+Nummer.TelefonÿTelefon1.adr
+KART1.telefonÿ"FON"
+Qart.TelefonÿVSNRPack$(art.Telefon)
+Qnummer.TelefonÿVSNRPack$(nummer.Telefon)
+ÿÌÿ™"Telefon"
+ÿ’ÿ¡
+ÿ¡ÿH(Telefon2.adr)ÿ""ÿp
+ÿÿ™"Telefon"
+codetel.TelefonÿÿI("Telefon",1)
+codeku.Telefonÿcodeku%
+Art.Telefonÿ"Telefon "ÿTelefonart2.adr
+Nummer.TelefonÿTelefon2.adr
+KART1.telefonÿ"FON"
+Qart.TelefonÿVSNRPack$(art.Telefon)
+Qnummer.TelefonÿVSNRPack$(nummer.Telefon)
+ÿÌÿ™"Telefon"
+ÿ’ÿ¡
+ÿ¡ÿH(Telefax.adr)ÿ""ÿp
+ÿÿ™"Telefon"
+codetel.TelefonÿÿI("Telefon",1)
+codeku.Telefonÿcodeku%
+Art.Telefonÿ"Telefax "ÿTelefonart3.adr
+Nummer.TelefonÿTelefax.adr
+KART1.telefonÿ"FAX"
+FonOderFax.telefonÿ"j"
+Qart.TelefonÿVSNRPack$(art.Telefon)
+Qnummer.TelefonÿVSNRPack$(nummer.Telefon)
+ÿÌÿ™"Telefon"
+ÿ’ÿ¡
+ÿ¡ÿH(Telex.adr)ÿ""ÿp
+ÿÿ™"Telefon"
+codetel.TelefonÿÿI("Telefon",1)
+codeku.Telefonÿcodeku%
+Art.Telefonÿ"Telex "ÿTelex.adr
+Nummer.TelefonÿTelex.adr
+KART1.telefonÿ"TELEX"
+Qart.TelefonÿVSNRPack$(art.Telefon)
+Qnummer.TelefonÿVSNRPack$(nummer.Telefon)
+
+ÿÌÿ™"Telefon"
+ÿ’ÿ¡
+ÿ¡ÿH(emailadr.adr)ÿ""ÿp
+ÿÿ™"Telefon"
+codetel.TelefonÿÿI("Telefon",1)
+codeku.Telefonÿcodeku%
+Art.Telefonÿ"EMAIL"
+KART1.telefonÿ"EMAIL"
+Nummer.Telefonÿemailadr.adr
+Qart.TelefonÿVSNRPack$(art.Telefon)
+Qnummer.TelefonÿVSNRPack$(nummer.Telefon)
+ÿÌÿ™"Telefon"
+ÿ’ÿ¡
+ÿ¡ÿH(emailadr2.adr)ÿ""ÿp
+ÿÿ™"Telefon"
+codetel.TelefonÿÿI("Telefon",1)
+codeku.Telefonÿcodeku%
+Art.Telefonÿ"EMAIL"
+KART1.telefonÿ"EMAIL"
+Nummer.Telefonÿemailadr2.adr
+Qart.TelefonÿVSNRPack$(art.Telefon)
+Qnummer.TelefonÿVSNRPack$(nummer.Telefon)
+ÿÌÿ™"Telefon"
+ÿ’ÿ¡
+ÿÊÿËÿ(i%)ÿ" von "ÿÿ(j%)ÿ" ADR importiert"
+ÿÉÿ±ÿ™"ADR"ÿ£lfdnr.adr
+ ÿÙ
+
+ ÿ™"AKQUI"
+ ÿ£lfdnr
+ ÿÉÿ`ÿ™"AKQUI"
+ i%ÿ0
+ k%ÿ0
+ f%ÿ0
+ GAkquiDat$ÿ"Akquise"
+ j%ÿÿA("AKQUI")
+ ÿØÿOÿB("AKQUI")
+i%ÿi%ÿ1
+ÿ¡ÿJ(lfdnr.akqui,lfdnr.adressen)ÿp
+ÿÉÿ`ÿ™"ADRESSEN"ÿ£lfdnr.adressen
+ÿÉÿ¥lfdnr.akquiÿ™"ADRESSEN"ÿ£lfdnr.adressen
+codeku%ÿcodeku.adressen
+ÿÿ™"AKQUISE"
+codeaq.GAkquiDat$ÿÿI("Akquise",1)
+codeku.akquiseÿcodeku%
+lfdnr.akquiseÿlfdnr.akqui
+CodeAK.GAkquiDat$ÿ1
+CodeMA.GAkquiDat$ÿ1
+Wertung.GAkquiDat$ÿ0
+Sprachnotiz.GAkquiDat$ÿ"n"
+Datum.GAkquiDat$ÿTermin.akqui
+Termin.GAkquiDat$ÿTermin.akqui
+Notiz.akquiseÿNotiz.akquiÿ"Notiz: "ÿÿ(13)ÿÿ(10)
+Notiz.akquiseÿNotiz.akquiseÿ"Bemerkung: "ÿBemerkung.akquiÿÿ(13)ÿÿ(10)
+Ergebnis.akquiseÿText_.akquiÿÿ(13)ÿÿ(10)
+
+ÿ¡erledigt.akquiÿ0ÿp
+erledigt_Termin.GAkquiDat$ÿ"j"
+erledigt_Vorg.GAkquiDat$ÿ"j"
+Ergebnis.akquiseÿErgebnis.akquiseÿ"erledigt: "ÿÿ(erledigt.akqui,"0d.mm.yyyy")
+ÿ^
+erledigt_Termin.GAkquiDat$ÿ"n"
+erledigt_Vorg.GAkquiDat$ÿ"n"
+ÿ’ÿ¡
+cuaq%ÿcodeaq.GAkquiDat$
+nachname.GAkquiDat$ÿnachname.GAdrDat$
+ort.GAkquiDat$ÿort.GAdrDat$
+ÿÉÿ¥codema.GAkquiDat$ÿ™"supervis"ÿ£codema.supervis
+Bearbeiter.GAkquiDat$ÿ"Supervisor"
+TerminNr.GAkquiDat$ÿAnzTermine.supervisÿ1
+akquiseneu$ÿ"n"
+ÿƒQuickStore(GAkquiDat$)
+k%ÿk%ÿ1
+ÿ^
+f%ÿf%ÿ1
+ÿ’ÿ¡
+ÿÊÿËÿ(i%)ÿ" bearbeitet von "ÿÿ(j%)ÿ"/"ÿÿ(k%)ÿ" AKQUI importiert / "ÿÿ(f%)ÿ" keine ADR gefunden"
+ÿÉÿ±ÿ™"AKQUI"ÿ£lfdnr.AKQUI
+ ÿÙ
+
+
+
+
+ ÿ’ÿÿ
+

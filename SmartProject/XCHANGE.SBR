@@ -1,0 +1,758 @@
+SBP
+ ÿƒmain()
+
+ ' allgemeine Routinen fr Datenaustausch
+ ' ===================================================
+ ' Copyright (c) 1994 CoDIE Computer-Dienste
+ ' Version: 3.01
+ ' Stand  : 6. Oktober 1994
+ ' ===================================================
+ ' 06.10.94/FA - Automatisierung von CreateXFile(...)
+ ' 22.11.94/FA - Abarbeitung ber Abschnitt [XCHANGE.FILES]
+
+
+ ' Einsprung aus Hauptprogramm
+ ' ======================================================================
+ 
+ÿÿRunXCHANGE()
+ ÿ¡disabled%("XCHANGE")ÿpÿ’ÿÿ
+ DiskDrive$ÿReadConfig$(_projekt$,"XCHANGE.DiskDrive")
+ ÿ¡DiskDrive$ÿ"leer"ÿDiskDrive$ÿ"A:"ÿp
+DiskDrive%ÿ1
+ ÿ^
+ÿ¡DiskDrive$ÿ"B:"ÿp
+DiskDrive%ÿ2
+ÿ^
+DiskDrive%ÿ3
+UserDef$ÿÿ>(DiskDrive$)
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ LastOut$ÿReadConfig$(_projekt$,"XCHANGE.LastOut")
+ NLastOut$ÿÿ(ÿQ,"yymmdd")ÿÿ(ÿ9(ÿR)ÿ100ÿÿ:(ÿR),"0000")
+ ÿ¡LastOut$ÿ"leer"ÿpStammDaten%ÿ1ÿ^StammDaten%ÿ0
+ ÿ‰ÿñ"XCHDLG",0,0,242,140,"Datenaustausch/-abgleich","MS Sans Serif",8
+ ÿ|ÿñ"XCHDLG",4,0,0,242,116,0,""
+ ÿ|ÿñ"XCHDLG",9,8,17,20,21,2
+ ÿ|ÿñ"XCHDLG",5,36,19,194,9,0,"Bitte geben Sie hier die Parameter fr den Datenaustausch"
+ ÿ|ÿñ"XCHDLG",5,36,28,173,10,0,"an und w„hlen Sie dann die gewnschte Funktion."
+ ÿ|ÿñ"XCHDLG",4,36,41,198,53,0," Ziel/Quelle "
+ ÿ|ÿñ"XCHDLG",3,38,54,82,11,0,"Diskettenlaufwerk A:",1,DiskDrive%
+ ÿ|ÿñ"XCHDLG",3,38,65,82,11,0,"Diskettenlaufwerk B:",2,DiskDrive%
+ ÿ|ÿñ"XCHDLG",3,38,76,82,11,0,"Laufwerk/Pfad:",3,DiskDrive%
+ ÿ|ÿñ"XCHDLG",6,126,76,100,12,0,0,UserDef$,128
+ ÿ|ÿñ"XCHDLG",2,36,96,134,12,0,"Basisdatenbestand",1,0,StammDaten%
+ ÿ|ÿñ"XCHDLG",1,21,120,65,15,0,"Daten &senden",2,1
+ ÿ|ÿñ"XCHDLG",1,88,120,65,15,0,"Daten &empfangen",3,1
+ ÿ|ÿñ"XCHDLG",1,154,120,66,15,0,"&Abbrechen",0,0
+ ÿñ"XCHDLG",req%
+ ÿ¾ÿñ"XCHDLG"
+ ÿ¡req%ÿ0ÿp
+ÿƒ_netpath$ÿ"xchange.exe"
+msg$ÿ"Vorbereiten des Datenaustauschs"
+ÿƒDoXCHANGE("Init","",msg$,"")
+ÿÊÿËmsg$
+ 
+ÿÉÿæDiskDrive%
+ÿæ1
+ÿƒWriteConfig(_projekt$,"XCHANGE.DiskDrive","A:")
+DiskID$ÿ"A"
+ÿæ2
+ÿƒWriteConfig(_projekt$,"XCHANGE.DiskDrive","B:")
+DiskID$ÿ"B"
+ÿæ3
+ÿƒWriteConfig(_projekt$,"XCHANGE.DiskDrive",ÿ>(UserDef$))
+DiskID$ÿÿ+(UserDef$,1)
+ÿ’ÿÉ
+
+ÿ½ *******************************************************
+ÿ½ ** Dateien fr Datenaustausch projektabh„ngig ”ffnen **
+ÿ½ *******************************************************
+
+ÿ½ ** OFFICE Dateien                 
+ÿ½ ** (mssen immer ge”ffnet werden)  
+
+ÿƒDFile(2,"access"ÿ_fpw$)
+ÿƒDFile(2,"accode"ÿ_fpw$)
+ÿƒDFile(2,"supervis"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\adressen"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\akquise"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\aktionen"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\dokument"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\fax"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\keywords"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\mail"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\notiz"ÿ_fpw$)
+ÿƒDFile(2,"OFFICE\xchange"ÿ_fpw$)
+
+ÿ½ CALL DFile(2,"OFFICE\postea" + _fpw$)
+
+ 
+ÿ½ ** PROVIS Dateien
+ 
+ÿ¡_projekt$ÿ"PROVIS*"ÿp
+ÿƒDFile(3,"buchung"ÿ_fpw$)
+ÿƒDFile(3,"geadr"ÿ_fpw$)
+ÿƒDFile(3,"gekond"ÿ_fpw$)
+ÿƒDFile(3,"gekondm"ÿ_fpw$)
+ÿƒDFile(3,"kvertrag"ÿ_fpw$)
+ÿƒDFile(3,"maadr"ÿ_fpw$)
+ÿƒDFile(3,"vorgang"ÿ_fpw$)
+ÿƒDFile(3,"vkond"ÿ_fpw$)
+ÿƒDFile(3,"sparten"ÿ_fpw$)
+ÿƒDFile(3,"zeingang"ÿ_fpw$)
+ÿ’ÿ¡
+ 
+ÿ½ ** PRICEIT/WORKS Dateien
+ 
+ÿ¡_projekt$ÿ"PRICEIT"ÿp
+ÿƒDFile(3,"abzugang"ÿ_fpw$)
+ÿƒDFile(3,"artikel"ÿ_fpw$)
+ÿƒDFile(3,"floskel"ÿ_fpw$)
+ÿƒDFile(3,"gruppen"ÿ_fpw$)
+ÿƒDFile(3,"kkopie"ÿ_fpw$)
+ÿƒDFile(3,"kombi"ÿ_fpw$)
+ÿƒDFile(3,"master"ÿ_fpw$)
+ÿƒDFile(3,"schein"ÿ_fpw$)
+ÿƒDFile(3,"ksatz"ÿ_fpw$)
+ÿƒDFile(3,"ssatz"ÿ_fpw$)
+ÿ’ÿ¡
+ÿ’ÿ¡
+
+ 
+ÿ½ ************************
+ÿ½ ** Diskette erstellen **
+ÿ½ ************************
+
+ÿ¡req%ÿ2ÿp
+AnzGlobal%ÿÿ0(ReadConfig$("XCHANGE.FILES","Global"))
+AnzProjekt%ÿÿ0(ReadConfig$("XCHANGE.FILES",_projekt$))
+AllFilesCount%ÿAnzGlobal%ÿAnzProjekt%
+FilesCount%ÿ0
+
+msg$ÿ"Erstellung der Austauschdateien"
+ÿƒDoXCHANGE("Init","",msg$,"")
+ÿÊÿËmsg$
+ 
+ 
+ÿ½ -- XCHANGE-Pfad l”schen --
+
+ÿ³ÿ_ÿwTRAPXClean '>> Fehlermeldung abfangen falls .\XCHANGE bereits leer ist
+ÿ_netpath$ÿ"XCHANGE\*.*"
+
+TRAPXClean: 
+ÿ¡test%ÿ0ÿpÿ³ÿ_ÿwErrorHandler ÿ^ÿ³ÿ_
+
+ÿ½ ** Austauschdateien erstellen
+
+ÿƒCreateXJob("",0)
+ÿ¡StammDaten%ÿ1ÿptstmp#%ÿ0ÿ^tstmp#%ÿÿ0(LastOut$)
+
+ÿ½ ** globale Dateien senden
+
+ÿ›a%ÿ1ÿqAnzGlobal%
+DateiName$ÿReadConfig$("XCHANGE.FILES","Global"ÿÿH(ÿ(a%,"999")))
+ÿƒCreateXFile(DateiName$,"",tstmp#%)
+ÿ±a%
+
+ÿ½ ** Projektdateien senden
+ 
+ÿ›a%ÿ1ÿqAnzProjekt%
+DateiName$ÿReadConfig$("XCHANGE.FILES",_projekt$ÿÿH(ÿ(a%,"999")))
+ÿƒCreateXFile(DateiName$,"",tstmp#%)
+ÿ±a%
+
+ÿƒCloseXJob()
+ 
+ÿ½ ** Bulkerstellung per XCHANGE.EXE starten und auf Rckmeldung per DDE warten
+ 
+mg$ÿ"Zusammenfassung der Austauschdateien"
+ÿƒDoXCHANGE("Init","",msg$,"")
+ÿÊÿËmsg$
+ÿƒDoXCHANGE("MAKEBULK",_netpath$ÿ"XCHANGE",_netpath$ÿ_projekt$,"*.*")
+warten$ÿ"WAIT"
+ÿØwarten$ÿ"WAIT"
+warten$ÿGetXCHANGE$()
+ÿÙ
+
+ÿ½ ** Datentr„ger erstellen
+
+msg$ÿ"Erstellung der Datendisketten"
+ÿÊÿËmsg$
+ÿƒDoXCHANGE("Init","",msg$,"")
+ÿƒDoXCHANGE("MAKEBULKDISK",_netpath$ÿ_projekt$,_projekt$,ÿ(ÿ.(ÿ>(DiskID$))ÿ64,"0"))
+ÿƒXWAIT("Die Erstellung der Datendisketten wurde beendet. Weiter mit ENTER bzw. OK!")
+ÿƒDoXCHANGE("QUIT","","","")
+ÿƒWriteConfig(_projekt$,"XCHANGE.LastOut",NLastOut$)
+ÿ’ÿ¡
+ 
+
+ÿ½ *************************************
+ÿ½ ** Bulkdatei von Diskette einlesen **
+ÿ½ *************************************
+ 
+ÿ¡req%ÿ3ÿp
+
+ÿ½ ** XCHANGE-Pfad l”schen
+
+ÿ³ÿ_ÿwTRAPXClean2
+ÿ½ ^ Fehler abfangen falls XCHANGE leer ist
+ÿ_netpath$ÿ"XCHANGE\*.*"
+ 
+TRAPXClean2: 
+ÿ¡test%ÿ0ÿpÿ³ÿ_ÿwErrorHandler ÿ^ÿ³ÿ_
+ 
+ÿƒ_netpath$ÿ"xchange.exe"
+msg$ÿ"šbernahme der Daten von Diskette"
+ÿƒDoXCHANGE("Init","",msg$,"")
+ÿÊÿËmsg$
+
+ÿ½ ** eventuell existierende Austauschdatei l”schen
+
+ÿ¡ÿJ(_netpath$ÿ_projekt$ÿ".BLK")ÿp
+ÿ_netpath$ÿ_projekt$ÿ".BLK"
+ÿ’ÿ¡
+ÿƒDoXCHANGE("ReadBulkDisk",_projekt$,_netpath$,ÿ(ÿ.(ÿ>(DiskID$))ÿ64,"0"))
+
+ÿ½ ** Dateien entpacken
+ 
+ÿ¡ÿJ(_netpath$ÿ_projekt$ÿ".BLK")ÿp
+ÿƒDoXCHANGE("Init","","Entpacken aller Dateien","")
+ÿÊÿË"Entpacken aller Dateien"
+ÿƒDoXCHANGE("ExtractAllFiles",_netpath$ÿ_projekt$,_netpath$ÿ"XCHANGE","")
+warten$ÿ"WAIT"
+ÿØwarten$ÿ"WAIT"
+	warten$ÿGetXCHANGE$()
+ÿÙ
+
+ÿ½ ** šbernahme der eingelesenen Daten in die Dateien
+
+ÿ‰ÿñ"XCHImport",0,0,218,95,"Datenbernahme","MS Sans Serif",8
+ÿ|ÿñ"XCHImport",4,0,0,217,70,0,""
+ÿ|ÿñ"XCHImport",9,6,11,20,21,2
+ÿ|ÿñ"XCHImport",5,34,12,168,10,0,"Die Datenbernahme war erfolgreich!"
+ÿ|ÿñ"XCHImport",5,34,22,168,10,0,"Im n„chsten Arbeitsgang werden alle Daten"
+ÿ|ÿñ"XCHImport",5,34,32,168,10,0,"auf Ihrem PC mit den neuen Daten berschrieben!"
+ÿ|ÿñ"XCHImport",5,34,52,168,10,0,"Wollen Sie mit der Datenbernahme fortsetzen?"
+ÿ|ÿñ"XCHImport",1,50,75,55,14,0,"&Ja",1,1
+ÿ|ÿñ"XCHImport",1,106,75,55,14,1,"&Nein",0,0
+ÿñ"XCHImport",req%
+ÿ¾ÿñ"XCHImport"
+ÿ×FileFields$(1)
+tstamp#%ÿÿ0(LastOut$)
+ÿ¡req%ÿ1ÿp
+	ÿ¾ÿaÿ™"XCHANGE"
+	ÿƒCreateLog()
+	ÿƒWriteLog(">>Datenbernahme am "ÿÿ(ÿQ,"dd.mm.yy"))
+	ÿ´_netpath$ÿ"XCHANGE\"ÿ_projekt$ÿ".JOB"ÿ›ÿ¤
+	process%ÿ0
+	ÿØÿOÿB("*")
+ÿ¤a$
+ÿ¡process%ÿ1ÿp
+ÿ¡ÿ+(a$,1)ÿ";"ÿa$ÿ""ÿp
+eqstart%ÿÿ?(a$,"=")
+colstart%ÿÿ?(a$,";")
+dfile$ÿÿ+(a$,eqstart%ÿ1)
+sfile$ÿÿ,(a$,eqstart%ÿ1,colstart%ÿeqstart%ÿ1)
+tstamp$ÿÿ-(a$,10)
+ÿ¡ÿ´(dfile$)ÿp
+ÿ´ÿ™_netpath$ÿ"XCHANGE\"ÿsfile$
+ÿ™dfile$
+fanz%ÿÿõ(dfile$,1)
+ÿÿFileFields$(fanz%)
+ÿÿFileFields$,1
+ok%ÿ0
+findex$ÿ""
+stopsearch%ÿ0
+ÿ›a%ÿ0ÿqfanz%ÿ1
+ÿ¡FileFields$(a%)ÿ""ÿstopsearch%ÿ0ÿp
+ÿ¡ÿö(FileFields$(a%),8)ÿ"MAIN"ÿp
+ÿ¡findex$ÿ""ÿpfindex$ÿFileFields$(a%)
+ok%ÿ1
+ÿ’ÿ¡
+ÿ^
+stopsearch%ÿ1
+ÿ’ÿ¡
+ÿ±a%
+ÿ¡ok%ÿ0ÿp
+ÿƒWriteLog(ÿK(dfile$ÿ":",15)ÿ"kein MAIN-Feld gefunden")
+ÿ^
+ÿ¡StammDaten%ÿ1ÿptstamp#%ÿ0
+ÿƒXAbgleich(dfile$,sfile$,findex$,tstamp#%)
+ÿ’ÿ¡
+ÿ†ÿ™sfile$
+ÿ^
+ÿƒWriteLog(ÿK(dfile$ÿ":",15)ÿ"Datei nicht ge”ffnet")
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡a$ÿ"?FILES?"ÿpprocess%ÿ1
+	ÿÙ
+	ÿ†ÿ¤
+	ÿƒCloseLog()
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Das Einlesen der Disketten wurde abgebrochen!","")
+ÿ’ÿ¡
+ÿƒDoXCHANGE("QUIT","","","")
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿÊÿË""
+ ÿ’ÿÿ
+
+
+ ' Austauschdatei (.SBF) vollst„ndig bernehmen
+ ' ======================================================================
+ 
+ÿÿXImport(dfile$,sfile$,tstamp#%)
+ ÿƒDoXCHANGE("GAUGEON","1","aktuelle Datei: "ÿÿ>(sfile$),"")
+ fpc%ÿÿ(100ÿAllFilesCount%ÿFilesCount%)
+ FilesCount%ÿFilesCount%ÿ1
+ ÿƒDoXCHANGE("GAUGE","1","0","")
+ ÿƒDoXCHANGE("GAUGE","2",ÿ(fpc%,"0000"),"")
+ ÿÊÿË"Datei "ÿÿ>(dfile$)ÿ" wird gel”scht..."
+ ÿ¾ÿaÿ™dfile$
+ ÿÊÿË"neue Daten werden aus "ÿÿ>(sfile$)ÿ" nach "ÿÿ>(dfile$)ÿ" bernommen..."
+ ÿ¢_netpath$ÿ"XCHANGE\"ÿsfile$ÿ".SBF"ÿqÿ™dfile$
+ ÿ’ÿÿ
+
+ÿÿXWAIT(msg$)
+ ÿƒDoXCHANGE("WAIT","",msg$,"")
+ ÿè97,"XCHANGE","XCHANGE"
+ rep$ÿ"WAIT"
+ ÿØrep$ÿ"WAIT"
+ÿë97,"DDEReply",rep$
+ ÿÙ
+ ÿê97
+ ÿ’ÿÿ
+
+ÿÿDoXCHANGE(DDECmd$,DDEValue1$,DDEValue2$,DDEValue3$)
+ ÿè97,"XCHANGE","XCHANGE"
+ ÿì97,"DDEValue1",DDEValue1$
+ ÿì97,"DDEValue2",DDEValue2$
+ ÿì97,"DDEValue3",DDEValue3$
+ ÿì97,"DDECmd",DDECmd$
+ ÿê97
+ ÿ’ÿÿ
+
+ÿÿGetXCHANGE$()
+ ÿè97,"XCHANGE","XCHANGE"
+ ÿë97,"DDEReply",rep$
+ ÿê97
+ GetXCHANGE$ÿrep$
+ ÿ’ÿÿ
+
+
+ 
+ ' JOB-Datei fr Datenaustausch erstellen
+ ' ======================================================================
+ ' Parameter:
+ '      pw$     Password welches beim Einlesen der Daten eingegeben wer-
+ '              den muá; wird kein Paáword angegeben, wird die Passwort-
+ '              abfrage beim Einlesen bersprungen
+ '  
+ '      link%   0, wenn die Daten fr alle Agenturen gedacht sind
+ '              Agenturnummer, wenn die Daten nur von einer bestimmten
+ '              Agentur eingelesen werden sollen
+ ' ======================================================================
+ ' 01.07.94/FA 
+ ' 06.10.94/FA - jobfile$ wird lokal erzeugt
+
+
+ÿÿCreateXJob(pw$,link%)
+ ÿƒDoXCHANGE("GaugeON","1","aktuelle Datei:","")
+ ÿƒDoXCHANGE("GaugeON","2","Gesamt","")
+ ÿƒDoXCHANGE("GAUGE","1","0","")
+ ÿƒDoXCHANGE("GAUGE","2","0","")
+ jobfile$ÿ_netpath$ÿ"XCHANGE\"ÿ_projekt$ÿ".JOB"
+ ÿ´jobfile$ÿ›ÿ¶
+ ÿ{"[JOB]"
+ ÿ{"Password="ÿpw$
+ ÿ{"link="ÿÿH(ÿ(link%))
+ ÿ{"created="ÿÿ(ÿQ,"yymmdd")ÿÿ(ÿ9(ÿR),"00")ÿÿ(ÿ:(ÿR),"00")
+ ÿ{
+ ÿ{"[FILES]"
+ ÿ†ÿ¶
+ ÿ’ÿÿ
+ 
+ÿÿAddXJob(msg$)
+ jobfile$ÿ_netpath$ÿ"XCHANGE\"ÿ_projekt$ÿ".JOB"
+ ÿ´jobfile$ÿ›ÿT
+ ÿ{msg$
+ ÿ†ÿ¶
+ ÿ’ÿÿ
+
+ÿÿCloseXJob()
+ jobfile$ÿ_netpath$ÿ"XCHANGE\"ÿ_projekt$ÿ".JOB"
+ ÿ´jobfile$ÿ›ÿT
+ ÿ{"; jobfile closed: "ÿÿ(ÿQ,"dd.mm.yyyy")ÿ" / "ÿÿ7(ÿR,"hh:mm")
+ ÿ†ÿ¶
+ ÿ_netpath$ÿ"XCHANGE\*.sb!"
+ ÿ_netpath$ÿ"XCHANGE\superbas.net"
+ ÿ¡ÿJ(_netpath$ÿ"XCHANGE\"ÿ_projekt$ÿ".BLK")ÿp
+ÿ_netpath$ÿ"XCHANGE\"ÿ_projekt$ÿ".BLK"
+ÿ_netpath$ÿ"XCHANGE\"ÿ_projekt$ÿ".MAP"
+ ÿ’ÿ¡
+ ÿ’ÿÿ
+ 
+
+ ' Austauschdatei (.SBF) erstellen
+ ' ======================================================================
+ ' Parameter:
+ '      sfile$          Quelldatei (SBF)
+ '      dfile$          Zieldatei im XCHANGE-Verzeichnis
+ '                      wird dfile$ nicht angegeben, wird der Dateiname
+ '                      von der Routine automatisch erzeugt
+ '                      (z.B. ADRESSEN wird zu _DRESSEN)
+ ' ======================================================================
+ ' 06.10.94/FA - automatische Zieldateigenerierung bei dfile$=""
+ ' 19.10.94/FA - Dateien werden nicht mehr gel”scht um w„hrend der 
+ '               Entwicklung Namnesberschneidungen erkennen zu k”nnen
+ '             - Abfrage von [XCHANGE.SKIP] in CODIEAPP.NET um Dateien
+ '               vom Austausch auszuschlieáen
+
+ÿÿCreateXFile(sfile$,dfile$,tstamp#%)
+ cfile$ÿÿ™
+ ÿƒDoXCHANGE("GAUGEON","1","aktuelle Datei: "ÿÿ>(sfile$),"")
+ ÿ×FileFields$(1)
+ fpc%ÿÿ(100ÿAllFilesCount%ÿFilesCount%)
+ FilesCount%ÿFilesCount%ÿ1
+ ÿƒDoXCHANGE("GAUGE","1","0","")
+ ÿƒDoXCHANGE("GAUGE","2",ÿ(fpc%,"0000"),"")
+ ÿ¡dfile$ÿ""ÿp
+dfile$ÿ"_"ÿÿ-(sfile$,ÿ/(sfile$)ÿ1)
+ ÿ’ÿ¡
+
+ ÿ½ ** Namenskollisionen verhindern
+
+ ÿ¡sfile$ÿ"KSATZ"ÿpdfile$ÿ"_KSATZ"
+ ÿ¡sfile$ÿ"SSATZ"ÿpdfile$ÿ"_SSATZ"
+
+ ÿƒAddXJob(ÿ>(sfile$)ÿ"="ÿdfile$ÿ";"ÿÿ(tstamp#%,"0000000000"))
+ ÿ×FInfo$(800)
+ ÿ¡ÿ´(dfile$)ÿpÿ†ÿ™dfile$
+ ÿ¡ÿJ(_netpath$ÿ"XCHANGE\"ÿdfile$ÿ".sbd")ÿp
+ÿÊÿË"L”sche Dateien "ÿsfile$ÿ".*"
+ÿ_netpath$ÿ"XCHANGE\"ÿdfile$ÿ".*"
+ ÿ’ÿ¡
+ ÿÊÿË"Erstellung der Austauschdatei "ÿsfile$
+ ÿ™sfile$
+ ÿÊÿiÿŸ""
+ ÿÉ
+ ÿÁ
+ ÿĞTimeStamp.sfile$ÿtstamp#%
+ ÿµÿÁ
+ ÿqÿ™_netpath$ÿ"XCHANGE\"ÿdfile$
+ ÿ’ÿÉ
+ ÿÊÿË""
+ ÿ™sfile$
+ ÿÿFInfo$,3
+ a%ÿ0
+ icount%ÿ0
+ ÿ›a%ÿ0ÿq800
+ÿ¡FInfo$(a%)ÿ""ÿicount%ÿ0ÿpicount%ÿa%ÿ1
+ ÿ±a%
+ ÿ™dfile$
+ a%ÿ0
+ ipc2%ÿ0
+ ÿØFInfo$(a%)ÿ""
+ipc%ÿÿ(100ÿicount%ÿipc2%)
+ÿƒDoXCHANGE("GAUGE","1",ÿ(ipc%,"0000"),"")
+ipc2%ÿipc2%ÿ1
+dField$ÿFInfo$(a%)ÿ"."ÿdfile$
+sField$ÿFInfo$(a%)ÿ"."ÿsfile$
+ÿ½ ? sField$ + " " + FIELDINFO$ (sField$,3)
+ÿ¡ÿö(dField$,3)ÿ""ÿp
+ÿ¡ÿö(sField$,3)ÿ"IXD"ÿp
+ÿÊÿË"Erstelle Index fr "ÿsField$
+ÿ–"CREATE INDEX ON "ÿdfield$
+ÿ^
+ÿ¡ÿö(sField$,3)ÿ"IXU"ÿp
+	ÿÊÿË"Erstelle eindeutigen Index fr "ÿsField$
+	ÿ–"CREATE INDEX ON "ÿdField$ÿ" UNIQUE"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+a%ÿa%ÿ1
+ ÿÙ
+
+ ÿ™sfile$
+ fanz%ÿÿõ(sfile$,1)
+ ÿÿFileFields$(fanz%)
+ ÿÿFileFields$,1
+ ok%ÿ0
+ findex$ÿ""
+ stopsearch%ÿ0
+ ÿ›a%ÿ0ÿqfanz%ÿ1
+ÿ¡FileFields$(a%)ÿ""ÿstopsearch%ÿ0ÿp
+ÿ¡ÿö(FileFields$(a%),8)ÿ"MAIN"ÿp
+ÿ¡findex$ÿ""ÿpfindex$ÿFileFields$(a%)
+ok%ÿ1
+ÿ’ÿ¡
+ÿ^
+stopsearch%ÿ1
+ÿ’ÿ¡
+ ÿ±a%
+ ÿ¡ok%ÿ0ÿp
+ÿ½ CALL WriteLog( PAD$ (dfile$ + ":",15) + "kein MAIN-Feld gefunden")
+ ÿ^
+ÿ™dfile$
+IndexType%ÿ0
+ÿ¡ÿö(findex$,3)ÿ"IXD"ÿpIndexType%ÿ1
+ÿ¡ÿö(findex$,3)ÿ"IXU"ÿpIndexType%ÿ2
+ÿ¡IndexType%ÿ0ÿpÿ¾ÿ£findex$$
+FieldType$ÿÿö(findex$,0)
+dFormat$ÿÿö(findex$,4)
+ÿ®findex$$,findex$ÿ";"ÿFieldType$ÿ";"ÿdFormat$,"COM MAIN"
+ÿ¡IndexType%ÿ1ÿpÿ‰ÿ£ÿ³findex$$
+ÿ¡IndexType%ÿ2ÿpÿ‰ÿ£ÿ³findex$$ÿr
+ÿÉÿæsfile$
+ÿæ"AKTIONEN"
+ÿ™"AKTIONEN"
+ÿ£CodeAK.AKTIONEN
+ÿÉÿ¥9999
+ÿÉÿg
+ÿƒWriteConfig(_projekt$ÿ".XCHANGE","Last.AKTIONEN",ÿ(CodeAK.AKTIONEN,"000000000"))
+ÿæÿ^
+ÿ™sfile$
+ÿ£findex$
+ÿÉÿb
+ÿƒWriteConfig(_projekt$ÿ".XCHANGE","Last."ÿsfile$,ÿ(findex$$,"000000000"))
+ÿ’ÿÉ
+ ÿ’ÿ¡
+ ÿ†ÿ™dfile$
+ ÿ™cfile$
+ ÿ’ÿÿ
+
+
+ ' Datenbank mit Austauschdatei abgleichen
+ ' ======================================================================
+ ' Parameter:   dfile$          lokale Zieldatenbank
+ '              sfile$          Austauschdatei
+ '              sindex$         Bezeichnung des Hauptindex
+ '              tstamp#%        TimeStamp des letzten Abgleichs
+ ' ======================================================================
+ ' 19.10.94/FA
+ 
+ÿÿXAbgleich(dfile$,sfile$,sindex$,tstamp#%)
+ cfile$ÿÿ™
+ FirstABZU%ÿ0
+ ÿ×FileFields$(ÿõ(sfile$,1))
+ ÿÊÿË"Bearbeite Datei "ÿdfile$
+ ÿ¡tstamp#%ÿ0ÿpÿ¾ÿaÿ™dfile$
+ ÿ™sfile$
+ ÿÿFileFields$,1
+ ÿ£sindex$$
+ ÿÉÿ`
+ fmax%ÿÿA(sfile$)
+ lc%ÿ0
+ lp%ÿ0
+ pc%ÿ0
+ lc$ÿ"|"
+ LastOut%ÿÿ0(ReadConfig$(_projekt$ÿ".XCHANGE","Last."ÿdfile$))
+ ÿØÿOÿB(sfile$)
+pc%ÿpc%ÿ1
+cp%ÿÿ(100ÿfmax%ÿpc%)
+ÿ¡lc$ÿ"|"ÿp
+lc$ÿ"/"
+ÿ^
+ÿ¡lc$ÿ"/"ÿp
+lc$ÿ"-"
+ÿ^
+ÿ¡lc$ÿ"-"ÿp
+	lc$ÿ"\"
+ÿ^
+	ÿ¡lc$ÿ"\"ÿp
+lc$ÿ"|"
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÊÿË"Verarbeitung: "ÿÿH(ÿ(cp%,"9999"))ÿ"% "ÿlc$
+dfindex$ÿsindex$ÿ"."ÿdfile$
+sfindex$ÿsindex$ÿ"."ÿsfile$
+stime$ÿ"TimeStamp."ÿsfile$
+added%ÿ0
+ÿ¡sfindex$$ÿLastOut%ÿp
+ÿÿ™dfile$
+a%ÿ0
+ÿØFileFields$(a%)ÿ""
+sfield$ÿFileFields$(a%)ÿ"."ÿsfile$
+dfield$ÿFileFields$(a%)ÿ"."ÿdfile$
+ÿ¡dfield$ÿdfindex$ÿp
+	dfindex$$ÿÿI(dfile$,1)
+ÿ^
+	dfield$$ÿsfield$$
+ÿ’ÿ¡
+a%ÿa%ÿ1
+ÿÙ
+
+ÿ½ ** Dateiverknpfungen aktualisieren **
+ 
+ÿÉÿædfile$
+ÿæ"ADRESSEN"
+ÿƒAddXCHANGE("ADRESSEN",CodeKU.sfile$,CodeKU.dfile$)
+ÿæ"AKTIONEN"
+ÿƒAddXCHANGE("AKTIONEN",CodeAK.sfile$,CodeAK.dfile$)
+ÿæ"DOKUMENT"
+ÿƒAddXCHANGE("DOKUMENT",CodeDok.sfile$,CodeDok.dfile$)
+newi%ÿNewIndex%("ADRESSEN",CodeKU.sfile$):CodeKU.dfile$ÿÿ¡(newi%ÿ0,CodeKU.dfile$,newi%)
+link.DOKUMENTÿCodeKU.DOKUMENT
+ÿæ"AKQUISE"
+newi%ÿNewIndex%("ADRESSEN",CodeKU.sfile$):CodeKU.dfile$ÿÿ¡(newi%ÿ0,CodeKU.dfile$,newi%)
+newi%ÿNewIndex%("AKTIONEN",CodeAK.sfile$):CodeAK.dfile$ÿÿ¡(newi%ÿ0,CodeAK.dfile$,newi%)
+newi%ÿNewIndex%("DOKUMENT",CodeDok.sfile$):CodeDok.dfile$ÿÿ¡(newi%ÿ0,CodeDok.dfile$,newi%)
+ÿ½ **  PRICEIT/WORKS **
+ÿæ"GRUPPEN"
+ÿƒAddXCHANGE("GRUPPEN",CodeGR.sfile$,CodeGR.dfile$)
+ÿæ"ARTIKEL"
+ÿƒAddXCHANGE("ARTIKEL",CodeAR.sfile$,CodeAR.dfile$)
+newi%ÿNewIndex%("GRUPPEN",CodeGR.sfile$):CodeGR.dfile$ÿÿ¡(newi%ÿ0,CodeGR.dfile$,newi%)
+newi%ÿNewIndex%("ADRESSEN",Lieferant.sfile$):Lieferant.dfile$ÿÿ¡(newi%ÿ0,Lieferant.dfile$,newi%)
+newi%ÿNewIndex%("ADRESSEN",Lieferant2.sfile$):Lieferant.dfile$ÿÿ¡(newi%ÿ0,Lieferant2.dfile$,newi%)
+newi%ÿNewIndex%("ADRESSEN",Lieferant3.sfile$):Lieferant.dfile$ÿÿ¡(newi%ÿ0,Lieferant3.dfile$,newi%)
+ÿæ"MASTER"
+ÿƒAddXCHANGE("MASTER",CodeMS.sfile$,CodeMS.dfile$)
+newi%ÿNewIndex%("ADRESSEN",CodeKU.sfile$):CodeKU.dfile$ÿÿ¡(newi%ÿ0,CodeKU.dfile$,newi%)
+ÿæ"SCHEIN"
+newi%ÿNewIndex%("MASTER",CodeMS.sfile$):CodeMS.dfile$ÿÿ¡(newi%ÿ0,CodeMS.dfile$,newi%)
+newi%ÿNewIndex%("GRUPPEN",CodeGR.sfile$):CodeGR.dfile$ÿÿ¡(newi%ÿ0,CodeGR.dfile$,newi%)
+newi%ÿNewIndex%("ARTIKEL",CodeAR.sfile$):CodeAR.dfile$ÿÿ¡(newi%ÿ0,CodeAR.dfile$,newi%)
+ÿæ"ABZUGANG"
+newi%ÿNewIndex%("MASTER",CodeMS.sfile$):CodeMS.dfile$ÿÿ¡(newi%ÿ0,CodeMS.dfile$,newi%)
+newi%ÿNewIndex%("ARTIKEL",CodeAR.sfile$):CodeAR.dfile$ÿÿ¡(newi%ÿ0,CodeAR.dfile$,newi%)
+newi%ÿNewIndex%("ADRESSEN",CodeKU.sfile$):CodeKU.dfile$ÿÿ¡(newi%ÿ0,CodeKU.dfile$,newi%)
+ÿ¡FirstABZU%ÿ0ÿp
+	ÿƒWriteConfig("PRICEIT.XCHANGE","FirstIn.ABZUGANG",ÿ(CodeAZ.dfile$,"000000"))
+	FirstABZU%ÿ1
+ÿ’ÿ¡
+ÿ½ ** PROVIS **
+ÿæ"MAADR"
+ÿƒAddXCHANGE("MAADR",CodeMA.sfile$,CodeMA.dfile$)
+ÿæ"GEADR"
+ÿƒAddXCHANGE("GEADR",CodeGE.sfile$,CodeGE.dfile$)
+ÿæ"SPARTEN"
+ÿƒAddXCHANGE("SPARTEN",CodeVA.sfile$,CodeVA.dfile$)
+ÿæ"GEKOND"
+ÿƒAddXCHANGE("GEKOND",lfdnr.sfile$,lfdnr.dfile$)
+newi%ÿNewIndex%("MAADR",CodeMA.sfile$):CodeMA.dfile$ÿÿ¡(newi%ÿ0,CodeMA.dfile$,newi%)
+newi%ÿNewIndex%("GEADR",CodeGE.sfile$):CodeGE.dfile$ÿÿ¡(newi%ÿ0,CodeGE.dfile$,newi%)
+newi%ÿNewIndex%("SPARTEN",CodeVA.sfile$):CodeVA.dfile$ÿÿ¡(newi%ÿ0,CodeVA.dfile$,newi%)
+ÿæ"GEKONDM"
+ÿƒAddXCHANGE("GEKONDM",lfdnr.sfile$,lfdnr.dfile$)
+newi%ÿNewIndex%("GEADR",CodeGE.sfile$):CodeGE.dfile$ÿÿ¡(newi%ÿ0,CodeGE.dfile$,newi%)
+newi%ÿNewIndex%("SPARTEN",CodeVA.sfile$):CodeVA.dfile$ÿÿ¡(newi%ÿ0,CodeVA.dfile$,newi%)
+ÿæ"VKOND"
+ÿƒAddXCHANGE("VKOND",CodeKO.sfile$,CodeKO.dfile$)
+newi%ÿNewIndex%("MAADR",CodeMA.sfile$):CodeMA.dfile$ÿÿ¡(newi%ÿ0,CodeMA.dfile$,newi%)
+newi%ÿNewIndex%("KVERTRAG",CodeVT.sfile$):CodeVT.dfile$ÿÿ¡(newi%ÿ0,CodeVT.dfile$,newi%)
+newi%ÿNewIndex%("GEKOND",CodeKO.sfile$):CodeKO.dfile$ÿÿ¡(newi%ÿ0,CodeKO.dfile$,newi%)
+ÿæ"KVERTRAG"
+ÿƒAddXCHANGE("KVERTRAG",lfdnr.sfile$,lfdnr.dfile$)
+newi%ÿNewIndex%("ADRESSEN",CodeKU.sfile$):CodeKU.dfile$ÿÿ¡(newi%ÿ0,CodeKU.dfile$,newi%)
+newi%ÿNewIndex%("MAADR",CodeMA.sfile$):CodeMA.dfile$ÿÿ¡(newi%ÿ0,CodeMA.dfile$,newi%)
+newi%ÿNewIndex%("GEADR",CodeGE.sfile$):CodeGE.dfile$ÿÿ¡(newi%ÿ0,CodeGE.dfile$,newi%)
+newi%ÿNewIndex%("SPARTEN",CodeVA.sfile$):CodeVA.dfile$ÿÿ¡(newi%ÿ0,CodeVA.dfile$,newi%)
+newi%ÿNewIndex%("VKOND",CodeKO.sfile$):CodeKO.dfile$ÿÿ¡(newi%ÿ0,CodeKO.dfile$,newi%)
+ÿæ"VORGANG"
+newi%ÿNewIndex%("KVERTRAG",CodeVT.sfile$):CodeVT.dfile$ÿÿ¡(newi%ÿ0,CodeVT.dfile$,newi%)
+newi%ÿNewIndex%("MAADR",CodeMA.sfile$):CodeMA.dfile$ÿÿ¡(newi%ÿ0,CodeMA.dfile$,newi%)
+ÿæ"BUCHUNG"
+ÿƒAddXCHANGE("BUCHUNG",CodeBU.sfile$,CodeBU.dfile$)
+newi%ÿNewIndex%("MAADR",CodeMA.sfile$):CodeMA.dfile$ÿÿ¡(newi%ÿ0,CodeMA.dfile$,newi%)
+newi%ÿNewIndex%("KVERTRAG",CodeVT.sfile$):CodeVT.dfile$ÿÿ¡(newi%ÿ0,CodeVT.dfile$,newi%)
+newi%ÿNewIndex%("ADRESSEN",CodeKU.sfile$):CodeKU.dfile$ÿÿ¡(newi%ÿ0,CodeKU.dfile$,newi%)
+ÿæ"ZEINGANG"
+newi%ÿNewIndex%("KVERTRAG",CodeVT.sfile$):CodeVT.dfile$ÿÿ¡(newi%ÿ0,CodeVT.dfile$,newi%)
+newi%ÿNewIndex%("BUCHUNG",CodeBU.sfile$):CodeBU.dfile$ÿÿ¡(newi%ÿ0,CodeBU.dfile$,newi%)
+newi%ÿNewIndex%("MAADR",CodeMA.sfile$):CodeMA.dfile$ÿÿ¡(newi%ÿ0,CodeMA.dfile$,newi%)
+newi%ÿNewIndex%("GEADR",CodeGE.sfile$):CodeGE.dfile$ÿÿ¡(newi%ÿ0,CodeGE.dfile$,newi%)
+ÿ’ÿÉ
+
+ÿƒQuickStore(dfile$)
+ 
+ÿ½ **************************************
+
+ÿƒWriteLog(dfile$ÿ": Datensatz angefgt (Neuzugang) "ÿÿ(sindex$$,"000000"))
+fmax%ÿfmax%ÿ1
+added%ÿ1
+ÿ^
+ÿÉÿ¥sfindex$$ÿáÿ™dfile$ÿ£dfindex$$
+ÿ¡ÿOÿC(dfile$)ÿp
+ÿƒWriteLog(dfile$ÿ": Datensatz gel”scht "ÿÿ(sindex$$,"000000"))
+fmax%ÿfmax%ÿ1
+ÿ^
+
+ÿ½ ** bestehenden Datensatz updaten
+
+stime$ÿ"TimeStamp."ÿsfile$
+dtime$ÿ"TimeStamp."ÿdfile$
+ÿ¡stime$$ÿdtime$$ÿp
+	ÿÉÿædfile$
+	ÿæ"ARTIKEL"
+Bezeichnung.dfile$ÿBezeichnung.sfile$
+Beschreibung.dfile$ÿBeschreibung.sfile$
+ME.dfile$ÿME.sfile$
+Artikelnummer.dfile$ÿArtikelnummer.sfile$
+Bestellnummer.dfile$ÿBestellnummer.sfile$
+Bestellnummer2.dfile$ÿBestellnummer2.sfile$
+Bestellnummer3.dfile$ÿBestellnummer3.sfile$
+newi%ÿNewIndex%("ADRESSEN",Lieferant.sfile$):Lieferant.dfile$ÿÿ¡(newi%ÿ0,Lieferant.dfile$,newi%)
+newi%ÿNewIndex%("ADRESSEN",Lieferant2.sfile$):Lieferant.dfile$ÿÿ¡(newi%ÿ0,Lieferant2.dfile$,newi%)
+newi%ÿNewIndex%("ADRESSEN",Lieferant3.sfile$):Lieferant.dfile$ÿÿ¡(newi%ÿ0,Lieferant3.dfile$,newi%)
+	ÿæÿ^
+a%ÿ0
+ÿØFileFields$(a%)ÿ""
+sfield$ÿFileFields$(a%)ÿ"."ÿsfile$
+dfield$ÿFileFields$(a%)ÿ"."ÿdfile$
+dfield$$ÿsfield$$
+a%ÿa%ÿ1
+ÿÙ
+	ÿ’ÿÉ
+	ÿƒWriteLog(dfile$ÿ": "ÿ"Datensatz ge„ndert: "ÿÿ(sindex$$,"000000"))
+	ÿÌÿ™dfile$
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÉÿ±ÿ™sfile$ÿ£sindex$$
+ ÿÙ
+ ÿ™cfile$
+ ÿ’ÿÿ
+ 
+
+ ' neuen Index fr Verknpfung zwischenspeichern
+ ' ======================================================================
+ 
+ÿÿAddXCHANGE(Datei$,SourceIndex%,DestIndex%)
+ cfile$ÿÿ™
+ ÿ™"XCHANGE"
+ ÿÿ™"XCHANGE"
+ CodeXCH.XCHANGEÿÿI("XCHANGE",1)
+ Datei.XCHANGEÿDatei$
+ newIndex.XCHANGEÿDestIndex%
+ oldIndex.XCHANGEÿSourceIndex%
+ QuickCode.XCHANGEÿDatei$ÿÿ(SourceIndex%,"000000")
+ ÿÌÿ™"XCHANGE"
+ ÿ™cfile$
+ ÿ’ÿÿ
+
+
+ ' neuen Index fr verknpfte Datei ermitteln
+ ' ======================================================================
+ 
+ÿÿNewIndex%(Datei$,SourceIndex%)
+ cfile$ÿÿ™
+ ÿ™"XCHANGE"
+ ÿ£QuickCode.XCHANGE
+ scode$ÿDatei$ÿÿ(SourceIndex%,"000000")
+ ÿÉÿ¥scode$ÿ™"XCHANGE"ÿ£QuickCode.XCHANGE
+ ÿ¡ÿC("XCHANGE")ÿp
+NewIndex%ÿnewIndex.XCHANGE
+ ÿ^
+NewIndex%ÿ0
+ ÿ’ÿ¡
+ ÿ™cfile$
+ ÿ’ÿÿ
+ 
+
+
+

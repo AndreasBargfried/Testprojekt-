@@ -1,0 +1,29 @@
+SBP
+ ' !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ ' Superbase 2001 !!
+ ' Fehlerhafte StrikeOut-Objekte(Durchgestrichen) werden
+ ' wieder richtig dargestellt.
+ ' Vorgehensweise :
+ ' 1. Das zu „nderne Formular aufrufen
+ ' 2. ConvertSBV aufrufen
+ ' 3. Formular in den Formulareditor bringen !(F10)
+ ' 4. Formular speichern
+ ' !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+ 
+ÿÿConvertSBV()
+ÿ×c ÿUFormControl
+ÿ×f ÿUForm
+i%%ÿ0
+ÿ¡Superbase.form.Controls.Countÿp
+ÿ›i%%ÿ1ÿqSuperbase.form.Controls.Count
+	ÿÊc ÿSuperbase.form.Controls(i%%)
+	ÿÉÿæc.Type
+	ÿæ"TextBox","DisplayTextBox","OptionButton","Label","CheckBox","CommandButton","ListBox","ComboBox"
+c.FontStrikeoutÿ0
+' Zum Testen FontStrikeout auf -1 setzen
+'c.FontStrikeout = -1
+	ÿ’ÿæ
+ÿ±
+ ÿ’ÿÿ
+ 
+

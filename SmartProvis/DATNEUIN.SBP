@@ -1,0 +1,465 @@
+SBP
+ÿÿmain()
+ _netpath$ÿ"C:\codie.mak\"
+ 
+ ÿ½ cloase all
+ ÿ×dateien1$(1000)
+ ÿ×ixkukto$(1)
+ ÿ½ GOTO w171020042
+ ÿ_netpath$
+ ÿÿdateien1$,5,"*.sbf"
+ anzdat%ÿ0
+ ÿØdateien1$(anzdat%)ÿ""
+name1$ÿdateien1$(anzdat%)
+name2$ÿÿ+(name1$,ÿ/(name1$)ÿ4)
+ÿ¡name2$ÿ"config"ÿp
+ÿ^
+ÿÊÿËname2$
+ÿ½ IF OPEN (name2$) THEN CLOSE FILE name2$
+ÿ´ÿ™_netpath$ÿname2$ÿ".SBF;paris"
+pfad$ÿ_netpath$
+typ$ÿ""
+ÿ¡name2$ÿ"0"ÿpÿƒStruDat1(name2$,pfad$,typ$)
+ÿ’ÿ¡
+anzdat%ÿanzdat%ÿ1
+ ÿÙ
+ ÿ_netpath$ÿ"\office"
+ ÿÿdateien1$,5,"*.sbf"
+ anzdat%ÿ0
+ ÿØdateien1$(anzdat%)ÿ""
+name1$ÿdateien1$(anzdat%)
+name2$ÿÿ+(name1$,ÿ/(name1$)ÿ4)
+ÿ½ IF OPEN (name2$) THEN CLOSE FILE name2$
+ÿ¡name2$ÿ"xxx*"ÿp
+ÿ^
+ÿÊÿËname2$
+ÿ½ IF OPEN (name2$) THEN CLOSE FILE name2$
+ÿ´ÿ™_netpath$ÿ"OFFICE\"ÿname2$ÿ".SBF;paris"
+pfad$ÿ_netpath$
+typ$ÿ"OFFICE"
+ÿƒStruDat1(name2$,pfad$,typ$)
+ÿ’ÿ¡
+ 
+anzdat%ÿanzdat%ÿ1
+ ÿÙ
+
+
+w171020041: 
+ ÿ_netpath$ÿ"\PROVIS"
+ ÿÿdateien1$,5,"*.sbf"
+ anzdat%ÿ0
+ ÿØdateien1$(anzdat%)ÿ""
+name1$ÿdateien1$(anzdat%)
+name2$ÿÿ+(name1$,ÿ/(name1$)ÿ4)
+ÿ½ IF OPEN (name2$) THEN CLOSE FILE name2$
+ÿ¡name2$ÿ"statis*"ÿp
+ÿ´ÿ™_netpath$ÿ"PROVIS\"ÿname2$ÿ".SBF;paris"
+ÿ¾ÿaÿ™name2$
+pfad$ÿ_netpath$
+typ$ÿ"PROVIS"
+ÿƒStruDat1(name2$,pfad$,typ$)
+ÿ^
+ÿÊÿËname2$
+ÿ½ IF OPEN (name2$) THEN CLOSE FILE name2$
+ÿ´ÿ™_netpath$ÿ"PROVIS\"ÿname2$ÿ".SBF;paris"
+pfad$ÿ_netpath$
+typ$ÿ"PROVIS"
+ÿƒStruDat1(name2$,pfad$,typ$)
+ÿ’ÿ¡
+anzdat%ÿanzdat%ÿ1
+ ÿÙ
+ 
+w171020042: 
+ ÿ_netpath$ÿ"\GDV\GDV_DAT\"
+ ÿÿdateien1$,5,"*.sbf"
+ anzdat%ÿ0
+ ÿØdateien1$(anzdat%)ÿ""
+name1$ÿdateien1$(anzdat%)
+name2$ÿÿ+(name1$,ÿ/(name1$)ÿ4)
+ÿ½ IF OPEN (name2$) THEN CLOSE FILE name2$
+ÿÊÿËname2$
+ÿ½ IF OPEN (name2$) THEN CLOSE FILE name2$
+ÿ´ÿ™_netpath$ÿ"GDV\GDV_DAT\"ÿname2$ÿ".SBF;paris"
+pfad$ÿ_netpath$
+typ$ÿ"GDV"
+ÿƒStruDat1(name2$,pfad$,typ$)
+anzdat%ÿanzdat%ÿ1
+ ÿÙ
+ 
+ ÿ’ÿÿ
+
+
+ ÿ½ *******************************************************************************************************************************************************************************
+ ÿ½ *    Struktur von Dateien auslesen
+ ÿ½ *******************************************************************************************************************************************************************************
+ 
+ÿÿStruDat1(datei$,pfad$,typ$)
+ _netpath$ÿ"C:\codie.mak\"
+ÿ¡ÿ÷("TMPSTR99")ÿpÿ†ÿ÷"TMPSTR99"
+ÿ¡ÿJ("TMPSTR99.SBP")ÿpÿ"TMPSTR99.SBP"
+ÿ´"TMPSTR99.SBP"ÿ›ÿ¶
+ÿ{" SUB TMPSTR99()"
+ 
+ feldanz%ÿÿõ(datei$,1)
+ ÿ×felder$(feldanz%)
+ ÿ×feldtyp$(feldanz%)
+ ÿ×feldindex$(feldanz%)
+ ÿ×feldanzeig$(feldanz%)
+ ÿÿfelder$,1
+ ÿ›i%ÿ0ÿqfeldanz%ÿ1
+ÿ¡felder$(i%)ÿ""ÿp
+feldtyp$(i%)ÿÿö(felder$(i%),0)
+feldindex$(i%)ÿÿö(felder$(i%),3)
+feldanzeig$(i%)ÿÿö(felder$(i%),4)
+ÿ¡feldindex$(i%)ÿ"I*"ÿp
+ind$ÿ"1"
+ÿ^
+ind$ÿ"0"
+ÿ’ÿ¡
+befstring$ÿ"CALL FldAdd("ÿÿ(34)ÿfelder$(i%)ÿÿ(34)ÿ","ÿÿ(34)ÿfeldtyp$(i%)ÿ";"ÿfeldanzeig$(i%)ÿÿ(34)ÿ","ÿind$ÿ")"
+ÿ{befstring$
+ÿ’ÿ¡
+ ÿ±i%
+ ÿ{"SAVE FILE "ÿÿ(34)ÿdatei$ÿÿ(34)
+ ÿ{"END SUB"
+ ÿ†ÿ¶
+ ÿ½ CALL Fehler("TMPSTR99","")
+ ÿ½ ? "AAAA"
+ ÿ¡ÿ´(datei$)ÿpÿ†ÿ™datei$
+ ÿ¡typ$ÿ""ÿpÿÀÿ™"0"ÿq_netpath$ÿ"EXPORT\"ÿdatei$ÿ".SBF"
+ ÿ¡typ$ÿ"OFFICE"ÿpÿÀÿ™"0"ÿq_netpath$ÿ"EXPORT\OFFICE\"ÿdatei$ÿ".SBF"
+ ÿ¡typ$ÿ"PROVIS"ÿpÿÀÿ™"0"ÿq_netpath$ÿ"EXPORT\PROVIS\"ÿdatei$ÿ".SBF"
+ ÿ¡typ$ÿ"GDV"ÿpÿÀÿ™"0"ÿq_netpath$ÿ"EXPORT\GDV\GDV_DAT\"ÿdatei$ÿ".SBF"
+ ÿ¨"TMPSTR99.SBP",ÿ°
+ ÿƒTMPSTR99()
+ ÿ†ÿ÷"TMPSTR99"
+ ÿ¡ÿ´(datei$)ÿpÿ†ÿ™datei$
+
+ ÿ¡typ$ÿ"OFFICE"ÿp
+ÿ½ jetzt nochmal ”ffnen und reorganisieren und in neue unverschlsselte Datei, die Inhalte bernehmen
+ÿ´ÿ™_netpath$ÿ"OFFICE\"ÿdatei$ÿ".SBF;paris"
+ÿ¡ÿ´("ttt")ÿpÿ†ÿ™"ttt"
+ÿ¡ÿJ(_netpath$ÿ"OFFICE\ttt.sbf")ÿpÿ_netpath$ÿ"OFFICE\ttt.*"
+ÿÀÿ™datei$ÿq_netpath$ÿ"OFFICE\ttt.sbf"
+ÿ†ÿ™datei$
+ÿ´ÿ™_netpath$ÿ"EXPORT\OFFICE\"ÿdatei$ÿ".SBF;paris"
+ÿÉÿ`ÿ™"ttt"
+iab%ÿ0
+jab%ÿÿA("ttt")
+iabold%ÿiab%ÿ100
+ÿØÿOÿB("ttt")
+iab%ÿiab%ÿ1
+jetzt%ÿÿR
+ÿ¡iabold%ÿ	iab%ÿp
+ÿ½ TIME$ ( NOW ,"hh:mm:ss")
+ÿ½  TIME$ (jetztold%,"hh:mm:ss")
+jetztdiff%ÿÿRÿjetztold%
+ÿ½ STR$ (jetztdiff%,",999999")
+einds%ÿjetztdiff%ÿ200
+ÿ½ STR$ (einds%,",999999")
+nochds%ÿjab%ÿiab%
+ÿ½ STR$ (nochds%,",999999")
+geszeit%ÿeinds%ÿnochds%
+zeit$ÿÿ7(geszeit%,"hh:mm:ss.s")
+jetztold%ÿÿR
+iabold%ÿiab%ÿ200
+
+ÿ’ÿ¡
+ÿÊÿËÿ(iab%,",9999999")ÿ" von "ÿÿ(jab%,",9999999")ÿ"   TTT/"ÿdatei$ÿ" - verbleibende Zeit: "ÿzeit$
+ÿÿ™datei$
+acopy%ÿCopyRecord1%("TTT",datei$)
+ÿÌÿ™datei$
+ÿÉÿ±ÿ™"ttt"
+ÿÙ
+
+ÿ†ÿ™datei$
+ ÿ’ÿ¡
+
+
+ ÿ¡typ$ÿ"PROVIS"ÿp
+ÿ½ jetzt nochmal ”ffnen und reorganisieren und in neue unverschlsselte Datei, die Inhalte bernehmen
+ÿ´ÿ™_netpath$ÿ"PROVIS\"ÿdatei$ÿ".SBF;paris"
+ÿ¡ÿ´("ttt")ÿpÿ†ÿ™"ttt"
+ÿ¡ÿJ(_netpath$ÿ"PROVIS\ttt.sbf")ÿpÿ_netpath$ÿ"PROVIS\ttt.*"
+ÿÀÿ™datei$ÿq_netpath$ÿ"PROVIS\ttt.sbf"
+ÿ†ÿ™datei$
+ÿ´ÿ™_netpath$ÿ"EXPORT\PROVIS\"ÿdatei$ÿ".SBF;paris"
+ÿÉÿ`ÿ™"ttt"
+iab%ÿ0
+jab%ÿÿA("ttt")
+ÿØÿOÿB("ttt")
+iab%ÿiab%ÿ1
+ÿÊÿËÿ(iab%,",9999999")ÿ" von "ÿÿ(jab%,",9999999")ÿ"   TTT/"ÿdatei$
+ÿÿ™datei$
+acopy%ÿCopyRecord1%("TTT",datei$)
+ÿÌÿ™datei$
+ÿÉÿ±ÿ™"ttt"
+ÿÙ
+ÿ†ÿ™datei$
+ ÿ’ÿ¡
+
+
+ ÿ’ÿÿ
+ 
+
+ÿÿCopyRecord1%(source$,dest$)
+cfile$ÿÿ™
+'Kopiert alle gemeinsamen Felder von Datei _source$ nach Datei _dest$    
+oldErrorLabel$ÿSuperbase.ErrorTrapLabel
+ÿ³ÿ_ÿwCopyRecordError
+CopyRecord%ÿ0
+
+'Feldnamen der Quelldatei ermitteln  
+ÿ™source$
+fieldno%ÿÿõ(source$,1)
+ÿ×sourceNames$(fieldno%)
+ÿÿsourceNames$,1
+ÿ›i%%ÿ0ÿqfieldno%ÿ1
+sourceNames$(i%%)ÿÿ>(sourceNames$(i%%))
+ÿ±i%%
+ÿ×sourceSet ÿUSet 
+ÿÿsourceNames$(fieldno%ÿ1)
+sourceSet.AddArray("sourceNames$")
+
+
+'Feldnamen der Zieldatei ermitteln  
+ÿ™dest$
+fieldno%ÿÿõ(dest$,1)
+ÿ×destNames$(fieldno%)
+ÿÿdestNames$,1
+ÿ›i%%ÿ0ÿqfieldno%ÿ1
+destNames$(i%%)ÿÿ>(destNames$(i%%))
+ÿ±i%%
+ 
+ÿ×destSet ÿUSet
+ÿÿdestNames$(fieldno%ÿ1)
+destSet.AddArray("destNames$")
+
+destSet.Intersect(sourceSet)
+ 
+fieldno%ÿdestSet.Elements.Count'Gr”áe der Schnittmenge der Felder
+ÿ×copyNames$(fieldno%ÿ1)
+ÿ›i%%ÿ1ÿqfieldno%
+copyNames$(i%%ÿ1)ÿdestSet.Elements(i%%)
+ÿ±i%%
+
+'das Zeug reinklatschen ...    
+ÿ›j%ÿ0ÿqfieldno%ÿ1
+ÿ³ÿ_ÿwCopyRecordErr1 
+destfield$ÿcopyNames$(j%)ÿ"."ÿdest$
+sourcefield$ÿcopyNames$(j%)ÿ"."ÿsource$
+destfield$$ÿsourcefield$$
+ 
+'alles io
+ÿwCopyRecordNext
+
+CopyRecordErr1: 
+ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Fehler in CopyRecord()","Ziel = "ÿdestfield$ÿ"  Quelle = "ÿsourcefield$)
+ÿwCopyRecordNext
+ 
+CopyRecordNext: 
+ÿ³ÿ_ÿwCopyRecordError
+ÿ±j%
+
+'alles io
+CopyRecord%ÿÿ1
+ÿwCopyRecordEnde
+
+CopyRecordError: 
+ 'irgend etwas ist grunds„tzlich schief gelaufen
+ÿƒFehler("Fehler in CopyRecord: "ÿdatei$,ÿ(ÿ&,"z")ÿ": "ÿÿ((ÿ&))
+ÿwCopyRecordEnde
+ 
+CopyRecordEnde: 
+Superbase.ErrorTrapLabelÿoldErrorLabel$
+ÿ™cfile$
+ ÿ’ÿÿ
+ '***********************************************************************************************
+ 
+
+
+
+
+ÿÿFldAdd(Feldname$,NewFormat$,IndexType%)
+ ÿ½ CALL GaugeUpdate()
+ ÿ½ CALL Server("UPDFILE", FILE )
+ ÿ½ CALL Server("UPDFIELD",Feldname$)
+ ÿ½ CALL Server("UPDSTATUS","prfen")
+ ÿÊÿË"prfen Datei "ÿÿ™ÿ" Feld "ÿFeldname$
+ ÿ³ÿ_ÿwTrapFileFind
+ tsfound%ÿ0
+ a$ÿÿö(FeldName$,0)
+ tsfound%ÿ1
+TrapFileFind: 
+ ÿ¡test%ÿ0ÿpÿ³ÿ_ÿwErrorHandler ÿ^ÿ³ÿ_
+ ÿ¡tsfound%ÿ0ÿp
+ÿ½ ** Feld neu erstellen
+ÿ|Feldname$ÿ";"ÿNewFormat$ÿ";1;1"
+ÿÉÿæIndexType%
+ÿæ1
+ÿ‰ÿ£ÿ³Feldname$$
+ÿæ2
+ÿ‰ÿ£ÿ³Feldname$$ÿr
+ÿ’ÿÉ
+ ÿ^
+ÿ½ ** Feld auf Format„nderungen testen und anpassen
+oldindex%ÿ0
+ÿ¡GIndNeu%ÿÿ1ÿp
+ÿ¡ÿö(feldname$,3)ÿ"IX*"ÿpoldindex%ÿ1
+ÿ’ÿ¡
+ÿ¡ÿö(feldname$,3)ÿ"IX*"ÿIndexType%ÿ0ÿp
+ÿ½ CALL Server("UPDSTATUS","Indexl”schung")
+ÿ¾ÿ£Feldname$$
+ÿ’ÿ¡
+ok%ÿ1
+NewForm%ÿ0
+NewIndex%ÿ0
+cFormat$ÿÿF(ÿö(Feldname$,0)ÿ";"ÿÿö(Feldname$,4))
+ÿ¡ÿ>(cformat$)ÿÿ>(NewFormat$)ÿp
+ok%ÿ0
+NewForm%ÿ1
+ÿ’ÿ¡
+IndexType$ÿÿö(feldname$,3)
+ÿ¡(IndexType$ÿ"IXD"ÿIndexType%ÿ2)ÿ(IndexType$ÿ"IXU"ÿIndexType%ÿ1)ÿp
+ok%ÿ0
+NewIndex%ÿ1
+ÿ’ÿ¡
+ÿ¡ÿö(feldname$,3)ÿ""ÿIndexType%ÿ0ÿp
+NewIndex%ÿ1
+ok%ÿ0
+ÿ’ÿ¡
+ÿ¡oldindex%ÿ1ÿp
+ok%ÿ0
+NewForm%ÿ1
+ÿ’ÿ¡
+ÿ¡ok%ÿ0ÿp
+ÿ¡NewForm%ÿ1ÿIndexType$ÿ"IX*"ÿp
+ÿ½ CALL Server("UPDSTATUS","Indexl”schung")
+ÿ¾ÿ£Feldname$$
+df$ÿÿ™
+ÿÅÿ™df$
+ÿ’ÿ¡
+ÿ¡NewForm%ÿ1ÿp
+ÿ½ CALL Server("UPDSTATUS","Formatanpassung")
+ÿ®Feldname$$,Feldname$ÿ";"ÿNewFormat$
+ÿ½ CALL Server("UPDSTATUS","Indexanpassung")
+ÿÉÿæIndexType%
+ÿæ1
+	ÿ‰ÿ£ÿ³Feldname$$
+ÿæ2
+	ÿ‰ÿ£ÿ³Feldname$$ÿr
+ÿ’ÿÉ
+ok%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ok%ÿ0ÿp
+ÿ¡NewIndex%ÿ1ÿp
+ÿ¡IndexType$ÿ"IX*"ÿp
+	ÿ½ CALL Server("UPDSTATUS","Indexl”schung")
+	ÿ¾ÿ£Feldname$$
+ÿ’ÿ¡
+ÿ½ CALL Server("UPDSTATUS","Indexanpassung")
+ÿÉÿæIndexType%
+ÿæ1
+	ÿ‰ÿ£ÿ³Feldname$$
+ÿæ2
+	ÿ‰ÿ£ÿ³Feldname$$ÿr
+ÿ’ÿÉ
+ok%ÿ1
+ÿ’ÿ¡
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ df$ÿÿ™
+ 
+ 
+ 
+ ÿÅÿ™df$
+ ÿ’ÿÿ
+ 
+ 
+
+
+ErrorHandler: 
+ 
+ 
+ _error%ÿÿ&
+ÿ½ ? ERRNO 
+ÿ½ ? ERR$ ( ERRNO )
+ ÿÉÿæ_error%
+ ÿæ8
+ÿÂ"Kein eineindeutiges Suchergebnis!"
+ÿyÿ±
+ ÿæ10
+ÿÊÿË"Dateiende!"
+ÿÏÿ›0.05
+ÿÊÿË"Bereit"
+ÿyÿ±
+ ÿæ11
+ÿ½ IF askonerror% = 1 THEN REQUEST "Funktion abgebrochen!","",2
+ÿ½ CALL Fehler("Funktion abgebrochen!","")
+req%ÿ0
+ÿyÿ±
+ ÿæ19,73
+ÿƒFehler("Bitte geben Sie ein Datum in der Form TT.MM.JJJJ ein (z.B. "ÿÿ(ÿQ,"dd.mm.yyyy")ÿ")","")
+ÿyÿ±
+ ÿæ34
+ÿyÿ±
+ ÿæ156
+ÿyÿ±
+ ÿæ177
+ÿƒFehler("Datensatz ist nicht gesperrt!","Operation wurde nicht durchgefhrt.")
+ÿyÿ±
+ ÿæ130
+ÿ¡_errormessages%ÿ1ÿpÿƒFehler("Datensatz wird zur Zeit benutzt","durch: "ÿÿ((0))
+ÿyÿ±
+ ÿæ140,132
+ÿ½ Datei ist fr gemeinsamen Schreibzugriff ge”ffnet
+ÿyÿ±
+ ÿæ160
+ÿÂ"Ende?"
+ ÿæ174
+ 
+ tf$ÿ" Ihre Programmversion ist fr "ÿÿH(ÿ(ÿåSYS(5),"99"))ÿ" Arbeitspl„tze ausgelegt, die sich gleichzeitig im Programm anmelden k”nnen / es sind bereits "ÿÿH(ÿ(ÿåSYS(17),"99"))ÿ" Nutzer angemeldet!"
+ tf1$ÿ" Sie sind der "ÿÿH(ÿ(ÿåSYS(17)ÿ1,"99"))ÿ"."ÿ" Nutzer, der sich anmelden m”chte!"
+ ÿƒFehler(tf$,tf1$)
+ ÿæ176
+ÿ¡ErrZAB%ÿ
+1ÿp
+ErrZAB%ÿ1
+ÿy
+ÿ^
+ErrZAB%ÿ0
+ÿ’ÿ¡
+ ÿ’ÿæ
+ Fehler%ÿÿ&
+ Fehler$ÿ"["ÿÿH(ÿ(Fehler%,"9999999"))ÿ"] "ÿÿ((Fehler%)ÿ"/"ÿÿ((0)
+ ÿ‰ÿñ"PROBHILFE",0,0,245,180,title$,"MS Sans Serif",8
+ ÿ|ÿñ"PROBHILFE",5,34,11,133,9,0,"Hinweise"
+ ÿ|ÿñ"PROBHILFE",9,5,12,20,21,4
+ ÿ|ÿñ"PROBHILFE",4,34,18,203,5,0,""
+ ÿ|ÿñ"PROBHILFE",5,34,30,56,10,0,"Wiederholen:"
+ ÿ|ÿñ"PROBHILFE",5,40,40,197,32,0,"Falls die Fehlermeldung z.B. durch eine nicht eingelegte Diskette oder einem „hnlichen Fehler verursacht wurde, k”nnen Sie die letzte Aktion vom Programm wiederholen lassen."
+ ÿ|ÿñ"PROBHILFE",5,34,76,60,10,0,"Ignorieren:"
+ ÿ|ÿñ"PROBHILFE",5,40,86,196,30,0,"Die Fehlermeldung wird ignoriert und das Programm versucht eine andere M”glichkeit zur Weiterfhrung der aktuellen Funktion zu finden."
+ ÿ|ÿñ"PROBHILFE",5,34,115,60,10,0,"Beenden:"
+ ÿ|ÿñ"PROBHILFE",5,40,125,196,31,0,"W„hlen Sie diese M”glichkeit um das Programm ordnungsgem„á zu beenden, falls 'Wiederholen' und 'Ignorieren' keine Wirkung zeigten."
+ ÿ|ÿñ"PROBHILFE",1,90,159,55,15,1,"&OK",0,0
+ ÿ‰ÿñ"REQ",0,0,261,99,title$,"MS Sans Serif",8
+ ÿ|ÿñ"REQ",9,4,11,22,22,3
+ ÿ|ÿñ"REQ",5,30,12,156,10,0,"Problem bei der Programmabarbeitung!"
+ ÿ|ÿñ"REQ",4,30,22,155,5,0,""
+ ÿ|ÿñ"REQ",5,30,30,52,11,0,"Fehlermeldung:"
+ ÿ|ÿñ"REQ",5,30,43,155,45,0,Fehler$
+ ÿ|ÿñ"REQ",1,197,12,55,15,1,"&Wiederholen",1,1
+ ÿ|ÿñ"REQ",1,197,30,55,15,0,"&Ignorieren",0,0
+ ÿ|ÿñ"REQ",1,197,48,55,15,0,"&Beenden",2,1
+ ÿ|ÿñ"REQ",1,197,73,55,15,0,"&Hilfe",4,2,"PROBHILFE"
+ ÿñ"REQ",req%
+ ÿ¾ÿñ"PROBHILFE"
+ ÿ¾ÿñ"REQ"
+ ÿ¡req%ÿ1ÿpÿy
+ ÿ¡req%ÿ0ÿpÿyÿ±
+ ÿ¡req%ÿ2ÿpÿƒEXIT()
+ ÿƒEXIT()
+
+

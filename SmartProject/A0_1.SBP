@@ -1,0 +1,74 @@
+SBP
+ÿÿA0_1()
+ÿ×dlg ÿUDialog
+ÿ×control ÿUDialogControl
+ 
+Superbase.Dialogs.Add("LOGIN")
+ÿÊdlg ÿSuperbase.Dialogs.LOGIN
+dlg.Move(0,0,193,152)
+dlg.Captionÿtitle$
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame1","DialogFrame")
+control.Move(0,0,193,124)
+control.Captionÿ""
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel1","DialogLabel")
+control.Move(33,11,139,9)
+control.Captionÿ"Der Zugang zu diesem Programm ist durch "
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel2","DialogLabel")
+control.Move(33,20,68,10)
+control.Captionÿ"Passwort geschtzt."
+ 
+ÿÊcontrol ÿdlg.Add("DialogIcon1","DialogIcon")
+control.Move(9,28,20,21)
+control.Iconÿ2
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel3","DialogLabel")
+control.Move(33,30,151,11)
+control.Captionÿ"Bitte w„hlen Sie aus der Liste der Mitarbeiter"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel4","DialogLabel")
+control.Move(33,41,152,10)
+control.Captionÿ"Ihren Namen aus und geben Sie anschlieáend"
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel5","DialogLabel")
+control.Move(33,51,57,9)
+control.Captionÿ"Ihr Passwort ein."
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel7","DialogLabel")
+control.Move(33,70,53,8)
+control.Captionÿ"&Mitarbeiterliste:"
+ 
+ÿÊcontrol ÿdlg.Add("DialogComboBox1","DialogComboBox")
+control.Move(33,80,149,161)
+control.Styleÿ2
+control.Sortedÿ1
+control.ScrollBarsÿ2
+control.Bind("MALIST$","name$")
+ 
+ÿÊcontrol ÿdlg.Add("DialogLabel6","DialogLabel")
+control.Move(33,96,32,11)
+control.Captionÿ"&Passwort:"
+ 
+ÿÊcontrol ÿdlg.Add("DialogTextBox1","DialogTextBox")
+control.Move(33,107,149,11)
+control.TextStyleÿ4
+control.MaxLengthÿ10
+control.TextBindingÿ"pw$"
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton5","DialogCommandButton")
+control.Move(41,129,51,15)
+control.Defaultÿ1
+control.Captionÿ"Einloggen"
+control.ReturnValueÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(94,129,51,15)
+control.Captionÿ"&Abbruch"
+control.ReturnValueÿ0
+control.Cancelÿ1
+ 
+ ÿ’ÿÿ

@@ -1,0 +1,39 @@
+SBP
+ ÿ™"master"
+ ÿ£codeku
+ ÿÉÿ`
+ ÿ™"Telefon"
+ ÿ£codeku
+ ÿÉÿ`
+ ÿ™"akquise"
+ ÿ£codeku
+ ÿÉÿ`
+ ÿ™"dokument"
+ ÿ£codeku
+ ÿÉÿ`
+ ÿ™"adressen"
+ ÿ£codeku.adressen
+ ÿÉÿ`ÿá
+ i%ÿ0
+ j%ÿ0
+ ÿØÿOÿB("adressen")
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%,"999999")ÿ"     markiert: "ÿÿ(j%,"999999")
+ok%ÿ0
+codeku%ÿcodeku.adressen
+ÿ½ IF EXISTS (codeku%,Codeku.akquise) THEN ok% = 1
+ÿ½ IF notiz.adressen <> "" THEN ok% = 1
+ÿ¡stichwort.adressenÿ"ATC*"ÿpok%ÿ1
+ÿ½ IF EXISTS (codeku%,Codeku.telefon) THEN ok% = 1
+ÿ¡ÿJ(codeku%,Codeku.master)ÿpok%ÿ1
+ÿ¡ÿJ(codeku%,Codeku.dokument)ÿpok%ÿ1
+ÿ¡ok%ÿ0ÿp
+Priorit„t.adressenÿ99
+ÿÌ
+j%ÿj%ÿ1
+ÿÊÿËÿ(i%,"999999")ÿ"     markiert: "ÿÿ(j%,"999999")
+
+ÿ’ÿ¡
+ ÿÉÿ±ÿá
+ ÿÙ
+

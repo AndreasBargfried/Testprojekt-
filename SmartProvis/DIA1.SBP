@@ -1,0 +1,52 @@
+SBP
+ÿÿDIA1()
+ÿ×dlg ÿUDialog
+ÿ×control ÿUDialogControl
+ 
+Superbase.Dialogs.Add("Dialogname")
+ÿÊdlg ÿSuperbase.Dialogs.Dialogname
+dlg.Move(0,0,310,110)
+dlg.Captionÿ"Verrechnung der Versicherungssteuer"
+dlg.FontNameÿ"MS Sans Serif"
+dlg.FontSizeÿ8
+ 
+ÿÊcontrol ÿdlg.Add("DialogFrame1","DialogFrame")
+control.Move(0,3,310,86)
+control.Captionÿ"Parametersetzung fr die VST-Verrechnung"
+ 
+ÿÊcontrol ÿdlg.Add("DialogOptionButton1","DialogOptionButton")
+control.Move(5,22,285,13)
+control.Captionÿ"im Feld Beitrag wurde der Bruttobeitrag mit Zuschl„gen eingegeben"
+control.Bind("opt%")
+control.ValueOnÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogOptionButton3","DialogOptionButton")
+control.Move(5,36,285,13)
+control.Captionÿ"im Feld Beitrag wurde der Bruttobeitrag ohne Zuschl„ge eingegeben"
+control.Bind("opt%")
+control.ValueOnÿ2
+ 
+ÿÊcontrol ÿdlg.Add("DialogOptionButton2","DialogOptionButton")
+control.Move(5,51,285,13)
+control.Captionÿ"im Feld Beitrag wurde der Nettobeitrag mit Zuschl„gen eingegeben (GDV-Import)"
+control.Bind("opt%")
+control.ValueOnÿ3
+ 
+ÿÊcontrol ÿdlg.Add("DialogOptionButton4","DialogOptionButton")
+control.Move(5,65,285,13)
+control.Captionÿ"im Feld Beitrag wurde der Nettobeitrag ohne Zuschl„ge eingegeben "
+control.Bind("opt%")
+control.ValueOnÿ4
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
+control.Move(92,92,58,15)
+control.Defaultÿ1
+control.Captionÿ"&OK"
+control.ReturnValueÿ1
+ 
+ÿÊcontrol ÿdlg.Add("DialogCommandButton2","DialogCommandButton")
+control.Move(152,92,57,15)
+control.Captionÿ"&Abbruch"
+control.ReturnValueÿ0
+ 
+ ÿ’ÿÿ

@@ -1,0 +1,518 @@
+SBP
+
+ÿÿmain()
+ _netpath$ÿ"\ARBEIT\CODIE\"
+ path$ÿ"\ARBEIT\CODIE\"
+ ÿŽ"\ARBEIT\CODIE\"
+ pathsql$ÿ"SQLMS\"
+art%ÿ0
+ÿ¡art%ÿ1ÿp
+datei1$ÿpath$ÿ"SQL\A0ZenSQL.TXT"
+ÿ¡ÿJ(datei1$)ÿpÿdatei1$
+ÿ´datei1$ÿ›ÿ¶
+ÿ’ÿ¡
+
+ ÿ×sbd$(300)
+ ÿÿsbd$,5,"*.SBD"
+ ÿ›i%ÿ0ÿq300
+ÿ¡ÿH(sbd$(i%))ÿ""ÿp
+lenge%ÿÿ/(sbd$(i%))
+datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
+datei0$ÿdatei$
+ÿ¡datei$ÿ"config"ÿp
+datei$ÿdatei$ÿ";london8474"
+ÿ^
+datei$ÿdatei$ÿ";paris"
+ÿ’ÿ¡
+ÿ¡ÿOÿ´(sbd$(i%))ÿp
+ÿ´ÿ™ÿà,0_netpath$ÿdatei$
+ÿ’ÿ¡
+ÿ½ ********Aufruf der SQL-Statement Generierung **************
+ÿƒCreateSQL(datei0$,path$,art%,pathsql$)
+ÿ†ÿ™datei0$
+ÿ½ ***********************************************************
+ÿ^
+i%ÿ301
+ÿ’ÿ¡
+ ÿ±i%
+
+ ÿ¡art%ÿ1ÿp
+ÿ†ÿ¶
+ ÿ’ÿ¡
+ 
+
+ÿ¡art%ÿ1ÿp
+datei1$ÿpath$ÿ"SQL\A0OFFSQL.TXT"
+ÿ¡ÿJ(datei1$)ÿpÿdatei1$
+ÿ´datei1$ÿ›ÿ¶
+ÿ’ÿ¡
+ ÿÿsbd$(300,1)
+ ÿÿsbd$(300)
+ _netpath$ÿpath$ÿ"OFFICE\"
+ ÿŽpath$ÿ"OFFICE"
+ _netpath$ÿpath$ÿ"OFFICE\"
+ pathsql$ÿ"SQLMS\office\"
+ ÿÿsbd$,5,"*.SBD"
+ ÿ›i%ÿ0ÿq300
+ÿ¡sbd$(i%)ÿ""ÿp
+lenge%ÿÿ/(sbd$(i%))
+datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
+datei0$ÿdatei$
+ÿ¡datei$ÿ"config"ÿp
+datei$ÿdatei$ÿ";london8474"
+ÿ^
+datei$ÿdatei$ÿ";paris"
+ÿ’ÿ¡
+ÿ¡ÿOÿ´(sbd$(i%))ÿp
+ÿ´ÿ™ÿà,0_netpath$ÿdatei$
+ÿ’ÿ¡
+ÿ½ ********Aufruf der SQL-Statement Generierung **************
+ÿƒCreateSQL(datei0$,path$,art%,pathsql$)
+ÿ½ ***********************************************************
+ÿ^
+i%ÿ301
+ÿ’ÿ¡
+ ÿ±i%
+
+ ÿÂ"OFFICE fertig","",2
+ ÿ¡art%ÿ1ÿp
+ÿ†ÿ¶
+ ÿ’ÿ¡
+ ÿ†ÿt
+
+
+
+ÿ¡art%ÿ1ÿp
+datei1$ÿpath$ÿ"SQL\A0PROSQL.TXT"
+ÿ¡ÿJ(datei1$)ÿpÿdatei1$
+ÿ´datei1$ÿ›ÿ¶
+ÿ’ÿ¡
+ ÿÿsbd$(300,1)
+ ÿÿsbd$(300)
+ _netpath$ÿpath$ÿ"FACTURA\"
+ ÿŽpath$ÿ"FACTURA"
+ _netpath$ÿpath$ÿ"FACTURA\"
+ pathsql$ÿ"SQLMS\factura\"
+ ÿÿsbd$,5,"*.SBD"
+ ÿ›i%ÿ0ÿq300
+ÿ¡sbd$(i%)ÿ"UN021"ÿp
+
+ÿ’ÿ¡
+ÿ¡sbd$(i%)ÿ""ÿp
+lenge%ÿÿ/(sbd$(i%))
+datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
+datei0$ÿdatei$
+ÿ¡datei$ÿ"config"ÿp
+datei$ÿdatei$ÿ";london8474"
+ÿ^
+datei$ÿdatei$ÿ";paris"
+ÿ’ÿ¡
+ÿ¡ÿOÿ´(sbd$(i%))ÿp
+ÿ´ÿ™ÿà,0_netpath$ÿdatei$
+ÿ’ÿ¡
+ÿ½ ********Aufruf der SQL-Statement Generierung **************
+ÿƒCreateSQL(datei0$,path$,art%,pathsql$)
+ÿ½ ***********************************************************
+ÿ^
+i%ÿ301
+ÿ’ÿ¡
+ ÿ±i%
+ ÿÂ"FACTURA fertig","",2
+ ÿ¡art%ÿ1ÿp
+ÿ†ÿ¶
+ ÿ’ÿ¡
+ ÿ†ÿt
+
+ ÿwend220920091
+
+ÿ¡art%ÿ1ÿp
+datei1$ÿpath$ÿ"SQL\A0GDVSQL.TXT"
+ÿ¡ÿJ(datei1$)ÿpÿdatei1$
+ÿ´datei1$ÿ›ÿ¶
+ÿ’ÿ¡
+ ÿÿsbd$(300,1)
+ ÿÿsbd$(300)
+ _netpath$ÿpath$ÿ"GDV\GDV_DAT\"
+ ÿŽpath$ÿ"GDV\GDV_DAT"
+ _netpath$ÿpath$ÿ"GDV\GDV_DAT\"
+ ÿÿsbd$,5,"*.SBD"
+ ÿ›i%ÿ0ÿq300
+ÿ¡sbd$(i%)ÿ""ÿp
+lenge%ÿÿ/(sbd$(i%))
+datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
+datei0$ÿdatei$
+ÿ¡datei$ÿ"config"ÿp
+datei$ÿdatei$ÿ";london8474"
+ÿ^
+datei$ÿdatei$ÿ";paris"
+ÿ’ÿ¡
+ÿ¡ÿOÿ´(sbd$(i%))ÿp
+ÿ´ÿ™ÿà,0_netpath$ÿdatei$
+ÿ’ÿ¡
+ÿ½ ********Aufruf der SQL-Statement Generierung **************
+ÿƒCreateSQL(datei0$,path$,art%)
+ÿ½ ***********************************************************
+ÿ^
+i%ÿ301
+ÿ’ÿ¡
+ ÿ±i%
+ 
+ ÿÂ"GDV fertig","",2
+ ÿ†ÿt
+
+
+ ÿ¡art%ÿ1ÿp
+ÿ†ÿ¶
+ ÿ’ÿ¡
+ 
+end220920091: 
+ ÿÂ"Ende"
+ ÿ’ÿÿ
+
+ÿÿCreateSQL(datei$,_netpath$,art%,pathsql$)
+
+ ÿ½ CREATE TABLE "SA1"."ADRESSEN"
+ ÿ½ (
+ ÿ½        "CODEKU"Integer,
+ ÿ½        "NACHNAME"Varchar (50)ASCII DEFAULT ' USER',
+ ÿ½        "VORNAME"Varchar (50)ASCII DEFAULT ' USER',
+ ÿ½        "STRASSE"Varchar (50)ASCII DEFAULT ' USER',
+ ÿ½        "ORT"Varchar (50)ASCII,
+ ÿ½        "PLZ"Varchar (10)ASCII,
+ ÿ½        "NOTIZ"Varchar (7000)ASCII,
+ ÿ½        "NOTIZ1"Long ASCII,
+ ÿ½        "ZAHLENFELD"Float (15),
+ ÿ½        "ZAHL2"Fixed (14,2),
+ ÿ½        "DATUM1"Date,
+ ÿ½        "TIME"Time,
+ ÿ½        "TIMESTAMP"Timestamp,
+ ÿ½        PRIMARY KEY ("CODEKU","NACHNAME","STRASSE")
+ ÿ½ )
+
+ s$ÿ"0"
+ ÿÊÿËdatei$
+ ÿ½ S$="0" - CBuilder Format
+ ÿ½ S$="1" - SAPDB Format
+ ÿ¡art%ÿ1ÿp
+datei1$ÿ_netpath$ÿpathsql$ÿdatei$ÿ".TXT"
+ÿ½ datei1$ = _netpath$ + "SQLMS\" + datei$ + ".TXT"
+ÿ¡ÿJ(datei1$)ÿpÿdatei1$
+ÿ´datei1$ÿ›ÿ¶
+ ÿ’ÿ¡
+ÿ¡s$ÿ"0"ÿp
+ÿ{"CREATE TABLE "ÿdatei$
+ÿ{"("
+feldanz%ÿÿõ(datei$,1)
+ÿ×felder$(feldanz%)
+ÿ×feldtyp$(feldanz%)
+ÿ×feldindex$(feldanz%)
+ÿ×feldanzeig$(feldanz%)
+ÿÿfelder$,1
+ÿ›i%ÿ0ÿqfeldanz%ÿ1
+feldtyp$(i%)ÿÿö(felder$(i%),0)
+feldindex$(i%)ÿÿö(felder$(i%),3)
+feldanzeig$(i%)ÿÿö(felder$(i%),4)
+fname$ÿVSNRPack$(ÿ>(felder$(i%)))
+ÿ¡datei$ÿ"STATIST*"ÿfname$ÿ"SBEITRAGNETEU"ÿp
+ÿ½ CALL Fehler(datei$,fname$)
+ÿ’ÿ¡
+ÿ¡fname$ÿ"TIME*"ÿfname$ÿ"Date*"ÿfname$ÿ"check*"ÿfname$ÿ"DAY*"ÿfname$ÿ"Update*"ÿp
+	fname$ÿfname$ÿ"1"
+ÿ’ÿ¡
+ÿ¡i%ÿfeldanz%ÿ1ÿp
+ÿ¡feldtyp$(i%)ÿ"NUM"ÿp
+ÿ½ CALL Fehler("NUM",feldanzeig$(i%))
+le%ÿÿ/(feldanzeig$(i%))
+pos%ÿ0
+pos%ÿÿ?(feldanzeig$(i%),".")
+ok%ÿ0
+ÿ¡pos%ÿ0ÿle%ÿpos%ÿp
+
+ok%ÿ1
+
+vorkomma%ÿpos%ÿ1
+
+nachkomma%ÿle%ÿpos%
+
+befstring$ÿ"      "ÿfname$ÿ" Decimal("ÿÿH(ÿ(le%,"999999999999"))ÿ","ÿÿH(ÿ(nachkomma%,"999999999999"))ÿ")"
+
+ÿ½ befstring$ = CHR$ (34) + felder$(i%) + CHR$ (34) + " Fixed(" LTRIM$ ( STR$ (vorkomma%%,"999999999999")) + "," + LTRIM$ ( STR$ (nachkomma%,"999999999999")) + "),"
+ÿ^
+
+ok%ÿ1
+
+befstring$ÿ"      "ÿfname$ÿ" Int"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"NMI"ÿp
+ok%ÿ1
+befstring$ÿ"      "ÿfname$ÿ" Int"
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"TXT"ÿp
+ok%ÿ1
+le%ÿÿ0(feldanzeig$(i%))
+ÿ¡le%ÿ200ÿp
+
+befstring$ÿ"      "ÿfname$ÿ" VarChar("ÿÿH(ÿ(ÿ0(feldanzeig$(i%)),"999999999999"))ÿ")"
+ÿ^
+
+befstring$ÿ"      "ÿfname$ÿ" VarChar("ÿÿH(ÿ(ÿ0(feldanzeig$(i%)),"999999999999"))ÿ")"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"LOG"ÿp
+ok%ÿ1
+befstring$ÿ"      "ÿfname$ÿ" Int"
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"DAT"ÿp
+ok%ÿ1
+befstring$ÿ"      "ÿfname$ÿ" DateTime"
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"TIM"ÿp
+ok%ÿ1
+befstring$ÿ"      "ÿfname$ÿ" DateTime"
+ÿ’ÿ¡
+ÿ¡fname$ÿ"TIMESTAMP*"ÿp
+ok%ÿ1
+befstring$ÿ"      "ÿfname$ÿ" Timestamp"
+ÿ’ÿ¡
+ÿ{befstring$
+ÿ¡ok%ÿ0ÿp
+t$ÿfeldtyp$(i%)
+ÿÂt$,"nicht angelegt",2
+ÿ’ÿ¡
+ÿ^
+ÿ¡feldtyp$(i%)ÿ"NUM"ÿp
+le%ÿÿ/(feldanzeig$(i%))
+pos%ÿ0
+pos%ÿÿ?(feldanzeig$(i%),".")
+ok%ÿ0
+ÿ¡pos%ÿ0ÿle%ÿpos%ÿp
+
+ok%ÿ1
+
+vorkomma%ÿpos%ÿ1
+
+nachkomma%ÿle%ÿpos%
+
+befstring$ÿ"      "ÿfname$ÿ" Decimal("ÿÿH(ÿ(le%,"999999999999"))ÿ","ÿÿH(ÿ(nachkomma%,"999999999999"))ÿ"),"
+ÿ^
+
+ok%ÿ1
+
+befstring$ÿ"      "ÿfname$ÿ" Int,"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"NMI"ÿp
+ok%ÿ1
+befstring$ÿ"      "ÿfname$ÿ" Int,"
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"TXT"ÿp
+ok%ÿ1
+le%ÿÿ0(feldanzeig$(i%))
+ÿ¡le%ÿ100ÿp
+
+befstring$ÿ"      "ÿfname$ÿ" VarChar("ÿÿH(ÿ(ÿ0(feldanzeig$(i%)),"999999999999"))ÿ") ,"
+ÿ^
+
+befstring$ÿ"      "ÿfname$ÿ" VarChar("ÿÿH(ÿ(ÿ0(feldanzeig$(i%)),"999999999999"))ÿ") ,"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"LOG"ÿp
+ok%ÿ1
+befstring$ÿ"      "ÿfname$ÿ" Int,"
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"DAT"ÿp
+ok%ÿ1
+befstring$ÿ"      "ÿfname$ÿ" DateTime,"
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"TIM"ÿp
+ok%ÿ1
+befstring$ÿ"      "ÿfname$ÿ" DateTime,"
+ÿ’ÿ¡
+ÿ¡fname$ÿ"TIMESTAMP*"ÿp
+ok%ÿ1
+befstring$ÿ"      "ÿfname$ÿ" Timestamp,"
+ÿ’ÿ¡
+ÿ{befstring$
+ÿ¡ok%ÿ0ÿp
+t$ÿfeldtyp$(i%)
+ÿÂt$,"nicht angelegt",2
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ±i%
+ÿ{")"
+ÿ^
+ÿ{""
+ÿ{""
+ÿ{""
+ÿ{""
+ÿ{"CREATE TABLE "ÿÿ(34)ÿ"SA1"ÿÿ(34)ÿ"."ÿÿ(34)ÿdatei$ÿÿ(34)
+ÿ{"("
+feldanz%ÿÿõ(datei$,1)
+ÿ×felder$(feldanz%)
+ÿ×feldtyp$(feldanz%)
+ÿ×feldindex$(feldanz%)
+ÿ×feldanzeig$(feldanz%)
+ÿÿfelder$,1
+ÿ›i%ÿ0ÿqfeldanz%ÿ1
+feldtyp$(i%)ÿÿö(felder$(i%),0)
+feldindex$(i%)ÿÿö(felder$(i%),3)
+feldanzeig$(i%)ÿÿö(felder$(i%),4)
+fname$ÿVSNRPack$(ÿ>(felder$(i%)))
+ÿ¡fname$ÿ"TIME*"ÿfname$ÿ"Date*"ÿfname$ÿ"check*"ÿfname$ÿ"DAY*"ÿfname$ÿ"Update*"ÿp
+	fname$ÿfname$ÿ"1"
+ÿ’ÿ¡
+ÿ¡i%ÿfeldanz%ÿ1ÿp
+ÿ¡feldtyp$(i%)ÿ"NUM"ÿp
+le%ÿÿ/(feldanzeig$(i%))
+pos%ÿ0
+pos%ÿÿ?(feldanzeig$(i%),".")
+ok%ÿ0
+ÿ¡pos%ÿ0ÿle%ÿpos%ÿp
+
+ok%ÿ1
+
+vorkomma%ÿpos%ÿ1
+
+nachkomma%ÿle%ÿpos%
+
+befstring$ÿ"      "ÿÿ(34)ÿfname$ÿÿ(34)ÿ" Float("ÿÿH(ÿ(le%,"999999999999"))ÿ")"
+
+ÿ½ befstring$ = CHR$ (34) + felder$(i%) + CHR$ (34) + " Fixed(" LTRIM$ ( STR$ (vorkomma%%,"999999999999")) + "," + LTRIM$ ( STR$ (nachkomma%,"999999999999")) + "),"
+ÿ^
+
+ok%ÿ1
+
+befstring$ÿ"      "ÿÿ(34)ÿfname$ÿÿ(34)ÿ" Integer"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"NMI"ÿp
+ok%ÿ1
+befstring$ÿ"      "ÿÿ(34)ÿfname$ÿÿ(34)ÿ" Integer"
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"TXT"ÿp
+ok%ÿ1
+le%ÿÿ0(feldanzeig$(i%))
+ÿ¡le%ÿ200ÿp
+
+befstring$ÿ"      "ÿÿ(34)ÿfname$ÿÿ(34)ÿ" Long ASCII"
+ÿ^
+
+befstring$ÿ"      "ÿÿ(34)ÿfname$ÿÿ(34)ÿ" VarChar("ÿÿH(ÿ(ÿ0(feldanzeig$(i%)),"999999999999"))ÿ") ASCII"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"LOG"ÿp
+ok%ÿ1
+befstring$ÿ"      "ÿÿ(34)ÿfname$ÿÿ(34)ÿÿ" Int"
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"DAT"ÿp
+ok%ÿ1
+befstring$ÿ"      "ÿÿ(34)ÿfname$ÿÿ(34)ÿ" Date"
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"TIM"ÿp
+ok%ÿ1
+befstring$ÿ"      "ÿÿ(34)ÿfname$ÿÿ(34)ÿ" Time"
+ÿ’ÿ¡
+ÿ¡fname$ÿ"TIMESTAMP*"ÿp
+ok%ÿ1
+befstring$ÿ"      "ÿÿ(34)ÿfname$ÿÿ(34)ÿ" Timestamp"
+ÿ’ÿ¡
+ÿ{befstring$
+ÿ¡ok%ÿ0ÿp
+t$ÿfeldtyp$(i%)
+ÿÂt$,"nicht angelegt",2
+ÿ’ÿ¡
+ÿ^
+ÿ¡feldtyp$(i%)ÿ"NUM"ÿp
+le%ÿÿ/(feldanzeig$(i%))
+pos%ÿ0
+pos%ÿÿ?(feldanzeig$(i%),".")
+ok%ÿ0
+ÿ¡pos%ÿ0ÿle%ÿpos%ÿp
+
+ok%ÿ1
+
+vorkomma%ÿpos%ÿ1
+
+nachkomma%ÿle%ÿpos%
+
+befstring$ÿ"      "ÿÿ(34)ÿfname$ÿÿ(34)ÿ" Float("ÿÿH(ÿ(le%,"999999999999"))ÿ"),"
+
+ÿ½ befstring$ = CHR$ (34) + felder$(i%) + CHR$ (34) + " Fixed(" LTRIM$ ( STR$ (vorkomma%%,"999999999999")) + "," + LTRIM$ ( STR$ (nachkomma%,"999999999999")) + "),"
+ÿ^
+
+ok%ÿ1
+
+befstring$ÿ"      "ÿÿ(34)ÿfname$ÿÿ(34)ÿ" Integer,"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"NMI"ÿp
+ok%ÿ1
+befstring$ÿ"      "ÿÿ(34)ÿfname$ÿÿ(34)ÿ" Integer,"
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"TXT"ÿp
+ok%ÿ1
+le%ÿÿ0(feldanzeig$(i%))
+ÿ¡le%ÿ100ÿp
+
+befstring$ÿ"      "ÿÿ(34)ÿfname$ÿÿ(34)ÿ" Long ASCII,"
+ÿ^
+
+befstring$ÿ"      "ÿÿ(34)ÿfname$ÿÿ(34)ÿ" VarChar("ÿÿH(ÿ(ÿ0(feldanzeig$(i%)),"999999999999"))ÿ") ASCII,"
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"DAT"ÿp
+ok%ÿ1
+befstring$ÿ"      "ÿÿ(34)ÿfname$ÿÿ(34)ÿ" Date,"
+ÿ’ÿ¡
+ÿ¡feldtyp$(i%)ÿ"TIM"ÿp
+ok%ÿ1
+befstring$ÿ"      "ÿÿ(34)ÿfname$ÿÿ(34)ÿ" Time,"
+ÿ’ÿ¡
+ÿ¡fname$ÿ"TIMESTAMP*"ÿp
+ok%ÿ1
+befstring$ÿ"      "ÿÿ(34)ÿfname$ÿÿ(34)ÿ" Timestamp,"
+ÿ’ÿ¡
+ÿ{befstring$
+ÿ¡ok%ÿ0ÿp
+t$ÿfeldtyp$(i%)
+ÿÂt$,"nicht angelegt",2
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ±i%
+ÿ{")"
+ÿ’ÿ¡
+ ÿ¡art%ÿ1ÿp
+ÿ†ÿ¶
+ ÿ’ÿ¡
+ ÿ½ CALL Fehler("TMPSTR99","")
+ ÿ½ ? "AAAA"
+ ÿ½ LOAD "TMPSTR99.SBP", NEW 
+ ÿ½ CALL TMPSTR99()
+ ÿ½ CLOSE PROGRAMFILE "TMPSTR99"
+ ÿ’ÿÿ
+
+
+
+ÿÿVSNRPack$(VSNR$)
+ tVSNR$ÿ""
+ ÿ›a%ÿ1ÿqÿ/(VSNR$)
+tC$ÿÿ>(ÿ,(VSNR$,a%,1))
+	x%ÿÿ.(ÿ+(ÿ>(tC$),1))
+	ÿÉÿæx%
+ÿæ142
+tC$ÿ"AE"
+ÿæ153
+tC$ÿ"OE"
+ÿæ154
+tC$ÿ"UE"
+	ÿ’ÿÉ
+	ÿ¡tc$ÿ"á"ÿptc$ÿ"SS"
+ÿÉÿætC$
+ÿæ"A"ÿq"Z","0"ÿq"9"
+tVSNR$ÿtVSNR$ÿtC$
+ÿ’ÿÉ
+ ÿ±a%
+ VSNRPack$ÿtVSNR$
+ ÿ’ÿÿ
+

@@ -1,0 +1,741 @@
+SBP
+
+ÿÿmain()
+ ÿÿGAdrDat$,GConDat$,GTelDat$,GAkquiDat$,GDokDat$,GADRUni$,cuvt%,_vcodema%,vcodema%
+ vcodema%ÿ1
+ _vcodema%ÿ1
+ ÿßÿe
+ ÿƒMAKRO1()
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ÿÿMAKRO1():ÿ½                                         9.Okt.2001
+ 
+GAdrDat$ÿ"ADRESSEN"
+GConDat$ÿ"CONNECT"
+GTelDat$ÿ"TELEFON"
+GAkquiDat$ÿ"AKQUISE"
+GDokDat$ÿ"DOKUMENT"
+ ÿ"C:\LUND.WRI"
+ ÿ´ÿ™"VERSICH;paris"
+ ÿ´ÿ™"ZUSATZ;paris"
+ ÿ´ÿ™"KUNDEN;paris"
+ ÿ´ÿ™"c:\LUND.WRI\PROVIS\GEADR;paris"
+ ÿ´ÿ™"c:\LUND.WRI\PROVIS\SPGRUPPE;paris"
+ ÿ´ÿ™"c:\LUND.WRI\PROVIS\MAADR;paris"
+ ÿ´ÿ™"c:\LUND.WRI\PROVIS\VORGANG;paris"
+ ÿ´ÿ™"c:\LUND.WRI\PROVIS\GEKOND;paris"
+ ÿ´ÿ™"c:\LUND.WRI\PROVIS\VPRODUKT;paris"
+ ÿ´ÿ™"c:\LUND.WRI\PROVIS\KVERTRAG;paris"
+ ÿ´ÿ™"c:\LUND.WRI\OFFICE\ADRESSEN;paris"
+ ÿ´ÿ™"c:\LUND.WRI\OFFICE\AKQUISE;paris"
+ ÿ´ÿ™"c:\LUND.WRI\OFFICE\TELEFON;paris"
+ ÿ´ÿ™"c:\LUND.WRI\OFFICE\AKTIONEN;paris"
+ ÿ´ÿ™"c:\LUND.WRI\OFFICE\TVORLAGE;paris"
+ ÿ½ GOTO CreateVertrag
+ ÿwdatuebernend
+ ÿ¡ÿ´("gesell")ÿpÿ†ÿ™"gesell"
+ ÿ´ÿ™"GESELL;paris"
+ ÿÉÿĞÿ™"GESELL":ÿ½                         Menu:  ImportFile
+ ÿ¾ÿaÿ™"gesell"
+ Superbase.Converters.ASD.SourceFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.SourceFileÿ"C:\LUND.WRI\GESELLSC.TXT"
+ Superbase.Converters.ASD.Descendingÿ0
+ Superbase.Converters.ASD.Mergeÿÿ1
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ""ÿÿ(9)ÿ""
+ Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+ Superbase.Converters.ASD.ANSIConvertÿ0
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"GESELL.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.ASD)
+ ÿÂ"Gesellschaften importiert"
+
+ ÿ½ Kunden
+ ÿ¡ÿ´("KUNDEN")ÿpÿ†ÿ™"KUNDEN"
+ ÿ´ÿ™"KUNDEN;paris"
+ ÿÉÿĞÿ™"KUNDEN":ÿ½                         Menu:  ImportFile
+ ÿ¾ÿaÿ™"KUNDEN"
+ Superbase.Converters.ASD.SourceFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.SourceFileÿ"C:\LUND.WRI\KUNDEN.TXT"
+ Superbase.Converters.ASD.Descendingÿ0
+ Superbase.Converters.ASD.Mergeÿÿ1
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ""ÿÿ(9)ÿ""
+ Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+ Superbase.Converters.ASD.ANSIConvertÿ0
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"KUNDEN.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.ASD)
+ ÿÂ"Kunden importiert"
+ ÿ™"kunden"
+ ÿ£NameKey
+ ÿÉÿ`
+
+ ÿ½ Versicherungen
+ ÿ¡ÿ´("VERSICH")ÿpÿ†ÿ™"VERSICH"
+ ÿ´ÿ™"VERSICH;paris"
+ ÿÉÿĞÿ™"VERSICH":ÿ½                        Menu:  ImportFile
+ ÿ¾ÿaÿ™"VERSICH"
+ Superbase.Converters.ASD.SourceFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.SourceFileÿ"C:\LUND.WRI\VERSICH.TXT"
+ Superbase.Converters.ASD.Descendingÿ0
+ Superbase.Converters.ASD.Mergeÿÿ1
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ""ÿÿ(9)ÿ""
+ Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+ Superbase.Converters.ASD.ANSIConvertÿ0
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"VERSICH.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.ASD)
+ ÿÂ"Versicherungen"
+
+ ÿ½ Zusatztext
+ ÿ¡ÿ´("ZUSATZ")ÿpÿ†ÿ™"ZUSATZ"
+ ÿ´ÿ™"ZUSATZ;paris"
+ ÿÉÿĞÿ™"ZUSATZ":ÿ½                         Menu:  ImportFile
+ ÿ¾ÿaÿ™"ZUSATZ"
+ Superbase.Converters.ASD.SourceFormatÿ"ASCII Delimited"
+ Superbase.Converters.ASD.SourceFileÿ"C:\LUND.WRI\ZUSTEXT.TXT"
+ Superbase.Converters.ASD.Descendingÿ0
+ Superbase.Converters.ASD.Mergeÿÿ1
+ Superbase.Converters.ASD.RecordSeparatorÿ""ÿÿ(13)ÿÿ(10)ÿ""
+ Superbase.Converters.ASD.FieldSeparatorÿ""ÿÿ(9)ÿ""
+ Superbase.Converters.ASD.FieldDelimiterÿ""ÿÿ(34)ÿ""
+ Superbase.Converters.ASD.ANSIConvertÿ0
+ Superbase.Converters.SBF.DestFormatÿ"Superbase"
+ Superbase.Converters.SBF.DestFileÿ"ZUSATZ.SBF"
+ Superbase.Converters.SBF.IndexSkipÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.SBF.Convert(Superbase.Converters.ASD)
+ ÿÂ"Zusatztexte"
+
+ ÿ½ Einpflegen in die Datenbanken
+ ÿ´ÿ™"c:\LUND.WRI\PROVIS\GEADR;paris"
+ ÿ´ÿ™"c:\LUND.WRI\PROVIS\GEKOND;paris"
+ ÿ´ÿ™"c:\LUND.WRI\PROVIS\VPRODUKT;paris"
+ ÿ´ÿ™"c:\LUND.WRI\PROVIS\KVERTRAG;paris"
+ ÿ´ÿ™"c:\LUND.WRI\OFFICE\ADRESSEN;paris"
+ ÿ´ÿ™"c:\LUND.WRI\OFFICE\TELEFON;paris"
+
+CreateGEADR: 
+ ÿ™"gesell"
+ ÿÉÿ`
+ ÿØÿOÿB("gesell")
+ÿÿ™"geadr"
+codege.geadrÿgesnr.gesell
+gesellschaft.geadrÿgesname1.gesell
+gesellschaft2.geadrÿgesname2.gesell
+Straáe.geadrÿGesStrasse.gesell
+ort.geadrÿÿåansi(gesplzort.gesell)
+plz.geadrÿÿånumeric(gesplzort.gesell)
+K1Konto.geadrÿGesKtoNr.gesell
+K1BLZ.geadrÿGesBLZ.gesell
+Vermittlernr.geadrÿVermittlernr.gesell
+zero.geadrÿ0
+ÿÌÿ™"geadr"
+ÿÉÿ±ÿ™"gesell"
+ ÿÙ
+ ÿ™"geadr"
+ ÿ£codege.geadr
+ ÿÉÿb
+ codege%ÿcodege.geadr
+ ÿØCodeGE ÿÿI("GEADR",1)
+ ÿÙ
+
+CreateKunden: 
+ ÿ™"Kunden"
+ ÿÉÿ`
+ a$ÿ"ADRESSEN"
+ b$ÿ"KUNDEN"
+ i%ÿ0
+ ÿØÿOÿB("KUNDEN")
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ" Adresse"
+ÿÿ™"ADRESSEN"
+codeku.a$ÿKundID.b$
+ÿ½ length = LEN (Name1.gesell)
+pos%ÿÿ?(1,Name1.b$,",")
+ÿ¡pos%ÿ0ÿp
+Nachname.a$ÿÿH(ÿ,(Name1.b$,1,pos%))
+Vorname.a$ÿÿH(ÿ,(Name1.b$,pos%ÿ1))
+vorname$ÿVorname.a$
+Geburtsname.a$ÿName2.b$
+ok1%ÿ0
+ÿ¡Vorname.a$ÿ"Achi*"ÿVorname.a$ÿ"Adol*"ÿVorname.a$ÿ"Alber*"ÿVorname.a$ÿ"Alexande*"ÿVorname.a$ÿ"Alfio*"ÿVorname.a$ÿ"Alfred*"ÿVorname.a$ÿ"Ali"ÿVorname.a$ÿ"Amanuel"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"Andre"ÿVorname.a$ÿ"Andreas*"ÿVorname.a$ÿ"Anthon*"ÿVorname.a$ÿ"Anton"ÿVorname.a$ÿ"Aribert"ÿVorname.a$ÿ"Armin"ÿVorname.a$ÿ"Arne"ÿVorname.a$ÿ"Arthur"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"Artur"ÿVorname.a$ÿ"Axel*"ÿVorname.a$ÿ"Bern*"ÿVorname.a$ÿ"Bernh*"ÿVorname.a$ÿ"Bert*"ÿVorname.a$ÿ"Bj”*"ÿVorname.a$ÿ"Bodo*"ÿVorname.a$ÿ"Boris*"ÿVorname.a$ÿ"Burk*"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"Carl*"ÿVorname.a$ÿ"Carst*"ÿVorname.a$ÿ"Cem*"ÿVorname.a$ÿ"Christian"ÿVorname.a$ÿ"Christian von"ÿVorname.a$ÿ"Christoph*"ÿVorname.a$ÿ"Claus*"ÿVorname.a$ÿ"Daniel"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"David*"ÿVorname.a$ÿ"Denis"ÿVorname.a$ÿ"Dennis"ÿVorname.a$ÿ"Detle*"ÿVorname.a$ÿ"Diet*"ÿVorname.a$ÿ"Eber*"ÿVorname.a$ÿ"Eck*"ÿVorname.a$ÿ"Edg*"ÿVorname.a$ÿ"Ed*"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"Ed*"ÿVorname.a$ÿ"Eg*"ÿVorname.a$ÿ"Eik*"ÿVorname.a$ÿ"Ekk*"ÿVorname.a$ÿ"Emil*"ÿVorname.a$ÿ"Enik*"ÿVorname.a$ÿ"Enno"ÿVorname.a$ÿ"Erh*"ÿVorname.a$ÿ"Eric"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"Erich"ÿVorname.a$ÿ"Ernst*"ÿVorname.a$ÿ"Erwin*"ÿVorname.a$ÿ"Falko"ÿVorname.a$ÿ"Flor*"ÿVorname.a$ÿ"Folk*"ÿVorname.a$ÿ"Frank*"ÿVorname.a$ÿ"Franz*"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"Friedr*"ÿVorname.a$ÿ"Fritz*"ÿVorname.a$ÿ"Geo*"ÿVorname.a$ÿ"Gerd*"ÿVorname.a$ÿ"Geral*"ÿVorname.a$ÿ"Gerhar*"ÿVorname.a$ÿ"Gernot*"ÿVorname.a$ÿ"Gert"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"Grego*"ÿVorname.a$ÿ"Guent*"ÿVorname.a$ÿ"Guido*"ÿVorname.a$ÿ"Gunnar*"ÿVorname.a$ÿ"Guntber*"ÿVorname.a$ÿ"Gunt*"ÿVorname.a$ÿ"Gunt*"ÿVorname.a$ÿ"Gust*"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"H.-J.*"ÿVorname.a$ÿ"H.-W*"ÿVorname.a$ÿ"Hannes*"ÿVorname.a$ÿ"Hans*"ÿVorname.a$ÿ"Har*"ÿVorname.a$ÿ"Hauk*"ÿVorname.a$ÿ"Heiko*"ÿVorname.a$ÿ"Heimo*"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"Hein*"ÿVorname.a$ÿ"Hellmu*"ÿVorname.a$ÿ"Helmu*"ÿVorname.a$ÿ"Hendri*"ÿVorname.a$ÿ"Henr*"ÿVorname.a$ÿ"Herber*"ÿVorname.a$ÿ"Herg*"ÿVorname.a$ÿ"Herma*"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"Herwa*"ÿVorname.a$ÿ"Hinri*"ÿVorname.a$ÿ"Holg*"ÿVorname.a$ÿ"Horst*"ÿVorname.a$ÿ"Hu*"ÿVorname.a$ÿ"Ibrah*"ÿVorname.a$ÿ"Ingo"ÿVorname.a$ÿ"Jace*"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"Jaco*"ÿVorname.a$ÿ"Jako*"ÿVorname.a$ÿ"Jan"ÿVorname.a$ÿ"Jan -*"ÿVorname.a$ÿ"Jan-*"ÿVorname.a$ÿ"Jens*"ÿVorname.a$ÿ"Joa*"ÿVorname.a$ÿ"Joc*"ÿVorname.a$ÿ"Joe*"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ ÿ¡Vorname.a$ÿ"Johannes*"ÿVorname.a$ÿ"John*"ÿVorname.a$ÿ"Jonn*"ÿVorname.a$ÿ"J”r"ÿVorname.a$ÿ"Juerg*"ÿVorname.a$ÿ"Jrg*"ÿVorname.a$ÿ"Kai*"ÿVorname.a$ÿ"Karl*"ÿVorname.a$ÿ"Karst*"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"Kay*"ÿVorname.a$ÿ"Klaus*"ÿVorname.a$ÿ"Kurt*"ÿVorname.a$ÿ"Lars*"ÿVorname.a$ÿ"Leon*"ÿVorname.a$ÿ"Loth*"ÿVorname.a$ÿ"Ludw*"ÿVorname.a$ÿ"Lut*"ÿVorname.a$ÿ"Maik*"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"Manf*"ÿVorname.a$ÿ"Marc*"ÿVorname.a$ÿ"Mario"ÿVorname.a$ÿ"Markus*"ÿVorname.a$ÿ"Martin"ÿVorname.a$ÿ"Mathias*"ÿVorname.a$ÿ"Matthias*"ÿVorname.a$ÿ"Michael"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"Nicolaus*"ÿVorname.a$ÿ"Niels*"ÿVorname.a$ÿ"Nils*"ÿVorname.a$ÿ"Norbert*"ÿVorname.a$ÿ"Olaf*"ÿVorname.a$ÿ"Oli*"ÿVorname.a$ÿ"Ott*"ÿVorname.a$ÿ"Patrick*"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"Paul*"ÿVorname.a$ÿ"Peter*"ÿVorname.a$ÿ"Phil*"ÿVorname.a$ÿ"Rainer*"ÿVorname.a$ÿ"Ralf*"ÿVorname.a$ÿ"Reinh*"ÿVorname.a$ÿ"Rene*"ÿVorname.a$ÿ"Robert*"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"Roger*"ÿVorname.a$ÿ"Roland*"ÿVorname.a$ÿ"Rolf*"ÿVorname.a$ÿ"Rud*"ÿVorname.a$ÿ"Rued*"ÿVorname.a$ÿ"Sascha*"ÿVorname.a$ÿ"Sebast*"ÿVorname.a$ÿ"Siegfried*"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"Stefan"ÿVorname.a$ÿ"Stefan-*"ÿVorname.a$ÿ"Stephan"ÿVorname.a$ÿ"Sven"ÿVorname.a$ÿ"Thomas*"ÿVorname.a$ÿ"Thorst*"ÿVorname.a$ÿ"Tim*"ÿVorname.a$ÿ"Torst*"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ ÿ¡Vorname.a$ÿ"Udo"ÿVorname.a$ÿ"Ulf"ÿVorname.a$ÿ"Ulrich*"ÿVorname.a$ÿ"Uwe*"ÿVorname.a$ÿ"Volker*"ÿVorname.a$ÿ"Volk*"ÿVorname.a$ÿ"Walte*"ÿVorname.a$ÿ"Werne*"ÿVorname.a$ÿ"Wil*"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"Winfri*"ÿVorname.a$ÿ"Wil*"ÿVorname.a$ÿ"Wolf*"ÿp
+Anrede.a$ÿ"Herr"
+ok1%ÿ1
+ÿ’ÿ¡
+ÿ¡ok1%ÿ1ÿp
+Anrede.a$ÿ"Frau"
+ÿ’ÿ¡
+ÿ¡Vorname.a$ÿ"Gerda"ÿpAnrede.a$ÿ"Frau"
+ÿ¡Vorname.a$ÿ"Edith"ÿpAnrede.a$ÿ"Frau"
+ÿ¡Vorname.a$ÿ"Raymond"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Serg*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Arthur*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Bero"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Birger*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Bjoern*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Bojim*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Daniel Brian"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Dirk*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Dr. med. Christoph"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Edith"ÿpAnrede.a$ÿ"Frau"
+ÿ¡Vorname.a$ÿ"Farbo*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Friedhelm"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Gebr.GmbH"ÿpAnrede.a$ÿ"Firma"
+ÿ¡Vorname.a$ÿ"Goetz"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Gottfried"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Goekhan"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Gnter*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Hannsj*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Helge*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Henriette"ÿpAnrede.a$ÿ"Frau"
+ÿ¡Vorname.a$ÿ"Herbrand"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Herwig oHG"ÿpAnrede.a$ÿ"Firma"
+ÿ¡Vorname.a$ÿ"Herward Glas*"ÿpAnrede.a$ÿ"Firma"
+ÿ¡Vorname.a$ÿ"Immo-Peter"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Jan B*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Jan F*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Jan H*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Jan P*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Jan-*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Jetschke*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Johann"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Johann A*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"J”rg*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Josef"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Jupp"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Julien"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Knut*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Lorenz"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Marko"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Mehdi"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Mehmet"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Michael        Hi"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Michael von"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Mike"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Olav"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Peer*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Peter & Sohn"ÿpAnrede.a$ÿ"Firma"
+ÿ¡Vorname.a$ÿ"Peter GMBH"ÿpAnrede.a$ÿ"Firma"
+ÿ¡Vorname.a$ÿ"Petersen* "ÿpAnrede.a$ÿ"Firma"
+ÿ¡Vorname.a$ÿ"Pitt*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Rafael*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Ralph*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Ronald"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Ronny"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Rdiger"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Ryan"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Schmidt und Hoppe"ÿpAnrede.a$ÿ"Firma"
+ÿ¡Vorname.a$ÿ"Simon"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Stephan F."ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Swen"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Theodor"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Tobias"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Udo F*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Ulf*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Victor"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Vili"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"W.  Verm”gens-"ÿpAnrede.a$ÿ"Firma"
+ÿ¡Vorname.a$ÿ"Wadim"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Waldema*"ÿpAnrede.a$ÿ"Herr"
+ÿ¡Vorname.a$ÿ"Wilke"ÿpAnrede.a$ÿ"Frau"
+ÿ¡Vorname.a$ÿ"Wilhelmine"ÿpAnrede.a$ÿ"Frau"
+ÿ¡Vorname.a$ÿ"Wulf"ÿpAnrede.a$ÿ"Herr"
+ÿ^
+anrede.a$ÿ"Firma"
+Nachname.a$ÿName1.b$
+Vorname.a$ÿName2.b$
+ÿ’ÿ¡
+
+Geburtstag.a$ÿGebDat.b$
+Familienstand.a$ÿFamStand.b$
+Beruf.a$ÿBeruf.b$
+Straáe.a$ÿStrasse.b$
+plz.a$ÿplz1.b$
+Ort.a$ÿort1.b$
+ÿ¡Strasse2.b$ÿ""ÿpNotiz.a$ÿStrasse2.b$ÿÿ(13)ÿÿ(10)
+ÿ¡plz2.b$ÿ""ÿpNotiz.a$ÿNotiz.a$ÿplz2.b$ÿ" "
+ÿ¡ort2.b$ÿ""ÿpNotiz.a$ÿNotiz.a$ÿort2.b$ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)
+EGVorname.a$ÿEgVorname.b$
+EGGeburtstag.a$ÿEGGeburtsdat.b$
+k1name.a$ÿkind1.b$
+k1geburtstag.a$ÿkind1geb.b$
+k2name.a$ÿkind2.b$
+k2geburtstag.a$ÿkind2geb.b$
+k3name.a$ÿkind3.b$
+k3geburtstag.a$ÿkind3geb.b$
+k4name.a$ÿkind4.b$
+k4geburtstag.a$ÿkind4geb.b$
+ÿ¡kind5.b$ÿ""ÿpNotiz.a$ÿNotiz.a$ÿ"Kind5: "ÿkind5.b$ÿÿ(13)ÿÿ(10)
+ÿ¡kind5geb.b$ÿ0ÿpNotiz.a$ÿNotiz.a$ÿ"Kind5Geb: "ÿÿ(kind5Geb.b$,"0d.mm.yyyy")ÿÿ(13)ÿÿ(10)
+ÿ¡kind6.b$ÿ""ÿpNotiz.a$ÿNotiz.a$ÿ"Kind6: "ÿkind6.b$ÿÿ(13)ÿÿ(10)
+ÿ¡kind6geb.b$ÿ0ÿpNotiz.a$ÿNotiz.a$ÿ"Kind6Geb: "ÿÿ(kind6Geb.b$,"0d.mm.yyyy")ÿÿ(13)ÿÿ(10)
+Notiz.a$ÿNotiz.a$ÿÿ(13)ÿÿ(10)ÿ"Info1: "ÿÿ(13)ÿÿ(10)
+ÿ¡info1.b$ÿ""ÿpNotiz.a$ÿNotiz.a$ÿinfo1.b$ÿÿ(13)ÿÿ(10)
+ÿ¡info2.b$ÿ""ÿpNotiz.a$ÿNotiz.a$ÿinfo2.b$ÿÿ(13)ÿÿ(10)
+K1Konto.a$ÿKonto1.b$
+K1BLZ.a$ÿblz1.b$
+k1Bank.a$ÿBank1Name.b$
+Bank1ArtKonto.a$ÿBank1ArtKonto.b$
+Bank2ArtKonto.a$ÿBank2ArtKonto.b$
+Bank3ArtKonto.a$ÿBank3ArtKonto.b$
+
+Kontoinh2.a$ÿKonto2Inhaber.b$
+Kontoinh3.a$ÿKonto3Inhaber.b$
+GADRDat$ÿa$
+ÿÉÿæÿ>(ÿ+(anrede.GAdrDat$,3))
+ÿæ"HER"
+briefanrede.GAdrDat$ÿ"Sehr geehrter Herr "ÿnachname.GAdrDat$ÿ","
+ÿæ"FRA","FR."
+briefanrede.GAdrDat$ÿ"Sehr geehrte Frau "ÿnachname.GAdrDat$ÿ","
+ÿæ"FR","FRL"
+briefanrede.GAdrDat$ÿ"Sehr geehrtes Fr„ulein "ÿnachname.GAdrDat$ÿ","
+ÿæ"FA.","FIR",""
+briefanrede.GAdrDat$ÿ"Sehr geehrte Damen und Herren,"
+ÿæ"FAM"
+briefanrede.GAdrDat$ÿ"Sehr geehrte Familie "ÿnachname.GAdrDat$ÿ","
+ÿæ"EHE"
+briefanrede.GAdrDat$ÿ"Sehr geehrte Eheleute "ÿnachname.GAdrDat$ÿ","
+ÿ’ÿÉ
+ÿ¡Postanschrift.GAdrDat$ÿ""ÿp
+p$ÿ""
+ÿ¡anrede.GAdrDat$ÿ"Herr*"ÿanrede.GAdrDat$ÿ"Fr*"ÿanrede.GAdrDat$ÿ"Fam*"ÿp
+	ÿ¡anrede.GAdrDat$ÿ"Herr"ÿp
+p$ÿ"Herrn "
+	ÿ^
+p$ÿAnrede.GAdrDat$ÿ" "
+	ÿ’ÿ¡
+	ÿ¡ÿH(Titel.GAdrDat$)ÿ""ÿp
+p$ÿp$ÿ" "ÿÿH(Titel.GAdrDat$)ÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	ÿ¡vorname.GAdrDat$ÿ""ÿp
+p$ÿp$ÿÿH(Vorname.GAdrDat$)ÿ" "ÿÿH(Nachname.GAdrDat$)ÿÿ(13)ÿÿ(10)
+	ÿ^
+p$ÿp$ÿÿH(Nachname.GAdrDat$)ÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	p$ÿp$ÿStraáe.GAdrDat$ÿÿ(13)ÿÿ(10)ÿplz.GAdrDat$ÿ" "ÿOrt.GAdrDat$ÿÿ(13)ÿÿ(10)
+	p$ÿp$ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿbriefanrede.GAdrDat$
+ÿ^
+	p$ÿAnrede.GAdrDat$ÿÿ(13)ÿÿ(10)
+	ÿ¡vorname.GAdrDat$ÿ""ÿp
+p$ÿp$ÿÿH(nachname.GAdrDat$)ÿ" "ÿÿH(vorname.GAdrDat$)ÿÿ(13)ÿÿ(10)
+	ÿ^
+p$ÿp$ÿÿH(Nachname.GAdrDat$)ÿÿ(13)ÿÿ(10)
+	ÿ’ÿ¡
+	p$ÿp$ÿStraáe.GAdrDat$ÿÿ(13)ÿÿ(10)ÿplz.GAdrDat$ÿ" "ÿOrt.GAdrDat$ÿÿ(13)ÿÿ(10)
+	p$ÿp$ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿbriefanrede.GAdrDat$
+ÿ’ÿ¡
+Postanschrift.GAdrDat$ÿp$
+ÿ’ÿ¡
+QNachname.GAdrDat$ÿVSNRPack$(nachname.GAdrDat$)
+QVorname.GAdrDat$ÿVSNRPack$(vorname.GAdrDat$)
+QOrt.GAdrDat$ÿVSNRPack$(Ort.GAdrDat$)
+QStraáe.GAdrDat$ÿVSNRPack$(Straáe.GAdrDat$)
+QPLZ.GAdrDat$ÿVSNRPack$(PLZ.GAdrDat$)
+QGeburtsname.GAdrDat$ÿVSNRPack$(Geburtsname.GAdrDat$)
+ÿÌÿ™"ADRESSEN"
+ÿÿ™"telefon"
+codetel.telefonÿÿI("Telefon",1)
+codeku.telefonÿkundid.b$
+art.telefonÿKennzTel1.b$
+nummer.telefonÿtelefon1.b$
+fonoderfax.telefonÿ"n"
+ÿÌÿ™"telefon"
+ÿÿ™"telefon"
+codetel.telefonÿÿI("Telefon",1)
+codeku.telefonÿkundid.b$
+art.telefonÿKennzTel2.b$
+nummer.telefonÿtelefon2.b$
+fonoderfax.telefonÿ"n"
+ÿÌÿ™"telefon"
+ÿÉÿ±ÿ™"KUNDEN"
+ ÿÙ
+ ÿ™a$
+ ÿ£codeku.a$
+ ÿÉÿb
+ ÿØCodeKU ÿÿI(a$,1)
+ ÿÙ
+ ÿwdatuebernend
+CreateVertrag: 
+ ÿ´ÿ™"VERSICH;paris"
+ ÿ´ÿ™"ZUSATZ;paris"
+ a$ÿ"KVERTRAG"
+ b$ÿ"VERSICH"
+ c$ÿ"ZUSATZ"
+ ÿ™b$
+ ÿÉÿ`
+ i%ÿ0
+ ÿØÿOÿB(b$)
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)
+ÿÿ™a$
+lfdnr.a$ÿVersID.b$
+ÿ¡ÿJ(gesell.b$,codege.geadr)ÿp
+ÿÉÿ`ÿ™"geadr"
+ÿÉÿ¥gesell.b$ÿ™"geadr"ÿ£codege.geadr
+ÿ^
+ÿÂÿ(VersID.b$)," nicht gefunden"
+ÿ’ÿ¡
+codege.a$ÿgesell.b$
+Vs_Nr.a$ÿVersNr.b$
+ÿ¡ÿJ(Branche.b$,Sparte.sparten)ÿp
+ÿÉÿ`ÿ™"sparten"
+ÿÉÿ¥Branche.b$ÿ™"sparten"ÿ£sparte.sparten
+codeva%ÿcodeva.sparten
+ÿ^
+ÿÿ™"sparten"
+codeva.spartenÿÿI("sparten",1)
+codeva%ÿcodeva.sparten
+sparte.spartenÿBranche.b$
+ÿÌÿ™"sparten"
+ÿ’ÿ¡
+codeva.a$ÿcodeva%
+codeku.a$ÿKundennr.b$
+GADRDAt$ÿ"ADRESSEN"
+ÿ¡ÿOÿJ(Kundennr.b$,codeku.GAdrDat$)ÿp
+ÿÂ"Fehler kunde nicht gefunden",ÿ(Kundennr.b$)
+ÿ’ÿ¡
+ÿÉÿ¥Kundennr.b$ÿ™GAdrDat$ÿ£codeku.GAdrDat$
+ANachname.kvertragÿnachname.GAdrDat$
+AVorname.kvertragÿvorname.GAdrDat$
+AStrasse.kvertragÿStraáe.GAdrDat$
+AOrt.kvertragÿOrt.GAdrDat$
+APLZ.kvertragÿPlz.GAdrDat$
+letzteBearb ÿÿQ
+ÿ¡Kontoverweis.b$ÿ0ÿp
+ÿ¡Kontoverweis.b$ÿ1ÿp
+k1bank.a$ÿk1bank.Gadrdat$
+k1BLZ.a$ÿk1blz.Gadrdat$
+k1konto.a$ÿk1Konto.gadrdat$
+Kontoinh.a$ÿKontoinh1.gadrdat$
+ÿ’ÿ¡
+ÿ¡Kontoverweis.b$ÿ2ÿp
+k1bank.a$ÿk2bank.Gadrdat$
+k1BLZ.a$ÿk2blz.Gadrdat$
+k1konto.a$ÿk2Konto.gadrdat$
+Kontoinh.a$ÿKontoinh2.gadrdat$
+ÿ’ÿ¡
+ÿ¡Kontoverweis.b$ÿ3ÿp
+k1bank.a$ÿk3bank.Gadrdat$
+k1BLZ.a$ÿk3blz.Gadrdat$
+k1konto.a$ÿk3Konto.gadrdat$
+Kontoinh.a$ÿKontoinh3.gadrdat$
+ÿ’ÿ¡
+ÿ’ÿ¡
+ 
+beitrag.a$ÿbeitrag.b$
+ BeitrAnd.a$ÿBeitrAnd.b$
+ EinzBeitrag.a$ÿEinzBeitrag.b$
+
+ ÿ¡Abgerufenam.b$ÿ0ÿpAbgerufenam.a$ÿAbgerufenam.b$
+ ÿ¡letzteZahlung.b$ÿ0ÿpletzteZahlung.a$ÿletzteZahlung.b$
+ Abruf.a$ÿAbruf.b$
+ EinzAbruf.a$ÿEinzAbruf.b$
+ Wiedervorlage.a$ÿWiedervorlage.b$
+zw.a$ÿZahlweise.b$
+ Courtage.a$ÿCourtage.b$
+ einzcourtage.a$ÿeinzcourtage.b$
+ ÿ¡Direktinkasso.b$ÿ"1"ÿp
+inkart.a$ÿ2
+ ÿ^
+inkart.a$ÿ1
+ ÿ’ÿ¡
+ 
+VS_Beginn.a$ÿBeginn.b$
+Kndigung.a$ÿAblauf.b$
+ÿ¡ÿH(risiko1.b$)ÿ""ÿpNotiz.kvertragÿrisiko1.b$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(risiko2.b$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿrisiko2.b$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(risiko3.b$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿrisiko3.b$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(risiko4.b$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿrisiko4.b$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(risiko5.b$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿrisiko5.b$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(risiko6.b$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿrisiko6.b$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿJ(Versid.b$,Verid.c$)ÿp
+Notiz.kvertragÿNotiz.kvertragÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿ"Zusatz:"ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(zeile1.c$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿzeile1.c$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(zeile2.c$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿzeile2.c$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(zeile3.c$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿzeile3.c$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(zeile4.c$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿzeile4.c$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(zeile5.c$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿzeile5.c$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(zeile6.c$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿzeile6.c$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(zeile7.c$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿzeile7.c$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(zeile8.c$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿzeile8.c$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(zeile9.c$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿzeile9.c$ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+codew.a$ÿ1
+umrechnung.a$ÿ1.95583
+waehrung.kvertragÿ"DM"
+codema.kvertragÿ1
+ÿƒQuickStore(a$)
+ÿ™b$
+ÿÉÿ±ÿ™b$
+ ÿÙ
+
+ ÿ™"KVERTRAG"
+ ÿ£lfdnr.KVERTRAG
+ ÿÉÿb
+ ÿØlfdnrÿÿI("KVERTRAG",1)
+ ÿÙ
+ ÿ™"sparten"
+ ÿ£codeva.sparten
+ ÿÉÿb
+ ÿØcodevaÿÿI("sparten",1)
+ ÿÙ
+ ÿwdatuebernend
+ADRAnpass: 
+ ÿ™"Kunden"
+ ÿ£KundID.kunden
+ ÿÉÿ`
+ a$ÿ"ADRESSEN"
+ b$ÿ"KUNDEN"
+ GADRDAT$ÿa$
+ 
+ i%ÿ0
+ ÿØÿOÿB("Kunden")
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ" Adressen"
+ÿÉÿ`ÿ™"ADRESSEN"ÿ£codeku.adressen
+ÿÉÿ¥kundid.kundenÿáÿ™"Adressen"ÿ£codeku.adressen
+K1Konto.a$ÿKonto1.b$
+K1BLZ.a$ÿblz1.b$
+k1Bank.a$ÿBank1Name.b$
+
+K2Konto.a$ÿKonto2.b$
+K2BLZ.a$ÿblz2.b$
+k2Bank.a$ÿBank2Name.b$
+
+K3Konto.a$ÿKonto3.b$
+K3BLZ.a$ÿblz3.b$
+k3Bank.a$ÿBank3Name.b$
+
+Bank1ArtKonto.a$ÿBank1ArtKonto.b$
+Bank2ArtKonto.a$ÿBank2ArtKonto.b$
+Bank3ArtKonto.a$ÿBank3ArtKonto.b$
+
+Kontoinh2.a$ÿKonto2Inhaber.b$
+Kontoinh3.a$ÿKonto3Inhaber.b$
+ÿƒQuickStore("ADRESSEN")
+ÿ™"KUNDEN"
+ÿÉÿ±ÿ™"KUNDEN"ÿ£KUNDID.KUNDEN
+ ÿÙ
+VertAnpass: 
+ a$ÿ"KVERTRAG"
+ b$ÿ"VERSICH"
+ c$ÿ"ZUSATZ"
+ GADRDAt$ÿ"ADRESSEN"
+ ÿ™"VERSICH"
+ ÿ£versid.versich
+ ÿÉÿ`
+ i%ÿ0
+ ÿ¾ÿaÿ™"Vorgang"
+ ÿ¾ÿaÿ™"AKQUISE"
+ ÿ¾ÿaÿ™"TVORLAGE"
+ ÿØÿOÿB("VERSICH")
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ" VERTRGE"
+ÿÉÿ`ÿ™"KVERTRAG"ÿ£lfdnr.kvertrag
+ÿÉÿ¥versid.versichÿáÿ™"KVERTRAG"ÿ£lfdnr.kvertrag
+cuvt%ÿlfdnr.kvertrag
+ÿÉÿ`ÿ™"ADRESSEN"ÿ£codeku.adressen
+ÿÉÿ¥codeku.kvertragÿ™"ADRESSEN"ÿ£codeku.adressen
+ÿ¡Kontoverweis.b$ÿ0ÿp
+ÿ¡Kontoverweis.b$ÿ1ÿp
+k1bank.a$ÿk1bank.Gadrdat$
+k1BLZ.a$ÿk1blz.Gadrdat$
+k1konto.a$ÿk1Konto.gadrdat$
+Kontoinh.a$ÿKontoinh1.gadrdat$
+ÿ’ÿ¡
+ÿ¡Kontoverweis.b$ÿ2ÿp
+k1bank.a$ÿk2bank.Gadrdat$
+k1BLZ.a$ÿk2blz.Gadrdat$
+k1konto.a$ÿk2Konto.gadrdat$
+Kontoinh.a$ÿKontoinh2.gadrdat$
+ÿ’ÿ¡
+ÿ¡Kontoverweis.b$ÿ3ÿp
+k1bank.a$ÿk3bank.Gadrdat$
+k1BLZ.a$ÿk3blz.Gadrdat$
+k1konto.a$ÿk3Konto.gadrdat$
+Kontoinh.a$ÿKontoinh3.gadrdat$
+ÿ’ÿ¡
+ÿ’ÿ¡
+Notiz.kvertragÿ""
+ÿ¡ÿH(risiko1.b$)ÿ""ÿpNotiz.kvertragÿrisiko1.b$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(risiko2.b$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿrisiko2.b$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(risiko3.b$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿrisiko3.b$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(risiko4.b$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿrisiko4.b$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(risiko5.b$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿrisiko5.b$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(risiko6.b$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿrisiko6.b$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿJ(Versid.b$,Verid.c$)ÿp
+ÿÉÿ`ÿ™"ZUSATZ"ÿ£verid.zusatz
+ÿÉÿ¥Versid.b$ÿ™"ZUSATZ"ÿ£verid.zusatz
+Notiz.kvertragÿNotiz.kvertragÿÿ(13)ÿÿ(10)ÿÿ(13)ÿÿ(10)ÿ"Zusatz:"ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(zeile1.c$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿzeile1.c$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(zeile2.c$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿzeile2.c$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(zeile3.c$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿzeile3.c$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(zeile4.c$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿzeile4.c$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(zeile5.c$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿzeile5.c$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(zeile6.c$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿzeile6.c$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(zeile7.c$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿzeile7.c$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(zeile8.c$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿzeile8.c$ÿÿ(13)ÿÿ(10)
+ÿ¡ÿH(zeile9.c$)ÿ""ÿpNotiz.kvertragÿNotiz.kvertragÿzeile9.c$ÿÿ(13)ÿÿ(10)
+ÿ’ÿ¡
+ÿƒQuickStore("KVERTRAG")
+GAkquiDat$ÿ"AKQUISE"
+ÿ¡wiedervorlage.kvertragÿ0ÿp
+ÿÿ™"VORGANG"
+ÿÊÿË"Datensatz neu angelegt..."
+Datum.VORGANGÿWiedervorlage.kvertrag
+Termin.vorgangÿWiedervorlage.kvertrag
+CodeVG.VORGANGÿÿI("VORGANG",1)
+CodeVT.VORGANGÿlfdnr.kvertrag
+schadenjn.vorgangÿ"n"
+CodeMA.VORGANGÿCodeMA.KVERTRAG
+CodeKU.VorgangÿCodeKU.kvertrag
+
+erledigt.vorgangÿ"n"
+Kurznotiz.vorgangÿ"Wiedervorlage"
+ÿ½ CALL Fehler("","")
+ÿƒQuickStore("VORGANG")
+codeaq%ÿcodeaq.vorgang
+ÿÉÿ¥codeaq%ÿáÿ™GAkquiDat$ÿ£codeaq.GAkquiDat$
+
+ÿ¡erledigt_Termin.GAkquiDat$ÿ"j"ÿp
+	ÿ½ CALL Fehler("","")
+	ErDatum.GAkquiDat$ÿTermin.vorgangÿ1
+	ErZeit.GAkquiDat$ÿ9
+ÿ’ÿ¡
+ÿƒQuickStore("AKQUISE")
+ÿ’ÿ¡
+
+ÿ™"VERSICH"
+ÿÉÿ±ÿ™"VERSICH"ÿ£versid.versich
+ ÿÙ
+ueberwtxt: 
+ a$ÿ"KVERTRAG"
+ b$ÿ"VERSICH"
+ c$ÿ"ZUSATZ"
+ GADRDAt$ÿ"ADRESSEN"
+ ÿ™"VERSICH"
+ ÿ£versid.versich
+ ÿÉÿ`
+ i%ÿ0
+ ÿØÿOÿB("VERSICH")
+i%ÿi%ÿ1
+ÿÊÿËÿ(i%)ÿ" VERTRGE"
+ÿÉÿ`ÿ™"KVERTRAG"ÿ£lfdnr.kvertrag
+ÿÉÿ¥versid.versichÿáÿ™"KVERTRAG"ÿ£lfdnr.kvertrag
+cuvt%ÿlfdnr.kvertrag
+ÿ¡abruf.kvertragÿ"j"ÿp
+UEBERWTXT.kvertragÿRisiko1.versich
+ÿ¡branche.versichÿ"KFZ"ÿp
+ttt$ÿRisiko1.versich
+Kennzeichen.kvertragÿÿ+(Risiko1.versich,15)
+QuickKennz.KVERTRAGÿVSNRPack$(Kennzeichen.KVERTRAG)
+Fabrikat.kvertragÿÿ+(Risiko2.versich,20)
+ÿ’ÿ¡
+ÿÌÿ™"kvertrag"
+ÿ’ÿ¡
+ÿïÿYÿ™"kvertrag"
+ÿ™"VERSICH"
+ÿÉÿ±ÿ™"VERSICH"ÿ£versid.versich
+ ÿÙ
+datuebernend: 
+ ÿ’ÿÿ
+ 
+

@@ -1,0 +1,25 @@
+SBP
+ ÿ™"akquise"
+ ÿ£codeaq.akquise
+ ÿÉÿ`ÿá
+ i%ÿ0
+ ÿØÿOÿB("akquise")
+ i%ÿi%ÿ1
+ ÿÊÿËÿ(i%,"000000")
+ QuickCodeMA.akquiseÿÿ(termin.akquise,"ddmmyy")ÿÿ(CodeMA.akquise,"000000")
+QuickCodeKU.akquiseÿÿ(termin.akquise,"ddmmyy")ÿÿ(CodeKU.akquise,"000000")
+QuickCodeAK.akquiseÿÿ(termin.akquise,"ddmmyy")ÿÿ(CodeAK.akquise,"000000")
+QuickAKMA.akquiseÿÿ(termin.akquise,"ddmmyy")ÿÿ(codeak.akquise,"000000")ÿÿ(CodeMA.akquise,"000000")
+CodeAKMA.akquiseÿÿ(codeak.akquise,"000000")ÿÿ(CodeMA.akquise,"000000")
+QuickKUDat.akquiseÿÿ(CodeKU.akquise,"000000")ÿÿ>(erledigt_Termin.AKQUISE)ÿÿ(termin.akquise,"yymmdd")
+QuickMADat.akquiseÿÿ(CodeMA.akquise,"000000")ÿÿ>(erledigt_Termin.AKQUISE)ÿÿ(termin.akquise,"yymmdd")
+QuickAKDat.akquiseÿÿ(CodeAK.akquise,"000000")ÿÿ>(erledigt_Termin.AKQUISE)ÿÿ(termin.akquise,"yymmdd")
+QuickAKMADat.akquiseÿÿ(codeak.akquise,"000000")ÿÿ(CodeMA.akquise,"000000")ÿÿ>(erledigt_Termin.AKQUISE)ÿÿ(termin.akquise,"yymmdd")
+QuickKuDatDiff.akquiseÿcodeku ÿ1000000ÿ(1000000ÿÿ1(termin))
+ÿ½ CALL DFile(2,"OFFICE\aktionen" + _fpw$)
+ÿÉÿ¥CodeAK.akquiseÿ™"aktionen"ÿ£CodeAK.aktionen
+MemberOf.akquiseÿMemberOf.aktionen
+ÿÌÿ™"akquise"
+ÿÉÿ±ÿá
+ÿÙ
+

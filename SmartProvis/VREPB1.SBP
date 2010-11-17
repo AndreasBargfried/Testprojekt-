@@ -1,0 +1,821 @@
+SBP
+ÿÿVertrUniRep(ku$,ma$,spa$,ge$,so%,von%,bis%,bart%,dask%,spgr$,tarif$)
+ ÿƒDFile(20,"OFFICE\"ÿGADRDat$ÿ_fpw$)
+ ÿƒDFile(30,"sparten"ÿ_fpw$)
+ ÿƒDFile(30,"geadr"ÿ_fpw$)
+ ÿƒDFile(30,"maadr"ÿ_fpw$)
+ ÿƒDFile(30,"maadrgru"ÿ_fpw$)
+ ÿƒDFile(30,"KVERTRAG"ÿ_fpw$)
+ ÿƒDFile(30,"spgruppe"ÿ_fpw$)
+ÿ×Waehrung$(20)
+ÿ›i%ÿ1ÿq20
+Waehrung$(i%)ÿ""
+ÿ±i%
+
+a%ÿ0
+Waehrung$(0)ÿ"Filter deaktiviert"
+Waehrung$(1)ÿ"alle nicht stornierten,nicht Fremdvertr„ge,nicht Altvertr„ge"ÿÿ'(90)ÿ"16"
+Waehrung$(2)ÿ"alle nicht stornierten und leb.Fremdvertr„ge,nicht Altvertr„ge"ÿÿ'(90)ÿ"17"
+Waehrung$(3)ÿ"lebend"ÿÿ'(90)ÿ"01"
+Waehrung$(4)ÿ"leben/kurzfristig/unterj„hrig"ÿÿ'(90)ÿ"02"
+Waehrung$(5)ÿ"ruhend/Anwartschaft"ÿÿ'(90)ÿ"03"
+Waehrung$(6)ÿ"storniert"ÿÿ'(90)ÿ"04"
+Waehrung$(7)ÿ"ruhend/beitragsfrei"ÿÿ'(90)ÿ"05"
+Waehrung$(8)ÿ"beitragsfrei"ÿÿ'(90)ÿ"06"
+Waehrung$(9)ÿ"beitragsfrei durch Leistung"ÿÿ'(90)ÿ"07"
+Waehrung$(10)ÿ"Beitragsstundung"ÿÿ'(90)ÿ"08"
+Waehrung$(11)ÿ"Sonstiges"ÿÿ'(90)ÿ"09"
+Waehrung$(12)ÿ"Altvertrag"ÿÿ'(90)ÿ"10"
+Waehrung$(13)ÿ"Fremdvertrag lebend"ÿÿ'(90)ÿ"11"
+Waehrung$(14)ÿ"Fremdvertrag storniert"ÿÿ'(90)ÿ"15"
+Waehrung$(15)ÿ"Antrag"ÿÿ'(90)ÿ"12"
+Waehrung$(16)ÿ"storniert durch Dynamisierung"ÿÿ'(90)ÿ"13"
+Waehrung$(17)ÿ"Bestandteil eines Bndelungsvertrages"ÿÿ'(90)ÿ"14"
+ÿ×Auswahl1$(1)
+ doit%ÿ1
+ incAltV$ÿ"n"
+ incFremd$ÿ"n"
+ incAntr$ÿ"n"
+ incPolice$ÿ"n"
+ incStorno$ÿ"n"
+ ÿ×office$(VisCount%)'eins mehr fr <Alle Bros>
+ 
+ ÿ¡dask%ÿ1ÿp
+ÿ¡ÿœÿ"MAADR*"ÿp
+ShowOther%ÿÿ1
+ÿ^
+ÿ›i%ÿ0ÿqVisCount%ÿ1
+office$(i%)ÿVisNames$(i%)
+ÿ±i%
+ÿ¡GPPCS$ÿ"TRUE"ÿp
+'office$(VisCount%) = "<Alle Bros>"
+selOff$ÿoffice$(VisCount%ÿ1)'sis
+ÿ^
+office$(VisCount%)ÿ"<Alle Bros>"
+selOff$ÿoffice$(VisCount%)'sis 
+ÿ’ÿ¡
+ShowOther%ÿÿ1
+ÿ¡ShowOther%ÿÿ1ÿp
+ÿ›i%ÿ0ÿqVisCount%ÿ1
+ÿ¡VisOff%(i%)ÿShowOther%ÿp
+selOff$ÿVisNames$(i%)
+i%ÿVisCount%
+ÿ’ÿ¡
+ÿ±i%
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡so%ÿ0ÿpso%ÿ1
+ok%ÿÿ1
+ÿØok%
+ÿ¡ku$ÿ""ÿp
+vKunde$ÿ"alle"
+ÿ^
+ÿÉÿ¥ku$ÿ™GADRDat$ÿ£CodeKU.GADRDat$
+vkunde$ÿNachname.GADRDat$ÿ", "ÿVorname.GADRDat$
+ÿ’ÿ¡
+ÿ¡ma$ÿ""ÿp
+Agentur$ÿ"alle"
+ÿ^
+ÿÉÿ¥ma$ÿ™"MAADR"ÿ£CodeMA.MAADR
+agentur$ÿNachname.MAADRÿ", "ÿÿ+(Vorname.MAADR,1)ÿ"."
+ÿ’ÿ¡
+ÿ¡spa$ÿ""ÿp
+vSparte$ÿ"alle"
+ÿ^
+ÿÉÿ¥spa$ÿ™"SPARTEN"ÿ£CodeVA.SPARTEN
+vsparte$ÿSparte.SPARTEN
+ÿ’ÿ¡
+ÿ¡spgr$ÿ"- 1"ÿspgr$ÿ""ÿp
+vSpGR$ÿ"alle"
+ÿ^
+ÿÉÿ¥spgr$ÿ™"SPGRUPPE"ÿ£Codegrsp.SPGRUPPE
+vspGr$ÿGruppe.SPGRUPPE
+ÿ’ÿ¡
+ÿ¡ge$ÿ""ÿp
+Gesellschaft$ÿ"alle"
+ÿ^
+ÿÉÿ¥ge$ÿ™"GEADR"ÿ£CodeGE.GEADR
+Gesellschaft$ÿGesellschaft.GEADR
+ÿ½ ** Gesellschaft ausw„hlen
+ÿ’ÿ¡
+ 
+ÿÉÿæbart%'                                        ; šberschrift festlegen
+ÿæ0
+st$ÿ"Vertragsbersicht"
+ÿæ1
+st$ÿ"Ablauf von Vertr„gen"
+ÿæ2
+st$ÿ"Vertr„ge ohne Abschluá"
+ÿæ3
+st$ÿ"Fremdvertr„ge"
+ÿæ4
+st$ÿ"Ablauf von Fremdvertr„gen"
+ÿæ5
+st$ÿ"Altvertr„ge"
+ÿ’ÿÉ
+ÿ¾ÿñÿt
+ 
+ÿ‰ÿñ"BVERTRAG",0,0,250,337,title$ÿ" - "ÿst$,"MS Sans Serif",8
+ÿ|ÿñ"BVERTRAG",4,5,6,243,77,0,"Filter"
+ÿ|ÿñ"BVERTRAG",5,8,19,34,9,0,"Kunde"
+ÿ|ÿñ"BVERTRAG",5,57,19,167,9,0,vKunde$
+ÿ|ÿñ"BVERTRAG",1,228,19,14,9,0,"...",2,1
+ÿ|ÿñ"BVERTRAG",5,8,30,28,10,0,"Agentur"
+ÿ|ÿñ"BVERTRAG",5,57,30,167,10,0,Agentur$
+ÿ|ÿñ"BVERTRAG",1,228,30,14,10,0,"...",3,1
+ÿ|ÿñ"BVERTRAG",5,8,41,43,10,0,"Gesellschaft"
+ÿ|ÿñ"BVERTRAG",5,57,41,167,10,0,Gesellschaft$
+ÿ|ÿñ"BVERTRAG",1,228,41,14,10,0,"...",4,1
+ÿ|ÿñ"BVERTRAG",5,8,52,24,10,0,"Sparte"
+ÿ|ÿñ"BVERTRAG",5,57,52,167,10,0,vSparte$
+ÿ|ÿñ"BVERTRAG",1,228,52,14,10,0,"...",5,1
+ÿ|ÿñ"BVERTRAG",5,8,64,49,9,0,"Spartengruppe"
+ÿ|ÿñ"BVERTRAG",5,57,64,167,9,0,vSpGr$
+ÿ|ÿñ"BVERTRAG",1,228,64,14,9,0,"...",6,1
+ÿ|ÿñ"BVERTRAG",4,5,88,163,75,0,"Zeitraum"
+ÿ|ÿñ"BVERTRAG",5,9,103,155,16,0,"Bitte w„hlen Sie den Zeitraum aus, fr den Sie die Vertragsbersicht wnschen."
+ÿ|ÿñ"BVERTRAG",5,9,124,155,16,0,"Sie k”nnen die Datumsfelder auch freilassen, um alle Vertr„ge anzeigen zu lassen."
+ÿ|ÿñ"BVERTRAG",6,28,146,41,11,0,0,von$,20
+ÿ|ÿñ"BVERTRAG",6,96,146,41,11,0,0,bis$,20
+ÿ|ÿñ"BVERTRAG",5,9,147,16,10,0,"von"
+ÿ|ÿñ"BVERTRAG",5,80,147,13,10,0,"bis"
+ÿ|ÿñ"BVERTRAG",4,170,88,78,74,0,"Sortierreihenfolge"
+ÿ|ÿñ"BVERTRAG",3,177,99,64,11,0,"Kunde",1,so%
+ÿ|ÿñ"BVERTRAG",3,177,112,64,11,0,"Agentur",2,so%
+ÿ|ÿñ"BVERTRAG",3,177,124,64,10,0,"Gesellschaft",3,so%
+ÿ|ÿñ"BVERTRAG",3,177,136,64,11,0,"Sparte",4,so%
+ÿ|ÿñ"BVERTRAG",3,177,148,64,12,0,"Spartengruppe",5,so%
+ÿ|ÿñ"BVERTRAG",4,5,167,243,45,0,"provisionstechnische Optionen"
+ÿ|ÿñ"BVERTRAG",2,10,177,80,11,0,"Fremdvertr„ge","j","n",incFremd$
+ÿ|ÿñ"BVERTRAG",2,94,177,90,11,0,"policierte Vertr„ge","j","n",incPolice$
+ÿ|ÿñ"BVERTRAG",2,94,187,90,11,0,"stornierte Vertr„ge","j","n",incStorno$
+ÿ|ÿñ"BVERTRAG",2,10,187,80,11,0,"Altvertr„ge","j","n",incAltV$
+ÿ|ÿñ"BVERTRAG",2,10,197,80,11,0,"Antr„ge","j","n",incAntr$
+ÿ½ 191099/2
+ÿ|ÿñ"BVERTRAG",4,5,219,163,95,0,"Optionen zum Vertragsstatus"
+ÿ|ÿñ"BVERTRAG",7,10,229,144,80,0,2,Waehrung$,Auswahl1$,"Filter deaktiviert"
+
+ÿ¡ÿœÿ"MAADR*"ÿp
+ÿ^
+ÿ|ÿñ"BVERTRAG",4,168,219,80,95,0,"Bro:"
+ÿ|ÿñ"BVERTRAG",8,170,229,75,95,259,2,selOff$,office$
+ÿ’ÿ¡
+ÿ|ÿñ"BVERTRAG",1,66,319,55,14,1,"&OK",1,1
+ÿ|ÿñ"BVERTRAG",1,124,319,55,14,0,"&Abbrechen",0,0
+ÿñ"BVERTRAG",dreq%
+ÿÉÿædreq%
+ÿæ1
+doit%ÿ1
+ok%ÿ0
+ÿæ2
+ku$ÿAdrSuche$(ku$,GADRDat$)
+ÿæ3
+ma$ÿGetCodeMA$(ma$)
+ÿæ4
+ge$ÿGetCodeGE$(ge$)
+ÿæ5
+spa$ÿGetCodeVA$(spa$)
+ÿæ6
+spgr$ÿGetCodeGR$(spgr$)
+ÿæ0
+ok%ÿ0
+doit%ÿ0
+ÿ’ÿÉ
+ÿ¾ÿñ"BVERTRAG"
+ShowOther%ÿÿ1'sis
+ÿ¡ÿœÿ"MAADR*"ÿp
+ÿ^
+ÿ¡selOff$ÿ"<Alle Bros>"ÿp
+
+ÿ›i%ÿ0ÿqVisCount%ÿ1
+ÿ¡VisNames$(i%)ÿselOff$ÿp
+ShowOther%ÿVisOff%(i%)
+i%ÿVisCount%'und raus
+ÿ’ÿ¡
+
+ÿ±i%
+ 
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÙ
+ ÿ’ÿ¡
+ ÿ¡doit%ÿ1ÿp
+ 
+CodeVStatus%ÿÿ0(ÿ-(Auswahl1$(0),2))
+ÿ¡(CodeVStatus%ÿ0)ÿp
+
+laenge1%ÿÿ/(Auswahl1$(0))
+
+ausw$ÿÿ+(Auswahl1$(0),laenge1%ÿ2)
+
+ausw1$ÿÿF(ausw$)
+
+
+
+vstatusu$ÿ"Filter: "ÿausw1$
+
+ÿ½ SELECT WHERE CodeVstatus.kvertrag = CodeVStatus%
+ÿ’ÿ¡
+ 
+ÿ¡dask%ÿ0ÿp
+ÿ¡von%ÿ0ÿpvon$ÿÿ1(von%)ÿ^von$ÿ""
+ÿ¡bis%ÿ0ÿpbis$ÿÿ1(bis%)ÿ^bis$ÿ""
+ÿ’ÿ¡
+ÿ¡DateOK%(von$)ÿp
+ÿ¡DateOK%(bis$)ÿp
+cdir$ÿÿ
+ÿ_ppath$
+ÿ™"KVERTRAG"
+ÿ½ -- Quelle fr Reportausgabe erzeugen --
+ÿ¡ÿJ("VREPORT.SBP")ÿpÿ"VREPORT.SBP"
+ÿ¡ÿ÷("VREPORT")ÿpÿ†ÿ÷"VREPORT"
+ÿ´"VREPORT.SBP"ÿ›ÿ¶
+ÿ{" SUB VReport()"
+ÿ{" SET PRINTER PRINTER , PRINTER (0),2,9,0,0,100,1"
+ÿ½ ? " SET PRINTER"
+ÿ½ ? "   DEBUG ASK"
+ÿ¡1ÿ2ÿp
+	ÿ{"   REPORT USING "ÿÿ(34)ÿ"BVERTRAG"ÿÿ(34)
+ÿ^
+	ÿ¡ÿH(ku$)ÿ""ÿp
+ÿ{"   REPORT USING "ÿÿ(34)ÿ"BV2"ÿÿ(34)
+	ÿ^
+ÿ{"   REPORT USING "ÿÿ(34)ÿ"BV1"ÿÿ(34)
+	ÿ’ÿ¡
+	ÿ{"   REPORT ON Bewertungssumme.KVERTRAG AS "ÿÿ(34)ÿ"BewSum%"ÿÿ(34)ÿ",ZW.KVERTRAG * Beitrag.KVERTRAG AS "ÿÿ(34)ÿ"BeitrSum%"ÿÿ(34)ÿ",Bewertungssum$ AS "ÿÿ(34)ÿ"anz%"ÿÿ(34)
+	ÿ{"   AFTER REPORT 
+	ÿ{"   SET REPORT PAGE "ÿÿ(34)ÿ"F_REPORT"ÿÿ(34)
+	ÿ{"   OUTPUT REPORT PAGE"
+	ÿ{"   END REPORT"
+ÿ’ÿ¡
+ÿ¡von$ÿ""ÿpv$ÿ"1.1.80"ÿ^v$ÿvon$
+ÿ¡bis$ÿ""ÿpb$ÿ"31.12.2099"ÿ^b$ÿbis$
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpHeader$ÿ"(bis "ÿbis$ÿ")"
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpHeader$ÿ"(ab "ÿvon$ÿ")"
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpHeader$ÿ"(vom "ÿvon$ÿ" bis "ÿbis$ÿ")"
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpHeader$ÿ"(Gesamtbersicht)"
+ÿ¡incPolice$ÿ"j"ÿpHeader$ÿHeader$ÿ" policierte Vertr„ge/"
+ÿ¡incAntr$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿpHeader$ÿHeader$ÿ" Fremdvertr„ge/Antr„ge"
+ÿ¡incAntr$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿpHeader$ÿHeader$ÿ" Antr„ge /Altvertr„ge"
+ÿ¡incAntr$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿpHeader$ÿHeader$ÿ" Fremdvertr„ge /Antr„ge/Altvertr„ge"
+ÿ¡incAntr$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿpHeader$ÿHeader$ÿ" Antr„ge"
+ÿ¡incAntr$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿpHeader$ÿHeader$ÿ" Fremdvertr„ge"
+ÿ¡incAntr$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿpHeader$ÿHeader$ÿ" Fremdvertr„ge /Altvertr„ge"
+ÿ¡incAntr$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿpHeader$ÿHeader$ÿ" Altvertr„ge"
+ÿ¡incStorno$ÿ"j"ÿpHeader$ÿHeader$ÿ"/Stornierte"
+ÿ¡vkunde$ÿ"alle"ÿpHeader$ÿheader$ÿ"/"ÿvkunde$
+ÿ¡agentur$ÿ"alle"ÿpHeader$ÿheader$ÿ"/"ÿagentur$
+ÿ¡gesellschaft$ÿ"alle"ÿpHeader$ÿheader$ÿ"/"ÿgesellschaft$
+ÿ¡vsparte$ÿ"alle"ÿpHeader$ÿheader$ÿ"/"ÿvsparte$
+ÿ¡vspgr$ÿ"alle"ÿpHeader$ÿheader$ÿ"/"ÿvspgr$
+ÿ½ 191099/3
+ÿ¡CodeVStatus%ÿ0ÿpheader$ÿHeader$ÿ"/"ÿ"Vertr.status: "ÿvstatusu$
+ 
+ÿ{"   Ueberschr$="ÿÿ(34)ÿHeader$ÿÿ(34)
+ÿ{"   HEADING"
+ÿ{"   SET REPORT PAGE "ÿÿ(34)ÿ"H_PAGE"ÿÿ(34)
+ÿ{"   OUTPUT REPORT PAGE"
+ÿ{"   END HEADING"
+ÿ{"   AFTER SELECT"
+ÿ{"   SET REPORT PAGE "ÿÿ(34)ÿ"F_SELECT"ÿÿ(34)
+ÿ{"   OUTPUT REPORT PAGE"
+ÿ{"   END SELECT"
+ÿ{"   SET QUERY ON"
+ÿ{"   SET QUERY LOCK OFF"
+ÿ{"   MOUSE OFF"
+ÿ{"   ON ERROR GOTO ErrVREP"
+ÿ{"   SELECT ;"
+ÿ{"   WHERE ";
+ÿ{"   CodeKU.KVERTRAG = CodeKU.ADRESSEN AND CodeVA.KVERTRAG = CodeVA.SPARTEN AND CodeGE.KVERTRAG = CodeGE.GEADR AND CodeMA.KVERTRAG = CodeMA.MAADR AND"
+ÿ{"   CodeGrSp.KVERTRAG = CodeGrSp.SPGRUPPE";
+ÿ½ ? "   VTNext.KVERTRAG < 1 AND CodeGrSp.KVERTRAG = CodeGrSp.SPGRUPPE";
+filt$ÿ""
+ÿ¡von$ÿ""ÿpfilt$ÿfilt$ÿ" AND VS_Beginn.KVERTRAG>=days("ÿÿ(34)ÿv$ÿÿ(34)ÿ")"
+ÿ¡bis$ÿ""ÿpfilt$ÿfilt$ÿ" AND VS_Beginn<=days("ÿÿ(34)ÿb$ÿÿ(34)ÿ")"
+ÿ¡ku$ÿ""ÿpfilt$ÿfilt$ÿ" AND CodeKU.KVERTRAG="ÿÿ(34)ÿku$ÿÿ(34)
+ÿ¡ma$ÿ""ÿp
+	filt$ÿfilt$ÿ" AND CodeMA.KVERTRAG="ÿÿ(34)ÿma$ÿÿ(34)
+	ShowOther%ÿÿ1
+ÿ^
+	ÿ¡ShowOther%ÿÿ1ÿp
+sh$ÿÿ(ShowOther%,"99999")
+sh%ÿÿ0(sh$)
+filt$ÿfilt$ÿ" AND Workstation.KVERTRAG="ÿÿH(ÿ(sh%,"99999999"))
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ge$ÿ""ÿpfilt$ÿfilt$ÿ" AND CodeGE.KVERTRAG="ÿÿ(34)ÿge$ÿÿ(34)
+ÿ¡spa$ÿ""ÿpfilt$ÿfilt$ÿ" AND CodeVA.KVERTRAG="ÿÿ(34)ÿspa$ÿÿ(34)
+ÿ¡spgr$ÿ""ÿspgr$ÿ"- 1"ÿpfilt$ÿfilt$ÿ" AND CodeGRSP.KVERTRAG="ÿÿ(34)ÿspgr$ÿÿ(34)
+ 
+ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND (ProviAB <> 0 OR Fremdvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" OR Altvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"
+ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$
+ÿ½ 110799
+ÿ¡incStorno$ÿ"n"ÿp
+	kn$ÿ"((Kndigung > TODAY OR Kndigung < 1) AND Storno < 1)"
+ÿ^
+	kn$ÿ" (Storno > 1 or (Kndigung < TODAY AND Kndigung > 1))"
+ÿ’ÿ¡
+ÿ¡incPolice$ÿ"j"ÿincStorno$ÿ"j"ÿp
+	kk$ÿ" OR CodeVstatus =4 OR CodeVstatus = 13 OR Storno > 1"
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"j"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND (ProviAB <> 0 OR CodeVstatus =4 OR CodeVstatus = 13 OR Storno > 1 OR Altvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"n"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND (ProviAB <> 0 OR CodeVstatus =4 OR CodeVstatus = 13 OR Storno > 1)"
+ 
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"j"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND (Fremdvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ") OR (CodeVstatus =4 OR CodeVstatus = 13 OR Storno > 1)"
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"n"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND (Fremdvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" OR Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"ÿkk$
+ 
+ 
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"n"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND Fremdvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" AND Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿkk$
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"n"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" AND (Fremdvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" or proviab <>0 "ÿkk$ÿ")"
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"n"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿkk$
+
+ÿ^
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"j"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND "ÿkn$ÿ" AND (ProviAB <> 0 OR Altvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"n"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND "ÿkn$ÿ" AND (ProviAB <> 0)"
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"j"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND (Fremdvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"n"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND (Fremdvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" OR Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"
+ 
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"n"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND Fremdvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" AND Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"n"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND "ÿkn$ÿ" AND Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" AND (Fremdvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" or proviab <>0 )"
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"n"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)
+
+	ÿ¡incPolice$ÿ"n"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND (ProviAB < 1 OR Fremdvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" OR Altvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"
+	ÿ¡incPolice$ÿ"n"ÿincFremd$ÿ"n"ÿincAltV$ÿ"j"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND Fremdvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" AND (ProviAB < 1 OR Altvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"
+	ÿ¡incPolice$ÿ"n"ÿincFremd$ÿ"n"ÿincAltV$ÿ"j"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND "ÿkn$ÿ" AND Altvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)
+	ÿ¡incPolice$ÿ"n"ÿincFremd$ÿ"n"ÿincAltV$ÿ"n"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND Fremdvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" AND Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" AND (ProviAB < 1)"
+	ÿ¡incPolice$ÿ"n"ÿincFremd$ÿ"j"ÿincAltV$ÿ"n"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND "ÿkn$ÿ" AND Fremdvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)
+	ÿ¡incPolice$ÿ"n"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND "ÿkn$ÿ" AND (Fremdvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" OR Altvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"
+	ÿ¡incPolice$ÿ"n"ÿincFremd$ÿ"j"ÿincAltV$ÿ"n"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" AND (ProviAB < 1 OR Fremdvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"
+ÿ’ÿ¡
+ÿ½ 191099/4
+ÿ¡CodeVStatus%ÿ0ÿp
+	ÿ¡CodeVStatus%ÿ
+16ÿp
+filt$ÿfilt$ÿ" AND CodeVstatus="ÿÿH(ÿ(CodevStatus%,"99"))
+	ÿ^
+ÿ¡CodeVStatus%ÿ16ÿp
+filt$ÿfilt$ÿ" AND CodeVstatus <> 04 AND CodeVstatus <> 13 AND CodeVstatus <> 10 AND CodeVstatus <> 11 AND CodeVstatus <> 15"
+ÿ’ÿ¡
+ÿ¡CodeVStatus%ÿ17ÿp
+filt$ÿfilt$ÿ" AND CodeVstatus <> 04 AND CodeVstatus <> 13 AND CodeVstatus <> 10 AND CodeVstatus <> 15"
+ÿ’ÿ¡
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ÿ0(tarif$)ÿ0ÿptarif$ÿ""
+ÿ¡tarif$ÿ""ÿtarif$ÿ"0"ÿtarif$ÿ"- 1"ÿpfilt$ÿfilt$ÿ" AND CodeTarif="ÿÿ(34)ÿtarif$ÿÿ(34)
+ÿ½ 221299
+ÿ{filt$
+ÿÉÿæso%
+ÿæ1
+	ord$ÿ"Kunde$,sparte.Sparten,Gesellschaft.GEADR"
+ÿæ2
+	ord$ÿ"Nachname.MAADR,sparte.Sparten,Gesellschaft.GEADR"
+ÿæ3
+	ord$ÿ"Gesellschaft.GEADR,sparte.Sparten"
+ÿæ4
+	ord$ÿ"sparte.Sparten,Nachname.maadr"
+ÿæ5
+	ord$ÿ"gruppe.spgruppe,sparte.Sparten,kunde$"
+ÿ’ÿÉ
+ÿ{"   ORDER REPORT "ÿord$
+ÿ{"   TO ASK"
+ÿ{"ErrVREP:"
+ÿ{"   IF test% = 1 THEN ON ERROR ELSE ON ERROR GOTO ErrorHandler"
+ÿ{"   MOUSE ON"
+ÿ{" END SUB"
+ÿ†ÿ¶
+ÿ½ CALL Fehler("VREPORT.SBP","")
+ÿ¨"VREPORT.SBP",ÿ°
+ÿƒFehler("Bitte w„hlen Sie nachfolgend einen Drucker und als Papier A4-Querformat aus","")
+ÿƒVReport()
+ÿ†ÿ÷"VREPORT"
+ÿ^
+ÿƒFehler("Datum (bis) im falschen Format!","Bitte geben Sie das Datum in der Form 'tt.mm.jjjj' ein.")
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Datum (von) im falschen Format!","Bitte geben Sie das Datum in der Form 'tt.mm.jjjj' ein.")
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+ 
+ ' universeller Reportgenerator fr Vertragsbersichten in Euro
+ ' ======================================================================
+ ' ku$   Kundennummer (CodeKU) oder 0 fr alle
+ ' ma$   Agenturnummer (CodeMA) oder 0 fr alle
+ ' spa$  Spartennummer (CodeVA) oder 0 fr alle
+ ' ge$   Gesellschaftsnummer (CodeGE) oder 0 fr alle
+ ' spgr$ Spartengruppennummer (CodeGRSP) oder -1 fr alle
+ ' so%   Sortierung: 1=Kunde, 2=Agentur, 3=Gesellschaft, 4=Sparte 5=Spartengruppe
+ ' von%  Anfangsdatum oder 0 fr alle
+ ' bis%  Enddatum oder 0 fr Open End
+ ' bart% Berichtsart: 0=alle "normalen" Vertr„ge
+ '                    1=Vertr„ge mit Bezug auf Ablaufdatum
+ '                    2=Vertr„ge ohne Abschluá
+ '                    3=Fremdvertr„ge
+ '                    4=Fremdvertr„ge mit Bezug auf Ablaufdatum
+ '                    5=Altvertr„ge
+ ' dask% 0=ohne Abfrage ausfhren, 1=Optionen editierbar
+ 
+ÿÿVertrUniRepE(ku$,ma$,spa$,ge$,so%,von%,bis%,bart%,dask%,spgr$,tarif$)
+ ÿƒDFile(20,"OFFICE\"ÿGADRDat$ÿ_fpw$)
+ ÿƒDFile(30,"sparten"ÿ_fpw$)
+ ÿƒDFile(30,"geadr"ÿ_fpw$)
+ ÿƒDFile(30,"maadr"ÿ_fpw$)
+ ÿƒDFile(30,"maadrgru"ÿ_fpw$)
+ ÿƒDFile(30,"KVERTRAG"ÿ_fpw$)
+ ÿƒDFile(30,"spgruppe"ÿ_fpw$)
+ÿ×Waehrung$(20)
+ÿ›i%ÿ1ÿq20
+Waehrung$(i%)ÿ""
+ÿ±i%
+
+a%ÿ0
+Waehrung$(0)ÿ"Filter deaktiviert"
+Waehrung$(1)ÿ"alle nicht stornierten,nicht Fremdvertr„ge,nicht Altvertr„ge"ÿÿ'(90)ÿ"16"
+Waehrung$(2)ÿ"alle nicht stornierten und leb.Fremdvertr„ge,nicht Altvertr„ge"ÿÿ'(90)ÿ"17"
+Waehrung$(3)ÿ"lebend"ÿÿ'(90)ÿ"01"
+Waehrung$(4)ÿ"leben/kurzfristig/unterj„hrig"ÿÿ'(90)ÿ"02"
+Waehrung$(5)ÿ"ruhend/Anwartschaft"ÿÿ'(90)ÿ"03"
+Waehrung$(6)ÿ"storniert"ÿÿ'(90)ÿ"04"
+Waehrung$(7)ÿ"ruhend/beitragsfrei"ÿÿ'(90)ÿ"05"
+Waehrung$(8)ÿ"beitragsfrei"ÿÿ'(90)ÿ"06"
+Waehrung$(9)ÿ"beitragsfrei durch Leistung"ÿÿ'(90)ÿ"07"
+Waehrung$(10)ÿ"Beitragsstundung"ÿÿ'(90)ÿ"08"
+Waehrung$(11)ÿ"Sonstiges"ÿÿ'(90)ÿ"09"
+Waehrung$(12)ÿ"Altvertrag"ÿÿ'(90)ÿ"10"
+Waehrung$(13)ÿ"Fremdvertrag lebend"ÿÿ'(90)ÿ"11"
+Waehrung$(14)ÿ"Fremdvertrag storniert"ÿÿ'(90)ÿ"15"
+Waehrung$(15)ÿ"Antrag"ÿÿ'(90)ÿ"12"
+Waehrung$(16)ÿ"storniert durch Dynamisierung"ÿÿ'(90)ÿ"13"
+Waehrung$(17)ÿ"Bestandteil eines Bndelungsvertrages"ÿÿ'(90)ÿ"14"
+ÿ×Auswahl1$(1)
+ doit%ÿ1
+ incAltV$ÿ"n"
+ incFremd$ÿ"n"
+ incAntr$ÿ"n"
+ incPolice$ÿ"n"
+ incStorno$ÿ"n"
+ ÿ×office$(VisCount%)'eins mehr fr <Alle Bros>
+ 
+ ÿ¡dask%ÿ1ÿp
+ÿ¡ÿœÿ"MAADR*"ÿp
+ShowOther%ÿÿ1
+ÿ^
+ÿ›i%ÿ0ÿqVisCount%ÿ1
+office$(i%)ÿVisNames$(i%)
+ÿ±i%
+ÿ¡GPPCS$ÿ"TRUE"ÿp
+'office$(VisCount%) = "<Alle Bros>"
+selOff$ÿoffice$(VisCount%ÿ1)'sis
+ÿ^
+office$(VisCount%)ÿ"<Alle Bros>"
+selOff$ÿoffice$(VisCount%)'sis 
+ÿ’ÿ¡
+ShowOther%ÿÿ1
+ÿ¡ShowOther%ÿÿ1ÿp
+ÿ›i%ÿ0ÿqVisCount%ÿ1
+ÿ¡VisOff%(i%)ÿShowOther%ÿp
+selOff$ÿVisNames$(i%)
+i%ÿVisCount%
+ÿ’ÿ¡
+ÿ±i%
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡so%ÿ0ÿpso%ÿ1
+ok%ÿÿ1
+ÿØok%
+ÿ¡ku$ÿ""ÿp
+vKunde$ÿ"alle"
+ÿ^
+ÿÉÿ¥ku$ÿ™GADRDat$ÿ£CodeKU.GADRDat$
+vkunde$ÿNachname.GADRDat$ÿ", "ÿVorname.GADRDat$
+ÿ’ÿ¡
+ÿ¡ma$ÿ""ÿp
+Agentur$ÿ"alle"
+ÿ^
+ÿÉÿ¥ma$ÿ™"MAADR"ÿ£CodeMA.MAADR
+agentur$ÿNachname.MAADRÿ", "ÿÿ+(Vorname.MAADR,1)ÿ"."
+ÿ’ÿ¡
+ÿ¡spa$ÿ""ÿp
+vSparte$ÿ"alle"
+ÿ^
+ÿÉÿ¥spa$ÿ™"SPARTEN"ÿ£CodeVA.SPARTEN
+vsparte$ÿSparte.SPARTEN
+ÿ’ÿ¡
+ÿ¡spgr$ÿ"- 1"ÿspgr$ÿ""ÿp
+vSpGR$ÿ"alle"
+ÿ^
+ÿÉÿ¥spgr$ÿ™"SPGRUPPE"ÿ£Codegrsp.SPGRUPPE
+vspGr$ÿGruppe.SPGRUPPE
+ÿ’ÿ¡
+ÿ¡ge$ÿ""ÿp
+Gesellschaft$ÿ"alle"
+ÿ^
+ÿÉÿ¥ge$ÿ™"GEADR"ÿ£CodeGE.GEADR
+Gesellschaft$ÿGesellschaft.GEADR
+ÿ½ ** Gesellschaft ausw„hlen
+ÿ’ÿ¡
+ 
+ÿÉÿæbart%'                                        ; šberschrift festlegen
+ÿæ0
+st$ÿ"Vertragsbersicht"
+ÿæ1
+st$ÿ"Ablauf von Vertr„gen"
+ÿæ2
+st$ÿ"Vertr„ge ohne Abschluá"
+ÿæ3
+st$ÿ"Fremdvertr„ge"
+ÿæ4
+st$ÿ"Ablauf von Fremdvertr„gen"
+ÿæ5
+st$ÿ"Altvertr„ge"
+ÿ’ÿÉ
+ÿ¾ÿñÿt
+ 
+ÿ‰ÿñ"BVERTRAG",0,0,250,337,title$ÿ" - "ÿst$,"MS Sans Serif",8
+ÿ|ÿñ"BVERTRAG",4,5,6,243,77,0,"Filter"
+ÿ|ÿñ"BVERTRAG",5,8,19,34,9,0,"Kunde"
+ÿ|ÿñ"BVERTRAG",5,57,19,167,9,0,vKunde$
+ÿ|ÿñ"BVERTRAG",1,228,19,14,9,0,"...",2,1
+ÿ|ÿñ"BVERTRAG",5,8,30,28,10,0,"Agentur"
+ÿ|ÿñ"BVERTRAG",5,57,30,167,10,0,Agentur$
+ÿ|ÿñ"BVERTRAG",1,228,30,14,10,0,"...",3,1
+ÿ|ÿñ"BVERTRAG",5,8,41,43,10,0,"Gesellschaft"
+ÿ|ÿñ"BVERTRAG",5,57,41,167,10,0,Gesellschaft$
+ÿ|ÿñ"BVERTRAG",1,228,41,14,10,0,"...",4,1
+ÿ|ÿñ"BVERTRAG",5,8,52,24,10,0,"Sparte"
+ÿ|ÿñ"BVERTRAG",5,57,52,167,10,0,vSparte$
+ÿ|ÿñ"BVERTRAG",1,228,52,14,10,0,"...",5,1
+ÿ|ÿñ"BVERTRAG",5,8,64,49,9,0,"Spartengruppe"
+ÿ|ÿñ"BVERTRAG",5,57,64,167,9,0,vSpGr$
+ÿ|ÿñ"BVERTRAG",1,228,64,14,9,0,"...",6,1
+ÿ|ÿñ"BVERTRAG",4,5,88,163,75,0,"Zeitraum"
+ÿ|ÿñ"BVERTRAG",5,9,103,155,16,0,"Bitte w„hlen Sie den Zeitraum aus, fr den Sie die Vertragsbersicht wnschen."
+ÿ|ÿñ"BVERTRAG",5,9,124,155,16,0,"Sie k”nnen die Datumsfelder auch freilassen, um alle Vertr„ge anzeigen zu lassen."
+ÿ|ÿñ"BVERTRAG",6,28,146,41,11,0,0,von$,20
+ÿ|ÿñ"BVERTRAG",6,96,146,41,11,0,0,bis$,20
+ÿ|ÿñ"BVERTRAG",5,9,147,16,10,0,"von"
+ÿ|ÿñ"BVERTRAG",5,80,147,13,10,0,"bis"
+ÿ|ÿñ"BVERTRAG",4,170,88,78,74,0,"Sortierreihenfolge"
+ÿ|ÿñ"BVERTRAG",3,177,99,64,11,0,"Kunde",1,so%
+ÿ|ÿñ"BVERTRAG",3,177,112,64,11,0,"Agentur",2,so%
+ÿ|ÿñ"BVERTRAG",3,177,124,64,10,0,"Gesellschaft",3,so%
+ÿ|ÿñ"BVERTRAG",3,177,136,64,11,0,"Sparte",4,so%
+ÿ|ÿñ"BVERTRAG",3,177,148,64,12,0,"Spartengruppe",5,so%
+ÿ|ÿñ"BVERTRAG",4,5,167,243,45,0,"provisionstechnische Optionen"
+ÿ|ÿñ"BVERTRAG",2,10,177,80,11,0,"Fremdvertr„ge","j","n",incFremd$
+ÿ|ÿñ"BVERTRAG",2,94,177,90,11,0,"policierte Vertr„ge","j","n",incPolice$
+ÿ|ÿñ"BVERTRAG",2,94,187,90,11,0,"stornierte Vertr„ge","j","n",incStorno$
+ÿ|ÿñ"BVERTRAG",2,10,187,80,11,0,"Altvertr„ge","j","n",incAltV$
+ÿ|ÿñ"BVERTRAG",2,10,197,80,11,0,"Antr„ge","j","n",incAntr$
+ÿ½ 191099/2
+ÿ|ÿñ"BVERTRAG",4,5,219,163,95,0,"Optionen zum Vertragsstatus"
+ÿ|ÿñ"BVERTRAG",7,10,229,144,80,0,2,Waehrung$,Auswahl1$,"Filter deaktiviert"
+
+ÿ¡ÿœÿ"MAADR*"ÿp
+ÿ^
+ÿ|ÿñ"BVERTRAG",4,168,219,80,95,0,"Bro:"
+ÿ|ÿñ"BVERTRAG",8,170,229,75,95,259,2,selOff$,office$
+ÿ’ÿ¡
+ÿ|ÿñ"BVERTRAG",1,66,319,55,14,1,"&OK",1,1
+ÿ|ÿñ"BVERTRAG",1,124,319,55,14,0,"&Abbrechen",0,0
+ÿñ"BVERTRAG",dreq%
+ÿÉÿædreq%
+ÿæ1
+doit%ÿ1
+ok%ÿ0
+ÿæ2
+ku$ÿAdrSuche$(ku$,GADRDat$)
+ÿæ3
+ma$ÿGetCodeMA$(ma$)
+ÿæ4
+ge$ÿGetCodeGE$(ge$)
+ÿæ5
+spa$ÿGetCodeVA$(spa$)
+ÿæ6
+spgr$ÿGetCodeGR$(spgr$)
+ÿæ0
+ok%ÿ0
+doit%ÿ0
+ÿ’ÿÉ
+ÿ¾ÿñ"BVERTRAG"
+ShowOther%ÿÿ1'sis
+ÿ¡ÿœÿ"MAADR*"ÿp
+ÿ^
+ÿ¡selOff$ÿ"<Alle Bros>"ÿp
+
+ÿ›i%ÿ0ÿqVisCount%ÿ1
+ÿ¡VisNames$(i%)ÿselOff$ÿp
+ShowOther%ÿVisOff%(i%)
+i%ÿVisCount%'und raus
+ÿ’ÿ¡
+
+ÿ±i%
+ 
+ÿ’ÿ¡
+ÿ’ÿ¡
+ÿÙ
+ ÿ’ÿ¡
+ ÿ¡doit%ÿ1ÿp
+ 
+CodeVStatus%ÿÿ0(ÿ-(Auswahl1$(0),2))
+ÿ¡(CodeVStatus%ÿ0)ÿp
+
+laenge1%ÿÿ/(Auswahl1$(0))
+
+ausw$ÿÿ+(Auswahl1$(0),laenge1%ÿ2)
+
+ausw1$ÿÿF(ausw$)
+
+
+
+vstatusu$ÿ"Filter: "ÿausw1$
+
+ÿ½ SELECT WHERE CodeVstatus.kvertrag = CodeVStatus%
+ÿ’ÿ¡
+ 
+ÿ¡dask%ÿ0ÿp
+ÿ¡von%ÿ0ÿpvon$ÿÿ1(von%)ÿ^von$ÿ""
+ÿ¡bis%ÿ0ÿpbis$ÿÿ1(bis%)ÿ^bis$ÿ""
+ÿ’ÿ¡
+ÿ¡DateOK%(von$)ÿp
+ÿ¡DateOK%(bis$)ÿp
+cdir$ÿÿ
+ÿ_ppath$
+ÿ™"KVERTRAG"
+ÿ½ -- Quelle fr Reportausgabe erzeugen --
+ÿ¡ÿJ("VREPORT.SBP")ÿpÿ"VREPORT.SBP"
+ÿ¡ÿ÷("VREPORT")ÿpÿ†ÿ÷"VREPORT"
+ÿ´"VREPORT.SBP"ÿ›ÿ¶
+ÿ{" SUB VReport()"
+ÿ{" SET PRINTER PRINTER , PRINTER (0),2,9,0,0,100,1"
+ÿ½ ? " SET PRINTER"
+ÿ½ ? "   DEBUG ASK"
+ÿ¡1ÿ2ÿp
+	ÿ{"   REPORT USING "ÿÿ(34)ÿ"BVERTRAG"ÿÿ(34)
+ÿ^
+	ÿ¡ÿH(ku$)ÿ""ÿp
+ÿ{"   REPORT USING "ÿÿ(34)ÿ"BV2E"ÿÿ(34)
+	ÿ^
+ÿ{"   REPORT USING "ÿÿ(34)ÿ"BV1E"ÿÿ(34)
+	ÿ’ÿ¡
+	ÿ{"   REPORT ON BewertungEU.KVERTRAG AS "ÿÿ(34)ÿ"BewSum%"ÿÿ(34)ÿ",ZW.KVERTRAG * BeitragEU.KVERTRAG AS "ÿÿ(34)ÿ"BeitrSum%"ÿÿ(34)ÿ",Bewertungssum$ AS "ÿÿ(34)ÿ"anz%"ÿÿ(34)
+	ÿ{"   AFTER REPORT 
+	ÿ{"   SET REPORT PAGE "ÿÿ(34)ÿ"F_REPORT"ÿÿ(34)
+	ÿ{"   OUTPUT REPORT PAGE"
+	ÿ{"   END REPORT"
+ÿ’ÿ¡
+ÿ¡von$ÿ""ÿpv$ÿ"1.1.80"ÿ^v$ÿvon$
+ÿ¡bis$ÿ""ÿpb$ÿ"31.12.2099"ÿ^b$ÿbis$
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpHeader$ÿ"(bis "ÿbis$ÿ")"
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpHeader$ÿ"(ab "ÿvon$ÿ")"
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpHeader$ÿ"(vom "ÿvon$ÿ" bis "ÿbis$ÿ")"
+ÿ¡von$ÿ""ÿbis$ÿ""ÿpHeader$ÿ"(Gesamtbersicht)"
+ÿ¡incPolice$ÿ"j"ÿpHeader$ÿHeader$ÿ" policierte Vertr„ge/"
+ÿ¡incAntr$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿpHeader$ÿHeader$ÿ" Fremdvertr„ge/Antr„ge"
+ÿ¡incAntr$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿpHeader$ÿHeader$ÿ" Antr„ge /Altvertr„ge"
+ÿ¡incAntr$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿpHeader$ÿHeader$ÿ" Fremdvertr„ge /Antr„ge/Altvertr„ge"
+ÿ¡incAntr$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿpHeader$ÿHeader$ÿ" Antr„ge"
+ÿ¡incAntr$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿpHeader$ÿHeader$ÿ" Fremdvertr„ge"
+ÿ¡incAntr$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿpHeader$ÿHeader$ÿ" Fremdvertr„ge /Altvertr„ge"
+ÿ¡incAntr$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿpHeader$ÿHeader$ÿ" Altvertr„ge"
+ÿ¡incStorno$ÿ"j"ÿpHeader$ÿHeader$ÿ"/Stornierte"
+ÿ¡vkunde$ÿ"alle"ÿpHeader$ÿheader$ÿ"/"ÿvkunde$
+ÿ¡agentur$ÿ"alle"ÿpHeader$ÿheader$ÿ"/"ÿagentur$
+ÿ¡gesellschaft$ÿ"alle"ÿpHeader$ÿheader$ÿ"/"ÿgesellschaft$
+ÿ¡vsparte$ÿ"alle"ÿpHeader$ÿheader$ÿ"/"ÿvsparte$
+ÿ¡vspgr$ÿ"alle"ÿpHeader$ÿheader$ÿ"/"ÿvspgr$
+ÿ½ 191099/3
+ÿ¡CodeVStatus%ÿ0ÿpheader$ÿHeader$ÿ"/"ÿ"Vertr.status: "ÿvstatusu$
+ 
+ÿ{"   Ueberschr$="ÿÿ(34)ÿHeader$ÿÿ(34)
+ÿ{"   HEADING"
+ÿ{"   SET REPORT PAGE "ÿÿ(34)ÿ"H_PAGE"ÿÿ(34)
+ÿ{"   OUTPUT REPORT PAGE"
+ÿ{"   END HEADING"
+ÿ{"   AFTER SELECT"
+ÿ{"   SET REPORT PAGE "ÿÿ(34)ÿ"F_SELECT"ÿÿ(34)
+ÿ{"   OUTPUT REPORT PAGE"
+ÿ{"   END SELECT"
+ÿ{"   SET QUERY ON"
+ÿ{"   SET QUERY LOCK OFF"
+ÿ{"   MOUSE OFF"
+ÿ{"   ON ERROR GOTO ErrVREP"
+ÿ{"   SELECT ;"
+ÿ{"   WHERE ";
+ÿ{"   CodeKU.KVERTRAG = CodeKU.ADRESSEN AND CodeVA.KVERTRAG = CodeVA.SPARTEN AND CodeGE.KVERTRAG = CodeGE.GEADR AND CodeMA.KVERTRAG = CodeMA.MAADR AND"
+ÿ{"   CodeGrSp.KVERTRAG = CodeGrSp.SPGRUPPE";
+ÿ½ ? "   VTNext.KVERTRAG < 1 AND CodeGrSp.KVERTRAG = CodeGrSp.SPGRUPPE";
+filt$ÿ""
+ÿ¡von$ÿ""ÿpfilt$ÿfilt$ÿ" AND VS_Beginn.KVERTRAG>=days("ÿÿ(34)ÿv$ÿÿ(34)ÿ")"
+ÿ¡bis$ÿ""ÿpfilt$ÿfilt$ÿ" AND VS_Beginn<=days("ÿÿ(34)ÿb$ÿÿ(34)ÿ")"
+ÿ¡ku$ÿ""ÿpfilt$ÿfilt$ÿ" AND CodeKU.KVERTRAG="ÿÿ(34)ÿku$ÿÿ(34)
+ÿ¡ma$ÿ""ÿp
+	filt$ÿfilt$ÿ" AND CodeMA.KVERTRAG="ÿÿ(34)ÿma$ÿÿ(34)
+	ShowOther%ÿÿ1
+ÿ^
+	ÿ¡ShowOther%ÿÿ1ÿp
+sh$ÿÿ(ShowOther%,"99999")
+sh%ÿÿ0(sh$)
+filt$ÿfilt$ÿ" AND Workstation.KVERTRAG="ÿÿH(ÿ(sh%,"99999999"))
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ge$ÿ""ÿpfilt$ÿfilt$ÿ" AND CodeGE.KVERTRAG="ÿÿ(34)ÿge$ÿÿ(34)
+ÿ¡spa$ÿ""ÿpfilt$ÿfilt$ÿ" AND CodeVA.KVERTRAG="ÿÿ(34)ÿspa$ÿÿ(34)
+ÿ¡spgr$ÿ""ÿspgr$ÿ"- 1"ÿpfilt$ÿfilt$ÿ" AND CodeGRSP.KVERTRAG="ÿÿ(34)ÿspgr$ÿÿ(34)
+ 
+ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND (ProviAB <> 0 OR Fremdvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" OR Altvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"
+ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$
+ÿ½ 110799
+ÿ¡incStorno$ÿ"n"ÿp
+	kn$ÿ"((Kndigung > TODAY OR Kndigung < 1) AND Storno < 1)"
+ÿ^
+	kn$ÿ" (Storno > 1 or (Kndigung < TODAY AND Kndigung > 1))"
+ÿ’ÿ¡
+ÿ¡incPolice$ÿ"j"ÿincStorno$ÿ"j"ÿp
+	kk$ÿ" OR CodeVstatus =4 OR CodeVstatus = 13 OR Storno > 1"
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"j"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND (ProviAB <> 0 OR CodeVstatus =4 OR CodeVstatus = 13 OR Storno > 1 OR Altvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"n"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND (ProviAB <> 0 OR CodeVstatus =4 OR CodeVstatus = 13 OR Storno > 1)"
+ 
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"j"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND (Fremdvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ") OR (CodeVstatus =4 OR CodeVstatus = 13 OR Storno > 1)"
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"n"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND (Fremdvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" OR Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"ÿkk$
+ 
+ 
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"n"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND Fremdvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" AND Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿkk$
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"n"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" AND (Fremdvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" or proviab <>0 "ÿkk$ÿ")"
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"n"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿkk$
+
+ÿ^
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"j"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND "ÿkn$ÿ" AND (ProviAB <> 0 OR Altvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"n"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND "ÿkn$ÿ" AND (ProviAB <> 0)"
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"j"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND (Fremdvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"n"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND (Fremdvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" OR Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"
+ 
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"n"ÿincAltV$ÿ"n"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND Fremdvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" AND Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"n"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND "ÿkn$ÿ" AND Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" AND (Fremdvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" or proviab <>0 )"
+	ÿ¡incPolice$ÿ"j"ÿincFremd$ÿ"j"ÿincAltV$ÿ"n"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)
+
+	ÿ¡incPolice$ÿ"n"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND (ProviAB < 1 OR Fremdvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" OR Altvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"
+	ÿ¡incPolice$ÿ"n"ÿincFremd$ÿ"n"ÿincAltV$ÿ"j"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND Fremdvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" AND (ProviAB < 1 OR Altvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"
+	ÿ¡incPolice$ÿ"n"ÿincFremd$ÿ"n"ÿincAltV$ÿ"j"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND "ÿkn$ÿ" AND Altvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)
+	ÿ¡incPolice$ÿ"n"ÿincFremd$ÿ"n"ÿincAltV$ÿ"n"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND Fremdvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" AND Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" AND (ProviAB < 1)"
+	ÿ¡incPolice$ÿ"n"ÿincFremd$ÿ"j"ÿincAltV$ÿ"n"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND "ÿkn$ÿ" AND Fremdvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)
+	ÿ¡incPolice$ÿ"n"ÿincFremd$ÿ"j"ÿincAltV$ÿ"j"ÿincAntr$ÿ"n"ÿpfilt$ÿfilt$ÿ" AND "ÿkn$ÿ" AND (Fremdvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" OR Altvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"
+	ÿ¡incPolice$ÿ"n"ÿincFremd$ÿ"j"ÿincAltV$ÿ"n"ÿincAntr$ÿ"j"ÿpfilt$ÿfilt$ÿ" AND Altvertrag <> "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ" AND (ProviAB < 1 OR Fremdvertrag = "ÿÿ(34)ÿ"j"ÿÿ(34)ÿ")"
+ÿ’ÿ¡
+ÿ½ 191099/4
+ÿ¡CodeVStatus%ÿ0ÿp
+	ÿ¡CodeVStatus%ÿ
+16ÿp
+filt$ÿfilt$ÿ" AND CodeVstatus="ÿÿH(ÿ(CodevStatus%,"99"))
+	ÿ^
+ÿ¡CodeVStatus%ÿ16ÿp
+filt$ÿfilt$ÿ" AND CodeVstatus <> 04 AND CodeVstatus <> 13 AND CodeVstatus <> 10 AND CodeVstatus <> 11 AND CodeVstatus <> 15"
+ÿ’ÿ¡
+ÿ¡CodeVStatus%ÿ17ÿp
+filt$ÿfilt$ÿ" AND CodeVstatus <> 04 AND CodeVstatus <> 13 AND CodeVstatus <> 10 AND CodeVstatus <> 15"
+ÿ’ÿ¡
+	ÿ’ÿ¡
+ÿ’ÿ¡
+ÿ¡ÿ0(tarif$)ÿ0ÿptarif$ÿ""
+ÿ¡tarif$ÿ""ÿtarif$ÿ"0"ÿtarif$ÿ"- 1"ÿpfilt$ÿfilt$ÿ" AND CodeTarif="ÿÿ(34)ÿtarif$ÿÿ(34)
+ÿ½ 221299
+ÿ{filt$
+ÿÉÿæso%
+ÿæ1
+	ord$ÿ"Kunde$,sparte.Sparten,Gesellschaft.GEADR"
+ÿæ2
+	ord$ÿ"Nachname.MAADR,sparte.Sparten,Gesellschaft.GEADR"
+ÿæ3
+	ord$ÿ"Gesellschaft.GEADR,sparte.Sparten"
+ÿæ4
+	ord$ÿ"sparte.Sparten,Nachname.maadr"
+ÿæ5
+	ord$ÿ"gruppe.spgruppe,sparte.Sparten,kunde$"
+ÿ’ÿÉ
+ÿ{"   ORDER REPORT "ÿord$
+ÿ{"   TO ASK"
+ÿ{"ErrVREP:"
+ÿ{"   IF test% = 1 THEN ON ERROR ELSE ON ERROR GOTO ErrorHandler"
+ÿ{"   MOUSE ON"
+ÿ{" END SUB"
+ÿ†ÿ¶
+ÿ½ CALL Fehler("VREPORT.SBP","")
+ÿ¨"VREPORT.SBP",ÿ°
+ÿƒFehler("Bitte w„hlen Sie nachfolgend einen Drucker und als Papier A4-Querformat aus","")
+ÿƒVReport()
+ÿ†ÿ÷"VREPORT"
+ÿ^
+ÿƒFehler("Datum (bis) im falschen Format!","Bitte geben Sie das Datum in der Form 'tt.mm.jjjj' ein.")
+ÿ’ÿ¡
+ÿ^
+ÿƒFehler("Datum (von) im falschen Format!","Bitte geben Sie das Datum in der Form 'tt.mm.jjjj' ein.")
+ÿ’ÿ¡
+ ÿ’ÿ¡
+ ÿßÿ³
+ ÿ’ÿÿ
+ 
+ 
+

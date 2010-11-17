@@ -1,0 +1,30 @@
+SBP
+ ÿÉÿ`ÿáÿ™"ADRESSEN"
+ i%ÿ0
+ j%ÿÿA("ADRESSEN")
+ g%ÿ0
+ ÿØÿOÿB("ADRESSEN")
+ok%ÿ0
+i%ÿi%ÿ1
+ÿ¡ÿ+(postanschrift)ÿÿ(13)ÿp
+POSTan$ÿÿ,(postanschrift,2)
+ok%ÿÿ1
+ÿ^
+POSTan$ÿpostanschrift
+ÿ’ÿ¡
+ÿ¡ÿ-(postan$,1)ÿÿ(10)ÿp
+LEN1%ÿÿ/(postan$)
+postan1$ÿÿ,(postan$,1,len1%ÿ2)
+ok%ÿÿ1
+ÿ^
+postan1$ÿpostan$
+ÿ’ÿ¡
+ÿ¡ok%ÿÿ1ÿp
+g%ÿg%ÿ1
+Postanschrift ÿpostan1$
+ÿÌÿ™"Adressen"
+ÿ’ÿ¡
+ÿÊÿËÿ(i%)ÿ"/"ÿÿ(j%)ÿ"/"ÿÿ(g%)
+ ÿÉÿ±ÿá
+ ÿÙ
+

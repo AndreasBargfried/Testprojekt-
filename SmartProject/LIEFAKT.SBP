@@ -1,0 +1,54 @@
+SBP
+ ÿƒmain()
+
+ÿÿliefakt()
+ ÿ™"ADRESSEN"
+ ÿ£codeku.adressen
+ ÿ™"reingang"
+ ÿ£codeku.reingang
+ ÿÉÿ`
+ i%ÿ0
+ f%ÿ0
+ j%ÿÿA("reingang")
+ ÿØÿOÿB("reingang")
+i%ÿi%ÿ1
+codeku%ÿcodeku.reingang
+ÿ¡ÿOÿJ(codeku%,codeku.ADRTEMP)ÿp
+f%ÿf%ÿ1
+ÿÉÿ`ÿ™"adressen"ÿ£codeku.adressen
+ÿÉÿ¥codeku%ÿ™"adressen"ÿ£codeku.adressen
+ÿƒWriteAdrTemp(codeku%,anrede$,titel$,nachname$,vorname$,gebdat%)
+ÿ’ÿ¡
+ÿÊÿËÿ(i%,"999999")ÿ" verarbeitet von "ÿ(j%,"999999")ÿ" /gefunden "ÿ(f%,"999999")
+ÿÉÿ±ÿ™"reingang"ÿ£codeku.reingang
+ ÿÙ
+ ÿƒFehler("Fertig mit der Zusammenstellung","")
+ ÿ³ÿ_ÿwlief241120051
+ ÿ_netpath$
+ Superbase.Converters.SBF.SourceFormatÿ"Superbase":ÿ½ Menu:  ExportFile
+ Superbase.Converters.SBF.SourceFileÿ"ADRTEMP"
+ Superbase.Converters.SBF.Descendingÿ0
+ Superbase.Converters.SBF.Mergeÿ0
+ Superbase.Converters.SBF.LogErrorsÿ0
+ Superbase.Converters.SBF.MultiResponseÿ0
+ Superbase.Converters.XLS.DestFormatÿ"Microsoft Excel"
+ Superbase.Converters.XLS.DestFileÿ_netpath$ÿ"liefakt.XLS"
+ Superbase.Converters.XLS.StartRowÿ2
+ Superbase.Converters.XLS.StartColÿ1
+ Superbase.Converters.XLS.EndRowÿÿ1
+ Superbase.Converters.XLS.EndColÿÿ1
+ Superbase.Converters.XLS.UseLabelsÿÿ1
+ Superbase.Converters.XLS.Convert(Superbase.Converters.SBF)
+ ÿƒFehler("Fertig mit XLS-Export",ÿ(i%,"999999")ÿ" verarbeitet von "ÿ(j%,"999999")ÿ" /gefunden "ÿ(f%,"999999"))
+ 
+ 
+lief241120052: 
+ anz$ÿ_netpath$ÿ"liefakt.XLS"
+ a%ÿÿƒ("ShellExecute",0,"open",anz$,"","",1)
+ ÿwlief241120053
+lief241120051: 
+ ÿƒFehler("Der XLS Export hat nicht funktioniert!","")
+lief241120053: 
+ ÿ³ÿ_ÿwErrorHandler
+ ÿ’ÿÿ
+
