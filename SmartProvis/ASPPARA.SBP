@@ -1,94 +1,93 @@
-SBP
  
-ÿÿPPCSPARA()
- ÿ’ÿÿ
+SUB PPCSPARA()
+ END SUB 
 
-ÿÿmain()
-'CALL Send()
+SUB main()
+    'CALL Send()
 
- ÿ’ÿÿ
+ END SUB 
  
 
-ÿÿWriteTo(datei$)
+SUB WriteTo(datei$)
  'verzweigt je nach PPCS-Status und Workstation-Nummer in WriteToLoad (PPCS) oder WriteToSend (lokale Arbeit) 
-ÿ¡GFilialeNow%ÿÿ1ÿpÿ’ÿÿ
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("WriteTo():",datei$)
-oldErrorLabel$ÿSuperbase.ErrorTrapLabel
-cfile$ÿÿ™
-ÿ™datei$
+    IF GFilialeNow% = - 1 THEN END SUB 
+    IF jaDebug% = - 1 THEN CALL Fehler("WriteTo():",datei$)
+    oldErrorLabel$ = Superbase.ErrorTrapLabel
+    cfile$ = FILE 
+    FILE datei$
 
-ÿƒGetFileInfo(datei$)
-typ$ÿjaFileTyp$
-
-ÿ¡jaFileTyp$ÿ""ÿjaFileTyp$ÿ"I"ÿpÿ’ÿÿ'kein am Abgleich beteiligtes File 
-
-code$ÿjaFileCode$ÿ"."ÿdatei$
-'CodeServer muá immer gesetzt werden, da hier nicht zwischen 
-'neuen und ge„nderten Daten unterschieden werden kann
+    CALL GetFileInfo(datei$)
+    typ$ = jaFileTyp$
+    
+    IF jaFileTyp$ = "" OR jaFileTyp$ = "I" THEN END SUB 'kein am Abgleich beteiligtes File 
+        
+    code$ = jaFileCode$ + "." + datei$
+    'CodeServer muá immer gesetzt werden, da hier nicht zwischen 
+    'neuen und ge„nderten Daten unterschieden werden kann
 
-ÿ¡GPPCS$ÿ"TRUE"ÿp
-toLoad%ÿ0
-ÿÉÿæjaFileTyp$
+    IF GPPCS$ = "TRUE" THEN 
+        toLoad% = 0
+        SELECT CASE jaFileTyp$
 
-ÿæ"A","C"
-
-'RecStatus-Felder setzen
-wks$ÿ"Workstation."ÿdatei$
-ÿÊÿ£code$$
-ÿÉÿYÿáÿ™datei$ÿ£code$$
+        CASE "A","C"
+        
+            'RecStatus-Felder setzen
+            wks$ = "Workstation." + datei$
+            SET INDEX code$$
+            SELECT CURRENT LOCK FILE datei$ INDEX code$$
  
-recfield$ÿ"rec0."ÿdatei$
-recfield$$ÿwks$$
-a%ÿwks$$
-ÿ›i%ÿ1ÿq19
-recfield$ÿ"rec"ÿÿ(i%,"z")ÿ"."ÿdatei$
-recfield$$ÿwks$$' jetzt Dirty !
-ÿ±i%
-
-'das eigene RecStatus-Feld als abgeglichen markieren, da ein WriteToLoad-Aufruf folgt
-recfield$ÿjaRecField$ÿ"."ÿdatei$
-recfield$$ÿ10000000ÿwks$$
+            recfield$ = "rec0." + datei$
+            recfield$$ = wks$$
+            a% = wks$$
+            FOR i% = 1 TO 19
+                recfield$ = "rec" + STR$ (i%,"z") + "." + datei$
+                recfield$$ = wks$$' jetzt Dirty !
+            NEXT i%
+                
+            'das eigene RecStatus-Feld als abgeglichen markieren, da ein WriteToLoad-Aufruf folgt
+            recfield$ = jaRecField$ + "." + datei$
+            recfield$$ = 10000000 + wks$$
  
-ÿÌÿ™datei$
-ÿïÿYÿ™datei$
+            STORE FILE datei$
+            UNLOCK CURRENT FILE datei$
  
-ÿæ"Z","Y"
+        CASE "Z","Y"
  
-'Dirty-Z„hler inkrementieren                
-dirty$ÿ"rec0."ÿdatei$
-ÿÊÿ£code$$
-ÿÉÿYÿáÿ™datei$ÿ£code$$
-dirty$$ÿdirty$$ÿ1
-ÿÌÿ™datei$
-ÿïÿYÿ™datei$
-ÿ’ÿæ
-
-ÿ¡Workstation%ÿ0ÿ((jaFileTyp$ÿ"A")ÿ(jaFileTyp$ÿ"Y")ÿ(jaFileTyp$ÿ"C"))ÿp
-ÿ¡WriteToLoad%(datei$,0)ÿÿ1ÿp' die "0" : kein Un-Dirty in WriteToLoad n”tig 
+            'Dirty-Z„hler inkrementieren                
+            dirty$ = "rec0." + datei$
+            SET INDEX code$$
+            SELECT CURRENT LOCK FILE datei$ INDEX code$$
+            dirty$$ = dirty$$ + 1
+            STORE FILE datei$
+            UNLOCK CURRENT FILE datei$
+        END CASE 
+        
+        IF Workstation% > 0 AND ((jaFileTyp$ = "A") OR (jaFileTyp$ = "Y") OR (jaFileTyp$ = "C")) THEN 
+            IF WriteToLoad%(datei$,0) <> - 1 THEN ' die "0" : kein Un-Dirty in WriteToLoad n”tig 
 
-ÿ’ÿ¡
-ÿ’ÿ¡
-
-ÿ^'Offline 
-ÿ¡Workstation%ÿ0ÿp'(sis)      
+            END IF 
+        END IF 
+   
+    ELSE 'Offline 
+        IF Workstation% > 0 THEN '(sis)      
 
-'Filiale offline ==> WriteToSend ?: nur, wenn Typ A oder Y (auch sis)
-ÿ¡jaFileTyp$ÿ"A"ÿjaFileTyp$ÿ"Y"ÿp
-ÿ¡WriteToSend%(datei$)ÿÿ1ÿp
-ÿ’ÿ¡
-ÿ’ÿ¡
+            'Filiale offline ==> WriteToSend ?: nur, wenn Typ A oder Y (auch sis)
+            IF jaFileTyp$ = "A" OR jaFileTyp$ = "Y" THEN 
+                IF WriteToSend%(datei$) <> - 1 THEN 
+                END IF 
+            END IF 
 
-ÿ’ÿ¡
-ÿ’ÿ¡
+        END IF 
+   END IF 
  
 WriteToEnde: 
-ÿ™cfile$
-Superbase.ErrorTrapLabelÿoldErrorLabel$
- ÿ’ÿÿ
+    FILE cfile$
+    Superbase.ErrorTrapLabel = oldErrorLabel$
+ END SUB 
  '***********************************************************************************************     
  
 
-ÿÿWriteToSend%(datei$)
+FUNCTION WriteToSend%(datei$)
  'bertr„gt nderungen im aktuellen Datensatz von _datei$ in die zugeh”rige *Send - Datei
  'Rckgabe von -1, falls erfolgreich
  'Vorgehen:
@@ -97,79 +96,79 @@ WriteToEnde:
  '
  'Voraussetzung: globale Variablen mit File-Information wurden ber GetFileInfo() gelesen
  '(das macht WriteTo())
- oldErrorLabel$ÿSuperbase.ErrorTrapLabel
- WriteToSend%ÿ0
- ÿ³ÿ_ÿwErrorHandler
- datei$ÿÿ>(datei$)
- ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("WriteToSend:",datei$)
-
+ oldErrorLabel$ = Superbase.ErrorTrapLabel
+ WriteToSend% = 0
+ ON ERROR GOTO ErrorHandler
+ datei$ = UCASE$ (datei$)
+ IF jaDebug% = - 1 THEN CALL Fehler("WriteToSend:",datei$)
+  
  'Send-Variablen 
- codefield$ÿjaFileCode$ÿ"."
- typ$ÿjaFileTyp$
- sendfile$ÿjaFilePrefix$ÿ"Send"
+ codefield$ = jaFileCode$ + "."
+ typ$ = jaFileTyp$
+ sendfile$ = jaFilePrefix$ + "Send"
  
  'werden in bzw. nach der select-Anweisung definiert 
-sendTState$ÿ"TSTate."ÿsendfile$
-localcode$ÿcodefield$ÿdatei$
-sendcode$ÿcodefield$ÿsendfile$
-codeserver$ÿ"CodeServer."ÿsendfile$
-
-ÿ¡ÿOÿ´(sendfile$)ÿpÿƒDFile(2,"ABGLEICH\SEND\"ÿsendfile$ÿ";paris")
+  sendTState$ = "TSTate." + sendfile$
+  localcode$ = codefield$ + datei$
+  sendcode$ = codefield$ + sendfile$
+  codeserver$ = "CodeServer." + sendfile$
+     
+  IF NOT OPEN (sendfile$) THEN CALL DFile(2,"ABGLEICH\SEND\" + sendfile$ + ";paris")
 
  'befindet sich der Datensatz schon in dem Send-File (sendfile$)  
- ÿ¡ÿOÿJ(localcode$$,sendcode$$)ÿp
-ÿÿ™sendfile$
-ÿ¡CopyRecord%(datei$,sendfile$)ÿÿ1ÿpÿƒFehler("Fehler in CopyRecord",ÿ(ÿ&,"z")ÿ": "ÿÿ((ÿ&))
+ IF NOT EXISTS (localcode$$,sendcode$$) THEN 
+    BLANK FILE sendfile$
+    IF CopyRecord%(datei$,sendfile$) <> - 1 THEN CALL Fehler("Fehler in CopyRecord", STR$ ( ERRNO ,"z") + ": " + ERR$ ( ERRNO ))
 
-'damit beim Send()-Vorgang automatisch ber CopyRecord() die Dirty-Bits
-'fr die anderen Pfad-Teilnehmer gesetzt werden: 
-'(die verdammte Null gesondert behandeln)
-wks$ÿ"Workstation."ÿdatei$
-recfield$ÿ"rec0."ÿsendfile$
-recfield$$ÿwks$$
-ÿ›i%ÿ1ÿq19
-recfield$ÿ"rec"ÿÿ(i%,"z")ÿ"."ÿsendfile$'nicht abgeglichen
-recfield$$ÿwks$$
-ÿ±i%
-recfield$ÿjaRecField$ÿ"."ÿsendfile$'das eigene Rec-Field als abgeglichen markieren
-recfield$$ÿ10000000ÿwks$$
-sendTState$$ÿ"1"'als nicht abgeglichen markieren
-
-ÿÌÿ™sendfile$
- ÿ^
-'Datensatz ex. bereits ==> berschreiben
-ÿÉÿ`ÿ™sendfile$ÿ£sendcode$$
-ÿÉÿ¥localcode$$ÿáÿ™sendfile$ÿ£sendcode$$
-ÿ¡sendcode$$ÿlocalcode$$ÿp
-ÿwWriteToSendError
-ÿ’ÿ¡
+    'damit beim Send()-Vorgang automatisch ber CopyRecord() die Dirty-Bits
+    'fr die anderen Pfad-Teilnehmer gesetzt werden: 
+    '(die verdammte Null gesondert behandeln)
+    wks$ = "Workstation." + datei$
+    recfield$ = "rec0." + sendfile$
+    recfield$$ = wks$$
+    FOR i% = 1 TO 19
+        recfield$ = "rec" + STR$ (i%,"z") + "." + sendfile$'nicht abgeglichen
+        recfield$$ = wks$$
+    NEXT i%
+    recfield$ = jaRecField$ + "." + sendfile$'das eigene Rec-Field als abgeglichen markieren
+    recfield$$ = 10000000 + wks$$
+    sendTState$$ = "1"'als nicht abgeglichen markieren
+    
+    STORE FILE sendfile$
+ ELSE 
+    'Datensatz ex. bereits ==> berschreiben
+    SELECT FIRST FILE sendfile$ INDEX sendcode$$
+    SELECT KEY localcode$$ LOCK FILE sendfile$ INDEX sendcode$$
+    IF sendcode$$ <> localcode$$ THEN 
+        GOTO WriteToSendError
+    END IF 
  
-ÿ¡CopyRecord%(datei$,sendfile$)ÿÿ1ÿpÿwWriteToSendError
-wks$ÿ"Workstation."ÿdatei$
-recfield$ÿ"rec0."ÿsendfile$
-recfield$$ÿwks$$
-ÿ›i%ÿ1ÿq19
-recfield$ÿ"rec"ÿÿ(i%,"z")ÿ"."ÿsendfile$'nicht abgeglichen
-recfield$$ÿwks$$
-ÿ±i%
-recfield$ÿjaRecField$ÿ"."ÿsendfile$'das eigene Rec-Field als abgeglichen markieren    
-recfield$$ÿ10000000ÿwks$$
-sendTState$$ÿ"1"'als nicht abgeglichen markieren
-ÿÌÿ™sendfile$
-ÿïÿ™sendfile$
- ÿ’ÿ¡
-
+    IF CopyRecord%(datei$,sendfile$) <> - 1 THEN GOTO WriteToSendError
+    wks$ = "Workstation." + datei$
+    recfield$ = "rec0." + sendfile$
+    recfield$$ = wks$$
+    FOR i% = 1 TO 19
+        recfield$ = "rec" + STR$ (i%,"z") + "." + sendfile$'nicht abgeglichen
+        recfield$$ = wks$$
+    NEXT i%
+    recfield$ = jaRecField$ + "." + sendfile$'das eigene Rec-Field als abgeglichen markieren    
+    recfield$$ = 10000000 + wks$$
+    sendTState$$ = "1"'als nicht abgeglichen markieren
+    STORE FILE sendfile$
+    UNLOCK FILE sendfile$
+ END IF 
+  
  'alles io
- WriteToSend%ÿÿ1
- ÿwWriteToSendEnde 
+ WriteToSend% = - 1
+ GOTO WriteToSendEnde 
  
 WriteToSendEnde: 
- Superbase.ErrorTrapLabelÿoldErrorLabel$
- ÿ’ÿÿ
+ Superbase.ErrorTrapLabel = oldErrorLabel$
+ END FUNCTION 
  '***********************************************************************************************
-
+  
 
-ÿÿWriteToLoad%(datei$,doUndirty%)
+FUNCTION WriteToLoad%(datei$,doUndirty%)
  
 
  ' šbernimmt die im PPCS-Modus ge„nderten/hinzugefgten Daten in die *Load - files
@@ -182,168 +181,163 @@ WriteToSendEnde:
  '  - globale Variablen mit File-Information werden vorher ber GetFileInfo() gelesen
  '    (das machen auch WriteTo() bzw. CenterToLoadEx())
 
-'IF jaDebug% = - 1 THEN CALL Fehler("WriteToLoad: " + datei$,"")
+    'IF jaDebug% = - 1 THEN CALL Fehler("WriteToLoad: " + datei$,"")
 
-oldErrorLabel$ÿSuperbase.ErrorTrapLabel
-ÿ³ÿ_ÿwWriteToLoadError
-WriteToLoad%ÿ0
-
-LoadFile$ÿjaFilePrefix$ÿ"Load"
-LoadIndex$ÿjaFileCode$ÿ"."ÿloadfile$'der Code-Index in *Load.sbf
-CenterCode$ÿjaFileCode$ÿ"."ÿdatei$' 'Code-Index in Center-File
-RecIndex$ÿjaRecField$ÿ"."ÿdatei$'Index, der in CenterToLoadEx benutzt wird
-TStateField$ÿ"TState."ÿloadfile$
-ÿ¡doUndirty%ÿÿ1ÿp'Aufruf von CenterToLoadEx() ?
+    oldErrorLabel$ = Superbase.ErrorTrapLabel
+    ON ERROR GOTO WriteToLoadError
+    WriteToLoad% = 0
+        
+    LoadFile$ = jaFilePrefix$ + "Load"
+    LoadIndex$ = jaFileCode$ + "." + loadfile$'der Code-Index in *Load.sbf
+    CenterCode$ = jaFileCode$ + "." + datei$' 'Code-Index in Center-File
+    RecIndex$ = jaRecField$ + "." + datei$'Index, der in CenterToLoadEx benutzt wird
+    TStateField$ = "TState." + loadfile$
+    IF doUndirty% = - 1 THEN 'Aufruf von CenterToLoadEx() ?
 
-'~~~~~~~~~~~~~~~~~~~~~ Protokoll nur fr CenterToLoadEx
-ÿƒAbgleichLog(CenterCode$$,0)
-'~~~~~~~~~~~~~~~~~~~~~       
-	'den Datensatz im eigenen RecStatus-Feld des Center-Files als abgeglichen markieren
-	a$ÿCenterCode$$
-	wks$ÿ"Workstation."ÿdatei$
-	recfield$ÿjaRecField$ÿ"."ÿdatei$
-	ÿÉÿYÿáÿ™datei$ÿ£recfield$$
-	recfield$$ÿ10000000ÿwks$$
-	ÿÌÿ™datei$
-	ÿïÿYÿ™datei$
-	ÿÉÿYÿ™datei$ÿ£CenterCode$$'Befehle davor „ndern den Index 
+        '~~~~~~~~~~~~~~~~~~~~~ Protokoll nur fr CenterToLoadEx
+        CALL AbgleichLog(CenterCode$$,0)
+        '~~~~~~~~~~~~~~~~~~~~~       
+         'den Datensatz im eigenen RecStatus-Feld des Center-Files als abgeglichen markieren
+         a$ = CenterCode$$
+         wks$ = "Workstation." + datei$
+         recfield$ = jaRecField$ + "." + datei$
+         SELECT CURRENT LOCK FILE datei$ INDEX recfield$$
+         recfield$$ = 10000000 + wks$$
+         STORE FILE datei$
+         UNLOCK CURRENT FILE datei$
+         SELECT CURRENT FILE datei$ INDEX CenterCode$$'Befehle davor „ndern den Index 
 
-ÿ^
-
-ÿ¡Workstation%ÿ0ÿjaCenterDirty%ÿÿ1ÿp
-
-'kommt bei einer "Speichern"-Aktion beim Onlinebetrieb einer Filiale vor          
-
-'wenn noch nicht gesetzt ==> in ini schreiben und Variable setzen
-
-'bedeutet: LoadToLocal ist sp„testens mit dem n„chsten Programmstart n”tig
-
-ÿƒWriteConfig("PROVIS","LTL","1")
-
-jaCenterDirty%ÿÿ1
-ÿ’ÿ¡
+    ELSE 
+        
+        IF Workstation% <> 0 AND jaCenterDirty% <> - 1 THEN 
+          'kommt bei einer "Speichern"-Aktion beim Onlinebetrieb einer Filiale vor          
+          'wenn noch nicht gesetzt ==> in ini schreiben und Variable setzen
+          'bedeutet: LoadToLocal ist sp„testens mit dem n„chsten Programmstart n”tig
+          CALL WriteConfig("PROVIS","LTL","1")
+          jaCenterDirty% = - 1
+        END IF 
  
-ÿ’ÿ¡
+    END IF 
 
-ÿ¡ÿOÿ´(LoadFile$)ÿp
-ÿƒDFile(2,"\ABGLEICH\Load\"ÿLoadFile$ÿ";paris")
-ÿ³ÿ_ÿwWriteToLoadError
-ÿ’ÿ¡
+    IF NOT OPEN (LoadFile$) THEN 
+        CALL DFile(2,"\ABGLEICH\Load\" + LoadFile$ + ";paris")
+        ON ERROR GOTO WriteToLoadError
+    END IF 
 
-code$ÿCenterCode$$'die Code des zu kopierenden Datensatzes im Center-file 
-ÿ¡ÿOÿJ(code$,LoadIndex$$)ÿp
-'Datensatz ex. noch nicht ==> neu erzeugen
-ÿÿ™LoadFile$
-ÿ¡CopyRecord%(datei$,LoadFile$)ÿÿ1ÿp
-ÿwWriteToLoadError
-ÿ’ÿ¡
-TStateField$$ÿ"1"'als nicht abgeglichen markieren
-ÿÌÿ™LoadFile$
-ÿïÿYÿ™LoadFile$
-ÿ^
-'Datensatz ex. ==> gegebenenfalls den ex. Datensatz berschreiben
-ÿÉÿ`ÿ™LoadFile$ÿ£LoadIndex$$
-ÿÉÿ¥code$ÿáÿ™LoadFile$ÿ£LoadIndex$$
-ÿ¡CopyRecord%(datei$,LoadFile$)ÿÿ1ÿp
-ÿwWriteToLoadError
-ÿ’ÿ¡
-TStateField$$ÿ"1"'als nicht abgeglichen markieren
-ÿÌÿ™LoadFile$
-ÿïÿYÿ™LoadFile$
-ÿ’ÿ¡
-
-ÿ¡doUndirty%ÿÿ1ÿp
-'~~~~~~~~~~~~~~~~~~~~~ Protokoll nur fr CenterToLoadEx
-ÿƒAbgleichLog(",OK",ÿ1)
-'~~~~~~~~~~~~~~~~~~~~~     
-ÿ’ÿ¡
-
-'alles io
-WriteToLoad%ÿÿ1
-ÿwWriteToLoadEnde
+    code$ = CenterCode$$'die Code des zu kopierenden Datensatzes im Center-file 
+    IF NOT EXISTS (code$,LoadIndex$$) THEN 
+        'Datensatz ex. noch nicht ==> neu erzeugen
+        BLANK FILE LoadFile$
+        IF CopyRecord%(datei$,LoadFile$) <> - 1 THEN 
+            GOTO WriteToLoadError
+        END IF 
+        TStateField$$ = "1"'als nicht abgeglichen markieren
+        STORE FILE LoadFile$
+        UNLOCK CURRENT FILE LoadFile$
+    ELSE 
+        'Datensatz ex. ==> gegebenenfalls den ex. Datensatz berschreiben
+        SELECT FIRST FILE LoadFile$ INDEX LoadIndex$$
+        SELECT KEY code$ LOCK FILE LoadFile$ INDEX LoadIndex$$
+        IF CopyRecord%(datei$,LoadFile$) <> - 1 THEN 
+            GOTO WriteToLoadError
+        END IF 
+        TStateField$$ = "1"'als nicht abgeglichen markieren
+        STORE FILE LoadFile$
+        UNLOCK CURRENT FILE LoadFile$
+    END IF 
+    
+    IF doUndirty% = - 1 THEN 
+        '~~~~~~~~~~~~~~~~~~~~~ Protokoll nur fr CenterToLoadEx
+        CALL AbgleichLog(",OK", - 1)
+        '~~~~~~~~~~~~~~~~~~~~~     
+    END IF 
+  
+    'alles io
+    WriteToLoad% = - 1
+    GOTO WriteToLoadEnde
 
 WriteToLoadError: 
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Fehler in WriteToLoad: "ÿdatei$,ÿ(ÿ&,"z")ÿ": "ÿÿ((ÿ&))
-ÿ¡doUndirty%ÿÿ1ÿp
-'~~~~~~~~~~~~~~~~~~~~~ Protokoll nur fr CenterToLoadEx
-ÿƒAbgleichLog(",ERROR,"ÿÿ(ÿ&,"z")ÿ","ÿÿ((ÿ&),ÿ1)
-'~~~~~~~~~~~~~~~~~~~~~      
-ÿ’ÿ¡
-ÿwWriteToLoadEnde
+    IF jaDebug% = - 1 THEN CALL Fehler("Fehler in WriteToLoad: " + datei$, STR$ ( ERRNO ,"z") + ": " + ERR$ ( ERRNO ))
+    IF doUndirty% = - 1 THEN 
+        '~~~~~~~~~~~~~~~~~~~~~ Protokoll nur fr CenterToLoadEx
+        CALL AbgleichLog(",ERROR," + STR$ ( ERRNO ,"z") + "," + ERR$ ( ERRNO ), - 1)
+        '~~~~~~~~~~~~~~~~~~~~~      
+    END IF 
+    GOTO WriteToLoadEnde
 
 WriteToLoadEnde: 
-Superbase.ErrorTrapLabelÿoldErrorLabel$
- ÿ’ÿÿ
+    Superbase.ErrorTrapLabel = oldErrorLabel$
+ END FUNCTION 
  '***********************************************************************************************     
 
 
  'Send-Routine
  '  - ruft fr alle Dateien vom "A" - Typ die Routine SendEx(...) auf
  '
-ÿÿSend()
+SUB Send()
  
-oldErrorLabel$ÿSuperbase.ErrorTrapLabel
-ÿ³ÿ_ÿwSendError
-jaSendSucc%ÿÿ1
-ÿ×w ÿUSDIWindow 
-ÿÊw ÿSuperbase.Windows(1)
+    oldErrorLabel$ = Superbase.ErrorTrapLabel
+    ON ERROR GOTO SendError
+    jaSendSucc% = - 1
+    DIM w AS SDIWindow 
+    SET w = Superbase.Windows(1)
  
 
-'ber alle abzugleichenden Dateien: SendEx(...) aufrufen 
-ÿÉÿ`ÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
-ÿØÿOÿB("AbgFiles")
-
-ÿ³ÿ_ÿwSendNextError
-ÿ¡Typ.AbgFilesÿ"A"ÿp
+    'ber alle abzugleichenden Dateien: SendEx(...) aufrufen 
+    SELECT FIRST FILE "AbgFiles" INDEX CodeFile.AbgFiles
+    WHILE NOT EOF ("AbgFiles")
+        
+        ON ERROR GOTO SendNextError
+        IF Typ.AbgFiles = "A" THEN 
  
-'Send-Variablen  
-fileName$ÿFileName.AbgFiles
-sendFile$ÿPrefix.AbgFilesÿ"Send"
-sendCode$ÿCodeField.AbgFiles
+            'Send-Variablen  
+            fileName$ = FileName.AbgFiles
+            sendFile$ = Prefix.AbgFiles + "Send"
+            sendCode$ = CodeField.AbgFiles
  
-w.Form.TitleL.CaptionÿfileName$
-w.Form.CounterL.Captionÿ"0"
-w.Form.FktL.Captionÿ" "
-ÿœ
+            w.Form.TitleL.Caption = fileName$
+            w.Form.CounterL.Caption = "0"
+            w.Form.FktL.Caption = " "
+            FORM 
  
-ÿ¡ÿOÿ´(sendFile$)ÿp
-ÿƒDFile(2,"Abgleich\Send\"ÿsendFile$ÿ";paris")
-ÿ³ÿ_ÿwSendNextError
-ÿ’ÿ¡
-'Center-File wird in SendEx ge”ffnet (falls n”tig)
-ÿƒSendEx(fileName$,sendFile$,sendCode$)
+            IF NOT OPEN (sendFile$) THEN 
+                CALL DFile(2,"Abgleich\Send\" + sendFile$ + ";paris")
+                ON ERROR GOTO SendNextError
+            END IF 
+            'Center-File wird in SendEx ge”ffnet (falls n”tig)
+            CALL SendEx(fileName$,sendFile$,sendCode$)
  
-ÿ’ÿ¡
-'alles io
-ÿwSendNext
+        END IF 
+        'alles io
+        GOTO SendNext
 SendNextError: 
-jaSendSucc%ÿ0
-'~~~~~~~~~~~~~~~~~~~~~
-ÿƒAbgleichLog(" ",ÿ1)
-ÿƒAbgleichLog("ERROR,"ÿÿ(ÿ&,"z")ÿ","ÿÿ((ÿ&),ÿ1)
-'~~~~~~~~~~~~~~~~~~~~~   
-ÿwSendNext 
+    jaSendSucc% = 0
+    '~~~~~~~~~~~~~~~~~~~~~
+    CALL AbgleichLog(" ", - 1)
+    CALL AbgleichLog("ERROR," + STR$ ( ERRNO ,"z") + "," + ERR$ ( ERRNO ), - 1)
+    '~~~~~~~~~~~~~~~~~~~~~   
+    GOTO SendNext 
 
 SendNext: 
-ÿ³ÿ_ÿwSendError
-ÿÉÿ±ÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
-ÿÙ
-'alles io
-ÿwSendEnde
+        ON ERROR GOTO SendError
+        SELECT NEXT FILE "AbgFiles" INDEX CodeFile.AbgFiles
+    WEND 
+    'alles io
+    GOTO SendEnde
 
 SendError: 
-jaSendSucc%ÿ0
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Fehler in Send: "ÿdatei$,ÿ(ÿ&,"z")ÿ": "ÿÿ((ÿ&))
-'~~~~~~~~~~~~~~~~~~~~~
-ÿƒAbgleichLog(" ",ÿ1)
-ÿƒAbgleichLog("ERROR,"ÿÿ(ÿ&,"z")ÿ","ÿÿ((ÿ&),ÿ1)
-'~~~~~~~~~~~~~~~~~~~~~  
-ÿwSendEnde
+    jaSendSucc% = 0
+    IF jaDebug% = - 1 THEN CALL Fehler("Fehler in Send: " + datei$, STR$ ( ERRNO ,"z") + ": " + ERR$ ( ERRNO ))
+    '~~~~~~~~~~~~~~~~~~~~~
+    CALL AbgleichLog(" ", - 1)
+    CALL AbgleichLog("ERROR," + STR$ ( ERRNO ,"z") + "," + ERR$ ( ERRNO ), - 1)
+    '~~~~~~~~~~~~~~~~~~~~~  
+    GOTO SendEnde
 
 SendEnde: 
  
-Superbase.ErrorTrapLabelÿoldErrorLabel$
- ÿ’ÿÿ
+    Superbase.ErrorTrapLabel = oldErrorLabel$
+ END SUB 
  '***********************************************************************************************      
  
  
@@ -353,148 +347,148 @@ SendEnde:
  '      * centerFile$: PPCS-Ziel-Datei (Zentrale)
  '      * sendFile$: temp. Abgleichs-Datei (Prefix + "Send")
  '      * guidField$: Feld-Name des GUID
-
-ÿÿSendEx(centerFile$,sendFile$,guidField$)
+   
+SUB SendEx(centerFile$,sendFile$,guidField$)
 
-oldErrorLabel$ÿSuperbase.ErrorTrapLabel
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("SendEx()",centerFile$)
-ÿ³ÿ_ÿwSendExError 
+    oldErrorLabel$ = Superbase.ErrorTrapLabel
+    IF jaDebug% = - 1 THEN CALL Fehler("SendEx()",centerFile$)
+    ON ERROR GOTO SendExError 
  
-ÿ×w ÿUSDIWindow 
-ÿÊw ÿSuperbase.Windows(1)
-w.Form.FktL.Captionÿ"Daten senden ..."
-ÿœ
-'~~~~~~~~~~~~~~~~~~~~~
-ÿƒAbgleichLog("",ÿ1)
-ÿƒAbgleichLog(sendFile$ÿ"-->"ÿcenterFile$,ÿ1)
-'~~~~~~~~~~~~~~~~~~~~~  
-sendGUID$ÿguidField$ÿ"."ÿsendFile$
-centerGUID$ÿguidField$ÿ"."ÿcenterFile$
-sendTState$ÿ"TState."ÿsendFile$
+    DIM w AS SDIWindow 
+    SET w = Superbase.Windows(1)
+    w.Form.FktL.Caption = "Daten senden ..."
+    FORM 
+    '~~~~~~~~~~~~~~~~~~~~~
+    CALL AbgleichLog("", - 1)
+    CALL AbgleichLog(sendFile$ + "-->" + centerFile$, - 1)
+    '~~~~~~~~~~~~~~~~~~~~~  
+    sendGUID$ = guidField$ + "." + sendFile$
+    centerGUID$ = guidField$ + "." + centerFile$
+    sendTState$ = "TState." + sendFile$
  
-'Send-Datei durchlaufen und die zugeh”rigen Datens„tze im Center-File
-'erzeugen bzw. neuerstellen  
-firstLoop%ÿÿ1
-z%ÿ0
-recordSuccess%ÿÿ1' wurden alle Datens„tze erfolgreich bearbeitet?
-ÿ³ÿ_ÿwSendExError
-
-ÿÉÿ`ÿ™sendFile$ÿ£sendGUID$$
-ÿØÿOÿB(sendFile$)
-
-ÿ¡firstLoop%ÿÿ1ÿp
-firstLoop%ÿ0
-ÿ¡ÿ´(centerFile$)ÿp
-'Wenn offen ==> lokal oder ber PPCS ge”ffnet ?
-ÿ¡IsOnline%(centerFile$)ÿ0ÿp
-' ==> also nicht Online ==> schlieáen und ber PPCS ”ffnen 
-ÿ†ÿ™centerFile$
-w.Form.FktL."Datenbank ”ffnen ..."
-ÿœ
-ÿƒDFile(30,centerFile$ÿ";paris")
-ÿ¡ÿOÿ´(centerFile$)ÿpÿwSendExError
-ÿ³ÿ_ÿwSendExError
-ÿ’ÿ¡
-ÿ^
-w.Form.FktL.Captionÿ"Datenbank ”ffnen ..."
-ÿœ
-ÿƒDFile(30,centerFile$ÿ";paris")
-ÿ¡ÿOÿ´(centerFile$)ÿpÿwSendExError
-ÿ³ÿ_ÿwSendExError
-ÿ’ÿ¡
-w.Form.FktL.Captionÿ"Daten abgleichen ..."
-ÿ’ÿ¡
-
-ÿ³ÿ_ÿwSendExAbglError 'Fehler-Erkennung Datensatzweise 
-ÿ¡ÿJ(sendGUID$$,centerGUID$$)ÿp
+    'Send-Datei durchlaufen und die zugeh”rigen Datens„tze im Center-File
+    'erzeugen bzw. neuerstellen  
+    firstLoop% = - 1
+    z% = 0
+    recordSuccess% = - 1' wurden alle Datens„tze erfolgreich bearbeitet?
+    ON ERROR GOTO SendExError
+    
+    SELECT FIRST FILE sendFile$ INDEX sendGUID$$
+    WHILE NOT EOF (sendFile$)
+        
+        IF firstLoop% = - 1 THEN 
+            firstLoop% = 0
+            IF OPEN (centerFile$) THEN 
+               'Wenn offen ==> lokal oder ber PPCS ge”ffnet ?
+                IF IsOnline%(centerFile$) = 0 THEN 
+                ' ==> also nicht Online ==> schlieáen und ber PPCS ”ffnen 
+                    CLOSE FILE centerFile$
+                    w.Form.FktL."Datenbank ”ffnen ..."
+                    FORM 
+                    CALL DFile(30,centerFile$ + ";paris")
+                    IF NOT OPEN (centerFile$) THEN GOTO SendExError
+                    ON ERROR GOTO SendExError
+                END IF 
+            ELSE 
+                w.Form.FktL.Caption = "Datenbank ”ffnen ..."
+                FORM 
+                CALL DFile(30,centerFile$ + ";paris")
+                IF NOT OPEN (centerFile$) THEN GOTO SendExError
+                ON ERROR GOTO SendExError
+            END IF 
+            w.Form.FktL.Caption = "Daten abgleichen ..."
+        END IF 
+       
+        ON ERROR GOTO SendExAbglError 'Fehler-Erkennung Datensatzweise 
+        IF EXISTS (sendGUID$$,centerGUID$$) THEN 
  
-'Datensatz existiert schon ==> berschreiben
-'~~~~~~~~~~~~~~~~~~~~~
-ÿƒAbgleichLog("OVERWRITE,"ÿsendGUID$$,0)
-'~~~~~~~~~~~~~~~~~~~~~
+            'Datensatz existiert schon ==> berschreiben
+            '~~~~~~~~~~~~~~~~~~~~~
+            CALL AbgleichLog("OVERWRITE," + sendGUID$$,0)
+            '~~~~~~~~~~~~~~~~~~~~~
  
-ÿÉÿ`ÿ™centerFile$ÿ£centerGUID$$
-ÿÉÿ¥sendGUID$$ÿ™centerFile$ÿ£centerGUID$$
-ÿÉÿYÿáÿ™centerFile$ÿ£centerGUID$$
-ÿ¡CopyRecord%(sendFile$,centerFile$)ÿÿ1ÿpÿwSendExAbglError
-sendTState$$ÿ""'als abgeglichen markieren
-
-ÿÌÿ™centerFile$
-ÿïÿYÿ™centerFile$
-ÿ^
-
-'Existiert noch nicht ==> sowieso ins Center-File stopfen
-'~~~~~~~~~~~~~~~~~~~~~
-ÿƒAbgleichLog("NEW,"ÿsendGUID$$,0)
-'~~~~~~~~~~~~~~~~~~~~~
-
-ÿÿ™centerFile$
-ÿ¡CopyRecord%(sendFile$,centerFile$)ÿÿ1ÿpÿwSendExAbglError 
-sendTState$$ÿ""'als abgeglichen markieren
-ÿÌÿ™centerFile$
-ÿ’ÿ¡
-z%ÿz%ÿ1
-'~~~~~~~~~~~~~~~~~~~~~
-ÿƒAbgleichLog(",OK",ÿ1)
-'~~~~~~~~~~~~~~~~~~~~~ 
-'fr diesen Datensatz alles i.o.
-ÿwSendExAbglNext
+            SELECT FIRST FILE centerFile$ INDEX centerGUID$$
+            SELECT KEY sendGUID$$ FILE centerFile$ INDEX centerGUID$$
+            SELECT CURRENT LOCK FILE centerFile$ INDEX centerGUID$$
+            IF CopyRecord%(sendFile$,centerFile$) <> - 1 THEN GOTO SendExAbglError
+            sendTState$$ = ""'als abgeglichen markieren
+            
+            STORE FILE centerFile$
+            UNLOCK CURRENT FILE centerFile$
+        ELSE 
+  
+            'Existiert noch nicht ==> sowieso ins Center-File stopfen
+            '~~~~~~~~~~~~~~~~~~~~~
+            CALL AbgleichLog("NEW," + sendGUID$$,0)
+            '~~~~~~~~~~~~~~~~~~~~~
+  
+            BLANK FILE centerFile$
+            IF CopyRecord%(sendFile$,centerFile$) <> - 1 THEN GOTO SendExAbglError 
+            sendTState$$ = ""'als abgeglichen markieren
+            STORE FILE centerFile$
+        END IF 
+        z% = z% + 1
+        '~~~~~~~~~~~~~~~~~~~~~
+        CALL AbgleichLog(",OK", - 1)
+        '~~~~~~~~~~~~~~~~~~~~~ 
+        'fr diesen Datensatz alles i.o.
+        GOTO SendExAbglNext
  
 SendExAbglError: 
-jaSendSucc%ÿ0
-recordSuccess%ÿ0
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Fehler in SendEx():"ÿsendFile,ÿ((ÿ&))
-'~~~~~~~~~~~~~~~~~~~~~
-ÿƒAbgleichLog(",ERROR,"ÿÿ(ÿ&,"z")ÿ","ÿÿ((ÿ&),ÿ1)
-'~~~~~~~~~~~~~~~~~~~~~
-ÿwSendExAbglNext
+        jaSendSucc% = 0
+        recordSuccess% = 0
+        IF jaDebug% = - 1 THEN CALL Fehler("Fehler in SendEx():" + sendFile, ERR$ ( ERRNO ))
+        '~~~~~~~~~~~~~~~~~~~~~
+        CALL AbgleichLog(",ERROR," + STR$ ( ERRNO ,"z") + "," + ERR$ ( ERRNO ), - 1)
+        '~~~~~~~~~~~~~~~~~~~~~
+        GOTO SendExAbglNext
 
 SendExAbglNext: 
-ÿ³ÿ_ÿwSendExError
-w.Form.CounterL.Captionÿÿ(z%,"z")
-ÿÉÿ±ÿ™sendFile$ÿ£sendGUID$$
-ÿÙ
-
+        ON ERROR GOTO SendExError
+        w.Form.CounterL.Caption = STR$ (z%,"z")
+        SELECT NEXT FILE sendFile$ INDEX sendGUID$$
+    WEND 
+    
  
-'Send-File (soweit m”glich) leeren
-ÿ¡recordSuccess%ÿÿ1ÿp
-'alles io ==> Send-File auf die harte (schnelle) Tour leeren
-ÿ¾ÿaÿ™sendFile$
-ÿ^
-'Problem aufgetreten ==> nur die Datens„tze l”schen, die abgeglichen wurden
-ÿÉÿ`ÿ™sendFile$ÿ£sendGUID$$
-ÿØÿOÿB(sendFile$)
+    'Send-File (soweit m”glich) leeren
+    IF recordSuccess% = - 1 THEN 
+        'alles io ==> Send-File auf die harte (schnelle) Tour leeren
+        REMOVE FROM FILE sendFile$
+    ELSE 
+        'Problem aufgetreten ==> nur die Datens„tze l”schen, die abgeglichen wurden
+        SELECT FIRST FILE sendFile$ INDEX sendGUID$$
+        WHILE NOT EOF (sendFile$)
  
-ÿ¡sendTState$$ÿ""ÿp
-ÿÉÿYÿáÿ™sendFile$ÿ£sendGUID$$
-ÿÉÿ¾ÿ™sendFile$
-ÿ^
-ÿÉÿ±ÿ™sendFile$ÿ£sendGUID$$
-ÿ’ÿ¡
+            IF sendTState$$ = "" THEN 
+                SELECT CURRENT LOCK FILE sendFile$ INDEX sendGUID$$
+                SELECT REMOVE FILE sendFile$
+            ELSE 
+                SELECT NEXT FILE sendFile$ INDEX sendGUID$$
+            END IF 
  
-ÿÙ
-
-ÿ’ÿ¡
-'alles io
-ÿwSendExEnde
+        WEND 
+  
+    END IF 
+    'alles io
+    GOTO SendExEnde
 
 SendExError: 
-jaSendSucc%ÿ0
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Fehler in SendEx: "ÿdatei$,ÿ(ÿ&,"z")ÿ": "ÿÿ((ÿ&))
-'~~~~~~~~~~~~~~~~~~~~~
-ÿƒAbgleichLog(" ",ÿ1)
-ÿƒAbgleichLog("ERROR,"ÿÿ(ÿ&,"z")ÿ","ÿÿ((ÿ&),ÿ1)
-'~~~~~~~~~~~~~~~~~~~~~ 
-ÿwSendExEnde
+    jaSendSucc% = 0
+    IF jaDebug% = - 1 THEN CALL Fehler("Fehler in SendEx: " + datei$, STR$ ( ERRNO ,"z") + ": " + ERR$ ( ERRNO ))
+    '~~~~~~~~~~~~~~~~~~~~~
+    CALL AbgleichLog(" ", - 1)
+    CALL AbgleichLog("ERROR," + STR$ ( ERRNO ,"z") + "," + ERR$ ( ERRNO ), - 1)
+    '~~~~~~~~~~~~~~~~~~~~~ 
+    GOTO SendExEnde
 
 SendExEnde: 
  
-Superbase.ErrorTrapLabelÿoldErrorLabel$
- ÿ’ÿÿ
+    Superbase.ErrorTrapLabel = oldErrorLabel$
+ END SUB 
  '***********************************************************************************************     
 
-
-ÿÿCenterToLoad()
+  
+SUB CenterToLoad()
  'protokolliert Daten, die fr eine Filiale durch zentrale Mitarbeiter ge„ndert wurden
  'diese ge„nderten/neuen Daten werden in die LoadFiles geschrieben und wie Daten behandelt, 
  'die vom Filial-Mitarbeter selbst online ge„ndert wurden
@@ -509,73 +503,73 @@ SendExEnde:
  '  - das zust„ndige Rec-Feld auf Dirty-Zustand prfen und gegebenenfalls den 
  '    Datensatz in die AdrLoad kopieren
 
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("CenterToLoad()","")
-oldErrorLabel$ÿSuperbase.ErrorTrapLabel
-ÿ³ÿ_ÿwCTLError
-
-jaCTLSucc%ÿÿ1
-ÿ×w ÿUSDIWindow 
-ÿÊw ÿSuperbase.Windows(1)
-w.Form.TitleL.Captionÿ" "
-w.Form.CounterL.Captionÿ"0"
-w.Form.FktL.Captionÿ" "
-ÿœ
-ÿÉÿ`ÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
-ÿØÿOÿB("AbgFiles")
-
-ÿ³ÿ_ÿwCTLNextError 
-ÿ¡(Typ.AbgFilesÿ"A")ÿ(Typ.AbgFilesÿ"Z")ÿ(Typ.AbgFilesÿ"C")ÿ(Typ.AbgFilesÿ"Y")ÿp
-filename$ÿFileName.AbgFiles
-w.Form.TitleL.Captionÿfilename$
-w.Form.CounterL.Captionÿ"0"
-ÿœ
-path$ÿDir.AbgFilesÿ"\"
-typ$ÿTyp.AbgFiles
-code$ÿCodeField.AbgFiles
+    IF jaDebug% = - 1 THEN CALL Fehler("CenterToLoad()","")
+    oldErrorLabel$ = Superbase.ErrorTrapLabel
+    ON ERROR GOTO CTLError
+    
+    jaCTLSucc% = - 1
+    DIM w AS SDIWindow 
+    SET w = Superbase.Windows(1)
+    w.Form.TitleL.Caption = " "
+    w.Form.CounterL.Caption = "0"
+    w.Form.FktL.Caption = " "
+    FORM 
+    SELECT FIRST FILE "AbgFiles" INDEX CodeFile.AbgFiles
+    WHILE NOT EOF ("AbgFiles")
+    
+        ON ERROR GOTO CTLNextError 
+        IF (Typ.AbgFiles = "A") OR (Typ.AbgFiles = "Z") OR (Typ.AbgFiles = "C") OR (Typ.AbgFiles = "Y") THEN 
+            filename$ = FileName.AbgFiles
+            w.Form.TitleL.Caption = filename$
+            w.Form.CounterL.Caption = "0"
+            FORM 
+            path$ = Dir.AbgFiles + "\"
+            typ$ = Typ.AbgFiles
+            code$ = CodeField.AbgFiles
 
-ÿ¡CenterToLoadEx%(filename$,path$,typ$,code$)ÿÿ1ÿp
-jaCTLSucc%ÿ0
-ÿ’ÿ¡
+            IF CenterToLoadEx%(filename$,path$,typ$,code$) <> - 1 THEN 
+                jaCTLSucc% = 0
+            END IF 
 
-ÿ’ÿ¡'ende wenn Typ = A, Z, C, Y
+        END IF 'ende wenn Typ = A, Z, C, Y
 
-'alles io
-ÿwCTLNext
+        'alles io
+        GOTO CTLNext
 
 CTLNextError: 
-jaCTLSucc%ÿ0'Fehler registrieren
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Fehler in CenterToLoad: "ÿdatei$,ÿ(ÿ&,"z")ÿ": "ÿÿ((ÿ&))
-'~~~~~~~~~~~~~~~~~~~~~
-ÿƒAbgleichLog("",ÿ1)'neue Zeile 
-ÿƒAbgleichLog("ERROR,"ÿÿ(ÿ&,"z")ÿ","ÿÿ((ÿ&),ÿ1)
-'~~~~~~~~~~~~~~~~~~~~~
-ÿwCTLNext
+        jaCTLSucc% = 0'Fehler registrieren
+        IF jaDebug% = - 1 THEN CALL Fehler("Fehler in CenterToLoad: " + datei$, STR$ ( ERRNO ,"z") + ": " + ERR$ ( ERRNO ))
+        '~~~~~~~~~~~~~~~~~~~~~
+        CALL AbgleichLog("", - 1)'neue Zeile 
+        CALL AbgleichLog("ERROR," + STR$ ( ERRNO ,"z") + "," + ERR$ ( ERRNO ), - 1)
+        '~~~~~~~~~~~~~~~~~~~~~
+        GOTO CTLNext
 CTLNext: 
-ÿ³ÿ_ÿwCTLError
-ÿÉÿ±ÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
-ÿÙ
-'alles io
-ÿwCTLEnde
+        ON ERROR GOTO CTLError
+        SELECT NEXT FILE "AbgFiles" INDEX CodeFile.AbgFiles
+    WEND 
+    'alles io
+    GOTO CTLEnde
 
 CTLError: 
-jaCTLSucc%ÿ0
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Fehler in CenterToLoad: "ÿdatei$,ÿ(ÿ&,"z")ÿ": "ÿÿ((ÿ&))
-'~~~~~~~~~~~~~~~~~~~~~
-ÿƒAbgleichLog("",ÿ1)'neue Zeile 
-ÿƒAbgleichLog("ERROR,"ÿÿ(ÿ&,"z")ÿ","ÿÿ((ÿ&),ÿ1)
-'~~~~~~~~~~~~~~~~~~~~~
+    jaCTLSucc% = 0
+    IF jaDebug% = - 1 THEN CALL Fehler("Fehler in CenterToLoad: " + datei$, STR$ ( ERRNO ,"z") + ": " + ERR$ ( ERRNO ))
+    '~~~~~~~~~~~~~~~~~~~~~
+    CALL AbgleichLog("", - 1)'neue Zeile 
+    CALL AbgleichLog("ERROR," + STR$ ( ERRNO ,"z") + "," + ERR$ ( ERRNO ), - 1)
+    '~~~~~~~~~~~~~~~~~~~~~
  
-ÿwCTLEnde
+    GOTO CTLEnde
 
 CTLEnde: 
 
- Superbase.ErrorTrapLabelÿoldErrorLabel$
+ Superbase.ErrorTrapLabel = oldErrorLabel$
 
- ÿ’ÿÿ
+ END SUB 
  '*********************************************************************************************** 
 
 
-ÿÿCenterToLoadEx%(datei$,path$,typ$,code$)
+FUNCTION CenterToLoadEx%(datei$,path$,typ$,code$)
  '- Startet Kopier-Vorgang aller ge„nderten/neuen Datens„tze von einer 
  '  Center- zur passenden Load-Datei 
  '- ...Datensatz-weise 
@@ -583,254 +577,254 @@ CTLEnde:
  '- nur die Datens„tze sichtbarer Workstations werden behandelt
  '- Aufruf mit typ$ = "Z" nur von CenterToLoad() aus 
  '- Aufruf von WriteToLoad%() nur mit typ$ = "A"
-
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("CenterToLoadEx: "ÿdatei$,"")
-oldErrorLabel$ÿSuperbase.ErrorTrapLabel
-ÿ³ÿ_ÿwCTLExError
-
-CenterToLoadEx%ÿ0
-datei$ÿÿ>(datei$)
-ÿ×w ÿUSDIWindow
-ÿÊw ÿSuperbase.Windows(1)
-z%ÿ0
-
-ÿƒGetFileInfo(datei$)'wird von WriteToLoad ben”tigt
+    
+    IF jaDebug% = - 1 THEN CALL Fehler("CenterToLoadEx: " + datei$,"")
+    oldErrorLabel$ = Superbase.ErrorTrapLabel
+    ON ERROR GOTO CTLExError
+    
+    CenterToLoadEx% = 0
+    datei$ = UCASE$ (datei$)
+    DIM w AS SDIWindow
+    SET w = Superbase.Windows(1)
+    z% = 0
+    
+    CALL GetFileInfo(datei$)'wird von WriteToLoad ben”tigt
 
-'~~~~~~~~~~~~~~~~~~~~~ 
-ÿƒAbgleichLog("",ÿ1)
-ÿƒAbgleichLog(datei$ÿ"-->"ÿjaFilePrefix$ÿ"Load",ÿ1)
-'~~~~~~~~~~~~~~~~~~~~~   
-
-recfield$ÿjaRecField$ÿ"."ÿdatei$
+    '~~~~~~~~~~~~~~~~~~~~~ 
+    CALL AbgleichLog("", - 1)
+    CALL AbgleichLog(datei$ + "-->" + jaFilePrefix$ + "Load", - 1)
+    '~~~~~~~~~~~~~~~~~~~~~   
+       
+    recfield$ = jaRecField$ + "." + datei$
 
-ÿÉÿætyp$
+    SELECT CASE typ$
  
-ÿæ"Z"
+        CASE "Z"
  
-ÿ¡ÿ´("temp")ÿpÿ†ÿ™"temp"'sis
-dirty$ÿ"rec0."ÿdatei$
+            IF OPEN ("temp") THEN CLOSE FILE "temp"'sis
+            dirty$ = "rec0." + datei$
  
-'Datei lokal ”ffnen
-ÿ¡ÿ´(datei$)ÿp
-'Wenn offen ==> lokal oder ber PPCS ge”ffnet ?
-ÿ¡IsOnline%(datei$)ÿÿ1ÿp
-' ==> also Online ==> schlieáen und lokal ”ffnen 
-ÿ†ÿ™datei$
-ÿƒDFile(2,path$ÿdatei$ÿ";paris")
-ÿ¡ÿOÿ´(datei$)ÿpÿwCTLExError
-ÿ³ÿ_ÿwCTLExError
-ÿ’ÿ¡
-ÿ^
-ÿƒDFile(2,path$ÿdatei$ÿ";paris")
-ÿ¡ÿOÿ´(datei$)ÿpÿwCTLExError
-ÿ’ÿ¡
-	
-'lokale Datei komplett als Memory-File kopieren und schlieáen
-w.Form.FktL.Captionÿ"Vorbereiten der Datenbernahme ..."
-ÿœ
-ÿ‰ÿ™ÿ«"temp"ÿaÿ™datei$
-ÿ†ÿ™datei$
-
-'die Zentrale Datei wieder ”ffnen
-w.Form.FktL.Captionÿ"Datenbank ”ffnen ..."
-ÿœ
-ÿƒDFile(20,datei$ÿ";paris")
-ÿ¡ÿOÿ´(datei$)ÿpÿwCTLExError
-ÿ³ÿ_ÿwCTLExError
-
-w.Form.FktL.Captionÿ"Daten bernehmen ..."
-ÿœ
+            'Datei lokal ”ffnen
+            IF OPEN (datei$) THEN 
+                'Wenn offen ==> lokal oder ber PPCS ge”ffnet ?
+                IF IsOnline%(datei$) = - 1 THEN 
+                    ' ==> also Online ==> schlieáen und lokal ”ffnen 
+                    CLOSE FILE datei$
+                    CALL DFile(2,path$ + datei$ + ";paris")
+                    IF NOT OPEN (datei$) THEN GOTO CTLExError
+                    ON ERROR GOTO CTLExError
+                END IF 
+            ELSE 
+                CALL DFile(2,path$ + datei$ + ";paris")
+                IF NOT OPEN (datei$) THEN GOTO CTLExError
+            END IF 
+         
+            'lokale Datei komplett als Memory-File kopieren und schlieáen
+            w.Form.FktL.Caption = "Vorbereiten der Datenbernahme ..."
+            FORM 
+            CREATE FILE MEMORY "temp" FROM FILE datei$
+            CLOSE FILE datei$
+        
+            'die Zentrale Datei wieder ”ffnen
+            w.Form.FktL.Caption = "Datenbank ”ffnen ..."
+            FORM 
+            CALL DFile(20,datei$ + ";paris")
+            IF NOT OPEN (datei$) THEN GOTO CTLExError
+            ON ERROR GOTO CTLExError
+            
+            w.Form.FktL.Caption = "Daten bernehmen ..."
+            FORM 
 
-tempcode$ÿcode$ÿ".temp"
-code$ÿcode$ÿ"."ÿdatei$
-wks$ÿ"Workstation."ÿdatei$
-tempdirty$ÿ"rec0.temp"
-
-'ber alle zentralen Datens„tze
-ÿÉÿ`ÿ™datei$ÿ£code$$
-ÿØÿOÿB(datei$)
-ÿ³ÿ_ÿwCTLExNextErr1
-a$ÿcode$$
-copyrecord%ÿÿ1'initial: der Datensatz existiert noch nicht
-ÿ¡ÿJ(code$$,tempcode$$)ÿp
-
-ÿÉÿ¥code$$ÿ™"temp"ÿ£tempcode$$
-'Datensatz existiert doch schon ==> unver„ndert seit letztem Abgleich?
-ÿ¡tempdirty$$ÿdirty$$ÿp
-copyrecord%ÿ0
-ÿ’ÿ¡
-ÿ’ÿ¡
+            tempcode$ = code$ + ".temp"
+            code$ = code$ + "." + datei$
+            wks$ = "Workstation." + datei$
+            tempdirty$ = "rec0.temp"
+                    
+            'ber alle zentralen Datens„tze
+            SELECT FIRST FILE datei$ INDEX code$$
+            WHILE NOT EOF (datei$)
+                ON ERROR GOTO CTLExNextErr1
+                a$ = code$$
+                copyrecord% = - 1'initial: der Datensatz existiert noch nicht
+                IF EXISTS (code$$,tempcode$$) THEN 
+                    
+                    SELECT KEY code$$ FILE "temp" INDEX tempcode$$
+                    'Datensatz existiert doch schon ==> unver„ndert seit letztem Abgleich?
+                    IF tempdirty$$ >= dirty$$ THEN 
+                        copyrecord% = 0
+                    END IF 
+                END IF 
  
-ÿ¡copyrecord%ÿÿ1ÿp
+                IF copyrecord% = - 1 THEN 
 
-
-ÿ¡WriteToLoad%(datei$,ÿ1)ÿÿ1ÿp' "-1": Un-Dirty in WriteToLoad() vornehmen                       
-ÿwCTLExNextErr1 
-ÿ’ÿ¡
+                    
+                    IF WriteToLoad%(datei$, - 1) <> - 1 THEN ' "-1": Un-Dirty in WriteToLoad() vornehmen                       
+                        GOTO CTLExNextErr1 
+                    END IF 
 
-z%ÿz%ÿ1
-w.Form.CounterL.Captionÿÿ(z%,"z")ÿ" "
-ÿœ
-ÿ’ÿ¡
-'alles io
-ÿwCTLExNext1
+                    z% = z% + 1
+                    w.Form.CounterL.Caption = STR$ (z%,"z") + " "
+                    FORM 
+                END IF 
+                'alles io
+                GOTO CTLExNext1
 CTLExNextErr1: 
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Fehler in CenterToLoadEx: "ÿdatei$,ÿ(ÿ&,"z")ÿ": "ÿÿ((ÿ&))
-'Error-Log wird von WriteToLoad geschrieben
-jaCTLSucc%ÿ0
-ÿwCTLExNext1 
+                IF jaDebug% = - 1 THEN CALL Fehler("Fehler in CenterToLoadEx: " + datei$, STR$ ( ERRNO ,"z") + ": " + ERR$ ( ERRNO ))
+                'Error-Log wird von WriteToLoad geschrieben
+                jaCTLSucc% = 0
+                GOTO CTLExNext1 
 CTLExNext1: 
-ÿ³ÿ_ÿwCTLExError
-ÿÉÿ±ÿ™datei$ÿ£code$$
-ÿÙ
+                ON ERROR GOTO CTLExError
+                SELECT NEXT FILE datei$ INDEX code$$
+            WEND 
 
-ÿ†ÿ™"temp"
+            CLOSE FILE "temp"
 
-ÿæ"C","A","Y"
-
-code$ÿcode$ÿ"."ÿdatei$
-ÿ¡ÿ´(datei$)ÿp
-'Wenn offen ==> lokal oder ber PPCS ge”ffnet ?
-ÿ¡IsOnline%(datei$)ÿ0ÿp
-' ==> also nicht Online ==> schlieáen und ber PPCS ”ffnen 
-ÿ†ÿ™datei$
-w.Form.FktL.Captionÿ"Datenbank ”ffnen ..."
-ÿœ
-ÿƒDFile(20,path$ÿdatei$ÿ";paris")
-ÿ¡ÿOÿ´(datei$)ÿpÿwCTLExError
-ÿ³ÿ_ÿwCTLExError
-ÿ’ÿ¡
-ÿ^
-w.Form.FktL.Captionÿ"Datenbank ”ffnen ..."
-ÿœ
-ÿƒDFile(20,path$ÿdatei$ÿ";paris")
-ÿ¡ÿOÿ´(datei$)ÿpÿwCTLExError
-ÿ³ÿ_ÿwCTLExError
-ÿ’ÿ¡
-
-ifrom%ÿ0' von Wks
-ito%ÿVisCount%ÿ1' bis Wks ... also erstmal fr alle sichbaren Filialen
+        CASE "C","A","Y"
+    
+            code$ = code$ + "." + datei$
+            IF OPEN (datei$) THEN 
+                'Wenn offen ==> lokal oder ber PPCS ge”ffnet ?
+                IF IsOnline%(datei$) = 0 THEN 
+                    ' ==> also nicht Online ==> schlieáen und ber PPCS ”ffnen 
+                    CLOSE FILE datei$
+                    w.Form.FktL.Caption = "Datenbank ”ffnen ..."
+                    FORM 
+                    CALL DFile(20,path$ + datei$ + ";paris")
+                    IF NOT OPEN (datei$) THEN GOTO CTLExError
+                    ON ERROR GOTO CTLExError
+                END IF 
+            ELSE 
+                w.Form.FktL.Caption = "Datenbank ”ffnen ..."
+                FORM 
+                CALL DFile(20,path$ + datei$ + ";paris")
+                IF NOT OPEN (datei$) THEN GOTO CTLExError
+                ON ERROR GOTO CTLExError
+            END IF 
+            
+            ifrom% = 0' von Wks
+            ito% = VisCount% - 1' bis Wks ... also erstmal fr alle sichbaren Filialen
 
-ÿ¡typ$ÿ"A"ÿjaLoadSubOff%ÿ0ÿp
-'nur die eigenen Daten laden ==> welchen Index hat das aktuelle Bro?
-ifrom%ÿGetVisWksIndex%(Workstation%)
-ito%ÿifrom%
-ÿ¡ifrom%ÿÿ1ÿp
-ito%ÿÿ2
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Wks-Index nicht gefunden:","Workstation = "ÿÿ(Workstation%,"z))
-ÿ’ÿ¡
-ÿ’ÿ¡
+            IF typ$ <> "A" OR jaLoadSubOff% = 0 THEN 
+               'nur die eigenen Daten laden ==> welchen Index hat das aktuelle Bro?
+                ifrom% = GetVisWksIndex%(Workstation%)
+                ito% = ifrom%
+                IF ifrom% = - 1 THEN 
+                    ito% = - 2
+                    IF jaDebug% = - 1 THEN CALL Fehler("Wks-Index nicht gefunden:","Workstation = " + STR$ (Workstation%,"z))
+                END IF 
+            END IF 
 
 
-'array mit GUID's holen, die abgeglichen werden mssen
-ÿ×guid$(0)
-guidCount%ÿ0
-ÿ›i%ÿifrom%ÿqito%
-wks%ÿVisOff%(i%)'sichbares Bro = nderungs-STATUS dieses Bros                
-w.Form.TitleL.Captionÿw.Form.TitleL.Captionÿ" ("ÿVisNames$(i%)ÿ")"
-ÿœ
-'hat Bro wks% oder Zentrale in den Daten von wks% etwas ge„ndert?
-ÿ³ÿ_ÿwCTLExError
-ÿÉÿ`ÿ™datei$ÿ£recfield$$
-ÿÉÿ¥wks%ÿ™datei$ÿ£recfield$$
-ÿØÿOÿB(datei$)ÿrecfield$$ÿwks%
-*
-guidCount%ÿguidCount%ÿ1
-ÿÿguid$(guidCount%)
-guid$(guidCount%ÿ1)ÿcode$$
+            'array mit GUID's holen, die abgeglichen werden mssen
+            DIM guid$(0)
+            guidCount% = 0
+            FOR i% = ifrom% TO ito%
+                wks% = VisOff%(i%)'sichbares Bro = nderungs-STATUS dieses Bros                
+                w.Form.TitleL.Caption = w.Form.TitleL.Caption + " (" + VisNames$(i%) + ")"
+                FORM 
+                'hat Bro wks% oder Zentrale in den Daten von wks% etwas ge„ndert?
+                ON ERROR GOTO CTLExError
+                SELECT FIRST FILE datei$ INDEX recfield$$
+                SELECT KEY wks% FILE datei$ INDEX recfield$$
+                WHILE NOT EOF (datei$) AND recfield$$ = wks%
+                                          
+                    guidCount% = guidCount% + 1
+                    REDIM guid$(guidCount%)
+                    guid$(guidCount% - 1) = code$$
  
-ÿÉÿ±ÿ™datei$ÿ£recfield$$'den Miálungenen berspringen                     
-ÿÙ
+                    SELECT NEXT FILE datei$ INDEX recfield$$'den Miálungenen berspringen                     
+                WEND 
  
-ÿ±i%'n„chstes sichtbares Bro  
+            NEXT i%'n„chstes sichtbares Bro  
 
-guidNo%ÿ0
-ÿ›guidNo%ÿ0ÿqguidCount%
+            guidNo% = 0
+            FOR guidNo% = 0 TO guidCount%
 
-ÿÉÿ`ÿ™datei$ÿ£code$$
-ÿÉÿ¥guid$(guidNo%)ÿ™datei$ÿ£code$$
-ÿ¡ÿC(datei$)ÿp
-
-ÿ¡WriteToLoad%(datei$,ÿ1)ÿÿ1ÿp' "-1": Un-Dirty in WriteToLoad() vornehmen
-ÿwCTLExNextErr2
-ÿ’ÿ¡
+                SELECT FIRST FILE datei$ INDEX code$$
+                SELECT KEY guid$(guidNo%) FILE datei$ INDEX code$$
+                IF FOUND (datei$) THEN 
+                    
+                    IF WriteToLoad%(datei$, - 1) <> - 1 THEN ' "-1": Un-Dirty in WriteToLoad() vornehmen
+                        GOTO CTLExNextErr2
+                    END IF 
  
-ÿ^
-ÿwCTLExNextErr2 
-ÿ’ÿ¡
-
-z%ÿz%ÿ1
-w.Form.CounterL.Captionÿÿ(z%,"z")ÿ" "
-ÿœ
-'alles io
-ÿwCTLExNext2
+                ELSE 
+                    GOTO CTLExNextErr2 
+                END IF 
+                
+                z% = z% + 1
+                w.Form.CounterL.Caption = STR$ (z%,"z") + " "
+                FORM 
+                'alles io
+                GOTO CTLExNext2
 
 CTLExNextErr2: 
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Fehler in CenterToLoadEx: "ÿdatei$,ÿ(ÿ&,"z")ÿ": "ÿÿ((ÿ&))
-'Error-Log wird von WriteToLoad geschrieben
-jaCTLSucc%ÿ0
-ÿwCTLExNext2
+                IF jaDebug% = - 1 THEN CALL Fehler("Fehler in CenterToLoadEx: " + datei$, STR$ ( ERRNO ,"z") + ": " + ERR$ ( ERRNO ))
+                'Error-Log wird von WriteToLoad geschrieben
+                jaCTLSucc% = 0
+                GOTO CTLExNext2
  
-CTLExNext2:
-
-ÿ³ÿ_ÿwCTLExError 
+CTLExNext2:                     
+                    
+                ON ERROR GOTO CTLExError 
 
-ÿ±guidNo%
+            NEXT guidNo%
  
-ÿ’ÿÉ
+   END SELECT 
 
-'alles io
-CenterToLoadEx%ÿÿ1
-ÿwCTLExEnde
+    'alles io
+    CenterToLoadEx% = - 1
+    GOTO CTLExEnde
 
 CTLExError: 
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Fehler in CenterToLoadEx: "ÿdatei$,ÿ(ÿ&,"z")ÿ": "ÿÿ((ÿ&))
-ÿƒAbgleichLog("",ÿ1)'neue Zeile 
-ÿƒAbgleichLog("ERROR,"ÿÿ(ÿ&,"z")ÿ","ÿÿ((ÿ&),ÿ1)
-jaCTLSucc%ÿ0
-ÿwCTLExEnde
+    IF jaDebug% = - 1 THEN CALL Fehler("Fehler in CenterToLoadEx: " + datei$, STR$ ( ERRNO ,"z") + ": " + ERR$ ( ERRNO ))
+    CALL AbgleichLog("", - 1)'neue Zeile 
+    CALL AbgleichLog("ERROR," + STR$ ( ERRNO ,"z") + "," + ERR$ ( ERRNO ), - 1)
+    jaCTLSucc% = 0
+    GOTO CTLExEnde
 
-CTLExEnde:
-Superbase.ErrorTrapLabelÿoldErrorLabel$
+CTLExEnde:     
+    Superbase.ErrorTrapLabel = oldErrorLabel$
 
- ÿ’ÿÿ
+ END FUNCTION 
  '***********************************************************************************************   
  
 
-ÿÿLoadToLocal()
+SUB LoadToLocal()
  'ruft LoadToLocalEx(..) fr alle abzugleichenden Dateien auf     
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("LoadToLocal()","")
-oldErrorLabel$ÿSuperbase.ErrorTrapLabel
-ÿ³ÿ_ÿwErrorHandler
+    IF jaDebug% = - 1 THEN CALL Fehler("LoadToLocal()","")
+    oldErrorLabel$ = Superbase.ErrorTrapLabel
+    ON ERROR GOTO ErrorHandler
  
-jaLTLSucc%ÿÿ1
-ÿ×w ÿUSDIWindow 
-ÿÊw ÿSuperbase.Windows(1)
-w.Form.FktL.Captionÿ"Zentrale Daten speichern ..."
-ÿœ
+    jaLTLSucc% = - 1
+    DIM w AS SDIWindow 
+    SET w = Superbase.Windows(1)
+    w.Form.FktL.Caption = "Zentrale Daten speichern ..."
+    FORM 
  
-ÿÉÿ`ÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
-
-ÿØÿOÿB("AbgFiles")
-
-ÿ¡(Typ.AbgFilesÿ"A")ÿ(Typ.AbgFilesÿ"C")ÿ(Typ.AbgFilesÿ"Z")ÿp
-localfile$ÿFileName.AbgFiles
-loadfile$ÿPrefix.AbgFilesÿ"Load"
-ind$ÿCodeField.AbgFiles
-path$ÿDir.AbgFilesÿ"\"
-w.Form.TitleL.Captionÿlocalfile$
-w.Form.CounterL.Captionÿ"0"
-ÿœ
-ÿ¡LoadToLocalEx%(loadfile$,localfile$,ind$,path$)ÿÿ1ÿpi%ÿ1
-ÿ’ÿ¡
+    SELECT FIRST FILE "AbgFiles" INDEX CodeFile.AbgFiles
+   
+    WHILE NOT EOF ("AbgFiles")
+    
+        IF (Typ.AbgFiles = "A") OR (Typ.AbgFiles = "C") OR (Typ.AbgFiles = "Z") THEN 
+            localfile$ = FileName.AbgFiles
+            loadfile$ = Prefix.AbgFiles + "Load"
+            ind$ = CodeField.AbgFiles
+            path$ = Dir.AbgFiles + "\"
+            w.Form.TitleL.Caption = localfile$
+            w.Form.CounterL.Caption = "0"
+            FORM 
+            IF LoadToLocalEx%(loadfile$,localfile$,ind$,path$) <> - 1 THEN i% = 1
+        END IF 
 
-ÿÉÿ±ÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
-ÿÙ
- ÿ’ÿÿ
+        SELECT NEXT FILE "AbgFiles" INDEX CodeFile.AbgFiles
+    WEND 
+ END SUB 
  '***********************************************************************************************    
  
 
-ÿÿLoadToLocalEx%(LoadFile$,LocalFile$,ind$,path$)
+FUNCTION LoadToLocalEx%(LoadFile$,LocalFile$,ind$,path$)
  'Laden der Daten, die durch Bro-User online hinzugefgt/ver„ndert wurden 
  'bzw. der Daten, die durch einen zentralen Mitarbeiter in die Zentrale eingefgt und durch
  'einen Aufruf von LoadCenterEx() durch den filialen Mitarbeiter in die LoadFiles kopiert wurden
@@ -842,178 +836,178 @@ CTLExEnde:
  '   Aufruf durch LoadFiles%() 
 
  '   - glcLocal1$ und glcLocal2$ zweckentfremden, um erfolgten Abgleich zu markieren
-oldErrorLabel$ÿSuperbase.ErrorTrapLabel
-ÿ³ÿ_ÿwLTLExError
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("LoadToLocalEx: "ÿLoadFile$ÿ" --> "ÿLocalFile$,"")
+    oldErrorLabel$ = Superbase.ErrorTrapLabel
+    ON ERROR GOTO LTLExError
+    IF jaDebug% = - 1 THEN CALL Fehler("LoadToLocalEx: " + LoadFile$ + " --> " + LocalFile$,"")
 
-LoadToLocalEx%ÿ0
-ÿ×w ÿUSDIWindow 
-ÿÊw ÿSuperbase.Windows(1)
-
-'~~~~~~~~~~~~~~~~~~~~~ 
-ÿƒAbgleichLog("",ÿ1)
-ÿƒAbgleichLog(LoadFile$ÿ"-->"ÿLocalFile$,ÿ1)
-'~~~~~~~~~~~~~~~~~~~~~  
+    LoadToLocalEx% = 0
+    DIM w AS SDIWindow 
+    SET w = Superbase.Windows(1)
+        
+    '~~~~~~~~~~~~~~~~~~~~~ 
+    CALL AbgleichLog("", - 1)
+    CALL AbgleichLog(LoadFile$ + "-->" + LocalFile$, - 1)
+    '~~~~~~~~~~~~~~~~~~~~~  
 
-ÿ¡ÿOÿ´(LoadFile$)ÿp
-ÿƒDFile(2,"ABGLEICH\Load\"ÿLoadFile$ÿ";paris")
-ÿ¡ÿOÿ´(LoadFile$)ÿpÿwLTLExError
-ÿ³ÿ_ÿwLTLExError
-ÿ’ÿ¡
-
-ÿ¡ÿ´(LocalFile$)ÿp
-ÿ¡IsOnline%(LocalFile$)ÿÿ1ÿp
-ÿ†ÿ™LocalFile$'die zentrale Tabelle schieáen..
-ÿƒDFile(2,path$ÿLocalFile$ÿ";paris")
-ÿ¡ÿOÿ´(LocalFile$)ÿpÿwLTLExError 
-ÿ’ÿ¡
-ÿ^
-ÿƒDFile(2,path$ÿLocalFile$ÿ";paris")
-ÿ¡ÿOÿ´(LocalFile$)ÿpÿwLTLExError 
-ÿ’ÿ¡
-ÿ³ÿ_ÿwLTLExError
-
-LoadIndex$ÿind$ÿ"."ÿLoadFile$'der Code-Index in *Load.sbf
-LocalIndex$ÿind$ÿ"."ÿLocalFile$'der Code-Index der lokalen sbf - z.B. "CodeKu.Adressen"
-LoadTState$ÿ"TState."ÿLoadFile$'TState der LoadFiles - z.B. "TState.AdrLoad"
+    IF NOT OPEN (LoadFile$) THEN 
+        CALL DFile(2,"ABGLEICH\Load\" + LoadFile$ + ";paris")
+        IF NOT OPEN (LoadFile$) THEN GOTO LTLExError
+        ON ERROR GOTO LTLExError
+    END IF 
+    
+    IF OPEN (LocalFile$) THEN 
+        IF IsOnline%(LocalFile$) = - 1 THEN 
+            CLOSE FILE LocalFile$'die zentrale Tabelle schieáen..
+            CALL DFile(2,path$ + LocalFile$ + ";paris")
+            IF NOT OPEN (LocalFile$) THEN GOTO LTLExError 
+        END IF 
+    ELSE 
+        CALL DFile(2,path$ + LocalFile$ + ";paris")
+        IF NOT OPEN (LocalFile$) THEN GOTO LTLExError 
+    END IF 
+    ON ERROR GOTO LTLExError
+    
+    LoadIndex$ = ind$ + "." + LoadFile$'der Code-Index in *Load.sbf
+    LocalIndex$ = ind$ + "." + LocalFile$'der Code-Index der lokalen sbf - z.B. "CodeKu.Adressen"
+    LoadTState$ = "TState." + LoadFile$'TState der LoadFiles - z.B. "TState.AdrLoad"
  
-z%ÿ0
-recordSuccess%ÿÿ1
-w.Form.FktL.Captionÿ"Daten bernehmen ..."
-ÿœ
-ÿÉÿ`ÿ™LoadFile$ÿ£LoadIndex$$
-ÿØÿOÿB(LoadFile$)
-ÿ³ÿ_ÿwLTLExError2
-
-code$ÿLoadIndex$$'die Code des zu kopierenden Datensatzes im Load-file 
-ÿ¡ÿOÿJ(code$,LocalIndex$$)ÿp
-'Datensatz ex. noch nicht ==> neu erzeugen
-ÿÿ™LocalFile$
-ÿ¡CopyRecord%(LoadFile$,LocalFile$)ÿÿ1ÿpÿwLTLExError2 
-LoadTState$$ÿ""'als abgeglichen markieren
-ÿÌÿ™LocalFile$
-'~~~~~~~~~~~~~~~~~~~~~
-ÿƒAbgleichLog("",ÿ1)
-ÿƒAbgleichLog("NEW,"ÿcode$,0)
-'~~~~~~~~~~~~~~~~~~~~~    
-	ÿ^
-'Datensatz ex. ==> Daten berschreiben
-ÿÉÿ`ÿ™LocalFile$ÿ£LocalIndex$$
-ÿÉÿ¥code$ÿáÿ™LocalFile$ÿ£LocalIndex$$
-ÿ¡CopyRecord%(LoadFile$,LocalFile$)ÿÿ1ÿpÿwLTLExError2
-LoadTState$$ÿ""'als abgeglichen markieren
-ÿÌÿ™LocalFile$
-ÿïÿYÿ™LocalFile$
-'~~~~~~~~~~~~~~~~~~~~~
-ÿƒAbgleichLog("",ÿ1)
-ÿƒAbgleichLog("OVERWRITE,"ÿcode$,0)
-'~~~~~~~~~~~~~~~~~~~~~     
-ÿ’ÿ¡
-'alles io
-'~~~~~~~~~~~~~~~~~~~~~
-ÿƒAbgleichLog(",OK",ÿ1)
-'~~~~~~~~~~~~~~~~~~~~~        
-ÿwLTLExNext
+    z% = 0
+    recordSuccess% = - 1
+    w.Form.FktL.Caption = "Daten bernehmen ..."
+    FORM 
+    SELECT FIRST FILE LoadFile$ INDEX LoadIndex$$
+    WHILE NOT EOF (LoadFile$)
+        ON ERROR GOTO LTLExError2
+        
+        code$ = LoadIndex$$'die Code des zu kopierenden Datensatzes im Load-file 
+        IF NOT EXISTS (code$,LocalIndex$$) THEN 
+            'Datensatz ex. noch nicht ==> neu erzeugen
+            BLANK FILE LocalFile$
+            IF CopyRecord%(LoadFile$,LocalFile$) <> - 1 THEN GOTO LTLExError2 
+            LoadTState$$ = ""'als abgeglichen markieren
+            STORE FILE LocalFile$
+            '~~~~~~~~~~~~~~~~~~~~~
+            CALL AbgleichLog("", - 1)
+            CALL AbgleichLog("NEW," + code$,0)
+            '~~~~~~~~~~~~~~~~~~~~~    
+         ELSE 
+            'Datensatz ex. ==> Daten berschreiben
+            SELECT FIRST FILE LocalFile$ INDEX LocalIndex$$
+            SELECT KEY code$ LOCK FILE LocalFile$ INDEX LocalIndex$$
+            IF CopyRecord%(LoadFile$,LocalFile$) <> - 1 THEN GOTO LTLExError2
+            LoadTState$$ = ""'als abgeglichen markieren
+            STORE FILE LocalFile$
+            UNLOCK CURRENT FILE LocalFile$
+            '~~~~~~~~~~~~~~~~~~~~~
+            CALL AbgleichLog("", - 1)
+            CALL AbgleichLog("OVERWRITE," + code$,0)
+            '~~~~~~~~~~~~~~~~~~~~~     
+        END IF 
+        'alles io
+        '~~~~~~~~~~~~~~~~~~~~~
+        CALL AbgleichLog(",OK", - 1)
+        '~~~~~~~~~~~~~~~~~~~~~        
+        GOTO LTLExNext
 
 LTLExError2: 
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Fehler in LoadToLocalEx",ÿ(ÿ&,"z")ÿ": "ÿÿ((ÿ&))
-recordSuccess%ÿ0
-jaLTLSucc%ÿ0
-'~~~~~~~~~~~~~~~~~~~~~
-ÿƒAbgleichLog(",ERROR,"ÿÿ(ÿ&,"z")ÿ","ÿÿ((ÿ&),ÿ1)
-'~~~~~~~~~~~~~~~~~~~~~          
-ÿwLTLExNext
+        IF jaDebug% = - 1 THEN CALL Fehler("Fehler in LoadToLocalEx", STR$ ( ERRNO ,"z") + ": " + ERR$ ( ERRNO ))
+        recordSuccess% = 0
+        jaLTLSucc% = 0
+        '~~~~~~~~~~~~~~~~~~~~~
+        CALL AbgleichLog(",ERROR," + STR$ ( ERRNO ,"z") + "," + ERR$ ( ERRNO ), - 1)
+        '~~~~~~~~~~~~~~~~~~~~~          
+        GOTO LTLExNext
 
 LTLExNext: 
-z%ÿz%ÿ1
-w.Form.CounterL.Captionÿÿ(z%,"z")ÿ" "
-ÿœ
-ÿ³ÿ_ÿwLTLExError 
-ÿÉÿ±ÿ™LoadFile$ÿ£LoadIndex$$
-ÿÙ
+        z% = z% + 1
+        w.Form.CounterL.Caption = STR$ (z%,"z") + " "
+        FORM 
+        ON ERROR GOTO LTLExError 
+        SELECT NEXT FILE LoadFile$ INDEX LoadIndex$$
+    WEND 
 
-
-'Load-File (soweit m”glich) leeren    
-ÿ¡recordSuccess%ÿÿ1ÿp
-'alles io ==> Send-File auf die harte (schnelle) Tour leeren
-ÿ¾ÿaÿ™LoadFile$
-ÿ^
-'Problem aufgetreten ==> nur die Datens„tze l”schen, die abgeglichen wurden
-ÿÉÿ`ÿ™LoadFile$ÿ£LoadIndex$$
-ÿØÿOÿB(LoadFile$)
+     
+    'Load-File (soweit m”glich) leeren    
+    IF recordSuccess% = - 1 THEN 
+        'alles io ==> Send-File auf die harte (schnelle) Tour leeren
+        REMOVE FROM FILE LoadFile$
+    ELSE 
+        'Problem aufgetreten ==> nur die Datens„tze l”schen, die abgeglichen wurden
+        SELECT FIRST FILE LoadFile$ INDEX LoadIndex$$
+        WHILE NOT EOF (LoadFile$)
  
-ÿ¡LoadTState$$ÿ""ÿp
-ÿÉÿYÿáÿ™LoadFile$ÿ£LoadIndex$$
-ÿÉÿ¾ÿ™LoadFile$
-ÿ^
-ÿÉÿ±ÿ™LoadFile$ÿ£LoadIndex$$
-ÿ’ÿ¡
+            IF LoadTState$$ = "" THEN 
+                SELECT CURRENT LOCK FILE LoadFile$ INDEX LoadIndex$$
+                SELECT REMOVE FILE LoadFile$
+            ELSE 
+                SELECT NEXT FILE LoadFile$ INDEX LoadIndex$$
+            END IF 
  
-ÿÙ
-ÿ’ÿ¡
+        WEND 
+    END IF 
  
-'alles io
-LoadToLocalEx%ÿÿ1
-ÿwLTLExEnde
+    'alles io
+    LoadToLocalEx% = - 1
+    GOTO LTLExEnde
 
 LTLExError: 
-jaLTLSucc%ÿ0
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Fehler beim L”schen der Load-Datens„tze: "ÿLoadFile$,ÿ(ÿ&,"z")ÿ": "ÿÿ((ÿ&))
-'~~~~~~~~~~~~~~~~~~~~~
-ÿƒAbgleichLog(" ",ÿ1)
-ÿƒAbgleichLog("ERROR,"ÿÿ(ÿ&,"z")ÿ","ÿÿ((ÿ&),ÿ1)
-'~~~~~~~~~~~~~~~~~~~~~  
-ÿwLTLExEnde
+    jaLTLSucc% = 0
+    IF jaDebug% = - 1 THEN CALL Fehler("Fehler beim L”schen der Load-Datens„tze: " + LoadFile$, STR$ ( ERRNO ,"z") + ": " + ERR$ ( ERRNO ))
+     '~~~~~~~~~~~~~~~~~~~~~
+    CALL AbgleichLog(" ", - 1)
+    CALL AbgleichLog("ERROR," + STR$ ( ERRNO ,"z") + "," + ERR$ ( ERRNO ), - 1)
+    '~~~~~~~~~~~~~~~~~~~~~  
+    GOTO LTLExEnde
 
 LTLExEnde: 
  
-Superbase.ErrorTrapLabelÿoldErrorLabel$
- ÿ’ÿÿ
+    Superbase.ErrorTrapLabel = oldErrorLabel$
+ END FUNCTION 
  '***********************************************************************************************     
 
 
-ÿÿCAbgleichLog(extension$)
+SUB CAbgleichLog(extension$)
  'Erzeugt ein Logfile mit einer bestimmten Erweiterung, die durch den Typ der Funktion bestimmt ist, 
  
-logfile$ÿÿ7(Superbase.Today,"yymmdd")
-i%ÿ1
-ÿØÿJ(_remotepath$ÿ"Abgleich\Log\"ÿlogfile$ÿÿ(i%,"00")ÿ"."ÿextension$)
-i%ÿi%ÿ1
-ÿÙ
-logfile$ÿ_remotepath$ÿ"Abgleich\Log\"ÿlogfile$ÿÿ(i%,"00")ÿ"."ÿextension$
-ÿ´logfile$ÿ›ÿ¶
-ÿ†ÿ¶
-jaLogFile$ÿlogfile$
- ÿ’ÿÿ
+    logfile$ = TIME$ (Superbase.Today,"yymmdd")
+    i% = 1
+    WHILE EXISTS (_remotepath$ + "Abgleich\Log\" + logfile$ + STR$ (i%,"00") + "." + extension$)
+        i% = i% + 1
+    WEND 
+    logfile$ = _remotepath$ + "Abgleich\Log\" + logfile$ + STR$ (i%,"00") + "." + extension$
+    OPEN logfile$ FOR OUTPUT 
+    CLOSE OUTPUT 
+    jaLogFile$ = logfile$
+ END SUB 
  '***********************************************************************************************     
  
 
-ÿÿAbgleichLog(logtext$,crlf%)
+SUB AbgleichLog(logtext$,crlf%)
 
-oldErrorLabel$ÿSuperbase.ErrorTrapLabel
-ÿ³ÿ_ÿwLogError
-'ex. dasLogfile ? 
-ÿ¡ÿOÿJ(jaLogFile$)ÿp
-ÿ¡jaDebug%ÿÿ1ÿp
-ÿƒFehler ("Log-File existiert nicht: "ÿjaLogFile$,ÿ(ÿ&,"z")ÿ": "ÿÿ((ÿ&))
-ÿ’ÿ¡
-ÿwLogEnde 
-ÿ’ÿ¡
-ÿ´jaLogFile$ÿ›ÿT
-ÿ¡crlf%ÿÿ1ÿp
-ÿ{logtext$
-ÿ^
-ÿ{logtext$;
-ÿ’ÿ¡
-ÿ†ÿ¶
-'alles io
-ÿwLogEnde
+    oldErrorLabel$ = Superbase.ErrorTrapLabel
+    ON ERROR GOTO LogError
+    'ex. dasLogfile ? 
+    IF NOT EXISTS (jaLogFile$) THEN 
+        IF jaDebug% = - 1 THEN 
+            CALL Fehler ("Log-File existiert nicht: " + jaLogFile$, STR$ ( ERRNO ,"z") + ": " + ERR$ ( ERRNO ))
+        END IF 
+        GOTO LogEnde 
+    END IF 
+    OPEN jaLogFile$ FOR APPEND 
+    IF crlf% = - 1 THEN 
+        ? logtext$
+    ELSE 
+        ? logtext$;
+    END IF 
+    CLOSE OUTPUT 
+    'alles io
+    GOTO LogEnde
 
-LogError:
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Fehler beim Schreiben des Logfiles: "ÿjaLogFile,ÿ(ÿ&,"z")ÿ": "ÿÿ((ÿ&))
-ÿwLogEnde
+LogError:    
+    IF jaDebug% = - 1 THEN CALL Fehler("Fehler beim Schreiben des Logfiles: " + jaLogFile, STR$ ( ERRNO ,"z") + ": " + ERR$ ( ERRNO ))
+    GOTO LogEnde
 
 LogEnde: 
-Superbase.ErrorTrapLabelÿoldErrorLabel$
- ÿ’ÿÿ
+    Superbase.ErrorTrapLabel = oldErrorLabel$
+ END SUB 
 

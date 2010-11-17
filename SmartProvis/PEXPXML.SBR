@@ -1,1347 +1,1218 @@
-SBP
- ÿƒmain()
+ CALL main()
 
-ÿÿainhflen()
- ÿÿexpverz$
- ÿ½ _netpath$ = "\codie.c36\"
- tnow%ÿÿR
- path$ÿ_netpath$
- ÿ_netpath$
- ÿ´ÿœ"dummy2.sbv"
- art%ÿ0
- expverz$ÿ_netpath$ÿ"EXPDAT"
- ÿ‰ÿñ"Konto1",0,0,221,165,title$,"MS Sans Serif",8
- ÿ|ÿñ"Konto1",9,6,7,24,22,2
- ÿ|ÿñ"Konto1",5,34,8,170,9,0,"Exportverzeichnis:"
- ÿ|ÿñ"Konto1",4,34,14,176,5,0,""
- ÿ|ÿñ"Konto1",5,34,22,175,16,0,"Bitte geben Sie im Feld <Exportverzeichnis>, das gewnschte Exportverzeichnis ein"
- ÿ|ÿñ"Konto1",5,34,40,175,32,0,"Beachten Sie, daá zum Import die Daten im Verzeichnis ...\codie\expdat  liegen mssen"
- ÿ|ÿñ"Konto1",5,34,78,72,8,0,"Exportverzeichnis"
- ÿ|ÿñ"Konto1",6,5,89,185,11,0,0,expverz$,128
- ÿ½ ADD DIALOG "Konto1",2,34,97,148,11,0,"Liste mit Volumen ausgeben","j","n",volumen$
- ÿ½ ADD DIALOG "Konto1",5,44,108,167,25,0,"(es werden auch die Provisionen angezeigt, die wegen fehlender Zahlungsbeitr„ge in der Mahnlist sind)"
- ÿ|ÿñ"Konto1",1,50,144,55,15,1,"&Weiter",1,1
- ÿ|ÿñ"Konto1",1,110,144,55,15,0,"&Abbruch",0,0
- ÿñ"Konto1",req%
- ÿ¾ÿñ"Konto1"
- ÿ¡req%ÿ0ÿp
-ÿwend041120051
- ÿ’ÿ¡
+SUB ainhflen()
+ GLOBAL expverz$
+ REM _netpath$ = "\codie.c36\"
+ tnow% = NOW 
+ path$ = _netpath$
+ DIRECTORY _netpath$
+ OPEN FORM "dummy2.sbv"
+ art% = 0
+ expverz$ = _netpath$ + "EXPDAT"
+ CREATE DIALOG "Konto1",0,0,221,165,title$,"MS Sans Serif",8
+ ADD DIALOG "Konto1",9,6,7,24,22,2
+ ADD DIALOG "Konto1",5,34,8,170,9,0,"Exportverzeichnis:"
+ ADD DIALOG "Konto1",4,34,14,176,5,0,""
+ ADD DIALOG "Konto1",5,34,22,175,16,0,"Bitte geben Sie im Feld <Exportverzeichnis>, das gewnschte Exportverzeichnis ein"
+ ADD DIALOG "Konto1",5,34,40,175,32,0,"Beachten Sie, daá zum Import die Daten im Verzeichnis ...\codie\expdat  liegen mssen"
+ ADD DIALOG "Konto1",5,34,78,72,8,0,"Exportverzeichnis"
+ ADD DIALOG "Konto1",6,5,89,185,11,0,0,expverz$,128
+ REM ADD DIALOG "Konto1",2,34,97,148,11,0,"Liste mit Volumen ausgeben","j","n",volumen$
+ REM ADD DIALOG "Konto1",5,44,108,167,25,0,"(es werden auch die Provisionen angezeigt, die wegen fehlender Zahlungsbeitr„ge in der Mahnlist sind)"
+ ADD DIALOG "Konto1",1,50,144,55,15,1,"&Weiter",1,1
+ ADD DIALOG "Konto1",1,110,144,55,15,0,"&Abbruch",0,0
+ DIALOG "Konto1",req%
+ REMOVE DIALOG "Konto1"
+ IF req% = 0 THEN 
+   GOTO end041120051
+ END IF 
 
- ÿ³ÿ_ÿww041020063
- ÿªÿexpverz$
+ ON ERROR GOTO w041020063
+ MAKE DIRECTORY expverz$
 w041020063: 
- ÿ³ÿ_ÿwErrorHandler
- ÿ¡ÿOÿ´("EXPDAT")ÿp
-ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
-ÿ™"expdat"
-ÿ£datname.expdat
- ÿ’ÿ¡
- ÿƒFehler("Sie erhalten jetzt die M”glichkeit entweder die Dateien ab dem letzten Wiederanlaufpunkt zu exportieren oder komplett alle Dateien NEU zu exportieren!","Sie finden die exportierten Dateien im Ordner "ÿ_netpath$ÿ"EXPDAT")
- ÿÂ"Dateien ab letzten WIEDERANLAUFPUNKT exportieren?","",130,req%
- ÿ¡req%ÿ1ÿp
-ÿÂ"Sind Sie absolut sicher, daá Sie ALLE Dateien erneut exportieren wollen?","",135,req%
-ÿ¡req%ÿ1ÿp
-ÿßÿe
-ÿÍzero.expdatÿ0:MAName.expdatÿ""
-ÿ’ÿÍ
-ÿ’ÿ¡
- ÿ’ÿ¡
- ÿƒAutoFiVorg()
- ÿƒCheckConnect()
- ÿƒVKMainMani()
- ÿƒCheckKVSKOND()
- ÿƒCheckDynVertr()
- ÿƒCheckBuch()
- ÿ½ CALL Fehler("Sie erhalten jetzt die M”glichkeit entweder die wichtigsten Dateien zu exportieren oder komplett alle Dateien zu exportieren!","Sie finden die exportierten Dateien im Ordner " + _netpath$ + "EXPDAT")
- ÿ½ REQUEST "Nur die wichtigsten Dateien exportieren?","",130,req%
+ ON ERROR GOTO ErrorHandler
+ IF NOT OPEN ("EXPDAT") THEN 
+   CALL DFile(2,"EXPDAT" + _fpw$)
+   FILE "expdat"
+   INDEX datname.expdat
+ END IF 
+ CALL Fehler("Sie erhalten jetzt die M”glichkeit entweder die Dateien ab dem letzten Wiederanlaufpunkt zu exportieren oder komplett alle Dateien NEU zu exportieren!","Sie finden die exportierten Dateien im Ordner " + _netpath$ + "EXPDAT")
+ REQUEST "Dateien ab letzten WIEDERANLAUFPUNKT exportieren?","",130,req%
+ IF req% <> 1 THEN 
+   REQUEST "Sind Sie absolut sicher, daá Sie ALLE Dateien erneut exportieren wollen?","",135,req%
+   IF req% = 1 THEN 
+     MOUSE OFF 
+     UPDATE zero.expdat = 0:MAName.expdat = ""
+     END UPDATE 
+   END IF 
+ END IF 
+ CALL AutoFiVorg()
+ CALL CheckConnect()
+ CALL VKMainMani()
+ CALL CheckKVSKOND()
+ CALL CheckDynVertr()
+ CALL CheckBuch()
+ REM CALL Fehler("Sie erhalten jetzt die M”glichkeit entweder die wichtigsten Dateien zu exportieren oder komplett alle Dateien zu exportieren!","Sie finden die exportierten Dateien im Ordner " + _netpath$ + "EXPDAT")
+ REM REQUEST "Nur die wichtigsten Dateien exportieren?","",130,req%
 
- ÿ¡req%ÿ1ÿp
-alle%ÿ0
- ÿ^
-alle%ÿ1
- ÿ’ÿ¡
- art%ÿ0
- ÿ¡ÿOÿ´("EXPDAT")ÿp
-ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
-ÿ™"expdat"
-ÿ£datname.expdat
- ÿ’ÿ¡
- ÿ½ CALL Fehler("Sie k”nnen jetzt w„hlen, ob Sie die Daten im XML-Format oder im CSV exportieren m”chten","")
- ÿ½ REQUEST "Im XML-Format exportieren?","",130,xml%
- xml%ÿ1
+ IF req% = 1 THEN 
+   alle% = 0
+ ELSE 
+   alle% = 1
+ END IF 
+ art% = 0
+ IF NOT OPEN ("EXPDAT") THEN 
+   CALL DFile(2,"EXPDAT" + _fpw$)
+   FILE "expdat"
+   INDEX datname.expdat
+ END IF 
+ REM CALL Fehler("Sie k”nnen jetzt w„hlen, ob Sie die Daten im XML-Format oder im CSV exportieren m”chten","")
+ REM REQUEST "Im XML-Format exportieren?","",130,xml%
+ xml% = 1
 
- ÿßÿe
- ÿ×sbd$(300)
- ÿÿsbd$,5,"*.SBD"
- ÿ›i%ÿ0ÿq300
-ÿ¡ÿH(sbd$(i%))ÿ""ÿp
-lenge%ÿÿ/(sbd$(i%))
-datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
-datei0$ÿdatei$
-datname$ÿÿ>(datei$)
-ÿ½ CALL Fehler("EXPDAT","")
-ÿ¡datei$ÿ"config"ÿp
-datei$ÿdatei$ÿ";london8474"
-ÿ^
-datei$ÿdatei$ÿ";paris"
-ÿ’ÿ¡
-ÿ¡ÿOÿ´(sbd$(i%))ÿp
-ÿ´ÿ™ÿà,0_netpath$ÿdatei$
-ÿ’ÿ¡
-ÿ½ ********Aufruf der SQL-Statement Generierung **************
-ok11%ÿÿ1
-ÿ¡datei0$ÿ"supervis"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"masuper"ÿpok11%ÿÿ1
-ÿ¡alle%ÿ1ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"expdat*"ÿpok11%ÿ0
-ÿ¡datei0$ÿ"abg*"ÿpok11%ÿ0
-ÿ¡datei0$ÿ"ope*"ÿpok11%ÿ0
-ÿ¡datei0$ÿ"zero*"ÿpok11%ÿ0
-ÿ¡ÿOÿJ(datname$,datname.expdat)ÿp
-ok11%ÿ0
-ÿ^
-ÿÉÿ`ÿ™"expdat"ÿ£datname.expdat
-ÿÉÿ¥datname$ÿáÿ™"expdat"ÿ£datname.expdat
-ÿ’ÿ¡
-ÿ½ ok11% = 0
-ÿ¡ok11%ÿÿ1ÿzero.expdatÿ1ÿÿA(datei0$)ÿ0ÿp
-tnow1%ÿÿR
-ÿßÿe
-ÿ¡xml%ÿ1ÿp
-
-ÿ¡ÿA(datei0$)ÿ0ÿpÿƒCreateINH(datei0$,path$,art%)
-ÿ^
-
-datei1$ÿdatei0$ÿ".CSV"
-
-textdo1$ÿdatei1$
-
-textdo$ÿ"Exportiere "ÿdatei1$
-
-ÿœ
-
-ÿ¡ÿJ(datei1$)ÿpÿdatei1$
-
-Superbase.Converters.SBF.SourceFormatÿ"Superbase"
-
-Superbase.Converters.SBF.SourceFileÿdatei0$
-
-Superbase.Converters.SBF.Descendingÿ0
-
-Superbase.Converters.SBF.Mergeÿ0
-
-Superbase.Converters.SBF.LogErrorsÿ0
-
-Superbase.Converters.SBF.MultiResponseÿ0
-
-Superbase.Converters.CSV.DestFormatÿ"Comma-separated values"
-
-Superbase.Converters.CSV.DestFileÿ_netpath$ÿ"EXPDAT\"ÿdatei0$ÿ".csv"
-
-Superbase.Converters.CSV.UseLabelsÿÿ1
-
-Superbase.Converters.CSV.ANSIConvertÿ0
-
-Superbase.Converters.CSV.Convert(Superbase.Converters.SBF)
-
-ÿÏÿ›2
-ÿ’ÿ¡
-tende1%ÿÿR
-tende1$ÿÿ7(tende1%,"hh:mm:ss")
-tnow1$ÿÿ7(tnow1%,"hh:mm:ss")
-tdiff1%ÿtende1%ÿtnow1%
-tdiff1$ÿÿ7(tdiff1%,"hh:mm:ss")
-MAName.expdatÿ"Start: "ÿtnow1$ÿ"  Ende: "ÿtende1$ÿ"   Dauer: "ÿtdiff1$
-zero.expdatÿ1
-ÿÌÿ™"expdat"
-ÿ’ÿ¡
-ÿ¡datei0$ÿ"EXPDAT"ÿp
-ÿ^
-ÿ†ÿ™datei0$
-ÿ’ÿ¡
-ÿ½ ***********************************************************
-ÿ^
-i%ÿ301
-ÿ’ÿ¡
- ÿ±i%
+ MOUSE OFF 
+ DIM sbd$(300)
+ FILLARRAY sbd$,5,"*.SBD"
+ FOR i% = 0 TO 300
+   IF LTRIM$ (sbd$(i%)) <> "" THEN 
+     lenge% = LEN (sbd$(i%))
+     datei$ = LEFT$ (sbd$(i%),lenge% - 4)
+     datei0$ = datei$
+     datname$ = UCASE$ (datei$)
+     REM CALL Fehler("EXPDAT","")
+     IF datei$ LIKE "config" THEN 
+       datei$ = datei$ + ";london8474"
+     ELSE 
+       datei$ = datei$ + ";paris"
+     END IF 
+     IF NOT OPEN (sbd$(i%)) THEN 
+       OPEN FILE SHARE ,0_netpath$ + datei$
+     END IF 
+     REM ********Aufruf der SQL-Statement Generierung **************
+      ok11% = - 1
+      IF datei0$ LIKE "supervis" THEN ok11% = - 1
+      IF datei0$ LIKE "masuper" THEN ok11% = - 1
+      IF alle% = 1 THEN ok11% = - 1
+      IF datei0$ LIKE "expdat*" THEN ok11% = 0
+      IF datei0$ LIKE "abg*" THEN ok11% = 0
+      IF datei0$ LIKE "ope*" THEN ok11% = 0
+      IF datei0$ LIKE "zero*" THEN ok11% = 0
+      IF NOT EXISTS (datname$,datname.expdat) THEN 
+        ok11% = 0
+      ELSE 
+        SELECT FIRST FILE "expdat" INDEX datname.expdat
+        SELECT KEY datname$ LOCK FILE "expdat" INDEX datname.expdat
+      END IF 
+      REM ok11% = 0
+      IF ok11% = - 1 AND zero.expdat <> 1 AND RECCOUNT (datei0$) > 0 THEN 
+        tnow1% = NOW 
+        MOUSE OFF 
+        IF xml% = 1 THEN 
+          IF RECCOUNT (datei0$) > 0 THEN CALL CreateINH(datei0$,path$,art%)
+        ELSE 
+          datei1$ = datei0$ + ".CSV"
+          textdo1$ = datei1$
+          textdo$ = "Exportiere " + datei1$
+          FORM 
+          IF EXISTS (datei1$) THEN DELETE datei1$
+          Superbase.Converters.SBF.SourceFormat = "Superbase"
+          Superbase.Converters.SBF.SourceFile = datei0$
+          Superbase.Converters.SBF.Descending = 0
+          Superbase.Converters.SBF.Merge = 0
+          Superbase.Converters.SBF.LogErrors = 0
+          Superbase.Converters.SBF.MultiResponse = 0
+          Superbase.Converters.CSV.DestFormat = "Comma-separated values"
+          Superbase.Converters.CSV.DestFile = _netpath$ + "EXPDAT\" + datei0$ + ".csv"
+          Superbase.Converters.CSV.UseLabels = - 1
+          Superbase.Converters.CSV.ANSIConvert = 0
+          Superbase.Converters.CSV.Convert(Superbase.Converters.SBF)
+          WAIT FOR 2
+        END IF 
+        tende1% = NOW 
+        tende1$ = TIME$ (tende1%,"hh:mm:ss")
+        tnow1$ = TIME$ (tnow1%,"hh:mm:ss")
+        tdiff1% = tende1% - tnow1%
+        tdiff1$ = TIME$ (tdiff1%,"hh:mm:ss")
+        MAName.expdat = "Start: " + tnow1$ + "  Ende: " + tende1$ + "   Dauer: " + tdiff1$
+        zero.expdat = 1
+        STORE FILE "expdat"
+      END IF 
+      IF datei0$ LIKE "EXPDAT" THEN 
+      ELSE 
+        CLOSE FILE datei0$
+      END IF 
+     REM ***********************************************************
+   ELSE 
+     i% = 301
+   END IF 
+ NEXT i%
 
- ÿ¡art%ÿ1ÿp
-ÿ†ÿ¶
- ÿ’ÿ¡
- ÿ½ CALL Fehler("Fertig mit Wurzel","")
+ IF art% = 1 THEN 
+   CLOSE OUTPUT 
+ END IF 
+ REM CALL Fehler("Fertig mit Wurzel","")
 
- ÿÿsbd$(300,1)
- ÿÿsbd$(300)
- ÿ_netpath$
- ÿ´ÿœ"dummy2.sbv"
- ÿ¡ÿOÿ´("EXPDAT")ÿp
-ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
-ÿ™"expdat"
-ÿ£datname.expdat
- ÿ’ÿ¡
+ REDIM sbd$(300,1)
+ REDIM sbd$(300)
+ DIRECTORY _netpath$
+ OPEN FORM "dummy2.sbv"
+ IF NOT OPEN ("EXPDAT") THEN 
+   CALL DFile(2,"EXPDAT" + _fpw$)
+   FILE "expdat"
+   INDEX datname.expdat
+ END IF 
 
- path$ÿ_netpath$ÿ"OFFICE\"
- ÿpath$
- ÿÿsbd$,5,"*.SBD"
- ÿ›i%ÿ0ÿq300
-ÿ¡sbd$(i%)ÿ""ÿp
-lenge%ÿÿ/(sbd$(i%))
-datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
-datei0$ÿdatei$
-datname$ÿÿ>(datei$)
-ÿ½ CALL Fehler("EXPDAT","")
-ÿ¡datei$ÿ"config"ÿp
-datei$ÿdatei$ÿ";london8474"
-ÿ^
-datei$ÿdatei$ÿ";paris"
-ÿ’ÿ¡
+ path$ = _netpath$ + "OFFICE\"
+ DIRECTORY path$
+ FILLARRAY sbd$,5,"*.SBD"
+ FOR i% = 0 TO 300
+   IF sbd$(i%) <> "" THEN 
+     lenge% = LEN (sbd$(i%))
+     datei$ = LEFT$ (sbd$(i%),lenge% - 4)
+     datei0$ = datei$
+     datname$ = UCASE$ (datei$)
+     REM CALL Fehler("EXPDAT","")
+     IF datei$ LIKE "config" THEN 
+       datei$ = datei$ + ";london8474"
+     ELSE 
+       datei$ = datei$ + ";paris"
+     END IF 
 
-ÿ¡ÿOÿ´(sbd$(i%))ÿp
-ÿ³ÿ_ÿwtsts
-ÿ´ÿ™ÿà,0path$ÿdatei$
+     IF NOT OPEN (sbd$(i%)) THEN 
+       ON ERROR GOTO tsts
+       OPEN FILE SHARE ,0path$ + datei$
 tsts: 
-ÿ³ÿ_ÿwErrorHandler
-ÿ’ÿ¡
-ÿ½ ********Aufruf der SQL-Statement Generierung **************
-ok11%ÿÿ1
-ÿ¡datei0$ÿ"adressen"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"akquise"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"dokument*"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"connect"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"dokge"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"dokma"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"dokkv"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"telefon"ÿpok11%ÿÿ1
-ÿ¡alle%ÿ1ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"*tmp*"ÿpok11%ÿ0
-ÿ¡datei0$ÿ"*temp*"ÿpok11%ÿ0
-ÿ¡datei0$ÿ"*leer*"ÿpok11%ÿ0
-ÿ¡datei0$ÿ"out*"ÿpok11%ÿ0
-ÿ¡ÿOÿJ(datname$,datname.expdat)ÿp
-ok11%ÿ0
-ÿ^
-ÿÉÿ`ÿ™"expdat"ÿ£datname.expdat
-ÿÉÿ¥datname$ÿáÿ™"expdat"ÿ£datname.expdat
-ÿ’ÿ¡
+       ON ERROR GOTO ErrorHandler
+     END IF 
+     REM ********Aufruf der SQL-Statement Generierung **************
+      ok11% = - 1
+      IF datei0$ LIKE "adressen" THEN ok11% = - 1
+      IF datei0$ LIKE "akquise" THEN ok11% = - 1
+      IF datei0$ LIKE "dokument*" THEN ok11% = - 1
+      IF datei0$ LIKE "connect" THEN ok11% = - 1
+      IF datei0$ LIKE "dokge" THEN ok11% = - 1
+      IF datei0$ LIKE "dokma" THEN ok11% = - 1
+      IF datei0$ LIKE "dokkv" THEN ok11% = - 1
+      IF datei0$ LIKE "telefon" THEN ok11% = - 1
+      IF alle% = 1 THEN ok11% = - 1
+      IF datei0$ LIKE "*tmp*" THEN ok11% = 0
+      IF datei0$ LIKE "*temp*" THEN ok11% = 0
+      IF datei0$ LIKE "*leer*" THEN ok11% = 0
+      IF datei0$ LIKE "out*" THEN ok11% = 0
+      IF NOT EXISTS (datname$,datname.expdat) THEN 
+        ok11% = 0
+      ELSE 
+        SELECT FIRST FILE "expdat" INDEX datname.expdat
+        SELECT KEY datname$ LOCK FILE "expdat" INDEX datname.expdat
+      END IF 
 
-ÿ¡datei0$ÿ"aktionen"ÿpok11%ÿÿ1
-ÿ½ IF datname$ LIKE "adressen" THEN ok11% = - 1
-ÿ¡ok11%ÿÿ1ÿpÿww301020071 
-ÿ¡ok11%ÿÿ1ÿzero.expdatÿ1ÿÿA(datei0$)ÿ0ÿp
-tnow1%ÿÿR
-ÿßÿe
-ÿ¡datei0$ÿ"akquise"ÿp
-
-ÿ™"akquise"
-
-ÿ£codeaq.akquise
-
-ÿÉÿ`ÿá
-
-jj%ÿÿA("akquise")
-
-ii%ÿ0
-
-codeaqold%ÿ0
-
-ÿØÿOÿB("akquise")
-ii%ÿii%ÿ1
-codeaq%ÿcodeaq.akquise
-ÿ¡codeaq%ÿcodeaqold%ÿp
-codeaq.akquiseÿÿI("Akquise",1)
-ÿÌÿ™"akquise"
-ÿÉÿ`ÿá
-ii%ÿ0
-codeaqold%ÿ0
-ÿ^
-codeaqold%ÿcodeaq%
-ÿÉÿ±ÿáÿ™"akquise"ÿ£codeaq.akquise
-ÿ’ÿ¡
-ÿÊÿËÿ(ii%,",99999999")ÿ" von "ÿÿ(jj%,",99999999")ÿ" in Datei Akquise geprft"
-
-ÿÙ
-ÿ’ÿ¡
+      IF datei0$ LIKE "aktionen" THEN ok11% = - 1
+      REM IF datname$ LIKE "adressen" THEN ok11% = - 1
+      IF ok11% <> - 1 THEN GOTO w301020071 
+      IF ok11% = - 1 AND zero.expdat <> 1 AND RECCOUNT (datei0$) > 0 THEN 
+        tnow1% = NOW 
+        MOUSE OFF 
+        IF datei0$ LIKE "akquise" THEN 
+          FILE "akquise"
+          INDEX codeaq.akquise
+          SELECT FIRST LOCK 
+          jj% = RECCOUNT ("akquise")
+          ii% = 0
+          codeaqold% = 0
+          WHILE NOT EOF ("akquise")
+            ii% = ii% + 1
+            codeaq% = codeaq.akquise
+            IF codeaq% = codeaqold% THEN 
+              codeaq.akquise = SER ("Akquise",1)
+              STORE FILE "akquise"
+              SELECT FIRST LOCK 
+              ii% = 0
+              codeaqold% = 0
+            ELSE 
+              codeaqold% = codeaq%
+              SELECT NEXT LOCK FILE "akquise" INDEX codeaq.akquise
+            END IF 
+            SET STATUS STR$ (ii%,",99999999") + " von " + STR$ (jj%,",99999999") + " in Datei Akquise geprft"
+          WEND 
+        END IF 
 
-ÿ¡datei0$ÿ"dokument"ÿÿA(datei0$)ÿ0ÿp
-
-ÿ™"dokument"
-
-ÿ£codedok.dokument
-
-ÿÉÿ`ÿá
-
-jj%ÿÿA("dokument")
-
-ii%ÿ0
-
-codedokold%ÿ0
-
-ÿØÿOÿB("dokument")
-ii%ÿii%ÿ1
-codedok%ÿcodedok.dokument
-ÿ¡codedok%ÿcodedokold%ÿp
-codedok.dokumentÿÿI("dokument",1)
-ÿÌÿ™"dokument"
-ÿÉÿ`ÿá
-ii%ÿ0
-codeaqold%ÿ0
-ÿ^
-codeaqold%ÿcodeaq%
-ÿÉÿ±ÿáÿ™"dokument"ÿ£codedok.dokument
-ÿ’ÿ¡
-ÿÊÿËÿ(ii%,",99999999")ÿ" von "ÿÿ(jj%,",99999999")ÿ" in Datei Dokument geprft"
-
-ÿÙ
-ÿ’ÿ¡
+        IF datei0$ LIKE "dokument" AND RECCOUNT (datei0$) > 0 THEN 
+          FILE "dokument"
+          INDEX codedok.dokument
+          SELECT FIRST LOCK 
+          jj% = RECCOUNT ("dokument")
+          ii% = 0
+          codedokold% = 0
+          WHILE NOT EOF ("dokument")
+            ii% = ii% + 1
+            codedok% = codedok.dokument
+            IF codedok% = codedokold% THEN 
+              codedok.dokument = SER ("dokument",1)
+              STORE FILE "dokument"
+              SELECT FIRST LOCK 
+              ii% = 0
+              codeaqold% = 0
+            ELSE 
+              codeaqold% = codeaq%
+              SELECT NEXT LOCK FILE "dokument" INDEX codedok.dokument
+            END IF 
+            SET STATUS STR$ (ii%,",99999999") + " von " + STR$ (jj%,",99999999") + " in Datei Dokument geprft"
+          WEND 
+        END IF 
 
-	
-ÿ¡datei0$ÿ"telefon"ÿp
-
-ÿ™"telefon"
-
-ÿ£codeku.telefon
-
-ÿÉÿ`ÿá
-
-jj%ÿÿA("telefon")
-
-ii%ÿ0
-
-ÿØÿOÿB("telefon")
-ii%ÿii%ÿ1
-codetel.telefonÿii%
-ÿÌÿ™"telefon"
-ÿÊÿËÿ(ii%,",99999999")ÿ" von "ÿÿ(jj%,",99999999")ÿ" in Datei Telefon geprft"
-ÿÉÿ±ÿáÿ™"telefon"ÿ£codeku.telefon
-
-ÿÙ
-ÿ’ÿ¡
+         
+        IF datei0$ LIKE "telefon" THEN 
+          FILE "telefon"
+          INDEX codeku.telefon
+          SELECT FIRST LOCK 
+          jj% = RECCOUNT ("telefon")
+          ii% = 0
+          WHILE NOT EOF ("telefon")
+            ii% = ii% + 1
+            codetel.telefon = ii%
+            STORE FILE "telefon"
+            SET STATUS STR$ (ii%,",99999999") + " von " + STR$ (jj%,",99999999") + " in Datei Telefon geprft"
+            SELECT NEXT LOCK FILE "telefon" INDEX codeku.telefon
+          WEND 
+        END IF 
 
 
-ÿßÿe
-ÿ¡xml%ÿ1ÿp
-
-ÿ¡datei0$ÿ"BANKEN*"ÿp
-
-ÿ^
-ÿ¡ÿA(datei0$)ÿ0ÿpÿƒCreateINH(datei0$,path$,art%)
-
-ÿ’ÿ¡
-ÿ^
-
-datei1$ÿdatei0$ÿ".CSV"
-
-textdo1$ÿdatei1$
-
-textdo$ÿ"Exportiere "ÿdatei1$
-
-ÿœ
-
-ÿ¡ÿJ(datei1$)ÿpÿdatei1$
-
-Superbase.Converters.SBF.SourceFormatÿ"Superbase"
-
-Superbase.Converters.SBF.SourceFileÿdatei0$
-
-Superbase.Converters.SBF.Descendingÿ0
-
-Superbase.Converters.SBF.Mergeÿ0
-
-Superbase.Converters.SBF.LogErrorsÿ0
-
-Superbase.Converters.SBF.MultiResponseÿ0
-
-Superbase.Converters.CSV.DestFormatÿ"Comma-separated values"
-
-Superbase.Converters.CSV.DestFileÿ_netpath$ÿ"EXPDAT\"ÿdatei0$ÿ".csv"
-
-Superbase.Converters.CSV.UseLabelsÿÿ1
-
-Superbase.Converters.CSV.ANSIConvertÿ0
-
-Superbase.Converters.CSV.Convert(Superbase.Converters.SBF)
-
-ÿÏÿ›2
-ÿ’ÿ¡
-tende1%ÿÿR
-tende1$ÿÿ7(tende1%,"hh:mm:ss")
-tnow1$ÿÿ7(tnow1%,"hh:mm:ss")
-tdiff1%ÿtende1%ÿtnow1%
-tdiff1$ÿÿ7(tdiff1%,"hh:mm:ss")
-MAName.expdatÿ"Start: "ÿtnow1$ÿ"  Ende: "ÿtende1$ÿ"   Dauer: "ÿtdiff1$
-zero.expdatÿ1
-ÿÌÿ™"expdat"
-ÿ’ÿ¡
+        MOUSE OFF 
+        IF xml% = 1 THEN 
+          IF datei0$ LIKE "BANKEN*" THEN 
+          ELSE 
+            IF RECCOUNT (datei0$) > 0 THEN CALL CreateINH(datei0$,path$,art%)
+          END IF 
+        ELSE 
+          datei1$ = datei0$ + ".CSV"
+          textdo1$ = datei1$
+          textdo$ = "Exportiere " + datei1$
+          FORM 
+          IF EXISTS (datei1$) THEN DELETE datei1$
+          Superbase.Converters.SBF.SourceFormat = "Superbase"
+          Superbase.Converters.SBF.SourceFile = datei0$
+          Superbase.Converters.SBF.Descending = 0
+          Superbase.Converters.SBF.Merge = 0
+          Superbase.Converters.SBF.LogErrors = 0
+          Superbase.Converters.SBF.MultiResponse = 0
+          Superbase.Converters.CSV.DestFormat = "Comma-separated values"
+          Superbase.Converters.CSV.DestFile = _netpath$ + "EXPDAT\" + datei0$ + ".csv"
+          Superbase.Converters.CSV.UseLabels = - 1
+          Superbase.Converters.CSV.ANSIConvert = 0
+          Superbase.Converters.CSV.Convert(Superbase.Converters.SBF)
+          WAIT FOR 2
+        END IF 
+        tende1% = NOW 
+        tende1$ = TIME$ (tende1%,"hh:mm:ss")
+        tnow1$ = TIME$ (tnow1%,"hh:mm:ss")
+        tdiff1% = tende1% - tnow1%
+        tdiff1$ = TIME$ (tdiff1%,"hh:mm:ss")
+        MAName.expdat = "Start: " + tnow1$ + "  Ende: " + tende1$ + "   Dauer: " + tdiff1$
+        zero.expdat = 1
+        STORE FILE "expdat"
+      END IF 
 w301020071: 
-ÿ½ ***********************************************************
-ÿ^
-i%ÿ301
-ÿ’ÿ¡
- ÿ±i%
+     REM ***********************************************************
+   ELSE 
+     i% = 301
+   END IF 
+ NEXT i%
 
- ÿÂ"OFFICE fertig","",2
- ÿ¡art%ÿ1ÿp
-ÿ†ÿ¶
- ÿ’ÿ¡
- ÿ†ÿt
+ REQUEST "OFFICE fertig","",2
+ IF art% = 1 THEN 
+   CLOSE OUTPUT 
+ END IF 
+ CLOSE ALL 
 
 
- ÿ¡ÿOÿ´("EXPDAT")ÿp
-ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
-ÿ™"expdat"
-ÿ£datname.expdat
- ÿ’ÿ¡
- ÿÿsbd$(300,1)
- ÿÿsbd$(300)
- ÿ_netpath$
- ÿ´ÿœ_netpath$ÿ"dummy2.sbv"
- path$ÿ_netpath$ÿ"PROVIS\"
- ÿpath$
- ÿÿsbd$,5,"*.SBD"
- ÿ›i%ÿ0ÿq300
-ÿ¡sbd$(i%)ÿ""ÿp
-lenge%ÿÿ/(sbd$(i%))
-datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
-datei0$ÿdatei$
-datname$ÿÿ>(datei$)
-ÿ½ CALL Fehler("EXPDAT","")
-ÿ¡datei$ÿ"config"ÿp
-datei$ÿdatei$ÿ";london8474"
-ÿ^
-datei$ÿdatei$ÿ";paris"
-ÿ’ÿ¡
-ÿ¡datei0$ÿ"UN0*"ÿpÿww030320061
-ÿ¡datei0$ÿ"??0*"ÿpÿww030320061
-ÿ¡ÿOÿ´(sbd$(i%))ÿp
-ÿ´ÿ™ÿà,0path$ÿdatei$
-ÿ’ÿ¡
-ÿ½ ********Aufruf der SQL-Statement Generierung **************
-ok11%ÿÿ1
-ÿÊÿËdatei0$
-ÿßÿe
-ÿ¡PrvVerfahr$ÿ"ZAHLUNGSEINGANG"ÿp
-ÿ¡datei0$ÿ"buchung"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"zeingang"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"buchung1"ÿpok11%ÿ0
-ÿ¡datei0$ÿ"zeingan1"ÿpok11%ÿ0
-ÿ¡datei0$ÿ"zeinvor"ÿpok11%ÿ0
-ÿ¡ÿJ(_netpath$ÿ"EXPDAT\"ÿ"buchung1.cod")ÿpÿ_netpath$ÿ"EXPDAT\"ÿ"buchung1.cod"
-ÿ¡ÿJ(_netpath$ÿ"EXPDAT\"ÿ"zeingan1.cod")ÿpÿ_netpath$ÿ"EXPDAT\"ÿ"zeingan1.cod"
-ÿ¡ÿJ(_netpath$ÿ"EXPDAT\"ÿ"zeinvor.cod")ÿpÿ_netpath$ÿ"EXPDAT\"ÿ"zeinvor.cod"
-ÿ^
-ÿ¡datei0$ÿ"buchung"ÿpok11%ÿ0
-ÿ¡datei0$ÿ"zeingang"ÿpok11%ÿ0
-ÿ¡ÿJ(_netpath$ÿ"EXPDAT\"ÿ"buchung.cod")ÿpÿ_netpath$ÿ"EXPDAT\"ÿ"buchung.cod"
-ÿ¡ÿJ(_netpath$ÿ"EXPDAT\"ÿ"zeingang.cod")ÿpÿ_netpath$ÿ"EXPDAT\"ÿ"zeingang.cod"
-ÿ¡datei0$ÿ"buchung1"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"zeingan1"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"zeinvor"ÿpok11%ÿÿ1
-ÿ’ÿ¡
+ IF NOT OPEN ("EXPDAT") THEN 
+   CALL DFile(2,"EXPDAT" + _fpw$)
+   FILE "expdat"
+   INDEX datname.expdat
+ END IF 
+ REDIM sbd$(300,1)
+ REDIM sbd$(300)
+ DIRECTORY _netpath$
+ OPEN FORM _netpath$ + "dummy2.sbv"
+ path$ = _netpath$ + "PROVIS\"
+ DIRECTORY path$
+ FILLARRAY sbd$,5,"*.SBD"
+ FOR i% = 0 TO 300
+   IF sbd$(i%) <> "" THEN 
+     lenge% = LEN (sbd$(i%))
+     datei$ = LEFT$ (sbd$(i%),lenge% - 4)
+     datei0$ = datei$
+     datname$ = UCASE$ (datei$)
+     REM CALL Fehler("EXPDAT","")
+     IF datei$ LIKE "config" THEN 
+       datei$ = datei$ + ";london8474"
+     ELSE 
+       datei$ = datei$ + ";paris"
+     END IF 
+     IF datei0$ LIKE "UN0*" THEN GOTO w030320061
+     IF datei0$ LIKE "??0*" THEN GOTO w030320061
+     IF NOT OPEN (sbd$(i%)) THEN 
+       OPEN FILE SHARE ,0path$ + datei$
+     END IF 
+     REM ********Aufruf der SQL-Statement Generierung **************
+     ok11% = - 1
+     SET STATUS datei0$
+     MOUSE OFF 
+     IF PrvVerfahr$ <> "ZAHLUNGSEINGANG" THEN 
+       IF datei0$ LIKE "buchung" THEN ok11% = - 1
+       IF datei0$ LIKE "zeingang" THEN ok11% = - 1
+       IF datei0$ LIKE "buchung1" THEN ok11% = 0
+       IF datei0$ LIKE "zeingan1" THEN ok11% = 0
+       IF datei0$ LIKE "zeinvor" THEN ok11% = 0
+       IF EXISTS (_netpath$ + "EXPDAT\" + "buchung1.cod") THEN DELETE _netpath$ + "EXPDAT\" + "buchung1.cod"
+       IF EXISTS (_netpath$ + "EXPDAT\" + "zeingan1.cod") THEN DELETE _netpath$ + "EXPDAT\" + "zeingan1.cod"
+       IF EXISTS (_netpath$ + "EXPDAT\" + "zeinvor.cod") THEN DELETE _netpath$ + "EXPDAT\" + "zeinvor.cod"
+     ELSE 
+       IF datei0$ LIKE "buchung" THEN ok11% = 0
+       IF datei0$ LIKE "zeingang" THEN ok11% = 0
+       IF EXISTS (_netpath$ + "EXPDAT\" + "buchung.cod") THEN DELETE _netpath$ + "EXPDAT\" + "buchung.cod"
+       IF EXISTS (_netpath$ + "EXPDAT\" + "zeingang.cod") THEN DELETE _netpath$ + "EXPDAT\" + "zeingang.cod"
+       IF datei0$ LIKE "buchung1" THEN ok11% = - 1
+       IF datei0$ LIKE "zeingan1" THEN ok11% = - 1
+       IF datei0$ LIKE "zeinvor" THEN ok11% = - 1
+     END IF 
 
-ÿ¡datei0$ÿ"geadr"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"geadr2"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"gekond"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"kvertrag"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"MAADR"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"MAVORG"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"sparten"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"spgruppe"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"spezkond"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"statukey"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"tarif"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"vorgang"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"vprodukt"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"waehrung"ÿpok11%ÿÿ1
-ÿ¡datei0$ÿ"wknr"ÿpok11%ÿÿ1
-ÿ¡alle%ÿ1ÿpok11%ÿÿ1
-dattest$ÿ_netpath$ÿ"EXPDAT\"ÿdatei0$ÿ".cod"
-ÿ¡ÿOÿJ(datname$,datname.expdat)ÿp
-ok11%ÿ0
-ÿ^
-ÿÉÿ`ÿ™"expdat"ÿ£datname.expdat
-ÿÉÿ¥datname$ÿáÿ™"expdat"ÿ£datname.expdat
-ÿ’ÿ¡
-ÿ½ ok11% = 0
-ÿ¡ok11%ÿÿ1ÿzero.expdatÿ1ÿÿA(datei0$)ÿ0ÿp
-tnow1%ÿÿR
-ÿ½ CALL Fehler(datei0$,"")
-ÿßÿe
-ÿ¡xml%ÿ1ÿp
-
-ÿ¡ÿA(datei0$)ÿ0ÿpÿƒCreateINH(datei0$,path$,art%)
-ÿ^
-
-datei1$ÿdatei0$ÿ".CSV"
-
-textdo1$ÿdatei1$
-
-textdo$ÿ"Exportiere "ÿdatei1$
-
-ÿœ
-
-ÿ¡ÿJ(datei1$)ÿpÿdatei1$
-
-Superbase.Converters.SBF.SourceFormatÿ"Superbase"
-
-Superbase.Converters.SBF.SourceFileÿdatei0$
-
-Superbase.Converters.SBF.Descendingÿ0
-
-Superbase.Converters.SBF.Mergeÿ0
-
-Superbase.Converters.SBF.LogErrorsÿ0
-
-Superbase.Converters.SBF.MultiResponseÿ0
-
-Superbase.Converters.CSV.DestFormatÿ"Comma-separated values"
-
-Superbase.Converters.CSV.DestFileÿ_netpath$ÿ"EXPDAT\"ÿdatei1$
-
-Superbase.Converters.CSV.UseLabelsÿÿ1
-
-Superbase.Converters.CSV.ANSIConvertÿ0
-
-Superbase.Converters.CSV.Convert(Superbase.Converters.SBF)
-
-ÿÏÿ›2
-ÿ’ÿ¡
-tende1%ÿÿR
-tende1$ÿÿ7(tende1%,"hh:mm:ss")
-tnow1$ÿÿ7(tnow1%,"hh:mm:ss")
-tdiff1%ÿtende1%ÿtnow1%
-tdiff1$ÿÿ7(tdiff1%,"hh:mm:ss")
-MAName.expdatÿ"Start: "ÿtnow1$ÿ"  Ende: "ÿtende1$ÿ"   Dauer: "ÿtdiff1$
-zero.expdatÿ1
-ÿÌÿ™"expdat"
-ÿ’ÿ¡
-ÿ½ ***********************************************************
-ÿ^
-i%ÿ301
-ÿ’ÿ¡
+     IF datei0$ LIKE "geadr" THEN ok11% = - 1
+     IF datei0$ LIKE "geadr2" THEN ok11% = - 1
+     IF datei0$ LIKE "gekond" THEN ok11% = - 1
+     IF datei0$ LIKE "kvertrag" THEN ok11% = - 1
+     IF datei0$ LIKE "MAADR" THEN ok11% = - 1
+     IF datei0$ LIKE "MAVORG" THEN ok11% = - 1
+     IF datei0$ LIKE "sparten" THEN ok11% = - 1
+     IF datei0$ LIKE "spgruppe" THEN ok11% = - 1
+     IF datei0$ LIKE "spezkond" THEN ok11% = - 1
+     IF datei0$ LIKE "statukey" THEN ok11% = - 1
+     IF datei0$ LIKE "tarif" THEN ok11% = - 1
+     IF datei0$ LIKE "vorgang" THEN ok11% = - 1
+     IF datei0$ LIKE "vprodukt" THEN ok11% = - 1
+     IF datei0$ LIKE "waehrung" THEN ok11% = - 1
+     IF datei0$ LIKE "wknr" THEN ok11% = - 1
+     IF alle% = 1 THEN ok11% = - 1
+     dattest$ = _netpath$ + "EXPDAT\" + datei0$ + ".cod"
+     IF NOT EXISTS (datname$,datname.expdat) THEN 
+       ok11% = 0
+     ELSE 
+       SELECT FIRST FILE "expdat" INDEX datname.expdat
+       SELECT KEY datname$ LOCK FILE "expdat" INDEX datname.expdat
+     END IF 
+     REM ok11% = 0
+     IF ok11% = - 1 AND zero.expdat <> 1 AND RECCOUNT (datei0$) > 0 THEN 
+       tnow1% = NOW 
+       REM CALL Fehler(datei0$,"")
+        MOUSE OFF 
+        IF xml% = 1 THEN 
+          IF RECCOUNT (datei0$) > 0 THEN CALL CreateINH(datei0$,path$,art%)
+        ELSE 
+          datei1$ = datei0$ + ".CSV"
+          textdo1$ = datei1$
+          textdo$ = "Exportiere " + datei1$
+          FORM 
+          IF EXISTS (datei1$) THEN DELETE datei1$
+          Superbase.Converters.SBF.SourceFormat = "Superbase"
+          Superbase.Converters.SBF.SourceFile = datei0$
+          Superbase.Converters.SBF.Descending = 0
+          Superbase.Converters.SBF.Merge = 0
+          Superbase.Converters.SBF.LogErrors = 0
+          Superbase.Converters.SBF.MultiResponse = 0
+          Superbase.Converters.CSV.DestFormat = "Comma-separated values"
+          Superbase.Converters.CSV.DestFile = _netpath$ + "EXPDAT\" + datei1$
+          Superbase.Converters.CSV.UseLabels = - 1
+          Superbase.Converters.CSV.ANSIConvert = 0
+          Superbase.Converters.CSV.Convert(Superbase.Converters.SBF)
+          WAIT FOR 2
+        END IF 
+        tende1% = NOW 
+        tende1$ = TIME$ (tende1%,"hh:mm:ss")
+        tnow1$ = TIME$ (tnow1%,"hh:mm:ss")
+        tdiff1% = tende1% - tnow1%
+        tdiff1$ = TIME$ (tdiff1%,"hh:mm:ss")
+        MAName.expdat = "Start: " + tnow1$ + "  Ende: " + tende1$ + "   Dauer: " + tdiff1$
+        zero.expdat = 1
+        STORE FILE "expdat"
+     END IF 
+     REM ***********************************************************
+   ELSE 
+     i% = 301
+   END IF 
 w030320061: 
- ÿ±i%
- ÿÂ"PROVIS fertig","",2
- ÿ¡art%ÿ1ÿp
-ÿ†ÿ¶
- ÿ’ÿ¡
- ÿ†ÿt
- ÿ¡ÿOÿ´("EXPDAT")ÿp
-ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
- ÿ’ÿ¡
- ÿwend041120051 
+ NEXT i%
+ REQUEST "PROVIS fertig","",2
+ IF art% = 1 THEN 
+   CLOSE OUTPUT 
+ END IF 
+ CLOSE ALL 
+ IF NOT OPEN ("EXPDAT") THEN 
+   CALL DFile(2,"EXPDAT" + _fpw$)
+ END IF 
+ GOTO end041120051 
 
- ÿÿsbd$(300,1)
- ÿÿsbd$(300)
- _netpath$ÿpath$ÿ"GDV\GDV_DAT\"
- ÿpath$ÿ"GDV\GDV_DAT"
- _netpath$ÿpath$ÿ"GDV\GDV_DAT\"
- ÿÿsbd$,5,"*.SBD"
- ÿ›i%ÿ0ÿq300
-ÿ¡sbd$(i%)ÿ""ÿp
-lenge%ÿÿ/(sbd$(i%))
-datei$ÿÿ+(sbd$(i%),lenge%ÿ4)
-datei0$ÿdatei$
-ÿ¡datei$ÿ"config"ÿp
-datei$ÿdatei$ÿ";london8474"
-ÿ^
-datei$ÿdatei$ÿ";paris"
-ÿ’ÿ¡
-ÿ¡ÿOÿ´(sbd$(i%))ÿp
-ÿ´ÿ™ÿà,0_netpath$ÿdatei$
-ÿ’ÿ¡
-ÿ½ ********Aufruf der SQL-Statement Generierung **************
-ok11%ÿ0
-ÿ¡datei0$ÿ"telefon"ÿpok11%ÿÿ1
-ÿ¡ok11%ÿÿ1ÿÿA(datei0$)ÿ0ÿp
-ÿ¡ÿA(datei0$)ÿ0ÿpÿƒCreateINH(datei0$,path$,art%)
-ÿ½ ***********************************************************
-ÿ^
-i%ÿ301
-ÿ’ÿ¡
- ÿ±i%
+ REDIM sbd$(300,1)
+ REDIM sbd$(300)
+ _netpath$ = path$ + "GDV\GDV_DAT\"
+ DIRECTORY path$ + "GDV\GDV_DAT"
+ _netpath$ = path$ + "GDV\GDV_DAT\"
+ FILLARRAY sbd$,5,"*.SBD"
+ FOR i% = 0 TO 300
+   IF sbd$(i%) <> "" THEN 
+     lenge% = LEN (sbd$(i%))
+     datei$ = LEFT$ (sbd$(i%),lenge% - 4)
+     datei0$ = datei$
+     IF datei$ LIKE "config" THEN 
+       datei$ = datei$ + ";london8474"
+     ELSE 
+       datei$ = datei$ + ";paris"
+     END IF 
+     IF NOT OPEN (sbd$(i%)) THEN 
+       OPEN FILE SHARE ,0_netpath$ + datei$
+     END IF 
+     REM ********Aufruf der SQL-Statement Generierung **************
+     ok11% = 0
+     IF datei0$ LIKE "telefon" THEN ok11% = - 1
+     IF ok11% = - 1 AND RECCOUNT (datei0$) > 0 THEN 
+      IF RECCOUNT (datei0$) > 0 THEN CALL CreateINH(datei0$,path$,art%)
+     REM ***********************************************************
+   ELSE 
+     i% = 301
+   END IF 
+ NEXT i%
  
- ÿÂ"GDV fertig","",2
- ÿ†ÿt
+ REQUEST "GDV fertig","",2
+ CLOSE ALL 
 
- ÿ¡ÿOÿ´("EXPDAT")ÿp
-ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
- ÿ’ÿ¡
-end041120051:
- ÿ´ÿœ_netpath$ÿ"dummy2.sbv"
- ÿÂ"Ende"
- ÿ¡ÿOÿ´("EXPDAT")ÿp
-ÿƒDFile(2,"EXPDAT"ÿ_fpw$)
- ÿ’ÿ¡
- tende%ÿÿR
- tende$ÿÿ7(tende%,"hh:mm:ss")
- tnow$ÿÿ7(tnow%,"hh:mm:ss")
- tdiff%ÿtende%ÿtnow%
- tdiff$ÿÿ7(tdiff%,"hh:mm:ss")
- ÿƒFehler("Export beendet!","Start: "ÿtnow$ÿ"  Ende: "ÿtende$ÿ"   Dauer: "ÿtdiff$)
- ÿ’ÿÿ
+ IF NOT OPEN ("EXPDAT") THEN 
+   CALL DFile(2,"EXPDAT" + _fpw$)
+ END IF 
+end041120051:  
+ OPEN FORM _netpath$ + "dummy2.sbv"
+ REQUEST "Ende"
+ IF NOT OPEN ("EXPDAT") THEN 
+   CALL DFile(2,"EXPDAT" + _fpw$)
+ END IF 
+ tende% = NOW 
+ tende$ = TIME$ (tende%,"hh:mm:ss")
+ tnow$ = TIME$ (tnow%,"hh:mm:ss")
+ tdiff% = tende% - tnow%
+ tdiff$ = TIME$ (tdiff%,"hh:mm:ss")
+ CALL Fehler("Export beendet!","Start: " + tnow$ + "  Ende: " + tende$ + "   Dauer: " + tdiff$)
+ END SUB 
 
-ÿÿCreateINH(datei$,path$,art%)
- ÿ½ CALL Fehler("CreateINH",datei$)
- ÿ´ÿœ_netpath$ÿ"dummy2.sbv"
- s$ÿ"0"
- az%ÿ0
- ÿ×FldNam1$(1)
- ÿÊÿËdatei$
- ÿ¡art%ÿ1ÿp
-ÿ¡datei$ÿ"buchung*"ÿp
-ÿ›u%ÿ0ÿq99
-ÿ¡ÿ>(datei$)ÿ"BUCHUNG"ÿp
-datei1$ÿexpverz$ÿ"\"ÿ"buch-"ÿÿ(u%,"00")ÿ".cod"
-ÿ^
-datei1$ÿexpverz$ÿ"\"ÿ"buch1-"ÿÿ(u%,"00")ÿ".cod"
-ÿ’ÿ¡
-ÿ¡ÿJ(datei1$)ÿpÿdatei1$
-ÿ±u%
-ÿ^
-datei1$ÿexpverz$ÿ"\"ÿdatei$ÿ".cod"
-ÿ¡ÿJ(datei1$)ÿpÿdatei1$
-ÿ´datei1$ÿ›ÿ¶
-ÿ{"<?xml version="ÿÿ(34)ÿ"1.0"ÿÿ(34)ÿ" encoding="ÿÿ(34)ÿ"ISO-8859-1"ÿÿ(34)ÿ"?> "
-ÿ{""
-ÿ{"<CODIE-EXPORT>"
-ÿ’ÿ¡
- ÿ’ÿ¡
- ÿ½ CALL Fehler("del","")
-feldanz%ÿÿõ(datei$,1)
-ÿÿFldNam1$(feldanz%)
-ÿ×felder$(feldanz%)
-ÿ×feldtyp$(feldanz%)
-ÿ×feldindex$(feldanz%)
-ÿ×feldanzeig$(feldanz%)
-ÿ×feldera$(feldanz%)
+SUB CreateINH(datei$,path$,art%)
+ REM CALL Fehler("CreateINH",datei$)
+ OPEN FORM _netpath$ + "dummy2.sbv"
+ s$ = "0"
+ az% = 0
+ DIM FldNam1$(1)
+ SET STATUS datei$
+ IF art% <> 1 THEN 
+  IF datei$ LIKE "buchung*" THEN 
+    FOR u% = 0 TO 99
+      IF UCASE$ (datei$) = "BUCHUNG" THEN 
+        datei1$ = expverz$ + "\" + "buch-" + STR$ (u%,"00") + ".cod"
+      ELSE 
+        datei1$ = expverz$ + "\" + "buch1-" + STR$ (u%,"00") + ".cod"
+      END IF 
+      IF EXISTS (datei1$) THEN DELETE datei1$
+    NEXT u%
+  ELSE 
+    datei1$ = expverz$ + "\" + datei$ + ".cod"
+    IF EXISTS (datei1$) THEN DELETE datei1$
+    OPEN datei1$ FOR OUTPUT 
+    ? "<?xml version=" + CHR$ (34) + "1.0" + CHR$ (34) + " encoding=" + CHR$ (34) + "ISO-8859-1" + CHR$ (34) + "?> "
+    ? ""
+    ? "<CODIE-EXPORT>"
+  END IF 
+ END IF 
+ REM CALL Fehler("del","")
+    feldanz% = FILEINFO (datei$,1)
+    REDIM FldNam1$(feldanz%)
+    DIM felder$(feldanz%)
+    DIM feldtyp$(feldanz%)
+    DIM feldindex$(feldanz%)
+    DIM feldanzeig$(feldanz%)
+    DIM feldera$(feldanz%)
 
-ÿÿfelder$,1
-ÿÉÿ`ÿ™datei$
-ÿ½ SELECT KEY 2696731 FILE datei$ INDEX codebu
-jjj%ÿ0
-xjj%ÿ0
-kkk%ÿÿA(datei$)
-ÿÿFldNam1$(feldanz%,1)
-ÿÿFldNam1$(feldanz%)
-ÿ›i%ÿ0ÿqfeldanz%ÿ1
-ÿ¡felder$(i%)ÿ""ÿp
-feldtyp$(i%)ÿÿö(felder$(i%),0)
-feldindex$(i%)ÿÿö(felder$(i%),3)
-feldanzeig$(i%)ÿÿö(felder$(i%),4)
-fname$ÿVSNRPack$(ÿ>(felder$(i%)))
-fname1$ÿÿ>(felder$(i%))
-feldera$(i%)ÿVSNRPackEx$(ÿ>(felder$(i%)))
-ÿ’ÿ¡
-ÿ±i%
-xend%ÿ0
+    FILLARRAY felder$,1
+   SELECT FIRST FILE datei$
+   REM SELECT KEY 2696731 FILE datei$ INDEX codebu
+   jjj% = 0
+   xjj% = 0
+   kkk% = RECCOUNT (datei$)
+   REDIM FldNam1$(feldanz%,1)
+   REDIM FldNam1$(feldanz%)
+   FOR i% = 0 TO feldanz% - 1
+     IF felder$(i%) <> "" THEN 
+      feldtyp$(i%) = FIELDINFO$ (felder$(i%),0)
+      feldindex$(i%) = FIELDINFO$ (felder$(i%),3)
+      feldanzeig$(i%) = FIELDINFO$ (felder$(i%),4)
+      fname$ = VSNRPack$( UCASE$ (felder$(i%)))
+      fname1$ = UCASE$ (felder$(i%))
+      feldera$(i%) = VSNRPackEx$( UCASE$ (felder$(i%)))
+    END IF 
+   NEXT i%
+   xend% = 0
 
 azsg041120051: 
-ÿ¡datei$ÿ"buchung"ÿdatei$ÿ"buchung1"ÿp
-az%ÿaz%ÿ1
-xjj%ÿ0
-xend%ÿ0
-ÿ¡ÿ>(datei$)ÿ"BUCHUNG"ÿp
-datei1$ÿexpverz$ÿ"\"ÿ"buch-"ÿÿ(az%,"00")ÿ".cod"
-ÿ^
-datei1$ÿexpverz$ÿ"\"ÿ"buch1-"ÿÿ(az%,"00")ÿ".cod"
-ÿ’ÿ¡
-ÿ´datei1$ÿ›ÿ¶
-ÿ{"<?xml version="ÿÿ(34)ÿ"1.0"ÿÿ(34)ÿ" encoding="ÿÿ(34)ÿ"ISO-8859-1"ÿÿ(34)ÿ"?> "
-ÿ{""
-ÿ{"<CODIE-EXPORT>"
-ÿ’ÿ¡
-origdatei$ÿdatei$
-ÿ¡datei$ÿ"connect"ÿdatei$ÿ"conbck"ÿdatei$ÿ"conadr1"ÿp
-ÿ¡ÿJ(_netpath$ÿ"office\conreo.sbf")ÿp
-ÿ¡ÿ´("conreo")ÿpÿ†ÿ™"conreo"
-ÿ_netpath$ÿ"\office\conreo.*"
-ÿ’ÿ¡
-ÿÏÿ›1
-ÿÀÿ™datei$ÿq_netpath$ÿ"office\conreo.sbf"
-ÿÏÿ›3
-fcon$ÿ"conreo"
-ÿ™fcon$
-ÿ£codeku.fcon$
-ÿÉÿ`
-l%ÿ0
-ÿØÿOÿB(fcon$)
-codecon%ÿcodecon.fcon$
-codeku%ÿcodeku.fcon$
-codekucon$ÿÿ(codecon%,"000000")ÿÿ(codeku%,"000000")
-ÿ¡ÿJ(codekucon$,codekucon.fcon$)ÿp
-	ÿ¾ÿaÿ™fcon$ÿĞcodekucon.fcon$ÿcodekucon$
-	l%ÿl%ÿ1
-ÿ’ÿ¡
-ÿÊÿËÿ(l%,",999999")
-ÿÉÿ±ÿ™fcon$
-ÿÙ
-datei$ÿfcon$
-ÿÉÿ`ÿ™datei$
-ÿ’ÿ¡
-ÿØÿOÿB(datei$)
-ÿßÿe
-jjj%ÿjjj%ÿ1
-xjj%ÿxjj%ÿ1
-ÿÊÿËdatei$ÿ"    "ÿÿ(jjj%,",99999999")ÿ"   von   "ÿÿ(kkk%,",99999999")
-textdo1$ÿdatei$
-textdo$ÿ"Exportiere "ÿÿ(jjj%,",99999999")ÿ"   von   "ÿÿ(kkk%,",99999999")
-ÿœ
-ÿ{"<CODIE-SATZ>"
+   IF datei$ LIKE "buchung" OR datei$ LIKE "buchung1" THEN 
+     az% = az% + 1
+     xjj% = 0
+     xend% = 0
+     IF UCASE$ (datei$) = "BUCHUNG" THEN 
+       datei1$ = expverz$ + "\" + "buch-" + STR$ (az%,"00") + ".cod"
+     ELSE 
+       datei1$ = expverz$ + "\" + "buch1-" + STR$ (az%,"00") + ".cod"
+     END IF 
+     OPEN datei1$ FOR OUTPUT 
+     ? "<?xml version=" + CHR$ (34) + "1.0" + CHR$ (34) + " encoding=" + CHR$ (34) + "ISO-8859-1" + CHR$ (34) + "?> "
+     ? ""
+     ? "<CODIE-EXPORT>"
+   END IF 
+   origdatei$ = datei$
+   IF datei$ LIKE "connect" OR datei$ LIKE "conbck" OR datei$ LIKE "conadr1" THEN 
+     IF EXISTS (_netpath$ + "office\conreo.sbf") THEN 
+       IF OPEN ("conreo") THEN CLOSE FILE "conreo"
+       DELETE _netpath$ + "\office\conreo.*"
+     END IF 
+     WAIT FOR 1
+     REORGANIZE FILE datei$ TO _netpath$ + "office\conreo.sbf"
+     WAIT FOR 3
+     fcon$ = "conreo"
+     FILE fcon$
+     INDEX codeku.fcon$
+     SELECT FIRST 
+     l% = 0
+     WHILE NOT EOF (fcon$)
+       codecon% = codecon.fcon$
+       codeku% = codeku.fcon$
+       codekucon$ = STR$ (codecon%,"000000") + STR$ (codeku%,"000000")
+       IF EXISTS (codekucon$,codekucon.fcon$) THEN 
+         REMOVE FROM FILE fcon$ WHERE codekucon.fcon$ = codekucon$
+         l% = l% + 1
+       END IF 
+       SET STATUS STR$ (l%,",999999")
+       SELECT NEXT FILE fcon$
+      WEND 
+      datei$ = fcon$
+      SELECT FIRST FILE datei$
+   END IF 
+   WHILE NOT EOF (datei$)
+     MOUSE OFF 
+     jjj% = jjj% + 1
+     xjj% = xjj% + 1
+     SET STATUS datei$ + "    " + STR$ (jjj%,",99999999") + "   von   " + STR$ (kkk%,",99999999")
+     textdo1$ = datei$
+     textdo$ = "Exportiere " + STR$ (jjj%,",99999999") + "   von   " + STR$ (kkk%,",99999999")
+     FORM 
+     ? "<CODIE-SATZ>"
 
  
-ÿ›i%ÿ0ÿqfeldanz%ÿ1
-fname0$ÿfelder$(i%)
-ÿ¡fname0$ÿ"VertrStatu*"ÿfname0$ÿ"BWVertrStatu*"ÿfname0$ÿ"BeiVertrStatu*"ÿfname0$ÿ"EinhStatu*"ÿfname0$ÿ"AnzSchStatu*"ÿfname0$ÿ"SchStatu*"ÿfname0$ÿ"CAgez*"ÿp
-	ÿwwei060120061
-ÿ’ÿ¡
-fname1$ÿfeldera$(i%)
-ÿ½ IF fname1$ LIKE "*" OR fname1$ LIKE "**" OR fname1$ LIKE "š*" OR fname1$ LIKE "*š*" OR fname1$ LIKE "™*" OR fname1$ LIKE "*™*" OR fname1$ LIKE "á*" OR fname1$ LIKE "*á*" THEN 
-	ÿ½ fname1$ = VSNRPackEx$( UCASE$ (felder$(i%)))
-ÿ½ END IF 
-ÿ¡feldtyp$(i%)ÿ"DEL"ÿpÿwwei060120061
-ÿ¡feldtyp$(i%)ÿ"NUM"ÿp
-ÿ½ CALL Fehler("NUM",feldanzeig$(i%))
-le%ÿÿ/(feldanzeig$(i%))
-pos%ÿ0
-pos%ÿÿ?(feldanzeig$(i%),".")
-ok%ÿ0
-ÿ¡pos%ÿ0ÿle%ÿpos%ÿp
-
-ok%ÿ1
-
-vorkomma%ÿpos%ÿ1
-
-nachkomma%ÿle%ÿpos%
-
-ÿ¡fname0$$ÿ0ÿfname0$ÿ"noan*"ÿfname0$ÿ"cod*"ÿfname0$ÿ"vorg*"ÿfname0$ÿ"lfdnr*"ÿfname0$ÿ"filia*"ÿfname0$ÿ"workstation*"ÿfname0$ÿ"bro*"ÿp
-ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿÿH(ÿ(fname0$$,"999999999.0000"))ÿ"]]></"ÿfname1$ÿ">"
-
-ÿ’ÿ¡
-ÿ^
-
-ok%ÿ1
-
-ÿ¡fname$ÿ"TIMESTAMP*"ÿp
-
-ÿ^
-ÿ¡fname0$$ÿ0ÿfname0$ÿ"noan*"ÿfname0$ÿ"cod*"ÿfname0$ÿ"vorg*"ÿfname0$ÿ"lfdnr*"ÿfname0$ÿ"filia*"ÿfname0$ÿ"workstation*"ÿfname0$ÿ"bro*"ÿp
-ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿÿH(ÿ(fname0$$,"999999999."))ÿ"]]></"ÿfname1$ÿ">"
-ÿ’ÿ¡
-
-ÿ’ÿ¡
-ÿ’ÿ¡
-ÿ’ÿ¡
-ÿ¡feldtyp$(i%)ÿ"NMI"ÿp
-ok%ÿ1
-ÿ¡fname0$$ÿ0ÿfname0$ÿ"noan*"ÿpÿ{"<"ÿfname1$ÿ"><![CDATA["ÿÿH(ÿ(fname0$$,"999999999."))ÿ"]]></"ÿfname1$ÿ">"
-ÿ’ÿ¡
-ÿ¡feldtyp$(i%)ÿ"TXT*"ÿp
-ok%ÿ1
-ÿ¡fname0$ÿ"Waehrung*"ÿp
-
-ÿ½ CALL Fehler("","")
-
-finh$ÿÿ>(fname0$$)
-ÿ^
-
-finh$ÿfname0$$
-ÿ’ÿ¡
-ÿ½ IF LEFT$ (finh$,1) = "<" THEN 
-
-ÿ½ tinh$ = MID$ (finh$,2)
-
-ÿ½ finh$ = tinh$
-ÿ½ END IF 
-ÿ½ IF RIGHT$ (finh$,1) = ">" THEN 
-
-ÿ½ len1% = LEN (finh$) - 1
-
-ÿ½ tinh$ = MID$ (finh$,1,len1%)
-
-ÿ½ finh$ = tinh$
-ÿ½ END IF 
-le%ÿÿ/(finh$)
-ÿ¡le%ÿ2000ÿp
-
-txt1$ÿÿåansi(ÿ+(finh$,2000))
-
-testwert$ÿÿ(7)
-
-pos%ÿ0
-
-pos%ÿÿ?(txt1$,testwert$)
-
-ÿ¡pos%ÿ0ÿp
-txt1a$ÿÿ+(txt1$,pos%ÿ1)ÿÿ,(txt1$,pos%ÿ1)
-txt1$ÿtxt1a$
-
-ÿ’ÿ¡
-
-ÿ{"<"ÿfname1$ÿ"><![CDATA["
-
-ÿ{txt1$
-
-txt1$ÿÿåansi(ÿ,(finh$,2000))
-
-testwert$ÿÿ(7)
-
-pos%ÿ0
-
-pos%ÿÿ?(txt1$,testwert$)
-
-ÿ¡pos%ÿ0ÿp
-txt1a$ÿÿ+(txt1$,pos%ÿ1)ÿÿ,(txt1$,pos%ÿ1)
-txt1$ÿtxt1a$
-
-ÿ’ÿ¡
-
-ÿ{txt1$
-
-ÿ{"]]></"ÿfname1$ÿ">"
-ÿ^
-
-ÿ½ CALL Fehler(fname0$,nachname.supervis)
-
-ÿ¡(fname0$ÿ"Paáwort")ÿ(datei$ÿ"supervis"ÿdatei$ÿ"filiale")ÿp
-pw$ÿ""
-ÿ¡datei$ÿ"supervis"ÿp
-pw$ÿPWDecoded$()
-ÿ’ÿ¡
-ÿ¡datei$ÿ"filiale"ÿp
-pw$ÿFPWDecoded$()
-ÿ’ÿ¡
-ÿ¡pw$ÿ""ÿpÿ{"<"ÿfname1$ÿ"><![CDATA["ÿÿåansi(pw$)ÿ"]]></"ÿfname1$ÿ">"
-
-ÿ^
-txt1$ÿÿ+(ÿåansi(ÿF(ÿH(finh$))),le%)
-ÿ¡txt1$ÿ""ÿfname0$ÿ"noan*"ÿp
-ÿ½ ASCII -> BEL
-testwert$ÿÿ(7)
-pos%ÿ0
-pos%ÿÿ?(txt1$,testwert$)
-ÿ¡pos%ÿ0ÿp
-txt1a$ÿÿ+(txt1$,pos%ÿ1)ÿÿ,(txt1$,pos%ÿ1)
-txt1$ÿtxt1a$
-ÿ’ÿ¡
-
-ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿtxt1$ÿ"]]></"ÿfname1$ÿ">"
-ÿ’ÿ¡
-
-ÿ’ÿ¡
-ÿ’ÿ¡
-ÿ’ÿ¡
-ÿ¡feldtyp$(i%)ÿ"LOG"ÿp
-ok%ÿ1
-ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿfname0$$ÿ"]]></"ÿfname1$ÿ">"
-ÿ’ÿ¡
-ÿ¡feldtyp$(i%)ÿ"DAT"ÿp
-	ok%ÿ1
-	ÿ¡fname0$$ÿ0ÿp
-ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿÿ(fname0$$,"yyyymmdd")ÿ"]]></"ÿfname1$ÿ">"
-	ÿ^
-ÿ½ ? "<" + fname1$ + ">" + "</" + fname1$ + ">"
-	ÿ’ÿ¡
-ÿ’ÿ¡
-ÿ¡feldtyp$(i%)ÿ"TIM"ÿp
-	ok%ÿ1
-	ÿ¡fname0$$ÿ0ÿp
-ÿ{"<"ÿfname1$ÿ"><![CDATA["ÿÿ7(fname0$$,"hh:mm")ÿ"]]></"ÿfname1$ÿ">"
-	ÿ^
-ÿ½ ? "<" + fname1$ + ">" + "</" + fname1$ + ">"
-	ÿ’ÿ¡
-ÿ’ÿ¡
-ÿ¡fname$ÿ"TIMESTAMP*"ÿp
-	ok%ÿ1
-	ÿ½ ? "<" + fname1$ + ">" + "</" + fname1$ + ">"
-ÿ’ÿ¡
-ÿ½ ? befstring$;
-ÿ¡ok%ÿ0ÿp
-	t$ÿfeldtyp$(i%)
-	ÿÂt$,"nicht angelegt",2
-ÿ’ÿ¡
+     FOR i% = 0 TO feldanz% - 1
+       fname0$ = felder$(i%)
+       IF fname0$ LIKE "VertrStatu*" OR fname0$ LIKE "BWVertrStatu*" OR fname0$ LIKE "BeiVertrStatu*" OR fname0$ LIKE "EinhStatu*" OR fname0$ LIKE "AnzSchStatu*" OR fname0$ LIKE "SchStatu*" OR fname0$ LIKE "CAgez*" THEN 
+         GOTO wei060120061
+       END IF 
+       fname1$ = feldera$(i%)
+       REM IF fname1$ LIKE "*" OR fname1$ LIKE "**" OR fname1$ LIKE "š*" OR fname1$ LIKE "*š*" OR fname1$ LIKE "™*" OR fname1$ LIKE "*™*" OR fname1$ LIKE "á*" OR fname1$ LIKE "*á*" THEN 
+         REM fname1$ = VSNRPackEx$( UCASE$ (felder$(i%)))
+       REM END IF 
+       IF feldtyp$(i%) = "DEL" THEN GOTO wei060120061
+       IF feldtyp$(i%) = "NUM" THEN 
+        REM CALL Fehler("NUM",feldanzeig$(i%))
+        le% = LEN (feldanzeig$(i%))
+        pos% = 0
+        pos% = INSTR (feldanzeig$(i%),".")
+        ok% = 0
+        IF pos% > 0 AND le% > pos% THEN 
+          ok% = 1
+          vorkomma% = pos% - 1
+          nachkomma% = le% - pos%
+          IF fname0$$ <> 0 OR fname0$ LIKE "noan*" OR fname0$ LIKE "cod*" OR fname0$ LIKE "vorg*" OR fname0$ LIKE "lfdnr*" OR fname0$ LIKE "filia*" OR fname0$ LIKE "workstation*" OR fname0$ LIKE "bro*" THEN 
+            ? "<" + fname1$ + "><![CDATA[" + LTRIM$ ( STR$ (fname0$$,"999999999.0000")) + "]]></" + fname1$ + ">"
+          END IF 
+        ELSE 
+          ok% = 1
+          IF fname$ LIKE "TIMESTAMP*" THEN 
+          ELSE 
+            IF fname0$$ <> 0 OR fname0$ LIKE "noan*" OR fname0$ LIKE "cod*" OR fname0$ LIKE "vorg*" OR fname0$ LIKE "lfdnr*" OR fname0$ LIKE "filia*" OR fname0$ LIKE "workstation*" OR fname0$ LIKE "bro*" THEN 
+              ? "<" + fname1$ + "><![CDATA[" + LTRIM$ ( STR$ (fname0$$,"999999999.")) + "]]></" + fname1$ + ">"
+            END IF 
+          END IF 
+        END IF 
+       END IF 
+       IF feldtyp$(i%) = "NMI" THEN 
+        ok% = 1
+        IF fname0$$ <> 0 OR fname0$ LIKE "noan*" THEN ? "<" + fname1$ + "><![CDATA[" + LTRIM$ ( STR$ (fname0$$,"999999999.")) + "]]></" + fname1$ + ">"
+       END IF 
+       IF feldtyp$(i%) LIKE "TXT*" THEN 
+        ok% = 1
+        IF fname0$ LIKE "Waehrung*" THEN 
+          REM CALL Fehler("","")
+          finh$ = UCASE$ (fname0$$)
+        ELSE 
+          finh$ = fname0$$
+        END IF 
+        REM IF LEFT$ (finh$,1) = "<" THEN 
+          REM tinh$ = MID$ (finh$,2)
+          REM finh$ = tinh$
+        REM END IF 
+        REM IF RIGHT$ (finh$,1) = ">" THEN 
+          REM len1% = LEN (finh$) - 1
+          REM tinh$ = MID$ (finh$,1,len1%)
+          REM finh$ = tinh$
+        REM END IF 
+        le% = LEN (finh$)
+        IF le% > 2000 THEN 
+          txt1$ = FN ansi( LEFT$ (finh$,2000))
+          testwert$ = CHR$ (7)
+          pos% = 0
+          pos% = INSTR (txt1$,testwert$)
+          IF pos% > 0 THEN 
+            txt1a$ = LEFT$ (txt1$,pos% - 1) + MID$ (txt1$,pos% + 1)
+            txt1$ = txt1a$
+          END IF 
+          ? "<" + fname1$ + "><![CDATA["
+          ? txt1$
+          txt1$ = FN ansi( MID$ (finh$,2000))
+          testwert$ = CHR$ (7)
+          pos% = 0
+          pos% = INSTR (txt1$,testwert$)
+          IF pos% > 0 THEN 
+            txt1a$ = LEFT$ (txt1$,pos% - 1) + MID$ (txt1$,pos% + 1)
+            txt1$ = txt1a$
+          END IF 
+          ? txt1$
+          ? "]]></" + fname1$ + ">"
+        ELSE 
+          REM CALL Fehler(fname0$,nachname.supervis)
+          IF (fname0$ LIKE "Paáwort") AND (datei$ LIKE "supervis" OR datei$ LIKE "filiale") THEN 
+            pw$ = ""
+            IF datei$ LIKE "supervis" THEN 
+              pw$ = PWDecoded$()
+            END IF 
+            IF datei$ LIKE "filiale" THEN 
+              pw$ = FPWDecoded$()
+            END IF 
+            IF pw$ <> "" THEN ? "<" + fname1$ + "><![CDATA[" + FN ansi(pw$) + "]]></" + fname1$ + ">"
+          ELSE 
+            txt1$ = LEFT$ ( FN ansi( TRIM$ ( LTRIM$ (finh$))),le%)
+            IF txt1$ <> "" OR fname0$ LIKE "noan*" THEN 
+              REM ASCII -> BEL
+              testwert$ = CHR$ (7)
+              pos% = 0
+              pos% = INSTR (txt1$,testwert$)
+              IF pos% > 0 THEN 
+                txt1a$ = LEFT$ (txt1$,pos% - 1) + MID$ (txt1$,pos% + 1)
+                txt1$ = txt1a$
+              END IF 
+               
+              ? "<" + fname1$ + "><![CDATA[" + txt1$ + "]]></" + fname1$ + ">"
+            END IF 
+          END IF 
+        END IF 
+       END IF 
+       IF feldtyp$(i%) = "LOG" THEN 
+        ok% = 1
+        ? "<" + fname1$ + "><![CDATA[" + fname0$$ + "]]></" + fname1$ + ">"
+       END IF 
+       IF feldtyp$(i%) = "DAT" THEN 
+         ok% = 1
+         IF fname0$$ > 0 THEN 
+           ? "<" + fname1$ + "><![CDATA[" + DATE$ (fname0$$,"yyyymmdd") + "]]></" + fname1$ + ">"
+         ELSE 
+           REM ? "<" + fname1$ + ">" + "</" + fname1$ + ">"
+         END IF 
+       END IF 
+       IF feldtyp$(i%) = "TIM" THEN 
+         ok% = 1
+         IF fname0$$ > 0 THEN 
+           ? "<" + fname1$ + "><![CDATA[" + TIME$ (fname0$$,"hh:mm") + "]]></" + fname1$ + ">"
+         ELSE 
+           REM ? "<" + fname1$ + ">" + "</" + fname1$ + ">"
+         END IF 
+       END IF 
+       IF fname$ LIKE "TIMESTAMP*" THEN 
+         ok% = 1
+         REM ? "<" + fname1$ + ">" + "</" + fname1$ + ">"
+       END IF 
+       REM ? befstring$;
+       IF ok% = 0 THEN 
+         t$ = feldtyp$(i%)
+         REQUEST t$,"nicht angelegt",2
+       END IF 
 wei060120061: 
-ÿ±i%
-
-ÿ{"</CODIE-SATZ>"
-ÿ½ CALL Fehler( STR$ (xjj%,",999999"),"")
-ÿ¡ÿ>(datei$)ÿ"BUCHUNG*"ÿp
-ÿ¡xjj%ÿ200000ÿp
-	ÿ{"</CODIE-EXPORT>"
-	ÿ†ÿ¶
-	xend%ÿ1
-	ÿwazsg041120051
-ÿ’ÿ¡
-ÿ’ÿ¡
-ÿÉÿ±ÿ™datei$
-ÿÙ
- datei$ÿorigdatei$
- ÿ¡art%ÿ1ÿxend%ÿ0ÿp
-ÿ{"</CODIE-EXPORT>"
-ÿ†ÿ¶
- ÿ’ÿ¡
- ÿ½ CALL Fehler("TMPSTR99","")
- ÿ½ ? "AAAA"
- ÿ½ LOAD "TMPSTR99.SBP", NEW 
- ÿ½ CALL TMPSTR99()
- ÿ½ CLOSE PROGRAMFILE "TMPSTR99"
- ÿ’ÿÿ
+     NEXT i%
+     
+     ? "</CODIE-SATZ>"
+     REM CALL Fehler( STR$ (xjj%,",999999"),"")
+     IF UCASE$ (datei$) LIKE "BUCHUNG*" THEN 
+       IF xjj% >= 200000 THEN 
+         ? "</CODIE-EXPORT>"
+         CLOSE OUTPUT 
+         xend% = 1
+         GOTO azsg041120051
+       END IF 
+     END IF 
+     SELECT NEXT FILE datei$
+   WEND 
+ datei$ = origdatei$
+ IF art% <> 1 AND xend% = 0 THEN 
+   ? "</CODIE-EXPORT>"
+   CLOSE OUTPUT 
+ END IF 
+ REM CALL Fehler("TMPSTR99","")
+ REM ? "AAAA"
+ REM LOAD "TMPSTR99.SBP", NEW 
+ REM CALL TMPSTR99()
+ REM CLOSE PROGRAMFILE "TMPSTR99"
+ END SUB 
 
 
 
-ÿÿVSNRPackEx$(VSNR$)
- tVSNR$ÿ""
- ÿ›a%ÿ1ÿqÿ/(VSNR$)
-tC$ÿÿ>(ÿ,(VSNR$,a%,1))
-	x%ÿÿ.(ÿ+(ÿ>(tC$),1))
-	ÿÉÿæx%
-ÿæ142
-tC$ÿ"AE"
-ÿæ153
-tC$ÿ"OE"
-ÿæ154
-tC$ÿ"UE"
-	ÿ’ÿÉ
-	ÿ¡tc$ÿ"á"ÿptc$ÿ"SS"
-ÿ½ SELECT CASE tC$
-ÿ½ CASE "A" TO "Z","0" TO "9"
-tVSNR$ÿtVSNR$ÿtC$
-ÿ½ END SELECT 
- ÿ±a%
- VSNRPackEx$ÿtVSNR$
- ÿ’ÿÿ
+FUNCTION VSNRPackEx$(VSNR$)
+ tVSNR$ = ""
+ FOR a% = 1 TO LEN (VSNR$)
+   tC$ = UCASE$ ( MID$ (VSNR$,a%,1))
+         x% = ASC ( LEFT$ ( UCASE$ (tC$),1))
+         SELECT CASE x%
+           CASE 142
+             tC$ = "AE"
+           CASE 153
+             tC$ = "OE"
+           CASE 154
+             tC$ = "UE"
+         END SELECT 
+         IF tc$ LIKE "á" THEN tc$ = "SS"
+   REM SELECT CASE tC$
+   REM CASE "A" TO "Z","0" TO "9"
+     tVSNR$ = tVSNR$ + tC$
+   REM END SELECT 
+ NEXT a%
+ VSNRPackEx$ = tVSNR$
+ END FUNCTION 
 
-ÿÿCheckKVSKOND()
- ÿßÿe
- ÿƒDFile(3,"KVERTRAG"ÿ_fpw$)
- ÿƒDFile(3,"VPGEKOND"ÿ_fpw$)
- ÿƒDFile(3,"KVSKOND"ÿ_fpw$)
- ÿßÿe
- ÿ™"kvertrag"
- ÿ£lfdnr
- ÿ™"vpgekond"
- ÿ£codekey
- ÿ™"kvskond"
- ÿ£codeko
- ÿ¡ÿA("kvskond")ÿ0ÿp
-codekoold%ÿ0
-i%ÿ0
-f%ÿ0
-j%ÿÿA("kvskond")
-ÿÉÿ`ÿá
-ÿØÿOÿB("KVSKOND")
-codeko%ÿcodeko.kvskond
-i%ÿi%ÿ1
-ÿÊÿËÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ"     codeko = "ÿÿ(codeko%,",99999999")ÿ"  gel”scht: "ÿÿ(f%,",99999999")
+SUB CheckKVSKOND()
+ MOUSE OFF 
+ CALL DFile(3,"KVERTRAG" + _fpw$)
+ CALL DFile(3,"VPGEKOND" + _fpw$)
+ CALL DFile(3,"KVSKOND" + _fpw$)
+ MOUSE OFF 
+ FILE "kvertrag"
+ INDEX lfdnr
+ FILE "vpgekond"
+ INDEX codekey
+ FILE "kvskond"
+ INDEX codeko
+ IF RECCOUNT ("kvskond") > 0 THEN 
+   codekoold% = 0
+   i% = 0
+   f% = 0
+   j% = RECCOUNT ("kvskond")
+   SELECT FIRST LOCK 
+   WHILE NOT EOF ("KVSKOND")
+     codeko% = codeko.kvskond
+     i% = i% + 1
+     SET STATUS STR$ (i%,",99999999") + "/" + STR$ (j%,",99999999") + "     codeko = " + STR$ (codeko%,",99999999") + "  gel”scht: " + STR$ (f%,",99999999")
 anfkvs010320071: 
-codeko%ÿcodeko.kvskond
-ÿ¡ÿOÿJ(codeko%,codekey.vpgekond)ÿp
-ÿßÿe
-f%ÿf%ÿ1
-ÿÊÿËÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ"     codeko = "ÿÿ(codeko%,",99999999")ÿ"  gel”scht: "ÿÿ(f%,",99999999")
-ÿ½ REMOVE FROM FILE "kvskond" WHERE codeko.kvskond = codeko%
-ÿÉÿ¾ÿ™"kvskond"
-ÿÉÿ¥codekoold%ÿáÿ™"kvskond"ÿ£codeko.kvskond
-i%ÿ0
-j%ÿÿA("kvskond")
-ÿwanfkvs010320071
-ÿ’ÿ¡
-codekoold%ÿcodeko%
-ÿÉÿ±ÿáÿ™"kvskond"ÿ£codeko.kvskond
-ÿÙ
-ÿ™"kvskond"
-ÿ£codevt.kvskond
-ÿÉÿ`
-ÿ™"kvertrag"
-ÿ£lfdnr
-i%ÿ0
-j%ÿÿA("kvertrag")
-ÿÉÿ`ÿá
-ÿØÿOÿB("Kvertrag")
-lfdnr%ÿlfdnr.kvertrag
-ÿßÿe
-i%ÿi%ÿ1
-ÿÊÿËÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ" Vertr„ge bearbeitet"
-ÿ¡sollst.kvertragÿ"j"ÿp
-ÿ¡ÿOÿJ(lfdnr%,codevt.kvskond)ÿp
-
-sollst.kvertragÿ"n"
-
-ÿÌÿ™"kvertrag"
-ÿ’ÿ¡
-ÿ^
-ÿ¡ÿJ(lfdnr%,codevt.kvskond)ÿp
-
-ÿÉÿ¥lfdnr%ÿáÿ™"kvskond"ÿ£codevt.kvskond
-
-ÿÉÿ¾ÿ™"kvskond"
-ÿ’ÿ¡
-ÿ’ÿ¡
-ÿÉÿ±ÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
-ÿÙ
- ÿ^
-ÿßÿe
-ÿÊÿË"Bitte warten, Vertragsdatei wird angepasst!"
-ÿ™"kvertrag"
-ÿÍsollst.kvertragÿ"n"
-ÿ’ÿÍ
-ÿÊÿË"Vertragsdatei wurde angepasst!"
- ÿ’ÿ¡
- ÿÂ"Konditionsprfung und Anpassung Vertragsdatei beendet!","",2
- ÿÊÿË""
- ÿ’ÿÿ
+     codeko% = codeko.kvskond
+     IF NOT EXISTS (codeko%,codekey.vpgekond) THEN 
+       MOUSE OFF 
+       f% = f% + 1
+       SET STATUS STR$ (i%,",99999999") + "/" + STR$ (j%,",99999999") + "     codeko = " + STR$ (codeko%,",99999999") + "  gel”scht: " + STR$ (f%,",99999999")
+       REM REMOVE FROM FILE "kvskond" WHERE codeko.kvskond = codeko%
+       SELECT REMOVE FILE "kvskond"
+       SELECT KEY codekoold% LOCK FILE "kvskond" INDEX codeko.kvskond
+       i% = 0
+       j% = RECCOUNT ("kvskond")
+       GOTO anfkvs010320071
+     END IF 
+     codekoold% = codeko%
+     SELECT NEXT LOCK FILE "kvskond" INDEX codeko.kvskond
+   WEND 
+   FILE "kvskond"
+   INDEX codevt.kvskond
+   SELECT FIRST 
+   FILE "kvertrag"
+   INDEX lfdnr
+   i% = 0
+   j% = RECCOUNT ("kvertrag")
+   SELECT FIRST LOCK 
+   WHILE NOT EOF ("Kvertrag")
+      lfdnr% = lfdnr.kvertrag
+      MOUSE OFF 
+      i% = i% + 1
+      SET STATUS STR$ (i%,",99999999") + "/" + STR$ (j%,",99999999") + " Vertr„ge bearbeitet"
+      IF sollst.kvertrag LIKE "j" THEN 
+        IF NOT EXISTS (lfdnr%,codevt.kvskond) THEN 
+          sollst.kvertrag = "n"
+          STORE FILE "kvertrag"
+        END IF 
+      ELSE 
+        IF EXISTS (lfdnr%,codevt.kvskond) THEN 
+          SELECT KEY lfdnr% LOCK FILE "kvskond" INDEX codevt.kvskond
+          SELECT REMOVE FILE "kvskond"
+        END IF 
+      END IF 
+      SELECT NEXT LOCK FILE "kvertrag" INDEX lfdnr.kvertrag
+   WEND 
+ ELSE 
+   MOUSE OFF 
+   SET STATUS "Bitte warten, Vertragsdatei wird angepasst!"
+   FILE "kvertrag"
+   UPDATE sollst.kvertrag = "n"
+   END UPDATE 
+   SET STATUS "Vertragsdatei wurde angepasst!"
+ END IF 
+ REQUEST "Konditionsprfung und Anpassung Vertragsdatei beendet!","",2
+ SET STATUS ""
+ END SUB 
 
-ÿÿCheckDynVertr()
- ÿƒDFile(3,"KVERTRAG"ÿ_fpw$)
- ÿƒDFile(3,"VKOND"ÿ_fpw$)
-ÿ™"vkond"
-ÿ£codevk.vkond
-ÿ™"kvertrag"
-ÿ³ÿ_ÿww070820082
-ÿ‰ÿ£ÿ³codeko.kvertrag
+SUB CheckDynVertr()
+ CALL DFile(3,"KVERTRAG" + _fpw$)
+ CALL DFile(3,"VKOND" + _fpw$)
+  FILE "vkond"
+  INDEX codevk.vkond
+  FILE "kvertrag"
+  ON ERROR GOTO w070820082
+  CREATE INDEX ON codeko.kvertrag
 w070820082: 
-ÿ³ÿ_ÿwErrorHandler
-ÿ£codeko.kvertrag
-ÿÉÿ`
-ÿÉÿ¥1ÿáÿ™"kvertrag"ÿ£codeko.kvertrag
-i%ÿ0
-j%ÿÿA("kvertrag")
-ÿØÿOÿB("kvertrag")
-ÿÉÿ`ÿ™"vkond"ÿ£codevk.vkond
-_kond%ÿcodeko.kvertrag
-codevt%ÿlfdnr.kvertrag
-ÿ¡codevstatus.kvertragÿ
-1ÿp
-codevstatus.kvertragÿ12
-VStatusTxT.kvertragÿ"Antrag"
-ÿÌÿ™"KVERTRAG"
-ÿ’ÿ¡
-ÿÉÿ`ÿ™"vkond"ÿ£codevk.vkond
-ok%ÿÿ1
-ÿØok%ÿÿ1
-ÿÉÿ¥_kond%ÿáÿ™"vkond"ÿ£codevk.vkond
-codevt.vkondÿcodevt%
-ÿÌÿ™"vkond"
-ÿ¡n„chsteKond.VKONDÿ0ÿp
-_kond%ÿn„chsteKond.VKOND
-ÿÉÿ`ÿ™"vkond"ÿ£codevk.vkond
-a%ÿa%ÿ1
-ÿ^
-ok%ÿ0
-ÿ’ÿ¡
-ÿÙ
-i%ÿi%ÿ1
-ÿÊÿËÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ" von KVERTRAG bearbeitet, Prf. VKOND"
-ÿÉÿ±ÿáÿ™"kvertrag"
-ÿÙ
+  ON ERROR GOTO ErrorHandler
+  INDEX codeko.kvertrag
+  SELECT FIRST 
+  SELECT KEY 1 LOCK FILE "kvertrag" INDEX codeko.kvertrag
+  i% = 0
+  j% = RECCOUNT ("kvertrag")
+  WHILE NOT EOF ("kvertrag")
+    SELECT FIRST FILE "vkond" INDEX codevk.vkond
+    _kond% = codeko.kvertrag
+    codevt% = lfdnr.kvertrag
+    IF codevstatus.kvertrag < 1 THEN 
+      codevstatus.kvertrag = 12
+      VStatusTxT.kvertrag = "Antrag"
+      STORE FILE "KVERTRAG"
+    END IF 
+    SELECT FIRST FILE "vkond" INDEX codevk.vkond
+    ok% = - 1
+    WHILE ok% = - 1
+      SELECT KEY _kond% LOCK FILE "vkond" INDEX codevk.vkond
+      codevt.vkond = codevt%
+      STORE FILE "vkond"
+      IF n„chsteKond.VKOND <> 0 THEN 
+        _kond% = n„chsteKond.VKOND
+        SELECT FIRST FILE "vkond" INDEX codevk.vkond
+        a% = a% + 1
+      ELSE 
+        ok% = 0
+      END IF 
+    WEND 
+    i% = i% + 1
+    SET STATUS STR$ (i%,",99999999") + "/" + STR$ (j%,",99999999") + " von KVERTRAG bearbeitet, Prf. VKOND"
+    SELECT NEXT LOCK FILE "kvertrag"
+  WEND 
  
  
- ÿww070820081
- ÿ™"kvertrag"
-ÿ£codeko.kvertrag
-ÿÉÿ`
-ÿÉÿ¥1ÿ™"kvertrag"ÿ£codeko.kvertrag
-codekoold%ÿ0
-i%ÿ0
-lfdnrold%ÿ0
-vs_nrold$ÿ""
-ÿØÿOÿB("kvertrag")
-i%ÿi%ÿ1
-ÿ¡codeko.kvertragÿcodekoold%ÿp
-ÿ½ ? "old: " + STR$ (lfdnrold%,"000000") + "/" + vs_nrold$ + " - " + statusold$ + "---akt: " + STR$ (lfdnr.kvertrag,"000000") + " - " + VStatusTxT.kvertrag + "/" + STR$ (codeko.kvertrag,"000000")
-ÿ^
-codekoold%ÿcodeko.kvertrag
-lfdnrold%ÿlfdnr.kvertrag
-vs_nrold$ÿvs_nr.kvertrag
-statusold$ÿVStatusTxT.kvertrag
-ÿ’ÿ¡
-ÿÊÿËÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ" von KVERTRAG bearbeitet"
-ÿÉÿ±ÿ™"kvertrag"
-ÿÙ
+ GOTO w070820081
+ FILE "kvertrag"
+  INDEX codeko.kvertrag
+  SELECT FIRST 
+  SELECT KEY 1 FILE "kvertrag" INDEX codeko.kvertrag
+  codekoold% = 0
+  i% = 0
+  lfdnrold% = 0
+  vs_nrold$ = ""
+  WHILE NOT EOF ("kvertrag")
+    i% = i% + 1
+    IF codeko.kvertrag = codekoold% THEN 
+      REM ? "old: " + STR$ (lfdnrold%,"000000") + "/" + vs_nrold$ + " - " + statusold$ + "---akt: " + STR$ (lfdnr.kvertrag,"000000") + " - " + VStatusTxT.kvertrag + "/" + STR$ (codeko.kvertrag,"000000")
+    ELSE 
+      codekoold% = codeko.kvertrag
+      lfdnrold% = lfdnr.kvertrag
+      vs_nrold$ = vs_nr.kvertrag
+      statusold$ = VStatusTxT.kvertrag
+    END IF 
+    SET STATUS STR$ (i%,",99999999") + "/" + STR$ (j%,",99999999") + " von KVERTRAG bearbeitet"
+    SELECT NEXT FILE "kvertrag"
+  WEND 
  
 w070820081: 
- ÿ™"kvertrag"
-ÿ£lfdnr.kvertrag
-ÿÉÿ`ÿá
-codekoold%ÿ0
-i%ÿ0
-lfdnrold%ÿ0
-vs_nrold$ÿ""
-j%ÿÿA("kvertrag")
-ÿØÿOÿB("kvertrag")
-i%ÿi%ÿ1
-ÿ¡Antragsdatum.kvertragÿ
-1ÿp
-Antragsdatum.kvertragÿVS_Beginn.kvertrag
-ÿÌÿ™"KVERTRAG"
-ÿ’ÿ¡
-ÿÊÿËÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ" von KVERTRAG bearbeitet wegen Antragsdatum"
-ÿÉÿ±ÿáÿ™"kvertrag"
-ÿÙ
+ FILE "kvertrag"
+  INDEX lfdnr.kvertrag
+  SELECT FIRST LOCK 
+  codekoold% = 0
+  i% = 0
+  lfdnrold% = 0
+  vs_nrold$ = ""
+  j% = RECCOUNT ("kvertrag")
+  WHILE NOT EOF ("kvertrag")
+    i% = i% + 1
+    IF Antragsdatum.kvertrag < 1 THEN 
+      Antragsdatum.kvertrag = VS_Beginn.kvertrag
+      STORE FILE "KVERTRAG"
+    END IF 
+    SET STATUS STR$ (i%,",99999999") + "/" + STR$ (j%,",99999999") + " von KVERTRAG bearbeitet wegen Antragsdatum"
+    SELECT NEXT LOCK FILE "kvertrag"
+  WEND 
  
 
- ÿ’ÿÿ
+ END SUB 
 
-ÿÿVKMainMani()
- ÿ¡ÿOÿ´("sparten")ÿpÿƒDFile(3,"sparten"ÿ_fpw$)
- ÿ¡ÿOÿ´("geadr")ÿpÿƒDFile(3,"geadr"ÿ_fpw$)
- ÿ¡ÿOÿ´("gekond")ÿpÿƒDFile(3,"gekond"ÿ_fpw$)
- ÿ¡ÿOÿ´("vkond")ÿpÿƒDFile(3,"vkond"ÿ_fpw$)
- ÿ¡ÿOÿ´("maadr")ÿpÿƒDFile(3,"maadr"ÿ_fpw$)
- ÿ¡ÿOÿ´("kvertrag")ÿpÿƒDFile(3,"kvertrag"ÿ_fpw$)
- ÿ¡ÿOÿ´("vprodukt")ÿpÿƒDFile(3,"vprodukt"ÿ_fpw$)
+SUB VKMainMani()
+ IF NOT OPEN ("sparten") THEN CALL DFile(3,"sparten" + _fpw$)
+ IF NOT OPEN ("geadr") THEN CALL DFile(3,"geadr" + _fpw$)
+ IF NOT OPEN ("gekond") THEN CALL DFile(3,"gekond" + _fpw$)
+ IF NOT OPEN ("vkond") THEN CALL DFile(3,"vkond" + _fpw$)
+ IF NOT OPEN ("maadr") THEN CALL DFile(3,"maadr" + _fpw$)
+ IF NOT OPEN ("kvertrag") THEN CALL DFile(3,"kvertrag" + _fpw$)
+ IF NOT OPEN ("vprodukt") THEN CALL DFile(3,"vprodukt" + _fpw$)
  
- ÿ™"kvertrag"
- ÿ£proviab.kvertrag
- ÿÉÿ`ÿ™"kvertrag"ÿ£proviab.kvertrag
- ÿÉÿ¥1ÿ™"kvertrag"ÿ£proviab.kvertrag
- i%ÿ0
- j%ÿÿA("kvertrag")
- ÿØÿOÿB("kvertrag")
-i%ÿi%ÿ1
-ÿ¡proviab.kvertragÿ0ÿp
-ÿ¡codeko.kvertragÿ0ÿp
-ÿƒVKONDManipula(lfdnr.kvertrag)
-ÿ’ÿ¡
-ÿ’ÿ¡
-ÿÊÿËÿ(i%,",999999")ÿ"/"ÿÿ(j%,",999999")ÿ" Vertragskonditionen geprft"
-ÿÉÿ±ÿ™"kvertrag"ÿ£proviab.kvertrag
- ÿÙ
- ÿ’ÿÿ
+ FILE "kvertrag"
+ INDEX proviab.kvertrag
+ SELECT FIRST FILE "kvertrag" INDEX proviab.kvertrag
+ SELECT KEY 1 FILE "kvertrag" INDEX proviab.kvertrag
+ i% = 0
+ j% = RECCOUNT ("kvertrag")
+ WHILE NOT EOF ("kvertrag")
+   i% = i% + 1
+   IF proviab.kvertrag > 0 THEN 
+     IF codeko.kvertrag > 0 THEN 
+       CALL VKONDManipula(lfdnr.kvertrag)
+     END IF 
+   END IF 
+   SET STATUS STR$ (i%,",999999") + "/" + STR$ (j%,",999999") + " Vertragskonditionen geprft"
+   SELECT NEXT FILE "kvertrag" INDEX proviab.kvertrag
+ WEND 
+ END SUB 
  
-ÿÿVKONDManipula(codevt%)
- ÿÉÿ`ÿ™"stamm"
- oberfirma%ÿoberfirma.stamm
- BWStart%ÿproviab.kvertrag
- codeko%ÿcodeko.kvertrag
- codvp%ÿcodevp.kvertrag
- codege%ÿcodege.kvertrag
- codeva%ÿcodeva.kvertrag
- proviab%ÿproviab.kvertrag
- QuickCode$ÿÿ(oberfirma%,"000000")ÿÿ(CodeGE%,"000000")ÿÿ(CodeVA%,"000000")
- _kond%ÿcodeko%
- ÿ¡ÿOÿ´("gekond")ÿpÿƒDFile(3,"gekond"ÿ_fpw$)
- ÿ¡ÿOÿ´("vkond")ÿpÿƒDFile(3,"vkond"ÿ_fpw$)
- ÿ¡ÿOÿ´("maadr")ÿpÿƒDFile(3,"maadr"ÿ_fpw$)
- ÿ¡ÿOÿ´("kvertrag")ÿpÿƒDFile(3,"kvertrag"ÿ_fpw$)
- ÿ½ CALL Fehler("Start: VKOND-Manipulation","")
- ok%ÿÿ1
- a%ÿ0
- ÿØok%ÿÿ1
-ÿÉÿ`ÿ™"VKOND"ÿ£CodeVK.VKOND
-ÿÉÿ¥_kond%ÿ™"VKOND"ÿ£CodeVK.VKOND
-
-ÿÉÿ`ÿ™"GEKOND"ÿ£lfdnr.GEKOND
-ÿÉÿ¥CodeKO.VKONDÿ™"GEKOND"ÿ£lfdnr.GEKOND
-ap%ÿap.gekond
-courtage%ÿcourtage.gekond
-PflegeProvi%ÿPflegeProvi.gekond
-ÿÉÿ`ÿ™"MAADR"ÿ£CodeMA.MAADR
-ÿÉÿ¥CodeMA.GEKONDÿ™"MAADR"ÿ£CodeMA.MAADR
-ÿ¡n„chsteKond.VKONDÿ0ÿp
-_kond%ÿn„chsteKond.VKOND
-a%ÿa%ÿ1
-ÿ^
-ÿ½ CALL Fehler( STR$ (a%,"99") + " n„chste VKOND=0","")
-ok%ÿ0
-ÿ’ÿ¡
- ÿÙ
- ÿ¡codema.vkondÿoberfirma%ÿp
-ÿ¡codege%ÿ54ÿcodeva%ÿ99ÿp
-ÿ½ CALL Fehler("AuM,Sach-Wohngeb„ude","")
-ÿ’ÿ¡
-codevkold%ÿCodeVK.VKOND
-ÿ½ die Oberfirma ist nicht der letzte Vorg„nger
-lfdnrold%ÿlfdnr.gekond
-ÿ¡ÿJ(QuickCode$,QuickCode.gekond)ÿp
-ÿÉÿ`ÿ™"gekond"ÿ£QuickCode.gekond
-ÿÉÿ¥QuickCode$ÿáÿ™"gekond"ÿ£QuickCode.gekond
-lfdnrneu%ÿ0
-notfound%ÿ1
-ÿØnotfound%ÿ1ÿQuickCode.GEKONDÿQuickCode$ÿÿOÿB("GEKOND")
+SUB VKONDManipula(codevt%)
+ SELECT FIRST FILE "stamm"
+ oberfirma% = oberfirma.stamm
+ BWStart% = proviab.kvertrag
+ codeko% = codeko.kvertrag
+ codvp% = codevp.kvertrag
+ codege% = codege.kvertrag
+ codeva% = codeva.kvertrag
+ proviab% = proviab.kvertrag
+ QuickCode$ = STR$ (oberfirma%,"000000") + STR$ (CodeGE%,"000000") + STR$ (CodeVA%,"000000")
+ _kond% = codeko%
+ IF NOT OPEN ("gekond") THEN CALL DFile(3,"gekond" + _fpw$)
+ IF NOT OPEN ("vkond") THEN CALL DFile(3,"vkond" + _fpw$)
+ IF NOT OPEN ("maadr") THEN CALL DFile(3,"maadr" + _fpw$)
+ IF NOT OPEN ("kvertrag") THEN CALL DFile(3,"kvertrag" + _fpw$)
+ REM CALL Fehler("Start: VKOND-Manipulation","")
+ ok% = - 1
+ a% = 0
+ WHILE ok% = - 1
+     SELECT FIRST FILE "VKOND" INDEX CodeVK.VKOND
+     SELECT KEY _kond% FILE "VKOND" INDEX CodeVK.VKOND
+     
+     SELECT FIRST FILE "GEKOND" INDEX lfdnr.GEKOND
+     SELECT KEY CodeKO.VKOND FILE "GEKOND" INDEX lfdnr.GEKOND
+     ap% = ap.gekond
+     courtage% = courtage.gekond
+     PflegeProvi% = PflegeProvi.gekond
+     SELECT FIRST FILE "MAADR" INDEX CodeMA.MAADR
+     SELECT KEY CodeMA.GEKOND FILE "MAADR" INDEX CodeMA.MAADR
+     IF n„chsteKond.VKOND <> 0 THEN 
+       _kond% = n„chsteKond.VKOND
+       a% = a% + 1
+     ELSE 
+       REM CALL Fehler( STR$ (a%,"99") + " n„chste VKOND=0","")
+       ok% = 0
+     END IF 
+ WEND 
+ IF codema.vkond <> oberfirma% THEN 
+   IF codege% = 54 AND codeva% = 99 THEN 
+     REM CALL Fehler("AuM,Sach-Wohngeb„ude","")
+   END IF 
+   codevkold% = CodeVK.VKOND
+   REM die Oberfirma ist nicht der letzte Vorg„nger
+   lfdnrold% = lfdnr.gekond
+   IF EXISTS (QuickCode$,QuickCode.gekond) THEN 
+     SELECT FIRST FILE "gekond" INDEX QuickCode.gekond
+     SELECT KEY QuickCode$ LOCK FILE "gekond" INDEX QuickCode.gekond
+     lfdnrneu% = 0
+     notfound% = 1
+     WHILE notfound% = 1 AND QuickCode.GEKOND = QuickCode$ AND NOT EOF ("GEKOND")
  
-ÿ½ -------------------------------
-ÿ½ -- Bewertungszeitraum ermitteln
-ÿ½ -------------------------------
+       REM -------------------------------
+       REM -- Bewertungszeitraum ermitteln
+       REM -------------------------------
  
-ÿ¡ÿ1(BWvon.GEKOND)ÿ
-1ÿpBWvon%ÿÿ1("1.1.1980")ÿ^BWvon%ÿÿ1(BWvon.GEKOND)
-ÿ¡ÿ1(BWbis.GEKOND)ÿ
-1ÿpBWbis%ÿÿ1("31.12.2300")ÿ^BWbis%ÿÿ1(BWbis.GEKOND)
-ÿ½ 130597
-ÿ¡BWStart%ÿBWvon%ÿBWStart%ÿ	BWbis%ÿp
-	notfound%ÿ0
-ÿ^
-	ÿÉÿ±ÿáÿ™"gekond"ÿ£QuickCode.GEKOND
-ÿ’ÿ¡
-ÿÙ
-ÿ¡notfound%ÿ0ÿp
-lfdnrneu%ÿlfdnr.gekond
-ÿ^
-lfdnrneu%ÿ0
-ÿ’ÿ¡
-ÿ^
-notfound%ÿ1
-ÿ’ÿ¡
-ÿ¡notfound%ÿ0ÿp
-ÿ¡ap.gekondÿ
-ap%ÿpap.gekondÿap%
-ÿ¡courtage.gekondÿ
-courtage%ÿpcourtage.gekondÿcourtage%
-ÿ¡PflegeProvi.gekondÿ
-PflegeProvi%ÿpPflegeProvi.gekondÿPflegeProvi%
-ÿÌÿ™"gekond"
-ÿ’ÿ¡
-ÿ¡notfound%ÿ1ÿp
-ÿÉÿ`ÿ™"gekond"ÿ£lfdnr.gekond
-ÿÉÿ¥lfdnrold%ÿ™"gekond"ÿ£lfdnr.gekond
-ÿÿ]ÿ™"gekond"
-lfdnrneu%ÿÿI("gekond",1)
-lfdnr.gekondÿlfdnrneu%
-codema.gekondÿoberfirma%
-SRjn.gekondÿ"n"
-sr.gekondÿ0
-ÿƒQuickStore("gekond")
-ÿ’ÿ¡
-ÿ½ jetzt VKOND Datensatz neu anlegen und den vorhandenen n„chsteKond.VKOND=codevkneu
-ÿÿ™"vkond"
-codevkneu%ÿÿI("vkond",1)
-codevk.vkondÿcodevkneu%
-codeko.vkondÿlfdnrneu%
-codevt.vkondÿcodevt%
-codema.vkondÿoberfirma%
-n„chsteKond.vkondÿ0
-ÿƒQuickStore("vkond")
-ÿ½ jetzt die alte VKOND manipulieren und bei n„chstekond.vkond lfdnrneu eintragen
-ÿÉÿ`ÿ™"VKOND"ÿ£CodeVK.VKOND
-ÿÉÿ¥codevkold%ÿáÿ™"VKOND"ÿ£CodeVK.VKOND
-n„chsteKond.Vkondÿcodevkneu%
-ÿƒQuickStore("vkond")
- ÿ’ÿ¡
- ÿ’ÿÿ
+       IF DAYS (BWvon.GEKOND) < 1 THEN BWvon% = DAYS ("1.1.1980") ELSE BWvon% = DAYS (BWvon.GEKOND)
+       IF DAYS (BWbis.GEKOND) < 1 THEN BWbis% = DAYS ("31.12.2300") ELSE BWbis% = DAYS (BWbis.GEKOND)
+       REM 130597
+       IF BWStart% >= BWvon% AND BWStart% <= BWbis% THEN 
+         notfound% = 0
+       ELSE 
+         SELECT NEXT LOCK FILE "gekond" INDEX QuickCode.GEKOND
+       END IF 
+     WEND 
+     IF notfound% = 0 THEN 
+       lfdnrneu% = lfdnr.gekond
+     ELSE 
+       lfdnrneu% = 0
+     END IF 
+   ELSE 
+     notfound% = 1
+   END IF 
+   IF notfound% = 0 THEN 
+     IF ap.gekond < ap% THEN ap.gekond = ap%
+     IF courtage.gekond < courtage% THEN courtage.gekond = courtage%
+     IF PflegeProvi.gekond < PflegeProvi% THEN PflegeProvi.gekond = PflegeProvi%
+     STORE FILE "gekond"
+   END IF 
+   IF notfound% = 1 THEN 
+     SELECT FIRST FILE "gekond" INDEX lfdnr.gekond
+     SELECT KEY lfdnrold% FILE "gekond" INDEX lfdnr.gekond
+     BLANK DUPLICATE FILE "gekond"
+     lfdnrneu% = SER ("gekond",1)
+     lfdnr.gekond = lfdnrneu%
+     codema.gekond = oberfirma%
+     SRjn.gekond = "n"
+     sr.gekond = 0
+     CALL QuickStore("gekond")
+   END IF 
+   REM jetzt VKOND Datensatz neu anlegen und den vorhandenen n„chsteKond.VKOND=codevkneu
+   BLANK FILE "vkond"
+   codevkneu% = SER ("vkond",1)
+   codevk.vkond = codevkneu%
+   codeko.vkond = lfdnrneu%
+   codevt.vkond = codevt%
+   codema.vkond = oberfirma%
+   n„chsteKond.vkond = 0
+   CALL QuickStore("vkond")
+   REM jetzt die alte VKOND manipulieren und bei n„chstekond.vkond lfdnrneu eintragen
+    SELECT FIRST FILE "VKOND" INDEX CodeVK.VKOND
+    SELECT KEY codevkold% LOCK FILE "VKOND" INDEX CodeVK.VKOND
+    n„chsteKond.Vkond = codevkneu%
+    CALL QuickStore("vkond")
+ END IF 
+ END SUB 
  
 
-ÿÿCheckConnect()
- ÿßÿe
- ÿƒDFile(2,"office\connect"ÿ_fpw$)
- ÿ™"connect"
- ÿ£codecon
- ÿÉÿ`ÿá
- i%ÿ0
- j%ÿÿA("connect")
- ÿØÿOÿB("connect")
-i%ÿi%ÿ1
-ÿ¡codekey.connectÿ
-1ÿp
-codekey.connectÿÿI("connect",1)
-ÿÌÿ™"connect"
-ÿ’ÿ¡
-ÿÊÿËÿ(i%,",999999")ÿ"/"ÿÿ(j%,",999999")
-ÿÉÿ±ÿáÿ™"connect"ÿ£codecon.connect
- ÿÙ
- ÿ’ÿÿ
+SUB CheckConnect()
+ MOUSE OFF 
+ CALL DFile(2,"office\connect" + _fpw$)
+ FILE "connect"
+ INDEX codecon
+ SELECT FIRST LOCK 
+ i% = 0
+ j% = RECCOUNT ("connect")
+ WHILE NOT EOF ("connect")
+   i% = i% + 1
+   IF codekey.connect < 1 THEN 
+     codekey.connect = SER ("connect",1)
+     STORE FILE "connect"
+   END IF 
+   SET STATUS STR$ (i%,",999999") + "/" + STR$ (j%,",999999")
+   SELECT NEXT LOCK FILE "connect" INDEX codecon.connect
+ WEND 
+ END SUB 
 
 
-ÿÿAutoFiVorg()
- ÿÉÿ`ÿ™"stamm"
- oberfirma%ÿoberfirma.stamm
- ÿ¡ÿOÿ´("maadr")ÿpÿƒDFile(3,"maadr"ÿ_fpw$)
- ÿ¡ÿOÿ´("mavorg")ÿpÿƒDFile(3,"mavorg"ÿ_fpw$)
- ÿ™"mavorg"
- ÿ£codema.mavorg
- ÿ¾ÿaÿ™"mavorg"ÿĞcodema.mavorgÿ0
- ÿ™"maadr"
- ÿ£codema.maadr
- ÿÉÿ`ÿ™"maadr"ÿ£codema.maadr
- ÿÉÿ¥oberfirma%ÿ™"maadr"ÿ£codema.maadr
-maname$ÿnachname.maadr
-mavorname$ÿvorname.maadr
-maagnr$ÿAgenturnr.maadr
+SUB AutoFiVorg()
+ SELECT FIRST FILE "stamm"
+ oberfirma% = oberfirma.stamm
+ IF NOT OPEN ("maadr") THEN CALL DFile(3,"maadr" + _fpw$)
+ IF NOT OPEN ("mavorg") THEN CALL DFile(3,"mavorg" + _fpw$)
+ FILE "mavorg"
+ INDEX codema.mavorg
+ REMOVE FROM FILE "mavorg" WHERE codema.mavorg = 0
+ FILE "maadr"
+ INDEX codema.maadr
+ SELECT FIRST FILE "maadr" INDEX codema.maadr
+ SELECT KEY oberfirma% FILE "maadr" INDEX codema.maadr
+       maname$ = nachname.maadr
+       mavorname$ = vorname.maadr
+       maagnr$ = Agenturnr.maadr
  
- ÿÉÿ`ÿáÿ™"maadr"ÿ£codema.maadr
- ÿØÿOÿB("maadr")
-codema%ÿcodema.maadr
-ÿ¡(codema.maadrÿvorg„nger.maadrÿcodema.maadrÿoberfirma%)ÿp
-ÿ½ Oberfirma zum Vorg„nger machen
-ÿÉÿ`ÿ™"mavorg"ÿ£codema.mavorg
-ÿÉÿ¥codema%ÿáÿ™"mavorg"ÿ£codema.mavorg
-ÿ¡aktiviert.mavorgÿ"j"ÿp
-codevma.mavorgÿoberfirma%
-NameVMA.mavorgÿmaname$
-VornameMA.mavorgÿmavorname$
-AgenturnrVMA.mavorgÿmaagnr$
-aktiviert.mavorgÿ"j"
-ÿÌÿ™"mavorg"
-vorg„nger.maadrÿoberfirma%
-ÿÌÿ™"maadr"
-ÿ’ÿ¡
-ÿ^
-ÿ¡codema.maadrÿ0ÿvorg„nger.maadrÿ0ÿp
-ÿ½ oberfirma als vorg„nger aufnehmen
-codema%ÿcodema.maadr
-ÿƒFehler("codema: "ÿÿ(codema%,"000000"),"")
-ÿÿ™"mavorg"
-
-codekey%ÿÿI("mavorg",1)
-codekey.mavorgÿcodekey%
-ÿÉÿ¥codekey%ÿáÿ™"mavorg"ÿ£codekey.mavorg
-codema.mavorgÿcodema%
-codevma.mavorgÿoberfirma%
-NameVMA.mavorgÿmaname$
-VornameMA.mavorgÿmavorname$
-AgenturnrVMA.mavorgÿmaagnr$
-von.mavorgÿ"01.01.1990"
-aktiviert.mavorgÿ"j"
-ÿÌÿ™"mavorg"
-vorg„nger.maadrÿoberfirma%
-ÿÌÿ™"maadr"
-ÿ’ÿ¡
-ÿ’ÿ¡
-ÿÉÿ±ÿáÿ™"maadr"ÿ£codema.maadr
- ÿÙ
- ÿ’ÿÿ
+ SELECT FIRST LOCK FILE "maadr" INDEX codema.maadr
+ WHILE NOT EOF ("maadr")
+   codema% = codema.maadr
+   IF (codema.maadr = vorg„nger.maadr AND codema.maadr <> oberfirma%) THEN 
+     REM Oberfirma zum Vorg„nger machen
+     SELECT FIRST FILE "mavorg" INDEX codema.mavorg
+     SELECT KEY codema% LOCK FILE "mavorg" INDEX codema.mavorg
+     IF aktiviert.mavorg = "j" THEN 
+       codevma.mavorg = oberfirma%
+       NameVMA.mavorg = maname$
+       VornameMA.mavorg = mavorname$
+       AgenturnrVMA.mavorg = maagnr$
+       aktiviert.mavorg = "j"
+       STORE FILE "mavorg"
+       vorg„nger.maadr = oberfirma%
+       STORE FILE "maadr"
+     END IF 
+   ELSE 
+     IF codema.maadr <> 0 AND vorg„nger.maadr = 0 THEN 
+       REM oberfirma als vorg„nger aufnehmen
+       codema% = codema.maadr
+       CALL Fehler("codema: " + STR$ (codema%,"000000"),"")
+       BLANK FILE "mavorg"
+     
+       codekey% = SER ("mavorg",1)
+       codekey.mavorg = codekey%
+       SELECT KEY codekey% LOCK FILE "mavorg" INDEX codekey.mavorg
+       codema.mavorg = codema%
+       codevma.mavorg = oberfirma%
+       NameVMA.mavorg = maname$
+       VornameMA.mavorg = mavorname$
+       AgenturnrVMA.mavorg = maagnr$
+       von.mavorg = "01.01.1990"
+       aktiviert.mavorg = "j"
+       STORE FILE "mavorg"
+       vorg„nger.maadr = oberfirma%
+       STORE FILE "maadr"
+     END IF 
+   END IF 
+   SELECT NEXT LOCK FILE "maadr" INDEX codema.maadr
+ WEND 
+ END SUB 
  
 
-ÿÿCheckBuch()
- ÿ¡ÿOÿ´("stamm")ÿpÿƒDFile(3,"stamm"ÿ_fpw$)
- ÿÉÿ`ÿ™"stamm"
-ÿ¡PrvVerfahr$ÿ"Zahlungseingang"ÿp
-budat$ÿ"Buchung1"
- ÿ^
-budat$ÿ"Buchung"
- ÿ’ÿ¡
- ÿ¡ÿOÿ´(budat$)ÿpÿƒDFile(3,budat$ÿ_fpw$)
- ÿ™budat$
- ÿ£codebu
- ÿ¡ÿA(budat$)ÿ0ÿp
-i%ÿ0
-j%ÿÿA(budat$)
-ÿÉÿ`ÿáÿ™budat$ÿ£codebu
-ÿØÿOÿB(budat$)
-ÿßÿe
-i%ÿi%ÿ1
-ÿÊÿËÿ(i%,",99999999")ÿ"/"ÿÿ(j%,",99999999")ÿ" "ÿbudat$
-ÿ¡provisionÿ"j"ÿp
-ÿ¡buchungstext ÿ"AP*"ÿbuchungstext ÿ"Abschlu*"ÿp
-	apjnÿ"j"
-	courtjn ÿ"n"
-	pflegejnÿ"n"
-ÿ’ÿ¡
-ÿ¡buchungstext ÿ"Courtag*"ÿp
-	apjn ÿ"n"
-	courtjn ÿ"j"
-	pflegejn ÿ"n"
-ÿ’ÿ¡
-ÿ¡buchungstext ÿ"Pfleg*"ÿp
-	apjn ÿ"n"
-	courtjn ÿ"n"
-	pflegejn ÿ"j"
-ÿ’ÿ¡
-ÿÌÿ™budat$
-ÿ’ÿ¡
-ÿÉÿ±ÿáÿ™budat$ÿ£codebu
-ÿÙ
- ÿ’ÿ¡
- ÿ’ÿÿ
+SUB CheckBuch()
+ IF NOT OPEN ("stamm") THEN CALL DFile(3,"stamm" + _fpw$)
+ SELECT FIRST FILE "stamm"
+  IF PrvVerfahr$ LIKE "Zahlungseingang" THEN 
+    budat$ = "Buchung1"
+ ELSE 
+    budat$ = "Buchung"
+ END IF 
+ IF NOT OPEN (budat$) THEN CALL DFile(3,budat$ + _fpw$)
+ FILE budat$
+ INDEX codebu
+ IF RECCOUNT (budat$) > 0 THEN 
+   i% = 0
+   j% = RECCOUNT (budat$)
+   SELECT FIRST LOCK FILE budat$ INDEX codebu
+   WHILE NOT EOF (budat$)
+     MOUSE OFF 
+     i% = i% + 1
+     SET STATUS STR$ (i%,",99999999") + "/" + STR$ (j%,",99999999") + " " + budat$
+     IF provision = "j" THEN 
+       IF buchungstext LIKE "AP*" OR buchungstext LIKE "Abschlu*" THEN 
+         apjn = "j"
+         courtjn = "n"
+         pflegejn = "n"
+       END IF 
+       IF buchungstext LIKE "Courtag*" THEN 
+         apjn = "n"
+         courtjn = "j"
+         pflegejn = "n"
+       END IF 
+       IF buchungstext LIKE "Pfleg*" THEN 
+         apjn = "n"
+         courtjn = "n"
+         pflegejn = "j"
+       END IF 
+       STORE FILE budat$
+     END IF 
+     SELECT NEXT LOCK FILE budat$ INDEX codebu
+   WEND 
+ END IF 
+ END SUB 
 
 

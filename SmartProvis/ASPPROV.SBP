@@ -1,2009 +1,1926 @@
-SBP
-ÿÿmain()
+SUB main()
  'CALL CreateCenter()
  'CALL SimpleConnect("adressen")
  'CALL CreateLoadSend("formular")
  'CALL FilialeToCenter("d:\afm.tst\",0, - 1)
- ÿƒCenterToFiliale("d:\afm.tst\",1,0)
+ CALL CenterToFiliale("d:\afm.tst\",1,0)
 
- ÿ’ÿÿ
+ END SUB 
  
 
-ÿÿPROVPPCS()
- ÿ’ÿÿ
+SUB PROVPPCS()
+ END SUB 
  '*********************************************************************************************** 
  
 
-ÿÿmain()
+SUB main()
  'REGISTER CLEAR 
  'REGISTER "USER","MessageBox","IICCI"
  'CALL AbgPlausi("plausi.txt")
  
-'DIRECTORY "d:\ppcsabgl\hiera"
-'LOAD "HIERA", APPEND 
-'IF CopyRecord%("adrsend","adressen") <> - 1 REQUEST ""
-'CALL SimpleConnect("connect")
-'CALL AbgleichInit()
-'IF Send%() = - 1 THEN REQUEST "supa"
-'CALL ManiSer("Adressen", 5000)
-'CALL test()
-'CALL DeleteAll()
-'CALL DeleteCenter()
+     'DIRECTORY "d:\ppcsabgl\hiera"
+     'LOAD "HIERA", APPEND 
+     'IF CopyRecord%("adrsend","adressen") <> - 1 REQUEST ""
+     'CALL SimpleConnect("connect")
+     'CALL AbgleichInit()
+     'IF Send%() = - 1 THEN REQUEST "supa"
+     'CALL ManiSer("Adressen", 5000)
+     'CALL test()
+     'CALL DeleteAll()
+     'CALL DeleteCenter()
  
-'CALL SimpleConnect("akquise")
-ÿƒSimpleConnect("maadr")
-
-'CALL ForceLoad("adressen")
-'CALL ForceLoad("telefon")
+     'CALL SimpleConnect("akquise")
+     CALL SimpleConnect("maadr")
+  
+     'CALL ForceLoad("adressen")
+     'CALL ForceLoad("telefon")
  
-'CALL CryptPwd("d:\dkm\temp")
-'CALL PPCSOpenTest2()
-'CALL PrintPPCSOpen("times2.txt")
-'CALL PPCSSuchTest()
+        'CALL CryptPwd("d:\dkm\temp")
+        'CALL PPCSOpenTest2()
+        'CALL PrintPPCSOpen("times2.txt")
+        'CALL PPCSSuchTest()
  
- ÿ’ÿÿ
+ END SUB 
  '***********************************************************************************************
  
  
-ÿÿPPCSOpenTest()
+SUB PPCSOpenTest()
  '”ffnet alle Dateien vom Typ "A" ber PPCS und protokolliert die Dauer fr 
  'diesen Vorgang in die Datei PPCSTime
  
-ÿ†ÿt
-ÿ¡ÿOÿ´("AbgFiles")ÿp
-ÿ´ÿ™ÿà,1jaPPCSPath$ÿ"abgfiles;paris"
-ÿ’ÿ¡
-typ$ÿ"P"' C - Verschlsselt, P - Zugriffs-pwd
-leervoll$ÿ"L"
-rep%ÿ20' wie oft soll ge”ffnet werden (direkt nacheinander)
-ÿ×Values%(rep%)
+    CLOSE ALL 
+    IF NOT OPEN ("AbgFiles") THEN 
+        OPEN FILE SHARE ,1jaPPCSPath$ + "abgfiles;paris"
+    END IF 
+    typ$ = "P"' C - Verschlsselt, P - Zugriffs-pwd
+    leervoll$ = "L"
+    rep% = 20' wie oft soll ge”ffnet werden (direkt nacheinander)
+    DIM Values%(rep%)
  
-ip$ÿ"130.50.0.203"
-port$ÿ"1280"
-udpserver$ÿip$ÿ":"ÿport$
-Connections.Clear()
-ÿ¡ÿOConnections.Exists("CODIE")ÿÿ1ÿp
-Connections.Add("CODIE","ConnectionUDPClient").ServerName ÿudpserver$
-Superbase.Connections.CODIE.Timeoutÿ8000
-ÿ’ÿ¡
+    ip$ = "130.50.0.203"
+    port$ = "1280"
+    udpserver$ = ip$ + ":" + port$
+    Connections.Clear()
+    IF NOT Connections.Exists("CODIE") = - 1 THEN 
+        Connections.Add("CODIE","ConnectionUDPClient").ServerName = udpserver$
+        Superbase.Connections.CODIE.Timeout = 8000
+    END IF 
  
-ÿÉÿ`ÿ™"abgfiles"ÿ£CodeFile.AbgFiles
-ÿØÿOÿB("AbgFiles")
-'
-ÿ¡Typ.AbgFilesÿ"A"ÿTyp.AbgFilesÿ"C"ÿTyp.AbgFilesÿ"Z"ÿp
-datei$ÿFileName.AbgFiles
-ÿÊÿËdatei$
-'CALL Fehler("PPCSOpen","Datei: " + datei$)
+    SELECT FIRST FILE "abgfiles" INDEX CodeFile.AbgFiles
+    WHILE NOT EOF ("AbgFiles")
+        '
+        IF Typ.AbgFiles = "A" OR Typ.AbgFiles = "C" OR Typ.AbgFiles = "Z" THEN 
+            datei$ = FileName.AbgFiles
+            SET STATUS datei$
+            'CALL Fehler("PPCSOpen","Datei: " + datei$)
  
-ÿ›z%ÿ1ÿqrep%
+            FOR z% = 1 TO rep%
  
-tBefore%ÿSuperbase.Now
-ÿ´ÿ™ÿà,1"CODIE:"ÿdatei$ÿ";paris"
-tAfter%ÿSuperbase.Now
+                tBefore% = Superbase.Now
+                OPEN FILE SHARE ,1"CODIE:" + datei$ + ";paris"
+                tAfter% = Superbase.Now
  
-Values%(z%)ÿtAfter%ÿtBefore%
-average%ÿaverage%ÿ(tAfter%ÿtBefore%)
+                Values%(z%) = tAfter% - tBefore%
+                average% = average% + (tAfter% - tBefore%)
  
-ÿ¡ÿ´(datei$)ÿpÿ†ÿ™datei$
+                IF OPEN (datei$) THEN CLOSE FILE datei$
  
-ÿ±z%
-average%ÿaverage%ÿrep%
+            NEXT z%
+            average% = average% / rep%
  
-'mittleres Abstandsquadrat berechnen
-square%ÿ0
-ÿ›z%ÿ1ÿqrep%
-square%ÿsquare%ÿ(average%ÿValues%(z%))ÿ(average%ÿValues%(z%))
-ÿ±z%
-square%ÿÿ(square%)ÿrep%
+            'mittleres Abstandsquadrat berechnen
+            square% = 0
+            FOR z% = 1 TO rep%
+                square% = square% + (average% - Values%(z%)) * (average% - Values%(z%))
+            NEXT z%
+            square% = SQR (square%) / rep%
  
  
-'Ergebnis wegschreiben
-ÿÉÿYÿáÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
-
-Square.AbgFilesÿsquare%
-ÿ¡typ$ÿ"C"ÿleervoll$ÿ"L"ÿp
-TimeC_L.AbgFilesÿaverage%
-ÿ’ÿ¡
-ÿ¡typ$ÿ"P"ÿleervoll$ÿ"L"ÿp
-TimeP_L.AbgFilesÿaverage%
-ÿ’ÿ¡
-ÿ¡typ$ÿ"C"ÿleervoll$ÿ"V"ÿp
-TimeC.AbgFilesÿaverage%
-ÿ’ÿ¡
-ÿ¡typ$ÿ"P"ÿleervoll$ÿ"V"ÿp
-TimeP.AbgFilesÿaverage%
-ÿ’ÿ¡
-
+            'Ergebnis wegschreiben
+            SELECT CURRENT LOCK FILE "AbgFiles" INDEX CodeFile.AbgFiles
+                
+                Square.AbgFiles = square%
+                IF typ$ = "C" AND leervoll$ = "L" THEN 
+                    TimeC_L.AbgFiles = average%
+                END IF 
+                IF typ$ = "P" AND leervoll$ = "L" THEN 
+                    TimeP_L.AbgFiles = average%
+                END IF 
+                IF typ$ = "C" AND leervoll$ = "V" THEN 
+                    TimeC.AbgFiles = average%
+                END IF 
+                IF typ$ = "P" AND leervoll$ = "V" THEN 
+                    TimeP.AbgFiles = average%
+                END IF 
+                
  
-ÿÌÿ™"AbgFiles"
+            STORE FILE "AbgFiles"
  
-ÿ’ÿ¡
+        END IF 
  
-ÿÉÿ±ÿ™"abgfiles"ÿ£CodeFile.AbgFiles
-ÿÙ
+        SELECT NEXT FILE "abgfiles" INDEX CodeFile.AbgFiles
+    WEND 
  
- ÿ’ÿÿ
+ END SUB 
  '***********************************************************************************************  
-
+  
  
-ÿÿPPCSOpenTest2()
+SUB PPCSOpenTest2()
  '”ffnet alle Dateien vom Typ "A" ber PPCS und protokolliert die Dauer fr 
  'diesen Vorgang in die Datei PPCSTime
  
-ÿ†ÿt
-ÿ¡ÿOÿ´("AbgFiles")ÿp
-ÿ´ÿ™ÿà,1jaPPCSPath$ÿ"abgfiles;paris"
-ÿ’ÿ¡
+    CLOSE ALL 
+    IF NOT OPEN ("AbgFiles") THEN 
+        OPEN FILE SHARE ,1jaPPCSPath$ + "abgfiles;paris"
+    END IF 
  
-leervoll$ÿ"L"
-rep%ÿ20' wie oft soll ge”ffnet werden (direkt nacheinander)    
+    leervoll$ = "L"
+    rep% = 20' wie oft soll ge”ffnet werden (direkt nacheinander)    
  
-ip$ÿ"130.50.0.203"
-port$ÿ"1280"
-udpserver$ÿip$ÿ":"ÿport$
+    ip$ = "130.50.0.203"
+    port$ = "1280"
+    udpserver$ = ip$ + ":" + port$
  
  
-ÿ›z%ÿ1ÿqrep%
-
-ÿ†ÿt
-ÿ¡ÿOÿ´("AbgFiles")ÿp
-ÿ´ÿ™ÿà,1jaPPCSPath$ÿ"abgfiles;paris"
-ÿ’ÿ¡
+    FOR z% = 1 TO rep%
+        
+        CLOSE ALL 
+        IF NOT OPEN ("AbgFiles") THEN 
+            OPEN FILE SHARE ,1jaPPCSPath$ + "abgfiles;paris"
+        END IF 
 
-ÿÂ"Loop: "ÿÿ(z%,"z")
-Connections.Clear()
-ÿ¡ÿOConnections.Exists("CODIE")ÿÿ1ÿp
-Connections.Add("CODIE","ConnectionUDPClient").ServerName ÿudpserver$
-Superbase.Connections.CODIE.Timeoutÿ8000
-ÿ’ÿ¡
+        REQUEST "Loop: " + STR$ (z%,"z")
+        Connections.Clear()
+        IF NOT Connections.Exists("CODIE") = - 1 THEN 
+            Connections.Add("CODIE","ConnectionUDPClient").ServerName = udpserver$
+            Superbase.Connections.CODIE.Timeout = 8000
+        END IF 
 
-ÿÉÿ`ÿ™"abgfiles"ÿ£CodeFile.AbgFiles
-ÿØÿOÿB("AbgFiles")
-'            
-ÿ¡Typ.AbgFilesÿ"A"ÿTyp.AbgFilesÿ"C"ÿTyp.AbgFilesÿ"Z"ÿp
-datei$ÿFileName.AbgFiles
-ÿÊÿËdatei$
-'CALL Fehler("PPCSOpen2","Datei: " + datei$)
+        SELECT FIRST FILE "abgfiles" INDEX CodeFile.AbgFiles
+        WHILE NOT EOF ("AbgFiles")
+        '            
+            IF Typ.AbgFiles = "A" OR Typ.AbgFiles = "C" OR Typ.AbgFiles = "Z" THEN 
+                datei$ = FileName.AbgFiles
+                SET STATUS datei$
+                'CALL Fehler("PPCSOpen2","Datei: " + datei$)
  
-tBefore%ÿSuperbase.Now
-ÿ´ÿ™ÿà,1"CODIE:"ÿdatei$ÿ";paris"
-tAfter%ÿSuperbase.Now
+                tBefore% = Superbase.Now
+                OPEN FILE SHARE ,1"CODIE:" + datei$ + ";paris"
+                tAfter% = Superbase.Now
  
-ÿ¡ÿ´(datei$)ÿpÿ†ÿ™datei$
+                IF OPEN (datei$) THEN CLOSE FILE datei$
  
-'kummulierende Summe wegschreiben
-ÿÉÿYÿáÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
-ÿ¡(z%ÿ1)ÿp
-ÿ¡leervoll$ÿ"L"ÿp
-Time_L.AbgFilesÿ0
-ÿ’ÿ¡
-ÿ¡leervoll$ÿ"V"ÿp
-Time.AbgFilesÿ0
-ÿ’ÿ¡
-ÿ’ÿ¡
- 
-ÿ¡leervoll$ÿ"L"ÿp
-Time_L.AbgFilesÿTime_L.AbgFilesÿ(tAfter%ÿtBefore%)ÿrep%
-ÿ’ÿ¡
-ÿ¡leervoll$ÿ"V"ÿp
-Time.AbgFilesÿTime.AbgFilesÿ(tAfter%ÿtBefore%)ÿrep%
-ÿ’ÿ¡
-
-ÿÌÿ™"AbgFiles"
-ÿïÿYÿ™"AbgFiles"
-ÿ’ÿ¡
+                'kummulierende Summe wegschreiben
+                SELECT CURRENT LOCK FILE "AbgFiles" INDEX CodeFile.AbgFiles
+                    IF (z% = 1) THEN 
+                        IF leervoll$ = "L" THEN 
+                            Time_L.AbgFiles = 0
+                        END IF 
+                        IF leervoll$ = "V" THEN 
+                            Time.AbgFiles = 0
+                        END IF 
+                    END IF 
+                                
+                    IF leervoll$ = "L" THEN 
+                        Time_L.AbgFiles = Time_L.AbgFiles + (tAfter% - tBefore%) / rep%
+                    END IF 
+                    IF leervoll$ = "V" THEN 
+                        Time.AbgFiles = Time.AbgFiles + (tAfter% - tBefore%) / rep%
+                    END IF 
+  
+                STORE FILE "AbgFiles"
+                UNLOCK CURRENT FILE "AbgFiles"
+            END IF 
  
-ÿÉÿ±ÿ™"abgfiles"ÿ£CodeFile.AbgFiles
-ÿÙ
+            SELECT NEXT FILE "abgfiles" INDEX CodeFile.AbgFiles
+        WEND 
 
-ÿ±z%
+    NEXT z%
 
- ÿ’ÿÿ
+ END SUB 
  '***********************************************************************************************  
  
 
-ÿÿPrintPPCSOpen(txtfile$)
-sep$ÿ";"
-ÿ´txtfile$ÿ›ÿ¶
-ÿÉÿ`ÿ™"abgfiles"ÿ£CodeFile.AbgFiles
-'Header schreiben
-ÿ{"FileName"ÿsep$ÿ"FieldCount"ÿsep$ÿ"IndexCount"ÿsep$ÿ"TXT1000Count"ÿsep$;
-ÿ{"Time"ÿsep$ÿ"Time_L"
-ÿØÿOÿB("AbgFiles")
-
-ÿ¡Typ.AbgFilesÿ"A"ÿTyp.AbgFilesÿ"C"ÿTyp.AbgFilesÿ"Z"ÿp
-ÿ{FileName.AbgFilesÿsep$;
-ÿ{ÿ(FieldCount.AbgFiles,"z")ÿsep$;
-ÿ{ÿ(IndexCount.AbgFiles,"z")ÿsep$;
-ÿ¡TXT1000Count.AbgFilesÿ0ÿp
-ÿ{"0"ÿsep$;
-ÿ^
-ÿ{ÿ(TXT1000Count.AbgFiles,"z")ÿsep$;
-ÿ’ÿ¡
-ÿ{ÿ(Time.AbgFiles,"0000")ÿsep$;
-ÿ{ÿ(Time_L.AbgFiles,"0000")
-ÿ’ÿ¡
+SUB PrintPPCSOpen(txtfile$)
+    sep$ = ";"
+    OPEN txtfile$ FOR OUTPUT 
+    SELECT FIRST FILE "abgfiles" INDEX CodeFile.AbgFiles
+    'Header schreiben
+    ? "FileName" + sep$ + "FieldCount" + sep$ + "IndexCount" + sep$ + "TXT1000Count" + sep$;
+    ? "Time" + sep$ + "Time_L"
+    WHILE NOT EOF ("AbgFiles")
+        
+        IF Typ.AbgFiles = "A" OR Typ.AbgFiles = "C" OR Typ.AbgFiles = "Z" THEN 
+            ? FileName.AbgFiles + sep$;
+            ? STR$ (FieldCount.AbgFiles,"z") + sep$;
+            ? STR$ (IndexCount.AbgFiles,"z") + sep$;
+            IF TXT1000Count.AbgFiles = 0 THEN 
+                ? "0" + sep$;
+            ELSE 
+                ? STR$ (TXT1000Count.AbgFiles,"z") + sep$;
+            END IF 
+            ? STR$ (Time.AbgFiles,"0000") + sep$;
+            ? STR$ (Time_L.AbgFiles,"0000")
+        END IF 
  
-ÿÉÿ±ÿ™"abgfiles"ÿ£CodeFile.AbgFiles
-ÿÙ
-ÿ{""
+        SELECT NEXT FILE "abgfiles" INDEX CodeFile.AbgFiles
+    WEND 
+    ? ""
  
-ÿ†ÿ¶
- ÿ’ÿÿ
+    CLOSE OUTPUT 
+ END SUB 
  '***********************************************************************************************  
  
 
-ÿÿFehler(Z1$,Z2$)
- msg$ÿZ1$
- ÿ¡z2$ÿ""ÿpmsg$ÿmsg$ÿÿ(13)ÿÿ(10)ÿZ2$
- v%ÿÿƒ("MessageBox",hWnd%%,ÿåansi(msg$),ÿåansi(title$),48)
- ÿ’ÿÿ
+SUB Fehler(Z1$,Z2$)
+ msg$ = Z1$
+ IF z2$ <> "" THEN msg$ = msg$ + CHR$ (13) + CHR$ (10) + Z2$
+ v% = CALL ("MessageBox",hWnd%%, FN ansi(msg$), FN ansi(title$),48)
+ END SUB 
  '***********************************************************************************************
  
 
-ÿÿForceLoad(datei$,wks%)
-
-'Dirty-Felder in der Zentrale neu setzen
-'wenn wks% <> -1 ==> nur die Daten dieser Filiale bekommen den Dirty-Zustand
-'nach Ausfhrung der Funktion werden alle Daten von den Filialen
-'beim n„chsten CenterToLoad bernommen
-'Vor.: datei$ und AbgFiles mssen ge”ffnet sein
-oldErrorLabel$ÿSuperbase.ErrorTrapLabel
+SUB ForceLoad(datei$,wks%)
+  
+    'Dirty-Felder in der Zentrale neu setzen
+    'wenn wks% <> -1 ==> nur die Daten dieser Filiale bekommen den Dirty-Zustand
+    'nach Ausfhrung der Funktion werden alle Daten von den Filialen
+    'beim n„chsten CenterToLoad bernommen
+    'Vor.: datei$ und AbgFiles mssen ge”ffnet sein
+    oldErrorLabel$ = Superbase.ErrorTrapLabel
  
-wks$ÿ"Workstation."ÿdatei$
-code$ÿGetFileCode$(datei$)
-code$ÿcode$ÿ"."ÿdatei$
-ÿ¡wks%ÿÿ1ÿp
+        wks$ = "Workstation." + datei$
+        code$ = GetFileCode$(datei$)
+        code$ = code$ + "." + datei$
+    IF wks% = - 1 THEN 
  
-ÿÉÿ`ÿ™datei$ÿ£code$$
-ÿØÿOÿB(datei$)
-ÿ³ÿ_ÿwForceNextError1
-ÿÉÿYÿáÿ™datei$ÿ£code$$
-recfield$ÿ"rec0."ÿdatei$
-recfield$$ÿwks$$
-ÿ›i%ÿ1ÿq19
-recfield$ÿ"rec"ÿÿ(i%,"z")ÿ"."ÿdatei$
-recfield$$ÿwks$$
-ÿ±i%
-
-ÿÌÿ™datei$
-ÿïÿYÿ™datei$
-'alles io
-ÿwForceNext2
+        SELECT FIRST FILE datei$ INDEX code$$
+        WHILE NOT EOF (datei$)
+            ON ERROR GOTO ForceNextError1
+            SELECT CURRENT LOCK FILE datei$ INDEX code$$
+            recfield$ = "rec0." + datei$
+            recfield$$ = wks$$
+            FOR i% = 1 TO 19
+                recfield$ = "rec" + STR$ (i%,"z") + "." + datei$
+                recfield$$ = wks$$
+            NEXT i%
+  
+            STORE FILE datei$
+            UNLOCK CURRENT FILE datei$
+            'alles io
+            GOTO ForceNext2
 
 ForceNextError1: 
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Fehler in ForceLoad: "ÿdatei$,ÿ(ÿ&,"z")ÿ": "ÿÿ((ÿ&))
+            IF jaDebug% = - 1 THEN CALL Fehler("Fehler in ForceLoad: " + datei$, STR$ ( ERRNO ,"z") + ": " + ERR$ ( ERRNO ))
 
 ForceNext1: 
-ÿ³ÿ_ÿwErrorHandler
-ÿÉÿ±ÿ™datei$ÿ£code$$
-ÿÙ
-ÿ^
-
-ÿÉÿ`ÿ™datei$ÿ£wks$$
-ÿÉÿ¥wks%ÿ™datei$ÿ£wks$$
-ÿØÿOÿB(datei$)ÿwks$$ÿwks%
-ÿ³ÿ_ÿwForceNextError2
-ÿÉÿYÿáÿ™datei$ÿ£wks$$
-recfield$ÿ"rec0."ÿdatei$
-recfield$$ÿwks$$
-ÿ›i%ÿ1ÿq19
-recfield$ÿ"rec"ÿÿ(i%,"z")ÿ"."ÿdatei$
-recfield$$ÿwks$$
-ÿ±i%
+            ON ERROR GOTO ErrorHandler
+            SELECT NEXT FILE datei$ INDEX code$$
+        WEND 
+    ELSE 
+        
+        SELECT FIRST FILE datei$ INDEX wks$$
+        SELECT KEY wks% FILE datei$ INDEX wks$$
+        WHILE NOT EOF (datei$) AND wks$$ = wks%
+            ON ERROR GOTO ForceNextError2
+            SELECT CURRENT LOCK FILE datei$ INDEX wks$$
+            recfield$ = "rec0." + datei$
+            recfield$$ = wks$$
+            FOR i% = 1 TO 19
+                recfield$ = "rec" + STR$ (i%,"z") + "." + datei$
+                recfield$$ = wks$$
+            NEXT i%
 
-ÿÌÿ™datei$
-ÿïÿYÿ™datei$
-'alles io
-ÿwForceNext2
+            STORE FILE datei$
+            UNLOCK CURRENT FILE datei$
+            'alles io
+            GOTO ForceNext2
 
 ForceNextError2: 
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Fehler in ForceLoad: "ÿdatei$,ÿ(ÿ&,"z")ÿ": "ÿÿ((ÿ&))
+            IF jaDebug% = - 1 THEN CALL Fehler("Fehler in ForceLoad: " + datei$, STR$ ( ERRNO ,"z") + ": " + ERR$ ( ERRNO ))
  
 ForceNext2: 
-ÿ³ÿ_ÿwErrorHandler
-ÿÉÿ±ÿ™datei$ÿ£wks$
-ÿÙ
-ÿ’ÿ¡
+            ON ERROR GOTO ErrorHandler
+            SELECT NEXT FILE datei$ INDEX wks$
+        WEND 
+    END IF 
 
-Superbase.ErrorTrapLabelÿoldErrorLabel$
- ÿ’ÿÿ
+    Superbase.ErrorTrapLabel = oldErrorLabel$
+ END SUB 
  '***********************************************************************************************   
  
  
-ÿÿSetDisplay(typ%)
+SUB SetDisplay(typ%)
  'typ = -1 -> Standard-Fenster-Eigenschaften
  'typ = 0  -> Abgleich-Formular-Eigenschaften
  
- ÿ¡typ%ÿ0ÿp
+ IF typ% = 0 THEN 
 
-'Abgleich-Formular zurechtbasteln
-ÿÊÿ¬ÿe
-Superbase.MDIModeÿ0
-Superbase.WindowStateÿ0
-Superbase.Sizeableÿÿ1
-Superbase.Topÿ50
-Superbase.Leftÿ50
-Superbase.Widthÿ500
-Superbase.Heightÿ220
-Superbase.Sizeableÿ0
-Superbase.SelectionBarÿ0
-Superbase.StatusBarÿ0
-Superbase.IconBarStateÿ0
-Superbase.BorderStyleÿ1
+     'Abgleich-Formular zurechtbasteln
+     SET MENU OFF 
+     Superbase.MDIMode = 0
+     Superbase.WindowState = 0
+     Superbase.Sizeable = - 1
+     Superbase.Top = 50
+     Superbase.Left = 50
+     Superbase.Width = 500
+     Superbase.Height = 220
+     Superbase.Sizeable = 0
+     Superbase.SelectionBar = 0
+     Superbase.StatusBar = 0
+     Superbase.IconBarState = 0
+     Superbase.BorderStyle = 1
 
-ÿ×w ÿUSDIWindow 
-ÿÊw ÿSuperbase.Windows(1)
-w.OpenForm(_netpath$ÿ"ppcsabgl")
-w.Form.FktL.Captionÿ" "
-w.Form.TitleL.Captionÿ" "
-w.Form.CounterL.Captionÿ" "
-ÿÊÿÿ³
+     DIM w AS SDIWindow 
+     SET w = Superbase.Windows(1)
+     w.OpenForm(_netpath$ + "ppcsabgl")
+     w.Form.FktL.Caption = " "
+     w.Form.TitleL.Caption = " "
+     w.Form.CounterL.Caption = " "
+    SET DISPLAY ON 
 
- ÿ^
+ ELSE 
 
  
-Superbase.StatusBarÿÿ1
-ScrWidth%ÿÿåsys(6)
-ScrHeight%ÿÿåsys(7)
-CapHeight%ÿÿƒ("GetSystemMetrics",4)
-ÿ½ CALL Fehler("Screen","")
-ÿ¡(ScrWidth%ÿ
-800ÿScrHeight%ÿ
-600)ÿ(ÿ>(_projekt$)ÿ"FACTURA"ÿÿ>(_projekt$)ÿ"AKTE"ÿÿ>(_projekt$)ÿ"PROVIS"ÿÿ>(_projekt$)ÿ"OFFICE")ÿp
-
-ÿƒFehler("Sie k”nnen das Programm nicht unter der Bildschirmaufl”sung 640*480 betreiben!","ndern Sie bitte Ihre Bildschirmaufl”sung in 800 * 600 (kleine Schrift/Small Fonts)!")
-ÿ^
-
-ÿÉÿæScrWidth%
-
-ÿæ640
-LargeFont$ÿ"FALSE"
-ÿ¡ÿ>(_projekt$)ÿ"FACTURA"ÿÿ>(_projekt$)ÿ"AKTE"ÿÿ>(_projekt$)ÿ"PROVIS"ÿÿ>(_projekt$)ÿ"OFFICE"ÿp
-ÿƒFehler("Sie k”nnen das Programm nicht unter der Bildschirmaufl”sung 640*480 betreiben!","ndern Sie bitte Ihre Bildschirmaufl”sung in 800 * 600 (kleine Schrift/Small Fonts)!")
-ÿ½ CALL EXIT()
-ÿ’ÿ¡
-
-ÿæ800
-ÿ¡CapHeight%ÿ20ÿpLargeFont$ÿ"TRUE"ÿ^LargeFont$ÿ"FALSE"
-ÿ¡LargeFont$ÿ"TRUE"ÿp
-ÿƒFehler("Siehe haben als Bildschirmfont ~Largefonts/Groáe Schriftart~ eingestellt, dies fhrt zu Problemen, da die Programm-Masken fr Aufl”sung 800*600 Kleine Schriftart erstellt wurden!","Bitte „ndern Sie den Bildschirmfont!")
-ÿ’ÿ¡
-
-ÿæ1024
-ÿ¡CapHeight%ÿ20ÿpLargeFont$ÿ"TRUE"ÿ^LargeFont$ÿ"FALSE"
-
-ÿæ1152
-ÿ¡CapHeight%ÿ20ÿpLargeFont$ÿ"TRUE"ÿ^LargeFont$ÿ"FALSE"
-
-ÿæ1280
-ÿ¡CapHeight%ÿ20ÿpLargeFont$ÿ"TRUE"ÿ^LargeFont$ÿ"FALSE"
-
-ÿæ1600
-ÿ¡CapHeight%ÿ20ÿpLargeFont$ÿ"TRUE"ÿ^LargeFont$ÿ"FALSE"
-
-ÿ’ÿÉ
-
-ÿ½ 060499
-
-ÿ¡ÿ>(LargeFont$)ÿ"FALSE"ÿp
-WndWidth%ÿ640
-WndHeight%ÿ480
-ÿ¡ÿ>(_projekt$)ÿ"FACTURA"ÿÿ>(_projekt$)ÿ"AKTE"ÿÿ>(_projekt$)ÿ"PROVIS"ÿÿ>(_projekt$)ÿ"OFFICE"ÿÿ>(_projekt$)ÿ"IMMAK"ÿÿ>(_projekt$)ÿ"MEDIA"ÿp
-WndWidth%ÿ800
-WndHeight%ÿ600
-ÿ’ÿ¡
-
-ÿ^
-ÿÉÿæScrWidth%
-ÿæ640
-WndWidth%ÿ640
-WndHeight%ÿ480
-ÿæ800
-WndWidth%ÿ950
-WndHeight%ÿ700
-ÿæ1024
-WndWidth%ÿ950
-WndHeight%ÿ700
-ÿæ1152
-WndWidth%ÿ950
-WndHeight%ÿ700
-ÿæ1280
-WndWidth%ÿ950
-WndHeight%ÿ700
-ÿæ1600
-WndWidth%ÿ950
-WndHeight%ÿ700
-ÿ’ÿÉ
-
-ÿ’ÿ¡
-ÿ’ÿ¡
+     Superbase.StatusBar = - 1
+     ScrWidth% = FN sys(6)
+     ScrHeight% = FN sys(7)
+     CapHeight% = CALL ("GetSystemMetrics",4)
+     REM CALL Fehler("Screen","")
+     IF (ScrWidth% < 800 OR ScrHeight% < 600) AND ( UCASE$ (_projekt$) LIKE "FACTURA" OR UCASE$ (_projekt$) LIKE "AKTE" OR UCASE$ (_projekt$) LIKE "PROVIS" OR UCASE$ (_projekt$) LIKE "OFFICE") THEN 
+          CALL Fehler("Sie k”nnen das Programm nicht unter der Bildschirmaufl”sung 640*480 betreiben!","ndern Sie bitte Ihre Bildschirmaufl”sung in 800 * 600 (kleine Schrift/Small Fonts)!")
+     ELSE 
+          SELECT CASE ScrWidth%
+          CASE 640
+               LargeFont$ = "FALSE"
+               IF UCASE$ (_projekt$) LIKE "FACTURA" OR UCASE$ (_projekt$) LIKE "AKTE" OR UCASE$ (_projekt$) LIKE "PROVIS" OR UCASE$ (_projekt$) LIKE "OFFICE" THEN 
+                    CALL Fehler("Sie k”nnen das Programm nicht unter der Bildschirmaufl”sung 640*480 betreiben!","ndern Sie bitte Ihre Bildschirmaufl”sung in 800 * 600 (kleine Schrift/Small Fonts)!")
+                    REM CALL EXIT()
+               END IF 
+          CASE 800
+               IF CapHeight% > 20 THEN LargeFont$ = "TRUE" ELSE LargeFont$ = "FALSE"
+               IF LargeFont$ = "TRUE" THEN 
+                    CALL Fehler("Siehe haben als Bildschirmfont ~Largefonts/Groáe Schriftart~ eingestellt, dies fhrt zu Problemen, da die Programm-Masken fr Aufl”sung 800*600 Kleine Schriftart erstellt wurden!","Bitte „ndern Sie den Bildschirmfont!")
+               END IF 
+          CASE 1024
+               IF CapHeight% > 20 THEN LargeFont$ = "TRUE" ELSE LargeFont$ = "FALSE"
+          CASE 1152
+               IF CapHeight% > 20 THEN LargeFont$ = "TRUE" ELSE LargeFont$ = "FALSE"
+          CASE 1280
+               IF CapHeight% > 20 THEN LargeFont$ = "TRUE" ELSE LargeFont$ = "FALSE"
+          CASE 1600
+               IF CapHeight% > 20 THEN LargeFont$ = "TRUE" ELSE LargeFont$ = "FALSE"
+          END SELECT 
+          REM 060499
+          IF UCASE$ (LargeFont$) = "FALSE" THEN 
+               WndWidth% = 640
+               WndHeight% = 480
+               IF UCASE$ (_projekt$) LIKE "FACTURA" OR UCASE$ (_projekt$) LIKE "AKTE" OR UCASE$ (_projekt$) LIKE "PROVIS" OR UCASE$ (_projekt$) LIKE "OFFICE" OR UCASE$ (_projekt$) LIKE "IMMAK" OR UCASE$ (_projekt$) LIKE "MEDIA" THEN 
+                    WndWidth% = 800
+                    WndHeight% = 600
+               END IF 
+          ELSE 
+               SELECT CASE ScrWidth%
+               CASE 640
+                    WndWidth% = 640
+                    WndHeight% = 480
+               CASE 800
+                    WndWidth% = 950
+                    WndHeight% = 700
+               CASE 1024
+                    WndWidth% = 950
+                    WndHeight% = 700
+               CASE 1152
+                    WndWidth% = 950
+                    WndHeight% = 700
+               CASE 1280
+                    WndWidth% = 950
+                    WndHeight% = 700
+               CASE 1600
+                    WndWidth% = 950
+                    WndHeight% = 700
+               END SELECT 
+          END IF 
+     END IF 
  
-_wpx%ÿ(ÿåsys(6)ÿWndWidth%)ÿ2
-_wpy%ÿ(ÿåsys(7)ÿWndHeight%)ÿ2
-ÿÊÿ¸_wpx%,_wpy%,WndWidth%,WndHeight%
-ÿÊÿ¸
- ÿ’ÿ¡
- DisplaySet%ÿ0
- ÿ’ÿÿ
-'***********************************************************************************************
+     _wpx% = ( FN sys(6) - WndWidth%) / 2
+     _wpy% = ( FN sys(7) - WndHeight%) / 2
+     SET POSITION _wpx%,_wpy%,WndWidth%,WndHeight%
+     SET POSITION 
+ END IF 
+ DisplaySet% = 0
+ END SUB 
+  '***********************************************************************************************
 
-
-ÿÿAbgleichInit()
-'Deklariert Globale Variablen, die fr den Abgleich und die Filial-Hierarchie ben”tigt werden
-'ruft Funktion ReadHiera() auf, die die Hierarchie-Infos aus der FILIALE bzw. LFILIALE liest
-'baut im Online-Fall die LFILIALE neu auf
-'definiert im Offline-Fall die Workstation% aus der Ini
-'definiert jaDebug%
+  
+SUB AbgleichInit()
+     'Deklariert Globale Variablen, die fr den Abgleich und die Filial-Hierarchie ben”tigt werden
+     'ruft Funktion ReadHiera() auf, die die Hierarchie-Infos aus der FILIALE bzw. LFILIALE liest
+     'baut im Online-Fall die LFILIALE neu auf
+     'definiert im Offline-Fall die Workstation% aus der Ini
+     'definiert jaDebug%
 
 
-oldErrorLabel$ÿSuperbase.ErrorTrapLabel
-ÿÿjaDebug%
-jaDebug%ÿ0
-
-a$ÿReadConfig$("PROVIS","jaDEBUG")
-ÿ½ CALL Fehler(a$,"")
-ÿ¡a$ÿ"0"ÿa$ÿ"leer"ÿp
-
-jaDebug%ÿÿ1
-ÿ’ÿ¡
+     oldErrorLabel$ = Superbase.ErrorTrapLabel
+     GLOBAL jaDebug%
+     jaDebug% = 0
+  
+     a$ = ReadConfig$("PROVIS","jaDEBUG")
+     REM CALL Fehler(a$,"")
+     IF a$ <> "0" AND a$ <> "leer" THEN 
+          jaDebug% = - 1
+     END IF 
  
-ÿ¡jaDebug%ÿÿ1ÿp
-
-ÿƒFehler("AbgleichInit()","")
-ÿ’ÿ¡
-
-'Konstanten fr Hierarchie-Modell
-ÿ½ GLOBAL Nachfolger%(0)'Array aller Filial-Nummern
-ÿ½ GLOBAL Vorg„nger%(0)'Array alller Vorg„nger-Filial-Nummern (korrespondierend zu Nachfolger%)
-ÿÿOffNames$(0)'Array aller Filial-Namen (korresp. zu Nachfolger%)
-ÿÿOffCount%'Anzahl Bros der eigenen Hierarchie 
+     IF jaDebug% = - 1 THEN 
+          CALL Fehler("AbgleichInit()","")
+     END IF 
+  
+     'Konstanten fr Hierarchie-Modell
+     REM GLOBAL Nachfolger%(0)'Array aller Filial-Nummern
+     REM GLOBAL Vorg„nger%(0)'Array alller Vorg„nger-Filial-Nummern (korrespondierend zu Nachfolger%)
+     GLOBAL OffNames$(0)'Array aller Filial-Namen (korresp. zu Nachfolger%)
+     GLOBAL OffCount%'Anzahl Bros der eigenen Hierarchie 
  
-'Sichtbare Bros ermitteln
-ÿÿVisOff%(0)'Array der sichtbaren Workstation-Nummern
-ÿÿVisNames$(0)'Array der sichtbaren Workstation-Namen
-ÿÿVisCount%'Anzahl sichbarer Workstations       
-
+     'Sichtbare Bros ermitteln
+     GLOBAL VisOff%(0)'Array der sichtbaren Workstation-Nummern
+     GLOBAL VisNames$(0)'Array der sichtbaren Workstation-Namen
+     GLOBAL VisCount%'Anzahl sichbarer Workstations       
+  
  
  
-'Hierarchie-DLL
-'I   : Rckgabe der ausgew„hlten FilialNr; -1 bei Abbruch
-'C   : Pfad zum TXT-File mit Hierarchie-Abbild
-'I   : Vorauswahl fr FilialNr; Wurzel, wenn Wert nicht ex.
-'C   : Aktion (max. 2 Zeilen); Wordwrap
-'C   : Info (max Zeilen); Wordwrap
-'I   : 0 - Ok-Button, 1 - Ausw„hlen/Abbrechen
+     'Hierarchie-DLL
+     'I   : Rckgabe der ausgew„hlten FilialNr; -1 bei Abbruch
+     'C   : Pfad zum TXT-File mit Hierarchie-Abbild
+     'I   : Vorauswahl fr FilialNr; Wurzel, wenn Wert nicht ex.
+     'C   : Aktion (max. 2 Zeilen); Wordwrap
+     'C   : Info (max Zeilen); Wordwrap
+     'I   : 0 - Ok-Button, 1 - Ausw„hlen/Abbrechen
 
-WinDir$ÿ""
-a%ÿÿƒ("GetWindowsDirectory",WinDir$,128)
-ÿ¡ÿJ(WinDir$ÿ"\CODieLIB.dll")ÿÿJ(_remotepath$ÿ"CODieLIB.dll")ÿp
-
-'REGISTER "hiera.dll","_SelectOffice","IC"
-
-ÿî"CODieLIB.dll","_SelectOffice","ICICCI"
-ÿ^
-
-ÿƒFehler("Die Bibliothek 'hiera.dll' konnte nicht geladen werden!","")
-ÿ’ÿ¡
-
-'auch untergeordnete Bros anzeigen?
-ÿÿShowOther%
-ShowOther%ÿÿ1
+     WinDir$ = ""
+     a% = CALL ("GetWindowsDirectory",WinDir$,128)
+     IF EXISTS (WinDir$ + "\CODieLIB.dll") OR EXISTS (_remotepath$ + "CODieLIB.dll") THEN 
+          'REGISTER "hiera.dll","_SelectOffice","IC"
+          REGISTER "CODieLIB.dll","_SelectOffice","ICICCI"
+     ELSE 
+          CALL Fehler("Die Bibliothek 'hiera.dll' konnte nicht geladen werden!","")
+     END IF 
+           
+    'auch untergeordnete Bros anzeigen?
+    GLOBAL ShowOther%
+    ShowOther% = - 1
 
-ÿÿjaRecField$'das eigene RecStatus-Feld    
-ÿÿWksStufe%'Hierarchie-Level ermitteln  
-
-'Filial-Hierarchie-Infos einlesen
-ÿƒReadHiera()
+     GLOBAL jaRecField$'das eigene RecStatus-Feld    
+     GLOBAL WksStufe%'Hierarchie-Level ermitteln  
+     
+     'Filial-Hierarchie-Infos einlesen
+     CALL ReadHiera()
  
 
- ÿÿgMaxLocalCode%'ID-Range-Trennung zwischen Filiale und Zentrale
- gMaxLocalCode%ÿ2000000
+ GLOBAL gMaxLocalCode%'ID-Range-Trennung zwischen Filiale und Zentrale
+ gMaxLocalCode% = 2000000
  
  'TState-Konstanten fr Abgleich "lokal -> zentral"
  'genutzter Zeichenbereich: "0" ... "9", "A" ... "Z","a" ... "z"..
  '(..entspricht 48 ... 57, 65 ... 90,97 ... 122)
  'Zwischen den Zust„nden jeweils 8 Zeichen Platz lassen
- ÿÿglcStart$,glcCenter1$,glcCenter2$,glcSub1$,glcSub2$
- ÿÿglcSubCenter1$,glcSubCenter2$,glcLocal1$,glcLocal2$
- ÿÿglcMainToSub1$,glcMainToSub2$,glcMainToSub3$
- glcStart$ÿ""
-
+ GLOBAL glcStart$,glcCenter1$,glcCenter2$,glcSub1$,glcSub2$
+ GLOBAL glcSubCenter1$,glcSubCenter2$,glcLocal1$,glcLocal2$
+ GLOBAL glcMainToSub1$,glcMainToSub2$,glcMainToSub3$
+ glcStart$ = ""
+  
  'Vorgang 1.4.1
  'Datenbertragung und Rckschreiben der neuen zentralen ID'S
- glcCenter1$ÿ"A"
- glcCenter2$ÿ"B"'lokaler Datensatz wurde in Zentrale kopiert und zentrale ID wurde in die *Send bernommen
+ glcCenter1$ = "A"
+ glcCenter2$ = "B"'lokaler Datensatz wurde in Zentrale kopiert und zentrale ID wurde in die *Send bernommen
  
  
  'Vorgang 1.4.1.1
  'šbergabe der Main-ID's an die Sub-Files
  'Schreiben in die TState-Felder der Main-Files
- glcMainToSub1$ÿ"J"'bei šbergabe traten Fehler auf; šbergabe kann noch (weiter)laufen
- glcMainToSub2$ÿ"K"'šbergabe l„uft noch; bisher ohne Fehler
- glcMainToSub3$ÿ"L"'šbergabe komplett
+ glcMainToSub1$ = "J"'bei šbergabe traten Fehler auf; šbergabe kann noch (weiter)laufen
+ glcMainToSub2$ = "K"'šbergabe l„uft noch; bisher ohne Fehler
+ glcMainToSub3$ = "L"'šbergabe komplett
  
  
  'Vorgang 1.4.2
  'Untergeordnete lokale Datens„tze wurden in Zentrale kopiert und zentrale ID wurde bernommen
- glcSubCenter1$ÿ"S"
- glcSubCenter2$ÿ"T"
+ glcSubCenter1$ = "S"
+ glcSubCenter2$ = "T"
  
  
  'šbernahme der (neuen) zentralen ID's in die lokalen Dateien
- glcLocal1$ÿ"b"
- glcLocal2$ÿ"c"
+ glcLocal1$ = "b"
+ glcLocal2$ = "c"
  
  'Parameter-Konstanten fr Funktionsaufrufe
- ÿÿjaSFile$,jaSCode$,jaSCodeServer$,jaSTState$,jaSRStat$
- ÿÿjaCFile$,jaCCode$,jaCRStat$
- ÿÿjaLFile$'hier nur zum Schlieáen der lokalen adressen.sbf  
- ÿÿjaSSubFile$,jaSMainCode$,jaSMainCode2$,jaSMainCode3$,jaSMainCode4$,jaSSubTState$
- ÿÿjaSSubRStat$,jaSSubCodeServ$,jaSSubCode$
- ÿÿjaCSubServWork$,jaCSubCode$,jaCMainCode$,jaCSubFile$,jaCSubRStat$
- ÿÿjaLSubFile$
- ÿÿjaLCode$,jaLMainCode$,jaLMainCode2$,jaLMainCode3$,jaLMainCode4$,jaLRStat$
- ÿÿjaLSubCode$,jaLSubRStat$
- ÿÿjaFirstSubFile%,jaLastSubFile%'bool
- ÿÿjaIsMain%'fr SendMain() (bzw. SendFile)
- ÿÿjaDummySub%'  fr Files, die zwar zentrale ID's ber MainToSub() bekommen, 
-'  aber selbst nicht zur Zentrale abgeglichen werden
- ÿÿjaSendSucc%'war der gesamte(!) Send-Vorgang erfolgreich?
- ÿÿjaCTLSucc%'war der CenterToLoad-Vorgang erfolgreich?
- ÿÿjaLTLSucc%'war der LoadToLocal-Vorgang erfolgreich?
+ GLOBAL jaSFile$,jaSCode$,jaSCodeServer$,jaSTState$,jaSRStat$
+ GLOBAL jaCFile$,jaCCode$,jaCRStat$
+ GLOBAL jaLFile$'hier nur zum Schlieáen der lokalen adressen.sbf  
+ GLOBAL jaSSubFile$,jaSMainCode$,jaSMainCode2$,jaSMainCode3$,jaSMainCode4$,jaSSubTState$
+ GLOBAL jaSSubRStat$,jaSSubCodeServ$,jaSSubCode$
+ GLOBAL jaCSubServWork$,jaCSubCode$,jaCMainCode$,jaCSubFile$,jaCSubRStat$
+ GLOBAL jaLSubFile$
+ GLOBAL jaLCode$,jaLMainCode$,jaLMainCode2$,jaLMainCode3$,jaLMainCode4$,jaLRStat$
+ GLOBAL jaLSubCode$,jaLSubRStat$
+ GLOBAL jaFirstSubFile%,jaLastSubFile%'bool
+ GLOBAL jaIsMain%'fr SendMain() (bzw. SendFile)
+ GLOBAL jaDummySub%'  fr Files, die zwar zentrale ID's ber MainToSub() bekommen, 
+                   '  aber selbst nicht zur Zentrale abgeglichen werden
+ GLOBAL jaSendSucc%'war der gesamte(!) Send-Vorgang erfolgreich?
+ GLOBAL jaCTLSucc%'war der CenterToLoad-Vorgang erfolgreich?
+ GLOBAL jaLTLSucc%'war der LoadToLocal-Vorgang erfolgreich?
 
- ÿÿjaTyp1To1%,jaFilePrefix$,jaFileTyp$,jaFileCode$
+ GLOBAL jaTyp1To1%,jaFilePrefix$,jaFileTyp$,jaFileCode$
  
  'Konstanten fr Log-File-Erzeugung
- ÿÿjaLogFile$
- ÿÿjaLogRepeat$' Abgleich hat nicht fkt. ==> zurcksetzen der TState-Konstante fr einen neuen Versuch
- ÿÿjaLogOk$'
- ÿÿjaLogError$'irgend etwas ist schief gelaufen
- ÿÿjaLogNew$'neuer Datensatz wird erstellt
- ÿÿjaLogCopy$' Datensatz wird bernommen
- ÿÿjaLogPass$'ID in die untergeordneten Send-Files reichen (MainToSub)
- ÿÿjaLogIter$'nur fr Fehler in „uáerer verschachtelter while-Schleife
- jaLogRepeat$ÿ"Repeat"
- jaLogOk$ÿ"Ok"
- jaLogError$ÿ"Error"
- jaLogNew$ÿ"New"
- jaLogCopy$ÿ"Copy"
- jaLogPass$ÿ"Pass"
- jaLogIter$ÿ"Iter"
- ÿÿjaLoadSubOff%'sollen die Daten der untergeordneten Bros beim Download bernommen werden ?
- ÿÿjaCenterDirty%'-1 -> LoadToLocal ist sp„testens mit dem n„chsten Programmstart n”tig
+ GLOBAL jaLogFile$
+ GLOBAL jaLogRepeat$' Abgleich hat nicht fkt. ==> zurcksetzen der TState-Konstante fr einen neuen Versuch
+ GLOBAL jaLogOk$'
+ GLOBAL jaLogError$'irgend etwas ist schief gelaufen
+ GLOBAL jaLogNew$'neuer Datensatz wird erstellt
+ GLOBAL jaLogCopy$' Datensatz wird bernommen
+ GLOBAL jaLogPass$'ID in die untergeordneten Send-Files reichen (MainToSub)
+ GLOBAL jaLogIter$'nur fr Fehler in „uáerer verschachtelter while-Schleife
+ jaLogRepeat$ = "Repeat"
+ jaLogOk$ = "Ok"
+ jaLogError$ = "Error"
+ jaLogNew$ = "New"
+ jaLogCopy$ = "Copy"
+ jaLogPass$ = "Pass"
+ jaLogIter$ = "Iter"
+ GLOBAL jaLoadSubOff%'sollen die Daten der untergeordneten Bros beim Download bernommen werden ?
+ GLOBAL jaCenterDirty%'-1 -> LoadToLocal ist sp„testens mit dem n„chsten Programmstart n”tig
 
 
- Superbase.ErrorTrapLabelÿoldErrorLabel$
- ÿ’ÿÿ
-'***********************************************************************************************
+ Superbase.ErrorTrapLabel = oldErrorLabel$
+ END SUB 
+  '***********************************************************************************************
  
 
-ÿÿAbgleich()
+SUB Abgleich()
  'Datenabgleich
- oldErrorLabel$ÿSuperbase.ErrorTrapLabel
+ oldErrorLabel$ = Superbase.ErrorTrapLabel
 
- ÿ¡ÿOÿ´("abgfiles")ÿpÿ´ÿ™ÿà,1_remotepath$ÿ"abgfiles;paris"
- ÿ¡ÿOÿ´("abgdeps")ÿpÿ´ÿ™ÿà,1_remotepath$ÿ"abgdeps;paris"
+ IF NOT OPEN ("abgfiles") THEN OPEN FILE SHARE ,1_remotepath$ + "abgfiles;paris"
+ IF NOT OPEN ("abgdeps") THEN OPEN FILE SHARE ,1_remotepath$ + "abgdeps;paris"
  
- ÿƒAbgleichInit()
- jaCenterDirty%ÿÿ0(ReadConfig$("PROVIS","LTL"))
+ CALL AbgleichInit()
+ jaCenterDirty% = VAL (ReadConfig$("PROVIS","LTL"))
  
- ÿ¡GPPCS$ÿ"TRUE"ÿp
-
-ÿ¡Workstation%ÿ0ÿp
-
-
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler ("Abgleich-Vorbereitung","")
+ IF GPPCS$ LIKE "TRUE" THEN 
+        
+    IF Workstation% <> 0 THEN 
+        
+          IF jaDebug% = - 1 THEN CALL Fehler ("Abgleich-Vorbereitung","")
 
-
-'Dialog fr Abgleichtyp-Abfrage holen
-
-AblTyp%ÿ1'1 -> kein Abgleich, 2 -> nur Send(), 3 -> Send + Load
-
-jaLoadSubOff%ÿ0' -1 -> auch Daten untergeordneter Bros downloaden ?
+          'Dialog fr Abgleichtyp-Abfrage holen
+          AblTyp% = 1'1 -> kein Abgleich, 2 -> nur Send(), 3 -> Send + Load
+          jaLoadSubOff% = 0' -1 -> auch Daten untergeordneter Bros downloaden ?
 
-
-ÿƒAbglDlg(Ant%%,AbglTyp%,jaLoadSubOff%)
-
+          CALL AbglDlg(Ant%%,AbglTyp%,jaLoadSubOff%)
+          
+          IF Ant%% <> 1 THEN 'Dlg mit Cancel beendet ==> Voreinstellung "kein Abgleich"
+               AblTyp% = 1'
+               jaLoadSubOff% = 0'
+          END IF 
+          
+         
+          IF (AbglTyp% = 2) OR (AbglTyp% = 3) THEN 
+            
+               IF IsSingleUser%() = - 1 THEN 
 
-
-ÿ¡Ant%%ÿ1ÿp'Dlg mit Cancel beendet ==> Voreinstellung "kein Abgleich"
-AblTyp%ÿ1'
-jaLoadSubOff%ÿ0'
-
-ÿ’ÿ¡
-
+                    CALL SetDisplay(0)
+                    DIM w AS SDIWindow 
+                    SET w = Superbase.Windows(1)
+                    w.Form.FktL.Caption = "Ableich vorbereiten ..."
+   
+                    'Abgleich starten
+                    ON ERROR GOTO ErrorHandler
+                    IF jaDebug% = - 1 THEN CALL Fehler ("Abgleich-Start","")
+             
+                    CALL CAbgleichLog("sed")
+                    CALL Send()
+            
+                    IF AbglTyp% = 3 THEN 
 
-	
-
-ÿ¡(AbglTyp%ÿ2)ÿ(AbglTyp%ÿ3)ÿp
-
-ÿ¡IsSingleUser%()ÿÿ1ÿp
-
-ÿƒSetDisplay(0)
-ÿ×w ÿUSDIWindow 
-ÿÊw ÿSuperbase.Windows(1)
-w.Form.FktL.Captionÿ"Ableich vorbereiten ..."
-
-'Abgleich starten
-ÿ³ÿ_ÿwErrorHandler
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler ("Abgleich-Start","")
-
-ÿƒCAbgleichLog("sed")
-ÿƒSend()
-
-ÿ¡AbglTyp%ÿ3ÿp
-
-ÿƒCAbgleichLog("ctl")
-ÿƒCenterToLoad()
-
-ÿƒCAbgleichLog("ltl")
-ÿƒLoadToLocal()
-ÿ’ÿ¡
-ÿ^
-ÿƒFehler("Es wurde kein Datenabgleich vorgenommen!","")
-ÿ’ÿ¡
+                         CALL CAbgleichLog("ctl")
+                         CALL CenterToLoad()
+                        
+                         CALL CAbgleichLog("ltl")
+                         CALL LoadToLocal()
+                    END IF 
+               ELSE 
+                    CALL Fehler("Es wurde kein Datenabgleich vorgenommen!","")
+               END IF 
  
-'Standard-Fenster-Eigenschaften zurcksetzen
-ÿƒSetDisplay(ÿ1)
-
-ÿ’ÿ¡
-
-ÿ’ÿ¡'Worksation% <> 0 
- ÿ^
-'GPPCS$=FALSE
-ÿ¡jaCenterDirty%ÿ0ÿp
-
-'LoadToLocal muá ausgefhrt werden 
-
-ÿƒFehler("Bei der letzten Programm-Sitzung wurden zentralen Daten ge„ndert.","Diese nderungen werden nun bernommen.")
-
-ÿ¡IsSingleUser%()ÿÿ1ÿp
+               'Standard-Fenster-Eigenschaften zurcksetzen
+               CALL SetDisplay( - 1)
+          END IF 
+             
+    END IF 'Worksation% <> 0 
+ ELSE 
+     'GPPCS$=FALSE
+     IF jaCenterDirty% <> 0 THEN 
+          'LoadToLocal muá ausgefhrt werden 
+          CALL Fehler("Bei der letzten Programm-Sitzung wurden zentralen Daten ge„ndert.","Diese nderungen werden nun bernommen.")
+          IF IsSingleUser%() = - 1 THEN 
 
-ÿƒSetDisplay(0)'Abgleich-Formular laden/erzeugen
-ÿƒCAbgleichLog("ltl")
-ÿƒLoadToLocal()
-ÿƒSetDisplay(ÿ1)'Abgleich-Formular laden/erzeugen
-
-ÿ¡jaLTLSucc%ÿÿ1ÿp
-ÿƒWriteConfig("PROVIS","LTL","0")
-ÿ^
-ÿƒFehler("Die šbernahme der Zentralen Daten konnte nicht vollst„ndig vorgenommen werden."," Es wird empfohlen das Programm neu zu starten und den Vorgang zu wiederholen.")
-ÿ’ÿ¡
-
-ÿ^
-ÿƒFehler("Die šbernahme der Zentralen Daten konnte nicht vorgenommen werden.","Es wird empfohlen, das Programm neu zu starten und den Vorgang zu wiederholen.")
-
-ÿ’ÿ¡
+               CALL SetDisplay(0)'Abgleich-Formular laden/erzeugen
+               CALL CAbgleichLog("ltl")
+               CALL LoadToLocal()
+               CALL SetDisplay( - 1)'Abgleich-Formular laden/erzeugen
+     
+               IF jaLTLSucc% = - 1 THEN 
+                    CALL WriteConfig("PROVIS","LTL","0")
+               ELSE 
+                    CALL Fehler("Die šbernahme der Zentralen Daten konnte nicht vollst„ndig vorgenommen werden."," Es wird empfohlen das Programm neu zu starten und den Vorgang zu wiederholen.")
+               END IF 
+          ELSE 
+               CALL Fehler("Die šbernahme der Zentralen Daten konnte nicht vorgenommen werden.","Es wird empfohlen, das Programm neu zu starten und den Vorgang zu wiederholen.")
+          END IF 
 
-ÿ’ÿ¡
- ÿ’ÿ¡
- Superbase.ErrorTrapLabelÿoldErrorLabel$
- ÿ’ÿÿ
+     END IF 
+ END IF 
+ Superbase.ErrorTrapLabel = oldErrorLabel$
+ END SUB 
  '***********************************************************************************************
  
  
-ÿÿIsSingleUser%()
+FUNCTION IsSingleUser%()
  'prft, ob der aktuelle der einzige User ist
  '-1 wenn ja
  '0 wenn nein
  '
  'erzeugt Schleife, in der der User Gelegenheit bekommt, andere User aus dem Programm zu schmeiáen
 
- oldErrorLabel$ÿSuperbase.ErrorTrapLabel
- IsSingleUser%ÿ0
- ÿ_remotepath$
+ oldErrorLabel$ = Superbase.ErrorTrapLabel
+ IsSingleUser% = 0
+ DIRECTORY _remotepath$
 
-SingleUserStart:
-
-ÿ³ÿ_ÿwSingleUserError
-ÿ¡ÿ´("supervis")ÿpÿ†ÿ™"supervis"
-ÿ´ÿ™ÿà,8"supervis;paris"
-ÿ†ÿ™"supervis"
-'bisher alles io
-ÿwSingleUserContin
+SingleUserStart:   
+            
+            ON ERROR GOTO SingleUserError
+            IF OPEN ("supervis") THEN CLOSE FILE "supervis"
+            OPEN FILE SHARE ,8"supervis;paris"
+            CLOSE FILE "supervis"
+            'bisher alles io
+            GOTO SingleUserContin
  
 SingleUserError: 
-a$ÿ"šberprfen Sie, ob Sie der einzige Nutzer des Programmes sind."
-ÿÂ"Der ausschliesslicher Zugriff konnte nicht erfolgen.",a$,113
-ÿÂ"W„hlen Sie 'Ja', wenn Sie den Vorgang jetzt fortsetzen m”chten.","W„hlen Sie 'Nein', wenn Sie den Datenabgleich berspringen wollen.",130,Ant%%
-ÿ¡Ant%%ÿ0ÿp
-ÿySingleUserEnd
-ÿ^
-ÿySingleUserStart 
-ÿ’ÿ¡
+            a$ = "šberprfen Sie, ob Sie der einzige Nutzer des Programmes sind."
+            REQUEST "Der ausschliesslicher Zugriff konnte nicht erfolgen.",a$,113
+            REQUEST "W„hlen Sie 'Ja', wenn Sie den Vorgang jetzt fortsetzen m”chten.","W„hlen Sie 'Nein', wenn Sie den Datenabgleich berspringen wollen.",130,Ant%%
+            IF Ant%% = 0 THEN 
+                RESUME SingleUserEnd
+            ELSE 
+                RESUME SingleUserStart 
+            END IF 
  
-SingleUserContin:
-IsSingleUser%ÿÿ1
+SingleUserContin:                         
+            IsSingleUser% = - 1
 
 SingleUserEnd: 
-
-ÿƒDFile(2,"supervis;paris")'wieder ”ffnen 
+          CALL DFile(2,"supervis;paris")'wieder ”ffnen 
 
- Superbase.ErrorTrapLabelÿoldErrorLabel$
- ÿ’ÿÿ
+ Superbase.ErrorTrapLabel = oldErrorLabel$
+ END FUNCTION 
 
  '*********************************************************************************************** 
 
-ÿÿActivateHiera()
-Superbase.Dialogs.ABGL.HieraCB.Enabledÿÿ1
- ÿ’ÿÿ
+SUB ActivateHiera()
+     Superbase.Dialogs.ABGL.HieraCB.Enabled = - 1
+ END SUB 
  '***********************************************************************************************
-
+  
 
-ÿÿDeactivateHiera()
-Superbase.Dialogs.ABGL.HieraCB.Enabledÿ0
- ÿ’ÿÿ
+SUB DeactivateHiera()
+     Superbase.Dialogs.ABGL.HieraCB.Enabled = 0
+ END SUB 
  '*********************************************************************************************** 
 
  
-ÿÿActivateABGL()
-'REQUEST "Activate"
-Superbase.Dialogs.ABGL.UDNoneOB.Valueÿÿ1
-Superbase.Dialogs.ABGL.HieraCB.Enabledÿ0
- ÿ’ÿÿ
+SUB ActivateABGL()
+     'REQUEST "Activate"
+     Superbase.Dialogs.ABGL.UDNoneOB.Value = - 1
+     Superbase.Dialogs.ABGL.HieraCB.Enabled = 0
+ END SUB 
  '*********************************************************************************************** 
 
 
-ÿÿAbglDlg(Ant%,AbglTyp%,HieraTyp%)
+SUB AbglDlg(Ant%,AbglTyp%,HieraTyp%)
  
-ÿ×dlg ÿUDialog
-ÿ×control ÿUDialogControl
+    DIM dlg AS Dialog
+    DIM control AS DialogControl
  
-Superbase.Dialogs.Add("ABGL")
-ÿÊdlg ÿSuperbase.Dialogs.ABGL
-dlg.Move(76,34,204,160)
-dlg.Captionÿ"Daten-Abgleich"
-dlg.FontNameÿ"MS Sans Serif"
-dlg.FontSizeÿ10
-dlg.OnActivateÿ"ActivateABGL"
+    Superbase.Dialogs.Add("ABGL")
+    SET dlg = Superbase.Dialogs.ABGL
+    dlg.Move(76,34,204,160)
+    dlg.Caption = "Daten-Abgleich"
+    dlg.FontName = "MS Sans Serif"
+    dlg.FontSize = 10
+    dlg.OnActivate = "ActivateABGL"
  
-ÿÊcontrol ÿdlg.Add("DialogLabel1","DialogLabel")
-control.Move(20,12,132,12)
-control.Captionÿ"Bitte w„hlen Sie die Art des Abgleiches."
+    SET control = dlg.Add("DialogLabel1","DialogLabel")
+    control.Move(20,12,132,12)
+    control.Caption = "Bitte w„hlen Sie die Art des Abgleiches."
  
-ÿÊcontrol ÿdlg.Add("DialogIcon1","DialogIcon")
-control.Move(2,10,16,18)
-control.Iconÿ2
+    SET control = dlg.Add("DialogIcon1","DialogIcon")
+    control.Move(2,10,16,18)
+    control.Icon = 2
  
-ÿÊcontrol ÿdlg.Add("DialogLabel2","DialogLabel")
-control.Move(20,33,172,31)
-control.Captionÿ"Hinweis: Wenn Sie einen Daten-Abgleich vornehmen wollen, mssen alle anderen Nutzer die Arbeit mit dem Programm einstellen."
+    SET control = dlg.Add("DialogLabel2","DialogLabel")
+    control.Move(20,33,172,31)
+    control.Caption = "Hinweis: Wenn Sie einen Daten-Abgleich vornehmen wollen, mssen alle anderen Nutzer die Arbeit mit dem Programm einstellen."
  
-ÿÊcontrol ÿdlg.Add("UDNoneOB","DialogOptionButton")
-control.Move(20,68,130,15)
-control.Captionÿ"Kein Abgleich"
-control.Bind("AbglTyp%")
-control.ValueOnÿ1
-control.OnClickÿ"DeactivateHiera"
+    SET control = dlg.Add("UDNoneOB","DialogOptionButton")
+    control.Move(20,68,130,15)
+    control.Caption = "Kein Abgleich"
+    control.Bind("AbglTyp%")
+    control.ValueOn = 1
+    control.OnClick = "DeactivateHiera"
  
-ÿÊcontrol ÿdlg.Add("DialogOptionButton2","DialogOptionButton")
-control.Move(20,81,130,15)
-control.Captionÿ"Lokale Daten senden"
-control.Bind("AbglTyp%")
-control.ValueOnÿ2
-control.OnClickÿ"DeactivateHiera"
+    SET control = dlg.Add("DialogOptionButton2","DialogOptionButton")
+    control.Move(20,81,130,15)
+    control.Caption = "Lokale Daten senden"
+    control.Bind("AbglTyp%")
+    control.ValueOn = 2
+    control.OnClick = "DeactivateHiera"
  
-ÿÊcontrol ÿdlg.Add("DUOption","DialogOptionButton")
-control.Move(20,95,171,15)
-control.Captionÿ"Lokale Daten senden und zentrale Daten empfangen"
-control.Bind("AbglTyp%")
-control.ValueOnÿ3
-control.OnClickÿ"ActivateHiera"
+    SET control = dlg.Add("DUOption","DialogOptionButton")
+    control.Move(20,95,171,15)
+    control.Caption = "Lokale Daten senden und zentrale Daten empfangen"
+    control.Bind("AbglTyp%")
+    control.ValueOn = 3
+    control.OnClick = "ActivateHiera"
  
-ÿÊcontrol ÿdlg.Add("HieraCB","DialogCheckBox")
-control.Move(34,109,150,14)
-control.Bind("HieraTyp%")
-control.ValueOnÿÿ1
-control.Captionÿ"Daten untergeordneter Bros einschlieáen"
-control.OnClickÿ"ActivateHiera"
+    SET control = dlg.Add("HieraCB","DialogCheckBox")
+    control.Move(34,109,150,14)
+    control.Bind("HieraTyp%")
+    control.ValueOn = - 1
+    control.Caption = "Daten untergeordneter Bros einschlieáen"
+    control.OnClick = "ActivateHiera"
  
-ÿÊcontrol ÿdlg.Add("DialogCommandButton1","DialogCommandButton")
-control.Move(71,135,52,12)
-control.Defaultÿ1
-control.Captionÿ"Ok"
-control.ReturnValueÿ1
+    SET control = dlg.Add("DialogCommandButton1","DialogCommandButton")
+    control.Move(71,135,52,12)
+    control.Default = 1
+    control.Caption = "Ok"
+    control.ReturnValue = 1
 
-ÿñ"ABGL",Ant%
-ÿ¾ÿñ"ABGL"
+     DIALOG "ABGL",Ant%
+     REMOVE DIALOG "ABGL"
  
- ÿ’ÿÿ
+ END SUB 
  '*********************************************************************************************** 
 
 
-ÿÿReadHiera()
-oldErrorLabel$ÿSuperbase.ErrorTrapLabel
+SUB ReadHiera()
+     oldErrorLabel$ = Superbase.ErrorTrapLabel
 
-'die Daten der LFILIALE kopieren
-ÿ³ÿ_ÿwReadHieraErr
-ÿƒDFile(2,"LFILIALE;paris")
-OffCount%ÿ0
-VisCount%ÿ0
-ÿ½ CALL Fehler("ReadHiera","")
-ÿ¡GPPCS$ÿ"TRUE"ÿWorkstation%ÿ0ÿp
-
-ÿƒReadHArray("filiale",OffCount%)
-'sichtbare Workstations aus Vorg„nger%, Nachfolger%, OffCount% holen
-ÿƒGetVisOff(Workstation%)
-'sich selbst noch zu den sichbaren Bros hinzufgen
-VisCount%ÿVisCount%ÿ1
-ÿÿVisOff%(VisCount%ÿ1)
-ÿÿVisNames$(VisCount%ÿ1)
-VisOff%(VisCount%ÿ1)ÿWorkstation%
-ÿ½ CALL Fehler("VisNames$","")
-VisNames$(VisCount%ÿ1)ÿGetWksName$(Workstation%)
-
-'die lokale lfiliale aus den sichtbaren Bros neu aufbauen
-'(fr den n„chsten Offline-Start)
-ÿ½ REMOVE FROM FILE "lfiliale"
+    'die Daten der LFILIALE kopieren
+    ON ERROR GOTO ReadHieraErr
+    CALL DFile(2,"LFILIALE;paris")
+    OffCount% = 0
+    VisCount% = 0
+    REM CALL Fehler("ReadHiera","")
+    IF GPPCS$ LIKE "TRUE" OR Workstation% = 0 THEN 
+       
+        CALL ReadHArray("filiale",OffCount%)
+        'sichtbare Workstations aus Vorg„nger%, Nachfolger%, OffCount% holen
+        CALL GetVisOff(Workstation%)
+        'sich selbst noch zu den sichbaren Bros hinzufgen
+        VisCount% = VisCount% + 1
+        REDIM VisOff%(VisCount% - 1)
+        REDIM VisNames$(VisCount% - 1)
+        VisOff%(VisCount% - 1) = Workstation%
+        REM CALL Fehler("VisNames$","")
+        VisNames$(VisCount% - 1) = GetWksName$(Workstation%)
+        
+        'die lokale lfiliale aus den sichtbaren Bros neu aufbauen
+        '(fr den n„chsten Offline-Start)
+        REM REMOVE FROM FILE "lfiliale"
  
-'das h”chste Bro immer per Def. eintragen (Zentrale)
-ÿÉÿ`ÿ™"filiale"ÿ£filialnr.filiale
-ÿÉÿ¥0ÿ™"filiale"ÿ£filialnr.filiale
-ÿ½ CALL Fehler(Name.filiale,"")
-ÿ¡ÿJ(filialnr.filiale,filialnr.lfiliale)ÿp
-
-ÿÉÿ¥filialnr.filialeÿáÿ™"lfiliale"ÿ£filialnr.lfiliale
-Name.lfilialeÿName.filiale
-Stufe.lfilialeÿStufe.filiale
-Vorg„nger.lfilialeÿVorg„nger.filiale
-ÿÌÿ™"lfiliale"
-ÿ^
-ÿÿ™"lfiliale"
-filialnr.lfilialeÿfilialnr.filiale
-Name.lfilialeÿName.filiale
-Stufe.lfilialeÿStufe.filiale
-Vorg„nger.lfilialeÿVorg„nger.filiale
-ÿÌÿ™"lfiliale"
-ÿ’ÿ¡
-'den Pfad vom aktuellen Bro bis zur Zenrale: 
-'suche solange den Vorg„nger, bis die 0 erreicht wird
-ÿ³ÿ_ÿwErrorHandler
-wks%ÿGetWksVorg%(Workstation%)
-
-ÿØwks%ÿ0
-ÿÉÿ`ÿ™"filiale"ÿ£filialnr.filiale
-ÿÉÿ¥wks%ÿ™"filiale"ÿ£filialnr.filiale
-ÿ¡ÿC("filiale")ÿp
-ÿ¡ÿJ(filialnr.filiale,filialnr.lfiliale)ÿp
-ÿÉÿ¥filialnr.filialeÿáÿ™"lfiliale"ÿ£filialnr.lfiliale
-Name.lfilialeÿName.filiale
-Stufe.lfilialeÿStufe.filiale
-Vorg„nger.lfilialeÿVorg„nger.filiale
-ÿÌÿ™"lfiliale"
-ÿ^
-ÿÿ™"lfiliale"
-filialnr.lfilialeÿfilialnr.filiale
-Name.lfilialeÿName.filiale
-Stufe.lfilialeÿStufe.filiale
-Vorg„nger.lfilialeÿVorg„nger.filiale
-ÿÌÿ™"lfiliale"
-ÿ’ÿ¡
-ÿ’ÿ¡
-wks%ÿGetWksVorg%(wks%)
-ÿÙ
+        'das h”chste Bro immer per Def. eintragen (Zentrale)
+        SELECT FIRST FILE "filiale" INDEX filialnr.filiale
+        SELECT KEY 0 FILE "filiale" INDEX filialnr.filiale
+        REM CALL Fehler(Name.filiale,"")
+        IF EXISTS (filialnr.filiale,filialnr.lfiliale) THEN 
+          SELECT KEY filialnr.filiale LOCK FILE "lfiliale" INDEX filialnr.lfiliale
+            Name.lfiliale = Name.filiale
+            Stufe.lfiliale = Stufe.filiale
+            Vorg„nger.lfiliale = Vorg„nger.filiale
+            STORE FILE "lfiliale"
+        ELSE 
+            BLANK FILE "lfiliale"
+            filialnr.lfiliale = filialnr.filiale
+            Name.lfiliale = Name.filiale
+            Stufe.lfiliale = Stufe.filiale
+            Vorg„nger.lfiliale = Vorg„nger.filiale
+            STORE FILE "lfiliale"
+        END IF 
+        'den Pfad vom aktuellen Bro bis zur Zenrale: 
+        'suche solange den Vorg„nger, bis die 0 erreicht wird
+        ON ERROR GOTO ErrorHandler
+        wks% = GetWksVorg%(Workstation%)
+        
+        WHILE wks% > 0
+            SELECT FIRST FILE "filiale" INDEX filialnr.filiale
+            SELECT KEY wks% FILE "filiale" INDEX filialnr.filiale
+            IF FOUND ("filiale") THEN 
+              IF EXISTS (filialnr.filiale,filialnr.lfiliale) THEN 
+                SELECT KEY filialnr.filiale LOCK FILE "lfiliale" INDEX filialnr.lfiliale
+                Name.lfiliale = Name.filiale
+                Stufe.lfiliale = Stufe.filiale
+                Vorg„nger.lfiliale = Vorg„nger.filiale
+                STORE FILE "lfiliale"
+              ELSE 
+                BLANK FILE "lfiliale"
+                filialnr.lfiliale = filialnr.filiale
+                Name.lfiliale = Name.filiale
+                Stufe.lfiliale = Stufe.filiale
+                Vorg„nger.lfiliale = Vorg„nger.filiale
+                STORE FILE "lfiliale"
+              END IF 
+            END IF 
+            wks% = GetWksVorg%(wks%)
+        WEND 
  
-'die restlichen sichtbaren Bros, einschl. sich selbst (untergeordnete Bros)
-ÿ›i%%ÿ0ÿqVisCount%ÿ1
-ÿÉÿ¥VisOff%(i%%)ÿ™"filiale"ÿ£filialnr.filiale
-ÿ¡ÿC("filiale")ÿp
-ÿ¡ÿJ(filialnr.filiale,filialnr.lfiliale)ÿp
-ÿÉÿ¥filialnr.filialeÿáÿ™"lfiliale"ÿ£filialnr.lfiliale
-Name.lfilialeÿName.filiale
-Stufe.lfilialeÿStufe.filiale
-Vorg„nger.lfilialeÿVorg„nger.filiale
-ÿÌÿ™"lfiliale"
-ÿ^
-ÿÿ™"lfiliale"
-filialnr.lfilialeÿfilialnr.filiale
-Name.lfilialeÿName.filiale
-Stufe.lfilialeÿStufe.filiale
-Vorg„nger.lfilialeÿVorg„nger.filiale
-ÿÌÿ™"lfiliale"
-ÿ’ÿ¡
-ÿ’ÿ¡
-ÿ³ÿ_ÿwErrorHandler
-ÿÉÿ±ÿ™"filiale"ÿ£filialnr.filiale
-ÿ±i%%
-ÿ^
-'wenn nicht online ==> lfiliale nutzen, um Bro-Hierarchie einzulesen
-ÿÉÿ`ÿ™"filiale"ÿ£filialnr.filiale
-ÿÉÿ¥0ÿ™"filiale"ÿ£filialnr.filiale
-ÿ½ CALL Fehler(Name.filiale,"")
-ÿØÿOÿB("filiale")
-
-ÿ¡ÿJ(filialnr.filiale,filialnr.lfiliale)ÿp
-ÿÉÿ¥filialnr.filialeÿáÿ™"lfiliale"ÿ£filialnr.lfiliale
-Name.lfilialeÿName.filiale
-Stufe.lfilialeÿStufe.filiale
-Vorg„nger.lfilialeÿVorg„nger.filiale
-ÿÌÿ™"lfiliale"
-
-ÿ^
-ÿÿ™"lfiliale"
-filialnr.lfilialeÿfilialnr.filiale
-Name.lfilialeÿName.filiale
-Stufe.lfilialeÿStufe.filiale
-Vorg„nger.lfilialeÿVorg„nger.filiale
-ÿÌÿ™"lfiliale"
-
-ÿ’ÿ¡
-
-ÿÉÿ±ÿ™"filiale"ÿ£filialnr.filiale
-ÿÙ
-ÿ½ CALL Fehler("ReadHiera-Stufe1","")
-ÿƒReadHArray("lfiliale",OffCount%)
-VisCount%ÿ0
-ÿƒGetVisOff(Workstation%)'sichtbare Workstations aus zentraler filiale.sbf holen   
-'sich selbst noch zu den sichbaren Bros hinzufgen
-VisCount%ÿVisCount%ÿ1
-ÿÿVisOff%(VisCount%ÿ1)
-ÿÿVisNames$(VisCount%ÿ1)
-VisOff%(VisCount%ÿ1)ÿWorkstation%
-ÿ½ CALL Fehler("VisNames$","")
-VisNames$(VisCount%ÿ1)ÿGetWksName$(Workstation%)
+        'die restlichen sichtbaren Bros, einschl. sich selbst (untergeordnete Bros)
+        FOR i%% = 0 TO VisCount% - 1
+            SELECT KEY VisOff%(i%%) FILE "filiale" INDEX filialnr.filiale
+            IF FOUND ("filiale") THEN 
+              IF EXISTS (filialnr.filiale,filialnr.lfiliale) THEN 
+                SELECT KEY filialnr.filiale LOCK FILE "lfiliale" INDEX filialnr.lfiliale
+                Name.lfiliale = Name.filiale
+                Stufe.lfiliale = Stufe.filiale
+                Vorg„nger.lfiliale = Vorg„nger.filiale
+                STORE FILE "lfiliale"
+              ELSE 
+                BLANK FILE "lfiliale"
+                filialnr.lfiliale = filialnr.filiale
+                Name.lfiliale = Name.filiale
+                Stufe.lfiliale = Stufe.filiale
+                Vorg„nger.lfiliale = Vorg„nger.filiale
+                STORE FILE "lfiliale"
+              END IF 
+            END IF 
+            ON ERROR GOTO ErrorHandler
+            SELECT NEXT FILE "filiale" INDEX filialnr.filiale
+        NEXT i%%
+    ELSE 
+    'wenn nicht online ==> lfiliale nutzen, um Bro-Hierarchie einzulesen
+        SELECT FIRST FILE "filiale" INDEX filialnr.filiale
+        SELECT KEY 0 FILE "filiale" INDEX filialnr.filiale
+        REM CALL Fehler(Name.filiale,"")
+        WHILE NOT EOF ("filiale")
+          IF EXISTS (filialnr.filiale,filialnr.lfiliale) THEN 
+            SELECT KEY filialnr.filiale LOCK FILE "lfiliale" INDEX filialnr.lfiliale
+            Name.lfiliale = Name.filiale
+            Stufe.lfiliale = Stufe.filiale
+            Vorg„nger.lfiliale = Vorg„nger.filiale
+            STORE FILE "lfiliale"
+          ELSE 
+            BLANK FILE "lfiliale"
+            filialnr.lfiliale = filialnr.filiale
+            Name.lfiliale = Name.filiale
+            Stufe.lfiliale = Stufe.filiale
+            Vorg„nger.lfiliale = Vorg„nger.filiale
+            STORE FILE "lfiliale"
+          END IF 
+          SELECT NEXT FILE "filiale" INDEX filialnr.filiale
+        WEND 
+        REM CALL Fehler("ReadHiera-Stufe1","")
+        CALL ReadHArray("lfiliale",OffCount%)
+        VisCount% = 0
+        CALL GetVisOff(Workstation%)'sichtbare Workstations aus zentraler filiale.sbf holen   
+        'sich selbst noch zu den sichbaren Bros hinzufgen
+        VisCount% = VisCount% + 1
+        REDIM VisOff%(VisCount% - 1)
+        REDIM VisNames$(VisCount% - 1)
+        VisOff%(VisCount% - 1) = Workstation%
+        REM CALL Fehler("VisNames$","")
+        VisNames$(VisCount% - 1) = GetWksName$(Workstation%)
  
-ÿ’ÿ¡
+    END IF 
 
-'Hierarchie-Level ermitteln 
-ÿÉÿ`ÿ™"lfiliale"ÿ£FilialNr.lFiliale
-ÿÉÿ¥Workstation%ÿ™"lfiliale"ÿ£FilialNr.lFiliale
-
-ÿ¡ÿC("lfiliale")ÿp
-WksStufe%ÿStufe.lFiliale
-
-ÿ^
-ÿƒFehler("Ungltige Filial-Nummer: "ÿÿ(Workstation%,"z"),"")
-
-ÿ’ÿ¡
-ÿ’ÿ¡
+    'Hierarchie-Level ermitteln 
+     SELECT FIRST FILE "lfiliale" INDEX FilialNr.lFiliale
+     SELECT KEY Workstation% FILE "lfiliale" INDEX FilialNr.lFiliale
+          IF FOUND ("lfiliale") THEN 
+               WksStufe% = Stufe.lFiliale
+          ELSE 
+               CALL Fehler("Ungltige Filial-Nummer: " + STR$ (Workstation%,"z"),"")
+          END IF 
+     END IF 
  
-'das eigene RecStatus-Feld und den Dirty-Wert errechnen
-ÿ¡WksStufe%ÿ0ÿp
-
-jaRecField$ÿ"rec0"'Sonder-Behandlung fr die Null
-ÿ^
-
-jaRecField$ÿ"rec"ÿÿ(WksStufe%,"z")
-ÿ’ÿ¡
+     'das eigene RecStatus-Feld und den Dirty-Wert errechnen
+     IF WksStufe% = 0 THEN 
+          jaRecField$ = "rec0"'Sonder-Behandlung fr die Null
+     ELSE 
+          jaRecField$ = "rec" + STR$ (WksStufe%,"z")
+     END IF 
 
-'alles io
-ÿwReadHieraEnde
+     'alles io
+     GOTO ReadHieraEnde
  
 ReadHieraErr: 
-ÿƒFehler("Fehler bei šbertragung der Filial-Hierarchie:","Fehler "ÿÿ(ÿ&,"z")ÿ": "ÿÿ((ÿ&))
+     CALL Fehler("Fehler bei šbertragung der Filial-Hierarchie:","Fehler " + STR$ ( ERRNO ,"z") + ": " + ERR$ ( ERRNO ))
 
-ReadHieraEnde:
-Superbase.ErrorTrapLabelÿoldErrorLabel$
- ÿ’ÿÿ
+ReadHieraEnde:  
+     Superbase.ErrorTrapLabel = oldErrorLabel$
+ END SUB 
  '*********************************************************************************************** 
 
 
-ÿÿSimpleConnect(datei$)
-'CALL Fehler("SimpleConnect: " + datei$,"")
-ÿ³ÿ_ÿwConnectError
-ÿ¡ÿ´(datei$)ÿpÿ†ÿ™datei$
-ÿ×sbfile$,ip$,port$,updserver$
-sbfile$ÿdatei$ÿ";paris"
-
-ip$ÿ"130.50.0.254"
-port$ÿ"1280"
-udpserver$ÿip$ÿ":"ÿport$
-Connections.Clear()
-ÿ¡ÿOConnections.Exists("CODIE")ÿÿ1ÿp
-Connections.Add("CODIE","ConnectionUDPClient").ServerName ÿudpserver$
-Superbase.Connections.CODIE.Timeoutÿ8000
-ÿ’ÿ¡
-
-ÿ´ÿ™ÿà,1"CODIE:"ÿsbfile$
+SUB SimpleConnect(datei$)
+    'CALL Fehler("SimpleConnect: " + datei$,"")
+    ON ERROR GOTO ConnectError
+    IF OPEN (datei$) THEN CLOSE FILE datei$
+    DIM sbfile$,ip$,port$,updserver$
+    sbfile$ = datei$ + ";paris"
+    
+    ip$ = "130.50.0.254"
+    port$ = "1280"
+    udpserver$ = ip$ + ":" + port$
+    Connections.Clear()
+    IF NOT Connections.Exists("CODIE") = - 1 THEN 
+        Connections.Add("CODIE","ConnectionUDPClient").ServerName = udpserver$
+        Superbase.Connections.CODIE.Timeout = 8000
+    END IF 
+    
+    OPEN FILE SHARE ,1"CODIE:" + sbfile$
  
-ÿwConnectEnde
+    GOTO ConnectEnde
  
 ConnectError: 
-ÿÂ"Fehler "ÿÿ(ÿ&,"z")ÿ": "ÿÿ((Superbase.LastError)
+    REQUEST "Fehler " + STR$ ( ERRNO ,"z") + ": " + ERR$ (Superbase.LastError)
  
 ConnectEnde: 
  
- ÿ’ÿÿ
+ END SUB 
  '***********************************************************************************************  
  
  
  
  
-ÿÿIsOnline%(datei$)
+FUNCTION IsOnline%(datei$)
  'Online-Test fr Dateien  
  ' Prft, ob Datei ber PPCS ge”ffnet wurde (Rckgabe -1) oder nicht (Rckgabe 0)
-oldErrorLabel$ÿSuperbase.ErrorTrapLabel
-ÿ³ÿ_ÿwIsOnlineError
-
-ÿ´"status.txt"ÿ›ÿ¶
-ÿ{ÿËÿ™datei$
-ÿ†ÿ¶
+    oldErrorLabel$ = Superbase.ErrorTrapLabel
+    ON ERROR GOTO IsOnlineError
+    
+    OPEN "status.txt" FOR OUTPUT 
+    ? STATUS FILE datei$
+    CLOSE OUTPUT 
  
-ÿ´"status.txt"ÿ›ÿ¤
-ÿ¤ÿca$
-ÿ†ÿ¤
-
-x$ÿ"CODIE:"
-pos%ÿÿ?(a$,x$)
-ÿ¡(pos%ÿ0)ÿp
-IsOnline%ÿÿ1
-ÿ^
-IsOnline%ÿ0
-ÿ’ÿ¡
+    OPEN "status.txt" FOR INPUT 
+    INPUT LINE a$
+    CLOSE INPUT 
+    
+    x$ = "CODIE:"
+    pos% = INSTR (a$,x$)
+    IF (pos% <> 0) THEN 
+        IsOnline% = - 1
+    ELSE 
+        IsOnline% = 0
+    END IF 
  
-'alles io
-ÿwIsOnlineEnde
+    'alles io
+    GOTO IsOnlineEnde
  
 IsOnlineError: 
-IsOnline%ÿ0
-ÿwIsOnlineEnde
+    IsOnline% = 0
+    GOTO IsOnlineEnde
  
 IsOnlineEnde: 
-Superbase.ErrorTrapLabelÿoldErrorLabel$
+    Superbase.ErrorTrapLabel = oldErrorLabel$
  
- ÿ’ÿÿ
+ END FUNCTION 
  '***********************************************************************************************  
 
 
-ÿÿGetFileCode$(datei$)
+FUNCTION GetFileCode$(datei$)
  'liefert den Namen des Code-Feldes zurck
-ÿÉÿ`ÿ™"AbgFiles"ÿ£FileName.AbgFiles
-ÿÉÿ¥datei$ÿ™"AbgFiles"ÿ£FileName.AbgFiles
-GetFileCode$ÿCodeField.AbgFiles
+    SELECT FIRST FILE "AbgFiles" INDEX FileName.AbgFiles
+    SELECT KEY datei$ FILE "AbgFiles" INDEX FileName.AbgFiles
+    GetFileCode$ = CodeField.AbgFiles
  
- ÿ’ÿÿ
+ END FUNCTION 
  '***********************************************************************************************
 
  
-ÿÿGetFileTyp$(datei$)
+FUNCTION GetFileTyp$(datei$)
  'liefert den Abgleich-Typ der Datei zurck (I, "", C, Z, A, Y)
-ÿÉÿ`ÿ™"AbgFiles"ÿ£FileName.AbgFiles
-ÿÉÿ¥datei$ÿ™"AbgFiles"ÿ£FileName.AbgFiles
-GetFileTyp$ÿTyp.AbgFiles
- ÿ’ÿÿ
+    SELECT FIRST FILE "AbgFiles" INDEX FileName.AbgFiles
+    SELECT KEY datei$ FILE "AbgFiles" INDEX FileName.AbgFiles
+    GetFileTyp$ = Typ.AbgFiles
+ END FUNCTION 
  '***********************************************************************************************  
 
 
-ÿÿGetFilePrefix$(datei$)
+FUNCTION GetFilePrefix$(datei$)
  'liefert den Namen des Prefix' fr die Send/Load-Dateien zurck
-ÿÉÿ`ÿ™"AbgFiles"ÿ£FileName.AbgFiles
-ÿÉÿ¥datei$ÿ™"AbgFiles"ÿ£FileName.AbgFiles
-GetFilePrefix$ÿPrefix.AbgFiles
- ÿ’ÿÿ
+    SELECT FIRST FILE "AbgFiles" INDEX FileName.AbgFiles
+    SELECT KEY datei$ FILE "AbgFiles" INDEX FileName.AbgFiles
+    GetFilePrefix$ = Prefix.AbgFiles
+ END FUNCTION 
  '*********************************************************************************************** 
 
-ÿÿGetFileInfo(datei$)
+SUB GetFileInfo(datei$)
  'setzt globale Variablen, auf die File-Infos
  'wenn keine Infos verfgbar (datei$ nicht in AbgFiles) ==> jaFileTyp$ = ""
-datei$ÿÿ>(datei$)
-jaFilePrefix$ÿ""
-jaFileTyp$ÿ""
-jaFileCode$ÿ""
-jaTyp1To1%ÿ0
-ÿ¡ÿOÿJ(datei$,FileName.AbgFiles)ÿp
-
-ÿ’ÿÿ
-ÿ’ÿ¡
-ÿÉÿ`ÿ™"AbgFiles"ÿ£FileName.AbgFiles
-ÿÉÿ¥datei$ÿ™"AbgFiles"ÿ£FileName.AbgFiles
-jaFilePrefix$ÿPrefix.AbgFiles
-jaFileTyp$ÿTyp.AbgFiles
-jaFileCode$ÿCodeField.AbgFiles
-jaTyp1To1%ÿ(Typ1To1.AbgFilesÿ"J")
- ÿ’ÿÿ
+     datei$ = UCASE$ (datei$)
+     jaFilePrefix$ = ""
+     jaFileTyp$ = ""
+     jaFileCode$ = ""
+     jaTyp1To1% = 0
+     IF NOT EXISTS (datei$,FileName.AbgFiles) THEN 
+          END SUB 
+     END IF 
+     SELECT FIRST FILE "AbgFiles" INDEX FileName.AbgFiles
+     SELECT KEY datei$ FILE "AbgFiles" INDEX FileName.AbgFiles
+     jaFilePrefix$ = Prefix.AbgFiles
+     jaFileTyp$ = Typ.AbgFiles
+     jaFileCode$ = CodeField.AbgFiles
+     jaTyp1To1% = (Typ1To1.AbgFiles = "J")
+ END SUB 
  '***********************************************************************************************  
 
  '--------------------------------------------------------------------
  '-------- Hierarchie - Routinen -------------------------------------
  '-------------------------------------------------------------------- 
  
-ÿÿAddOffice%(nameneu$)
-datei$ÿ"FILIALE"
-'neues Bro unterhalb eines w„hlbaren Bros erzeugen
-'liefert die neue Bro-Nummer zurck bzw. -1, wenn Fehler oder Abbruch
-'und positioniert "filiale" auf den neuen Datensatz
-'geht davon aus, daá Datei "Filiale" ge”ffnet ist
-'Aufruf nur von Zentrale (Workstation% = 0)
-'nimmt kein STORE vor
+FUNCTION AddOffice%(nameneu$)
+    datei$ = "FILIALE"
+    'neues Bro unterhalb eines w„hlbaren Bros erzeugen
+    'liefert die neue Bro-Nummer zurck bzw. -1, wenn Fehler oder Abbruch
+    'und positioniert "filiale" auf den neuen Datensatz
+    'geht davon aus, daá Datei "Filiale" ge”ffnet ist
+    'Aufruf nur von Zentrale (Workstation% = 0)
+    'nimmt kein STORE vor
  
-'mainwks% vom User erfragen
-AddOffice%ÿÿ1
-mainwks%ÿSelectOffice%("Neue Filiale erstellen","W„hlen Sie einen Vorg„nger fr die neue Filiale.",1,ÿ1)
-ÿ¡mainwks%ÿÿ1ÿpÿ’ÿÿ'Cancel-Fall
-ÿÉÿ`ÿ™"filiale"ÿ£Filialnr.Filiale
-ÿÉÿ¥mainwks%ÿ™"filiale"ÿ£Filialnr.Filiale
-ÿ¡ÿOÿC("filiale")ÿp
-
-ÿƒFehler("Fehler: šbergeordnete Filiale nicht gefunden:",GetWksName$(mainwks%))
-
-ÿ’ÿÿ
-ÿ’ÿ¡
-
-wks$ÿ"Filialnr.filiale"
-vorg$ÿ"vorg„nger.filiale"
-level$ÿ"Stufe.filiale"
-name$ÿ"Name.filiale"
-name2$ÿ"Nachname.filiale"
-datei$ÿ"filiale"
-
-wksneu%ÿÿI(datei$,1)
-levelneu%ÿlevel$$ÿ1
+     'mainwks% vom User erfragen
+     AddOffice% = - 1
+     mainwks% = SelectOffice%("Neue Filiale erstellen","W„hlen Sie einen Vorg„nger fr die neue Filiale.",1, - 1)
+     IF mainwks% = - 1 THEN END FUNCTION 'Cancel-Fall
+     SELECT FIRST FILE "filiale" INDEX Filialnr.Filiale
+     SELECT KEY mainwks% FILE "filiale" INDEX Filialnr.Filiale
+     IF NOT FOUND ("filiale") THEN 
+          CALL Fehler("Fehler: šbergeordnete Filiale nicht gefunden:",GetWksName$(mainwks%))
+          END FUNCTION 
+     END IF 
+     
+     wks$ = "Filialnr.filiale"
+     vorg$ = "vorg„nger.filiale"
+     level$ = "Stufe.filiale"
+     name$ = "Name.filiale"
+     name2$ = "Nachname.filiale"
+     datei$ = "filiale"
+     
+     wksneu% = SER (datei$,1)
+     levelneu% = level$$ + 1
  
-'Filiale-Datensatz erzeugen
-ÿÿ™datei$
-wks$$ÿwksneu%
-vorg$$ÿmainwks%
-level$$ÿlevelneu%
-name$$ÿnameneu$
-name2$$ÿnameneu$
-ÿÌÿ™datei$
+     'Filiale-Datensatz erzeugen
+     BLANK FILE datei$
+     wks$$ = wksneu%
+     vorg$$ = mainwks%
+     level$$ = levelneu%
+     name$$ = nameneu$
+     name2$$ = nameneu$
+     STORE FILE datei$
 
-AddOffice%ÿwksneu%'Rckgabe-Wert
+     AddOffice% = wksneu%'Rckgabe-Wert
 
- ÿ’ÿÿ
+ END FUNCTION 
  '***********************************************************************************************
  
  
-ÿÿReadHArray(datei$,z%)
+SUB ReadHArray(datei$,z%)
  'liest das gesamte(!) Hierarchie-Array fr eine bestimmte _datei$ ein
  'z% gibt als call by reference die Anzahl zurck
  
-datei$ÿÿ>(datei$)
-ÿÉÿædatei$
-
-ÿæ"FILIALE","LFILIALE"
-vorgaenger$ÿ"Vorg„nger"
-nachfolger$ÿ"FilialNr"
-name$ÿ"Name"
-ÿ’ÿæ
-codefield$ÿnachfolger$ÿ"."ÿdatei$
-vorgfield$ÿvorgaenger$ÿ"."ÿdatei$
-namefield$ÿname$ÿ"."ÿdatei$
-
-z%ÿ0
-ÿÉÿ`ÿ™datei$ÿ£codefield$$
-ÿØÿOÿB(datei$)
-
-
-ÿ¡(vorgfield$$ÿ0)ÿ(codefield$$ÿ0)ÿp
-ÿÿNachfolger%(z%)
-ÿÿVorg„nger%(z%)
-ÿÿOffNames$(z%)
-ÿ¡codefield$$ÿ
-1ÿp
-Nachfolger%(z%)ÿ0
-ÿ^
-Nachfolger%(z%)ÿcodefield$$
-ÿ’ÿ¡
-ÿ¡vorgfield$$ÿ
-1ÿp
-Vorg„nger%(z%)ÿ0
-ÿ^
-Vorg„nger%(z%)ÿvorgfield$$
-ÿ’ÿ¡
+     datei$ = UCASE$ (datei$)
+     SELECT CASE datei$
+          CASE "FILIALE","LFILIALE"
+               vorgaenger$ = "Vorg„nger"
+               nachfolger$ = "FilialNr"
+               name$ = "Name"
+     END CASE 
+     codefield$ = nachfolger$ + "." + datei$
+     vorgfield$ = vorgaenger$ + "." + datei$
+     namefield$ = name$ + "." + datei$
+            
+     z% = 0
+     SELECT FIRST FILE datei$ INDEX codefield$$
+     WHILE NOT EOF (datei$)
+     
+          IF (vorgfield$$ >= 0) AND (codefield$$ >= 0) THEN 
+               REDIM Nachfolger%(z%)
+               REDIM Vorg„nger%(z%)
+               REDIM OffNames$(z%)
+               IF codefield$$ < 1 THEN 
+                   Nachfolger%(z%) = 0
+               ELSE 
+                   Nachfolger%(z%) = codefield$$
+               END IF 
+               IF vorgfield$$ < 1 THEN 
+                   Vorg„nger%(z%) = 0
+               ELSE 
+                   Vorg„nger%(z%) = vorgfield$$
+               END IF 
  
-OffNames$(z%)ÿnamefield$$
-z%ÿz%ÿ1
-
-ÿ’ÿ¡
+               OffNames$(z%) = namefield$$
+               z% = z% + 1
+          END IF 
 
-
-ÿÉÿ±ÿ™datei$ÿ£codefield$$
-ÿÙ
-ÿ½ CALL Fehler("ReadHiera 3","")
-'? STR$ (z%) + " Eintr„ge insgesamt"
+          SELECT NEXT FILE datei$ INDEX codefield$$
+     WEND 
+     REM CALL Fehler("ReadHiera 3","")
+     '? STR$ (z%) + " Eintr„ge insgesamt"
 
- ÿ’ÿÿ
+ END SUB 
  '***********************************************************************************************
  
  
-ÿÿGetVisOff(startcode%)
+SUB GetVisOff(startcode%)
  'Sichbare Bros ermitteln: fllt VisOff% und setzt VisCount%
  'VisCount% muá vorher auf 0 gesetzt werden  
  'nutzt golbale Variablen Vorg„nger%, Nachfolger%, OffCount%
  'Workstation% wird als startcode% bergeben
  'fgt das aktuelle Bro nicht mit ein !!!
-
-pos%ÿ0
-vorg%ÿstartcode%
-x%ÿ0
-z%ÿ0
-zaehl%ÿ0
-ÿ½ IF workstation% = 0 THEN VisCount% = 0
-ÿ½ IF workstation% <> 0 THEN VisCount% = 0
-ÿ½ CALL Fehler("VisNames$","")
-ÿØpos%ÿ
-OffCount%
-'den n„chsten Nachfolger von startcode% (also vorg%) bestimmen
-ÿ¡workstation%ÿ0ÿp
-
-ÿ½ IF (Vorg„nger%(pos%) = vorg%) AND (Nachfolger%(pos%) <> Vorg„nger%(pos%)) THEN 
-'also ein direkter/indirekter Nachfolger gefunden
-VisCount%ÿVisCount%ÿ1
-ÿÿVisOff%(VisCount%ÿ1)
-ÿÿVisNames$(VisCount%ÿ1)
-x%ÿNachfolger%(pos%)
-ÿ½ 25102002 VisOff%(VisCount% - 1) = x%
-VisOff%(VisCount%ÿ1)ÿx%
-ÿ½ CALL Fehler("VisNames$","")
-VisNames$(VisCount%ÿ1)ÿOffNames$(pos%)
-ÿ½ z% = x%
-ÿ½ VisCount% = VisCount% + 1
-ÿ½ CALL GetVisOff(Nachfolger%(pos%))'Rekursion
-
-ÿ½ END IF 
-ÿ^
-
-ÿ¡(Vorg„nger%(pos%)ÿvorg%)ÿ(Nachfolger%(pos%)ÿVorg„nger%(pos%))ÿp
-'also ein direkter/indirekter Nachfolger gefunden
-ÿ½ VisCount% = VisCount% + 1
-ÿÿVisOff%(VisCount%)
-ÿÿVisNames$(VisCount%)
-x%ÿNachfolger%(pos%)
-ÿ¡z%ÿx%ÿp
-ÿ½ 25102002 VisOff%(VisCount% - 1) = x%
-ÿ½ 14052003 VisOff%(VisCount% - 1) = x%
-ÿ½ CALL Fehler("VisNames$","")
-ÿ½ CALL Fehler(OffNames$(pos%),"")
+        
+    pos% = 0
+    vorg% = startcode%
+    x% = 0
+    z% = 0
+    zaehl% = 0
+    REM IF workstation% = 0 THEN VisCount% = 0
+    REM IF workstation% <> 0 THEN VisCount% = 0
+    REM CALL Fehler("VisNames$","")
+    WHILE pos% < OffCount%
+        'den n„chsten Nachfolger von startcode% (also vorg%) bestimmen
+        IF workstation% = 0 THEN 
+          REM IF (Vorg„nger%(pos%) = vorg%) AND (Nachfolger%(pos%) <> Vorg„nger%(pos%)) THEN 
+            'also ein direkter/indirekter Nachfolger gefunden
+            VisCount% = VisCount% + 1
+            REDIM VisOff%(VisCount% - 1)
+            REDIM VisNames$(VisCount% - 1)
+            x% = Nachfolger%(pos%)
+            REM 25102002 VisOff%(VisCount% - 1) = x%
+            VisOff%(VisCount% - 1) = x%
+            REM CALL Fehler("VisNames$","")
+            VisNames$(VisCount% - 1) = OffNames$(pos%)
+            REM z% = x%
+            REM VisCount% = VisCount% + 1
+            REM CALL GetVisOff(Nachfolger%(pos%))'Rekursion
+          REM END IF 
+        ELSE 
+          IF (Vorg„nger%(pos%) = vorg%) AND (Nachfolger%(pos%) <> Vorg„nger%(pos%)) THEN 
+            'also ein direkter/indirekter Nachfolger gefunden
+            REM VisCount% = VisCount% + 1
+            REDIM VisOff%(VisCount%)
+            REDIM VisNames$(VisCount%)
+            x% = Nachfolger%(pos%)
+            IF z% <> x% THEN 
+              REM 25102002 VisOff%(VisCount% - 1) = x%
+              REM 14052003 VisOff%(VisCount% - 1) = x%
+              REM CALL Fehler("VisNames$","")
+              REM CALL Fehler(OffNames$(pos%),"")
  
-VisNames$(VisCount%)ÿOffNames$(pos%)
-VisOff%(VisCount%)ÿx%
-z%ÿx%
-VisCount%ÿVisCount%ÿ1
-ÿ’ÿ¡
-ÿƒGetVisOff(Nachfolger%(pos%))'Rekursion
-
-ÿ’ÿ¡
-ÿ’ÿ¡
-pos%ÿpos%ÿ1
-ÿÙ
+              VisNames$(VisCount%) = OffNames$(pos%)
+              VisOff%(VisCount%) = x%
+              z% = x%
+              VisCount% = VisCount% + 1
+            END IF 
+            CALL GetVisOff(Nachfolger%(pos%))'Rekursion
+          END IF 
+        END IF 
+        pos% = pos% + 1
+    WEND 
  
  
- ÿ’ÿÿ
+ END SUB 
  '***********************************************************************************************
  
 
-ÿÿPrintHierarchy(datei$,startcode%,lines$)
+SUB PrintHierarchy(datei$,startcode%,lines$)
  'gibt die Hierarchie von _datei$ als Text-Report aus 
  
-datei$ÿÿ>(datei$)
-ÿÉÿædatei$
-ÿæ"OFFICE"
-vorgaenger$ÿ"Vorg„nger"
-nachfolger$ÿ"Workstation"
-info$ÿ"Name"
-stufe$ÿ"Level"
-ÿæ"FILIALE"
-vorgaenger$ÿ"Vorg„nger"
-nachfolger$ÿ"FilialNr"
-info$ÿ"Name"
-stufe$ÿ"Stufe"
+    datei$ = UCASE$ (datei$)
+    SELECT CASE datei$
+        CASE "OFFICE"
+            vorgaenger$ = "Vorg„nger"
+            nachfolger$ = "Workstation"
+            info$ = "Name"
+            stufe$ = "Level"
+        CASE "FILIALE"
+            vorgaenger$ = "Vorg„nger"
+            nachfolger$ = "FilialNr"
+            info$ = "Name"
+            stufe$ = "Stufe"
  
-ÿ’ÿæ
-codefield$ÿnachfolger$ÿ"."ÿdatei$
-vorgfield$ÿvorgaenger$ÿ"."ÿdatei$
-infofield$ÿinfo$ÿ"."ÿdatei$
-levelfield$ÿstufe$ÿ"."ÿdatei$
+    END CASE 
+    codefield$ = nachfolger$ + "." + datei$
+    vorgfield$ = vorgaenger$ + "." + datei$
+    infofield$ = info$ + "." + datei$
+    levelfield$ = stufe$ + "." + datei$
  
-horz$ÿ"-"
-vert$ÿ"|"
-einstieg$ÿvert$ÿhorz$
-code2%ÿstartcode%
+    horz$ = "-"
+    vert$ = "|"
+    einstieg$ = vert$ + horz$
+    code2% = startcode%
  
  
-'frs Baum-Zeichnen: die Anzahl der direkten Nachfolger bestimmen
-pos%ÿ0
-ÿ›pos%ÿ0ÿqOffCount%ÿ1
-'den n„chsten Nachfolger von codema2% bestimmen
-ÿ¡(Vorg„nger%(pos%)ÿcode2%)ÿp
-maxNachfolger%ÿNachfolger%(pos%)
-ÿ’ÿ¡
-ÿ±pos%
-
-'Ausgabe des (aktuellen) Vorg„ngers
-ÿÉÿ`ÿ™datei$ÿ£codefield$$
-ÿÉÿ¥code2%ÿ™datei$ÿ£codefield$$
-
-ÿ{infofield$$ÿ" ("ÿÿ(levelfield$$,"000.")ÿ")"
-tempstufe%ÿlevelfield$$
+    'frs Baum-Zeichnen: die Anzahl der direkten Nachfolger bestimmen
+    pos% = 0
+    FOR pos% = 0 TO OffCount% - 1
+        'den n„chsten Nachfolger von codema2% bestimmen
+        IF (Vorg„nger%(pos%) = code2%) THEN 
+            maxNachfolger% = Nachfolger%(pos%)
+        END IF 
+    NEXT pos%
+    
+    'Ausgabe des (aktuellen) Vorg„ngers
+    SELECT FIRST FILE datei$ INDEX codefield$$
+    SELECT KEY code2% FILE datei$ INDEX codefield$$
+     
+    ? infofield$$ + " (" + STR$ (levelfield$$,"000.") + ")"
+    tempstufe% = levelfield$$
  
-pos%ÿ0
-ÿØpos%ÿ
-OffCount%
-'den n„chsten Nachfolger von codema2% bestimmen
-ÿ¡(Vorg„nger%(pos%)ÿcode2%)ÿp
-ÿ¡(Nachfolger%(pos%)ÿmaxNachfolger%)ÿp
-sublines$ÿlines$ÿ"  "
-ÿ^
-sublines$ÿlines$ÿvert$ÿ" "
-ÿ’ÿ¡
-ÿ{lines$ÿeinstieg$;'die Einstiegs-Linie fr den Nachfolger   
-ÿƒPrintHierarchy(datei$,Nachfolger%(pos%),sublines$)'Rekursion
-ÿ’ÿ¡
+    pos% = 0
+    WHILE pos% < OffCount%
+        'den n„chsten Nachfolger von codema2% bestimmen
+        IF (Vorg„nger%(pos%) = code2%) THEN 
+            IF (Nachfolger%(pos%) = maxNachfolger%) THEN 
+                sublines$ = lines$ + "  "
+            ELSE 
+                sublines$ = lines$ + vert$ + " "
+            END IF 
+            ? lines$ + einstieg$;'die Einstiegs-Linie fr den Nachfolger   
+            CALL PrintHierarchy(datei$,Nachfolger%(pos%),sublines$)'Rekursion
+        END IF 
  
-pos%ÿpos%ÿ1
-ÿÙ
-
-ÿ¡tempstufe%ÿ2ÿpÿ{lines$'sieht besser aus
+        pos% = pos% + 1
+    WEND 
+        
+    IF tempstufe% = 2 THEN ? lines$'sieht besser aus
  
- ÿ’ÿÿ
+ END SUB 
  '***********************************************************************************************
  
  
-ÿÿIsWksVisible%(wks%)
+FUNCTION IsWksVisible%(wks%)
  'prft, ob die bergebene Workstation im Array der sichbaren Workstations enthalten ist    
-'CALL Fehler( STR$ (wks%,"z"),"")
+    'CALL Fehler( STR$ (wks%,"z"),"")
  
-'CALL Fehler("","")
-ÿ¡ShowOther%ÿÿ1ÿp
-'nur ein bestimmtes Bro?
-IsWksVisible%ÿ(wks%ÿShowOther%)
-ÿ^IsWksVisible%ÿ0
-
-ÿ¡Workstation%ÿ0ÿp'Fall Zentrale
-IsWksVisible%ÿÿ1
-ÿ’ÿÿ
-ÿ’ÿ¡
+    'CALL Fehler("","")
+    IF ShowOther% <> - 1 THEN 
+        'nur ein bestimmtes Bro?
+        IsWksVisible% = (wks% = ShowOther%)
+    ELSE IsWksVisible% = 0
+    
+        IF Workstation% = 0 THEN 'Fall Zentrale
+            IsWksVisible% = - 1
+            END FUNCTION 
+        END IF 
  
-ÿ›i%ÿ0ÿqVisCount%ÿ1' Fall externes Bro
-ÿ¡VisOff%(i%)ÿwks%ÿp
-'CALL Fehler( STR$ (wks%,"z"),"")
-IsWksVisible%ÿÿ1
-i%ÿVisCount%
-ÿ’ÿ¡
-ÿ±i%
-ÿ’ÿ¡
+        FOR i% = 0 TO VisCount% - 1' Fall externes Bro
+            IF VisOff%(i%) = wks% THEN 
+                'CALL Fehler( STR$ (wks%,"z"),"")
+                IsWksVisible% = - 1
+                i% = VisCount%
+            END IF 
+        NEXT i%
+    END IF 
  
- ÿ’ÿÿ
+ END FUNCTION 
  '***********************************************************************************************
  
 
-ÿÿGetWksName$(wks%)
+FUNCTION GetWksName$(wks%)
  'liefert den Bro-Namen anhand der Bronummer
- GetWksName$ÿ"unbekannt"
-
-ÿ›i%ÿ0ÿqOffCount%ÿ1
+ GetWksName$ = "unbekannt"
+        
+        FOR i% = 0 TO OffCount% - 1
  
-ÿ¡Nachfolger%(i%)ÿwks%ÿp
+            IF Nachfolger%(i%) = wks% THEN 
  
-GetWksName$ÿOffNames$(i%)
-i%ÿOffCount%
+                GetWksName$ = OffNames$(i%)
+                i% = OffCount%
  
-ÿ’ÿ¡
+            END IF 
  
-ÿ±i%
+        NEXT i%
  
- ÿ’ÿÿ
-'***********************************************************************************************
+ END FUNCTION 
+  '***********************************************************************************************
  
-ÿÿGetWksVorg%(wks%)
+FUNCTION GetWksVorg%(wks%)
  'liefert den Vorg„nger fr eine Bronummer
- GetWksVorg%ÿÿ1
-
-ÿ›i%ÿ0ÿqOffCount%ÿ1
+ GetWksVorg% = - 1
+        
+        FOR i% = 0 TO OffCount% - 1
  
-ÿ¡Nachfolger%(i%)ÿwks%ÿp
+            IF Nachfolger%(i%) = wks% THEN 
  
-GetWksVorg%ÿVorg„nger%(i%)
-i%ÿOffCount%
+                GetWksVorg% = Vorg„nger%(i%)
+                i% = OffCount%
  
-ÿ’ÿ¡
+            END IF 
  
-ÿ±i%
+        NEXT i%
  
- ÿ’ÿÿ
+ END FUNCTION 
  '***********************************************************************************************
  
-ÿÿGetWksIndex%(wks%)
+FUNCTION GetWksIndex%(wks%)
  'liefert den Index der Workstation aus dem Wks-Array (also aus Nachfolger%)
- GetWksIndex%ÿÿ1
-
-ÿ›i%ÿ0ÿqOffCount%ÿ1
+ GetWksIndex% = - 1
+        
+        FOR i% = 0 TO OffCount% - 1
  
-ÿ¡Nachfolger%(i%)ÿwks%ÿp
+            IF Nachfolger%(i%) = wks% THEN 
  
-GetWksIndex%ÿi%
-i%ÿOffCount%
+                GetWksIndex% = i%
+                i% = OffCount%
  
-ÿ’ÿ¡
+            END IF 
  
-ÿ±i%
- ÿ’ÿÿ
+        NEXT i%
+ END FUNCTION 
  '***********************************************************************************************
 
 
-ÿÿGetVisWksIndex%(wks%)
+FUNCTION GetVisWksIndex%(wks%)
  'liefert den Index der Workstation aus dem "sichtbar"-Array der (also aus VisOff%)
- GetWksIndex%ÿÿ1
-
-ÿ›i%ÿ0ÿqVisCount%ÿ1
+ GetWksIndex% = - 1
+        
+        FOR i% = 0 TO VisCount% - 1
  
-ÿ¡VisOff%(i%)ÿwks%ÿp
+            IF VisOff%(i%) = wks% THEN 
  
-GetWksIndex%ÿi%
-i%ÿOffCount%
+                GetWksIndex% = i%
+                i% = OffCount%
  
-ÿ’ÿ¡
+            END IF 
  
-ÿ±i%
- ÿ’ÿÿ
+        NEXT i%
+ END FUNCTION 
  '*********************************************************************************************** 
 
-ÿÿSelectOffice%(action$,info$,buttons%,aktwks%)
- ÿ½ CALL Fehler("SelectOffice%","")
+FUNCTION SelectOffice%(action$,info$,buttons%,aktwks%)
+ REM CALL Fehler("SelectOffice%","")
  'Tree-Auswahl eines Bros mit Hilfe von hiera.dll
  'txt-file mit Struktur der sichtbaren Bros erzeugen und 
  'hiera.dll::_SelectOffice aufrufen
  'txt-File: Zentrale ... Pfad zum aktuellen Bro ... untergeodnete Bros
  
- info$ÿÿåANSI(info$)
- action$ÿÿåansi(action$)
+ info$ = FN ANSI(info$)
+ action$ = FN ansi(action$)
 
- ÿ¡ÿJ(_localpath$ÿ"hiera.txt")ÿp
-ÿ(_localpath$ÿ"hiera.txt")
- ÿ’ÿ¡
+ IF EXISTS (_localpath$ + "hiera.txt") THEN 
+    DELETE (_localpath$ + "hiera.txt")
+ END IF 
  
- ÿ´_localpath$ÿ"hiera.txt"ÿ›ÿ¶
+ OPEN _localpath$ + "hiera.txt" FOR OUTPUT 
  'das h”chste Bro immer zuerst
-ÿ{GetWksName$(0)
-ÿ{"0"
-ÿ{"0"
+    ? GetWksName$(0)
+    ? "0"
+    ? "0"
  
  'den Pfad vom aktuellen Bro bis zur Zenrale: 
  'suche solange den Vorg„nger, bis die 0 erreicht wird
- wks%ÿGetWksVorg%(Workstation%)
- ÿØwks%ÿ0
-ÿ{GetWksName$(wks%)
-ÿ{ÿ(wks%,"z")
-wks%ÿGetWksVorg%(wks%)
-ÿ¡wks%ÿ0ÿp
-ÿ{"0"
-ÿ^
-ÿ{ÿ(wks%,"z")
-ÿ’ÿ¡
- ÿÙ
+ wks% = GetWksVorg%(Workstation%)
+ WHILE wks% > 0
+    ? GetWksName$(wks%)
+    ? STR$ (wks%,"z")
+    wks% = GetWksVorg%(wks%)
+    IF wks% = 0 THEN 
+        ? "0"
+    ELSE 
+        ? STR$ (wks%,"z")
+    END IF 
+ WEND 
  
  'die restlichen Nachfolger (sichtbare Bros) einschl. sich selbst
- ÿ›i%ÿ0ÿqVisCount%ÿ1
-ÿ¡VisOff%(i%)ÿ0ÿp'Zentrale schon ausgegeben 
-
-ÿ{ÿåansi(VisNames$(i%))
-
-ÿ{ÿ(VisOff%(i%),"z")
-
-wks%ÿGetWksVorg%(VisOff%(i%))
-
-ÿ¡wks%ÿ0ÿp
-ÿ{"0"
-
-ÿ^
-ÿ{ÿ(wks%,"z")
-
-ÿ’ÿ¡
-ÿ’ÿ¡
- ÿ±i%
- ÿ†ÿ¶
+ FOR i% = 0 TO VisCount% - 1
+     IF VisOff%(i%) <> 0 THEN 'Zentrale schon ausgegeben 
+          ? FN ansi(VisNames$(i%))
+          ? STR$ (VisOff%(i%),"z")
+          wks% = GetWksVorg%(VisOff%(i%))
+          IF wks% = 0 THEN 
+               ? "0"
+          ELSE 
+               ? STR$ (wks%,"z")
+          END IF 
+     END IF 
+ NEXT i%
+ CLOSE OUTPUT 
  
- SelectOffice%ÿÿƒ("_SelectOffice",_localpath$ÿ"hiera.txt",aktwks%,action$,info$,buttons%)
+ SelectOffice% = CALL ("_SelectOffice",_localpath$ + "hiera.txt",aktwks%,action$,info$,buttons%)
  
- ÿ_localpath$ÿ"hiera.txt"
+ DELETE _localpath$ + "hiera.txt"
  
- ÿ’ÿÿ
+ END FUNCTION 
  '***********************************************************************************************
 
 
-ÿÿPrintAbgFiles(txtfile$)
+SUB PrintAbgFiles(txtfile$)
  'Ausgabe der Daten der Datei AbgFiles in eine Text-Datei
  
- ÿ´txtfile$ÿ›ÿ¶
-
-ÿ{&10"FileName";
-ÿ{&10"CodeFile";
-ÿ{&8"Prefix";
-ÿ{&5"Typ";
-ÿ{&8"Dir";
-ÿ{&8"Level";
-ÿ{&12"CodeField";
-ÿ{&5"1To1"
-ÿ{"-----------------------------------------------------------------------"
+ OPEN txtfile$ FOR OUTPUT 
+    
+    ? &10"FileName";
+    ? &10"CodeFile";
+    ? &8"Prefix";
+    ? &5"Typ";
+    ? &8"Dir";
+    ? &8"Level";
+    ? &12"CodeField";
+    ? &5"1To1"
+    ? "-----------------------------------------------------------------------"
  
- ÿ™"AbgFiles"
- ÿ£FileName
- ÿÉÿ`
- ÿØÿOÿB("AbgFiles")
-ÿ¡Typ ÿ"I"ÿp
+ FILE "AbgFiles"
+ INDEX FileName
+ SELECT FIRST 
+ WHILE NOT EOF ("AbgFiles")
+    IF Typ <> "I" THEN 
  
-ÿ{&10FileName;
-ÿ{&10ÿ(CodeFile,"z");
-ÿ{&8Prefix;
-ÿ{&5Typ;
-ÿ{&8Dir;
-ÿ{&8ÿ(Level,"z");
-ÿ{&12CodeField;
-ÿ{&5Typ1To1
-
-ÿ’ÿ¡
-ÿÉÿ±
+    ? &10FileName;
+    ? &10 STR$ (CodeFile,"z");
+    ? &8Prefix;
+    ? &5Typ;
+    ? &8Dir;
+    ? &8 STR$ (Level,"z");
+    ? &12CodeField;
+    ? &5Typ1To1
+    
+    END IF 
+    SELECT NEXT 
  
- ÿÙ
- ÿ†ÿ¶
+ WEND 
+ CLOSE OUTPUT 
  
  
- ÿ’ÿÿ
+ END SUB 
  '***********************************************************************************************
-
+  
  
-ÿÿAbgPlausi(txtfile$)
+SUB AbgPlausi(txtfile$)
  'Plausibilit„ts-Prfung fr AbgFiles und AbgDeps
  
- ÿ¡txtfile$ÿ""ÿp
-ÿ´txtfile$ÿ›ÿ¶
- ÿ’ÿ¡
+ IF txtfile$ <> "" THEN 
+    OPEN txtfile$ FOR OUTPUT 
+ END IF 
  
- path$ÿ"d:\dkm\muster\"
+ path$ = "d:\dkm\muster\"
  
  '1. MainField.AbgDeps muá in entsprechendem MainFile.AbgFiles existieren
  'Vorgang: ber alle CodeFile's: FeldInfos holen und prfen, ob MainField enthalten ist 
  
- ÿ{"Phase 1 ----------------------"
+ ? "Phase 1 ----------------------"
  
- ÿ×FieldNames$(1000)
-
- ÿÉÿ`ÿ™"abgDeps"ÿ£CodeFile.AbgDeps
- filecode%ÿCodeFile.AbgDeps
- filename$ÿFileName.AbgDeps
- newfile%ÿÿ1
- fieldno%ÿ0
- ÿØÿOÿB("AbgDeps")
-ÿ¡newfile%ÿÿ1ÿp
-'Feld-Infos holen            
-ÿÉÿ`ÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
-ÿÉÿ¥CodeFile.AbgDepsÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
-ÿ¡ÿC("AbgFiles")ÿp
-
+ DIM FieldNames$(1000)
+  
+ SELECT FIRST FILE "abgDeps" INDEX CodeFile.AbgDeps
+ filecode% = CodeFile.AbgDeps
+ filename$ = FileName.AbgDeps
+ newfile% = - 1
+ fieldno% = 0
+ WHILE NOT EOF ("AbgDeps")
+    IF newfile% = - 1 THEN 
+        'Feld-Infos holen            
+        SELECT FIRST FILE "AbgFiles" INDEX CodeFile.AbgFiles
+        SELECT KEY CodeFile.AbgDeps FILE "AbgFiles" INDEX CodeFile.AbgFiles
+        IF FOUND ("AbgFiles") THEN 
+            
  
-'REQUEST FileName.AbgDeps
-ÿ¡ÿOÿ´(FileName.AbgDeps)ÿp
-ÿ´ÿ™ÿà,1path$ÿDir.AbgFilesÿ"\"ÿFileName.AbgDepsÿ";paris"
-ÿ’ÿ¡
+            'REQUEST FileName.AbgDeps
+            IF NOT OPEN (FileName.AbgDeps) THEN 
+                OPEN FILE SHARE ,1path$ + Dir.AbgFiles + "\" + FileName.AbgDeps + ";paris"
+            END IF 
 
-'Feld-Infos holen
-fieldno%ÿÿõ(FileName.AbgDeps,1)
-ÿÿFieldNames$(fieldno%)
-ÿÿFieldNames$,1
+            'Feld-Infos holen
+            fieldno% = FILEINFO (FileName.AbgDeps,1)
+            REDIM FieldNames$(fieldno%)
+            FILLARRAY FieldNames$,1
 
-ÿ^
-ÿÂ"Fehler in Planquadrat 42"
-ÿ’ÿ¡
-ÿ’ÿ¡
+        ELSE 
+            REQUEST "Fehler in Planquadrat 42"
+        END IF 
+    END IF 
  
  
-'existiert der FeldName?
-fieldFound%ÿ0
-ÿ›i%ÿ0ÿqfieldno%ÿ1
-ÿ¡ÿ>(FieldNames$(i%))ÿÿ>(MainField.AbgDeps)ÿp
-fieldFound%ÿÿ1
-i%ÿfieldno%
-ÿ’ÿ¡
-ÿ±i%
-ÿ¡fieldFound%ÿ0ÿp
-'nicht plausi. !!!
-ÿ{"AbgDeps: Feld "ÿMainField.AbgDepsÿ" ex. nicht in Datei "ÿFileName.AbgDeps
-ÿ’ÿ¡
+    'existiert der FeldName?
+    fieldFound% = 0
+    FOR i% = 0 TO fieldno% - 1
+        IF UCASE$ (FieldNames$(i%)) = UCASE$ (MainField.AbgDeps) THEN 
+            fieldFound% = - 1
+            i% = fieldno%
+        END IF 
+    NEXT i%
+    IF fieldFound% = 0 THEN 
+        'nicht plausi. !!!
+        ? "AbgDeps: Feld " + MainField.AbgDeps + " ex. nicht in Datei " + FileName.AbgDeps
+    END IF 
  
  
-'ist das angegenene MainField tats„chlich das Code-Feld des MainFiles?
-'... l„át sich nicht (eindeutig) testen
-'... h”chstens indirekt, z.B. ber Feld-Format  
+    'ist das angegenene MainField tats„chlich das Code-Feld des MainFiles?
+    '... l„át sich nicht (eindeutig) testen
+    '... h”chstens indirekt, z.B. ber Feld-Format  
  
  
-'Sprung auf n„chstes File ?
-ÿÉÿ±ÿ™"AbgDeps"ÿ£CodeFile.AbgDeps
-ÿ¡filecode%ÿCodeFile.AbgDepsÿp
-filecode%ÿCodeFile.AbgDeps
-filename$ÿFileName.AbgDeps
-newfile%ÿÿ1
-ÿ^
-'wenn immernoch die selbe CodeFile ==> auch der Dateinamen darf sich nich „ndern
-'also Prfung, ob Zuordnung zwischen CodeFile.AbgDeps und FileName.AbgDeps 
-'innerhalb der CodeDeps konstant ist - wird aber eigentlich in 2. erledigt
+    'Sprung auf n„chstes File ?
+    SELECT NEXT FILE "AbgDeps" INDEX CodeFile.AbgDeps
+    IF filecode% <> CodeFile.AbgDeps THEN 
+        filecode% = CodeFile.AbgDeps
+        filename$ = FileName.AbgDeps
+        newfile% = - 1
+    ELSE 
+        'wenn immernoch die selbe CodeFile ==> auch der Dateinamen darf sich nich „ndern
+        'also Prfung, ob Zuordnung zwischen CodeFile.AbgDeps und FileName.AbgDeps 
+        'innerhalb der CodeDeps konstant ist - wird aber eigentlich in 2. erledigt
  
-ÿ¡filename$ÿFileName.AbgDepsÿp
-'nicht plausi. !!!
-ÿÂ"gaga"
-ÿ’ÿ¡
-
-ÿ’ÿ¡
- ÿÙ
- ÿƒFehler("","")
+        IF filename$ <> FileName.AbgDeps THEN 
+            'nicht plausi. !!!
+            REQUEST "gaga"
+        END IF 
+  
+    END IF 
+ WEND 
+ CALL Fehler("","")
  
  '2.Prfen,ob Zuordnung zwischen CodeFile.AbgFiles und FileName.AbgFiles bereinstimmt 
  ' mit a) Zuordnung zwischen CodeFile.AbgDeps und FileName.AbgDeps 
  ' bzw. b) MainCodeFile.AbgDeps und MainFile.AbgDeps 
  ' bei b) wird zus„tzlich geprft
  
- ÿ{" "
- ÿ{"Phase 2 ----------------------"
+ ? " "
+ ? "Phase 2 ----------------------"
  
- ÿÍtest.AbgDepsÿ0
- ÿĞ
- ÿ’ÿÍ
+ UPDATE test.AbgDeps = 0
+ WHERE 
+ END UPDATE 
  
- z%ÿ0'Anzahl korrekter Zuordnungen ... muá am Ende = Reccount("AbgDeps") sein
- ÿÉÿ`ÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
- ÿØÿOÿB("AbgFiles")
-
-a$ÿ"CodeFile = "ÿÿ(CodeFile.AbgFiles,"z")ÿ": "
+ z% = 0'Anzahl korrekter Zuordnungen ... muá am Ende = Reccount("AbgDeps") sein
+ SELECT FIRST FILE "AbgFiles" INDEX CodeFile.AbgFiles
+ WHILE NOT EOF ("AbgFiles")
+            
+    a$ = "CodeFile = " + STR$ (CodeFile.AbgFiles,"z") + ": "
  
-' a)
-ÿÉÿ`ÿ™"AbgDeps"ÿ£CodeFile.AbgDeps
-ÿÉÿ¥CodeFile.AbgFilesÿ™"AbgDeps"ÿ£CodeFile.AbgDeps
-ÿØÿOÿB("AbgDeps")ÿCodeFile.AbgDepsÿCodeFile.AbgFiles
-ÿ¡ÿ>(FileName.AbgFiles)ÿÿ>(FileName.AbgDeps)ÿp
-'nicht plausi. !!            
-ÿ{a$ÿ"FileName.AbgFiles = "ÿFileName.AbgFilesÿ", FileName.AbgDeps = "ÿFileName.AbgDeps
-ÿ’ÿ¡
-ÿÉÿYÿáÿ™"AbgDeps"ÿ£CodeFile.AbgDeps
-test.AbgDepsÿtest.AbgDepsÿ1
-ÿÌÿ™"AbgDeps"
-ÿïÿYÿ™"AbgDeps"
+    ' a)
+    SELECT FIRST FILE "AbgDeps" INDEX CodeFile.AbgDeps
+    SELECT KEY CodeFile.AbgFiles FILE "AbgDeps" INDEX CodeFile.AbgDeps
+    WHILE NOT EOF ("AbgDeps") AND CodeFile.AbgDeps = CodeFile.AbgFiles
+        IF UCASE$ (FileName.AbgFiles) <> UCASE$ (FileName.AbgDeps) THEN 
+            'nicht plausi. !!            
+            ? a$ + "FileName.AbgFiles = " + FileName.AbgFiles + ", FileName.AbgDeps = " + FileName.AbgDeps
+        END IF 
+        SELECT CURRENT LOCK FILE "AbgDeps" INDEX CodeFile.AbgDeps
+        test.AbgDeps = test.AbgDeps + 1
+        STORE FILE "AbgDeps"
+        UNLOCK CURRENT FILE "AbgDeps"
  
-ÿÉÿ±ÿ™"AbgDeps"ÿ£CodeFile.AbgDeps
-ÿÙ
+        SELECT NEXT FILE "AbgDeps" INDEX CodeFile.AbgDeps
+    WEND 
  
-' b)
-ÿÉÿ`ÿ™"AbgDeps"ÿ£MainCodeFile.AbgDeps
-ÿÉÿ¥CodeFile.AbgFilesÿ™"AbgDeps"ÿ£MainCodeFile.AbgDeps
-ÿØÿOÿB("AbgDeps")ÿMainCodeFile.AbgDepsÿCodeFile.AbgFiles
-ÿ¡ÿ>(FileName.AbgFiles)ÿÿ>(MainFile.AbgDeps)ÿp
-'nicht plausi. !! 
-ÿ{a$ÿ"FileName.AbgFiles = "ÿFileName.AbgFilesÿ", FileName.AbgDeps = "ÿFileName.AbgDeps
-ÿ’ÿ¡
-ÿÉÿYÿáÿ™"AbgDeps"ÿ£MainCodeFile.AbgDeps
-test.AbgDepsÿtest.AbgDepsÿ1
-ÿÌÿ™"AbgDeps"
-ÿïÿYÿ™"AbgDeps"
+    ' b)
+    SELECT FIRST FILE "AbgDeps" INDEX MainCodeFile.AbgDeps
+    SELECT KEY CodeFile.AbgFiles FILE "AbgDeps" INDEX MainCodeFile.AbgDeps
+    WHILE NOT EOF ("AbgDeps") AND MainCodeFile.AbgDeps = CodeFile.AbgFiles
+        IF UCASE$ (FileName.AbgFiles) <> UCASE$ (MainFile.AbgDeps) THEN 
+            'nicht plausi. !! 
+            ? a$ + "FileName.AbgFiles = " + FileName.AbgFiles + ", FileName.AbgDeps = " + FileName.AbgDeps
+        END IF 
+        SELECT CURRENT LOCK FILE "AbgDeps" INDEX MainCodeFile.AbgDeps
+        test.AbgDeps = test.AbgDeps + 1
+        STORE FILE "AbgDeps"
+        UNLOCK CURRENT FILE "AbgDeps"
  
-ÿÉÿ±ÿ™"AbgDeps"ÿ£MainCodeFile.AbgDeps
-ÿÙ
+        SELECT NEXT FILE "AbgDeps" INDEX MainCodeFile.AbgDeps
+    WEND 
 
 
-'Feld-Infos fr Zeit-Statistik-Felder holen            
-'ON ERROR GOTO IgnoreFile
-'IF NOT OPEN (FileName.AbgFiles) THEN 
-'    OPEN FILE SHARE ,1path$ + Dir.AbgFiles + "\" + FileName.AbgFiles + ";paris"
-'END IF 
-'FILE FileName.AbgFiles'fr FIELDINFO n”tig 
-'
-'fieldno% = FILEINFO (FileName.AbgFiles,1)
-'REDIM FieldNames$(fieldno%)
-'FILLARRAY FieldNames$,1
-'
-'
-''Feld-Infos fr Zeitstatistik ermitteln ---------------
-'# Indizes
-'indexno% = FILEINFO (FileName.AbgFiles,0)
-''# der TXT - Felder mit L„nge > 1000
-'txt1000% = 0
-'FOR i% = 0 TO fieldno% - 1
-'    IF FIELDINFO$ (FieldNames$(i%),0) = "TXT" THEN 
-'
-'        IF VAL ( FIELDINFO$ (FieldNames$(i%),4)) > 1000 THEN 
-'           'CALL Fehler (FieldNames$(i%) + "." + FileName.AbgFiles,"")
-'            txt1000% = txt1000% + 1
-'        END IF 
-'    END IF 
-'NEXT i%
-'
-'SELECT CURRENT LOCK FILE "abgfiles" INDEX CodeFile.AbgFiles
-'    a$ = FileName.AbgFiles
-'    FieldCount.AbgFiles = fieldno%
-'    IndexCount.AbgFiles = indexno%
-'    TXT1000Count.AbgFiles = txt1000%
-'    'CALL Fehler (FileName.AbgFiles,"")
-'STORE FILE "abgfiles"
-'UNLOCK CURRENT FILE "abgfiles" 
+            'Feld-Infos fr Zeit-Statistik-Felder holen            
+            'ON ERROR GOTO IgnoreFile
+            'IF NOT OPEN (FileName.AbgFiles) THEN 
+            '    OPEN FILE SHARE ,1path$ + Dir.AbgFiles + "\" + FileName.AbgFiles + ";paris"
+            'END IF 
+            'FILE FileName.AbgFiles'fr FIELDINFO n”tig 
+            '
+            'fieldno% = FILEINFO (FileName.AbgFiles,1)
+            'REDIM FieldNames$(fieldno%)
+            'FILLARRAY FieldNames$,1
+            '
+            '
+            ''Feld-Infos fr Zeitstatistik ermitteln ---------------
+            '# Indizes
+            'indexno% = FILEINFO (FileName.AbgFiles,0)
+            ''# der TXT - Felder mit L„nge > 1000
+            'txt1000% = 0
+            'FOR i% = 0 TO fieldno% - 1
+            '    IF FIELDINFO$ (FieldNames$(i%),0) = "TXT" THEN 
+            '
+            '        IF VAL ( FIELDINFO$ (FieldNames$(i%),4)) > 1000 THEN 
+            '           'CALL Fehler (FieldNames$(i%) + "." + FileName.AbgFiles,"")
+            '            txt1000% = txt1000% + 1
+            '        END IF 
+            '    END IF 
+            'NEXT i%
+            '
+            'SELECT CURRENT LOCK FILE "abgfiles" INDEX CodeFile.AbgFiles
+            '    a$ = FileName.AbgFiles
+            '    FieldCount.AbgFiles = fieldno%
+            '    IndexCount.AbgFiles = indexno%
+            '    TXT1000Count.AbgFiles = txt1000%
+            '    'CALL Fehler (FileName.AbgFiles,"")
+            'STORE FILE "abgfiles"
+            'UNLOCK CURRENT FILE "abgfiles" 
  'IgnoreFile: 
-'ON ERROR 
-''Ende:  Feld-Infos fr Zeitstatistik ermitteln --------------- 
+            'ON ERROR 
+            ''Ende:  Feld-Infos fr Zeitstatistik ermitteln --------------- 
  
-ÿÉÿ±ÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
- ÿÙ
+    SELECT NEXT FILE "AbgFiles" INDEX CodeFile.AbgFiles
+ WEND 
  
- z%ÿ0
- ÿÉÿ`ÿ™"AbgDeps"ÿ£CodeDep.AbgDeps
- ÿØÿOÿB("AbgDeps")
-ÿ¡test.AbgDepsÿ2ÿp
-ÿ{"    Fehler in CodeDep = "ÿÿ(CodeDep.AbgDeps,"z")ÿ": "ÿÿ(test.AbgDepsÿ2,"z")
-ÿ^
-z%ÿz%ÿ1
-ÿ’ÿ¡
-
-ÿÉÿ±ÿ™"AbgDeps"ÿ£CodeDep.AbgDeps
- ÿÙ
- ÿƒFehler("Ende Phase 2","")
+ z% = 0
+ SELECT FIRST FILE "AbgDeps" INDEX CodeDep.AbgDeps
+ WHILE NOT EOF ("AbgDeps")
+    IF test.AbgDeps <> 2 THEN 
+        ? "    Fehler in CodeDep = " + STR$ (CodeDep.AbgDeps,"z") + ": " + STR$ (test.AbgDeps - 2,"z")
+    ELSE 
+        z% = z% + 1
+    END IF 
+    
+    SELECT NEXT FILE "AbgDeps" INDEX CodeDep.AbgDeps
+ WEND 
+ CALL Fehler("Ende Phase 2","")
  
-ÿ{"AbgDeps enthaelt "ÿÿ(ÿA("AbgDeps"),"z")ÿ" Master-Detail-Beziehungen, "ÿÿ(z%,"z")ÿ" davon sind ok."
+  ? "AbgDeps enthaelt " + STR$ ( RECCOUNT ("AbgDeps"),"z") + " Master-Detail-Beziehungen, " + STR$ (z%,"z") + " davon sind ok."
  
  
  '3. šbergeordnete Files von Z und C und A mssen selbst Z oder C oder A sein
  
- ÿ{" "
- ÿ{"Phase 3 ----------------------"
+ ? " "
+ ? "Phase 3 ----------------------"
  
- ÿÉÿ`ÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
- ÿØÿOÿB("AbgFiles")
+ SELECT FIRST FILE "AbgFiles" INDEX CodeFile.AbgFiles
+ WHILE NOT EOF ("AbgFiles")
  
-'--- Fieldcount fr Zeitmessung schreiben---
-ÿ¡FileName.AbgFilesÿ"CONFIG"ÿp
-'CALL Fehler(FileName.AbgFiles,"")
-ÿ¡ÿOÿ´(FileName.AbgFiles)ÿp
-ÿ´ÿ™ÿà,1path$ÿDir.AbgFilesÿ"\"ÿFileName.AbgFilesÿ";paris"
-ÿ’ÿ¡
-fieldno%ÿÿõ(FileName.AbgFiles,1)
-
-ÿÉÿYÿáÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
-FieldCount.AbgFilesÿfieldno%
-ÿÌÿ™"AbgFiles"
-ÿïÿYÿ™"AbgFiles"
+    '--- Fieldcount fr Zeitmessung schreiben---
+    IF FileName.AbgFiles <> "CONFIG" THEN 
+        'CALL Fehler(FileName.AbgFiles,"")
+        IF NOT OPEN (FileName.AbgFiles) THEN 
+            OPEN FILE SHARE ,1path$ + Dir.AbgFiles + "\" + FileName.AbgFiles + ";paris"
+        END IF 
+       fieldno% = FILEINFO (FileName.AbgFiles,1)
+  
+        SELECT CURRENT LOCK FILE "AbgFiles" INDEX CodeFile.AbgFiles
+            FieldCount.AbgFiles = fieldno%
+        STORE FILE "AbgFiles"
+        UNLOCK CURRENT FILE "AbgFiles"
  
-ÿ¡ÿ´(FileName.AbgFiles)ÿpÿ†ÿ™FileName.AbgFiles
+        IF OPEN (FileName.AbgFiles) THEN CLOSE FILE FileName.AbgFiles
  
-ÿ¡Typ.AbgFilesÿ"Z"ÿTyp.AbgFilesÿ"C"ÿTyp.AbgFilesÿ"A"ÿp
-ÿ’ÿ¡
-'--- Ende: Fieldcount fr Zeitmessung schreiben---
-
-'die aktuelle Code merken
-code%ÿCodeFile.AbgFiles
- 
- 
-'fr Fehlerausgabe
-filename$ÿFileName.AbgFiles
-typ$ÿTyp.AbgFiles
-ÿ{filename$ÿ": Typ = "ÿtyp$
-'CALL Fehler(filename$,"")
-'bergeordnete durchlaufen, falls C oder Z
-ÿÉÿ`ÿ™"AbgDeps"ÿ£CodeFile.AbgDeps
-ÿÉÿ¥code%ÿ™"AbgDeps"ÿ£CodeFile.AbgDeps
-ÿØÿOÿB("AbgDeps")ÿCodeFile.AbgDepsÿcode%
-ÿ{"    "ÿMainFile.AbgDepsÿ": Typ = ";
-'CALL Fehler(MainFile.AbgDeps,"")
-'zum bergeordneten File (in AbgFiles) springen und auf Z oder C oder A prfen
-ÿÉÿ`ÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
-ÿÉÿ¥MainCodeFile.AbgDepsÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
-ÿ¡ÿC("AbgFiles")ÿp
-ÿ{Typ.AbgFiles
-ÿ¡Typ.AbgFilesÿ"Z"ÿTyp.AbgFilesÿ"C"ÿTyp.AbgFilesÿ"A"ÿp
-' nicht plausi. !!
-a$ÿ"!!!! Datei "ÿfilename$ÿ" ist vom Typ "ÿtyp$
-a$ÿa$ÿ" und hat uebergeordnete Datei "ÿFileName.AbgFilesÿ" vom Typ "ÿTyp.AbgFilesÿ" !!!!"
-ÿ{a$
-ÿ’ÿ¡
-ÿ^
-
-ÿ{" ... nicht gefunden"
-ÿ’ÿ¡
-ÿÉÿ±ÿ™"AbgDeps"ÿ£CodeFile.AbgDeps
-ÿÙ
- 
-'und weiter bei code% 
-ÿÉÿ`ÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
-ÿÉÿ¥code%ÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
-ÿ’ÿ¡
- 
-ÿÉÿ±ÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
- 
- ÿÙ
-
- ÿ¡txtfile$ÿ""ÿp
-ÿ†ÿ¶
- ÿ’ÿ¡
+        IF Typ.AbgFiles = "Z" OR Typ.AbgFiles = "C" OR Typ.AbgFiles = "A" THEN 
+    END IF 
+    '--- Ende: Fieldcount fr Zeitmessung schreiben---
+        
+        'die aktuelle Code merken
+        code% = CodeFile.AbgFiles
  
  
+        'fr Fehlerausgabe
+        filename$ = FileName.AbgFiles
+        typ$ = Typ.AbgFiles
+        ? filename$ + ": Typ = " + typ$
+        'CALL Fehler(filename$,"")
+        'bergeordnete durchlaufen, falls C oder Z
+        SELECT FIRST FILE "AbgDeps" INDEX CodeFile.AbgDeps
+        SELECT KEY code% FILE "AbgDeps" INDEX CodeFile.AbgDeps
+        WHILE NOT EOF ("AbgDeps") AND CodeFile.AbgDeps = code%
+            ? "    " + MainFile.AbgDeps + ": Typ = ";
+            'CALL Fehler(MainFile.AbgDeps,"")
+            'zum bergeordneten File (in AbgFiles) springen und auf Z oder C oder A prfen
+            SELECT FIRST FILE "AbgFiles" INDEX CodeFile.AbgFiles
+            SELECT KEY MainCodeFile.AbgDeps FILE "AbgFiles" INDEX CodeFile.AbgFiles
+            IF FOUND ("AbgFiles") THEN 
+                ? Typ.AbgFiles
+                IF Typ.AbgFiles <> "Z" AND Typ.AbgFiles <> "C" AND Typ.AbgFiles <> "A" THEN 
+                    ' nicht plausi. !!
+                    a$ = "!!!! Datei " + filename$ + " ist vom Typ " + typ$
+                    a$ = a$ + " und hat uebergeordnete Datei " + FileName.AbgFiles + " vom Typ " + Typ.AbgFiles + " !!!!"
+                    ? a$
+                END IF 
+            ELSE 
+                
+                ? " ... nicht gefunden"
+            END IF 
+            SELECT NEXT FILE "AbgDeps" INDEX CodeFile.AbgDeps
+        WEND 
  
- ÿ’ÿÿ
+        'und weiter bei code% 
+        SELECT FIRST FILE "AbgFiles" INDEX CodeFile.AbgFiles
+        SELECT KEY code% FILE "AbgFiles" INDEX CodeFile.AbgFiles
+    END IF 
+ 
+    SELECT NEXT FILE "AbgFiles" INDEX CodeFile.AbgFiles
+ 
+ WEND 
+  
+ IF txtfile$ <> "" THEN 
+    CLOSE OUTPUT 
+ END IF 
+ 
+ 
+ 
+ END SUB 
  '*********************************************************************************************** 
-
+  
 
-ÿÿCryptPwd(basepath$)
+SUB CryptPwd(basepath$)
  
  'basepath$ ist (z.B.) der CODie-Pfad 
- ausgabe%ÿÿ1
- ÿ×dir$(10)
- dir$(0)ÿbasepath$
- dir$(1)ÿbasepath$ÿ"OFFICE"
- dir$(2)ÿbasepath$ÿ"PROVIS"
- dir$(3)ÿbasepath$ÿ"ABGLEICH\SEND"
- dir$(4)ÿbasepath$ÿ"ABGLEICH\LOAD"
+ ausgabe% = - 1
+ DIM dir$(10)
+ dir$(0) = basepath$
+ dir$(1) = basepath$ + "OFFICE"
+ dir$(2) = basepath$ + "PROVIS"
+ dir$(3) = basepath$ + "ABGLEICH\SEND"
+ dir$(4) = basepath$ + "ABGLEICH\LOAD"
  
- ÿ×files$(1000)
- ÿ¡ausgabe%ÿÿ1ÿpÿ‡
+ DIM files$(1000)
+ IF ausgabe% = - 1 THEN CLS 
  
  
- dir%ÿ0
+ dir% = 0
  'ber alle Verzeichnisse
- ÿØdir$(dir%)ÿ""
-ÿ³ÿ_ÿwNextDirErr
-ÿ¡ÿOÿJ(dir$(dir%))ÿp
-ÿÂ"Verzeichnis "ÿdir$(dir%)ÿ" existiert nicht"
-ÿwNextDir
-ÿ’ÿ¡
-ÿdir$(dir%)
-ÿ¡ausgabe%ÿÿ1ÿpÿ{"----"ÿdir$(dir%)ÿ"---"
-ÿÿfiles$(1000)'Array leeren
-ÿÿfiles$,5,"*.SBf"
-datei%ÿ0
-'ber alle Dateien im aktuellen Verzeichnis
-ÿØfiles$(datei%)ÿ""
-ÿ³ÿ_ÿwNextFileErr
-ÿ¡ÿOÿJ(files$(datei%))ÿp
-ÿÂ"Datei "ÿfiles$(datei%)existiert nicht
-ÿwNextFile
-ÿ’ÿ¡
-datei$ÿÿ,(files$(datei%),1,ÿ/(files$(datei%))ÿ4)'.sbf entfernen
-ÿ¡ausgabe%ÿÿ1ÿpÿ{&11datei$;
-'Datei auf einen anderen Namen reorganisieren
-'sicherheitshalber vorher die Sperrdatei l”schen
-ÿ¡ÿJ(datei$ÿ".sb!")ÿpÿdatei$ÿ".sb!"
-ÿ´ÿ™datei$ÿ";paris"
-ÿÀÿ™datei$ÿq"gaga.sbf"
-ÿ´ÿ™"gaga;paris"
-ÿ†ÿ™datei$
-ÿdatei$ÿ".*"
+ WHILE dir$(dir%) <> ""
+    ON ERROR GOTO NextDirErr
+    IF NOT EXISTS (dir$(dir%)) THEN 
+        REQUEST "Verzeichnis " + dir$(dir%) + " existiert nicht"
+        GOTO NextDir
+    END IF 
+    DIRECTORY dir$(dir%)
+    IF ausgabe% = - 1 THEN ? "----" + dir$(dir%) + "---"
+    REDIM files$(1000)'Array leeren
+    FILLARRAY files$,5,"*.SBf"
+    datei% = 0
+    'ber alle Dateien im aktuellen Verzeichnis
+    WHILE files$(datei%) <> ""
+        ON ERROR GOTO NextFileErr
+        IF NOT EXISTS (files$(datei%)) THEN 
+            REQUEST "Datei " + files$(datei%)existiert nicht
+            GOTO NextFile
+        END IF 
+        datei$ = MID$ (files$(datei%),1, LEN (files$(datei%)) - 4)'.sbf entfernen
+        IF ausgabe% = - 1 THEN ? &11datei$;
+        'Datei auf einen anderen Namen reorganisieren
+        'sicherheitshalber vorher die Sperrdatei l”schen
+        IF EXISTS (datei$ + ".sb!") THEN DELETE datei$ + ".sb!"
+        OPEN FILE datei$ + ";paris"
+        REORGANIZE FILE datei$ TO "gaga.sbf"
+        OPEN FILE "gaga;paris"
+        CLOSE FILE datei$
+        DELETE datei$ + ".*"
  
-ÿ‰ÿ™datei$ÿ";;;;paris"ÿaÿ™"gaga"
-ÿ†ÿ™"gaga"
-ÿ"gaga.*"
+        CREATE FILE datei$ + ";;;;paris" FROM FILE "gaga"
+        CLOSE FILE "gaga"
+        DELETE "gaga.*"
  
-ÿ¡ausgabe%ÿÿ1ÿpÿ{"... Ok"
+        IF ausgabe% = - 1 THEN ? "... Ok"
  
-'alles io
-ÿwNextFile
+        'alles io
+        GOTO NextFile
  
 NextFileErr: 
-ÿ¡ausgabe%ÿÿ1ÿpÿ{"FEHLER beim Reorganisieren von "ÿÿÿ"\"ÿdatei$
-ÿ³ÿ_
-NextFile:
+        IF ausgabe% = - 1 THEN ? "FEHLER beim Reorganisieren von " + DIRECTORY + "\" + datei$
+        ON ERROR 
+NextFile:             
  
-datei%ÿdatei%ÿ1
+        datei% = datei% + 1
  
-ÿÙ
-'alles io
-ÿwNextDir
+    WEND 
+    'alles io
+    GOTO NextDir
 NextDirErr: 
-ÿ³ÿ_
-ÿÂ"Fehler beim Reorganisieren von "ÿÿÿ"\"ÿdatei$
+    ON ERROR 
+    REQUEST "Fehler beim Reorganisieren von " + DIRECTORY + "\" + datei$
 NextDir: 
  
-dir%ÿdir%ÿ1
+    dir% = dir% + 1
  
- ÿÙ
+ WEND 
  
  
- ÿ’ÿÿ
+ END SUB 
  '***********************************************************************************************  
  
 
-ÿÿCreatePPCSFile(datei$,path$)
+SUB CreatePPCSFile(datei$,path$)
  'Fgt fr PPCS-Abgleich notwendige Felder hinzu
  '”ffnet kurzzeitig die crfilepp.sbr (nutzt FldAddUpd)
 
-ÿƒServerDown()
-ÿƒServerInit()
-cfile$ÿÿ™
-ÿ¡ÿ´(datei$)ÿpÿ†ÿ™datei$
+     CALL ServerDown()
+     CALL ServerInit()
+     cfile$ = FILE 
+     IF OPEN (datei$) THEN CLOSE FILE datei$
 
-ÿƒDFileUpd(2,path$ÿdatei$ÿ";paris")
+     CALL DFileUpd(2,path$ + datei$ + ";paris")
  
-ÿ™datei$
+     FILE datei$
 
-ÿƒFldAddUpd("Workstation","NUM;00000000.",1)
-ÿƒFldAddUpd("CodeServer","NUM;00000000.",1)
-ÿƒFldAddUpd("TState","TXT;1",1)
-ÿƒFldAddUpd("Rec0","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec1","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec2","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec3","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec4","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec5","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec6","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec7","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec8","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec9","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec10","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec11","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec12","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec13","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec14","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec15","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec16","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec17","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec18","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec19","NUM;00000000.",1)
-ÿÅÿ™ÿ™
+     CALL FldAddUpd("Workstation","NUM;00000000.",1)
+     CALL FldAddUpd("CodeServer","NUM;00000000.",1)
+     CALL FldAddUpd("TState","TXT;1",1)
+     CALL FldAddUpd("Rec0","NUM;00000000.",1)
+     CALL FldAddUpd("Rec1","NUM;00000000.",1)
+     CALL FldAddUpd("Rec2","NUM;00000000.",1)
+     CALL FldAddUpd("Rec3","NUM;00000000.",1)
+     CALL FldAddUpd("Rec4","NUM;00000000.",1)
+     CALL FldAddUpd("Rec5","NUM;00000000.",1)
+     CALL FldAddUpd("Rec6","NUM;00000000.",1)
+     CALL FldAddUpd("Rec7","NUM;00000000.",1)
+     CALL FldAddUpd("Rec8","NUM;00000000.",1)
+     CALL FldAddUpd("Rec9","NUM;00000000.",1)
+     CALL FldAddUpd("Rec10","NUM;00000000.",1)
+     CALL FldAddUpd("Rec11","NUM;00000000.",1)
+     CALL FldAddUpd("Rec12","NUM;00000000.",1)
+     CALL FldAddUpd("Rec13","NUM;00000000.",1)
+     CALL FldAddUpd("Rec14","NUM;00000000.",1)
+     CALL FldAddUpd("Rec15","NUM;00000000.",1)
+     CALL FldAddUpd("Rec16","NUM;00000000.",1)
+     CALL FldAddUpd("Rec17","NUM;00000000.",1)
+     CALL FldAddUpd("Rec18","NUM;00000000.",1)
+     CALL FldAddUpd("Rec19","NUM;00000000.",1)
+     SAVE FILE FILE 
  
-ÿ™cfile$
+     FILE cfile$
 
- ÿ’ÿÿ
+ END SUB 
  '***********************************************************************************************
 
  
-ÿÿDeleteWksData(wks%)
+SUB DeleteWksData(wks%)
  'l”scht aus allen Dateien die Datens„tze mit Workstation.file = wks%
  
- tempdir$ÿÿ
+ tempdir$ = DIRECTORY 
  
- ÿ×sbf$(1000)
- ÿ‡
- ÿ×dirs$(10)
- dirs$(0)ÿ"d:\afm.her\provis"
- dirs$(1)ÿ"d:\afm.her\office"
- dirs$(2)ÿ"d:\afm.her"
+ DIM sbf$(1000)
+ CLS 
+ DIM dirs$(10)
+ dirs$(0) = "d:\afm.her\provis"
+ dirs$(1) = "d:\afm.her\office"
+ dirs$(2) = "d:\afm.her"
  
- dir%ÿ0
- ÿØ(dirs$(dir%)ÿ"")
-
-ÿdirs$(dir%)
-i%%ÿ0
-ÿÿsbf$(1000)
-ÿÿsbf$,5,"*.SBf"
-ÿØsbf$(i%%)ÿ""
-
-
-ÿÊÿËsbf$(i%%)
-
-ÿ³ÿ_ÿwError2
-
-sbf$(i%%)ÿÿ,(sbf$(i%%),1,ÿ/(sbf$(i%%))ÿ4)
-
-ÿ´ÿ™sbf$(i%%)ÿ";paris"
+ dir% = 0
+ WHILE (dirs$(dir%) <> "")
+    
+    DIRECTORY dirs$(dir%)
+    i%% = 0
+    REDIM sbf$(1000)
+    FILLARRAY sbf$,5,"*.SBf"
+    WHILE sbf$(i%%) <> ""
+        
+          SET STATUS sbf$(i%%)
+          ON ERROR GOTO Error2
+          sbf$(i%%) = MID$ (sbf$(i%%),1, LEN (sbf$(i%%)) - 4)
+          OPEN FILE sbf$(i%%) + ";paris"
  
-
-wksfield$ÿ"Workstation."ÿsbf$(i%%)
-
-ÿ³ÿ_ÿwFieldError
-
-ÿÉÿ`ÿ™sbf$(i%%)ÿ£wksfield$$
-
-ÿÉÿ¥wks%ÿ™sbf$(i%%)ÿ£wksfield$$
-
-ÿØÿOÿB(sbf$(i%%))ÿwksfield$$ÿwks%
-
-ÿÉÿYÿáÿ™sbf$(i%%)
-ÿÉÿ¾ÿ™sbf$(i%%)
+          wksfield$ = "Workstation." + sbf$(i%%)
+          ON ERROR GOTO FieldError
+          SELECT FIRST FILE sbf$(i%%) INDEX wksfield$$
+          SELECT KEY wks% FILE sbf$(i%%) INDEX wksfield$$
+          WHILE NOT EOF (sbf$(i%%)) AND wksfield$$ = wks%
+               
+               SELECT CURRENT LOCK FILE sbf$(i%%)
+               SELECT REMOVE FILE sbf$(i%%)
  
-'SELECT NEXT FILE sbf$(i%%) INDEX wksfield$$
-
-ÿÙ
+               'SELECT NEXT FILE sbf$(i%%) INDEX wksfield$$
+          WEND 
  
-
-ÿ†ÿ™sbf$(i%%)
-
-ÿwNext2
+          CLOSE FILE sbf$(i%%)
+          GOTO Next2
  
 FieldError: 
-
-'Feld Workstation wahrscheinlich nicht vorhanden ==> n„chste Datei
-
-ÿwNext2
+          'Feld Workstation wahrscheinlich nicht vorhanden ==> n„chste Datei
+          GOTO Next2
 Error2: 
-ÿÂ"Fehler bei Bearbeitung von Datei "ÿsbf$(i%%),"",2
-ÿ³ÿ_
+        REQUEST "Fehler bei Bearbeitung von Datei " + sbf$(i%%),"",2
+        ON ERROR 
 Next2: 
-i%%ÿi%%ÿ1
+     i%% = i%% + 1
  
-ÿÙ
-
-dir%ÿdir%ÿ1
+    WEND 
+    
+    dir% = dir% + 1
  
- ÿÙ
+ WEND 
  
- ÿ’ÿÿ
+ END SUB 
  '***********************************************************************************************  
  
 
-ÿÿFilialeToCenter(BaseDir$,wks%,OCenterFiliale%)
+SUB FilialeToCenter(BaseDir$,wks%,OCenterFiliale%)
  'wandelt ein Verzeichnis mit Filial-Daten in eine Zentrale um
  '
  'wenn wks% >= 0  ==> die Abgleichs-Daten (Typ A, Y - also Adressen, Telefon, ...) verbleiben 
@@ -2040,126 +1957,126 @@ Next2:
  '  - (>0, 0)   eine leere Filiale aus einem Zentral-Pfad erzeugen
  '  - (-1, x)   nur bedingt sinnvoll ...
 
- ÿ•jaFileTyp$,jaFileCode$
- ÿÿjaFileTyp$,jaFileCode$
+ ERASE jaFileTyp$,jaFileCode$
+ GLOBAL jaFileTyp$,jaFileCode$
 
- ÿ¡ÿOÿ´("abgfiles")ÿpÿ´ÿ™BaseDir$ÿ"AbgFiles;paris"
+ IF NOT OPEN ("abgfiles") THEN OPEN FILE BaseDir$ + "AbgFiles;paris"
 
- tempdir$ÿÿ
+ tempdir$ = DIRECTORY 
  
- ÿ×sbf$(1000)
- ÿ×dirs$(10)
- dirs$(0)ÿBaseDir$ÿ"provis\"
- dirs$(1)ÿBaseDir$ÿ"office\"
- dirs$(2)ÿBaseDir$
+ DIM sbf$(1000)
+ DIM dirs$(10)
+ dirs$(0) = BaseDir$ + "provis\"
+ dirs$(1) = BaseDir$ + "office\"
+ dirs$(2) = BaseDir$
 
  
- dir%ÿ0
- ÿØ(dirs$(dir%)ÿ"")
-ÿ³ÿ_ÿwFTCDirError
-dir$ÿdirs$(dir%)
-ÿdir$
-i%%ÿ0
-ÿÿsbf$(1000)
-ÿÿsbf$,5,"*.SBf"
-ÿØsbf$(i%%)ÿ""
-ErrorNo%ÿ0
-ÿ³ÿ_ÿwFTCFileError 
-sbf$(i%%)ÿÿ,(sbf$(i%%),1,ÿ/(sbf$(i%%))ÿ4)
-datei$ÿÿ>(sbf$(i%%))
-
-
-ÿÉÿædatei$
+ dir% = 0
+ WHILE (dirs$(dir%) <> "")
+    ON ERROR GOTO FTCDirError
+    dir$ = dirs$(dir%)
+    DIRECTORY dir$
+    i%% = 0
+    REDIM sbf$(1000)
+    FILLARRAY sbf$,5,"*.SBf"
+    WHILE sbf$(i%%) <> ""
+        ErrorNo% = 0
+        ON ERROR GOTO FTCFileError 
+        sbf$(i%%) = MID$ (sbf$(i%%),1, LEN (sbf$(i%%)) - 4)
+        datei$ = UCASE$ (sbf$(i%%))
+        
+        
+        SELECT CASE datei$
 
-ÿæ"ABGFILES"
-'gar nix tun
-datei$ÿ""'schlieáen verhindern
-
-ÿæ"CONFIG","REDRU","STATIST","STATIST2","ABGDEPS"
-'??
-
-ÿæÿ^'Normalfall: AbgFiles nutzen
-ÿ¡ÿ´(datei$)ÿpÿ†ÿ™datei$
-ÿ´ÿ™dir$ÿdatei$ÿ";paris"
+        CASE "ABGFILES"
+            'gar nix tun
+            datei$ = ""'schlieáen verhindern
+             
+        CASE "CONFIG","REDRU","STATIST","STATIST2","ABGDEPS"
+            '??
+        
+        CASE ELSE 'Normalfall: AbgFiles nutzen
+            IF OPEN (datei$) THEN CLOSE FILE datei$
+            OPEN FILE dir$ + datei$ + ";paris"
 
-ÿƒGetFileInfo(datei$)
-ÿ¡jaFileTyp$ÿ""ÿjaFileTyp$ÿ"I"ÿp
-ÿ¡wks%ÿÿ1ÿp
-ÿ¾ÿaÿ™datei$
-ÿ^
-'lokale Daten erzeugen
-ErrorNo%ÿChangeWksData%(datei$,ÿ1,wks%)
-ÿ¡ErrorNo%ÿÿ1ÿp
-'Fehlerausgabe
-ÿwFTCFileError
-ÿ’ÿ¡
-ÿ’ÿ¡
-ÿ’ÿ¡
+            CALL GetFileInfo(datei$)
+            IF jaFileTyp$ = "" OR jaFileTyp$ = "I" THEN 
+                IF wks% = - 1 THEN 
+                    REMOVE FROM FILE datei$
+                ELSE 
+                    'lokale Daten erzeugen
+                    ErrorNo% = ChangeWksData%(datei$, - 1,wks%)
+                    IF ErrorNo% <> - 1 THEN 
+                        'Fehlerausgabe
+                        GOTO FTCFileError
+                    END IF 
+                END IF 
+            END IF 
 
-ÿ¡jaFileTyp$ÿ"A"ÿjaFileTyp$ÿ"Y"ÿjaFileTyp$ÿ"C"ÿp
-'Daten der Filiale mit Workstation=wks%, die bereits in der Zentrale liegen 
-ÿ¡OCenterFiliale%ÿ0ÿwks%ÿÿ1ÿp
-ÿ¾ÿaÿ™datei$
-ÿ^
-ErrorNo%ÿChangeWksData%(datei$,ÿ1,wks%)
-ÿ¡ErrorNo%ÿÿ1ÿp
-'Fehlerausgabe
-ÿwFTCNextError
-ÿ’ÿ¡
-ÿ’ÿ¡
+            IF jaFileTyp$ = "A" OR jaFileTyp$ = "Y" OR jaFileTyp$ = "C" THEN 
+                'Daten der Filiale mit Workstation=wks%, die bereits in der Zentrale liegen 
+                IF OCenterFiliale% = 0 OR wks% = - 1 THEN 
+                    REMOVE FROM FILE datei$
+                ELSE 
+                    ErrorNo% = ChangeWksData%(datei$, - 1,wks%)
+                    IF ErrorNo% <> - 1 THEN 
+                        'Fehlerausgabe
+                        GOTO FTCNextError
+                    END IF 
+                END IF 
 
-ÿ’ÿ¡
+            END IF 
 
-ÿ¡jaFileTyp$ÿ"Z"ÿp
-'Zentrale Daten erzeugen (Workstation = 0) oder l”schen
- 
-ÿ¡wks%ÿ0ÿOCenterFiliale%ÿ0ÿp
-ÿ¾ÿaÿ™datei$
-ÿ^
-ErrorNo%ÿChangeWksData%(datei$,ÿ1,0)' Daten in Workstation = 0 umwandeln
-
-ÿ¡ErrorNo%ÿÿ1ÿp
-'Fehlerausgabe
-ÿwFTCNextError
-ÿ’ÿ¡
-ÿ’ÿ¡
-ÿ’ÿ¡
+            IF jaFileTyp$ = "Z" THEN 
+                'Zentrale Daten erzeugen (Workstation = 0) oder l”schen
+                                
+                IF wks% > 0 AND OCenterFiliale% = 0 THEN 
+                    REMOVE FROM FILE datei$
+                ELSE 
+                    ErrorNo% = ChangeWksData%(datei$, - 1,0)' Daten in Workstation = 0 umwandeln
+    
+                    IF ErrorNo% <> - 1 THEN 
+                        'Fehlerausgabe
+                        GOTO FTCNextError
+                    END IF 
+                END IF 
+            END IF 
 
-ÿÉÿædatei$
-ÿæ"MAADR"
-'Workstation von Mitarbeiter <ohne Zuordnung> auf 0 setzen
-ÿ’ÿæ
-ÿ’ÿæ
-'alles io
-ÿ{datei$ÿ": Ok"
-ÿ¡ÿ´(datei$)ÿpÿ†ÿ™datei$
-ÿwFTCNextFile
+            SELECT CASE datei$
+                CASE "MAADR"
+                    'Workstation von Mitarbeiter <ohne Zuordnung> auf 0 setzen
+            END CASE 
+        END CASE 
+        'alles io
+        ? datei$ + ": Ok"
+        IF OPEN (datei$) THEN CLOSE FILE datei$
+        GOTO FTCNextFile
 FTCFileError: 
-ÿ{datei$ÿ": "ÿÿ((ÿ&)
-ÿwFTCNextFile
+    ? datei$ + ": " + ERR$ ( ERRNO )
+    GOTO FTCNextFile
 
 FTCNextFile: 
-
-ÿ³ÿ_ÿwFTCDirError
-i%%ÿi%%ÿ1
-ÿÙ
+        
+        ON ERROR GOTO FTCDirError
+        i%% = i%% + 1
+    WEND 
 
 FTCDirError: 
-ÿ{datei$ÿ": "ÿÿ((ÿ&)
-ÿwFTCDirNext
+    ? datei$ + ": " + ERR$ ( ERRNO )
+    GOTO FTCDirNext
 
 FTCDirNext: 
-ÿ³ÿ_
-ÿ{"---- "ÿdir$ÿ" ---"
-dir%ÿdir%ÿ1
- ÿÙ
+    ON ERROR 
+    ? "---- " + dir$ + " ---"
+    dir% = dir% + 1
+ WEND 
 
  
- ÿ’ÿÿ
+ END SUB 
  '*********************************************************************************************** 
  
  
-ÿÿCenterToFiliale(BaseDir$,wks%,CopyData%)
+SUB CenterToFiliale(BaseDir$,wks%,CopyData%)
 
  'erzeugt aus einem Center-Pfad eine leere Online-Center-Filiale
  'šbergabe:
@@ -2171,58 +2088,58 @@ FTCDirNext:
  '  * die Load/Send-Dateien erzeugen
  '  * die Signatur in die INI-Datei schreiben  
 
-ÿƒFilialeToCenter(BaseDir$,wks%,0)
+    CALL FilialeToCenter(BaseDir$,wks%,0)
 
-ÿ¡ÿOÿJ(BaseDir$ÿ"Abgleich")ÿp
-ÿªÿBaseDir$ÿ"Abgleich"
-ÿ’ÿ¡
-ÿ¡ÿOÿJ(BaseDir$ÿ"Abgleich\Load")ÿp
-ÿªÿBaseDir$ÿ"Abgleich\Load"
-ÿ’ÿ¡
-ÿ¡ÿOÿJ(BaseDir$ÿ"Abgleich\Send")ÿp
-ÿªÿBaseDir$ÿ"Abgleich\Send"
-ÿ’ÿ¡
-ÿ¡ÿOÿJ(BaseDir$ÿ"Abgleich\Log")ÿp
-ÿªÿBaseDir$ÿ"Abgleich\Log"
-ÿ’ÿ¡
+    IF NOT EXISTS (BaseDir$ + "Abgleich") THEN 
+        MAKE DIRECTORY BaseDir$ + "Abgleich"
+    END IF 
+    IF NOT EXISTS (BaseDir$ + "Abgleich\Load") THEN 
+        MAKE DIRECTORY BaseDir$ + "Abgleich\Load"
+    END IF 
+    IF NOT EXISTS (BaseDir$ + "Abgleich\Send") THEN 
+        MAKE DIRECTORY BaseDir$ + "Abgleich\Send"
+    END IF 
+    IF NOT EXISTS (BaseDir$ + "Abgleich\Log") THEN 
+        MAKE DIRECTORY BaseDir$ + "Abgleich\Log"
+    END IF 
 
-ÿ•_localpath$
-ÿÿ_localpath$
-_localpath$ÿBaseDir$
+    ERASE _localpath$
+    GLOBAL _localpath$
+    _localpath$ = BaseDir$
 
-ÿ¡ÿOÿ´("abgfiles")ÿpÿ´ÿ™BaseDir$ÿ"AbgFiles;paris"
-ÿÉÿ`ÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
-ÿØÿOÿB("AbgFiles")
+    IF NOT OPEN ("abgfiles") THEN OPEN FILE BaseDir$ + "AbgFiles;paris"
+    SELECT FIRST FILE "AbgFiles" INDEX CodeFile.AbgFiles
+    WHILE NOT EOF ("AbgFiles")
 
-ÿÉÿæÿ>(Typ.AbgFiles)
-ÿæ"C","Z","A","Y"
-ÿƒCreateLoadSend(FileName.AbgFiles,ÿ1)
-
-ÿ’ÿÉ
+        SELECT CASE UCASE$ (Typ.AbgFiles)
+            CASE "C","Z","A","Y"
+                CALL CreateLoadSend(FileName.AbgFiles, - 1)
+                
+        END SELECT 
 
-ÿÉÿ±ÿ™"AbgFiles"ÿ£CodeFile.AbgFiles
-ÿÙ
-
-ÿ³ÿ_ÿwCTFRegisterOk
-ÿîÿ…"WritePrivateProfileString"
+        SELECT NEXT FILE "AbgFiles" INDEX CodeFile.AbgFiles
+    WEND 
+    
+    ON ERROR GOTO CTFRegisterOk
+    REGISTER CLEAR "WritePrivateProfileString"
 CTFRegisterOk: 
-ÿî"Kernel","WritePrivateProfileString","ICCCC"
+    REGISTER "Kernel","WritePrivateProfileString","ICCCC"
 
-
-ÿ³ÿ_ÿwCTFRegisterOk2
-ÿîÿ…"_GetStringHash"
+    
+    ON ERROR GOTO CTFRegisterOk2
+    REGISTER CLEAR "_GetStringHash"
 CTFRegisterOk2: 
-ÿî"CODieLIB.dll","_GetStringHash","ICCF"
+    REGISTER "CODieLIB.dll","_GetStringHash","ICCF"
 
-a%ÿÿƒ("WritePrivateProfileString","PROVIS","Workstation",ÿ(wks%,"z"),_localpath$ÿ"CODIEAPP.NET")
-a%ÿÿƒ("_GetStringHash",ÿ(wks%,"z"),"paris",sig$)
-a%ÿÿƒ("WritePrivateProfileString","PROVIS","WorkstationSig",sig$,_localpath$ÿ"CODIEAPP.NET")
-
- ÿ’ÿÿ
+    a% = CALL ("WritePrivateProfileString","PROVIS","Workstation", STR$ (wks%,"z"),_localpath$ + "CODIEAPP.NET")
+    a% = CALL ("_GetStringHash", STR$ (wks%,"z"),"paris",sig$)
+    a% = CALL ("WritePrivateProfileString","PROVIS","WorkstationSig",sig$,_localpath$ + "CODIEAPP.NET")
+  
+ END SUB 
  '***********************************************************************************************
-
+  
  
-ÿÿChangeWksData%(datei$,oldwks%,newwks%)
+FUNCTION ChangeWksData%(datei$,oldwks%,newwks%)
  'wandelt alle Datens„tze mit Workstation = oldwks% in newwks% um
  '
  'wenn oldwks% = -1 ==> fr alle Datens„tze Workstation = newwks% setzen
@@ -2233,436 +2150,384 @@ CTFRegisterOk2:
  '
  'kann vielleicht sp„ter mal fr das Ver„ndern von Bro-Strukturen verwendet werden ?!
  
- ÿ³ÿ_ÿwCWDError
- ChangeWksData%ÿÿ1
- wksfield$ÿ"Workstation."ÿdatei$
+ ON ERROR GOTO CWDError
+ ChangeWksData% = - 1
+ wksfield$ = "Workstation." + datei$
  
- ÿ¡oldwks%ÿÿ1ÿp
+ IF oldwks% = - 1 THEN 
  
-ÿÍwksfield$$ÿnewwks%
-ÿ’ÿÍ
- ÿ^
-ÿÍwksfield$$ÿnewwks%ÿĞwksfield$$ÿoldwks%
-ÿ’ÿÍ
- ÿ’ÿ¡
+    UPDATE wksfield$$ = newwks%
+    END UPDATE 
+ ELSE 
+    UPDATE wksfield$$ = newwks% WHERE wksfield$$ = oldwks%
+    END UPDATE 
+ END IF 
  'alles io
- ÿwCWDOk:
+ GOTO CWDOk:
 
 CWDError: 
-ChangeWksData%ÿÿ&
+    ChangeWksData% = ERRNO 
 CWDOk: 
  
- ÿ’ÿÿ
+ END FUNCTION 
  '***********************************************************************************************  
 
  
  
-ÿÿKonRepair(path$,mainFile$,mainField$,testFile$,testField$,testCode$)
+SUB KonRepair(path$,mainFile$,mainField$,testFile$,testField$,testCode$)
  
-'prft fr die aktuelle Datei, ob Werte in _testField$ existieren, die
-'nicht in _mainFile$ im Feld _mainField$ existieren
-'_testCode$ ist das Code-Feld der aktuellen Datei
-'wenn gefunden: auf <ohne Zuordnung>-Datensatz im MainFile (ZweiMille%) verweisen
-ÿ¡ÿOÿ´(mainFile$)ÿp
-
-ÿ´ÿ™ÿà,1path$ÿmainFile$ÿ";paris"
-
-hasOpen%ÿÿ1' ==> Datei am Ende wieder schlieáen
-ÿ’ÿ¡
+     'prft fr die aktuelle Datei, ob Werte in _testField$ existieren, die
+     'nicht in _mainFile$ im Feld _mainField$ existieren
+     '_testCode$ ist das Code-Feld der aktuellen Datei
+     'wenn gefunden: auf <ohne Zuordnung>-Datensatz im MainFile (ZweiMille%) verweisen
+     IF NOT OPEN (mainFile$) THEN 
+          OPEN FILE SHARE ,1path$ + mainFile$ + ";paris"
+          hasOpen% = - 1' ==> Datei am Ende wieder schlieáen
+     END IF 
  
-mainField$ÿmainField$ÿ"."ÿmainFile$
-
-zeroCode%ÿÿ1
-
-testCode$ÿtestCode$ÿ"."ÿtestFile$
-testField$ÿtestField$ÿ"."ÿtestFile$
-testFile$ÿÿ>(testFile$)
-ÿÉÿ`ÿ™testFile$ÿ£testCode$$
-ÿØÿOÿB(testFile$)
-
-ÿ¡(testField$$ÿ
-1)ÿ(ÿOÿJ(testField$$,mainField$$))ÿp
+     mainField$ = mainField$ + "." + mainFile$
+    
+     zeroCode% = - 1
+    
+     testCode$ = testCode$ + "." + testFile$
+     testField$ = testField$ + "." + testFile$
+     testFile$ = UCASE$ (testFile$)
+     SELECT FIRST FILE testFile$ INDEX testCode$$
+     WHILE NOT EOF (testFile$)
+          IF (testField$$ < 1) OR ( NOT EXISTS (testField$$,mainField$$)) THEN 
  
-'IF jaDebug% = - 1 THEN CALL Fehler("Inkonsistenz (KonRepair)",testFile$)
+               'IF jaDebug% = - 1 THEN CALL Fehler("Inkonsistenz (KonRepair)",testFile$)
  
-ÿÉÿYÿáÿ™testFile$ÿ£testCode$$
-testField$$ÿZweiMille%
-ÿÌÿ™testFile$
-ÿïÿYÿ™testFile$
+               SELECT CURRENT LOCK FILE testFile$ INDEX testCode$$
+               testField$$ = ZweiMille%
+               STORE FILE testFile$
+               UNLOCK CURRENT FILE testFile$
  
-
-ÿ’ÿ¡
-
-ÿÉÿ±ÿ™testFile$ÿ£testCode$$
-ÿÙ
-ÿ¡hasOpen%ÿÿ1ÿp
-
-ÿ†ÿ™mainFile$
-ÿ’ÿ¡
-'CALL Fehler("","")
- ÿ’ÿÿ
+          END IF 
+          SELECT NEXT FILE testFile$ INDEX testCode$$
+     WEND 
+     IF hasOpen% = - 1 THEN 
+          CLOSE FILE mainFile$
+     END IF 
+     'CALL Fehler("","")
+ END SUB 
  '*************************************************************************
  
  
-ÿÿKonDelete(path$,mainFile$,mainField$,testFile$,testField$,testCode$)
+SUB KonDelete(path$,mainFile$,mainField$,testFile$,testField$,testCode$)
  
-'prft fr die aktuelle Datei, ob Werte in _testField$ existieren, die
-'nicht in _mainFile$ im Feld _mainField$ existieren
-'_testCode$ ist das Code-Feld der aktuellen Datei
-'wenn gefunden ==> rabiat l”schen
-
-ÿ¡ÿOÿ´(mainFile$)ÿp
-
-ÿ´ÿ™ÿà,1path$ÿmainFile$ÿ";paris"
-
-hasOpen%ÿÿ1
-ÿ’ÿ¡
-mainField$ÿmainField$ÿ"."ÿmainFile$
-testCode$ÿtestCode$ÿ"."ÿtestFile$
-testField$ÿtestField$ÿ"."ÿtestFile$
+    'prft fr die aktuelle Datei, ob Werte in _testField$ existieren, die
+    'nicht in _mainFile$ im Feld _mainField$ existieren
+    '_testCode$ ist das Code-Feld der aktuellen Datei
+    'wenn gefunden ==> rabiat l”schen
+     
+     IF NOT OPEN (mainFile$) THEN 
+          OPEN FILE SHARE ,1path$ + mainFile$ + ";paris"
+          hasOpen% = - 1
+     END IF 
+     mainField$ = mainField$ + "." + mainFile$
+     testCode$ = testCode$ + "." + testFile$
+     testField$ = testField$ + "." + testFile$
  
-ÿÉÿ`ÿ™testFile$ÿ£testCode$$
-ÿØÿOÿB(testFile$)
-
-ÿ¡ÿOÿJ(testField$$,mainField$$)ÿp
-'IF jaDebug% = - 1 THEN CALL Fehler("Inkonsistenz (KonDelete)",testFile$)
-ÿÉÿYÿáÿ™testFile$ÿ£testCode$$
-ÿÉÿ¾ÿ™testFile$
-
-ÿ^
-ÿÉÿ±ÿ™testFile$ÿ£testCode$$
-
-ÿ’ÿ¡
-ÿÙ
-ÿ¡hasOpen%ÿÿ1ÿp
-
-ÿ†ÿ™mainFile$
-ÿ’ÿ¡
- ÿ’ÿÿ
+     SELECT FIRST FILE testFile$ INDEX testCode$$
+     WHILE NOT EOF (testFile$)
+          IF NOT EXISTS (testField$$,mainField$$) THEN 
+               'IF jaDebug% = - 1 THEN CALL Fehler("Inkonsistenz (KonDelete)",testFile$)
+               SELECT CURRENT LOCK FILE testFile$ INDEX testCode$$
+               SELECT REMOVE FILE testFile$
+          ELSE 
+               SELECT NEXT FILE testFile$ INDEX testCode$$
+          END IF 
+     WEND 
+     IF hasOpen% = - 1 THEN 
+          CLOSE FILE mainFile$
+     END IF 
+ END SUB 
  '*************************************************************************
  
  
-ÿÿKonKvertrag(basepath$)
-'sucht nach Vertr„gen ohne Adresse und erzeugt diese gegebenenfalls aus
-'den rudiment„ren Adreá-Angaben in der KVERTRAG.sbf
-ÿ½ CALL Fehler("KonKvertrag","")
-ÿ¡ÿOÿ´("ADRESSEN")ÿpÿ´ÿ™ÿà,1basepath$ÿ"\office\Adressen;paris"
-zerocode%ÿÿ1
-ÿÉÿ`ÿ™"kvertrag"ÿ£lfdnr.kvertrag
-ÿØÿOÿB("kvertrag")
-
-ÿ¡ÿOÿJ(CodeKu.Kvertrag,CodeKu.Adressen)ÿp
+SUB KonKvertrag(basepath$)
+     'sucht nach Vertr„gen ohne Adresse und erzeugt diese gegebenenfalls aus
+     'den rudiment„ren Adreá-Angaben in der KVERTRAG.sbf
+     REM CALL Fehler("KonKvertrag","")
+     IF NOT OPEN ("ADRESSEN") THEN OPEN FILE SHARE ,1basepath$ + "\office\Adressen;paris"
+     zerocode% = - 1
+     SELECT FIRST FILE "kvertrag" INDEX lfdnr.kvertrag
+     WHILE NOT EOF ("kvertrag")
+          IF NOT EXISTS (CodeKu.Kvertrag,CodeKu.Adressen) THEN 
  
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Vertrag ohne Adresse","")
+               IF jaDebug% = - 1 THEN CALL Fehler("Vertrag ohne Adresse","")
  
-codekuneu$ÿSER1 ("codeku","adressen")
-ÿÿ™"adressen"
-CodeKu.Adressenÿcodekuneu$
-CodeMa.AdressenÿZweiMille$
-Workstation.AdressenÿWorkstation%
-Nachname.AdressenÿANachname.Kvertrag
-Vorname.AdressenÿAVorname.Kvertrag
-AOrt.AdressenÿAOrt.Kvertrag
-APLZ.AdressenÿAPLZ.Kvertrag
-AStraáe.AdressenÿAStrasse.Kvertrag
-ÿÌÿ™"adressen"
+               codekuneu$ = SER1 ("codeku","adressen")
+               BLANK FILE "adressen"
+                    CodeKu.Adressen = codekuneu$
+                    CodeMa.Adressen = ZweiMille$
+                    Workstation.Adressen = Workstation%
+                    Nachname.Adressen = ANachname.Kvertrag
+                    Vorname.Adressen = AVorname.Kvertrag
+                    AOrt.Adressen = AOrt.Kvertrag
+                    APLZ.Adressen = APLZ.Kvertrag
+                    AStraáe.Adressen = AStrasse.Kvertrag
+               STORE FILE "adressen"
  
-ÿÉÿYÿáÿ™"kvertrag"ÿ£lfdnr.kvertrag
-CodeKu.Kvertragÿcodekuneu$
-ÿÌÿ™"kvertrag"
-ÿïÿYÿ™"kvertrag"
-
-ÿ’ÿ¡
-
-ÿÉÿ±ÿ™"kvertrag"ÿ£lfdnr.Kvertrag
-ÿÙ
-ÿ†ÿ™"adressen"
- ÿ’ÿÿ
+               SELECT CURRENT LOCK FILE "kvertrag" INDEX lfdnr.kvertrag
+               CodeKu.Kvertrag = codekuneu$
+               STORE FILE "kvertrag"
+               UNLOCK CURRENT FILE "kvertrag"
+          END IF 
+          SELECT NEXT FILE "kvertrag" INDEX lfdnr.Kvertrag
+     WEND 
+     CLOSE FILE "adressen"
+ END SUB 
  '*************************************************************************
  
  
-ÿÿCreateLoadSend(sfile$,removeData%)
-'Erzeugt die zu einer Datei geh”rigen Load- und Send-Dateien
-'Informationen ber die Namen der Load/Send-Dateien werden aus AbgFiles.sbf
-'entnommen    
-'sfile$: Name der Quelldatei (ohne .sbf)
-'removeData%: -1 ==> den Inhalt der Load/Send-Dateien l”schen ?
-'Vor.: AbgFiles offen, _localpath$ definiert
+SUB CreateLoadSend(sfile$,removeData%)
+    'Erzeugt die zu einer Datei geh”rigen Load- und Send-Dateien
+    'Informationen ber die Namen der Load/Send-Dateien werden aus AbgFiles.sbf
+    'entnommen    
+    'sfile$: Name der Quelldatei (ohne .sbf)
+    'removeData%: -1 ==> den Inhalt der Load/Send-Dateien l”schen ?
+    'Vor.: AbgFiles offen, _localpath$ definiert
  
-ÿÉÿ`ÿ™"AbgFiles"ÿ£FileName.AbgFiles
-ÿÉÿ¥sfile$ÿ™"AbgFiles"ÿ£FileName.AbgFiles
-ÿ¡ÿOÿC("AbgFiles")ÿp
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler("Load/Send-Dateien konnten nicht erstellt werden:",sfile$)
-ÿ’ÿÿ
-ÿ’ÿ¡
-
-loadfile$ÿPrefix.AbgFilesÿ"Load"
-sendfile$ÿPrefix.AbgFilesÿ"Send"
-typ$ÿTyp.AbgFiles
+    SELECT FIRST FILE "AbgFiles" INDEX FileName.AbgFiles
+    SELECT KEY sfile$ FILE "AbgFiles" INDEX FileName.AbgFiles
+    IF NOT FOUND ("AbgFiles") THEN 
+        IF jaDebug% = - 1 THEN CALL Fehler("Load/Send-Dateien konnten nicht erstellt werden:",sfile$)
+        END SUB 
+    END IF 
+    
+    loadfile$ = Prefix.AbgFiles + "Load"
+    sendfile$ = Prefix.AbgFiles + "Send"
+    typ$ = Typ.AbgFiles
  
-ÿ¡ÿ´(sendfile$)ÿp
-ÿ†ÿ™sendfile$
-ÿ’ÿ¡
-ÿ¡ÿJ(_localpath$ÿ"ABGLEICH\Send\"ÿsendfile$ÿ".SBF")ÿp
-ÿ_localpath$ÿ"ABGLEICH\Send\"ÿsendfile$ÿ".*"
-ÿ’ÿ¡
+    IF OPEN (sendfile$) THEN 
+        CLOSE FILE sendfile$
+    END IF 
+    IF EXISTS (_localpath$ + "ABGLEICH\Send\" + sendfile$ + ".SBF") THEN 
+        DELETE _localpath$ + "ABGLEICH\Send\" + sendfile$ + ".*"
+    END IF 
  
-ÿ¡ÿ´(loadfile$)ÿp
-ÿ†ÿ™loadfile$
-ÿ’ÿ¡
+    IF OPEN (loadfile$) THEN 
+        CLOSE FILE loadfile$
+    END IF 
  
-ÿ¡ÿJ(_localpath$ÿ"ABGLEICH\Load\"ÿloadfile$ÿ".SBF")ÿp
-ÿ_localpath$ÿ"ABGLEICH\Load\"ÿloadfile$ÿ".*"
-ÿ’ÿ¡
+    IF EXISTS (_localpath$ + "ABGLEICH\Load\" + loadfile$ + ".SBF") THEN 
+        DELETE _localpath$ + "ABGLEICH\Load\" + loadfile$ + ".*"
+    END IF 
  
-ÿ¡ÿOÿ´(sfile$)ÿp
-ÿ´ÿ™_localpath$ÿDir.Abgfilesÿ"\"ÿsfile$ÿ";paris"
-ÿ’ÿ¡
+    IF NOT OPEN (sfile$) THEN 
+        OPEN FILE _localpath$ + Dir.Abgfiles + "\" + sfile$ + ";paris"
+    END IF 
 
-ÿÀÿ™sfile$ÿq_localpath$ÿ"ABGLEICH\Send\"ÿsendfile$ÿ".SBF"
-ÿ¡removeData%ÿÿ1ÿp
-ÿ¾ÿaÿ™sendfile$
-ÿ’ÿ¡
-ÿ†ÿ™sendfile$
-ÿˆ_localpath$ÿ"ABGLEICH\Send\"ÿsendfile$ÿ".*"ÿq_localpath$ÿ"ABGLEICH\Load"
-ÿ¡ÿJ(_localpath$ÿ"ABGLEICH\Load\"ÿsendfile$ÿ".sb!")ÿp
-ÿ_localpath$ÿ"ABGLEICH\Load\"ÿsendfile$ÿ".sb!"
-ÿ’ÿ¡
-ÿ´ÿ™_localpath$ÿ"ABGLEICH\Load\"ÿsendfile$ÿ";paris"
-ÿ¾ÿaÿ™sendfile$
-ÿÀÿ™sendfile$ÿq_localpath$ÿ"ABGLEICH\Load\"ÿloadfile$ÿ".SBF"
-ÿ†ÿ™loadfile$
-ÿ¾ÿ™sendfile$
+    REORGANIZE FILE sfile$ TO _localpath$ + "ABGLEICH\Send\" + sendfile$ + ".SBF"
+    IF removeData% = - 1 THEN 
+        REMOVE FROM FILE sendfile$
+    END IF 
+    CLOSE FILE sendfile$
+    COPY _localpath$ + "ABGLEICH\Send\" + sendfile$ + ".*" TO _localpath$ + "ABGLEICH\Load"
+    IF EXISTS (_localpath$ + "ABGLEICH\Load\" + sendfile$ + ".sb!") THEN 
+        DELETE _localpath$ + "ABGLEICH\Load\" + sendfile$ + ".sb!"
+    END IF 
+    OPEN FILE _localpath$ + "ABGLEICH\Load\" + sendfile$ + ";paris"
+    REMOVE FROM FILE sendfile$
+    REORGANIZE FILE sendfile$ TO _localpath$ + "ABGLEICH\Load\" + loadfile$ + ".SBF"
+    CLOSE FILE loadfile$
+    REMOVE FILE sendfile$
  
- ÿ’ÿÿ
+ END SUB 
  '*************************************************************************
  
  
-ÿÿCrOhneZuord()
+SUB CrOhneZuord()
  'erzeugt <ohne Zuordnung>-Datens„tze mit code = ZweiMille%
  
-path$ÿ_netpath$ÿ"PROVIS\"
+     path$ = _netpath$ + "PROVIS\"
  
-ÿƒDFileUpd(2,path$ÿ"MAADR;paris")
-ÿ¡ZweiMille%ÿ0ÿp
-
-'PPCS-Version
-
-ÿ¡ÿJ(0,CodeMa.Maadr)ÿp
+     CALL DFileUpd(2,path$ + "MAADR;paris")
+     IF ZweiMille% > 0 THEN 
+          'PPCS-Version
+          IF EXISTS (0,CodeMa.Maadr) THEN 
  
-'<ohne Zuordnung> ex. bereits ==> jetzt zentrale Code verpassen
-ÿÉÿ`ÿ™"Maadr"ÿ£CodeMa
-ÿÉÿ¥0ÿ™"Maadr"ÿ£CodeMa
-ÿÉÿYÿáÿ™"Maadr"
-CodeMa.MaadrÿZweiMille%
-Workstation.Maadrÿ0
-CodeServer ÿZweiMille%
-ÿÌÿ™"Maadr"
-ÿïÿYÿ™"Maadr"
-
-ÿ’ÿ¡
+               '<ohne Zuordnung> ex. bereits ==> jetzt zentrale Code verpassen
+               SELECT FIRST FILE "Maadr" INDEX CodeMa
+               SELECT KEY 0 FILE "Maadr" INDEX CodeMa
+               SELECT CURRENT LOCK FILE "Maadr"
+                    CodeMa.Maadr = ZweiMille%
+                    Workstation.Maadr = 0
+                    CodeServer = ZweiMille%
+               STORE FILE "Maadr"
+               UNLOCK CURRENT FILE "Maadr"
+          END IF 
  
-
-ÿ¡ÿOÿJ(ZweiMille%,CodeMa.MAADR)ÿp
-ÿÿ™"Maadr"
-CodeMa.MaadrÿZweiMille%
-Nachname.Maadrÿ"<ohne Zuordnung>"
-CodeServer ÿZweiMille%
-ÿÌÿ™"Maadr"
-
-ÿ’ÿ¡
+          IF NOT EXISTS (ZweiMille%,CodeMa.MAADR) THEN 
+               BLANK FILE "Maadr"
+                    CodeMa.Maadr = ZweiMille%
+                    Nachname.Maadr = "<ohne Zuordnung>"
+                    CodeServer = ZweiMille%
+               STORE FILE "Maadr"
+          END IF 
  
-ÿ^
-
-'Normale Programm-Version
-
-ÿ¡ÿOÿJ(0,CodeMa.MAADR)ÿp
-ÿÿ™"Maadr"
-CodeMa.Maadrÿ0
-Nachname.Maadrÿ"<ohne Zuordnung>"
-CodeServer ÿ0
-ÿÌÿ™"Maadr"
-
-ÿ’ÿ¡
-ÿ’ÿ¡
-
-'CALL DFileUpd(2,path$ + "SPGRUPPE;paris") 
-'u.s.w. ... SPGRUPPE, GEADR, SPARTEN, VPRODUKT, TARIF, AKTIONEN, SUPERVIS
+     ELSE 
+          'Normale Programm-Version
+          IF NOT EXISTS (0,CodeMa.MAADR) THEN 
+               BLANK FILE "Maadr"
+                    CodeMa.Maadr = 0
+                    Nachname.Maadr = "<ohne Zuordnung>"
+                    CodeServer = 0
+               STORE FILE "Maadr"
+          END IF 
+     END IF 
+     
+     'CALL DFileUpd(2,path$ + "SPGRUPPE;paris") 
+     'u.s.w. ... SPGRUPPE, GEADR, SPARTEN, VPRODUKT, TARIF, AKTIONEN, SUPERVIS
  
- ÿ’ÿÿ
+ END SUB 
  '************************************************************************* 
  
  
-ÿÿPPCSFldUpdate()
+SUB PPCSFldUpdate()
  'fgt PPCS-spezifische Felder zur aktuellen Datei hinzu
  'Vor.: Datei offen und auf FILE gesetzt
  
-ÿ¡ZweiMille%ÿ0ÿpÿ’ÿÿ
+     IF ZweiMille% = 0 THEN END SUB 
  
-typ$ÿGetFileTyp$(ÿ™)
-ÿ¡typ$ÿ"Z"ÿtyp$ÿ"C"ÿtyp$ÿ"Y"ÿtyp$ÿ"D"ÿtyp$ÿ"A"ÿp
-ÿ^
-
-ÿ’ÿÿ'keine Datei, die in den Abgleich involviert ist 
-ÿ’ÿ¡
+     typ$ = GetFileTyp$( FILE )
+     IF typ$ = "Z" OR typ$ = "C" OR typ$ = "Y" OR typ$ = "D" OR typ$ = "A" THEN 
+     ELSE 
+          END SUB 'keine Datei, die in den Abgleich involviert ist 
+     END IF 
  
-ÿƒFldAddUpd("CodeServer","NUM;00000000.",1)
-ÿƒFldAddUpd("TState","TXT;1",1)
-ÿƒFldAddUpd("Rec0","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec1","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec2","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec3","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec4","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec5","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec6","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec7","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec8","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec9","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec10","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec11","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec12","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec13","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec14","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec15","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec16","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec17","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec18","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec19","NUM;00000000.",1)
+     CALL FldAddUpd("CodeServer","NUM;00000000.",1)
+     CALL FldAddUpd("TState","TXT;1",1)
+     CALL FldAddUpd("Rec0","NUM;00000000.",1)
+     CALL FldAddUpd("Rec1","NUM;00000000.",1)
+     CALL FldAddUpd("Rec2","NUM;00000000.",1)
+     CALL FldAddUpd("Rec3","NUM;00000000.",1)
+     CALL FldAddUpd("Rec4","NUM;00000000.",1)
+     CALL FldAddUpd("Rec5","NUM;00000000.",1)
+     CALL FldAddUpd("Rec6","NUM;00000000.",1)
+     CALL FldAddUpd("Rec7","NUM;00000000.",1)
+     CALL FldAddUpd("Rec8","NUM;00000000.",1)
+     CALL FldAddUpd("Rec9","NUM;00000000.",1)
+     CALL FldAddUpd("Rec10","NUM;00000000.",1)
+     CALL FldAddUpd("Rec11","NUM;00000000.",1)
+     CALL FldAddUpd("Rec12","NUM;00000000.",1)
+     CALL FldAddUpd("Rec13","NUM;00000000.",1)
+     CALL FldAddUpd("Rec14","NUM;00000000.",1)
+     CALL FldAddUpd("Rec15","NUM;00000000.",1)
+     CALL FldAddUpd("Rec16","NUM;00000000.",1)
+     CALL FldAddUpd("Rec17","NUM;00000000.",1)
+     CALL FldAddUpd("Rec18","NUM;00000000.",1)
+     CALL FldAddUpd("Rec19","NUM;00000000.",1)
  
-'SAVE FILE FILE 
+     'SAVE FILE FILE 
  
- ÿ’ÿÿ
+ END SUB 
  '************************************************************************* 
  
-ÿÿPPCSUpdate()
+SUB PPCSUpdate()
  'Update, fr PPCS-Version
  'Voraussetzung: Datei offen und auf FILE gesetzt
-cfile$ÿÿ™
-'CALL Fehler("","")
-ÿ¡ZweiMille%ÿ
-0ÿp
-
-ÿwPPCSUpdateEnd 
-ÿ’ÿ¡
+     cfile$ = FILE 
+     'CALL Fehler("","")
+     IF ZweiMille% < 0 THEN 
+          GOTO PPCSUpdateEnd 
+     END IF 
  
-ÿƒGetFileInfo(ÿ™)
-
-ÿ¡jaFileTyp$ÿ"Z"ÿjaFileTyp$ÿ"C"ÿjaFileTyp$ÿ"Y"ÿjaFileTyp$ÿ"D"ÿjaFileTyp$ÿ"A"ÿp
-
-ÿ^
-
-'keine Datei, die in den Abgleich involviert ist 
-
-ÿwPPCSUpdateEnd
-ÿ’ÿ¡
+     CALL GetFileInfo( FILE )
+  
+     IF jaFileTyp$ = "Z" OR jaFileTyp$ = "C" OR jaFileTyp$ = "Y" OR jaFileTyp$ = "D" OR jaFileTyp$ = "A" THEN 
+     
+     ELSE 
+          'keine Datei, die in den Abgleich involviert ist 
+          GOTO PPCSUpdateEnd
+     END IF 
  
-'sis:
-ÿ¡jaFileCode$ÿ""ÿp
-
-ÿÂ"Fehler: FileCode konnte nicht ermittelt werden",ÿ™
-
-ÿwPPCSUpdateEnd
-
-ÿ’ÿÿ
-ÿ’ÿ¡
-ÿÊÿË"PPCS - Felder hinzufgen"
-ÿƒFldAddUpd("CodeServer","NUM;00000000.",1)
-ÿƒFldAddUpd("TState","TXT;1",1)
-ÿƒFldAddUpd("Rec0","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec1","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec2","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec3","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec4","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec5","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec6","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec7","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec8","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec9","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec10","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec11","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec12","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec13","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec14","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec15","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec16","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec17","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec18","NUM;00000000.",1)
-ÿƒFldAddUpd("Rec19","NUM;00000000.",1)
+     'sis:
+     IF jaFileCode$ = "" THEN 
+          REQUEST "Fehler: FileCode konnte nicht ermittelt werden", FILE 
+          GOTO PPCSUpdateEnd
+          END SUB 
+     END IF 
+     SET STATUS "PPCS - Felder hinzufgen"
+     CALL FldAddUpd("CodeServer","NUM;00000000.",1)
+     CALL FldAddUpd("TState","TXT;1",1)
+     CALL FldAddUpd("Rec0","NUM;00000000.",1)
+     CALL FldAddUpd("Rec1","NUM;00000000.",1)
+     CALL FldAddUpd("Rec2","NUM;00000000.",1)
+     CALL FldAddUpd("Rec3","NUM;00000000.",1)
+     CALL FldAddUpd("Rec4","NUM;00000000.",1)
+     CALL FldAddUpd("Rec5","NUM;00000000.",1)
+     CALL FldAddUpd("Rec6","NUM;00000000.",1)
+     CALL FldAddUpd("Rec7","NUM;00000000.",1)
+     CALL FldAddUpd("Rec8","NUM;00000000.",1)
+     CALL FldAddUpd("Rec9","NUM;00000000.",1)
+     CALL FldAddUpd("Rec10","NUM;00000000.",1)
+     CALL FldAddUpd("Rec11","NUM;00000000.",1)
+     CALL FldAddUpd("Rec12","NUM;00000000.",1)
+     CALL FldAddUpd("Rec13","NUM;00000000.",1)
+     CALL FldAddUpd("Rec14","NUM;00000000.",1)
+     CALL FldAddUpd("Rec15","NUM;00000000.",1)
+     CALL FldAddUpd("Rec16","NUM;00000000.",1)
+     CALL FldAddUpd("Rec17","NUM;00000000.",1)
+     CALL FldAddUpd("Rec18","NUM;00000000.",1)
+     CALL FldAddUpd("Rec19","NUM;00000000.",1)
  
-ÿÊÿË"PPCS-Update"
-ÿÍworkstation ÿWorkstation%
-
-Rec0 ÿ10000000ÿWorkstation%
-
-Rec1 ÿ10000000ÿWorkstation%
-
-Rec2 ÿ10000000ÿWorkstation%
-
-Rec3 ÿ10000000ÿWorkstation%
-
-Rec4 ÿ10000000ÿWorkstation%
-
-Rec5 ÿ10000000ÿWorkstation%
-
-Rec6 ÿ10000000ÿWorkstation%
-
-Rec7 ÿ10000000ÿWorkstation%
-
-Rec8 ÿ10000000ÿWorkstation%
-
-Rec9 ÿ10000000ÿWorkstation%
-
-Rec10 ÿ10000000ÿWorkstation%
-
-Rec11 ÿ10000000ÿWorkstation%
-
-Rec12 ÿ10000000ÿWorkstation%
-
-Rec13 ÿ10000000ÿWorkstation%
-
-Rec14 ÿ10000000ÿWorkstation%
-
-Rec15 ÿ10000000ÿWorkstation%
-
-Rec16 ÿ10000000ÿWorkstation%
-
-Rec17 ÿ10000000ÿWorkstation%
-
-Rec18 ÿ10000000ÿWorkstation%
-
-Rec19 ÿ10000000ÿWorkstation%
-ÿ’ÿÍ
-
-ÿÊÿË"Erzeugen Load/Send-Dateien"
-ÿ¡jaFileTyp$ÿ"Y"ÿjaFileTyp$ÿ"A"ÿp
-ÿƒCreateLoadSend(ÿ™)
-ÿ’ÿ¡
+     SET STATUS "PPCS-Update"
+     UPDATE workstation = Workstation%
+          Rec0 = 10000000 + Workstation%
+          Rec1 = 10000000 + Workstation%
+          Rec2 = 10000000 + Workstation%
+          Rec3 = 10000000 + Workstation%
+          Rec4 = 10000000 + Workstation%
+          Rec5 = 10000000 + Workstation%
+          Rec6 = 10000000 + Workstation%
+          Rec7 = 10000000 + Workstation%
+          Rec8 = 10000000 + Workstation%
+          Rec9 = 10000000 + Workstation%
+          Rec10 = 10000000 + Workstation%
+          Rec11 = 10000000 + Workstation%
+          Rec12 = 10000000 + Workstation%
+          Rec13 = 10000000 + Workstation%
+          Rec14 = 10000000 + Workstation%
+          Rec15 = 10000000 + Workstation%
+          Rec16 = 10000000 + Workstation%
+          Rec17 = 10000000 + Workstation%
+          Rec18 = 10000000 + Workstation%
+          Rec19 = 10000000 + Workstation%
+     END UPDATE 
+      
+     SET STATUS "Erzeugen Load/Send-Dateien"
+     IF jaFileTyp$ = "Y" OR jaFileTyp$ = "A" THEN 
+        CALL CreateLoadSend( FILE )
+     END IF 
  
 PPCSUpdateEnd: 
-ÿ™cfile$
-ÿÅÿ™ÿ™
-dir$ÿÿ
-ÿ½ CALL Fehler(dir$ + "\" + FILE + ".sbf","Reorg")
-ÿÀÿ™ÿ™ÿqdir$ÿ"\"ÿÿ™ÿ".sbf"
- ÿ’ÿÿ
+    FILE cfile$
+    SAVE FILE FILE 
+    dir$ = DIRECTORY 
+    REM CALL Fehler(dir$ + "\" + FILE + ".sbf","Reorg")
+    REORGANIZE FILE FILE TO dir$ + "\" + FILE + ".sbf"
+ END SUB 
  
  '*************************************************************************   
-ÿÿCheckWksHash%()
+FUNCTION CheckWksHash%()
  'Prft die Checksumme der Workstation
  'benutzt fr Filiale offline (in AbgleichInit())
  ' -1, wenn šbereinstimmung, sonst 0
  'Workstation muá bereits eingelesen Worden sein
  'berechneter hash-Wert wird in calcSig$ geschrieben
-ÿ³ÿ_ÿwErrorHandler
-CheckWksHash%ÿ0
-sig$ÿReadConfig$("PROVIS","WorkstationSig")
-magic$ÿ"paris"'oder was auch immer ...
-a%ÿÿƒ("_GetStringHash",ÿ(Workstation%,"z"),magic$,calcSig$)
-ÿ¡calcSig$ÿsig$ÿp
-CheckWksHash%ÿÿ1
-ÿ^
-ÿ¡jaDebug%ÿÿ1ÿpÿƒFehler ("Ungliger Eintrag fr 'Workstation' in codieapp.net","")
-ÿ’ÿ¡
+    ON ERROR GOTO ErrorHandler
+    CheckWksHash% = 0
+    sig$ = ReadConfig$("PROVIS","WorkstationSig")
+    magic$ = "paris"'oder was auch immer ...
+    a% = CALL ("_GetStringHash", STR$ (Workstation%,"z"),magic$,calcSig$)
+    IF calcSig$ = sig$ THEN 
+        CheckWksHash% = - 1
+    ELSE 
+        IF jaDebug% = - 1 THEN CALL Fehler ("Ungliger Eintrag fr 'Workstation' in codieapp.net","")
+    END IF 
  
- ÿ’ÿÿ
+ END FUNCTION 
 
